@@ -1,0 +1,1528 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 12,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 11,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9987710118293762,
+          "poly": [
+            [
+              23,
+              23
+            ],
+            [
+              324,
+              45
+            ],
+            [
+              321,
+              77
+            ],
+            [
+              21,
+              55
+            ]
+          ],
+          "bbox_xyxy": [
+            21,
+            23,
+            324,
+            77
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "12 of 16",
+          "confidence": 0.988560676574707,
+          "poly": [
+            [
+              1515,
+              25
+            ],
+            [
+              1608,
+              25
+            ],
+            [
+              1608,
+              61
+            ],
+            [
+              1515,
+              61
+            ]
+          ],
+          "bbox_xyxy": [
+            1515,
+            25,
+            1608,
+            61
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "British standards, and FAOIrrigation Manuals. As a result, there is a widespread inconsis-",
+          "confidence": 0.9953213334083557,
+          "poly": [
+            [
+              424,
+              186
+            ],
+            [
+              1606,
+              168
+            ],
+            [
+              1606,
+              205
+            ],
+            [
+              425,
+              223
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            168,
+            1606,
+            223
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "tency in study and design practices across the country.",
+          "confidence": 0.991270124912262,
+          "poly": [
+            [
+              425,
+              225
+            ],
+            [
+              1139,
+              217
+            ],
+            [
+              1139,
+              254
+            ],
+            [
+              426,
+              262
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            217,
+            1139,
+            262
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "4.2. Construction",
+          "confidence": 0.9994509220123291,
+          "poly": [
+            [
+              425,
+              667
+            ],
+            [
+              634,
+              667
+            ],
+            [
+              634,
+              695
+            ],
+            [
+              425,
+              695
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            667,
+            634,
+            695
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "The construction of irrigation systems involves the conversion of engineering solutions",
+          "confidence": 0.9861528873443604,
+          "poly": [
+            [
+              485,
+              711
+            ],
+            [
+              1593,
+              708
+            ],
+            [
+              1593,
+              741
+            ],
+            [
+              485,
+              744
+            ]
+          ],
+          "bbox_xyxy": [
+            485,
+            708,
+            1593,
+            744
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "4.3. Irrigation System Management",
+          "confidence": 0.997163712978363,
+          "poly": [
+            [
+              427,
+              1745
+            ],
+            [
+              847,
+              1738
+            ],
+            [
+              848,
+              1771
+            ],
+            [
+              428,
+              1778
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            1738,
+            848,
+            1778
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 9,
+      "label": "header",
+      "score": 0.8855697512626648,
+      "bbox_xyxy": [
+        96,
+        144,
+        361,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 10,
+      "label": "number",
+      "score": 0.7443646192550659,
+      "bbox_xyxy": [
+        1475,
+        144,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.9460713863372803,
+      "bbox_xyxy": [
+        456,
+        267,
+        1555,
+        333
+      ],
+      "lines": [
+        {
+          "text": "There is little or no community consultation on project identification, study, and",
+          "confidence": 0.9852122068405151,
+          "poly": [
+            [
+              486,
+              262
+            ],
+            [
+              1602,
+              244
+            ],
+            [
+              1603,
+              285
+            ],
+            [
+              486,
+              303
+            ]
+          ],
+          "bbox_xyxy": [
+            486,
+            244,
+            1603,
+            303
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "design follow the topdown approach [25,29], which prevents the incorporation of users'",
+          "confidence": 0.9644063711166382,
+          "poly": [
+            [
+              424,
+              301
+            ],
+            [
+              1606,
+              282
+            ],
+            [
+              1606,
+              323
+            ],
+            [
+              425,
+              342
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            282,
+            1606,
+            342
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9852586984634399,
+      "bbox_xyxy": [
+        455,
+        338,
+        1554,
+        680
+      ],
+      "lines": [
+        {
+          "text": "special needs and indigenous farmers' knowledge into the planning and construction of",
+          "confidence": 0.9898549914360046,
+          "poly": [
+            [
+              424,
+              339
+            ],
+            [
+              1602,
+              320
+            ],
+            [
+              1603,
+              360
+            ],
+            [
+              425,
+              379
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            320,
+            1603,
+            379
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "irrigation schemes [30]. Often, systems designed under such conditions are portrayed by",
+          "confidence": 0.9928750991821289,
+          "poly": [
+            [
+              424,
+              376
+            ],
+            [
+              1599,
+              362
+            ],
+            [
+              1599,
+              399
+            ],
+            [
+              425,
+              413
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            362,
+            1599,
+            413
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "meager quality and inappropriateness to users. Poorly designed systems are considered",
+          "confidence": 0.9956193566322327,
+          "poly": [
+            [
+              424,
+              417
+            ],
+            [
+              1597,
+              401
+            ],
+            [
+              1597,
+              435
+            ],
+            [
+              425,
+              451
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            401,
+            1597,
+            451
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "as the root causes for frequent design changes and the resulting cost and time overruns.",
+          "confidence": 0.9866495132446289,
+          "poly": [
+            [
+              423,
+              452
+            ],
+            [
+              1601,
+              441
+            ],
+            [
+              1601,
+              475
+            ],
+            [
+              424,
+              485
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            441,
+            1601,
+            485
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Many research reports identified the study and design faults as among the major challenges",
+          "confidence": 0.9911388754844666,
+          "poly": [
+            [
+              423,
+              488
+            ],
+            [
+              1595,
+              480
+            ],
+            [
+              1595,
+              513
+            ],
+            [
+              424,
+              521
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            480,
+            1595,
+            521
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "of irrigation development and management in Ethiopia [16,25,26,3135]. Such design faults",
+          "confidence": 0.9911009073257446,
+          "poly": [
+            [
+              423,
+              525
+            ],
+            [
+              1594,
+              516
+            ],
+            [
+              1594,
+              550
+            ],
+            [
+              424,
+              559
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            516,
+            1594,
+            559
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "have wide-reaching impacts, as design documents are seldom reviewed before construction",
+          "confidence": 0.992682158946991,
+          "poly": [
+            [
+              422,
+              561
+            ],
+            [
+              1594,
+              554
+            ],
+            [
+              1594,
+              587
+            ],
+            [
+              423,
+              594
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            554,
+            1594,
+            594
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "commences [10].",
+          "confidence": 0.9988607168197632,
+          "poly": [
+            [
+              422,
+              599
+            ],
+            [
+              641,
+              597
+            ],
+            [
+              641,
+              628
+            ],
+            [
+              423,
+              630
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            597,
+            641,
+            630
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "paragraph_title",
+      "score": 0.906109094619751,
+      "bbox_xyxy": [
+        458,
+        713,
+        664,
+        739
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9844725728034973,
+      "bbox_xyxy": [
+        455,
+        757,
+        1553,
+        1030
+      ],
+      "lines": [
+        {
+          "text": "provided in the design document to a physical reality that enables safe storage or diversion,",
+          "confidence": 0.9847280979156494,
+          "poly": [
+            [
+              422,
+              750
+            ],
+            [
+              1596,
+              744
+            ],
+            [
+              1596,
+              778
+            ],
+            [
+              423,
+              784
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            744,
+            1596,
+            784
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "conveyance, distribution and application of water. In this regard, the selection of competent",
+          "confidence": 0.9903584718704224,
+          "poly": [
+            [
+              422,
+              786
+            ],
+            [
+              1596,
+              780
+            ],
+            [
+              1596,
+              817
+            ],
+            [
+              423,
+              823
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            780,
+            1596,
+            823
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "consultants and contractors as well as the use of appropriate construction materials, follow-",
+          "confidence": 0.9867103099822998,
+          "poly": [
+            [
+              423,
+              824
+            ],
+            [
+              1598,
+              819
+            ],
+            [
+              1598,
+              852
+            ],
+            [
+              424,
+              857
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            819,
+            1598,
+            857
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "ing standard construction procedures etc. are essential. The major problems during this",
+          "confidence": 0.9894634485244751,
+          "poly": [
+            [
+              423,
+              861
+            ],
+            [
+              1594,
+              855
+            ],
+            [
+              1594,
+              892
+            ],
+            [
+              424,
+              898
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            855,
+            1594,
+            898
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "implementation phase are among others inadequate capacity of the client, consultants and",
+          "confidence": 0.9932928681373596,
+          "poly": [
+            [
+              425,
+              900
+            ],
+            [
+              1593,
+              893
+            ],
+            [
+              1593,
+              927
+            ],
+            [
+              426,
+              934
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            893,
+            1593,
+            934
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "contractors that invariably lead to poor contractual administration, inadequate monitoring",
+          "confidence": 0.9814638495445251,
+          "poly": [
+            [
+              424,
+              935
+            ],
+            [
+              1593,
+              930
+            ],
+            [
+              1593,
+              967
+            ],
+            [
+              425,
+              972
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            930,
+            1593,
+            972
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "and evaluation, frequent design changes that result in excessive cost, and time overruns.",
+          "confidence": 0.9871959686279297,
+          "poly": [
+            [
+              425,
+              972
+            ],
+            [
+              1584,
+              966
+            ],
+            [
+              1584,
+              1003
+            ],
+            [
+              426,
+              1009
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            966,
+            1584,
+            1009
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "The study conducted by [34] on ten large-scale irrigation projects in Ethiopia showed",
+          "confidence": 0.994374692440033,
+          "poly": [
+            [
+              487,
+              1009
+            ],
+            [
+              1593,
+              1006
+            ],
+            [
+              1593,
+              1041
+            ],
+            [
+              487,
+              1044
+            ]
+          ],
+          "bbox_xyxy": [
+            487,
+            1006,
+            1593,
+            1044
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.985462486743927,
+      "bbox_xyxy": [
+        455,
+        1036,
+        1553,
+        1379
+      ],
+      "lines": [
+        {
+          "text": "that 78% of the reasons for project cost overrun were attributed to design, scope, and qual-",
+          "confidence": 0.9712002873420715,
+          "poly": [
+            [
+              427,
+              1049
+            ],
+            [
+              1595,
+              1044
+            ],
+            [
+              1595,
+              1078
+            ],
+            [
+              428,
+              1083
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            1044,
+            1595,
+            1083
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "ity changes. The authors also found that the average time overrun in irrigation project",
+          "confidence": 0.9924930930137634,
+          "poly": [
+            [
+              426,
+              1085
+            ],
+            [
+              1595,
+              1078
+            ],
+            [
+              1595,
+              1118
+            ],
+            [
+              427,
+              1126
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            1078,
+            1595,
+            1126
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "implementation is about 145%, which has direct and indirect cost implications. The authors",
+          "confidence": 0.9918730854988098,
+          "poly": [
+            [
+              427,
+              1122
+            ],
+            [
+              1594,
+              1113
+            ],
+            [
+              1594,
+              1153
+            ],
+            [
+              428,
+              1162
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            1113,
+            1594,
+            1162
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "of Ref. [34] also did an assessment of ten large-scale irrigation dam projects and found",
+          "confidence": 0.9930057525634766,
+          "poly": [
+            [
+              428,
+              1159
+            ],
+            [
+              1593,
+              1154
+            ],
+            [
+              1593,
+              1191
+            ],
+            [
+              428,
+              1196
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            1154,
+            1593,
+            1196
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "an aggregate average cost and time overrun of 176% and 151%, respectively. For a poor",
+          "confidence": 0.9943652153015137,
+          "poly": [
+            [
+              429,
+              1201
+            ],
+            [
+              1592,
+              1192
+            ],
+            [
+              1592,
+              1229
+            ],
+            [
+              430,
+              1237
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1192,
+            1592,
+            1237
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "country such as Ethiopia, such inefficiency in project implementation has wide-reaching",
+          "confidence": 0.9931699633598328,
+          "poly": [
+            [
+              429,
+              1237
+            ],
+            [
+              1593,
+              1231
+            ],
+            [
+              1593,
+              1268
+            ],
+            [
+              430,
+              1274
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1231,
+            1593,
+            1274
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "consequences. Reasons for such wasteful resource use were found to be incomplete",
+          "confidence": 0.9716817140579224,
+          "poly": [
+            [
+              429,
+              1276
+            ],
+            [
+              1590,
+              1269
+            ],
+            [
+              1590,
+              1303
+            ],
+            [
+              430,
+              1310
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1269,
+            1590,
+            1310
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "design, design change, scope and quality change, poor construction time estimate, con-",
+          "confidence": 0.9910733699798584,
+          "poly": [
+            [
+              429,
+              1310
+            ],
+            [
+              1596,
+              1307
+            ],
+            [
+              1596,
+              1343
+            ],
+            [
+              429,
+              1346
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1307,
+            1596,
+            1346
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "structors' low capacity, client's inactions, and shortage of material.",
+          "confidence": 0.9739002585411072,
+          "poly": [
+            [
+              429,
+              1347
+            ],
+            [
+              1280,
+              1342
+            ],
+            [
+              1280,
+              1377
+            ],
+            [
+              430,
+              1382
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1342,
+            1280,
+            1382
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9856948256492615,
+      "bbox_xyxy": [
+        455,
+        1384,
+        1554,
+        1695
+      ],
+      "lines": [
+        {
+          "text": "The IAG [10] also conducted an assessment on the effectiveness of contact administra-",
+          "confidence": 0.9933248162269592,
+          "poly": [
+            [
+              488,
+              1382
+            ],
+            [
+              1594,
+              1381
+            ],
+            [
+              1594,
+              1412
+            ],
+            [
+              488,
+              1413
+            ]
+          ],
+          "bbox_xyxy": [
+            488,
+            1381,
+            1594,
+            1413
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "tion on two large-scale irrigation projects (Megech-Seraba and Zarema May-Day in Tigray",
+          "confidence": 0.9835439324378967,
+          "poly": [
+            [
+              429,
+              1418
+            ],
+            [
+              1591,
+              1418
+            ],
+            [
+              1591,
+              1452
+            ],
+            [
+              429,
+              1452
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1418,
+            1591,
+            1452
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Region in Ethiopia) that are under construction. It was found that the poor performance",
+          "confidence": 0.9931504726409912,
+          "poly": [
+            [
+              429,
+              1454
+            ],
+            [
+              1590,
+              1454
+            ],
+            [
+              1590,
+              1487
+            ],
+            [
+              429,
+              1487
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1454,
+            1590,
+            1487
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "of these projects was partly attributable to weak institutional capacities of implementing",
+          "confidence": 0.996705174446106,
+          "poly": [
+            [
+              428,
+              1490
+            ],
+            [
+              1589,
+              1491
+            ],
+            [
+              1589,
+              1525
+            ],
+            [
+              428,
+              1524
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            1490,
+            1589,
+            1525
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "bodies including the Ministry of Water, Irrigation, and Energy, which were characterized",
+          "confidence": 0.9962829351425171,
+          "poly": [
+            [
+              426,
+              1528
+            ],
+            [
+              1589,
+              1527
+            ],
+            [
+              1589,
+              1561
+            ],
+            [
+              426,
+              1562
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            1527,
+            1589,
+            1562
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "by slow decision-making processes, inadequate monitoring and evaluation, and weak con-",
+          "confidence": 0.9971391558647156,
+          "poly": [
+            [
+              427,
+              1567
+            ],
+            [
+              1593,
+              1565
+            ],
+            [
+              1593,
+              1599
+            ],
+            [
+              427,
+              1601
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            1565,
+            1593,
+            1601
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "tract administration and coordination capacity. As long as institutional capacity remains",
+          "confidence": 0.991729736328125,
+          "poly": [
+            [
+              425,
+              1600
+            ],
+            [
+              1590,
+              1601
+            ],
+            [
+              1590,
+              1638
+            ],
+            [
+              425,
+              1637
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1600,
+            1590,
+            1638
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "inadequate, it seems unlikely that the next large-scale project will be timely and successful,",
+          "confidence": 0.9843925833702087,
+          "poly": [
+            [
+              424,
+              1636
+            ],
+            [
+              1592,
+              1635
+            ],
+            [
+              1592,
+              1676
+            ],
+            [
+              424,
+              1677
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1635,
+            1592,
+            1677
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "leading to the same pitfalls in different projects [29].",
+          "confidence": 0.9886465072631836,
+          "poly": [
+            [
+              425,
+              1676
+            ],
+            [
+              1093,
+              1671
+            ],
+            [
+              1093,
+              1709
+            ],
+            [
+              426,
+              1714
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1671,
+            1093,
+            1714
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "paragraph_title",
+      "score": 0.9014442563056946,
+      "bbox_xyxy": [
+        458,
+        1725,
+        869,
+        1755
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9840615391731262,
+      "bbox_xyxy": [
+        455,
+        1769,
+        1552,
+        2041
+      ],
+      "lines": [
+        {
+          "text": "The provision of irrigation service involves collective actions, which are the results of",
+          "confidence": 0.9889420866966248,
+          "poly": [
+            [
+              483,
+              1781
+            ],
+            [
+              1592,
+              1785
+            ],
+            [
+              1592,
+              1829
+            ],
+            [
+              483,
+              1825
+            ]
+          ],
+          "bbox_xyxy": [
+            483,
+            1781,
+            1592,
+            1829
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "effective communication and coordination among users and service providers. In addition",
+          "confidence": 0.9857358336448669,
+          "poly": [
+            [
+              423,
+              1818
+            ],
+            [
+              1590,
+              1824
+            ],
+            [
+              1590,
+              1868
+            ],
+            [
+              422,
+              1862
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            1818,
+            1590,
+            1868
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "to having functional physical infrastructures in place, management institutions are also",
+          "confidence": 0.9963881969451904,
+          "poly": [
+            [
+              422,
+              1854
+            ],
+            [
+              1591,
+              1861
+            ],
+            [
+              1591,
+              1909
+            ],
+            [
+              421,
+              1901
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            1854,
+            1591,
+            1909
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9630225896835327,
+      "bbox_xyxy": [
+        456,
+        2048,
+        1555,
+        2150
+      ],
+      "lines": [
+        {
+          "text": "deliver these responsibilities.",
+          "confidence": 0.990759551525116,
+          "poly": [
+            [
+              423,
+              2049
+            ],
+            [
+              796,
+              2042
+            ],
+            [
+              796,
+              2074
+            ],
+            [
+              424,
+              2080
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            2042,
+            796,
+            2080
+          ],
+          "reading_order": 0
+        }
+      ]
+    }
+  ]
+}

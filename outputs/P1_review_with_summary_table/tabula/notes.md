@@ -1,0 +1,5 @@
+- Library: Tabula
+- PDF: P1_review_with_summary_table.pdf
+- Attempts:
+  - stream: extracted=16, saved_nonempty=16
+  - lattice: extracted=3, saved_nonempty=0

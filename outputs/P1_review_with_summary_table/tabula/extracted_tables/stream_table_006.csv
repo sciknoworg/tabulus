@@ -1,0 +1,29 @@
+an invariant modification on some of the physical model,the monthly averaged values were below that threshold for
+variables with some studies using the aforementioned activation,"the whole local summer season, and above for the remainder"
+"thresholds, such as timing, to reset these variables. The most","of the year. For completeness, sensitivity tests with different"
+common approach is to set the soil moisture field to a predefined,"thresholds were performed for the arbitrary values of 30%,"
+"reference value, e.g., the saturation level (θs), the field capacity","50% and 90%, where the latter was considered an extreme"
+"(θfc), or a fraction of them. In this context, the saturation","value. Despite the considerations by Lobell et al. (2006a), that"
+level approach implies usually much wetter conditions than,same approach was used by Kueppers et al. (2008) for the
+"the soil at field capacity, since the former includes filling the","Regional Spectral Model (RSM). In a follow up study, Kanamaru"
+"pores. However, this water is strongly bound and not really",and Kanamitsu (2008) argue that the previously prescribed
+available to the plants. While some studies do not limit the,"soil moisture in RSM was too high. Therefore, they set top"
+"depth of the impact of the irrigation (e.g., Lobell et al., 2006a),",soil layer at field capacity as the highest irrigation scenario.
+"others hypothesize that only the upper layers are affected, such",Saeed et al. (2009) justify the choice affirming that irrigation
+"as the upper 20–40 cm (e.g., Adegoke et al., 2003; Lobell",practices are assumed to fulfill optimal conditions for the
+"et al., 2009; Liu et al., 2021), the first meter (Kueppers et al.,","crops, in order to “transpire at a potential rate.” As reasoning,"
+"2007), or the layers that include the plant roots (Sorooshian",the authors refer to a highly simplified vegetation stomata
+"et al., 2011; Leng et al., 2017). For soil saturation, the available",regulation. We therefore assume that the potential rate refers
+"studies use very different threshold values, from 100% in Lobell",to the evapotranspiration observed under no soil water stresses
+"et al. (2006a), Kanamaru and Kanamitsu (2008), Kueppers","(Brouwer et al., 1985b)."
+"et al. (2008), Evans and Zaitchik (2008), and Lawston et al.","Instead of saturating the soil moisture, some studies use"
+"(2015), to 90% for Tuinenburg et al. (2014) and their follow-",the field capacity as it is the upper limit of the plant available
+"up studies, 75% for Saeed et al. (2009), and down to 40% for","water (Kirkham, 2005). While most of the studies here correct"
+Lobell et al. (2009). Lobell et al. (2006a) and the follow-up,"the soil moisture for the whole simulation, Chase et al. (1999)"
+work of Lobell et al. (2009) provide a useful set of sensitivity,uses this value as the initial condition for the simulation. As
+experiments with different saturation thresholds and different,"in the previous threshold, also here the studies use multiple"
+depths affected. In both of their all soil columns defined,"threshold values, from 100 to 50%. The studies that set the"
+as cropland within the Community Atmospheric Model v.3,"soil moisture at field capacity differ both in the depth affected,"
+(CAM3) are affected throughout the whole simulation. Lobell,"the root-zone levels (upper 1 m) or the upmost 40 cm, and in"
+et al. (2006a)meant to represent irrigation with the soil saturated,the conservation of the water applied. While Kueppers et al.
+"only as a sensitivity experiment, and the follow-up determined",(2007) and Liu et al. (2021) just set the new soil moisture

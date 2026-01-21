@@ -1,0 +1,166 @@
+0,1
+,A review on irrigation
+,
+OPEN ACCESS,parameterizations in Earth
+EDITED BY,
+,
+"Rishikesh Singh,",system models
+"Panjab University, India",
+REVIEWED BY,
+,
+"Xi Chen,","Arianna Valmassoi1,2* and Jan D. Keller3"
+"University of Cincinnati, United States",
+"Hyunglok Kim,","1Hans-Ertel-Centre for Weather Research, Climate Monitoring and Diagnostics, Bonn, Germany,"
+"University of Virginia, United States","2Institute of Geosciences, University of Bonn, Bonn, Germany, 3Deutscher Wetterdienst, Offenbach,"
+,Germany
+*CORRESPONDENCE,
+Arianna Valmassoi,
+avalmass@uni-bonn.de,
+SPECIALTY SECTION,"Irrigation is
+the process of artiﬁcially providing water
+to agricultural
+lands"
+This article was submitted to,"in order
+to provide crops with the necessary water
+supply
+to ensure or"
+"Water and Climate,",
+,"foster
+the growth of
+the plants. However,
+its
+implications
+reach beyond"
+a section of the journal,
+Frontiers in Water,"the
+agro-economic
+aspect
+as
+irrigation affects
+the
+soil-land-atmosphere"
+,"interactions and thus
+inﬂuences
+the water and energy cycles
+in the Earth"
+RECEIVED 28 March 2022,
+ACCEPTED 24 October 2022,"system. Past studies have shown how through these interactions, an increase"
+PUBLISHED 16 November 2022,
+,"in soil moisture due
+to irrigation also affects
+the
+atmospheric
+state
+and"
+CITATION,
+,"its
+dynamics.
+Thus,
+the
+lack of
+representation of
+irrigation
+in
+numerical"
+Valmassoi A and Keller JD (2022) A,
+review on irrigation parameterizations,"Earth system models—be it
+for
+reanalysis, weather
+forecasting or climate"
+in Earth system models.,
+,prediction—can lead to signiﬁcant errors and biases in various parameters of
+Front. Water 4:906664.,
+,the system including but not limited to surface temperature and precipitation.
+doi: 10.3389/frwa.2022.906664,
+,"In this study, we aim to summarize and discuss currently available irrigation"
+COPYRIGHT,
+© 2022 Valmassoi and Keller. This is an,parameterizations across different numerical models. This provides a reference
+open-access article distributed under,
+,framework to understand the impact of irrigation on the various components
+the terms of the Creative Commons,
+,"of
+Earth
+system models.
+Speciﬁcally, we
+discuss
+the
+impact
+of
+these"
+"Attribution License (CC BY). The use,",
+distribution or reproduction in other,parameterizations in the context of their spatio-temporal scale representation
+"forums is permitted, provided the",
+,"and point out
+the beneﬁts and limitations of
+the various approaches.
+In fact,"
+original author(s) and the copyright,
+owner(s) are credited and that the,"most of
+the parameterizations use irrigation as a direct modiﬁcation of soil"
+"original publication in this journal
+is",moisture with just a few implementations add irrigation as a form of surface
+"cited,
+in accordance with accepted",
+,water. While the former method might be suitable for coarse spatio-temporal
+"academic practice. No use, distribution",
+or reproduction is permitted which,"scales, the latter better resembles the range of employed irrigation techniques."
+does not comply with these terms.,
+,"From the analysis, we ﬁnd that not only the method or
+the spatio-temporal"
+,"scales but
+the actual amount of water used is of great
+importance to the"
+,response of the Earth system model.
+,KEYWORDS
+,"irrigation,
+irrigation parameterization, earth system modeling,
+irrigation-effect on"
+,"weather, atmospheric model"
+,1. Introduction
+,"Agricultural
+production
+is
+becoming
+crucial
+not
+only
+for
+the
+economy
+but"
+,"also
+for
+food
+security.
+In
+fact, with
+a
+growing world
+population,
+food
+demand"
+,"is
+also
+rising while
+at
+the
+same
+time,
+changes
+in
+the
+hydrological
+cycle
+and"
+,"2014;
+climate
+aﬀect
+both
+agricultural
+yield
+and
+species
+sustainability
+(IPCC,"
+,"Chatzopoulos et al., 2019; Zampieri et al., 2019). For the past decades,
+irrigation has"

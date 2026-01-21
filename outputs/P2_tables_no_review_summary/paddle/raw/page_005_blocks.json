@@ -1,0 +1,2959 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 5,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 5,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.997587263584137,
+          "poly": [
+            [
+              3,
+              0
+            ],
+            [
+              298,
+              12
+            ],
+            [
+              296,
+              42
+            ],
+            [
+              2,
+              30
+            ]
+          ],
+          "bbox_xyxy": [
+            2,
+            0,
+            298,
+            42
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "5 of 16",
+          "confidence": 0.9585871696472168,
+          "poly": [
+            [
+              1561,
+              15
+            ],
+            [
+              1653,
+              22
+            ],
+            [
+              1650,
+              62
+            ],
+            [
+              1558,
+              55
+            ]
+          ],
+          "bbox_xyxy": [
+            1558,
+            15,
+            1653,
+            62
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Water Resources Department",
+          "confidence": 0.9868528842926025,
+          "poly": [
+            [
+              974,
+              186
+            ],
+            [
+              1308,
+              193
+            ],
+            [
+              1308,
+              220
+            ],
+            [
+              973,
+              213
+            ]
+          ],
+          "bbox_xyxy": [
+            973,
+            186,
+            1308,
+            220
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Awash Valley A uthority (A VA)",
+          "confidence": 0.9928604960441589,
+          "poly": [
+            [
+              289,
+              224
+            ],
+            [
+              645,
+              227
+            ],
+            [
+              645,
+              254
+            ],
+            [
+              289,
+              251
+            ]
+          ],
+          "bbox_xyxy": [
+            289,
+            224,
+            645,
+            254
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "1956",
+          "confidence": 0.9999821782112122,
+          "poly": [
+            [
+              868,
+              215
+            ],
+            [
+              935,
+              215
+            ],
+            [
+              935,
+              245
+            ],
+            [
+              868,
+              245
+            ]
+          ],
+          "bbox_xyxy": [
+            868,
+            215,
+            935,
+            245
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Established under the Ministry of Public",
+          "confidence": 0.9994882345199585,
+          "poly": [
+            [
+              1021,
+              219
+            ],
+            [
+              1471,
+              229
+            ],
+            [
+              1471,
+              257
+            ],
+            [
+              1021,
+              246
+            ]
+          ],
+          "bbox_xyxy": [
+            1021,
+            219,
+            1471,
+            257
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Water development activities in Awash",
+          "confidence": 0.9860883355140686,
+          "poly": [
+            [
+              184,
+              250
+            ],
+            [
+              621,
+              260
+            ],
+            [
+              621,
+              291
+            ],
+            [
+              184,
+              281
+            ]
+          ],
+          "bbox_xyxy": [
+            184,
+            250,
+            621,
+            291
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Works and Cormunication",
+          "confidence": 0.9613410234451294,
+          "poly": [
+            [
+              1022,
+              252
+            ],
+            [
+              1336,
+              259
+            ],
+            [
+              1336,
+              284
+            ],
+            [
+              1022,
+              276
+            ]
+          ],
+          "bbox_xyxy": [
+            1022,
+            252,
+            1336,
+            284
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "valley",
+          "confidence": 0.9986729621887207,
+          "poly": [
+            [
+              180,
+              278
+            ],
+            [
+              258,
+              283
+            ],
+            [
+              256,
+              317
+            ],
+            [
+              178,
+              312
+            ]
+          ],
+          "bbox_xyxy": [
+            178,
+            278,
+            258,
+            317
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "(MoWIE)",
+          "confidence": 0.999762237071991,
+          "poly": [
+            [
+              146,
+              1362
+            ],
+            [
+              258,
+              1360
+            ],
+            [
+              259,
+              1389
+            ],
+            [
+              147,
+              1391
+            ]
+          ],
+          "bbox_xyxy": [
+            146,
+            1360,
+            259,
+            1391
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "irrigation",
+          "confidence": 0.9654121398925781,
+          "poly": [
+            [
+              992,
+              1595
+            ],
+            [
+              1101,
+              1595
+            ],
+            [
+              1101,
+              1626
+            ],
+            [
+              992,
+              1626
+            ]
+          ],
+          "bbox_xyxy": [
+            992,
+            1595,
+            1101,
+            1626
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Figure 2. Chronological evolution of water sector institutions in Ethiopia (author's own presentation).",
+          "confidence": 0.9928506016731262,
+          "poly": [
+            [
+              169,
+              1660
+            ],
+            [
+              1398,
+              1647
+            ],
+            [
+              1399,
+              1681
+            ],
+            [
+              169,
+              1694
+            ]
+          ],
+          "bbox_xyxy": [
+            169,
+            1647,
+            1399,
+            1694
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "Environmental Development.",
+          "confidence": 0.999877393245697,
+          "poly": [
+            [
+              400,
+              2181
+            ],
+            [
+              792,
+              2175
+            ],
+            [
+              792,
+              2205
+            ],
+            [
+              401,
+              2211
+            ]
+          ],
+          "bbox_xyxy": [
+            400,
+            2175,
+            792,
+            2211
+          ],
+          "reading_order": 12
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "header",
+      "score": 0.8914711475372314,
+      "bbox_xyxy": [
+        96,
+        144,
+        361,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 4,
+      "label": "number",
+      "score": 0.7397927045822144,
+      "bbox_xyxy": [
+        1485,
+        144,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 1,
+      "label": "image",
+      "score": 0.9313729405403137,
+      "bbox_xyxy": [
+        230,
+        281,
+        1443,
+        1593
+      ],
+      "lines": [
+        {
+          "text": "1962",
+          "confidence": 0.9999936819076538,
+          "poly": [
+            [
+              689,
+              290
+            ],
+            [
+              757,
+              290
+            ],
+            [
+              757,
+              320
+            ],
+            [
+              689,
+              320
+            ]
+          ],
+          "bbox_xyxy": [
+            689,
+            290,
+            757,
+            320
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "",
+          "confidence": 0.0,
+          "poly": [
+            [
+              805,
+              292
+            ],
+            [
+              822,
+              292
+            ],
+            [
+              822,
+              310
+            ],
+            [
+              805,
+              310
+            ]
+          ],
+          "bbox_xyxy": [
+            805,
+            292,
+            822,
+            310
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Handled basin studies - Blue Nile",
+          "confidence": 0.9918108582496643,
+          "poly": [
+            [
+              1020,
+              284
+            ],
+            [
+              1395,
+              293
+            ],
+            [
+              1394,
+              317
+            ],
+            [
+              1020,
+              308
+            ]
+          ],
+          "bbox_xyxy": [
+            1020,
+            284,
+            1395,
+            317
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Mandated for water development",
+          "confidence": 0.9869210124015808,
+          "poly": [
+            [
+              180,
+              312
+            ],
+            [
+              559,
+              325
+            ],
+            [
+              558,
+              355
+            ],
+            [
+              179,
+              342
+            ]
+          ],
+          "bbox_xyxy": [
+            179,
+            312,
+            559,
+            355
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "plarning and operation",
+          "confidence": 0.9873176217079163,
+          "poly": [
+            [
+              179,
+              346
+            ],
+            [
+              445,
+              356
+            ],
+            [
+              444,
+              387
+            ],
+            [
+              178,
+              377
+            ]
+          ],
+          "bbox_xyxy": [
+            178,
+            346,
+            445,
+            387
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "National Water Resources Commission",
+          "confidence": 0.9854564070701599,
+          "poly": [
+            [
+              977,
+              350
+            ],
+            [
+              1424,
+              360
+            ],
+            [
+              1423,
+              384
+            ],
+            [
+              977,
+              374
+            ]
+          ],
+          "bbox_xyxy": [
+            977,
+            350,
+            1424,
+            384
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "C",
+          "confidence": 0.6443526148796082,
+          "poly": [
+            [
+              802,
+              376
+            ],
+            [
+              821,
+              376
+            ],
+            [
+              821,
+              395
+            ],
+            [
+              802,
+              395
+            ]
+          ],
+          "bbox_xyxy": [
+            802,
+            376,
+            821,
+            395
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "1971",
+          "confidence": 0.999980092048645,
+          "poly": [
+            [
+              863,
+              373
+            ],
+            [
+              927,
+              373
+            ],
+            [
+              927,
+              403
+            ],
+            [
+              863,
+              403
+            ]
+          ],
+          "bbox_xyxy": [
+            863,
+            373,
+            927,
+            403
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Established Under Ministry of Public",
+          "confidence": 0.9889843463897705,
+          "poly": [
+            [
+              1019,
+              383
+            ],
+            [
+              1434,
+              393
+            ],
+            [
+              1433,
+              417
+            ],
+            [
+              1019,
+              407
+            ]
+          ],
+          "bbox_xyxy": [
+            1019,
+            383,
+            1434,
+            417
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Ethiopian Water Resources Authority",
+          "confidence": 0.9902951121330261,
+          "poly": [
+            [
+              211,
+              417
+            ],
+            [
+              638,
+              425
+            ],
+            [
+              638,
+              456
+            ],
+            [
+              211,
+              448
+            ]
+          ],
+          "bbox_xyxy": [
+            211,
+            417,
+            638,
+            456
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "Works and water Resources",
+          "confidence": 0.9981046319007874,
+          "poly": [
+            [
+              1019,
+              414
+            ],
+            [
+              1333,
+              423
+            ],
+            [
+              1333,
+              447
+            ],
+            [
+              1019,
+              438
+            ]
+          ],
+          "bbox_xyxy": [
+            1019,
+            414,
+            1333,
+            447
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Established under Ministry of Mines,",
+          "confidence": 0.9877085089683533,
+          "poly": [
+            [
+              171,
+              446
+            ],
+            [
+              586,
+              457
+            ],
+            [
+              585,
+              488
+            ],
+            [
+              171,
+              477
+            ]
+          ],
+          "bbox_xyxy": [
+            171,
+            446,
+            586,
+            488
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "1975",
+          "confidence": 0.9999921321868896,
+          "poly": [
+            [
+              685,
+              459
+            ],
+            [
+              751,
+              459
+            ],
+            [
+              751,
+              488
+            ],
+            [
+              685,
+              488
+            ]
+          ],
+          "bbox_xyxy": [
+            685,
+            459,
+            751,
+            488
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "C",
+          "confidence": 0.7735493779182434,
+          "poly": [
+            [
+              802,
+              460
+            ],
+            [
+              821,
+              460
+            ],
+            [
+              821,
+              479
+            ],
+            [
+              802,
+              479
+            ]
+          ],
+          "bbox_xyxy": [
+            802,
+            460,
+            821,
+            479
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Had very broad responsibilities of water",
+          "confidence": 0.978061854839325,
+          "poly": [
+            [
+              1016,
+              446
+            ],
+            [
+              1469,
+              458
+            ],
+            [
+              1469,
+              485
+            ],
+            [
+              1016,
+              473
+            ]
+          ],
+          "bbox_xyxy": [
+            1016,
+            446,
+            1469,
+            485
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Energy and Water resources",
+          "confidence": 0.9993976950645447,
+          "poly": [
+            [
+              171,
+              481
+            ],
+            [
+              488,
+              491
+            ],
+            [
+              487,
+              522
+            ],
+            [
+              170,
+              512
+            ]
+          ],
+          "bbox_xyxy": [
+            170,
+            481,
+            488,
+            522
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "development and management",
+          "confidence": 0.9967402815818787,
+          "poly": [
+            [
+              1017,
+              480
+            ],
+            [
+              1367,
+              490
+            ],
+            [
+              1366,
+              517
+            ],
+            [
+              1017,
+              507
+            ]
+          ],
+          "bbox_xyxy": [
+            1017,
+            480,
+            1367,
+            517
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "Three agencies, namely, Land & Water",
+          "confidence": 0.9924314022064209,
+          "poly": [
+            [
+              169,
+              512
+            ],
+            [
+              604,
+              522
+            ],
+            [
+              603,
+              555
+            ],
+            [
+              169,
+              546
+            ]
+          ],
+          "bbox_xyxy": [
+            169,
+            512,
+            604,
+            555
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "Studies Agency, Rural Water",
+          "confidence": 0.9963341355323792,
+          "poly": [
+            [
+              170,
+              547
+            ],
+            [
+              496,
+              553
+            ],
+            [
+              496,
+              584
+            ],
+            [
+              170,
+              578
+            ]
+          ],
+          "bbox_xyxy": [
+            170,
+            547,
+            496,
+            584
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "1977",
+          "confidence": 0.9999794960021973,
+          "poly": [
+            [
+              859,
+              567
+            ],
+            [
+              923,
+              567
+            ],
+            [
+              923,
+              596
+            ],
+            [
+              859,
+              596
+            ]
+          ],
+          "bbox_xyxy": [
+            859,
+            567,
+            923,
+            596
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "Valley Agricultural Development Authority",
+          "confidence": 0.9919811487197876,
+          "poly": [
+            [
+              971,
+              562
+            ],
+            [
+              1467,
+              576
+            ],
+            [
+              1467,
+              603
+            ],
+            [
+              970,
+              590
+            ]
+          ],
+          "bbox_xyxy": [
+            970,
+            562,
+            1467,
+            603
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "Development Agency and Urban Water &",
+          "confidence": 0.983404815196991,
+          "poly": [
+            [
+              166,
+              578
+            ],
+            [
+              640,
+              585
+            ],
+            [
+              640,
+              618
+            ],
+            [
+              166,
+              611
+            ]
+          ],
+          "bbox_xyxy": [
+            166,
+            578,
+            640,
+            618
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "Had mandate of plarning and development",
+          "confidence": 0.9783280491828918,
+          "poly": [
+            [
+              1012,
+              596
+            ],
+            [
+              1500,
+              612
+            ],
+            [
+              1499,
+              639
+            ],
+            [
+              1012,
+              624
+            ]
+          ],
+          "bbox_xyxy": [
+            1012,
+            596,
+            1500,
+            639
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "Sewerage Agency were established under",
+          "confidence": 0.988766610622406,
+          "poly": [
+            [
+              167,
+              611
+            ],
+            [
+              636,
+              617
+            ],
+            [
+              636,
+              651
+            ],
+            [
+              167,
+              645
+            ]
+          ],
+          "bbox_xyxy": [
+            167,
+            611,
+            636,
+            651
+          ],
+          "reading_order": 23
+        },
+        {
+          "text": "of all water and other resources",
+          "confidence": 0.9823681116104126,
+          "poly": [
+            [
+              1015,
+              631
+            ],
+            [
+              1364,
+              640
+            ],
+            [
+              1363,
+              664
+            ],
+            [
+              1015,
+              655
+            ]
+          ],
+          "bbox_xyxy": [
+            1015,
+            631,
+            1364,
+            664
+          ],
+          "reading_order": 24
+        },
+        {
+          "text": "the Authority",
+          "confidence": 0.9978348612785339,
+          "poly": [
+            [
+              166,
+              644
+            ],
+            [
+              325,
+              651
+            ],
+            [
+              324,
+              682
+            ],
+            [
+              165,
+              675
+            ]
+          ],
+          "bbox_xyxy": [
+            165,
+            644,
+            325,
+            682
+          ],
+          "reading_order": 25
+        },
+        {
+          "text": "National Water Resources Commission",
+          "confidence": 0.9806068539619446,
+          "poly": [
+            [
+              190,
+              702
+            ],
+            [
+              639,
+              709
+            ],
+            [
+              639,
+              737
+            ],
+            [
+              190,
+              730
+            ]
+          ],
+          "bbox_xyxy": [
+            190,
+            702,
+            639,
+            737
+          ],
+          "reading_order": 26
+        },
+        {
+          "text": "1981",
+          "confidence": 0.9999874830245972,
+          "poly": [
+            [
+              681,
+              711
+            ],
+            [
+              745,
+              711
+            ],
+            [
+              745,
+              741
+            ],
+            [
+              681,
+              741
+            ]
+          ],
+          "bbox_xyxy": [
+            681,
+            711,
+            745,
+            741
+          ],
+          "reading_order": 27
+        },
+        {
+          "text": "0",
+          "confidence": 0.4079577624797821,
+          "poly": [
+            [
+              796,
+              714
+            ],
+            [
+              816,
+              714
+            ],
+            [
+              816,
+              732
+            ],
+            [
+              796,
+              732
+            ]
+          ],
+          "bbox_xyxy": [
+            796,
+            714,
+            816,
+            732
+          ],
+          "reading_order": 28
+        },
+        {
+          "text": "Ccomposed of the Water Resources",
+          "confidence": 0.9869744181632996,
+          "poly": [
+            [
+              170,
+              734
+            ],
+            [
+              569,
+              740
+            ],
+            [
+              568,
+              770
+            ],
+            [
+              170,
+              764
+            ]
+          ],
+          "bbox_xyxy": [
+            170,
+            734,
+            569,
+            770
+          ],
+          "reading_order": 29
+        },
+        {
+          "text": "Authority, Water Supply and Sewerage",
+          "confidence": 0.987463116645813,
+          "poly": [
+            [
+              168,
+              766
+            ],
+            [
+              613,
+              773
+            ],
+            [
+              613,
+              803
+            ],
+            [
+              168,
+              796
+            ]
+          ],
+          "bbox_xyxy": [
+            168,
+            766,
+            613,
+            803
+          ],
+          "reading_order": 30
+        },
+        {
+          "text": "Authority (WASSA), Ethiopian Water",
+          "confidence": 0.9850189089775085,
+          "poly": [
+            [
+              168,
+              800
+            ],
+            [
+              596,
+              806
+            ],
+            [
+              595,
+              837
+            ],
+            [
+              168,
+              831
+            ]
+          ],
+          "bbox_xyxy": [
+            168,
+            800,
+            596,
+            837
+          ],
+          "reading_order": 31
+        },
+        {
+          "text": "Ministry of Natural Resources Development",
+          "confidence": 0.9947928190231323,
+          "poly": [
+            [
+              961,
+              810
+            ],
+            [
+              1462,
+              819
+            ],
+            [
+              1462,
+              846
+            ],
+            [
+              960,
+              837
+            ]
+          ],
+          "bbox_xyxy": [
+            960,
+            810,
+            1462,
+            846
+          ],
+          "reading_order": 32
+        },
+        {
+          "text": "Works Construction Authority",
+          "confidence": 0.9992527961730957,
+          "poly": [
+            [
+              166,
+              831
+            ],
+            [
+              515,
+              838
+            ],
+            [
+              514,
+              869
+            ],
+            [
+              166,
+              862
+            ]
+          ],
+          "bbox_xyxy": [
+            166,
+            831,
+            515,
+            869
+          ],
+          "reading_order": 33
+        },
+        {
+          "text": "1993",
+          "confidence": 0.9999927282333374,
+          "poly": [
+            [
+              852,
+              827
+            ],
+            [
+              919,
+              827
+            ],
+            [
+              919,
+              857
+            ],
+            [
+              852,
+              857
+            ]
+          ],
+          "bbox_xyxy": [
+            852,
+            827,
+            919,
+            857
+          ],
+          "reading_order": 34
+        },
+        {
+          "text": "and Environmental Protection",
+          "confidence": 0.9780935645103455,
+          "poly": [
+            [
+              954,
+              842
+            ],
+            [
+              1298,
+              848
+            ],
+            [
+              1298,
+              875
+            ],
+            [
+              953,
+              869
+            ]
+          ],
+          "bbox_xyxy": [
+            953,
+            842,
+            1298,
+            875
+          ],
+          "reading_order": 35
+        },
+        {
+          "text": "(EWWCA), and the National",
+          "confidence": 0.9934940338134766,
+          "poly": [
+            [
+              169,
+              866
+            ],
+            [
+              492,
+              870
+            ],
+            [
+              492,
+              901
+            ],
+            [
+              169,
+              897
+            ]
+          ],
+          "bbox_xyxy": [
+            169,
+            866,
+            492,
+            901
+          ],
+          "reading_order": 36
+        },
+        {
+          "text": "Took over the responsibility of National",
+          "confidence": 0.9911432266235352,
+          "poly": [
+            [
+              1003,
+              879
+            ],
+            [
+              1447,
+              884
+            ],
+            [
+              1447,
+              911
+            ],
+            [
+              1003,
+              906
+            ]
+          ],
+          "bbox_xyxy": [
+            1003,
+            879,
+            1447,
+            911
+          ],
+          "reading_order": 37
+        },
+        {
+          "text": "Meteorological Services (NMS).",
+          "confidence": 0.9994428753852844,
+          "poly": [
+            [
+              165,
+              899
+            ],
+            [
+              520,
+              904
+            ],
+            [
+              520,
+              935
+            ],
+            [
+              165,
+              930
+            ]
+          ],
+          "bbox_xyxy": [
+            165,
+            899,
+            520,
+            935
+          ],
+          "reading_order": 38
+        },
+        {
+          "text": "Water Resources Cormission",
+          "confidence": 0.9765321016311646,
+          "poly": [
+            [
+              1003,
+              912
+            ],
+            [
+              1337,
+              917
+            ],
+            [
+              1337,
+              941
+            ],
+            [
+              1003,
+              936
+            ]
+          ],
+          "bbox_xyxy": [
+            1003,
+            912,
+            1337,
+            941
+          ],
+          "reading_order": 39
+        },
+        {
+          "text": "Ministry of Water Resources (MoWR)",
+          "confidence": 0.9852757453918457,
+          "poly": [
+            [
+              201,
+              968
+            ],
+            [
+              636,
+              968
+            ],
+            [
+              636,
+              995
+            ],
+            [
+              201,
+              995
+            ]
+          ],
+          "bbox_xyxy": [
+            201,
+            968,
+            636,
+            995
+          ],
+          "reading_order": 40
+        },
+        {
+          "text": "1995",
+          "confidence": 0.9999901056289673,
+          "poly": [
+            [
+              678,
+              968
+            ],
+            [
+              744,
+              968
+            ],
+            [
+              744,
+              998
+            ],
+            [
+              678,
+              998
+            ]
+          ],
+          "bbox_xyxy": [
+            678,
+            968,
+            744,
+            998
+          ],
+          "reading_order": 41
+        },
+        {
+          "text": "0",
+          "confidence": 0.14707505702972412,
+          "poly": [
+            [
+              787,
+              975
+            ],
+            [
+              806,
+              966
+            ],
+            [
+              815,
+              986
+            ],
+            [
+              797,
+              995
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            966,
+            815,
+            995
+          ],
+          "reading_order": 42
+        },
+        {
+          "text": "Establishe d for the first time by",
+          "confidence": 0.9887003302574158,
+          "poly": [
+            [
+              162,
+              998
+            ],
+            [
+              519,
+              999
+            ],
+            [
+              519,
+              1029
+            ],
+            [
+              162,
+              1028
+            ]
+          ],
+          "bbox_xyxy": [
+            162,
+            998,
+            519,
+            1029
+          ],
+          "reading_order": 43
+        },
+        {
+          "text": "Ministry of Water and Energy",
+          "confidence": 0.9978497624397278,
+          "poly": [
+            [
+              959,
+              1019
+            ],
+            [
+              1298,
+              1022
+            ],
+            [
+              1298,
+              1050
+            ],
+            [
+              959,
+              1047
+            ]
+          ],
+          "bbox_xyxy": [
+            959,
+            1019,
+            1298,
+            1050
+          ],
+          "reading_order": 44
+        },
+        {
+          "text": "proclamation No.4/95 as a fe deral",
+          "confidence": 0.9778030514717102,
+          "poly": [
+            [
+              163,
+              1033
+            ],
+            [
+              544,
+              1030
+            ],
+            [
+              544,
+              1061
+            ],
+            [
+              163,
+              1064
+            ]
+          ],
+          "bbox_xyxy": [
+            163,
+            1030,
+            544,
+            1064
+          ],
+          "reading_order": 45
+        },
+        {
+          "text": "2005",
+          "confidence": 0.9999837875366211,
+          "poly": [
+            [
+              849,
+              1042
+            ],
+            [
+              917,
+              1042
+            ],
+            [
+              917,
+              1075
+            ],
+            [
+              849,
+              1075
+            ]
+          ],
+          "bbox_xyxy": [
+            849,
+            1042,
+            917,
+            1075
+          ],
+          "reading_order": 46
+        },
+        {
+          "text": "Had almost similar duties as the MoWR,",
+          "confidence": 0.9895250201225281,
+          "poly": [
+            [
+              1001,
+              1050
+            ],
+            [
+              1447,
+              1052
+            ],
+            [
+              1447,
+              1079
+            ],
+            [
+              1001,
+              1077
+            ]
+          ],
+          "bbox_xyxy": [
+            1001,
+            1050,
+            1447,
+            1079
+          ],
+          "reading_order": 47
+        },
+        {
+          "text": "institution for the water sector",
+          "confidence": 0.9871835708618164,
+          "poly": [
+            [
+              164,
+              1068
+            ],
+            [
+              508,
+              1065
+            ],
+            [
+              508,
+              1091
+            ],
+            [
+              164,
+              1094
+            ]
+          ],
+          "bbox_xyxy": [
+            164,
+            1065,
+            508,
+            1094
+          ],
+          "reading_order": 48
+        },
+        {
+          "text": "except irrigation has got special emphasis",
+          "confidence": 0.9894989728927612,
+          "poly": [
+            [
+              1004,
+              1086
+            ],
+            [
+              1458,
+              1087
+            ],
+            [
+              1458,
+              1114
+            ],
+            [
+              1004,
+              1113
+            ]
+          ],
+          "bbox_xyxy": [
+            1004,
+            1086,
+            1458,
+            1114
+          ],
+          "reading_order": 49
+        },
+        {
+          "text": "Responsible for the overall plarning,",
+          "confidence": 0.9721848964691162,
+          "poly": [
+            [
+              164,
+              1100
+            ],
+            [
+              576,
+              1097
+            ],
+            [
+              577,
+              1127
+            ],
+            [
+              164,
+              1131
+            ]
+          ],
+          "bbox_xyxy": [
+            164,
+            1097,
+            577,
+            1131
+          ],
+          "reading_order": 50
+        },
+        {
+          "text": "development, management, utilization",
+          "confidence": 0.9970430731773376,
+          "poly": [
+            [
+              167,
+              1139
+            ],
+            [
+              599,
+              1132
+            ],
+            [
+              600,
+              1159
+            ],
+            [
+              167,
+              1166
+            ]
+          ],
+          "bbox_xyxy": [
+            167,
+            1132,
+            600,
+            1166
+          ],
+          "reading_order": 51
+        },
+        {
+          "text": "and protection of the country's water",
+          "confidence": 0.9964531660079956,
+          "poly": [
+            [
+              169,
+              1171
+            ],
+            [
+              582,
+              1161
+            ],
+            [
+              583,
+              1191
+            ],
+            [
+              169,
+              1201
+            ]
+          ],
+          "bbox_xyxy": [
+            169,
+            1161,
+            583,
+            1201
+          ],
+          "reading_order": 52
+        },
+        {
+          "text": "Ministry of Water and Electricity (MoWE)",
+          "confidence": 0.9865895509719849,
+          "poly": [
+            [
+              964,
+              1173
+            ],
+            [
+              1428,
+              1173
+            ],
+            [
+              1428,
+              1197
+            ],
+            [
+              964,
+              1197
+            ]
+          ],
+          "bbox_xyxy": [
+            964,
+            1173,
+            1428,
+            1197
+          ],
+          "reading_order": 53
+        },
+        {
+          "text": "resources, as well as supervising all water",
+          "confidence": 0.9716296792030334,
+          "poly": [
+            [
+              168,
+              1204
+            ],
+            [
+              634,
+              1194
+            ],
+            [
+              634,
+              1222
+            ],
+            [
+              168,
+              1232
+            ]
+          ],
+          "bbox_xyxy": [
+            168,
+            1194,
+            634,
+            1232
+          ],
+          "reading_order": 54
+        },
+        {
+          "text": "Amendment to the 2005. Water resources",
+          "confidence": 0.9956028461456299,
+          "poly": [
+            [
+              1014,
+              1205
+            ],
+            [
+              1459,
+              1205
+            ],
+            [
+              1459,
+              1229
+            ],
+            [
+              1014,
+              1229
+            ]
+          ],
+          "bbox_xyxy": [
+            1014,
+            1205,
+            1459,
+            1229
+          ],
+          "reading_order": 55
+        },
+        {
+          "text": "2010",
+          "confidence": 0.9999560117721558,
+          "poly": [
+            [
+              854,
+              1214
+            ],
+            [
+              921,
+              1214
+            ],
+            [
+              921,
+              1247
+            ],
+            [
+              854,
+              1247
+            ]
+          ],
+          "bbox_xyxy": [
+            854,
+            1214,
+            921,
+            1247
+          ],
+          "reading_order": 56
+        },
+        {
+          "text": "development activities carried out by",
+          "confidence": 0.9878225326538086,
+          "poly": [
+            [
+              170,
+              1236
+            ],
+            [
+              584,
+              1229
+            ],
+            [
+              585,
+              1256
+            ],
+            [
+              170,
+              1263
+            ]
+          ],
+          "bbox_xyxy": [
+            170,
+            1229,
+            585,
+            1263
+          ],
+          "reading_order": 57
+        },
+        {
+          "text": "related powers and duties of the Ministry",
+          "confidence": 0.992590069770813,
+          "poly": [
+            [
+              1011,
+              1236
+            ],
+            [
+              1461,
+              1237
+            ],
+            [
+              1461,
+              1265
+            ],
+            [
+              1011,
+              1264
+            ]
+          ],
+          "bbox_xyxy": [
+            1011,
+            1236,
+            1461,
+            1265
+          ],
+          "reading_order": 58
+        },
+        {
+          "text": "other institutions.",
+          "confidence": 0.9688220024108887,
+          "poly": [
+            [
+              172,
+              1269
+            ],
+            [
+              370,
+              1265
+            ],
+            [
+              371,
+              1290
+            ],
+            [
+              172,
+              1293
+            ]
+          ],
+          "bbox_xyxy": [
+            172,
+            1265,
+            371,
+            1293
+          ],
+          "reading_order": 59
+        },
+        {
+          "text": "are as stipulated in Proclamation number",
+          "confidence": 0.987605094909668,
+          "poly": [
+            [
+              1013,
+              1271
+            ],
+            [
+              1458,
+              1271
+            ],
+            [
+              1458,
+              1295
+            ],
+            [
+              1013,
+              1295
+            ]
+          ],
+          "bbox_xyxy": [
+            1013,
+            1271,
+            1458,
+            1295
+          ],
+          "reading_order": 60
+        },
+        {
+          "text": "691/2010.",
+          "confidence": 0.9813055396080017,
+          "poly": [
+            [
+              1009,
+              1299
+            ],
+            [
+              1115,
+              1299
+            ],
+            [
+              1115,
+              1327
+            ],
+            [
+              1009,
+              1327
+            ]
+          ],
+          "bbox_xyxy": [
+            1009,
+            1299,
+            1115,
+            1327
+          ],
+          "reading_order": 61
+        },
+        {
+          "text": "Ministry of Water, Irrigation and Energy",
+          "confidence": 0.9690583348274231,
+          "poly": [
+            [
+              145,
+              1329
+            ],
+            [
+              606,
+              1323
+            ],
+            [
+              606,
+              1353
+            ],
+            [
+              145,
+              1359
+            ]
+          ],
+          "bbox_xyxy": [
+            145,
+            1323,
+            606,
+            1359
+          ],
+          "reading_order": 62
+        },
+        {
+          "text": "2015",
+          "confidence": 0.9999858140945435,
+          "poly": [
+            [
+              678,
+              1327
+            ],
+            [
+              744,
+              1327
+            ],
+            [
+              744,
+              1357
+            ],
+            [
+              678,
+              1357
+            ]
+          ],
+          "bbox_xyxy": [
+            678,
+            1327,
+            744,
+            1357
+          ],
+          "reading_order": 63
+        },
+        {
+          "text": "O",
+          "confidence": 0.38484013080596924,
+          "poly": [
+            [
+              791,
+              1328
+            ],
+            [
+              811,
+              1328
+            ],
+            [
+              811,
+              1346
+            ],
+            [
+              791,
+              1346
+            ]
+          ],
+          "bbox_xyxy": [
+            791,
+            1328,
+            811,
+            1346
+          ],
+          "reading_order": 64
+        },
+        {
+          "text": "Promotes the development of water and",
+          "confidence": 0.9781944751739502,
+          "poly": [
+            [
+              1008,
+              1331
+            ],
+            [
+              1487,
+              1333
+            ],
+            [
+              1487,
+              1360
+            ],
+            [
+              1008,
+              1358
+            ]
+          ],
+          "bbox_xyxy": [
+            1008,
+            1331,
+            1487,
+            1360
+          ],
+          "reading_order": 65
+        },
+        {
+          "text": "energy",
+          "confidence": 0.999847412109375,
+          "poly": [
+            [
+              1009,
+              1366
+            ],
+            [
+              1092,
+              1366
+            ],
+            [
+              1092,
+              1395
+            ],
+            [
+              1009,
+              1395
+            ]
+          ],
+          "bbox_xyxy": [
+            1009,
+            1366,
+            1092,
+            1395
+          ],
+          "reading_order": 66
+        },
+        {
+          "text": "The MoWE was renamed as MoWIE and",
+          "confidence": 0.9786310195922852,
+          "poly": [
+            [
+              199,
+              1393
+            ],
+            [
+              645,
+              1387
+            ],
+            [
+              645,
+              1413
+            ],
+            [
+              199,
+              1419
+            ]
+          ],
+          "bbox_xyxy": [
+            199,
+            1387,
+            645,
+            1419
+          ],
+          "reading_order": 67
+        },
+        {
+          "text": "mandated to undertake the management",
+          "confidence": 0.9993568062782288,
+          "poly": [
+            [
+              201,
+              1425
+            ],
+            [
+              647,
+              1421
+            ],
+            [
+              647,
+              1448
+            ],
+            [
+              201,
+              1452
+            ]
+          ],
+          "bbox_xyxy": [
+            201,
+            1421,
+            647,
+            1452
+          ],
+          "reading_order": 68
+        },
+        {
+          "text": "Irrigation Development Commis sions",
+          "confidence": 0.9905759692192078,
+          "poly": [
+            [
+              950,
+              1441
+            ],
+            [
+              1365,
+              1440
+            ],
+            [
+              1365,
+              1467
+            ],
+            [
+              950,
+              1468
+            ]
+          ],
+          "bbox_xyxy": [
+            950,
+            1440,
+            1365,
+            1468
+          ],
+          "reading_order": 69
+        },
+        {
+          "text": "of water resources, water supply and",
+          "confidence": 0.9992918372154236,
+          "poly": [
+            [
+              205,
+              1457
+            ],
+            [
+              608,
+              1453
+            ],
+            [
+              608,
+              1480
+            ],
+            [
+              205,
+              1484
+            ]
+          ],
+          "bbox_xyxy": [
+            205,
+            1453,
+            608,
+            1484
+          ],
+          "reading_order": 70
+        },
+        {
+          "text": "The objective is to manage mediur and",
+          "confidence": 0.9870885610580444,
+          "poly": [
+            [
+              1000,
+              1473
+            ],
+            [
+              1431,
+              1473
+            ],
+            [
+              1431,
+              1497
+            ],
+            [
+              1000,
+              1497
+            ]
+          ],
+          "bbox_xyxy": [
+            1000,
+            1473,
+            1431,
+            1497
+          ],
+          "reading_order": 71
+        },
+        {
+          "text": "sanitation, large and me dium scale",
+          "confidence": 0.9573323130607605,
+          "poly": [
+            [
+              208,
+              1493
+            ],
+            [
+              582,
+              1489
+            ],
+            [
+              583,
+              1513
+            ],
+            [
+              208,
+              1517
+            ]
+          ],
+          "bbox_xyxy": [
+            208,
+            1489,
+            583,
+            1517
+          ],
+          "reading_order": 72
+        },
+        {
+          "text": ":",
+          "confidence": 0.5264582633972168,
+          "poly": [
+            [
+              784,
+              1491
+            ],
+            [
+              805,
+              1486
+            ],
+            [
+              810,
+              1507
+            ],
+            [
+              789,
+              1512
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            1486,
+            810,
+            1512
+          ],
+          "reading_order": 73
+        },
+        {
+          "text": "2018",
+          "confidence": 0.9999479055404663,
+          "poly": [
+            [
+              846,
+              1485
+            ],
+            [
+              912,
+              1485
+            ],
+            [
+              912,
+              1518
+            ],
+            [
+              846,
+              1518
+            ]
+          ],
+          "bbox_xyxy": [
+            846,
+            1485,
+            912,
+            1518
+          ],
+          "reading_order": 74
+        },
+        {
+          "text": "large-scale irrigation projects and conduct",
+          "confidence": 0.9850847125053406,
+          "poly": [
+            [
+              998,
+              1506
+            ],
+            [
+              1441,
+              1506
+            ],
+            [
+              1441,
+              1530
+            ],
+            [
+              998,
+              1530
+            ]
+          ],
+          "bbox_xyxy": [
+            998,
+            1506,
+            1441,
+            1530
+          ],
+          "reading_order": 75
+        },
+        {
+          "text": "irrigation and energy etc.",
+          "confidence": 0.9984398484230042,
+          "poly": [
+            [
+              207,
+              1524
+            ],
+            [
+              483,
+              1521
+            ],
+            [
+              483,
+              1548
+            ],
+            [
+              207,
+              1551
+            ]
+          ],
+          "bbox_xyxy": [
+            207,
+            1521,
+            483,
+            1551
+          ],
+          "reading_order": 76
+        },
+        {
+          "text": "appropriate study, design and construction",
+          "confidence": 0.9994052052497864,
+          "poly": [
+            [
+              1000,
+              1538
+            ],
+            [
+              1451,
+              1538
+            ],
+            [
+              1451,
+              1562
+            ],
+            [
+              1000,
+              1562
+            ]
+          ],
+          "bbox_xyxy": [
+            1000,
+            1538,
+            1451,
+            1562
+          ],
+          "reading_order": 77
+        },
+        {
+          "text": "of such projects on areas identified for",
+          "confidence": 0.9752567410469055,
+          "poly": [
+            [
+              997,
+              1567
+            ],
+            [
+              1397,
+              1568
+            ],
+            [
+              1397,
+              1592
+            ],
+            [
+              997,
+              1591
+            ]
+          ],
+          "bbox_xyxy": [
+            997,
+            1567,
+            1397,
+            1592
+          ],
+          "reading_order": 78
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "figure_title",
+      "score": 0.9048852324485779,
+      "bbox_xyxy": [
+        257,
+        1622,
+        1385,
+        1650
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9853154420852661,
+      "bbox_xyxy": [
+        455,
+        1682,
+        1553,
+        2167
+      ],
+      "lines": [
+        {
+          "text": "Later, the Ministry was renamed as the Ministry of Water and Electricity in 2010",
+          "confidence": 0.9860751032829285,
+          "poly": [
+            [
+              450,
+              1715
+            ],
+            [
+              1588,
+              1707
+            ],
+            [
+              1588,
+              1750
+            ],
+            [
+              450,
+              1758
+            ]
+          ],
+          "bbox_xyxy": [
+            450,
+            1707,
+            1588,
+            1758
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "and the Ministry of Water, Irrigation and Energy (MoWIE) in 2015. Here, the name ir-",
+          "confidence": 0.9900105595588684,
+          "poly": [
+            [
+              387,
+              1753
+            ],
+            [
+              1592,
+              1743
+            ],
+            [
+              1592,
+              1787
+            ],
+            [
+              387,
+              1797
+            ]
+          ],
+          "bbox_xyxy": [
+            387,
+            1743,
+            1592,
+            1797
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "rigation was included in the Ministry's naming for the first time. Toward the end of",
+          "confidence": 0.9705912470817566,
+          "poly": [
+            [
+              388,
+              1790
+            ],
+            [
+              1591,
+              1780
+            ],
+            [
+              1592,
+              1824
+            ],
+            [
+              388,
+              1834
+            ]
+          ],
+          "bbox_xyxy": [
+            388,
+            1780,
+            1592,
+            1834
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "the year 2018, the Irrigation Development Commission (IDC) was established under the",
+          "confidence": 0.9878937602043152,
+          "poly": [
+            [
+              388,
+              1826
+            ],
+            [
+              1590,
+              1817
+            ],
+            [
+              1590,
+              1860
+            ],
+            [
+              388,
+              1870
+            ]
+          ],
+          "bbox_xyxy": [
+            388,
+            1817,
+            1590,
+            1870
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "MoWIE. The Commission has the responsibility to manage medium and large-scale irriga-",
+          "confidence": 0.9900544285774231,
+          "poly": [
+            [
+              387,
+              1859
+            ],
+            [
+              1594,
+              1855
+            ],
+            [
+              1594,
+              1899
+            ],
+            [
+              387,
+              1903
+            ]
+          ],
+          "bbox_xyxy": [
+            387,
+            1855,
+            1594,
+            1903
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "tion projects and conduct the appropriate study, design, and construction of such projects",
+          "confidence": 0.9970021843910217,
+          "poly": [
+            [
+              388,
+              1897
+            ],
+            [
+              1592,
+              1889
+            ],
+            [
+              1592,
+              1936
+            ],
+            [
+              388,
+              1944
+            ]
+          ],
+          "bbox_xyxy": [
+            388,
+            1889,
+            1592,
+            1944
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "development of the country through ensuring food security, job creation, and raw material",
+          "confidence": 0.9910930395126343,
+          "poly": [
+            [
+              392,
+              1966
+            ],
+            [
+              1593,
+              1960
+            ],
+            [
+              1593,
+              2008
+            ],
+            [
+              392,
+              2013
+            ]
+          ],
+          "bbox_xyxy": [
+            392,
+            1960,
+            1593,
+            2013
+          ],
+          "reading_order": 6
+        }
+      ]
+    }
+  ]
+}

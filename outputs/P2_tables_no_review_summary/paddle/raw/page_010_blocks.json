@@ -1,0 +1,2155 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 10,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 10,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9922905564308167,
+          "poly": [
+            [
+              15,
+              12
+            ],
+            [
+              319,
+              30
+            ],
+            [
+              317,
+              64
+            ],
+            [
+              13,
+              47
+            ]
+          ],
+          "bbox_xyxy": [
+            13,
+            12,
+            319,
+            64
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10 of 16",
+          "confidence": 0.9298577904701233,
+          "poly": [
+            [
+              1514,
+              33
+            ],
+            [
+              1605,
+              33
+            ],
+            [
+              1605,
+              66
+            ],
+            [
+              1514,
+              66
+            ]
+          ],
+          "bbox_xyxy": [
+            1514,
+            33,
+            1605,
+            66
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "(Planning and evaluation document of MoWIE, 2016).",
+          "confidence": 0.9770318865776062,
+          "poly": [
+            [
+              81,
+              189
+            ],
+            [
+              737,
+              210
+            ],
+            [
+              736,
+              248
+            ],
+            [
+              80,
+              227
+            ]
+          ],
+          "bbox_xyxy": [
+            80,
+            189,
+            737,
+            248
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Plans",
+          "confidence": 0.9999502301216125,
+          "poly": [
+            [
+              97,
+              318
+            ],
+            [
+              175,
+              322
+            ],
+            [
+              174,
+              358
+            ],
+            [
+              95,
+              354
+            ]
+          ],
+          "bbox_xyxy": [
+            95,
+            318,
+            175,
+            358
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Target (achieved %)",
+          "confidence": 0.9973642230033875,
+          "poly": [
+            [
+              444,
+              313
+            ],
+            [
+              685,
+              318
+            ],
+            [
+              684,
+              353
+            ],
+            [
+              443,
+              348
+            ]
+          ],
+          "bbox_xyxy": [
+            443,
+            313,
+            685,
+            353
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Baseline",
+          "confidence": 0.9955150485038757,
+          "poly": [
+            [
+              735,
+              317
+            ],
+            [
+              844,
+              321
+            ],
+            [
+              843,
+              353
+            ],
+            [
+              734,
+              349
+            ]
+          ],
+          "bbox_xyxy": [
+            734,
+            317,
+            844,
+            353
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Target (achieved %)",
+          "confidence": 0.9818472862243652,
+          "poly": [
+            [
+              892,
+              319
+            ],
+            [
+              1129,
+              325
+            ],
+            [
+              1129,
+              360
+            ],
+            [
+              891,
+              354
+            ]
+          ],
+          "bbox_xyxy": [
+            891,
+            319,
+            1129,
+            360
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Baseline",
+          "confidence": 0.9999289512634277,
+          "poly": [
+            [
+              1178,
+              325
+            ],
+            [
+              1284,
+              325
+            ],
+            [
+              1284,
+              356
+            ],
+            [
+              1178,
+              356
+            ]
+          ],
+          "bbox_xyxy": [
+            1178,
+            325,
+            1284,
+            356
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Target (achieved %)",
+          "confidence": 0.9646339416503906,
+          "poly": [
+            [
+              1335,
+              323
+            ],
+            [
+              1578,
+              321
+            ],
+            [
+              1579,
+              355
+            ],
+            [
+              1335,
+              358
+            ]
+          ],
+          "bbox_xyxy": [
+            1335,
+            321,
+            1579,
+            358
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "ment of the government to accelerate the expansion of irrigation, the low accomplishment",
+          "confidence": 0.9910252094268799,
+          "poly": [
+            [
+              414,
+              599
+            ],
+            [
+              1592,
+              607
+            ],
+            [
+              1592,
+              644
+            ],
+            [
+              413,
+              636
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            599,
+            1592,
+            644
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "Cumnul ative areaunder SSI(ha)",
+          "confidence": 0.9413009881973267,
+          "poly": [
+            [
+              184,
+              1181
+            ],
+            [
+              221,
+              1182
+            ],
+            [
+              213,
+              1544
+            ],
+            [
+              177,
+              1543
+            ]
+          ],
+          "bbox_xyxy": [
+            177,
+            1181,
+            221,
+            1544
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Year",
+          "confidence": 0.9999194145202637,
+          "poly": [
+            [
+              867,
+              1702
+            ],
+            [
+              937,
+              1702
+            ],
+            [
+              937,
+              1739
+            ],
+            [
+              867,
+              1739
+            ]
+          ],
+          "bbox_xyxy": [
+            867,
+            1702,
+            937,
+            1739
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "schemes not included) (source of information: plans and reports from MoA and MoWIE).",
+          "confidence": 0.9864779114723206,
+          "poly": [
+            [
+              94,
+              1807
+            ],
+            [
+              1142,
+              1808
+            ],
+            [
+              1142,
+              1841
+            ],
+            [
+              94,
+              1840
+            ]
+          ],
+          "bbox_xyxy": [
+            94,
+            1807,
+            1142,
+            1841
+          ],
+          "reading_order": 12
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "header",
+      "score": 0.8851038217544556,
+      "bbox_xyxy": [
+        95,
+        143,
+        360,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "number",
+      "score": 0.7638654708862305,
+      "bbox_xyxy": [
+        1475,
+        144,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 5,
+      "label": "figure_title",
+      "score": 0.9454860091209412,
+      "bbox_xyxy": [
+        149,
+        265,
+        1492,
+        329
+      ],
+      "lines": [
+        {
+          "text": "Plan Period 1",
+          "confidence": 0.9973796606063843,
+          "poly": [
+            [
+              390,
+              265
+            ],
+            [
+              563,
+              270
+            ],
+            [
+              562,
+              301
+            ],
+            [
+              389,
+              296
+            ]
+          ],
+          "bbox_xyxy": [
+            389,
+            265,
+            563,
+            301
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Plan Period 2",
+          "confidence": 0.9990020990371704,
+          "poly": [
+            [
+              840,
+              271
+            ],
+            [
+              1008,
+              276
+            ],
+            [
+              1007,
+              308
+            ],
+            [
+              839,
+              303
+            ]
+          ],
+          "bbox_xyxy": [
+            839,
+            271,
+            1008,
+            308
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Plan Period 3",
+          "confidence": 0.9998395442962646,
+          "poly": [
+            [
+              1280,
+              275
+            ],
+            [
+              1454,
+              271
+            ],
+            [
+              1454,
+              305
+            ],
+            [
+              1281,
+              309
+            ]
+          ],
+          "bbox_xyxy": [
+            1280,
+            271,
+            1454,
+            309
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Baseline",
+          "confidence": 0.9998970031738281,
+          "poly": [
+            [
+              287,
+              309
+            ],
+            [
+              396,
+              313
+            ],
+            [
+              395,
+              345
+            ],
+            [
+              286,
+              341
+            ]
+          ],
+          "bbox_xyxy": [
+            286,
+            309,
+            396,
+            345
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "table",
+      "score": 0.9797900915145874,
+      "bbox_xyxy": [
+        97,
+        349,
+        1552,
+        564
+      ],
+      "lines": [
+        {
+          "text": "2005/06",
+          "confidence": 0.9997504949569702,
+          "poly": [
+            [
+              287,
+              342
+            ],
+            [
+              396,
+              346
+            ],
+            [
+              395,
+              381
+            ],
+            [
+              286,
+              377
+            ]
+          ],
+          "bbox_xyxy": [
+            286,
+            342,
+            396,
+            381
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "2009/10",
+          "confidence": 0.9998251795768738,
+          "poly": [
+            [
+              512,
+              347
+            ],
+            [
+              620,
+              351
+            ],
+            [
+              618,
+              384
+            ],
+            [
+              511,
+              380
+            ]
+          ],
+          "bbox_xyxy": [
+            511,
+            347,
+            620,
+            384
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "2009/10",
+          "confidence": 0.999722957611084,
+          "poly": [
+            [
+              734,
+              349
+            ],
+            [
+              844,
+              353
+            ],
+            [
+              843,
+              388
+            ],
+            [
+              733,
+              384
+            ]
+          ],
+          "bbox_xyxy": [
+            733,
+            349,
+            844,
+            388
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "2014/15",
+          "confidence": 0.9999352097511292,
+          "poly": [
+            [
+              958,
+              354
+            ],
+            [
+              1065,
+              358
+            ],
+            [
+              1064,
+              391
+            ],
+            [
+              957,
+              387
+            ]
+          ],
+          "bbox_xyxy": [
+            957,
+            354,
+            1065,
+            391
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "2015/16",
+          "confidence": 0.9999569654464722,
+          "poly": [
+            [
+              1178,
+              359
+            ],
+            [
+              1283,
+              359
+            ],
+            [
+              1283,
+              392
+            ],
+            [
+              1178,
+              392
+            ]
+          ],
+          "bbox_xyxy": [
+            1178,
+            359,
+            1283,
+            392
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "2019/20",
+          "confidence": 0.9997842907905579,
+          "poly": [
+            [
+              1403,
+              356
+            ],
+            [
+              1512,
+              356
+            ],
+            [
+              1512,
+              392
+            ],
+            [
+              1403,
+              392
+            ]
+          ],
+          "bbox_xyxy": [
+            1403,
+            356,
+            1512,
+            392
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "PASDEP",
+          "confidence": 0.9998487830162048,
+          "poly": [
+            [
+              79,
+              367
+            ],
+            [
+              193,
+              373
+            ],
+            [
+              192,
+              405
+            ],
+            [
+              77,
+              399
+            ]
+          ],
+          "bbox_xyxy": [
+            77,
+            367,
+            193,
+            405
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "51,955",
+          "confidence": 0.9999707341194153,
+          "poly": [
+            [
+              297,
+              376
+            ],
+            [
+              385,
+              380
+            ],
+            [
+              384,
+              417
+            ],
+            [
+              296,
+              413
+            ]
+          ],
+          "bbox_xyxy": [
+            296,
+            376,
+            385,
+            417
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "247,130 (51%)",
+          "confidence": 0.9957922697067261,
+          "poly": [
+            [
+              478,
+              380
+            ],
+            [
+              649,
+              384
+            ],
+            [
+              649,
+              418
+            ],
+            [
+              477,
+              414
+            ]
+          ],
+          "bbox_xyxy": [
+            477,
+            380,
+            649,
+            418
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "GTP I",
+          "confidence": 0.968956470489502,
+          "poly": [
+            [
+              96,
+              402
+            ],
+            [
+              181,
+              406
+            ],
+            [
+              180,
+              438
+            ],
+            [
+              95,
+              434
+            ]
+          ],
+          "bbox_xyxy": [
+            95,
+            402,
+            181,
+            438
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "127,242",
+          "confidence": 0.9998883008956909,
+          "poly": [
+            [
+              739,
+              413
+            ],
+            [
+              839,
+              417
+            ],
+            [
+              838,
+              453
+            ],
+            [
+              738,
+              449
+            ]
+          ],
+          "bbox_xyxy": [
+            738,
+            413,
+            839,
+            453
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "658,337 (43%)",
+          "confidence": 0.9670242667198181,
+          "poly": [
+            [
+              926,
+              418
+            ],
+            [
+              1094,
+              424
+            ],
+            [
+              1093,
+              459
+            ],
+            [
+              925,
+              453
+            ]
+          ],
+          "bbox_xyxy": [
+            925,
+            418,
+            1094,
+            459
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "GTP II",
+          "confidence": 0.9702639579772949,
+          "poly": [
+            [
+              92,
+              437
+            ],
+            [
+              183,
+              441
+            ],
+            [
+              182,
+              474
+            ],
+            [
+              91,
+              470
+            ]
+          ],
+          "bbox_xyxy": [
+            91,
+            437,
+            183,
+            474
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "283,084",
+          "confidence": 0.9999699592590332,
+          "poly": [
+            [
+              1180,
+              455
+            ],
+            [
+              1278,
+              458
+            ],
+            [
+              1277,
+              494
+            ],
+            [
+              1179,
+              491
+            ]
+          ],
+          "bbox_xyxy": [
+            1179,
+            455,
+            1278,
+            494
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "954,000 1 (51%)",
+          "confidence": 0.9704045653343201,
+          "poly": [
+            [
+              1359,
+              453
+            ],
+            [
+              1551,
+              457
+            ],
+            [
+              1550,
+              495
+            ],
+            [
+              1359,
+              491
+            ]
+          ],
+          "bbox_xyxy": [
+            1359,
+            453,
+            1551,
+            495
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "1. 490,000 ha is reportedly achieved until the end of the year 2020 (MoWIE) which is 51% of the target (954,000 ha).",
+          "confidence": 0.9835612773895264,
+          "poly": [
+            [
+              199,
+              490
+            ],
+            [
+              1407,
+              505
+            ],
+            [
+              1406,
+              542
+            ],
+            [
+              199,
+              528
+            ]
+          ],
+          "bbox_xyxy": [
+            199,
+            490,
+            1407,
+            542
+          ],
+          "reading_order": 15
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "text",
+      "score": 0.7694246172904968,
+      "bbox_xyxy": [
+        257,
+        569,
+        1382,
+        597
+      ],
+      "lines": [
+        {
+          "text": "While the ambiguous targets set during different planning horizons show the commit-",
+          "confidence": 0.9830006957054138,
+          "poly": [
+            [
+              476,
+              561
+            ],
+            [
+              1596,
+              570
+            ],
+            [
+              1596,
+              606
+            ],
+            [
+              476,
+              597
+            ]
+          ],
+          "bbox_xyxy": [
+            476,
+            561,
+            1596,
+            606
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9669579863548279,
+      "bbox_xyxy": [
+        454,
+        628,
+        1554,
+        728
+      ],
+      "lines": [
+        {
+          "text": "performances imply that there is a critical capacity limitation to implement the plans.",
+          "confidence": 0.9784604907035828,
+          "poly": [
+            [
+              412,
+              636
+            ],
+            [
+              1538,
+              641
+            ],
+            [
+              1538,
+              682
+            ],
+            [
+              411,
+              677
+            ]
+          ],
+          "bbox_xyxy": [
+            411,
+            636,
+            1538,
+            682
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Small-scale irrigation development has been crucial in the plans of the governments of",
+          "confidence": 0.9849770069122314,
+          "poly": [
+            [
+              476,
+              675
+            ],
+            [
+              1592,
+              682
+            ],
+            [
+              1592,
+              719
+            ],
+            [
+              476,
+              712
+            ]
+          ],
+          "bbox_xyxy": [
+            476,
+            675,
+            1592,
+            719
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9835312366485596,
+      "bbox_xyxy": [
+        455,
+        733,
+        1552,
+        1043
+      ],
+      "lines": [
+        {
+          "text": "Ethiopia to sustain food security and livelihoods of more than 80% of the population living",
+          "confidence": 0.9872685670852661,
+          "poly": [
+            [
+              415,
+              713
+            ],
+            [
+              1592,
+              717
+            ],
+            [
+              1592,
+              757
+            ],
+            [
+              414,
+              753
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            713,
+            1592,
+            757
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "in rural areas. However, its implementation during pre- and post-revolution was stagnant",
+          "confidence": 0.9989728331565857,
+          "poly": [
+            [
+              415,
+              751
+            ],
+            [
+              1592,
+              757
+            ],
+            [
+              1592,
+              794
+            ],
+            [
+              414,
+              788
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            751,
+            1592,
+            794
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "and challenged by lack of political stability and directions. Following the announcement",
+          "confidence": 0.9915608763694763,
+          "poly": [
+            [
+              416,
+              789
+            ],
+            [
+              1594,
+              795
+            ],
+            [
+              1594,
+              832
+            ],
+            [
+              415,
+              826
+            ]
+          ],
+          "bbox_xyxy": [
+            415,
+            789,
+            1594,
+            832
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "of the national development strategic direction known as \"Agricultural Development",
+          "confidence": 0.9737176895141602,
+          "poly": [
+            [
+              417,
+              826
+            ],
+            [
+              1594,
+              832
+            ],
+            [
+              1594,
+              869
+            ],
+            [
+              416,
+              863
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            826,
+            1594,
+            869
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Led Industrialization\" in the early 1990s and many other rural development plans in",
+          "confidence": 0.987971842288971,
+          "poly": [
+            [
+              415,
+              863
+            ],
+            [
+              1595,
+              868
+            ],
+            [
+              1595,
+              907
+            ],
+            [
+              414,
+              902
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            863,
+            1595,
+            907
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "the early 2000s, the attention given to small-scale irrigation has also increased. With the",
+          "confidence": 0.9832698106765747,
+          "poly": [
+            [
+              417,
+              900
+            ],
+            [
+              1595,
+              903
+            ],
+            [
+              1595,
+              944
+            ],
+            [
+              416,
+              941
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            900,
+            1595,
+            944
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "implementation of the three consecutive plans, namely PASDEP, GTP I and II, encouraging",
+          "confidence": 0.997087836265564,
+          "poly": [
+            [
+              418,
+              936
+            ],
+            [
+              1596,
+              944
+            ],
+            [
+              1596,
+              984
+            ],
+            [
+              417,
+              976
+            ]
+          ],
+          "bbox_xyxy": [
+            417,
+            936,
+            1596,
+            984
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "progresses have been achieved in the development of small-scale irrigation (Figure 4).",
+          "confidence": 0.9903203248977661,
+          "poly": [
+            [
+              417,
+              976
+            ],
+            [
+              1552,
+              981
+            ],
+            [
+              1551,
+              1021
+            ],
+            [
+              416,
+              1016
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            976,
+            1552,
+            1021
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "chart",
+      "score": 0.9789558053016663,
+      "bbox_xyxy": [
+        201,
+        1086,
+        1446,
+        1719
+      ],
+      "lines": [
+        {
+          "text": "3,000,000",
+          "confidence": 0.9978339076042175,
+          "poly": [
+            [
+              245,
+              1070
+            ],
+            [
+              354,
+              1070
+            ],
+            [
+              354,
+              1105
+            ],
+            [
+              245,
+              1105
+            ]
+          ],
+          "bbox_xyxy": [
+            245,
+            1070,
+            354,
+            1105
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "2,528,000",
+          "confidence": 0.9999570846557617,
+          "poly": [
+            [
+              1276,
+              1137
+            ],
+            [
+              1394,
+              1133
+            ],
+            [
+              1395,
+              1172
+            ],
+            [
+              1277,
+              1176
+            ]
+          ],
+          "bbox_xyxy": [
+            1276,
+            1133,
+            1395,
+            1176
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "2,500,000",
+          "confidence": 0.9999436140060425,
+          "poly": [
+            [
+              241,
+              1162
+            ],
+            [
+              355,
+              1159
+            ],
+            [
+              356,
+              1199
+            ],
+            [
+              242,
+              1202
+            ]
+          ],
+          "bbox_xyxy": [
+            241,
+            1159,
+            356,
+            1202
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "2,353,000",
+          "confidence": 0.9999746680259705,
+          "poly": [
+            [
+              1064,
+              1170
+            ],
+            [
+              1177,
+              1170
+            ],
+            [
+              1177,
+              1206
+            ],
+            [
+              1064,
+              1206
+            ]
+          ],
+          "bbox_xyxy": [
+            1064,
+            1170,
+            1177,
+            1206
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "2,000,000",
+          "confidence": 0.9988306760787964,
+          "poly": [
+            [
+              240,
+              1257
+            ],
+            [
+              354,
+              1254
+            ],
+            [
+              355,
+              1293
+            ],
+            [
+              241,
+              1296
+            ]
+          ],
+          "bbox_xyxy": [
+            240,
+            1254,
+            355,
+            1296
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "1,500,000",
+          "confidence": 0.9987644553184509,
+          "poly": [
+            [
+              239,
+              1345
+            ],
+            [
+              354,
+              1341
+            ],
+            [
+              355,
+              1380
+            ],
+            [
+              240,
+              1384
+            ]
+          ],
+          "bbox_xyxy": [
+            239,
+            1341,
+            355,
+            1384
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "II",
+          "confidence": 0.7700008153915405,
+          "poly": [
+            [
+              858,
+              1072
+            ],
+            [
+              1503,
+              1079
+            ],
+            [
+              1496,
+              1736
+            ],
+            [
+              851,
+              1729
+            ]
+          ],
+          "bbox_xyxy": [
+            851,
+            1072,
+            1503,
+            1736
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "1,000,000",
+          "confidence": 0.9988116025924683,
+          "poly": [
+            [
+              242,
+              1436
+            ],
+            [
+              354,
+              1436
+            ],
+            [
+              354,
+              1472
+            ],
+            [
+              242,
+              1472
+            ]
+          ],
+          "bbox_xyxy": [
+            242,
+            1436,
+            354,
+            1472
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "853,000",
+          "confidence": 0.9999752044677734,
+          "poly": [
+            [
+              853,
+              1440
+            ],
+            [
+              949,
+              1440
+            ],
+            [
+              949,
+              1476
+            ],
+            [
+              853,
+              1476
+            ]
+          ],
+          "bbox_xyxy": [
+            853,
+            1440,
+            949,
+            1476
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "500,000",
+          "confidence": 0.9286094307899475,
+          "poly": [
+            [
+              258,
+              1529
+            ],
+            [
+              353,
+              1529
+            ],
+            [
+              353,
+              1565
+            ],
+            [
+              258,
+              1565
+            ]
+          ],
+          "bbox_xyxy": [
+            258,
+            1529,
+            353,
+            1565
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "64,000",
+          "confidence": 0.9999540448188782,
+          "poly": [
+            [
+              440,
+              1585
+            ],
+            [
+              520,
+              1585
+            ],
+            [
+              520,
+              1618
+            ],
+            [
+              440,
+              1618
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            1585,
+            520,
+            1618
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "88,145",
+          "confidence": 0.9999377131462097,
+          "poly": [
+            [
+              650,
+              1579
+            ],
+            [
+              731,
+              1579
+            ],
+            [
+              731,
+              1615
+            ],
+            [
+              650,
+              1615
+            ]
+          ],
+          "bbox_xyxy": [
+            650,
+            1579,
+            731,
+            1615
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "0",
+          "confidence": 0.999972939491272,
+          "poly": [
+            [
+              331,
+              1623
+            ],
+            [
+              356,
+              1623
+            ],
+            [
+              356,
+              1652
+            ],
+            [
+              331,
+              1652
+            ]
+          ],
+          "bbox_xyxy": [
+            331,
+            1623,
+            356,
+            1652
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "1991",
+          "confidence": 0.999956488609314,
+          "poly": [
+            [
+              448,
+              1663
+            ],
+            [
+              508,
+              1663
+            ],
+            [
+              508,
+              1694
+            ],
+            [
+              448,
+              1694
+            ]
+          ],
+          "bbox_xyxy": [
+            448,
+            1663,
+            508,
+            1694
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "1998",
+          "confidence": 0.9999793767929077,
+          "poly": [
+            [
+              659,
+              1661
+            ],
+            [
+              721,
+              1661
+            ],
+            [
+              721,
+              1695
+            ],
+            [
+              659,
+              1695
+            ]
+          ],
+          "bbox_xyxy": [
+            659,
+            1661,
+            721,
+            1695
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "2010",
+          "confidence": 0.9999634027481079,
+          "poly": [
+            [
+              870,
+              1660
+            ],
+            [
+              933,
+              1660
+            ],
+            [
+              933,
+              1695
+            ],
+            [
+              870,
+              1695
+            ]
+          ],
+          "bbox_xyxy": [
+            870,
+            1660,
+            933,
+            1695
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "GTP I (2014)",
+          "confidence": 0.9718109965324402,
+          "poly": [
+            [
+              1043,
+              1658
+            ],
+            [
+              1193,
+              1661
+            ],
+            [
+              1192,
+              1700
+            ],
+            [
+              1042,
+              1697
+            ]
+          ],
+          "bbox_xyxy": [
+            1042,
+            1658,
+            1193,
+            1700
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "GTP II (219)",
+          "confidence": 0.9761515259742737,
+          "poly": [
+            [
+              1258,
+              1662
+            ],
+            [
+              1407,
+              1662
+            ],
+            [
+              1407,
+              1700
+            ],
+            [
+              1258,
+              1700
+            ]
+          ],
+          "bbox_xyxy": [
+            1258,
+            1662,
+            1407,
+            1700
+          ],
+          "reading_order": 17
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "figure_title",
+      "score": 0.9419795274734497,
+      "bbox_xyxy": [
+        149,
+        1746,
+        1493,
+        1810
+      ],
+      "lines": [
+        {
+          "text": "Figure 4. Cumulative area equipped for small-scale irrigation over the last three decades (traditional small-scale irrigation",
+          "confidence": 0.9833437204360962,
+          "poly": [
+            [
+              93,
+              1768
+            ],
+            [
+              1528,
+              1771
+            ],
+            [
+              1528,
+              1809
+            ],
+            [
+              93,
+              1806
+            ]
+          ],
+          "bbox_xyxy": [
+            93,
+            1768,
+            1528,
+            1809
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9847494959831238,
+      "bbox_xyxy": [
+        454,
+        1833,
+        1552,
+        2145
+      ],
+      "lines": [
+        {
+          "text": "According to Ref. [28], the area under small-scale irrigation in Ethiopia has increased",
+          "confidence": 0.9812471270561218,
+          "poly": [
+            [
+              482,
+              1864
+            ],
+            [
+              1589,
+              1864
+            ],
+            [
+              1589,
+              1898
+            ],
+            [
+              482,
+              1898
+            ]
+          ],
+          "bbox_xyxy": [
+            482,
+            1864,
+            1589,
+            1898
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "from 176,105 ha in 1991 to 197,250 ha in 1998 and to 853,000 ha in the year 2009/10 to about",
+          "confidence": 0.9849770665168762,
+          "poly": [
+            [
+              417,
+              1899
+            ],
+            [
+              1590,
+              1901
+            ],
+            [
+              1590,
+              1936
+            ],
+            [
+              416,
+              1933
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            1899,
+            1590,
+            1936
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "2.353 million ha in 2014 and 2.528 million ha at the end of 2019. The GTP was found to be",
+          "confidence": 0.9860998392105103,
+          "poly": [
+            [
+              415,
+              1932
+            ],
+            [
+              1591,
+              1937
+            ],
+            [
+              1591,
+              1975
+            ],
+            [
+              414,
+              1970
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            1932,
+            1591,
+            1975
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "a new approach through which massive public and donor supports as well as resources",
+          "confidence": 0.9846208691596985,
+          "poly": [
+            [
+              413,
+              1967
+            ],
+            [
+              1593,
+              1972
+            ],
+            [
+              1593,
+              2017
+            ],
+            [
+              412,
+              2013
+            ]
+          ],
+          "bbox_xyxy": [
+            412,
+            1967,
+            1593,
+            2017
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "were mobilized particularly during GTP I. Thus, during these two consecutive GTPs,",
+          "confidence": 0.9941717982292175,
+          "poly": [
+            [
+              412,
+              2002
+            ],
+            [
+              1598,
+              2007
+            ],
+            [
+              1598,
+              2054
+            ],
+            [
+              411,
+              2049
+            ]
+          ],
+          "bbox_xyxy": [
+            411,
+            2002,
+            1598,
+            2054
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "small-scale irrigation expansion has increased specifically by 15.2% per year during the",
+          "confidence": 0.9771780371665955,
+          "poly": [
+            [
+              413,
+              2034
+            ],
+            [
+              1595,
+              2045
+            ],
+            [
+              1595,
+              2092
+            ],
+            [
+              412,
+              2082
+            ]
+          ],
+          "bbox_xyxy": [
+            412,
+            2034,
+            1595,
+            2092
+          ],
+          "reading_order": 5
+        }
+      ]
+    }
+  ]
+}

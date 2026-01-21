@@ -1,0 +1,163 @@
+0,1
+Valmassoi and Keller,10.3389/frwa.2022.906664
+"soil moisture, which in turn has a crucial
+role in the context","Leng et al., 2015; Kang and Eltahir, 2018; Wu et al., 2018), or"
+"of surface energy and water balance (Seneviratne et al., 2010).","the Contiguous United States
+(e.g., Pei et al., 2016; Lu et al.,"
+Irrigation land management practices have been recognized as a,"2017) as well as
+smaller areas
+like California (e.g., Kueppers"
+crucial component of the anthropogenic impact on the climate,"et al., 2007; Sorooshian et al., 2011; Yang et al., 2017), or parts"
+"(Sacks et al., 2009; Luyssaert et al., 2014; Thiery et al., 2020), but","of
+Italy (e.g., Valmassoi et al., 2020a; Dari et al., 2021). Most"
+was included only in the most recent Intergovernmental Panel,"studies show a strong diurnal cycle of
+the expected irrigation-"
+on Climate Change (IPCC) 5th Assessment Report (AR5) (Jia,induced cooling eﬀect where the diurnal maximum temperature
+"irrigation has to
+et al., 2019; Thiery et al., 2020). Furthermore,","is impacted most while the minimum seems not
+to be aﬀected"
+"be considered as a major unaccounted anthropogenic
+source","(e.g., Kueppers et al., 2007;
+Jia et al., 2019). This pronounced"
+"of water vapor (Boucher et al., 2004), and accounts for intra-","diurnal cycle is also reﬂected in the boundary layer structure,"
+and inter-basin water extraction and redistribution. While the,where several studies observed a lowering of the boundary layer
+impact of irrigation on the local climate can be detected in in-situ,"height due to the combined decrease of
+the temperature and"
+"observations and remote sensing products, numerical models","increase of
+the water vapor (e.g., Pielke et al., 2007; Mahmood"
+can also be utilized to understand more complex feedback eﬀects,"et al., 2008; Valmassoi et al., 2020c)."
+as well as their implications for the Earth system as a whole.,"With respect
+to
+eﬀects
+on atmospheric
+circulations,
+the"
+"The
+goal
+of
+irrigation is
+to
+increase water
+available
+for","spatial heterogeneity of
+the
+irrigated areas
+is
+reﬂected in the"
+"crops and,
+thus, sustain them throughout
+the growing season.","horizontal discontinuity of
+the aﬀected ﬂuxes as well as
+local"
+"Therefore,
+a major
+eﬀect
+is
+an increase
+in the
+soil moisture","Barnston
+and
+Schickedanz,
+1984;
+circulation
+changes
+(e.g.,"
+"content.
+In absence
+of precipitation,
+this
+can be used as
+a","Pielke and Zeng, 1989; Kueppers et al., 2007; Aegerter et al.,"
+"basis for detection algorithms, e.g., developed by Lawston et al.",2017). The changes in thermodynamic air mass properties and
+"(2017), Brocca et al. (2018), or Zaussinger et al. (2019). Such an",circulation are found to potentially aﬀect precipitation locally
+increase in soil moisture by irrigation is also observed in many,"and/or downwind, due to water vapor
+transport
+(e.g., Bonﬁls"
+"et
+al., 2004; Kueppers
+et
+al.,
+modeling studies
+(e.g., Boucher","and Lobell, 2007; Deangelis et al., 2010; Wei et al., 2013) and/or"
+"2007; Sacks et al., 2009; Puma and Cook, 2010; Thiery et al.,","the change in stability (Valmassoi et al., 2020b). These regional"
+"2017; Valmassoi et al., 2020b). There is very high conﬁdence (Jia","changes are found to aﬀect the large scale synoptic circulations,"
+"et al., 2019) that a higher soil moisture content aﬀects the surface",such as the weakening and the delaying of the Indian Monsoon
+energy partitioning by increasing the upward moisture ﬂux and,"et al., 2009; Saeed et al., 2009; Lee and Ngan,
+(e.g., Douglas"
+"decreasing the sensible heat ﬂux (Thiery et al., 2017; Valmassoi","the change in the remote
+2011; Guimberteau et al., 2012) or"
+"et al., 2020c). The associated change in the Bowen ratio causes","precipitation patterns over the Sahel region (e.g., Wei et al., 2013;"
+"the widely observed surface
+cooling eﬀect of
+irrigation (e.g.,","Im and Eltahir, 2014)."
+"Lobell et al., 2006a, 2009; Kueppers et al., 2007; Puma and Cook,",While there is a regional component of the irrigation impact
+"2010; Sorooshian et
+al., 2011; Thiery
+et
+al., 2017; Valmassoi","on the Earth system, Sacks et al. (2009) and Wada et al. (2013)"
+"et al., 2020a; Nie et al., 2021), and the increase in the near-",identify the irrigation representation in models and the water
+"surface atmospheric moisture (Mahmood et al., 2008). While the","amount used as crucial causes of
+the associated uncertainties,"
+global annual cooling of 1.3 K described in Lobell et al. (2006a),such as the regional signals.
+"seems somewhat high, Boucher et al.
+(2004) and Thiery et al.",
+(2017) provide estimates that look more realistic with 0.05 and,
+"0.20 K, respectively. Further, all studies shows that
+the cooling",
+has a strong regional component. The decrease in the diurnal,
+,3. Existing irrigation
+"maximum temperatures can go from 3 to 8 K (de Rosnay, 2003;",
+"Douglas et al., 2009; Saeed et al., 2009; Guimberteau et al., 2012;",parameterizations
+"Tuinenburg et al., 2014). The high variability is both due to",
+regional signals but can be caused by the overestimation of the,"In order
+to represent
+the irrigation process and its eﬀects"
+"cooling eﬀect in global studies, i.e., up to 4.9 times higher in the","as realistically as possible in the modeling of
+the Earth system,"
+Indo-Gangetic Plain of India in the global study by Thiery et al.,"parametrizations
+of
+this
+process
+have
+been
+developed.
+In"
+(2020) as compared to simulations with realistic water volumes,"the
+following, we present
+the main equations of
+the various"
+"and high resolution simulations (Jha et al., 2022).",parameterization approaches albeit with a harmonized notation.
+"Regional
+studies are often used to further
+investigate the","First, we will discuss the topic of irrigation activation which"
+signals of irrigation and provide deeper insights to the involved,"is
+crucial
+due
+to
+the
+anthropogenic nature
+of
+the
+process."
+"processes and their eﬀects. Such studies mostly focus on larger,","Here,
+timing
+generally
+refers
+to the decision to activate
+the"
+"highly
+irrigated areas
+such as
+India
+(e.g., de Rosnay,
+2003;",irrigation parameterization. There are mainly three approaches
+"Douglas
+et
+al., 2009;
+Saeed et
+al., 2009; Guimberteau et
+al.,","to determine when irrigation is initialized, namely, the usage of"
+"al., 2014),
+the North China Plain (e.g.,
+2012; Tuinenburg et","(i) geographical
+invariant spatial ﬁelds, (ii) the time of the day,"

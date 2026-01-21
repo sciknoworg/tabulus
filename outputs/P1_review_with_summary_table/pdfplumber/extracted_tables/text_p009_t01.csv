@@ -1,0 +1,100 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+TABLE3 Summaryofparameterizationswithirrigationimplementedassoilm,oisturemodification.
+,
+Thresholdtype Physicalquantity Referencevalue,Depthaffected References
+,
+Invariantmodification θs 100%,Wholecolumn Lobelletal.,2006a;EvansandZaitchik,2008;
+,
+,KanamaruandKanamitsu,2008;Kueppersetal.,
+,
+,2008;Lawstonetal.,2015
+,
+100%,Upper20cm Adegokeetal.,2003
+,
+40%(30,50,90),Upper30cm Lobelletal.,2009
+,
+75%,Notmentioned Saeedetal.,2009
+,
+90%,Top-layer Tuinenburgetal.,2014;deVreseandHagemann,
+,
+,2018
+,
+θfc 75%,- Chaseetal.,1999
+,
+100%,Upper1meter Kueppersetal.,2007;MarcellaandEltahir,2014
+,
+100%,Upper40cm Liuetal.,2021
+,
+50%,Top-layer KanamaruandKanamitsu,2008
+,
+90%,Root-zonelevels Sorooshianetal.,2011,2012
+,
+θ 4.8·10−5mms−1,Upperlayer Kueppersetal.,2008
+,
+SoilMoistureavailability θat 0.45–0.5,Root-zonelevels Sorooshianetal.,2011
+,
+Calibrated,Root-zonelevels Lengetal.,2017
+,
+Severalstudiesthatinvestigateirrigationparameterizations,the threshold of 40% based on the examination of the soil
+,
+in atmospheric numerical models, represent irrigation as,moistureintheircontrolexperiment(Lobelletal.,2009).There,
+,
+an invariant modification on some of the physical model,the monthly averaged values were below that threshold for
+,
+variableswithsomestudiesusingtheaforementionedactivation,the whole local summer season, and above for the remainder
+,
+thresholds, such as timing, to reset these variables. The most,of the year. For completeness, sensitivity tests with different
+,
+commonapproachistosetthesoilmoisturefieldtoapredefined,thresholds were performed for the arbitrary values of 30%,
+referencevalue,e.g.,thesaturationlevel(θs),thefieldcapacity,50% and 90%, where the latter was considered an extreme
+,
+(θ ), or a fraction of them. In this context, the saturation
+fc,value. Despite the considerations by Lobell et al. (2006a), that
+level approach implies usually much wetter conditions than,same approach was used by Kueppers et al. (2008) for the
+,
+the soil at field capacity, since the former includes filling the,RegionalSpectralModel(RSM).Inafollowupstudy,Kanamaru
+,
+pores. However, this water is strongly bound and not really,and Kanamitsu (2008) argue that the previously prescribed
+,
+available to the plants. While some studies do not limit the,soil moisture in RSM was too high. Therefore, they set top
+,
+depthoftheimpactoftheirrigation(e.g.,Lobelletal.,2006a),,soil layer at field capacity as the highest irrigation scenario.
+,
+othershypothesizethatonlytheupperlayersareaffected,such,Saeed et al. (2009) justify the choice affirming that irrigation
+,
+as the upper 20–40 cm (e.g., Adegoke et al., 2003; Lobell,practices are assumed to fulfill optimal conditions for the
+,
+et al., 2009; Liu et al., 2021), the first meter (Kueppers et al.,,crops,inorderto“transpireatapotentialrate.”Asreasoning,
+,
+2007), or the layers that include the plant roots (Sorooshian,the authors refer to a highly simplified vegetation stomata
+,
+etal.,2011;Lengetal.,2017).Forsoilsaturation,theavailable,regulation. We therefore assume that the potential rate refers
+,
+studiesuseverydifferentthresholdvalues,from100%inLobell,totheevapotranspirationobservedundernosoilwaterstresses
+,
+et al. (2006a), Kanamaru and Kanamitsu (2008), Kueppers,(Brouweretal.,1985b).
+,
+et al. (2008), Evans and Zaitchik (2008), and Lawston et al.,Instead of saturating the soil moisture, some studies use
+,
+(2015), to 90% for Tuinenburg et al. (2014) and their follow-,the field capacity as it is the upper limit of the plant available
+,
+up studies, 75% for Saeed et al. (2009), and down to 40% for,water(Kirkham,2005).Whilemostofthestudiesherecorrect
+,
+Lobell et al. (2009). Lobell et al. (2006a) and the follow-up,thesoilmoistureforthewholesimulation,Chaseetal.(1999)
+,
+work of Lobell et al. (2009) provide a useful set of sensitivity,uses this value as the initial condition for the simulation. As
+,
+experiments with different saturation thresholds and different,in the previous threshold, also here the studies use multiple
+,
+depths affected. In both of their all soil columns defined,threshold values, from 100 to 50%. The studies that set the
+,
+as cropland within the Community Atmospheric Model v.3,soilmoistureatfieldcapacitydifferbothinthedepthaffected,
+,
+(CAM3) are affected throughout the whole simulation. Lobell,theroot-zonelevels(upper1m)ortheupmost40cm,andin
+,
+etal.(2006a)meanttorepresentirrigationwiththesoilsaturated,the conservation of the water applied. While Kueppers et al.
+,
+onlyasasensitivityexperiment,andthefollow-updetermined,(2007) and Liu et al. (2021) just set the new soil moisture
+,
+FrontiersinWater 09,frontiersin.org

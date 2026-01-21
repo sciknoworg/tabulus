@@ -1,0 +1,18 @@
+0,1,2,3
+Threshold typ,e Reference valu,e CaNopy interactio,n Reference
+Timin,g Mapa,No,"Sacks et al., 2009; Lee et al., 2011; Krakauer et al., 2016"
+,Mapa and temporal variatio,n No,"Cook et al., 2015, 2020"
+,"10−4 /sensitivit
+5.2",y Yes,"Valmassoi et al., 2020a"
+,"10−4 /sensitivit
+5.2",y No,"Valmassoi et al., 2020a"
+Soil Moisture availabilit,y 0.,5 Yes,"Ozdogan et al., 2009; Qian et al., 2013"
+,0.,2 Yes,"Pei et al., 2014"
+,0.,1 Yes,"Lawston et al., 2015"
+,0.4,3 Yes,"Yang et al., 2016"
+,0.48–0.5,5 No,"Wu et al., 2018"
+,0.5–0.,6 Yes,"Liu et al., 2021"
+,Calibrate,d No,"Leng et al., 2013"
+,0.,7 No,"Leng et al., 2013"
+,0.7/Calibrate,d Yes,"Leng et al., 2017"
+,0.7/Calibrate,d No,"Leng et al., 2017"

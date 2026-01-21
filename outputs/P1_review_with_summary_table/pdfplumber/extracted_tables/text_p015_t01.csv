@@ -1,0 +1,104 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+For example, Sacks et al. (2009) used prescribed ocean states,derivationand(iii)offlinederivation.Whilethereisnocurrent
+,
+and a 30-years simulation, and since the dataset for building,bestpractice,wehighlightthemainlimitationsofeachmethod
+,
+theirrigationmapsweretakenaroundtheyear2000,weassume,sothatpastandfutureworks’irrigationimpactonclimatecan
+,
+theirsimulationsarerepresentativeofthatyear.Thismakesthe,be contextualized. The fixed amount seems the best solution
+,
+estimatesoftheirrigationratesofSacksetal.(2009)comparable,whenthevolumescomefromareliablesource,anditincludes
+,
+withtheonesfromKrakaueretal.(2016),whicharetwoorder,lessthanoptimalirrigationvolumes,whicharecommonlyused
+,
+magnitude lower. While the two studies use the same period,,in real world applications (Siebert and Döll, 2010). However,
+,
+theydonotusethesamemodelorirrigationrate.Therefore,we,this might not be applicable for areas and/or region with
+,
+cannotdrawsustainedconclusionsaboutthelargedifferencesof,datascarcity, oritcanlead torepresentativity issuesinmulti-
+,
+thesurfacecoolingeffectsoverirrigatedareas(0.061and0.665,year simulations. In this case, a good solution is to derive
+,
+K,respectively).,the irrigation water amount within each timestep. However,
+,
+It is even more difficult to compare studies that cover the,such approach could lead to unrealistic water amounts due to
+,
+sameregionbutfordifferentperiods.However,dependingon,the model biases themselves. Even in the absence of model
+,
+the geographical area, the irrigation water use might not have,biases,thewaterneededisafunctionofthesoilcharacteristics,
+,
+changed drastically over time (Puma and Cook, 2010). The,i.e., soil types and parameters, or agricultural practices, which
+,
+situationiseasierifthereisanoverlap,suchasforSAS,WNA,are not well represented. The online computation of water
+,
+or EAS. In those cases, Table5 still shows an irrigation rate,requirementsopensupthepossibilitytoincludeavalidationor
+,
+variabilityashighasfourorders’magnitude.Forexample,the,comparisonoftheobtainedresultstoavailablecensusdata,and
+,
+differenceobservedforEASwouldleadtoaminimumirrigation,adiscussionaboutthevolumesobtainedwiththeofflinederived
+wateramountdifferenceofabout34mm·d −1,consideringthe,dataset. The offline dataset provides an interesting model
+,
+rates from Yang et al. (2016) and Liu et al. (2021). Similarly,,output with a consistent spatial and temporal representation,
+,
+WNA irrigation rate differences lead to a minimum diurnal,which seems suitable to be used as forcing for a earth system
+difference of about 20mm · d −1, which is higher than the,simulation. However, these datasets exhibit several limitations
+maximumvalueof3.4mm·d −1thatisthediurnalaccumulated,as, first and foremost, they do not account for the feedback
+,
+precipitationintheupwindsideoftheSierraNevada(Yangetal.,,effect that irrigation has on the atmosphere, which is the
+,
+2017).Furthermore,differencesintheirrigationvolumescanbe,reason of including explicitly the irrigation parameterizations
+,
+explainedwhenconsideringboththemodelgridresolutionand,in the Earth system models. Wisser et al. (2008) show that
+,
+thespatialdistributionoftheirrigatedarea.Infact,coarsemodel,the combined uncertainty of crop management and weather
+,
+resolutionisnotabletocapturethehighspatialvariabilitythat,conditions can lead to water estimations uncertainties of 30%
+,
+leadstoverydifferentirrigationvolumesdrivenbytheclimate,circa, with the weather variability having a strong regional
+conditions(Deckeretal.,2017).,component leading up to ±70% variability. Similar results are
+,
+While some authors use the available irrigation,found by Decker et al. (2017), where they obtained a 25%
+,
+reconstructions or estimates to calibrate their model or as,increaseinirrigationwaterwhenusingofflinemodelforsouth
+,
+input (e.g., Tuinenburg et al., 2014; Krakauer et al., 2016; Pei,eastern Australia (Decker et al., 2017). This problem could be
+,
+et al., 2016; Leng et al., 2017) use them for comparison. Pei,partiallyresolvedifonlyobservationaldatasetsareusedtoforce
+,
+et al. (2016) find biases in the heavily irrigated areas in their,the model, so that the crop-water demand is affected by the
+,
+study, which is just in part due to the discrepancies of the,effectofirrigationontheatmosphere.However,observational
+,
+irrigation fraction map when compared to the used MODIS,datasets are generally not dense enough, which can cause an
+,
+irrigatedcroplands.However,themainsourceofthedifferences,increase of irrigation water demand due to the lack of small-
+,
+is ascribed to the assumptions in the irrigation scheme,,scales representation, as shown by Decker et al. (2017) in a
+,
+intendedastheirrigationrateandduration(seeSection3.3.3),,modelingapproach.
+,
+which is not representative for other regions and/or irrigation,
+,
+techniques. Tuinenburg et al. (2014) find that differences in,
+irrigation water amount with respect to the reference Siebert,5.2. Irrigation water extraction
+,
+andDöll(2010)variesalotdependingonthemodelused,from,
+,
+5 to 89% for the same season (MAM). This leads to a diurnal,Whiletheirrigationwateramountusedinthesimulations
+,
+differenceofwaterappliedofasimilarmagnitudeofthediurnal,is crucial for any consideration and/or comparison between
+,
+averageprecipitationformostofthemodels(Tuinenburgetal.,,the studies available in literature, its source for extraction
+,
+2014).,providesseveraluncertainties.Similarlytotheactualirrigation
+,
+To summarize, the uncertainties related to the irrigation,volumes used, also the source type and location is difficult to
+,
+amount thus can be ascribed to their assumptions in the,determine. First of all, irrigation water is either pumped from
+,
+calculation. In the literature there are three different ways to,thegroundwaterortakenfromsurfacesources,suchasrivers,
+,
+obtain the irrigation water amount: (i) fixed value, (ii) online,lakesordams(Dölletal.,2012;Wadaetal.,2014).
+,
+FrontiersinWater 15,frontiersin.org

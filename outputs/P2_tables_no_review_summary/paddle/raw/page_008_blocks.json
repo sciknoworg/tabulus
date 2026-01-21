@@ -1,0 +1,1391 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 8,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 7,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9949425458908081,
+          "poly": [
+            [
+              26,
+              22
+            ],
+            [
+              328,
+              45
+            ],
+            [
+              325,
+              79
+            ],
+            [
+              23,
+              56
+            ]
+          ],
+          "bbox_xyxy": [
+            23,
+            22,
+            328,
+            79
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "8 of 16",
+          "confidence": 0.9702914357185364,
+          "poly": [
+            [
+              1524,
+              55
+            ],
+            [
+              1607,
+              51
+            ],
+            [
+              1609,
+              83
+            ],
+            [
+              1526,
+              87
+            ]
+          ],
+          "bbox_xyxy": [
+            1524,
+            51,
+            1609,
+            87
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "of ownership feeling by the local community toward schemes planned, implemented,",
+          "confidence": 0.9868022799491882,
+          "poly": [
+            [
+              428,
+              191
+            ],
+            [
+              1609,
+              186
+            ],
+            [
+              1609,
+              240
+            ],
+            [
+              429,
+              245
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            186,
+            1609,
+            245
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "and operated by government support without consultation is considered one of the many",
+          "confidence": 0.9932873845100403,
+          "poly": [
+            [
+              430,
+              236
+            ],
+            [
+              1603,
+              232
+            ],
+            [
+              1603,
+              277
+            ],
+            [
+              431,
+              281
+            ]
+          ],
+          "bbox_xyxy": [
+            430,
+            232,
+            1603,
+            281
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "farms. However, the success of this target was not evaluated due to the collapse of the",
+          "confidence": 0.9946081042289734,
+          "poly": [
+            [
+              404,
+              1363
+            ],
+            [
+              1594,
+              1363
+            ],
+            [
+              1594,
+              1400
+            ],
+            [
+              404,
+              1400
+            ]
+          ],
+          "bbox_xyxy": [
+            404,
+            1363,
+            1594,
+            1400
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "End Poverty (PASDEP, from 2005/062009/10); and the Growth and Transformation Plan",
+          "confidence": 0.9977020621299744,
+          "poly": [
+            [
+              386,
+              1758
+            ],
+            [
+              1599,
+              1749
+            ],
+            [
+              1599,
+              1793
+            ],
+            [
+              386,
+              1802
+            ]
+          ],
+          "bbox_xyxy": [
+            386,
+            1749,
+            1599,
+            1802
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "(GTP I, from 2010/112014/15) and GTP II, from 2015/162019/20. In all these plans,",
+          "confidence": 0.9860824942588806,
+          "poly": [
+            [
+              384,
+              1796
+            ],
+            [
+              1602,
+              1788
+            ],
+            [
+              1602,
+              1835
+            ],
+            [
+              384,
+              1843
+            ]
+          ],
+          "bbox_xyxy": [
+            384,
+            1788,
+            1602,
+            1843
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "irrigation development was given greater attention.",
+          "confidence": 0.9932078123092651,
+          "poly": [
+            [
+              385,
+              1842
+            ],
+            [
+              1089,
+              1833
+            ],
+            [
+              1090,
+              1873
+            ],
+            [
+              385,
+              1882
+            ]
+          ],
+          "bbox_xyxy": [
+            385,
+            1833,
+            1090,
+            1882
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "header",
+      "score": 0.8880236148834229,
+      "bbox_xyxy": [
+        96,
+        144,
+        360,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 6,
+      "label": "number",
+      "score": 0.7461822032928467,
+      "bbox_xyxy": [
+        1485,
+        144,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9638636112213135,
+      "bbox_xyxy": [
+        455,
+        267,
+        1553,
+        368
+      ],
+      "lines": [
+        {
+          "text": "reasons for unsustainable irrigation system.",
+          "confidence": 0.9998026490211487,
+          "poly": [
+            [
+              433,
+              279
+            ],
+            [
+              1006,
+              283
+            ],
+            [
+              1006,
+              317
+            ],
+            [
+              432,
+              313
+            ]
+          ],
+          "bbox_xyxy": [
+            432,
+            279,
+            1006,
+            317
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "3.3. Trends and Status of Irrigation Development in Ethiopia",
+          "confidence": 0.9912522435188293,
+          "poly": [
+            [
+              432,
+              345
+            ],
+            [
+              1159,
+              350
+            ],
+            [
+              1159,
+              387
+            ],
+            [
+              431,
+              382
+            ]
+          ],
+          "bbox_xyxy": [
+            431,
+            345,
+            1159,
+            387
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "paragraph_title",
+      "score": 0.8987679481506348,
+      "bbox_xyxy": [
+        457,
+        400,
+        1148,
+        429
+      ],
+      "lines": [
+        {
+          "text": "Actually, there is no official document that clearly shows the total area under irrigation.",
+          "confidence": 0.9887489676475525,
+          "poly": [
+            [
+              491,
+              394
+            ],
+            [
+              1602,
+              391
+            ],
+            [
+              1602,
+              433
+            ],
+            [
+              491,
+              435
+            ]
+          ],
+          "bbox_xyxy": [
+            491,
+            391,
+            1602,
+            435
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9775118827819824,
+      "bbox_xyxy": [
+        455,
+        442,
+        1556,
+        646
+      ],
+      "lines": [
+        {
+          "text": "Different sources provide figures that vary greatly. As indicated in the previous Section",
+          "confidence": 0.9853320121765137,
+          "poly": [
+            [
+              429,
+              433
+            ],
+            [
+              1591,
+              433
+            ],
+            [
+              1591,
+              473
+            ],
+            [
+              429,
+              473
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            433,
+            1591,
+            473
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "3.2.2, irrigation development has been undertaken by many different parties with no coor-",
+          "confidence": 0.9893973469734192,
+          "poly": [
+            [
+              427,
+              471
+            ],
+            [
+              1601,
+              472
+            ],
+            [
+              1601,
+              510
+            ],
+            [
+              427,
+              509
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            471,
+            1601,
+            510
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "dination mechanism between them. Not only the lack of functional institution for irrigation",
+          "confidence": 0.977716326713562,
+          "poly": [
+            [
+              427,
+              509
+            ],
+            [
+              1597,
+              512
+            ],
+            [
+              1597,
+              549
+            ],
+            [
+              427,
+              546
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            509,
+            1597,
+            549
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "development and management but also their frequent restructuring and instability have",
+          "confidence": 0.9893739819526672,
+          "poly": [
+            [
+              427,
+              548
+            ],
+            [
+              1596,
+              551
+            ],
+            [
+              1596,
+              588
+            ],
+            [
+              427,
+              585
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            548,
+            1596,
+            588
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "been the major causes for the nonexistence of consistent records and institutional memories.",
+          "confidence": 0.9787419438362122,
+          "poly": [
+            [
+              425,
+              584
+            ],
+            [
+              1600,
+              588
+            ],
+            [
+              1600,
+              625
+            ],
+            [
+              424,
+              621
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            584,
+            1600,
+            625
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "During the pre-revolution (before 1974), the chief purpose of irrigation was to pro-",
+          "confidence": 0.9861582517623901,
+          "poly": [
+            [
+              488,
+              622
+            ],
+            [
+              1599,
+              629
+            ],
+            [
+              1599,
+              667
+            ],
+            [
+              488,
+              660
+            ]
+          ],
+          "bbox_xyxy": [
+            488,
+            622,
+            1599,
+            667
+          ],
+          "reading_order": 5
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9871920943260193,
+      "bbox_xyxy": [
+        455,
+        652,
+        1553,
+        1379
+      ],
+      "lines": [
+        {
+          "text": "vide industrial crops to the growing agro-industries in the country, many of which were",
+          "confidence": 0.9895628094673157,
+          "poly": [
+            [
+              423,
+              660
+            ],
+            [
+              1597,
+              665
+            ],
+            [
+              1597,
+              706
+            ],
+            [
+              422,
+              701
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            660,
+            1597,
+            706
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "controlled by the interest of foreign companies and to boost export earnings. The main",
+          "confidence": 0.9890456795692444,
+          "poly": [
+            [
+              422,
+              700
+            ],
+            [
+              1597,
+              703
+            ],
+            [
+              1597,
+              743
+            ],
+            [
+              421,
+              740
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            700,
+            1597,
+            743
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "crops grown were sugarcane, cotton, sesame, fruit, and vegetables [13]. Following the 1975",
+          "confidence": 0.995059609413147,
+          "poly": [
+            [
+              423,
+              744
+            ],
+            [
+              1595,
+              744
+            ],
+            [
+              1595,
+              778
+            ],
+            [
+              423,
+              778
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            744,
+            1595,
+            778
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "land reform and agricultural policies, greater emphasis was given to the development of",
+          "confidence": 0.9896904826164246,
+          "poly": [
+            [
+              420,
+              776
+            ],
+            [
+              1597,
+              781
+            ],
+            [
+              1597,
+              821
+            ],
+            [
+              419,
+              816
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            776,
+            1597,
+            821
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "large-scale state farms. This was done by converting the majority of large-scale commercial",
+          "confidence": 0.9911966919898987,
+          "poly": [
+            [
+              420,
+              816
+            ],
+            [
+              1595,
+              820
+            ],
+            [
+              1595,
+              857
+            ],
+            [
+              419,
+              853
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            816,
+            1595,
+            857
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "farms owned by individuals and cooperatives into state farms (see also Section 3.1). As doc-",
+          "confidence": 0.9910703897476196,
+          "poly": [
+            [
+              420,
+              856
+            ],
+            [
+              1599,
+              860
+            ],
+            [
+              1599,
+              896
+            ],
+            [
+              419,
+              892
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            856,
+            1599,
+            896
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "umented by [8], all these reforms could not yield positive results in terms of producing",
+          "confidence": 0.9968708157539368,
+          "poly": [
+            [
+              419,
+              893
+            ],
+            [
+              1596,
+              895
+            ],
+            [
+              1596,
+              935
+            ],
+            [
+              418,
+              933
+            ]
+          ],
+          "bbox_xyxy": [
+            418,
+            893,
+            1596,
+            935
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "adequate agricultural products to feed the growing population. Moreover, the country was",
+          "confidence": 0.9961842894554138,
+          "poly": [
+            [
+              419,
+              935
+            ],
+            [
+              1596,
+              935
+            ],
+            [
+              1596,
+              972
+            ],
+            [
+              419,
+              972
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            935,
+            1596,
+            972
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "hit by frequent drought that yearly intensified from 1980 to 1984. As a result, serious famine",
+          "confidence": 0.9835708141326904,
+          "poly": [
+            [
+              416,
+              973
+            ],
+            [
+              1596,
+              969
+            ],
+            [
+              1596,
+              1007
+            ],
+            [
+              417,
+              1011
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            969,
+            1596,
+            1011
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "prevailed in many regions of the country. Generally, the 1984/85 famine provided a major",
+          "confidence": 0.9861864447593689,
+          "poly": [
+            [
+              413,
+              1010
+            ],
+            [
+              1598,
+              1006
+            ],
+            [
+              1598,
+              1050
+            ],
+            [
+              414,
+              1054
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1006,
+            1598,
+            1054
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "stimulus for the development of the government-sponsored small-scale irrigation program",
+          "confidence": 0.9888864159584045,
+          "poly": [
+            [
+              415,
+              1052
+            ],
+            [
+              1595,
+              1052
+            ],
+            [
+              1595,
+              1089
+            ],
+            [
+              415,
+              1089
+            ]
+          ],
+          "bbox_xyxy": [
+            415,
+            1052,
+            1595,
+            1089
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "in areas affectively controlled by the central government, and especially in communities",
+          "confidence": 0.9801062941551208,
+          "poly": [
+            [
+              413,
+              1092
+            ],
+            [
+              1596,
+              1088
+            ],
+            [
+              1596,
+              1126
+            ],
+            [
+              414,
+              1130
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1088,
+            1596,
+            1130
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "where producer cooperatives had been established. Furthermore, the peasants have shown",
+          "confidence": 0.9835832118988037,
+          "poly": [
+            [
+              412,
+              1134
+            ],
+            [
+              1596,
+              1126
+            ],
+            [
+              1596,
+              1163
+            ],
+            [
+              413,
+              1171
+            ]
+          ],
+          "bbox_xyxy": [
+            412,
+            1126,
+            1596,
+            1171
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "a great deal of initiative in developing irrigation schemes on their own in various parts of",
+          "confidence": 0.9895541071891785,
+          "poly": [
+            [
+              409,
+              1171
+            ],
+            [
+              1598,
+              1163
+            ],
+            [
+              1598,
+              1203
+            ],
+            [
+              410,
+              1211
+            ]
+          ],
+          "bbox_xyxy": [
+            409,
+            1163,
+            1598,
+            1211
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "the country, which is widely known as traditional irrigation. The government, on its part,",
+          "confidence": 0.9775969386100769,
+          "poly": [
+            [
+              409,
+              1210
+            ],
+            [
+              1598,
+              1206
+            ],
+            [
+              1598,
+              1243
+            ],
+            [
+              410,
+              1247
+            ]
+          ],
+          "bbox_xyxy": [
+            409,
+            1206,
+            1598,
+            1247
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "has also prepared and implemented the ten-year development plan to fight against drought",
+          "confidence": 0.9846477508544922,
+          "poly": [
+            [
+              406,
+              1249
+            ],
+            [
+              1596,
+              1244
+            ],
+            [
+              1596,
+              1283
+            ],
+            [
+              407,
+              1288
+            ]
+          ],
+          "bbox_xyxy": [
+            406,
+            1244,
+            1596,
+            1288
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "and famine that has occurred from 1984/85 to 1993/94. One of the targets of the plan was",
+          "confidence": 0.9888679385185242,
+          "poly": [
+            [
+              407,
+              1285
+            ],
+            [
+              1596,
+              1284
+            ],
+            [
+              1596,
+              1321
+            ],
+            [
+              407,
+              1322
+            ]
+          ],
+          "bbox_xyxy": [
+            407,
+            1284,
+            1596,
+            1322
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "to develop 57,000 hectares of land under small-scale irrigation in private and cooperative",
+          "confidence": 0.9877910017967224,
+          "poly": [
+            [
+              406,
+              1325
+            ],
+            [
+              1595,
+              1323
+            ],
+            [
+              1595,
+              1360
+            ],
+            [
+              406,
+              1362
+            ]
+          ],
+          "bbox_xyxy": [
+            406,
+            1323,
+            1595,
+            1362
+          ],
+          "reading_order": 17
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9855248332023621,
+      "bbox_xyxy": [
+        455,
+        1385,
+        1553,
+        1765
+      ],
+      "lines": [
+        {
+          "text": "socialist Government (the Derg regime).",
+          "confidence": 0.99222731590271,
+          "poly": [
+            [
+              401,
+              1401
+            ],
+            [
+              933,
+              1404
+            ],
+            [
+              933,
+              1441
+            ],
+            [
+              401,
+              1438
+            ]
+          ],
+          "bbox_xyxy": [
+            401,
+            1401,
+            933,
+            1441
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "The trend of irrigation development after the downfall of the Derg regime is indicated",
+          "confidence": 0.9766362905502319,
+          "poly": [
+            [
+              462,
+              1442
+            ],
+            [
+              1596,
+              1442
+            ],
+            [
+              1596,
+              1479
+            ],
+            [
+              462,
+              1479
+            ]
+          ],
+          "bbox_xyxy": [
+            462,
+            1442,
+            1596,
+            1479
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "in Figure 3. The period between 1991 and 1995 was considered as a transitional period (to",
+          "confidence": 0.9905336499214172,
+          "poly": [
+            [
+              397,
+              1481
+            ],
+            [
+              1596,
+              1480
+            ],
+            [
+              1596,
+              1517
+            ],
+            [
+              397,
+              1518
+            ]
+          ],
+          "bbox_xyxy": [
+            397,
+            1480,
+            1596,
+            1518
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "federalism) during which no significant irrigation development activity was carried out.",
+          "confidence": 0.989512026309967,
+          "poly": [
+            [
+              395,
+              1521
+            ],
+            [
+              1600,
+              1519
+            ],
+            [
+              1600,
+              1556
+            ],
+            [
+              395,
+              1558
+            ]
+          ],
+          "bbox_xyxy": [
+            395,
+            1519,
+            1600,
+            1558
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "It was with the issuance and implementation of a series of national economic development",
+          "confidence": 0.9810397624969482,
+          "poly": [
+            [
+              392,
+              1561
+            ],
+            [
+              1599,
+              1559
+            ],
+            [
+              1599,
+              1597
+            ],
+            [
+              392,
+              1599
+            ]
+          ],
+          "bbox_xyxy": [
+            392,
+            1559,
+            1599,
+            1599
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "plans and programs that the development of medium and large-scale irrigation showed",
+          "confidence": 0.9830483198165894,
+          "poly": [
+            [
+              389,
+              1600
+            ],
+            [
+              1600,
+              1594
+            ],
+            [
+              1600,
+              1638
+            ],
+            [
+              389,
+              1644
+            ]
+          ],
+          "bbox_xyxy": [
+            389,
+            1594,
+            1600,
+            1644
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "a significant increase. Examples of these development programs and plans during that",
+          "confidence": 0.9962539672851562,
+          "poly": [
+            [
+              388,
+              1639
+            ],
+            [
+              1600,
+              1634
+            ],
+            [
+              1600,
+              1678
+            ],
+            [
+              388,
+              1683
+            ]
+          ],
+          "bbox_xyxy": [
+            388,
+            1634,
+            1600,
+            1683
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "time are among others: the Sustainable Development and Poverty Reduction Program",
+          "confidence": 0.9844667315483093,
+          "poly": [
+            [
+              387,
+              1678
+            ],
+            [
+              1599,
+              1673
+            ],
+            [
+              1599,
+              1717
+            ],
+            [
+              387,
+              1722
+            ]
+          ],
+          "bbox_xyxy": [
+            387,
+            1673,
+            1599,
+            1722
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "(SDPRP, from 2002/032004/05); Plan for Accelerated and Sustained Development to",
+          "confidence": 0.9907951951026917,
+          "poly": [
+            [
+              386,
+              1716
+            ],
+            [
+              1600,
+              1709
+            ],
+            [
+              1600,
+              1756
+            ],
+            [
+              386,
+              1763
+            ]
+          ],
+          "bbox_xyxy": [
+            386,
+            1709,
+            1600,
+            1763
+          ],
+          "reading_order": 8
+        }
+      ]
+    }
+  ]
+}

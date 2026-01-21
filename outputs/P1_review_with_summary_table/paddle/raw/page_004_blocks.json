@@ -1,0 +1,3277 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 4,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 14,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.9969962239265442,
+          "poly": [
+            [
+              112,
+              14
+            ],
+            [
+              295,
+              27
+            ],
+            [
+              293,
+              51
+            ],
+            [
+              110,
+              38
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            14,
+            295,
+            51
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9997808337211609,
+          "poly": [
+            [
+              1173,
+              31
+            ],
+            [
+              1419,
+              27
+            ],
+            [
+              1420,
+              51
+            ],
+            [
+              1173,
+              55
+            ]
+          ],
+          "bbox_xyxy": [
+            1173,
+            27,
+            1420,
+            55
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "soil moisture, which in turn has a crucial role in the context",
+          "confidence": 0.9948084354400635,
+          "poly": [
+            [
+              114,
+              155
+            ],
+            [
+              730,
+              170
+            ],
+            [
+              729,
+              201
+            ],
+            [
+              114,
+              186
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            155,
+            730,
+            201
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Leng et al., 2015; Kang and Eltahir, 2018; Wu et al., 2018), or",
+          "confidence": 0.9816098213195801,
+          "poly": [
+            [
+              783,
+              170
+            ],
+            [
+              1420,
+              163
+            ],
+            [
+              1420,
+              190
+            ],
+            [
+              783,
+              197
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            163,
+            1420,
+            197
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "of surface energy and water balance (Seneviratne et al., 2010).",
+          "confidence": 0.9806776642799377,
+          "poly": [
+            [
+              114,
+              190
+            ],
+            [
+              730,
+              202
+            ],
+            [
+              729,
+              235
+            ],
+            [
+              114,
+              223
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            190,
+            730,
+            235
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "the Contiguous United States (e.g., Pei et al., 2016; Lu et al.,",
+          "confidence": 0.9819419384002686,
+          "poly": [
+            [
+              782,
+              201
+            ],
+            [
+              1419,
+              198
+            ],
+            [
+              1419,
+              224
+            ],
+            [
+              782,
+              227
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            198,
+            1419,
+            227
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "The goal of irrigation is to increase water available for",
+          "confidence": 0.9892040491104126,
+          "poly": [
+            [
+              154,
+              673
+            ],
+            [
+              724,
+              673
+            ],
+            [
+              724,
+              696
+            ],
+            [
+              154,
+              696
+            ]
+          ],
+          "bbox_xyxy": [
+            154,
+            673,
+            724,
+            696
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Im and Eltahir, 2014).",
+          "confidence": 0.989067792892456,
+          "poly": [
+            [
+              781,
+              1143
+            ],
+            [
+              994,
+              1143
+            ],
+            [
+              994,
+              1164
+            ],
+            [
+              781,
+              1164
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1143,
+            994,
+            1164
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "such as the regional signals.",
+          "confidence": 0.9902504682540894,
+          "poly": [
+            [
+              780,
+              1309
+            ],
+            [
+              1047,
+              1308
+            ],
+            [
+              1047,
+              1332
+            ],
+            [
+              780,
+              1333
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1308,
+            1047,
+            1333
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "parameterizations",
+          "confidence": 0.9999394416809082,
+          "poly": [
+            [
+              781,
+              1504
+            ],
+            [
+              1085,
+              1499
+            ],
+            [
+              1085,
+              1531
+            ],
+            [
+              782,
+              1537
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1499,
+            1085,
+            1537
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "the following, we present the main equations of the various",
+          "confidence": 0.9738515019416809,
+          "poly": [
+            [
+              780,
+              1676
+            ],
+            [
+              1403,
+              1677
+            ],
+            [
+              1403,
+              1701
+            ],
+            [
+              780,
+              1700
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1676,
+            1403,
+            1701
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Douglas et al., 2009; Saeed et al., 2009; Guimberteau et al.,",
+          "confidence": 0.9700504541397095,
+          "poly": [
+            [
+              119,
+              1876
+            ],
+            [
+              721,
+              1874
+            ],
+            [
+              721,
+              1901
+            ],
+            [
+              119,
+              1903
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1874,
+            721,
+            1903
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "to determine when irrigation is initialized, namely, the usage of",
+          "confidence": 0.9724472165107727,
+          "poly": [
+            [
+              777,
+              1873
+            ],
+            [
+              1403,
+              1875
+            ],
+            [
+              1403,
+              1902
+            ],
+            [
+              777,
+              1900
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1873,
+            1403,
+            1902
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "2012; Tuinenburg et al., 2014), the North China Plain (e.g.,",
+          "confidence": 0.9727388024330139,
+          "poly": [
+            [
+              117,
+              1909
+            ],
+            [
+              722,
+              1908
+            ],
+            [
+              722,
+              1937
+            ],
+            [
+              117,
+              1938
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1908,
+            722,
+            1938
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "(i) geographical invariant spatial fields, (ii) the time of the day,",
+          "confidence": 0.9705782532691956,
+          "poly": [
+            [
+              779,
+              1910
+            ],
+            [
+              1399,
+              1909
+            ],
+            [
+              1399,
+              1932
+            ],
+            [
+              779,
+              1934
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1909,
+            1399,
+            1934
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Frontiers in Water",
+          "confidence": 0.9722102284431458,
+          "poly": [
+            [
+              114,
+              2059
+            ],
+            [
+              272,
+              2050
+            ],
+            [
+              274,
+              2075
+            ],
+            [
+              116,
+              2083
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            2050,
+            274,
+            2083
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "04",
+          "confidence": 0.9999291300773621,
+          "poly": [
+            [
+              733,
+              2048
+            ],
+            [
+              766,
+              2048
+            ],
+            [
+              766,
+              2078
+            ],
+            [
+              733,
+              2078
+            ]
+          ],
+          "bbox_xyxy": [
+            733,
+            2048,
+            766,
+            2078
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.9999156594276428,
+          "poly": [
+            [
+              1273,
+              2046
+            ],
+            [
+              1400,
+              2048
+            ],
+            [
+              1400,
+              2069
+            ],
+            [
+              1273,
+              2067
+            ]
+          ],
+          "bbox_xyxy": [
+            1273,
+            2046,
+            1400,
+            2069
+          ],
+          "reading_order": 17
+        }
+      ]
+    },
+    {
+      "block_id": 12,
+      "label": "header",
+      "score": 0.8576644659042358,
+      "bbox_xyxy": [
+        137,
+        102,
+        302,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "header",
+      "score": 0.8757658004760742,
+      "bbox_xyxy": [
+        1127,
+        102,
+        1342,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9870885610580444,
+      "bbox_xyxy": [
+        134,
+        226,
+        714,
+        684
+      ],
+      "lines": [
+        {
+          "text": "Irrigation land management practices have been recognized as a",
+          "confidence": 0.9905919432640076,
+          "poly": [
+            [
+              114,
+              226
+            ],
+            [
+              730,
+              234
+            ],
+            [
+              729,
+              265
+            ],
+            [
+              114,
+              257
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            226,
+            730,
+            265
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "crucial component of the anthropogenic impact on the climate",
+          "confidence": 0.9941077828407288,
+          "poly": [
+            [
+              115,
+              261
+            ],
+            [
+              728,
+              267
+            ],
+            [
+              727,
+              298
+            ],
+            [
+              115,
+              292
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            261,
+            728,
+            298
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "(Sacks et al., 2009; Luyssaert et al., 2014; Thiery et al., 2020), but",
+          "confidence": 0.9839536547660828,
+          "poly": [
+            [
+              114,
+              294
+            ],
+            [
+              729,
+              300
+            ],
+            [
+              728,
+              333
+            ],
+            [
+              114,
+              327
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            294,
+            729,
+            333
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "was included only in the most recent Intergovernmental Panel",
+          "confidence": 0.9844838976860046,
+          "poly": [
+            [
+              115,
+              330
+            ],
+            [
+              728,
+              334
+            ],
+            [
+              728,
+              365
+            ],
+            [
+              115,
+              361
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            330,
+            728,
+            365
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "on Climate Change (IPCC) 5th Assessment Report (AR5) (Jia",
+          "confidence": 0.9871587157249451,
+          "poly": [
+            [
+              115,
+              364
+            ],
+            [
+              727,
+              367
+            ],
+            [
+              727,
+              398
+            ],
+            [
+              115,
+              395
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            364,
+            727,
+            398
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "et al., 2019; Thiery et al., 2020). Furthermore, irrigation has to",
+          "confidence": 0.9816360473632812,
+          "poly": [
+            [
+              115,
+              398
+            ],
+            [
+              727,
+              401
+            ],
+            [
+              727,
+              432
+            ],
+            [
+              115,
+              429
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            398,
+            727,
+            432
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "be considered as a major unaccounted anthropogenic source",
+          "confidence": 0.9781283736228943,
+          "poly": [
+            [
+              115,
+              433
+            ],
+            [
+              727,
+              436
+            ],
+            [
+              727,
+              466
+            ],
+            [
+              115,
+              463
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            433,
+            727,
+            466
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "of water vapor (Boucher et al., 2004), and accounts for intra-",
+          "confidence": 0.9824553728103638,
+          "poly": [
+            [
+              116,
+              467
+            ],
+            [
+              727,
+              468
+            ],
+            [
+              727,
+              498
+            ],
+            [
+              116,
+              497
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            467,
+            727,
+            498
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "and inter-basin water extraction and redistribution. While the",
+          "confidence": 0.9953846335411072,
+          "poly": [
+            [
+              117,
+              501
+            ],
+            [
+              726,
+              502
+            ],
+            [
+              726,
+              529
+            ],
+            [
+              117,
+              527
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            501,
+            726,
+            529
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "impact of irrigation on the local climate can be detected in in-situ",
+          "confidence": 0.9887799620628357,
+          "poly": [
+            [
+              119,
+              537
+            ],
+            [
+              725,
+              537
+            ],
+            [
+              725,
+              561
+            ],
+            [
+              119,
+              561
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            537,
+            725,
+            561
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "observations and remote sensing products, numerical models",
+          "confidence": 0.9880431890487671,
+          "poly": [
+            [
+              116,
+              567
+            ],
+            [
+              725,
+              569
+            ],
+            [
+              725,
+              597
+            ],
+            [
+              116,
+              595
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            567,
+            725,
+            597
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "can also be utilized to understand more complex feedback effects",
+          "confidence": 0.980919361114502,
+          "poly": [
+            [
+              117,
+              601
+            ],
+            [
+              724,
+              603
+            ],
+            [
+              724,
+              630
+            ],
+            [
+              117,
+              628
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            601,
+            724,
+            630
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "as well as their implications for the Earth system as a whole.",
+          "confidence": 0.9847315549850464,
+          "poly": [
+            [
+              116,
+              635
+            ],
+            [
+              684,
+              637
+            ],
+            [
+              684,
+              664
+            ],
+            [
+              116,
+              662
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            635,
+            684,
+            664
+          ],
+          "reading_order": 12
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9868394732475281,
+      "bbox_xyxy": [
+        764,
+        226,
+        1344,
+        651
+      ],
+      "lines": [
+        {
+          "text": "2017) as well as smaller areas like California (e.g., Kueppers",
+          "confidence": 0.9901087880134583,
+          "poly": [
+            [
+              782,
+              232
+            ],
+            [
+              1420,
+              233
+            ],
+            [
+              1420,
+              260
+            ],
+            [
+              782,
+              259
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            232,
+            1420,
+            260
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "et al., 2007; Sorooshian et al., 2011; Yang et al., 2017), or parts",
+          "confidence": 0.9707304835319519,
+          "poly": [
+            [
+              784,
+              268
+            ],
+            [
+              1419,
+              268
+            ],
+            [
+              1419,
+              292
+            ],
+            [
+              784,
+              292
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            268,
+            1419,
+            292
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "of Italy (e.g., Valmassoi et al., 2020a; Dari et al., 2021). Most",
+          "confidence": 0.9780890345573425,
+          "poly": [
+            [
+              784,
+              302
+            ],
+            [
+              1420,
+              302
+            ],
+            [
+              1420,
+              326
+            ],
+            [
+              784,
+              326
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            302,
+            1420,
+            326
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "studies show a strong diurnal cycle of the expected irrigation-",
+          "confidence": 0.9862345457077026,
+          "poly": [
+            [
+              782,
+              333
+            ],
+            [
+              1420,
+              335
+            ],
+            [
+              1420,
+              362
+            ],
+            [
+              782,
+              360
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            333,
+            1420,
+            362
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "induced cooling effect where the diurnal maximum temperature",
+          "confidence": 0.9923047423362732,
+          "poly": [
+            [
+              782,
+              367
+            ],
+            [
+              1421,
+              371
+            ],
+            [
+              1421,
+              395
+            ],
+            [
+              782,
+              391
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            367,
+            1421,
+            395
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "is impacted most while the minimum seems not to be affected",
+          "confidence": 0.9711915254592896,
+          "poly": [
+            [
+              782,
+              403
+            ],
+            [
+              1420,
+              403
+            ],
+            [
+              1420,
+              426
+            ],
+            [
+              782,
+              426
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            403,
+            1420,
+            426
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "(e.g., Kueppers et al., 2007; Jia et al., 2019). This pronounced",
+          "confidence": 0.9654691219329834,
+          "poly": [
+            [
+              780,
+              435
+            ],
+            [
+              1421,
+              436
+            ],
+            [
+              1421,
+              463
+            ],
+            [
+              780,
+              462
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            435,
+            1421,
+            463
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "diurnal cycle is also reflected in the boundary layer structure,",
+          "confidence": 0.9798980951309204,
+          "poly": [
+            [
+              780,
+              467
+            ],
+            [
+              1421,
+              470
+            ],
+            [
+              1421,
+              497
+            ],
+            [
+              780,
+              494
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            467,
+            1421,
+            497
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "where several studies observed a lowering of the boundary layer",
+          "confidence": 0.9873690009117126,
+          "poly": [
+            [
+              780,
+              500
+            ],
+            [
+              1421,
+              505
+            ],
+            [
+              1421,
+              532
+            ],
+            [
+              780,
+              526
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            500,
+            1421,
+            532
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "height due to the combined decrease of the temperature and",
+          "confidence": 0.9887925386428833,
+          "poly": [
+            [
+              779,
+              534
+            ],
+            [
+              1420,
+              538
+            ],
+            [
+              1420,
+              563
+            ],
+            [
+              779,
+              560
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            534,
+            1420,
+            563
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "increase of the water vapor (e.g., Pielke et al., 2007; Mahmood",
+          "confidence": 0.9648324251174927,
+          "poly": [
+            [
+              781,
+              570
+            ],
+            [
+              1419,
+              572
+            ],
+            [
+              1419,
+              596
+            ],
+            [
+              781,
+              594
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            570,
+            1419,
+            596
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "et al., 2008; Valmassoi et al., 2020c).",
+          "confidence": 0.9687202572822571,
+          "poly": [
+            [
+              782,
+              605
+            ],
+            [
+              1129,
+              605
+            ],
+            [
+              1129,
+              628
+            ],
+            [
+              782,
+              628
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            605,
+            1129,
+            628
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "With respect to effects on atmospheric circulations, the",
+          "confidence": 0.9919997453689575,
+          "poly": [
+            [
+              818,
+              637
+            ],
+            [
+              1418,
+              640
+            ],
+            [
+              1418,
+              664
+            ],
+            [
+              818,
+              661
+            ]
+          ],
+          "bbox_xyxy": [
+            818,
+            637,
+            1418,
+            664
+          ],
+          "reading_order": 12
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9872596859931946,
+      "bbox_xyxy": [
+        764,
+        660,
+        1344,
+        1151
+      ],
+      "lines": [
+        {
+          "text": "spatial heterogeneity of the irrigated areas is reflected in the",
+          "confidence": 0.9679155349731445,
+          "poly": [
+            [
+              782,
+              673
+            ],
+            [
+              1418,
+              673
+            ],
+            [
+              1418,
+              697
+            ],
+            [
+              782,
+              697
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            673,
+            1418,
+            697
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "horizontal discontinuity of the affected fluxes as well as local",
+          "confidence": 0.9954821467399597,
+          "poly": [
+            [
+              779,
+              704
+            ],
+            [
+              1417,
+              707
+            ],
+            [
+              1417,
+              731
+            ],
+            [
+              779,
+              728
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            704,
+            1417,
+            731
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "circulation changes (e.g., Barnston and Schickedanz, 1984;",
+          "confidence": 0.9896298050880432,
+          "poly": [
+            [
+              780,
+              737
+            ],
+            [
+              1417,
+              739
+            ],
+            [
+              1417,
+              766
+            ],
+            [
+              780,
+              764
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            737,
+            1417,
+            766
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Pielke and Zeng, 1989; Kueppers et al., 2007; Aegerter et al.,",
+          "confidence": 0.977942705154419,
+          "poly": [
+            [
+              780,
+              770
+            ],
+            [
+              1415,
+              773
+            ],
+            [
+              1415,
+              800
+            ],
+            [
+              780,
+              797
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            770,
+            1415,
+            800
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "2017). The changes in thermodynamic air mass properties and",
+          "confidence": 0.9983066916465759,
+          "poly": [
+            [
+              779,
+              804
+            ],
+            [
+              1416,
+              806
+            ],
+            [
+              1416,
+              833
+            ],
+            [
+              779,
+              831
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            804,
+            1416,
+            833
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "circulation are found to potentially affect precipitation locally",
+          "confidence": 0.9903782606124878,
+          "poly": [
+            [
+              781,
+              840
+            ],
+            [
+              1414,
+              840
+            ],
+            [
+              1414,
+              864
+            ],
+            [
+              781,
+              864
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            840,
+            1414,
+            864
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "and/or downwind, due to water vapor transport (e.g., Bonfils",
+          "confidence": 0.9919144511222839,
+          "poly": [
+            [
+              780,
+              873
+            ],
+            [
+              1412,
+              872
+            ],
+            [
+              1412,
+              895
+            ],
+            [
+              780,
+              896
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            872,
+            1412,
+            896
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "and Lobell, 2007; Deangelis et al., 2010; Wei et al., 2013) and/or",
+          "confidence": 0.9713714122772217,
+          "poly": [
+            [
+              778,
+              904
+            ],
+            [
+              1413,
+              903
+            ],
+            [
+              1413,
+              930
+            ],
+            [
+              778,
+              931
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            903,
+            1413,
+            931
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "the change in stability (Valmassoi et al., 2020b). These regional",
+          "confidence": 0.9895570278167725,
+          "poly": [
+            [
+              780,
+              940
+            ],
+            [
+              1411,
+              940
+            ],
+            [
+              1411,
+              964
+            ],
+            [
+              780,
+              964
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            940,
+            1411,
+            964
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "changes are found to affect the large scale synoptic circulations,",
+          "confidence": 0.9850514531135559,
+          "poly": [
+            [
+              781,
+              974
+            ],
+            [
+              1410,
+              974
+            ],
+            [
+              1410,
+              997
+            ],
+            [
+              781,
+              997
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            974,
+            1410,
+            997
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "such as the weakening and the delaying of the Indian Monsoon",
+          "confidence": 0.987842321395874,
+          "poly": [
+            [
+              779,
+              1006
+            ],
+            [
+              1410,
+              1007
+            ],
+            [
+              1410,
+              1031
+            ],
+            [
+              779,
+              1030
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1006,
+            1410,
+            1031
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "(e.g., Douglas et al., 2009; Saeed et al., 2009; Lee and Ngan,",
+          "confidence": 0.9815415740013123,
+          "poly": [
+            [
+              778,
+              1039
+            ],
+            [
+              1411,
+              1037
+            ],
+            [
+              1411,
+              1067
+            ],
+            [
+              778,
+              1069
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1037,
+            1411,
+            1069
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "2011; Guimberteau et al., 2012) or the change in the remote",
+          "confidence": 0.9752994179725647,
+          "poly": [
+            [
+              779,
+              1074
+            ],
+            [
+              1409,
+              1074
+            ],
+            [
+              1409,
+              1098
+            ],
+            [
+              779,
+              1098
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1074,
+            1409,
+            1098
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "precipitation patterns over the Sahel region (e.g., Wei et al., 2013;",
+          "confidence": 0.9916217923164368,
+          "poly": [
+            [
+              778,
+              1108
+            ],
+            [
+              1409,
+              1106
+            ],
+            [
+              1409,
+              1133
+            ],
+            [
+              778,
+              1135
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1106,
+            1409,
+            1135
+          ],
+          "reading_order": 13
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9878447651863098,
+      "bbox_xyxy": [
+        134,
+        692,
+        715,
+        1682
+      ],
+      "lines": [
+        {
+          "text": "crops and, thus, sustain them throughout the growing season.",
+          "confidence": 0.9874122142791748,
+          "poly": [
+            [
+              118,
+              707
+            ],
+            [
+              723,
+              707
+            ],
+            [
+              723,
+              731
+            ],
+            [
+              118,
+              731
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            707,
+            723,
+            731
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Therefore, a major effect is an increase in the soil moisture",
+          "confidence": 0.9842341542243958,
+          "poly": [
+            [
+              117,
+              740
+            ],
+            [
+              724,
+              740
+            ],
+            [
+              724,
+              764
+            ],
+            [
+              117,
+              764
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            740,
+            724,
+            764
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "content. In absence of precipitation, this can be used as a",
+          "confidence": 0.9899622797966003,
+          "poly": [
+            [
+              115,
+              774
+            ],
+            [
+              724,
+              771
+            ],
+            [
+              724,
+              798
+            ],
+            [
+              115,
+              801
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            771,
+            724,
+            801
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "basis for detection algorithms, e.g., developed by Lawston et al.",
+          "confidence": 0.9961280226707458,
+          "poly": [
+            [
+              115,
+              808
+            ],
+            [
+              723,
+              805
+            ],
+            [
+              723,
+              832
+            ],
+            [
+              115,
+              835
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            805,
+            723,
+            835
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "(2017), Brocca et al. (2018), or Zaussinger et al. (2019). Such an",
+          "confidence": 0.9726240038871765,
+          "poly": [
+            [
+              115,
+              842
+            ],
+            [
+              724,
+              838
+            ],
+            [
+              724,
+              864
+            ],
+            [
+              115,
+              869
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            838,
+            724,
+            869
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "increase in soil moisture by irrigation is also observed in many",
+          "confidence": 0.9979935884475708,
+          "poly": [
+            [
+              114,
+              876
+            ],
+            [
+              724,
+              872
+            ],
+            [
+              724,
+              899
+            ],
+            [
+              114,
+              902
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            872,
+            724,
+            902
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "modeling studies (e.g., Boucher et al., 2004; Kueppers et al.,",
+          "confidence": 0.9637344479560852,
+          "poly": [
+            [
+              115,
+              908
+            ],
+            [
+              723,
+              905
+            ],
+            [
+              723,
+              933
+            ],
+            [
+              115,
+              936
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            905,
+            723,
+            936
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "2007; Sacks et al., 2009; Puma and Cook, 2010; Thiery et al.",
+          "confidence": 0.9798622131347656,
+          "poly": [
+            [
+              114,
+              943
+            ],
+            [
+              723,
+              939
+            ],
+            [
+              723,
+              966
+            ],
+            [
+              114,
+              970
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            939,
+            723,
+            970
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "2017; Valmassoi et al., 2020b). There is very high confidence (Jia",
+          "confidence": 0.986434817314148,
+          "poly": [
+            [
+              114,
+              977
+            ],
+            [
+              723,
+              973
+            ],
+            [
+              723,
+              1000
+            ],
+            [
+              114,
+              1004
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            973,
+            723,
+            1004
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "et al., 2019) that a higher soil moisture content affects the surface",
+          "confidence": 0.9983862042427063,
+          "poly": [
+            [
+              115,
+              1013
+            ],
+            [
+              724,
+              1007
+            ],
+            [
+              724,
+              1031
+            ],
+            [
+              115,
+              1037
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1007,
+            724,
+            1037
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "energy partitioning by increasing the upward moisture flux and",
+          "confidence": 0.987946093082428,
+          "poly": [
+            [
+              115,
+              1047
+            ],
+            [
+              723,
+              1041
+            ],
+            [
+              723,
+              1065
+            ],
+            [
+              115,
+              1071
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1041,
+            723,
+            1071
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "decreasing the sensible heat flux (Thiery et al., 2017; Valmassoi",
+          "confidence": 0.9931799173355103,
+          "poly": [
+            [
+              115,
+              1077
+            ],
+            [
+              723,
+              1074
+            ],
+            [
+              723,
+              1101
+            ],
+            [
+              115,
+              1104
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1074,
+            723,
+            1104
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "et al., 2020c). The associated change in the Bowen ratio causes",
+          "confidence": 0.9751886129379272,
+          "poly": [
+            [
+              115,
+              1110
+            ],
+            [
+              725,
+              1107
+            ],
+            [
+              725,
+              1134
+            ],
+            [
+              115,
+              1137
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1107,
+            725,
+            1137
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "the widely observed surface cooling effect of irrigation (e.g.",
+          "confidence": 0.9843136072158813,
+          "poly": [
+            [
+              117,
+              1144
+            ],
+            [
+              722,
+              1144
+            ],
+            [
+              722,
+              1168
+            ],
+            [
+              117,
+              1168
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1144,
+            722,
+            1168
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Lobell et al., 2006a, 2009; Kueppers et al., 2007; Puma and Cook,",
+          "confidence": 0.9816397428512573,
+          "poly": [
+            [
+              116,
+              1178
+            ],
+            [
+              722,
+              1177
+            ],
+            [
+              722,
+              1201
+            ],
+            [
+              116,
+              1202
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1177,
+            722,
+            1202
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "2010; Sorooshian et al., 2011; Thiery et al., 2017; Valmassoi",
+          "confidence": 0.9872643351554871,
+          "poly": [
+            [
+              116,
+              1211
+            ],
+            [
+              724,
+              1211
+            ],
+            [
+              724,
+              1234
+            ],
+            [
+              116,
+              1234
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1211,
+            724,
+            1234
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "et al., 2020a; Nie et al., 2021), and the increase in the near-",
+          "confidence": 0.9908239841461182,
+          "poly": [
+            [
+              115,
+              1243
+            ],
+            [
+              725,
+              1239
+            ],
+            [
+              725,
+              1266
+            ],
+            [
+              115,
+              1269
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1239,
+            725,
+            1269
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "surface atmospheric moisture (Mahmood et al., 2008). While the",
+          "confidence": 0.992057204246521,
+          "poly": [
+            [
+              117,
+              1276
+            ],
+            [
+              724,
+              1276
+            ],
+            [
+              724,
+              1300
+            ],
+            [
+              117,
+              1300
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1276,
+            724,
+            1300
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "global annual cooling of 1.3 K described in Lobell et al. (2006a)",
+          "confidence": 0.9813852906227112,
+          "poly": [
+            [
+              116,
+              1309
+            ],
+            [
+              724,
+              1307
+            ],
+            [
+              724,
+              1335
+            ],
+            [
+              116,
+              1337
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1307,
+            724,
+            1337
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "seems somewhat high, Boucher et al. (2004) and Thiery et al.",
+          "confidence": 0.9622007608413696,
+          "poly": [
+            [
+              115,
+              1341
+            ],
+            [
+              724,
+              1340
+            ],
+            [
+              724,
+              1370
+            ],
+            [
+              115,
+              1371
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1340,
+            724,
+            1371
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "(2017) provide estimates that look more realistic with 0.05 and",
+          "confidence": 0.9888842105865479,
+          "poly": [
+            [
+              115,
+              1377
+            ],
+            [
+              725,
+              1374
+            ],
+            [
+              725,
+              1401
+            ],
+            [
+              115,
+              1404
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1374,
+            725,
+            1404
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "0.20 K, respectively. Further, all studies shows that the cooling",
+          "confidence": 0.9841209053993225,
+          "poly": [
+            [
+              116,
+              1412
+            ],
+            [
+              724,
+              1412
+            ],
+            [
+              724,
+              1436
+            ],
+            [
+              116,
+              1436
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1412,
+            724,
+            1436
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "has a strong regional component. The decrease in the diurnal",
+          "confidence": 0.9905699491500854,
+          "poly": [
+            [
+              115,
+              1447
+            ],
+            [
+              725,
+              1444
+            ],
+            [
+              725,
+              1468
+            ],
+            [
+              115,
+              1471
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1444,
+            725,
+            1471
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "maximum temperatures can go from 3 to 8 K (de Rosnay, 2003;",
+          "confidence": 0.9862229824066162,
+          "poly": [
+            [
+              114,
+              1480
+            ],
+            [
+              725,
+              1477
+            ],
+            [
+              725,
+              1504
+            ],
+            [
+              114,
+              1507
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1477,
+            725,
+            1507
+          ],
+          "reading_order": 23
+        },
+        {
+          "text": "Douglas et al., 2009; Saeed et al., 2009; Guimberteau et al., 2012;",
+          "confidence": 0.9655811786651611,
+          "poly": [
+            [
+              116,
+              1514
+            ],
+            [
+              724,
+              1512
+            ],
+            [
+              724,
+              1536
+            ],
+            [
+              116,
+              1538
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1512,
+            724,
+            1538
+          ],
+          "reading_order": 24
+        },
+        {
+          "text": "Tuinenburg et al., 2014). The high variability is both due to",
+          "confidence": 0.9899770021438599,
+          "poly": [
+            [
+              116,
+              1545
+            ],
+            [
+              725,
+              1543
+            ],
+            [
+              725,
+              1570
+            ],
+            [
+              116,
+              1572
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1543,
+            725,
+            1572
+          ],
+          "reading_order": 25
+        },
+        {
+          "text": "regional signals but can be caused by the overestimation of the",
+          "confidence": 0.9829919934272766,
+          "poly": [
+            [
+              117,
+              1579
+            ],
+            [
+              724,
+              1576
+            ],
+            [
+              724,
+              1601
+            ],
+            [
+              117,
+              1603
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1576,
+            724,
+            1603
+          ],
+          "reading_order": 26
+        },
+        {
+          "text": "cooling effect in global studies, i.e., up to 4.9 times higher in the",
+          "confidence": 0.9987818598747253,
+          "poly": [
+            [
+              117,
+              1611
+            ],
+            [
+              723,
+              1610
+            ],
+            [
+              723,
+              1634
+            ],
+            [
+              117,
+              1635
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1610,
+            723,
+            1635
+          ],
+          "reading_order": 27
+        },
+        {
+          "text": "Indo-Gangetic Plain of India in the global study by Thiery et al.",
+          "confidence": 0.9904695749282837,
+          "poly": [
+            [
+              116,
+              1644
+            ],
+            [
+              722,
+              1643
+            ],
+            [
+              722,
+              1667
+            ],
+            [
+              116,
+              1668
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1643,
+            722,
+            1668
+          ],
+          "reading_order": 28
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "text",
+      "score": 0.9736648201942444,
+      "bbox_xyxy": [
+        765,
+        1160,
+        1344,
+        1308
+      ],
+      "lines": [
+        {
+          "text": "While there is a regional component of the irrigation impact",
+          "confidence": 0.9986250996589661,
+          "poly": [
+            [
+              816,
+              1174
+            ],
+            [
+              1408,
+              1175
+            ],
+            [
+              1408,
+              1202
+            ],
+            [
+              816,
+              1201
+            ]
+          ],
+          "bbox_xyxy": [
+            816,
+            1174,
+            1408,
+            1202
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "on the Earth system, Sacks et al. (2009) and Wada et al. (2013)",
+          "confidence": 0.98806232213974,
+          "poly": [
+            [
+              782,
+              1210
+            ],
+            [
+              1406,
+              1210
+            ],
+            [
+              1406,
+              1233
+            ],
+            [
+              782,
+              1233
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1210,
+            1406,
+            1233
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "identify the irrigation representation in models and the water",
+          "confidence": 0.9905557036399841,
+          "poly": [
+            [
+              781,
+              1243
+            ],
+            [
+              1407,
+              1243
+            ],
+            [
+              1407,
+              1266
+            ],
+            [
+              781,
+              1266
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1243,
+            1407,
+            1266
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "amount used as crucial causes of the associated uncertainties,",
+          "confidence": 0.9911978244781494,
+          "poly": [
+            [
+              780,
+              1275
+            ],
+            [
+              1405,
+              1276
+            ],
+            [
+              1405,
+              1300
+            ],
+            [
+              780,
+              1299
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1275,
+            1405,
+            1300
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "paragraph_title",
+      "score": 0.9287434220314026,
+      "bbox_xyxy": [
+        767,
+        1423,
+        1074,
+        1492
+      ],
+      "lines": [
+        {
+          "text": "3. Existing irrigation",
+          "confidence": 0.9930633902549744,
+          "poly": [
+            [
+              781,
+              1459
+            ],
+            [
+              1110,
+              1459
+            ],
+            [
+              1110,
+              1493
+            ],
+            [
+              781,
+              1493
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1459,
+            1110,
+            1493
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.9737220406532288,
+      "bbox_xyxy": [
+        765,
+        1533,
+        1345,
+        1682
+      ],
+      "lines": [
+        {
+          "text": "In order to represent the irrigation process and its effects",
+          "confidence": 0.9751397371292114,
+          "poly": [
+            [
+              819,
+              1573
+            ],
+            [
+              1403,
+              1577
+            ],
+            [
+              1403,
+              1602
+            ],
+            [
+              819,
+              1599
+            ]
+          ],
+          "bbox_xyxy": [
+            819,
+            1573,
+            1403,
+            1602
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "as realistically as possible in the modeling of the Earth system,",
+          "confidence": 0.9831404089927673,
+          "poly": [
+            [
+              780,
+              1606
+            ],
+            [
+              1404,
+              1609
+            ],
+            [
+              1404,
+              1637
+            ],
+            [
+              780,
+              1634
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1606,
+            1404,
+            1637
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "parametrizations of this process have been developed. In",
+          "confidence": 0.9929688572883606,
+          "poly": [
+            [
+              779,
+              1641
+            ],
+            [
+              1404,
+              1642
+            ],
+            [
+              1404,
+              1669
+            ],
+            [
+              779,
+              1668
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1641,
+            1404,
+            1669
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9765851497650146,
+      "bbox_xyxy": [
+        135,
+        1689,
+        715,
+        1868
+      ],
+      "lines": [
+        {
+          "text": "(2020) as compared to simulations with realistic water volumes",
+          "confidence": 0.9707406759262085,
+          "poly": [
+            [
+              118,
+              1678
+            ],
+            [
+              724,
+              1677
+            ],
+            [
+              724,
+              1701
+            ],
+            [
+              118,
+              1702
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            1677,
+            724,
+            1702
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "and high resolution simulations (Jha et al., 2022).",
+          "confidence": 0.9899271726608276,
+          "poly": [
+            [
+              119,
+              1712
+            ],
+            [
+              583,
+              1712
+            ],
+            [
+              583,
+              1735
+            ],
+            [
+              119,
+              1735
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1712,
+            583,
+            1735
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Regional studies are often used to further investigate the",
+          "confidence": 0.9987152814865112,
+          "poly": [
+            [
+              156,
+              1745
+            ],
+            [
+              723,
+              1743
+            ],
+            [
+              723,
+              1766
+            ],
+            [
+              156,
+              1768
+            ]
+          ],
+          "bbox_xyxy": [
+            156,
+            1743,
+            723,
+            1768
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "signals of irrigation and provide deeper insights to the involved",
+          "confidence": 0.9856290221214294,
+          "poly": [
+            [
+              119,
+              1778
+            ],
+            [
+              722,
+              1775
+            ],
+            [
+              722,
+              1799
+            ],
+            [
+              119,
+              1802
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1775,
+            722,
+            1802
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "processes and their effects. Such studies mostly focus on larger,",
+          "confidence": 0.9939849972724915,
+          "poly": [
+            [
+              118,
+              1809
+            ],
+            [
+              723,
+              1807
+            ],
+            [
+              723,
+              1835
+            ],
+            [
+              118,
+              1837
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            1807,
+            723,
+            1837
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "highly irrigated areas such as India (e.g., de Rosnay, 2003;",
+          "confidence": 0.9751962423324585,
+          "poly": [
+            [
+              118,
+              1842
+            ],
+            [
+              723,
+              1840
+            ],
+            [
+              723,
+              1867
+            ],
+            [
+              118,
+              1869
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            1840,
+            723,
+            1869
+          ],
+          "reading_order": 5
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9744847416877747,
+      "bbox_xyxy": [
+        764,
+        1690,
+        1344,
+        1869
+      ],
+      "lines": [
+        {
+          "text": "parameterization approaches albeit with a harmonized notation.",
+          "confidence": 0.9992669224739075,
+          "poly": [
+            [
+              781,
+              1710
+            ],
+            [
+              1402,
+              1710
+            ],
+            [
+              1402,
+              1734
+            ],
+            [
+              781,
+              1734
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1710,
+            1402,
+            1734
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "First, we will discuss the topic of irrigation activation which",
+          "confidence": 0.9775336384773254,
+          "poly": [
+            [
+              817,
+              1741
+            ],
+            [
+              1401,
+              1744
+            ],
+            [
+              1401,
+              1768
+            ],
+            [
+              817,
+              1765
+            ]
+          ],
+          "bbox_xyxy": [
+            817,
+            1741,
+            1401,
+            1768
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "is crucial due to the anthropogenic nature of the process.",
+          "confidence": 0.976801335811615,
+          "poly": [
+            [
+              778,
+              1775
+            ],
+            [
+              1401,
+              1778
+            ],
+            [
+              1401,
+              1801
+            ],
+            [
+              778,
+              1798
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1775,
+            1401,
+            1801
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Here, timing generally refers to the decision to activate the",
+          "confidence": 0.9859064817428589,
+          "poly": [
+            [
+              779,
+              1808
+            ],
+            [
+              1401,
+              1810
+            ],
+            [
+              1401,
+              1834
+            ],
+            [
+              779,
+              1832
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1808,
+            1401,
+            1834
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "irrigation parameterization. There are mainly three approaches",
+          "confidence": 0.9961801171302795,
+          "poly": [
+            [
+              778,
+              1841
+            ],
+            [
+              1400,
+              1843
+            ],
+            [
+              1400,
+              1867
+            ],
+            [
+              778,
+              1865
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1841,
+            1400,
+            1867
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 11,
+      "label": "footer",
+      "score": 0.8619837164878845,
+      "bbox_xyxy": [
+        138,
+        1976,
+        278,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 10,
+      "label": "footer",
+      "score": 0.865613579750061,
+      "bbox_xyxy": [
+        1228,
+        1977,
+        1343,
+        1994
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "number",
+      "score": 0.8103249073028564,
+      "bbox_xyxy": [
+        732,
+        1978,
+        751,
+        1993
+      ],
+      "lines": []
+    }
+  ]
+}

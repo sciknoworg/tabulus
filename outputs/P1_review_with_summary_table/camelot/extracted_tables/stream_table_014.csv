@@ -1,0 +1,17 @@
+0,1,2,3
+TABLE 4,Summary of the irrigation parameterizations as water applied to the surface with the different parameters used in the available studies.,,
+Threshold type,Reference value,CaNopy interaction,References
+Timing,Mapa,No,"Sacks et al., 2009; Lee et al., 2011; Krakauer et al., 2016"
+,Mapa and temporal variation,No,"Cook et al., 2015, 2020"
+,5.2 · 10−4 /sensitivity,Yes,"Valmassoi et al., 2020a"
+,5.2 · 10−4 /sensitivity,No,"Valmassoi et al., 2020a"
+Soil Moisture availability,0.5,Yes,"Ozdogan et al., 2009; Qian et al., 2013"
+,0.2,Yes,"Pei et al., 2014"
+,0.1,Yes,"Lawston et al., 2015"
+,0.43,Yes,"Yang et al., 2016"
+,0.48–0.55,No,"Wu et al., 2018"
+,0.5–0.6,Yes,"Liu et al., 2021"
+,Calibrated,No,"Leng et al., 2013"
+,0.7,No,"Leng et al., 2013"
+,0.7/Calibrated,Yes,"Leng et al., 2017"
+,0.7/Calibrated,No,"Leng et al., 2017"

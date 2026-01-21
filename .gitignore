@@ -11,11 +11,7 @@ venv/
 env/
 ENV/
 
-# =========================
-# Data & Outputs (project-specific)
-# =========================
-data/
-outputs/
+
 
 # If you want to keep empty folders:
 # !data/.gitkeep

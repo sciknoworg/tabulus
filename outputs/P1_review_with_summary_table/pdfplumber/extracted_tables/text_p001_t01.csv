@@ -1,0 +1,79 @@
+,A review on irrigation
+,
+,parameterizations in Earth
+OPENACCESS,
+,
+EDITEDBY,
+RishikeshSingh,,system models
+PanjabUniversity,India,
+,
+REVIEWEDBY,
+XiChen,,AriannaValmassoi1,2* andJanD.Keller3
+UniversityofCincinnati,UnitedStates,
+HyunglokKim,,1Hans-Ertel-CentreforWeatherResearch,ClimateMonitoringandDiagnostics,Bonn,Germany,
+UniversityofVirginia,UnitedStates,2InstituteofGeosciences,UniversityofBonn,Bonn,Germany,3DeutscherWetterdienst,Offenbach,
+*CORRESPONDENCE,Germany
+AriannaValmassoi,
+avalmass@uni-bonn.de,
+,Irrigation is the process of artificially providing water to agricultural lands
+SPECIALTYSECTION,
+Thisarticlewassubmittedto,in order to provide crops with the necessary water supply to ensure or
+WaterandClimate,,foster the growth of the plants. However, its implications reach beyond
+asectionofthejournal,
+FrontiersinWater,the agro-economic aspect as irrigation affects the soil-land-atmosphere
+,
+RECEIVED28March2022,interactions and thus influences the water and energy cycles in the Earth
+ACCEPTED24October2022,system.Paststudieshaveshownhowthroughtheseinteractions,anincrease
+PUBLISHED16November2022,
+,in soil moisture due to irrigation also affects the atmospheric state and
+CITATION,its dynamics. Thus, the lack of representation of irrigation in numerical
+ValmassoiAandKellerJD(2022)A,
+reviewonirrigationparameterizations,Earth system models—be it for reanalysis, weather forecasting or climate
+inEarthsystemmodels.,prediction—canleadtosignificanterrorsandbiasesinvariousparametersof
+Front.Water4:906664.,
+,
+doi:10.3389/frwa.2022.906664,thesystemincludingbutnotlimitedtosurfacetemperatureandprecipitation.
+,
+,In this study, we aim to summarize and discuss currently available irrigation
+COPYRIGHT,
+©2022 ValmassoiandKeller.Thisisan,parameterizationsacrossdifferentnumericalmodels.Thisprovidesareference
+open-accessarticledistributedunder,frameworktounderstandtheimpactofirrigationonthevariouscomponents
+thetermsoftheCreativeCommons,
+,
+AttributionLicense(CCBY).Theuse,,of Earth system models. Specifically, we discuss the impact of these
+,
+distributionorreproductioninother,parameterizationsinthecontextoftheirspatio-temporalscalerepresentation
+forumsispermitted,providedthe,and point out the benefits and limitations of the various approaches. In fact,
+originalauthor(s)andthecopyright,
+owner(s)arecreditedandthatthe,most of the parameterizations use irrigation as a direct modification of soil
+originalpublicationinthisjournalis,moisture with just a few implementations add irrigation as a form of surface
+,
+cited,inaccordancewithaccepted,water.Whiletheformermethodmightbesuitableforcoarsespatio-temporal
+,
+academicpractice.Nouse,distribution,
+orreproductionispermittedwhich,scales,thelatterbetterresemblestherangeofemployedirrigationtechniques.
+doesnotcomplywiththeseterms.,From the analysis, we find that not only the method or the spatio-temporal
+,
+,
+,scales but the actual amount of water used is of great importance to the
+,
+,responseoftheEarthsystemmodel.
+,
+,KEYWORDS
+,
+,irrigation, irrigation parameterization, earth system modeling, irrigation-effect on
+,weather,atmosphericmodel
+,
+,1. Introduction
+,
+,Agricultural production is becoming crucial not only for the economy but
+,
+,also for food security. In fact, with a growing world population, food demand
+,
+,is also rising while at the same time, changes in the hydrological cycle and
+,
+,climate affect both agricultural yield and species sustainability (IPCC, 2014;
+,
+,Chatzopoulos et al., 2019; Zampieri et al., 2019). For the past decades, irrigation has
+,
+FrontiersinWater,01 frontiersin.org

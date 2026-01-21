@@ -1,0 +1,279 @@
+0,1
+Valmassoi and Keller,10.3389/frwa.2022.906664
+"personal communication). However, the GrainEX IOPs provide","underestimates/overestimates
+the
+impacts
+of
+these
+practices"
+"a
+fair good knowledge of
+the
+timing and the ﬁeld locations","and Hirsch, 2020;
+Jha
+et
+al., 2022).
+In particular, Kala
+(Kala"
+"soil
+through indirect observations
+(Phillips et al., 2022), e.g.,","and Hirsch (2020)
+shows how high albedo crops have higher"
+moisture peaks in absence of precipitation. This concept has also,"potentials
+in Australia
+than what
+expected by Hirsch et
+al."
+been previously used by Brocca et al. (2014) for the SM2RAIN,"(2017). Similarly,
+in assuming irrigation has a strong potential"
+"algorithm, which combines soil moisture satellite products with","for
+climate mitigation, we neglect both the
+already
+existing"
+"rainfall estimations
+to quantify the missing precipitation. The","impact of
+irrigated lands on climate change (Cook et al., 2011)"
+"algorithm has been later
+implemented in Brocca et al.
+(2018)","and the fact
+that global models likely overestimates its cooling"
+to better include the irrigation volumes and validate them for,"impact (Jha et al., 2022). When these concepts are included in the"
+"pilot sites in the US, Europe and Australia. While this method","climate projections and simulations, then the expected increase"
+performed well in periods of low rainfall and if satellites retrieval,in water scarcity for the agricultural areas has to be included in
+"have
+low uncertainties,
+it
+cannot be
+applied to sites
+aﬀected",limiting the irrigation volumes that can be applied.
+"by snow or
+frozen soil or when rainfall happens
+throughout","Finally,
+it
+is
+crucial
+to realize
+that
+all
+the down-stream"
+the year.,applications that use model or reanalyzes data will beneﬁt from
+,"explicitly including irrigation. Speciﬁc applications might
+rely"
+,"on soil water or near-surface data, where
+irrigation has
+the"
+6.3. Applications,"largest eﬀects. Furthermore, all down-stream model and impact"
+,"assessments
+that use ESM outputs
+and refer
+to agricultural-"
+The lack of explicit irrigation representation cannot be fully,"related processes will strongly beneﬁt [e.g., agricultural drought"
+corrected at high resolution in atmospheric reanalyzes products,"et al., 2010), yield calculations
+(Lobell
+warnings
+(Seneviratne"
+"due to the lack of direct
+soil moisture observations
+that can","et al., 2011; Chatzopoulos et al., 2019; Zampieri et al., 2019)]."
+"be
+assimilated into the
+system state
+and help to correct
+the",
+vertical water redistribution in the soil. This aspect has already,
+"been discussed by Tuinenburg and de Vries
+(2017)
+showing",7. Summary and conclusions
+"signiﬁcant
+biases
+in
+the ERA-Interim reanalysis. Therefore,",
+irrigation processes needs to be included also in reanalyzes to,"In
+this
+review, we
+presented
+the
+developments
+in
+the"
+"allow for a correct
+representation of
+the Earth system water","implementations of
+the irrigation parameterizations
+for Earth"
+budget.,System Models (ESMs).
+"When
+we
+consider
+the
+impact
+of
+irrigation
+on
+the",Irrigation inﬂuences various Earth system components and
+"atmospheric state and dynamics, the eﬀects of the changes range","processes
+partly
+resulting
+in
+feedback
+eﬀects. While
+some"
+"from diurnal
+to seasonal
+scales. This
+is going to impact
+the","of
+these
+impacts
+are well-studied,
+others
+are
+not
+yet
+fully"
+weather as well as the seasonal/sub-seasonal predictability with,"understood
+and
+there
+is
+often
+disagreement
+on
+the
+extent"
+"diﬀerent magnitudes. Most of
+the predictability improvement","of
+the
+impacts
+in
+literature.
+For
+instance,
+the
+IPCC’s
+5th"
+is expected to be related to a more suitable soil water content,"Assessment Report
+(AR5)
+assesses
+a high conﬁdence on the"
+"with its
+importance being
+summarized in Seneviratne
+et
+al.","irrigation cooling eﬀect (e.g., Jia et al., 2019), but its magnitude"
+"(2010). The
+impact of
+irrigation then is
+further
+complicated","is
+not
+certain.
+Further,
+the
+changes
+in
+the
+surface
+energy"
+"in investigating the multi-year variability, as
+the volume used","balance
+are
+found
+to
+aﬀect
+both
+the
+air masses
+properties"
+"al.
+(2015)
+is not
+constant. However,
+currently only Cook et","and the
+circulation, potentially
+causing
+local
+and/or
+remote"
+investigate irrigation as a temporal varying forcing at the spatial,"precipitation feedback. Thus,
+local anthropogenic
+changes
+in"
+resolution of 2o × 2.5o latitude/longitude. While they need this,"the water
+cycle
+aﬀect
+the Earth
+system at multiple
+scales."
+coarse resolution to run a 150-years (1850–200) simulation with,"However, while
+the
+surface
+physical
+feedback
+of
+irrigation"
+"5 ensemble members,
+it
+is not enough to capture most of
+the","seems clear, signiﬁcant uncertainties remains in the quantitative"
+"highly irrigated areas in Europe or the Americas, but only the","aspects. On the one hand,
+this uncertainty
+is
+related to the"
+"largest ones in South and East Asia (SAS, EAS).",underlying soil-atmosphere coupling and its implementation in
+"Even when irrigation itself
+is included in the studies,
+there","Earth system models
+(Seneviratne et al., 2010). On the other"
+"is
+a
+lack of quantiﬁcation of
+the
+feedback between diﬀerent","hand,
+the uncertainty
+can also be
+ascribed to the
+irrigation"
+"anthropogenic
+land transitions,
+such as
+conversion between","parameterizations
+themselves
+and
+the
+ambiguity
+on
+actual"
+"al.,
+2017),
+or
+the diﬀerent
+cropping
+systems
+(McDermid et",irrigation water amounts among existing research studies.
+"impacts
+irrigation can have on Earth system depending on",The currently available parameterizations are collected and
+"diﬀerent
+types of crops. In fact, while eﬀect
+land management","classiﬁed in Section 3, depending on the activation method (see"
+and irrigation has been suggested by several authors as a possible,"Section 3.1)
+and the model quantity that
+is directly aﬀected"
+"path for
+climate mitigation (Hirsch et
+al.,
+2017),
+but more","(see
+Section 3.3)
+by
+irrigation. While
+the
+latter
+category
+is"
+"work needs
+to be done in that
+regard as global models
+likely","more
+straight-forward
+from a numerical modeling
+physical"

@@ -1,0 +1,3353 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 6,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 25,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.9728649258613586,
+          "poly": [
+            [
+              111,
+              19
+            ],
+            [
+              296,
+              32
+            ],
+            [
+              294,
+              56
+            ],
+            [
+              109,
+              43
+            ]
+          ],
+          "bbox_xyxy": [
+            109,
+            19,
+            296,
+            56
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9998025298118591,
+          "poly": [
+            [
+              1177,
+              33
+            ],
+            [
+              1420,
+              33
+            ],
+            [
+              1420,
+              54
+            ],
+            [
+              1177,
+              54
+            ]
+          ],
+          "bbox_xyxy": [
+            1177,
+            33,
+            1420,
+            54
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "a specific crop-type and whether it is irrigated or not. Irrigation",
+          "confidence": 0.9897509813308716,
+          "poly": [
+            [
+              113,
+              162
+            ],
+            [
+              729,
+              173
+            ],
+            [
+              728,
+              204
+            ],
+            [
+              113,
+              193
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            162,
+            729,
+            204
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "irrigation is only ended in combination with other thresholds.",
+          "confidence": 0.9868547320365906,
+          "poly": [
+            [
+              785,
+              172
+            ],
+            [
+              1418,
+              166
+            ],
+            [
+              1418,
+              190
+            ],
+            [
+              785,
+              196
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            166,
+            1418,
+            196
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "can then be applied only to the irrigated portion of the grid cell",
+          "confidence": 0.9875903129577637,
+          "poly": [
+            [
+              113,
+              195
+            ],
+            [
+              730,
+              203
+            ],
+            [
+              729,
+              235
+            ],
+            [
+              113,
+              228
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            195,
+            730,
+            235
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "For example, Valmassoi et al. (2020a) include an arbitrary",
+          "confidence": 0.9931944608688354,
+          "poly": [
+            [
+              784,
+              203
+            ],
+            [
+              1419,
+              201
+            ],
+            [
+              1419,
+              226
+            ],
+            [
+              784,
+              228
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            201,
+            1419,
+            228
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "3.1.3. Physical threshold",
+          "confidence": 0.9894077181816101,
+          "poly": [
+            [
+              783,
+              540
+            ],
+            [
+              1101,
+              540
+            ],
+            [
+              1101,
+              567
+            ],
+            [
+              783,
+              567
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            540,
+            1101,
+            567
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "The previously mentioned irrigation thresholds do not",
+          "confidence": 0.9935930371284485,
+          "poly": [
+            [
+              819,
+              578
+            ],
+            [
+              1420,
+              580
+            ],
+            [
+              1420,
+              604
+            ],
+            [
+              819,
+              602
+            ]
+          ],
+          "bbox_xyxy": [
+            819,
+            578,
+            1420,
+            604
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "simulation.",
+          "confidence": 0.9999752640724182,
+          "poly": [
+            [
+              115,
+              1084
+            ],
+            [
+              227,
+              1084
+            ],
+            [
+              227,
+              1109
+            ],
+            [
+              115,
+              1109
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1084,
+            227,
+            1109
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "value, called critical soil moisture (θc):",
+          "confidence": 0.9945168495178223,
+          "poly": [
+            [
+              780,
+              1115
+            ],
+            [
+              1154,
+              1117
+            ],
+            [
+              1154,
+              1141
+            ],
+            [
+              780,
+              1139
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1115,
+            1154,
+            1141
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "3.1.2. Temporal constraint",
+          "confidence": 0.9987531900405884,
+          "poly": [
+            [
+              117,
+              1173
+            ],
+            [
+              451,
+              1171
+            ],
+            [
+              452,
+              1198
+            ],
+            [
+              117,
+              1200
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1171,
+            452,
+            1200
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "θc = p · θfc",
+          "confidence": 0.9677574038505554,
+          "poly": [
+            [
+              1032,
+              1184
+            ],
+            [
+              1152,
+              1188
+            ],
+            [
+              1151,
+              1223
+            ],
+            [
+              1031,
+              1219
+            ]
+          ],
+          "bbox_xyxy": [
+            1031,
+            1184,
+            1152,
+            1223
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "(2)",
+          "confidence": 0.9947159886360168,
+          "poly": [
+            [
+              1386,
+              1185
+            ],
+            [
+              1426,
+              1185
+            ],
+            [
+              1426,
+              1220
+            ],
+            [
+              1386,
+              1220
+            ]
+          ],
+          "bbox_xyxy": [
+            1386,
+            1185,
+            1426,
+            1220
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "the soil moisture index, no root density information is needed.",
+          "confidence": 0.9988564848899841,
+          "poly": [
+            [
+              781,
+              1723
+            ],
+            [
+              1414,
+              1732
+            ],
+            [
+              1414,
+              1756
+            ],
+            [
+              781,
+              1747
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1723,
+            1414,
+            1756
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Ozdogan et al. (2009) introduced the Soil Moisture Availability",
+          "confidence": 0.9887858033180237,
+          "poly": [
+            [
+              780,
+              1757
+            ],
+            [
+              1415,
+              1766
+            ],
+            [
+              1414,
+              1793
+            ],
+            [
+              780,
+              1784
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1757,
+            1415,
+            1793
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "With the described approaches, the temporal constrains are",
+          "confidence": 0.9849337935447693,
+          "poly": [
+            [
+              154,
+              1878
+            ],
+            [
+              722,
+              1878
+            ],
+            [
+              722,
+              1902
+            ],
+            [
+              154,
+              1902
+            ]
+          ],
+          "bbox_xyxy": [
+            154,
+            1878,
+            722,
+            1902
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "be held against gravitational drainage. The value depends on the soil type.",
+          "confidence": 0.9892147779464722,
+          "poly": [
+            [
+              778,
+              1877
+            ],
+            [
+              1413,
+              1887
+            ],
+            [
+              1413,
+              1910
+            ],
+            [
+              778,
+              1899
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1877,
+            1413,
+            1910
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "applied each day throughout the whole simulation period, and",
+          "confidence": 0.9893423914909363,
+          "poly": [
+            [
+              117,
+              1913
+            ],
+            [
+              721,
+              1911
+            ],
+            [
+              721,
+              1934
+            ],
+            [
+              117,
+              1937
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1911,
+            721,
+            1937
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "For further reference, see Seneviratne et al. (2o10).",
+          "confidence": 0.9821039438247681,
+          "poly": [
+            [
+              778,
+              1911
+            ],
+            [
+              1217,
+              1918
+            ],
+            [
+              1217,
+              1939
+            ],
+            [
+              778,
+              1932
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1911,
+            1217,
+            1939
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "Frontiers inWater",
+          "confidence": 0.9959836602210999,
+          "poly": [
+            [
+              112,
+              2053
+            ],
+            [
+              270,
+              2049
+            ],
+            [
+              270,
+              2073
+            ],
+            [
+              112,
+              2077
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            2049,
+            270,
+            2077
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "06",
+          "confidence": 0.9999091625213623,
+          "poly": [
+            [
+              733,
+              2049
+            ],
+            [
+              765,
+              2049
+            ],
+            [
+              765,
+              2079
+            ],
+            [
+              733,
+              2079
+            ]
+          ],
+          "bbox_xyxy": [
+            733,
+            2049,
+            765,
+            2079
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.9998138546943665,
+          "poly": [
+            [
+              1277,
+              2052
+            ],
+            [
+              1411,
+              2057
+            ],
+            [
+              1410,
+              2081
+            ],
+            [
+              1276,
+              2076
+            ]
+          ],
+          "bbox_xyxy": [
+            1276,
+            2052,
+            1411,
+            2081
+          ],
+          "reading_order": 21
+        }
+      ]
+    },
+    {
+      "block_id": 18,
+      "label": "header",
+      "score": 0.844536542892456,
+      "bbox_xyxy": [
+        137,
+        102,
+        302,
+        120
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 14,
+      "label": "header",
+      "score": 0.8660426139831543,
+      "bbox_xyxy": [
+        1127,
+        102,
+        1342,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9851388335227966,
+      "bbox_xyxy": [
+        134,
+        226,
+        714,
+        560
+      ],
+      "lines": [
+        {
+          "text": "fraction on which crops are grown. If there is a residual in the",
+          "confidence": 0.9811115264892578,
+          "poly": [
+            [
+              114,
+              230
+            ],
+            [
+              729,
+              235
+            ],
+            [
+              728,
+              266
+            ],
+            [
+              114,
+              261
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            230,
+            729,
+            266
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "crop partitioning within each grid cell, it is considered as an",
+          "confidence": 0.984338104724884,
+          "poly": [
+            [
+              115,
+              267
+            ],
+            [
+              729,
+              268
+            ],
+            [
+              729,
+              298
+            ],
+            [
+              115,
+              297
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            267,
+            729,
+            298
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "unmanaged crop and it is treated as a C3-type of grass. Another",
+          "confidence": 0.9890279769897461,
+          "poly": [
+            [
+              115,
+              301
+            ],
+            [
+              728,
+              302
+            ],
+            [
+              728,
+              332
+            ],
+            [
+              115,
+              331
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            301,
+            728,
+            332
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "way to include specific vegetation properties is by including",
+          "confidence": 0.9734336733818054,
+          "poly": [
+            [
+              114,
+              335
+            ],
+            [
+              728,
+              336
+            ],
+            [
+              728,
+              366
+            ],
+            [
+              114,
+              365
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            335,
+            728,
+            366
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "irrigated crops specific vegetation parameters, which have a low",
+          "confidence": 0.9763227701187134,
+          "poly": [
+            [
+              116,
+              368
+            ],
+            [
+              728,
+              369
+            ],
+            [
+              728,
+              400
+            ],
+            [
+              116,
+              399
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            368,
+            728,
+            400
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "roughness length, low stomatal resistance, leaf area similar to",
+          "confidence": 0.9878005981445312,
+          "poly": [
+            [
+              118,
+              405
+            ],
+            [
+              725,
+              405
+            ],
+            [
+              725,
+              432
+            ],
+            [
+              118,
+              432
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            405,
+            725,
+            432
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "grassland and forest, and albedo similar to deciduous broad-leaf",
+          "confidence": 0.9882929921150208,
+          "poly": [
+            [
+              118,
+              439
+            ],
+            [
+              728,
+              439
+            ],
+            [
+              728,
+              466
+            ],
+            [
+              118,
+              466
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            439,
+            728,
+            466
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "trees. This has been done by Kueppers et al. (2007) in their study",
+          "confidence": 0.991632878780365,
+          "poly": [
+            [
+              119,
+              474
+            ],
+            [
+              724,
+              474
+            ],
+            [
+              724,
+              498
+            ],
+            [
+              119,
+              498
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            474,
+            724,
+            498
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "using the RegCM3 numerical model (Seth et al., 2007).",
+          "confidence": 0.9852153658866882,
+          "poly": [
+            [
+              118,
+              505
+            ],
+            [
+              638,
+              504
+            ],
+            [
+              638,
+              531
+            ],
+            [
+              118,
+              533
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            504,
+            638,
+            533
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Aside from using the vegetation and its parameters as",
+          "confidence": 0.9773798584938049,
+          "poly": [
+            [
+              154,
+              537
+            ],
+            [
+              727,
+              538
+            ],
+            [
+              727,
+              565
+            ],
+            [
+              154,
+              564
+            ]
+          ],
+          "bbox_xyxy": [
+            154,
+            537,
+            727,
+            565
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9827839136123657,
+      "bbox_xyxy": [
+        764,
+        226,
+        1344,
+        499
+      ],
+      "lines": [
+        {
+          "text": "beginning and end of irrigation, indicated in terms of Julian",
+          "confidence": 0.9836103320121765,
+          "poly": [
+            [
+              783,
+              237
+            ],
+            [
+              1419,
+              235
+            ],
+            [
+              1419,
+              259
+            ],
+            [
+              783,
+              261
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            235,
+            1419,
+            261
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "days. Further, irrigation does not need to be applied each day",
+          "confidence": 0.9975642561912537,
+          "poly": [
+            [
+              785,
+              270
+            ],
+            [
+              1419,
+              270
+            ],
+            [
+              1419,
+              294
+            ],
+            [
+              785,
+              294
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            270,
+            1419,
+            294
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "despite a potential plant water stress. For example, Evans and",
+          "confidence": 0.9916160106658936,
+          "poly": [
+            [
+              785,
+              304
+            ],
+            [
+              1418,
+              304
+            ],
+            [
+              1418,
+              328
+            ],
+            [
+              785,
+              328
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            304,
+            1418,
+            328
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Zaitchik (2008) and Valmassoi et al. (2020a) apply irrigation",
+          "confidence": 0.9916308522224426,
+          "poly": [
+            [
+              783,
+              336
+            ],
+            [
+              1419,
+              338
+            ],
+            [
+              1419,
+              362
+            ],
+            [
+              783,
+              360
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            336,
+            1419,
+            362
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "once every 7 days, and every 7, 3 and 1 days, respectively. This",
+          "confidence": 0.9884197115898132,
+          "poly": [
+            [
+              784,
+              372
+            ],
+            [
+              1419,
+              372
+            ],
+            [
+              1419,
+              396
+            ],
+            [
+              784,
+              396
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            372,
+            1419,
+            396
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "deviating timing enables the parameterization to allow for a",
+          "confidence": 0.989506721496582,
+          "poly": [
+            [
+              785,
+              407
+            ],
+            [
+              1419,
+              407
+            ],
+            [
+              1419,
+              427
+            ],
+            [
+              785,
+              427
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            407,
+            1419,
+            427
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "more flexible and more realistic approach.",
+          "confidence": 0.9915810823440552,
+          "poly": [
+            [
+              783,
+              439
+            ],
+            [
+              1197,
+              439
+            ],
+            [
+              1197,
+              462
+            ],
+            [
+              783,
+              462
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            439,
+            1197,
+            462
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9846273064613342,
+      "bbox_xyxy": [
+        135,
+        569,
+        714,
+        901
+      ],
+      "lines": [
+        {
+          "text": "constant in time, it can be used to regulate irrigation as well. For",
+          "confidence": 0.9757723212242126,
+          "poly": [
+            [
+              118,
+              571
+            ],
+            [
+              724,
+              572
+            ],
+            [
+              724,
+              596
+            ],
+            [
+              118,
+              595
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            571,
+            724,
+            596
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "example, the Leaf Area Index (LAI) or the greenness fraction",
+          "confidence": 0.9956828355789185,
+          "poly": [
+            [
+              118,
+              604
+            ],
+            [
+              724,
+              606
+            ],
+            [
+              724,
+              630
+            ],
+            [
+              118,
+              628
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            604,
+            724,
+            630
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "(GF) can be used to determine if the plant growing season has",
+          "confidence": 0.9836891889572144,
+          "poly": [
+            [
+              117,
+              636
+            ],
+            [
+              725,
+              638
+            ],
+            [
+              725,
+              665
+            ],
+            [
+              117,
+              663
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            636,
+            725,
+            665
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "started or ended. These spatial data are usually an invariant",
+          "confidence": 0.9808552861213684,
+          "poly": [
+            [
+              117,
+              672
+            ],
+            [
+              725,
+              674
+            ],
+            [
+              725,
+              698
+            ],
+            [
+              117,
+              696
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            672,
+            725,
+            698
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "geographical field with an annual cycle. Leng et al. (2013) and",
+          "confidence": 0.9853877425193787,
+          "poly": [
+            [
+              116,
+              707
+            ],
+            [
+              725,
+              704
+            ],
+            [
+              725,
+              730
+            ],
+            [
+              116,
+              733
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            704,
+            725,
+            733
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Lu et al. (2015) start irrigation after the leaf emergence (LAI >",
+          "confidence": 0.9724774360656738,
+          "poly": [
+            [
+              118,
+              739
+            ],
+            [
+              721,
+              739
+            ],
+            [
+              721,
+              763
+            ],
+            [
+              118,
+              763
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            739,
+            721,
+            763
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "0.1m2m−2), butSacks et al. (2009) irrigates only when the LAI",
+          "confidence": 0.9816200137138367,
+          "poly": [
+            [
+              116,
+              770
+            ],
+            [
+              724,
+              772
+            ],
+            [
+              724,
+              799
+            ],
+            [
+              116,
+              797
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            770,
+            724,
+            799
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "exceeds the 80% threshold for cropland areas. Ozdogan et al.",
+          "confidence": 0.9706289172172546,
+          "poly": [
+            [
+              118,
+              808
+            ],
+            [
+              722,
+              808
+            ],
+            [
+              722,
+              832
+            ],
+            [
+              118,
+              832
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            808,
+            722,
+            832
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "(2009) instead create a GF-threshold to account for the irrigation",
+          "confidence": 0.9895212650299072,
+          "poly": [
+            [
+              116,
+              840
+            ],
+            [
+              724,
+              839
+            ],
+            [
+              724,
+              866
+            ],
+            [
+              116,
+              867
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            839,
+            724,
+            867
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "season, as:",
+          "confidence": 0.9992671608924866,
+          "poly": [
+            [
+              114,
+              876
+            ],
+            [
+              220,
+              879
+            ],
+            [
+              219,
+              903
+            ],
+            [
+              114,
+              900
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            876,
+            220,
+            903
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 10,
+      "label": "paragraph_title",
+      "score": 0.8965941667556763,
+      "bbox_xyxy": [
+        766,
+        570,
+        1064,
+        594
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9870266914367676,
+      "bbox_xyxy": [
+        763,
+        605,
+        1344,
+        1126
+      ],
+      "lines": [
+        {
+          "text": "explicitly account for the plant water stress. However, this",
+          "confidence": 0.9887316226959229,
+          "poly": [
+            [
+              782,
+              612
+            ],
+            [
+              1419,
+              614
+            ],
+            [
+              1419,
+              638
+            ],
+            [
+              782,
+              636
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            612,
+            1419,
+            638
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "characteristic is crucial and would contribute to a more realistic",
+          "confidence": 0.9898070096969604,
+          "poly": [
+            [
+              781,
+              644
+            ],
+            [
+              1419,
+              648
+            ],
+            [
+              1419,
+              671
+            ],
+            [
+              781,
+              667
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            644,
+            1419,
+            671
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "representation of the irrigation process. In general, plants do",
+          "confidence": 0.9781161546707153,
+          "poly": [
+            [
+              781,
+              678
+            ],
+            [
+              1418,
+              681
+            ],
+            [
+              1418,
+              705
+            ],
+            [
+              781,
+              702
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            678,
+            1418,
+            705
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "not suffer water stress when the soil moisture falls below field",
+          "confidence": 0.9843019843101501,
+          "poly": [
+            [
+              780,
+              711
+            ],
+            [
+              1419,
+              714
+            ],
+            [
+              1419,
+              737
+            ],
+            [
+              780,
+              734
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            711,
+            1419,
+            737
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "capacity1, because the roots are able to partly extract the water",
+          "confidence": 0.9912807941436768,
+          "poly": [
+            [
+              781,
+              745
+            ],
+            [
+              1419,
+              747
+            ],
+            [
+              1419,
+              771
+            ],
+            [
+              781,
+              769
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            745,
+            1419,
+            771
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "bound by the soil matrix, so there is Ready Available Water",
+          "confidence": 0.9825780391693115,
+          "poly": [
+            [
+              780,
+              779
+            ],
+            [
+              1420,
+              780
+            ],
+            [
+              1420,
+              804
+            ],
+            [
+              780,
+              803
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            779,
+            1420,
+            804
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "(RAW) for the plants. The lower limit of the extraction is the",
+          "confidence": 0.9743726253509521,
+          "poly": [
+            [
+              781,
+              812
+            ],
+            [
+              1420,
+              813
+            ],
+            [
+              1420,
+              837
+            ],
+            [
+              781,
+              836
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            812,
+            1420,
+            837
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "wilting point (θwp), at which water is so strongly bound to the",
+          "confidence": 0.9804635643959045,
+          "poly": [
+            [
+              782,
+              847
+            ],
+            [
+              1419,
+              847
+            ],
+            [
+              1419,
+              871
+            ],
+            [
+              782,
+              871
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            847,
+            1419,
+            871
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "soil matrix that the roots are not able to extract it. The amount of",
+          "confidence": 0.9843874573707581,
+          "poly": [
+            [
+              781,
+              879
+            ],
+            [
+              1422,
+              879
+            ],
+            [
+              1422,
+              902
+            ],
+            [
+              781,
+              902
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            879,
+            1422,
+            902
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "water that the soil can hold (and plants can extract) between the",
+          "confidence": 0.998428225517273,
+          "poly": [
+            [
+              781,
+              912
+            ],
+            [
+              1420,
+              912
+            ],
+            [
+              1420,
+              936
+            ],
+            [
+              781,
+              936
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            912,
+            1420,
+            936
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "field capacity and the wilting point is the Total Available Water",
+          "confidence": 0.9820847511291504,
+          "poly": [
+            [
+              781,
+              945
+            ],
+            [
+              1420,
+              945
+            ],
+            [
+              1420,
+              969
+            ],
+            [
+              781,
+              969
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            945,
+            1420,
+            969
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "(TAW). The ratio between RAW and TAW is defined as the",
+          "confidence": 0.9759312868118286,
+          "poly": [
+            [
+              782,
+              979
+            ],
+            [
+              1420,
+              979
+            ],
+            [
+              1420,
+              1002
+            ],
+            [
+              782,
+              1002
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            979,
+            1420,
+            1002
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "depletion fraction (p), which depends on crop type and soil type.",
+          "confidence": 0.9955796599388123,
+          "poly": [
+            [
+              781,
+              1014
+            ],
+            [
+              1418,
+              1015
+            ],
+            [
+              1418,
+              1039
+            ],
+            [
+              781,
+              1038
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1014,
+            1418,
+            1039
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Given this definition, p can be used to determine when the plant",
+          "confidence": 0.9889246821403503,
+          "poly": [
+            [
+              781,
+              1049
+            ],
+            [
+              1420,
+              1049
+            ],
+            [
+              1420,
+              1072
+            ],
+            [
+              781,
+              1072
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1049,
+            1420,
+            1072
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "suffers water stress and thus relates to a specific soil moisture",
+          "confidence": 0.9957165122032166,
+          "poly": [
+            [
+              780,
+              1081
+            ],
+            [
+              1420,
+              1083
+            ],
+            [
+              1420,
+              1107
+            ],
+            [
+              780,
+              1105
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1081,
+            1420,
+            1107
+          ],
+          "reading_order": 14
+        }
+      ]
+    },
+    {
+      "block_id": 22,
+      "label": "formula",
+      "score": 0.6331121921539307,
+      "bbox_xyxy": [
+        139,
+        783,
+        243,
+        810
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 24,
+      "label": "formula",
+      "score": 0.5319153070449829,
+      "bbox_xyxy": [
+        894,
+        855,
+        944,
+        881
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "formula",
+      "score": 0.9118897318840027,
+      "bbox_xyxy": [
+        240,
+        929,
+        612,
+        953
+      ],
+      "lines": [
+        {
+          "text": "GFth = GFmin + 0.4 · (GFmax − GFmin)",
+          "confidence": 0.9691889882087708,
+          "poly": [
+            [
+              228,
+              929
+            ],
+            [
+              613,
+              926
+            ],
+            [
+              613,
+              954
+            ],
+            [
+              228,
+              957
+            ]
+          ],
+          "bbox_xyxy": [
+            228,
+            926,
+            613,
+            957
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 16,
+      "label": "formula_number",
+      "score": 0.8539960384368896,
+      "bbox_xyxy": [
+        688,
+        930,
+        713,
+        953
+      ],
+      "lines": [
+        {
+          "text": "(1)",
+          "confidence": 0.9981011748313904,
+          "poly": [
+            [
+              688,
+              922
+            ],
+            [
+              728,
+              922
+            ],
+            [
+              728,
+              956
+            ],
+            [
+              688,
+              956
+            ]
+          ],
+          "bbox_xyxy": [
+            688,
+            922,
+            728,
+            956
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.9662063717842102,
+      "bbox_xyxy": [
+        135,
+        979,
+        714,
+        1093
+      ],
+      "lines": [
+        {
+          "text": "This means that the season begins and ends when 40% of the",
+          "confidence": 0.9919240474700928,
+          "poly": [
+            [
+              115,
+              983
+            ],
+            [
+              724,
+              978
+            ],
+            [
+              724,
+              1005
+            ],
+            [
+              115,
+              1010
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            978,
+            724,
+            1010
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "annual range (GFmax - GFmin) is reached, which allows to",
+          "confidence": 0.9696168899536133,
+          "poly": [
+            [
+              115,
+              1018
+            ],
+            [
+              724,
+              1013
+            ],
+            [
+              724,
+              1039
+            ],
+            [
+              115,
+              1044
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1013,
+            724,
+            1044
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "include areas with very different growing season in the same",
+          "confidence": 0.9879557490348816,
+          "poly": [
+            [
+              115,
+              1050
+            ],
+            [
+              725,
+              1047
+            ],
+            [
+              725,
+              1074
+            ],
+            [
+              115,
+              1077
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1047,
+            725,
+            1077
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 19,
+      "label": "formula",
+      "score": 0.8087725043296814,
+      "bbox_xyxy": [
+        272,
+        1010,
+        444,
+        1036
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 12,
+      "label": "paragraph_title",
+      "score": 0.892339825630188,
+      "bbox_xyxy": [
+        136,
+        1156,
+        457,
+        1179
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "formula_number",
+      "score": 0.8711289763450623,
+      "bbox_xyxy": [
+        1318,
+        1171,
+        1343,
+        1194
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 11,
+      "label": "formula",
+      "score": 0.8929361701011658,
+      "bbox_xyxy": [
+        1003,
+        1172,
+        1108,
+        1198
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9872796535491943,
+      "bbox_xyxy": [
+        134,
+        1192,
+        715,
+        1805
+      ],
+      "lines": [
+        {
+          "text": "A popular approach to activate the irrigation",
+          "confidence": 0.9731364846229553,
+          "poly": [
+            [
+              150,
+              1208
+            ],
+            [
+              726,
+              1208
+            ],
+            [
+              726,
+              1237
+            ],
+            [
+              150,
+              1237
+            ]
+          ],
+          "bbox_xyxy": [
+            150,
+            1208,
+            726,
+            1237
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "parameterization is to employ temporal constraints. Within this",
+          "confidence": 0.9983565807342529,
+          "poly": [
+            [
+              115,
+              1241
+            ],
+            [
+              726,
+              1240
+            ],
+            [
+              726,
+              1270
+            ],
+            [
+              115,
+              1271
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1240,
+            726,
+            1271
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "framework, a specific hour of the day is chosen to activate the",
+          "confidence": 0.9880319833755493,
+          "poly": [
+            [
+              115,
+              1274
+            ],
+            [
+              726,
+              1275
+            ],
+            [
+              726,
+              1302
+            ],
+            [
+              115,
+              1301
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1274,
+            726,
+            1302
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "irrigation (e.g., Adegoke et al., 2003; Leng et al., 2013; Valmassoi",
+          "confidence": 0.9783720374107361,
+          "poly": [
+            [
+              117,
+              1311
+            ],
+            [
+              725,
+              1311
+            ],
+            [
+              725,
+              1335
+            ],
+            [
+              117,
+              1335
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1311,
+            725,
+            1335
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "et al., 2020a). This time can be used to either set a model",
+          "confidence": 0.9950742721557617,
+          "poly": [
+            [
+              116,
+              1343
+            ],
+            [
+              725,
+              1344
+            ],
+            [
+              725,
+              1368
+            ],
+            [
+              116,
+              1367
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1343,
+            725,
+            1368
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "prognostic variable to a target value, e.g., Adegoke et al. (2003)",
+          "confidence": 0.989666223526001,
+          "poly": [
+            [
+              115,
+              1380
+            ],
+            [
+              724,
+              1377
+            ],
+            [
+              724,
+              1401
+            ],
+            [
+              115,
+              1404
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1377,
+            724,
+            1404
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "where soil moisture is set to saturation at 00UTC, or to combine",
+          "confidence": 0.9832075238227844,
+          "poly": [
+            [
+              116,
+              1413
+            ],
+            [
+              726,
+              1413
+            ],
+            [
+              726,
+              1436
+            ],
+            [
+              116,
+              1436
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1413,
+            726,
+            1436
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "it with a duration in hours. The latter approach is expressed as",
+          "confidence": 0.9878323078155518,
+          "poly": [
+            [
+              115,
+              1447
+            ],
+            [
+              725,
+              1447
+            ],
+            [
+              725,
+              1471
+            ],
+            [
+              115,
+              1471
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1447,
+            725,
+            1471
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "the number of consecutive hours hI, and is used to localize the",
+          "confidence": 0.9692128300666809,
+          "poly": [
+            [
+              115,
+              1480
+            ],
+            [
+              725,
+              1480
+            ],
+            [
+              725,
+              1503
+            ],
+            [
+              115,
+              1503
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1480,
+            725,
+            1503
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "irrigation procedure in time (e.g., Leng et al., 2013; Valmassoi",
+          "confidence": 0.9760208129882812,
+          "poly": [
+            [
+              114,
+              1513
+            ],
+            [
+              726,
+              1511
+            ],
+            [
+              726,
+              1538
+            ],
+            [
+              114,
+              1540
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1511,
+            726,
+            1540
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "et al., 2020a). Examples of different start hours and length are 06",
+          "confidence": 0.9875481724739075,
+          "poly": [
+            [
+              115,
+              1546
+            ],
+            [
+              726,
+              1544
+            ],
+            [
+              726,
+              1570
+            ],
+            [
+              115,
+              1573
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1544,
+            726,
+            1573
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "local and 4 h (e.g., Ozdogan et al., 2009; Leng et al., 2013; Yang",
+          "confidence": 0.966244637966156,
+          "poly": [
+            [
+              116,
+              1580
+            ],
+            [
+              725,
+              1580
+            ],
+            [
+              725,
+              1603
+            ],
+            [
+              116,
+              1603
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1580,
+            725,
+            1603
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "et al., 2016), 08 (Liu et al., 2021) or 09 (Evans and Zaitchik, 2008;",
+          "confidence": 0.9704534411430359,
+          "poly": [
+            [
+              115,
+              1611
+            ],
+            [
+              725,
+              1610
+            ],
+            [
+              725,
+              1634
+            ],
+            [
+              115,
+              1635
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1610,
+            725,
+            1635
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Wu et al., 2018) local time and for 2 h and 30 min, respectively,",
+          "confidence": 0.9879793524742126,
+          "poly": [
+            [
+              116,
+              1645
+            ],
+            [
+              724,
+              1645
+            ],
+            [
+              724,
+              1668
+            ],
+            [
+              116,
+              1668
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1645,
+            724,
+            1668
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "or a sensitivity to these parameters by Valmassoi et al. (2020a).",
+          "confidence": 0.9898579716682434,
+          "poly": [
+            [
+              115,
+              1681
+            ],
+            [
+              724,
+              1677
+            ],
+            [
+              724,
+              1701
+            ],
+            [
+              115,
+              1705
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1677,
+            724,
+            1705
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "The irrigation duration period is usually employed to equally",
+          "confidence": 0.983163058757782,
+          "poly": [
+            [
+              115,
+              1712
+            ],
+            [
+              725,
+              1711
+            ],
+            [
+              725,
+              1735
+            ],
+            [
+              115,
+              1736
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1711,
+            725,
+            1736
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "partition the calculated water over all the consecutive hours,",
+          "confidence": 0.9848851561546326,
+          "poly": [
+            [
+              115,
+              1746
+            ],
+            [
+              724,
+              1744
+            ],
+            [
+              724,
+              1768
+            ],
+            [
+              115,
+              1770
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1744,
+            724,
+            1770
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "transforming the quantity to a rate (mm s−1), for example. Only",
+          "confidence": 0.9688827395439148,
+          "poly": [
+            [
+              116,
+              1778
+            ],
+            [
+              724,
+              1776
+            ],
+            [
+              724,
+              1800
+            ],
+            [
+              116,
+              1802
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1776,
+            724,
+            1802
+          ],
+          "reading_order": 17
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9872522354125977,
+      "bbox_xyxy": [
+        764,
+        1237,
+        1344,
+        1729
+      ],
+      "lines": [
+        {
+          "text": "Values of p can largely vary depending on the plant type and need",
+          "confidence": 0.9766462445259094,
+          "poly": [
+            [
+              781,
+              1261
+            ],
+            [
+              1422,
+              1262
+            ],
+            [
+              1422,
+              1286
+            ],
+            [
+              781,
+              1285
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1261,
+            1422,
+            1286
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "to be corrected for high evapotranspiration regimes (Brouwer",
+          "confidence": 0.994745671749115,
+          "poly": [
+            [
+              781,
+              1295
+            ],
+            [
+              1422,
+              1297
+            ],
+            [
+              1422,
+              1321
+            ],
+            [
+              781,
+              1319
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1295,
+            1422,
+            1321
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "et al., 1985b) 5 mm/d. However, a value of p = 0.5 is commonly",
+          "confidence": 0.9847311973571777,
+          "poly": [
+            [
+              782,
+              1328
+            ],
+            [
+              1422,
+              1330
+            ],
+            [
+              1422,
+              1354
+            ],
+            [
+              782,
+              1352
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1328,
+            1422,
+            1354
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "used for many crops (Brouwer et al., 1985b). Manabe et al. (1965)",
+          "confidence": 0.9790855646133423,
+          "poly": [
+            [
+              783,
+              1362
+            ],
+            [
+              1419,
+              1363
+            ],
+            [
+              1419,
+              1387
+            ],
+            [
+              783,
+              1386
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1362,
+            1419,
+            1387
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "and Seneviratne et al. (2010) use higher values of p, namely,",
+          "confidence": 0.9758405685424805,
+          "poly": [
+            [
+              781,
+              1394
+            ],
+            [
+              1421,
+              1396
+            ],
+            [
+              1421,
+              1422
+            ],
+            [
+              781,
+              1420
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1394,
+            1421,
+            1422
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "0.5 to 0.8 and 0.75, respectively, with high rise vegetation being",
+          "confidence": 0.9919041991233826,
+          "poly": [
+            [
+              781,
+              1427
+            ],
+            [
+              1422,
+              1430
+            ],
+            [
+              1422,
+              1457
+            ],
+            [
+              781,
+              1454
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1427,
+            1422,
+            1457
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "included (e.g., conifer trees p = 0.7). This concept has been",
+          "confidence": 0.9932708144187927,
+          "poly": [
+            [
+              781,
+              1460
+            ],
+            [
+              1421,
+              1463
+            ],
+            [
+              1421,
+              1489
+            ],
+            [
+              781,
+              1486
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1460,
+            1421,
+            1489
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "implemented using the (i) βt function (Oleson et al., 2013, p.169)",
+          "confidence": 0.9818506836891174,
+          "poly": [
+            [
+              782,
+              1492
+            ],
+            [
+              1420,
+              1495
+            ],
+            [
+              1420,
+              1522
+            ],
+            [
+              782,
+              1519
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1492,
+            1420,
+            1522
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "and (ii) a soil moisture index (Seneviratne et al., 2010), SMI. The",
+          "confidence": 0.9721044301986694,
+          "poly": [
+            [
+              782,
+              1527
+            ],
+            [
+              1419,
+              1531
+            ],
+            [
+              1419,
+              1555
+            ],
+            [
+              782,
+              1551
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1527,
+            1419,
+            1555
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "former is the result of a weighted average of the plant wilting",
+          "confidence": 0.9701837301254272,
+          "poly": [
+            [
+              781,
+              1556
+            ],
+            [
+              1419,
+              1565
+            ],
+            [
+              1418,
+              1592
+            ],
+            [
+              781,
+              1583
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1556,
+            1419,
+            1592
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "factor and the fraction of roots for all considered layers (Oleson",
+          "confidence": 0.9942214488983154,
+          "poly": [
+            [
+              781,
+              1589
+            ],
+            [
+              1418,
+              1597
+            ],
+            [
+              1418,
+              1623
+            ],
+            [
+              781,
+              1616
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1589,
+            1418,
+            1623
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "et al., 2013) p.169. In general, the plant is suffering stress if βt is",
+          "confidence": 0.9882744550704956,
+          "poly": [
+            [
+              781,
+              1623
+            ],
+            [
+              1417,
+              1629
+            ],
+            [
+              1417,
+              1656
+            ],
+            [
+              781,
+              1650
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1623,
+            1417,
+            1656
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "less than 1 (e.g., Leng et al., 2013; Lu et al., 2015), with 0 being",
+          "confidence": 0.9747300744056702,
+          "poly": [
+            [
+              780,
+              1656
+            ],
+            [
+              1417,
+              1664
+            ],
+            [
+              1416,
+              1691
+            ],
+            [
+              780,
+              1683
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1656,
+            1417,
+            1691
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "the asymptotic value leading to the permanent wilting point. For",
+          "confidence": 0.9916395545005798,
+          "poly": [
+            [
+              780,
+              1689
+            ],
+            [
+              1416,
+              1697
+            ],
+            [
+              1416,
+              1724
+            ],
+            [
+              780,
+              1716
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1689,
+            1416,
+            1724
+          ],
+          "reading_order": 13
+        }
+      ]
+    },
+    {
+      "block_id": 23,
+      "label": "formula",
+      "score": 0.6158210635185242,
+      "bbox_xyxy": [
+        1152,
+        1301,
+        1222,
+        1326
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 21,
+      "label": "formula",
+      "score": 0.7300399541854858,
+      "bbox_xyxy": [
+        1029,
+        1426,
+        1121,
+        1450
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 8,
+      "label": "footnote",
+      "score": 0.9259631633758545,
+      "bbox_xyxy": [
+        765,
+        1783,
+        1344,
+        1866
+      ],
+      "lines": [
+        {
+          "text": "1 Field capacity is defined as the lower limit above which water cannot",
+          "confidence": 0.9804355502128601,
+          "poly": [
+            [
+              779,
+              1843
+            ],
+            [
+              1414,
+              1854
+            ],
+            [
+              1414,
+              1875
+            ],
+            [
+              779,
+              1864
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1843,
+            1414,
+            1875
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "text",
+      "score": 0.9345320463180542,
+      "bbox_xyxy": [
+        136,
+        1813,
+        715,
+        1869
+      ],
+      "lines": [
+        {
+          "text": "in Pei et al. (2016) the 2 h duration is used to apply irrigation at",
+          "confidence": 0.9933748841285706,
+          "poly": [
+            [
+              116,
+              1811
+            ],
+            [
+              723,
+              1811
+            ],
+            [
+              723,
+              1834
+            ],
+            [
+              116,
+              1834
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1811,
+            723,
+            1834
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "a specified rate, whenever the soil moisture threshold is met.",
+          "confidence": 0.9838979840278625,
+          "poly": [
+            [
+              115,
+              1844
+            ],
+            [
+              687,
+              1842
+            ],
+            [
+              687,
+              1866
+            ],
+            [
+              115,
+              1868
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1842,
+            687,
+            1868
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 17,
+      "label": "footer",
+      "score": 0.8513877391815186,
+      "bbox_xyxy": [
+        138,
+        1976,
+        279,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 15,
+      "label": "footer",
+      "score": 0.8604048490524292,
+      "bbox_xyxy": [
+        1227,
+        1977,
+        1343,
+        1995
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 20,
+      "label": "number",
+      "score": 0.8063366413116455,
+      "bbox_xyxy": [
+        732,
+        1978,
+        752,
+        1993
+      ],
+      "lines": []
+    }
+  ]
+}

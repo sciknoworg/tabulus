@@ -1,0 +1,2390 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 1,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 22,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "sustainability",
+          "confidence": 0.9650483727455139,
+          "poly": [
+            [
+              146,
+              45
+            ],
+            [
+              440,
+              58
+            ],
+            [
+              438,
+              113
+            ],
+            [
+              143,
+              100
+            ]
+          ],
+          "bbox_xyxy": [
+            143,
+            45,
+            440,
+            113
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "MDPI",
+          "confidence": 0.9993058443069458,
+          "poly": [
+            [
+              1484,
+              54
+            ],
+            [
+              1605,
+              48
+            ],
+            [
+              1607,
+              99
+            ],
+            [
+              1487,
+              105
+            ]
+          ],
+          "bbox_xyxy": [
+            1484,
+            48,
+            1607,
+            105
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Review",
+          "confidence": 0.9994683265686035,
+          "poly": [
+            [
+              26,
+              183
+            ],
+            [
+              129,
+              185
+            ],
+            [
+              129,
+              222
+            ],
+            [
+              26,
+              219
+            ]
+          ],
+          "bbox_xyxy": [
+            26,
+            183,
+            129,
+            222
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Trend, Status, and Challenges of Irrigation Development in",
+          "confidence": 0.9758949875831604,
+          "poly": [
+            [
+              16,
+              213
+            ],
+            [
+              1494,
+              232
+            ],
+            [
+              1493,
+              324
+            ],
+            [
+              15,
+              305
+            ]
+          ],
+          "bbox_xyxy": [
+            15,
+            213,
+            1494,
+            324
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Mekonen Ayana Gebul",
+          "confidence": 0.9764764904975891,
+          "poly": [
+            [
+              36,
+              399
+            ],
+            [
+              402,
+              412
+            ],
+            [
+              401,
+              447
+            ],
+            [
+              34,
+              434
+            ]
+          ],
+          "bbox_xyxy": [
+            34,
+            399,
+            402,
+            447
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Department of Water Resources Engineering, School of Civil Engineering and Architecture, Adama Science and",
+          "confidence": 0.9908090829849243,
+          "poly": [
+            [
+              439,
+              511
+            ],
+            [
+              1588,
+              507
+            ],
+            [
+              1588,
+              534
+            ],
+            [
+              439,
+              538
+            ]
+          ],
+          "bbox_xyxy": [
+            439,
+            507,
+            1588,
+            538
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Technology University, Adama 1888, Ethiopia; mekonen.ayana24@gmail.com",
+          "confidence": 0.9932969212532043,
+          "poly": [
+            [
+              438,
+              541
+            ],
+            [
+              1233,
+              540
+            ],
+            [
+              1233,
+              567
+            ],
+            [
+              438,
+              568
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            540,
+            1233,
+            568
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Abstract: Ethiopia's food supply and economy in general is largely dependent on rain-fed agriculture.",
+          "confidence": 0.991559624671936,
+          "poly": [
+            [
+              439,
+              616
+            ],
+            [
+              1590,
+              616
+            ],
+            [
+              1590,
+              643
+            ],
+            [
+              439,
+              643
+            ]
+          ],
+          "bbox_xyxy": [
+            439,
+            616,
+            1590,
+            643
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "iations.",
+          "confidence": 0.9977430701255798,
+          "poly": [
+            [
+              51,
+              1762
+            ],
+            [
+              128,
+              1762
+            ],
+            [
+              128,
+              1787
+            ],
+            [
+              51,
+              1787
+            ]
+          ],
+          "bbox_xyxy": [
+            51,
+            1762,
+            128,
+            1787
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "technologies, and to increase the use of chemical fertilizer.",
+          "confidence": 0.9919290542602539,
+          "poly": [
+            [
+              439,
+              1813
+            ],
+            [
+              1181,
+              1808
+            ],
+            [
+              1181,
+              1839
+            ],
+            [
+              439,
+              1844
+            ]
+          ],
+          "bbox_xyxy": [
+            439,
+            1808,
+            1181,
+            1844
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "BY",
+          "confidence": 0.9997986555099487,
+          "poly": [
+            [
+              150,
+              1882
+            ],
+            [
+              176,
+              1882
+            ],
+            [
+              176,
+              1903
+            ],
+            [
+              150,
+              1903
+            ]
+          ],
+          "bbox_xyxy": [
+            150,
+            1882,
+            176,
+            1903
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "in most African countries, including Ethiopia, there is still untapped irrigation potential",
+          "confidence": 0.9910258054733276,
+          "poly": [
+            [
+              430,
+              2146
+            ],
+            [
+              1597,
+              2143
+            ],
+            [
+              1597,
+              2177
+            ],
+            [
+              430,
+              2180
+            ]
+          ],
+          "bbox_xyxy": [
+            430,
+            2143,
+            1597,
+            2180
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "4.0/).",
+          "confidence": 0.9983217716217041,
+          "poly": [
+            [
+              33,
+              2163
+            ],
+            [
+              97,
+              2166
+            ],
+            [
+              96,
+              2196
+            ],
+            [
+              31,
+              2193
+            ]
+          ],
+          "bbox_xyxy": [
+            31,
+            2163,
+            97,
+            2196
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Sustainability 2021. 13, 5646. https:/ /doi.org/10.3390/su13105646",
+          "confidence": 0.9735451936721802,
+          "poly": [
+            [
+              32,
+              2315
+            ],
+            [
+              725,
+              2313
+            ],
+            [
+              725,
+              2337
+            ],
+            [
+              32,
+              2339
+            ]
+          ],
+          "bbox_xyxy": [
+            32,
+            2313,
+            725,
+            2339
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "https:/ /www.mdpi.com/journal/sustainability",
+          "confidence": 0.9939613342285156,
+          "poly": [
+            [
+              1084,
+              2307
+            ],
+            [
+              1593,
+              2309
+            ],
+            [
+              1593,
+              2339
+            ],
+            [
+              1083,
+              2337
+            ]
+          ],
+          "bbox_xyxy": [
+            1083,
+            2307,
+            1593,
+            2339
+          ],
+          "reading_order": 14
+        }
+      ]
+    },
+    {
+      "block_id": 17,
+      "label": "header",
+      "score": 0.8665808439254761,
+      "bbox_xyxy": [
+        99,
+        133,
+        188,
+        222
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "header",
+      "score": 0.9103615283966064,
+      "bbox_xyxy": [
+        1431,
+        145,
+        1549,
+        221
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "header",
+      "score": 0.882995069026947,
+      "bbox_xyxy": [
+        202,
+        153,
+        465,
+        196
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 20,
+      "label": "text",
+      "score": 0.7829650640487671,
+      "bbox_xyxy": [
+        93,
+        281,
+        181,
+        306
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 7,
+      "label": "doc_title",
+      "score": 0.9340332746505737,
+      "bbox_xyxy": [
+        95,
+        311,
+        1442,
+        418
+      ],
+      "lines": [
+        {
+          "text": "Ethiopia—A Review",
+          "confidence": 0.9969574213027954,
+          "poly": [
+            [
+              30,
+              284
+            ],
+            [
+              555,
+              300
+            ],
+            [
+              553,
+              361
+            ],
+            [
+              28,
+              345
+            ]
+          ],
+          "bbox_xyxy": [
+            28,
+            284,
+            555,
+            361
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 15,
+      "label": "text",
+      "score": 0.8778489828109741,
+      "bbox_xyxy": [
+        96,
+        468,
+        427,
+        497
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 8,
+      "label": "text",
+      "score": 0.9299225211143494,
+      "bbox_xyxy": [
+        455,
+        555,
+        1551,
+        611
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 2,
+      "label": "abstract",
+      "score": 0.9717815518379211,
+      "bbox_xyxy": [
+        456,
+        653,
+        1553,
+        1262
+      ],
+      "lines": [
+        {
+          "text": "Hence, irrigation development is vital to minimize the risk of crop failure and sustain agricultural",
+          "confidence": 0.9862260222434998,
+          "poly": [
+            [
+              437,
+              652
+            ],
+            [
+              1587,
+              651
+            ],
+            [
+              1587,
+              681
+            ],
+            [
+              437,
+              682
+            ]
+          ],
+          "bbox_xyxy": [
+            437,
+            651,
+            1587,
+            682
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "production. The purpose of this review was to collect published and unpublished information",
+          "confidence": 0.9908415675163269,
+          "poly": [
+            [
+              439,
+              693
+            ],
+            [
+              1586,
+              689
+            ],
+            [
+              1586,
+              716
+            ],
+            [
+              439,
+              720
+            ]
+          ],
+          "bbox_xyxy": [
+            439,
+            689,
+            1586,
+            720
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "from relevant sources and then review and synthesize key information on the trends and status of",
+          "confidence": 0.9907204508781433,
+          "poly": [
+            [
+              438,
+              728
+            ],
+            [
+              1589,
+              726
+            ],
+            [
+              1589,
+              756
+            ],
+            [
+              438,
+              758
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            726,
+            1589,
+            758
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "irrigation development and challenges threatening its implementation and sustainability. Historically,",
+          "confidence": 0.9826734066009521,
+          "poly": [
+            [
+              440,
+              769
+            ],
+            [
+              1589,
+              766
+            ],
+            [
+              1589,
+              793
+            ],
+            [
+              440,
+              796
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            766,
+            1589,
+            796
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "traditional irrigation based on farmers' own initiative and indigenous knowledge has been practiced",
+          "confidence": 0.9857785105705261,
+          "poly": [
+            [
+              440,
+              805
+            ],
+            [
+              1587,
+              802
+            ],
+            [
+              1587,
+              830
+            ],
+            [
+              440,
+              833
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            802,
+            1587,
+            833
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "in Ethiopia for over 2000 years. However, well-planned, government-funded medium and large-scale",
+          "confidence": 0.989382266998291,
+          "poly": [
+            [
+              440,
+              842
+            ],
+            [
+              1587,
+              839
+            ],
+            [
+              1587,
+              869
+            ],
+            [
+              440,
+              872
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            839,
+            1587,
+            872
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "irrigation development started only three decades ago. Specifically, significant progresses have",
+          "confidence": 0.9797657132148743,
+          "poly": [
+            [
+              440,
+              881
+            ],
+            [
+              1588,
+              876
+            ],
+            [
+              1588,
+              906
+            ],
+            [
+              440,
+              911
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            876,
+            1588,
+            911
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "been registered during the implementation of two consecutive five-year plans, the \"Growth and",
+          "confidence": 0.9943383932113647,
+          "poly": [
+            [
+              440,
+              918
+            ],
+            [
+              1587,
+              912
+            ],
+            [
+              1587,
+              942
+            ],
+            [
+              440,
+              948
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            912,
+            1587,
+            948
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Transformation Plans\". Currently, the total area equipped for irrigation has reached some 3.07 million",
+          "confidence": 0.9751102328300476,
+          "poly": [
+            [
+              440,
+              956
+            ],
+            [
+              1588,
+              951
+            ],
+            [
+              1588,
+              981
+            ],
+            [
+              440,
+              986
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            951,
+            1588,
+            986
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "hectares. However, the actual area irrigated is lower than this figure. The challenges facing the",
+          "confidence": 0.9846285581588745,
+          "poly": [
+            [
+              441,
+              993
+            ],
+            [
+              1587,
+              989
+            ],
+            [
+              1587,
+              1019
+            ],
+            [
+              441,
+              1023
+            ]
+          ],
+          "bbox_xyxy": [
+            441,
+            989,
+            1587,
+            1023
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "irrigation sector are related to study and design, construction or implementation, irrigation manage-",
+          "confidence": 0.9915910959243774,
+          "poly": [
+            [
+              442,
+              1031
+            ],
+            [
+              1590,
+              1026
+            ],
+            [
+              1590,
+              1057
+            ],
+            [
+              442,
+              1062
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1026,
+            1590,
+            1062
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "ment, and lack of other support services such as extension, input services, and market. While the",
+          "confidence": 0.9909298419952393,
+          "poly": [
+            [
+              443,
+              1070
+            ],
+            [
+              1588,
+              1062
+            ],
+            [
+              1588,
+              1092
+            ],
+            [
+              443,
+              1100
+            ]
+          ],
+          "bbox_xyxy": [
+            443,
+            1062,
+            1588,
+            1100
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "expansion of irrigation is still important, the poor performances and operational management of",
+          "confidence": 0.98946213722229,
+          "poly": [
+            [
+              443,
+              1107
+            ],
+            [
+              1589,
+              1100
+            ],
+            [
+              1589,
+              1133
+            ],
+            [
+              443,
+              1141
+            ]
+          ],
+          "bbox_xyxy": [
+            443,
+            1100,
+            1589,
+            1141
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "existing irrigation schemes needs to be given equal attention. As many of the problems are related to",
+          "confidence": 0.9882552027702332,
+          "poly": [
+            [
+              444,
+              1146
+            ],
+            [
+              1587,
+              1139
+            ],
+            [
+              1587,
+              1169
+            ],
+            [
+              444,
+              1176
+            ]
+          ],
+          "bbox_xyxy": [
+            444,
+            1139,
+            1587,
+            1176
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "capacity and capability limitations, there is an urgent need for institutional and capacity development",
+          "confidence": 0.9934264421463013,
+          "poly": [
+            [
+              444,
+              1184
+            ],
+            [
+              1587,
+              1178
+            ],
+            [
+              1587,
+              1210
+            ],
+            [
+              444,
+              1215
+            ]
+          ],
+          "bbox_xyxy": [
+            444,
+            1178,
+            1587,
+            1215
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "for the irrigation sector.",
+          "confidence": 0.9994783401489258,
+          "poly": [
+            [
+              446,
+              1224
+            ],
+            [
+              713,
+              1224
+            ],
+            [
+              713,
+              1251
+            ],
+            [
+              446,
+              1251
+            ]
+          ],
+          "bbox_xyxy": [
+            446,
+            1224,
+            713,
+            1251
+          ],
+          "reading_order": 15
+        }
+      ]
+    },
+    {
+      "block_id": 19,
+      "label": "paragraph_title",
+      "score": 0.7881251573562622,
+      "bbox_xyxy": [
+        460,
+        655,
+        565,
+        684
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 21,
+      "label": "image",
+      "score": 0.7073774933815002,
+      "bbox_xyxy": [
+        97,
+        1178,
+        239,
+        1223
+      ],
+      "lines": [
+        {
+          "text": "check for",
+          "confidence": 0.9999489188194275,
+          "poly": [
+            [
+              126,
+              1173
+            ],
+            [
+              221,
+              1170
+            ],
+            [
+              222,
+              1195
+            ],
+            [
+              127,
+              1198
+            ]
+          ],
+          "bbox_xyxy": [
+            126,
+            1170,
+            222,
+            1198
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "updates",
+          "confidence": 0.9982767701148987,
+          "poly": [
+            [
+              126,
+              1195
+            ],
+            [
+              221,
+              1191
+            ],
+            [
+              222,
+              1216
+            ],
+            [
+              127,
+              1220
+            ]
+          ],
+          "bbox_xyxy": [
+            126,
+            1191,
+            222,
+            1220
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9684467315673828,
+      "bbox_xyxy": [
+        93,
+        1248,
+        418,
+        1403
+      ],
+      "lines": [
+        {
+          "text": "Citation: Gebul, M.A. Trend, Status,",
+          "confidence": 0.9945749640464783,
+          "poly": [
+            [
+              71,
+              1246
+            ],
+            [
+              399,
+              1244
+            ],
+            [
+              399,
+              1265
+            ],
+            [
+              71,
+              1267
+            ]
+          ],
+          "bbox_xyxy": [
+            71,
+            1244,
+            399,
+            1267
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "and Challenges of Irrigation",
+          "confidence": 0.9809233546257019,
+          "poly": [
+            [
+              69,
+              1280
+            ],
+            [
+              325,
+              1278
+            ],
+            [
+              325,
+              1301
+            ],
+            [
+              69,
+              1303
+            ]
+          ],
+          "bbox_xyxy": [
+            69,
+            1278,
+            325,
+            1303
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Development in Ethiopia—A Review.",
+          "confidence": 0.9992387890815735,
+          "poly": [
+            [
+              69,
+              1313
+            ],
+            [
+              405,
+              1310
+            ],
+            [
+              406,
+              1334
+            ],
+            [
+              69,
+              1337
+            ]
+          ],
+          "bbox_xyxy": [
+            69,
+            1310,
+            406,
+            1337
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Sustainability 2021, 13, 5646. https:/ /",
+          "confidence": 0.9812625646591187,
+          "poly": [
+            [
+              67,
+              1348
+            ],
+            [
+              402,
+              1344
+            ],
+            [
+              403,
+              1368
+            ],
+            [
+              68,
+              1372
+            ]
+          ],
+          "bbox_xyxy": [
+            67,
+            1344,
+            403,
+            1372
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "doi.org/10.3390/su13105646",
+          "confidence": 0.9995779395103455,
+          "poly": [
+            [
+              66,
+              1383
+            ],
+            [
+              328,
+              1378
+            ],
+            [
+              328,
+              1401
+            ],
+            [
+              67,
+              1406
+            ]
+          ],
+          "bbox_xyxy": [
+            66,
+            1378,
+            328,
+            1406
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 16,
+      "label": "text",
+      "score": 0.8773009181022644,
+      "bbox_xyxy": [
+        458,
+        1300,
+        1403,
+        1331
+      ],
+      "lines": [
+        {
+          "text": "Keywords: irrigation; irrigation development; development trends; status; challenges",
+          "confidence": 0.9968756437301636,
+          "poly": [
+            [
+              443,
+              1293
+            ],
+            [
+              1427,
+              1288
+            ],
+            [
+              1427,
+              1321
+            ],
+            [
+              443,
+              1326
+            ]
+          ],
+          "bbox_xyxy": [
+            443,
+            1288,
+            1427,
+            1326
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 10,
+      "label": "paragraph_title",
+      "score": 0.8917556405067444,
+      "bbox_xyxy": [
+        458,
+        1439,
+        655,
+        1464
+      ],
+      "lines": [
+        {
+          "text": "1. Introduction",
+          "confidence": 0.9979535937309265,
+          "poly": [
+            [
+              443,
+              1436
+            ],
+            [
+              641,
+              1438
+            ],
+            [
+              641,
+              1466
+            ],
+            [
+              442,
+              1464
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1436,
+            641,
+            1466
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 14,
+      "label": "text",
+      "score": 0.8819441199302673,
+      "bbox_xyxy": [
+        94,
+        1447,
+        347,
+        1468
+      ],
+      "lines": [
+        {
+          "text": "Academic Editor: Ozgur Kisi",
+          "confidence": 0.998384952545166,
+          "poly": [
+            [
+              63,
+              1450
+            ],
+            [
+              330,
+              1445
+            ],
+            [
+              330,
+              1469
+            ],
+            [
+              64,
+              1474
+            ]
+          ],
+          "bbox_xyxy": [
+            63,
+            1445,
+            330,
+            1474
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9862869381904602,
+      "bbox_xyxy": [
+        454,
+        1481,
+        1554,
+        1824
+      ],
+      "lines": [
+        {
+          "text": "Irrigation has been the main driver of increasing food production worldwide. Irri-",
+          "confidence": 0.9900960326194763,
+          "poly": [
+            [
+              501,
+              1481
+            ],
+            [
+              1592,
+              1472
+            ],
+            [
+              1592,
+              1506
+            ],
+            [
+              501,
+              1515
+            ]
+          ],
+          "bbox_xyxy": [
+            501,
+            1472,
+            1592,
+            1515
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "gated land produces 40% of the total grain output from only 20% of global arable land,",
+          "confidence": 0.9943092465400696,
+          "poly": [
+            [
+              440,
+              1519
+            ],
+            [
+              1592,
+              1509
+            ],
+            [
+              1592,
+              1545
+            ],
+            [
+              441,
+              1555
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            1509,
+            1592,
+            1555
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "while 80% of land under rain-fed agriculture produces about 60% of grain output [1].",
+          "confidence": 0.9764587879180908,
+          "poly": [
+            [
+              438,
+              1553
+            ],
+            [
+              1592,
+              1546
+            ],
+            [
+              1592,
+              1583
+            ],
+            [
+              438,
+              1590
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            1546,
+            1592,
+            1590
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "According to [2], irrigation contributes to agricultural production fundamentally in three",
+          "confidence": 0.9930055141448975,
+          "poly": [
+            [
+              438,
+              1590
+            ],
+            [
+              1590,
+              1583
+            ],
+            [
+              1590,
+              1620
+            ],
+            [
+              438,
+              1627
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            1583,
+            1590,
+            1627
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "ways. First, it stabilizes the harvest fluctuations, with attendant improvements in av-",
+          "confidence": 0.9919824004173279,
+          "poly": [
+            [
+              438,
+              1629
+            ],
+            [
+              1593,
+              1621
+            ],
+            [
+              1593,
+              1654
+            ],
+            [
+              439,
+              1662
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            1621,
+            1593,
+            1662
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "erage yields brought about through the provision of dependable water throughout the",
+          "confidence": 0.988764762878418,
+          "poly": [
+            [
+              439,
+              1667
+            ],
+            [
+              1589,
+              1658
+            ],
+            [
+              1589,
+              1691
+            ],
+            [
+              440,
+              1700
+            ]
+          ],
+          "bbox_xyxy": [
+            439,
+            1658,
+            1589,
+            1700
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "growing season. Second, in some circumstances, improved control over available water",
+          "confidence": 0.9897850751876831,
+          "poly": [
+            [
+              440,
+              1704
+            ],
+            [
+              1591,
+              1695
+            ],
+            [
+              1591,
+              1728
+            ],
+            [
+              441,
+              1737
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            1695,
+            1591,
+            1737
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "resources may make a second or even third cropping possible. Finally, the availability of",
+          "confidence": 0.9865638613700867,
+          "poly": [
+            [
+              438,
+              1738
+            ],
+            [
+              1590,
+              1732
+            ],
+            [
+              1590,
+              1766
+            ],
+            [
+              438,
+              1772
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            1732,
+            1590,
+            1772
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "reliable water supplies makes it possible to use improved seeds, to introduce new farming",
+          "confidence": 0.9888689517974854,
+          "poly": [
+            [
+              438,
+              1774
+            ],
+            [
+              1589,
+              1771
+            ],
+            [
+              1589,
+              1805
+            ],
+            [
+              438,
+              1808
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            1771,
+            1589,
+            1808
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.9504256248474121,
+      "bbox_xyxy": [
+        94,
+        1513,
+        301,
+        1600
+      ],
+      "lines": [
+        {
+          "text": "Received: 3 April 2021",
+          "confidence": 0.991403341293335,
+          "poly": [
+            [
+              61,
+              1518
+            ],
+            [
+              271,
+              1514
+            ],
+            [
+              272,
+              1538
+            ],
+            [
+              62,
+              1542
+            ]
+          ],
+          "bbox_xyxy": [
+            61,
+            1514,
+            272,
+            1542
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Accepted: 25 April 2021",
+          "confidence": 0.981942892074585,
+          "poly": [
+            [
+              60,
+              1553
+            ],
+            [
+              282,
+              1549
+            ],
+            [
+              282,
+              1573
+            ],
+            [
+              61,
+              1577
+            ]
+          ],
+          "bbox_xyxy": [
+            60,
+            1549,
+            282,
+            1577
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Published: 18 May 2021",
+          "confidence": 0.9925724267959595,
+          "poly": [
+            [
+              60,
+              1586
+            ],
+            [
+              280,
+              1584
+            ],
+            [
+              280,
+              1607
+            ],
+            [
+              60,
+              1609
+            ]
+          ],
+          "bbox_xyxy": [
+            60,
+            1584,
+            280,
+            1609
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9587908983230591,
+      "bbox_xyxy": [
+        93,
+        1649,
+        423,
+        1770
+      ],
+      "lines": [
+        {
+          "text": "Publisher's Note: MDPI stays neutral",
+          "confidence": 0.9874485731124878,
+          "poly": [
+            [
+              58,
+              1657
+            ],
+            [
+              406,
+              1659
+            ],
+            [
+              405,
+              1683
+            ],
+            [
+              58,
+              1681
+            ]
+          ],
+          "bbox_xyxy": [
+            58,
+            1657,
+            406,
+            1683
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "with regard to jurisdictional claims in",
+          "confidence": 0.9875118732452393,
+          "poly": [
+            [
+              56,
+              1692
+            ],
+            [
+              406,
+              1694
+            ],
+            [
+              405,
+              1718
+            ],
+            [
+              56,
+              1716
+            ]
+          ],
+          "bbox_xyxy": [
+            56,
+            1692,
+            406,
+            1718
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "published maps and institutional affil-",
+          "confidence": 0.9886165261268616,
+          "poly": [
+            [
+              54,
+              1727
+            ],
+            [
+              408,
+              1728
+            ],
+            [
+              407,
+              1752
+            ],
+            [
+              54,
+              1751
+            ]
+          ],
+          "bbox_xyxy": [
+            54,
+            1727,
+            408,
+            1752
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 18,
+      "label": "image",
+      "score": 0.8554047346115112,
+      "bbox_xyxy": [
+        96,
+        1825,
+        257,
+        1881
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9840921759605408,
+      "bbox_xyxy": [
+        454,
+        1830,
+        1552,
+        2139
+      ],
+      "lines": [
+        {
+          "text": "Cognizant of the poverty reduction and food security enhancement potential, the area",
+          "confidence": 0.9821281433105469,
+          "poly": [
+            [
+              499,
+              1848
+            ],
+            [
+              1589,
+              1844
+            ],
+            [
+              1589,
+              1878
+            ],
+            [
+              499,
+              1882
+            ]
+          ],
+          "bbox_xyxy": [
+            499,
+            1844,
+            1589,
+            1882
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "equipped globally for irrigation has increased by 117% during the period from 1961 to",
+          "confidence": 0.9931999444961548,
+          "poly": [
+            [
+              437,
+              1887
+            ],
+            [
+              1589,
+              1881
+            ],
+            [
+              1589,
+              1914
+            ],
+            [
+              437,
+              1921
+            ]
+          ],
+          "bbox_xyxy": [
+            437,
+            1881,
+            1589,
+            1921
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "2009 [3]. Such expansion of irrigation coupled with the diversification and intensification of",
+          "confidence": 0.9966186285018921,
+          "poly": [
+            [
+              435,
+              1921
+            ],
+            [
+              1593,
+              1916
+            ],
+            [
+              1593,
+              1953
+            ],
+            [
+              435,
+              1958
+            ]
+          ],
+          "bbox_xyxy": [
+            435,
+            1916,
+            1593,
+            1958
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "irrigated agriculture has enhanced food supply, which enabled the provision of more food",
+          "confidence": 0.9858495593070984,
+          "poly": [
+            [
+              434,
+              1959
+            ],
+            [
+              1593,
+              1954
+            ],
+            [
+              1593,
+              1992
+            ],
+            [
+              434,
+              1996
+            ]
+          ],
+          "bbox_xyxy": [
+            434,
+            1954,
+            1593,
+            1996
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "with progressively falling prices to half of their levels in the 1960s and 1970s [4]. It is evident",
+          "confidence": 0.9912425875663757,
+          "poly": [
+            [
+              433,
+              1998
+            ],
+            [
+              1593,
+              1993
+            ],
+            [
+              1593,
+              2027
+            ],
+            [
+              433,
+              2032
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            1993,
+            1593,
+            2032
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "that most growth in irrigated agricultural production in Asia has come through horizontal",
+          "confidence": 0.98708575963974,
+          "poly": [
+            [
+              434,
+              2034
+            ],
+            [
+              1593,
+              2031
+            ],
+            [
+              1593,
+              2065
+            ],
+            [
+              434,
+              2068
+            ]
+          ],
+          "bbox_xyxy": [
+            434,
+            2031,
+            1593,
+            2068
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "expansion even into areas where conductions for production are less favorable as well as",
+          "confidence": 0.9894712567329407,
+          "poly": [
+            [
+              433,
+              2073
+            ],
+            [
+              1596,
+              2066
+            ],
+            [
+              1596,
+              2100
+            ],
+            [
+              434,
+              2107
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            2066,
+            1596,
+            2107
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "increasing the production per unit area of land through intensification [5]. Nevertheless,",
+          "confidence": 0.9898973107337952,
+          "poly": [
+            [
+              432,
+              2109
+            ],
+            [
+              1599,
+              2105
+            ],
+            [
+              1599,
+              2139
+            ],
+            [
+              432,
+              2143
+            ]
+          ],
+          "bbox_xyxy": [
+            432,
+            2105,
+            1599,
+            2143
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9653398394584656,
+      "bbox_xyxy": [
+        93,
+        1896,
+        425,
+        2149
+      ],
+      "lines": [
+        {
+          "text": "Copyright: © 2021 by the author.",
+          "confidence": 0.9820563197135925,
+          "poly": [
+            [
+              45,
+              1915
+            ],
+            [
+              405,
+              1919
+            ],
+            [
+              404,
+              1946
+            ],
+            [
+              45,
+              1942
+            ]
+          ],
+          "bbox_xyxy": [
+            45,
+            1915,
+            405,
+            1946
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Licensee MDPI, Basel, Switzerland.",
+          "confidence": 0.9936729669570923,
+          "poly": [
+            [
+              44,
+              1951
+            ],
+            [
+              404,
+              1956
+            ],
+            [
+              403,
+              1980
+            ],
+            [
+              44,
+              1975
+            ]
+          ],
+          "bbox_xyxy": [
+            44,
+            1951,
+            404,
+            1980
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "This article is an open access article",
+          "confidence": 0.9594950675964355,
+          "poly": [
+            [
+              42,
+              1988
+            ],
+            [
+              401,
+              1994
+            ],
+            [
+              400,
+              2017
+            ],
+            [
+              42,
+              2011
+            ]
+          ],
+          "bbox_xyxy": [
+            42,
+            1988,
+            401,
+            2017
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "distributed under the terms and",
+          "confidence": 0.984110951423645,
+          "poly": [
+            [
+              42,
+              2023
+            ],
+            [
+              400,
+              2027
+            ],
+            [
+              399,
+              2051
+            ],
+            [
+              42,
+              2047
+            ]
+          ],
+          "bbox_xyxy": [
+            42,
+            2023,
+            400,
+            2051
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "conditions of the Creative Commons",
+          "confidence": 0.9957007169723511,
+          "poly": [
+            [
+              40,
+              2060
+            ],
+            [
+              399,
+              2063
+            ],
+            [
+              398,
+              2087
+            ],
+            [
+              40,
+              2084
+            ]
+          ],
+          "bbox_xyxy": [
+            40,
+            2060,
+            399,
+            2087
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Attribution (CC BY) license (https:/ /",
+          "confidence": 0.9535394906997681,
+          "poly": [
+            [
+              38,
+              2093
+            ],
+            [
+              401,
+              2097
+            ],
+            [
+              400,
+              2124
+            ],
+            [
+              38,
+              2120
+            ]
+          ],
+          "bbox_xyxy": [
+            38,
+            2093,
+            401,
+            2124
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "creativecommons.org/licenses/by/",
+          "confidence": 0.9999188184738159,
+          "poly": [
+            [
+              38,
+              2133
+            ],
+            [
+              375,
+              2135
+            ],
+            [
+              375,
+              2158
+            ],
+            [
+              38,
+              2156
+            ]
+          ],
+          "bbox_xyxy": [
+            38,
+            2133,
+            375,
+            2158
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 12,
+      "label": "footer",
+      "score": 0.8881931304931641,
+      "bbox_xyxy": [
+        94,
+        2257,
+        734,
+        2282
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 11,
+      "label": "footer",
+      "score": 0.8914564251899719,
+      "bbox_xyxy": [
+        1075,
+        2257,
+        1545,
+        2284
+      ],
+      "lines": []
+    }
+  ]
+}

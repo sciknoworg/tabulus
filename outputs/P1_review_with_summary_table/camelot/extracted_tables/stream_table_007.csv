@@ -1,0 +1,200 @@
+0,1
+"MIrAD-US
+Irrigated area
+Continental US","250 m
+Pervez and Brown, 2010; Brown and Pervez, 2014"
+"(iii) physical
+time-varying thresholds, or a combination of any","of
+the
+irrigated
+land within
+a
+grid
+cell. The
+ﬁrst
+of
+these"
+of these.,"dataset had a
+spatial
+resolution of
+5o
+(Siebert
+et
+al.,
+2005),"
+"Then,
+we
+will
+detail
+the
+existing
+parameterization",with the newest at a 0.0833o resolution (around 9 km at mid-
+approaches. These can be divided into four groups distinguished,"latitudes, Siebert et al., 2013). While Siebert and Döll
+(2010)"
+"by the model quantity that
+is directly aﬀected by the irrigation","provide the area equipped for irrigation, Portmann et al. (2010)"
+"(i.e., where the irrigation water is applied to), and, thus, where","made
+the MIRCA2000 dataset of monthly distribution ﬁelds"
+"direct
+impacts
+on
+the model’s
+governing
+equations
+arise.","of
+the irrigation/rainfed agricultural area available, divided in"
+"Irrigation can be represented as (i) a change in soil moisture, (ii)",26 classes also at a spatial resolution of 0.0833o representative
+"water applied at the surface, (iii) a water vapor source, and (iv) a","for
+the
+time period 1998–2002. The dataset
+further
+includes"
+modiﬁcation to the model rain water.,"spatial
+information about multi-cropping agricultural
+land as"
+,"well
+as
+irrigation calendars. MIRCA2000
+has
+been used
+in"
+,"(2017), Cheng et al.
+(2021),
+multiple studies, e.g., Leng et al."
+3.1. Irrigation activation,"and Liu et al.
+(2021). For
+the continental United States,
+two"
+,"other datasets of irrigated areas are available at higher resolution,"
+"In
+this
+section,
+we
+present
+the
+approaches
+used
+to","and Gutman
+(2008)
+at ∼500 meters
+namely
+(i) Ozdogan"
+activate irrigation parameterizations. We distinguish between,"resolution and (ii)
+the Irrigated Agriculture Dataset
+(MIrAD-"
+"the approaches of using (i)
+spatial
+information,
+(ii)
+temporal",US) developed by Pervez and Brown (2010) and Brown and
+constraints and (iii) physical thresholds.,Pervez (2014) at 250 meters. Both datasets are based on MODIS
+,measurements and agricultural census maps. While the former
+,"combines also climatological
+indexes and supervised decision-"
+3.1.1. Spatial dimension,"based classiﬁcation algorithm,
+the
+latter uses only vegetation"
+"In
+this
+approach,
+geographical
+ﬁelds
+are
+used
+as
+time",considerations as well as county-level census data. MIrAD-US
+"invariant
+information
+to
+determine
+the
+initialization
+of",also provides temporal information on changes of irrigated land
+"irrigation,
+and
+these
+includes
+(i)
+the
+area
+equipped
+for","and is updated every 5 years (Brown and Pervez, 2014). While"
+"irrigation,
+(ii)
+the
+vegetation
+state
+data
+set,
+and
+(iii)
+the",the dataset of Ozdogan and Gutman (2008) has been used by
+"crop-types.
+In reality,
+these parameters are subject
+to changes","Ozdogan et al.
+(2009), Leng et al.
+(2013), Qian et al.
+(2013),"
+"from 1 year to the next, since climatic conditions and weather","and Harding et al. (2015), MIrAD-US was employed in, e.g., Pei"
+patterns may change. Also other parameters may vary due to,et al. (2016). While the previously mentioned dataset have been
+"the anthropogenic nature of
+irrigation, e.g., crop types could","widely used across modeling studies, it is worth to mention that"
+"be rotated, the area equipped for irrigation can be altered (e.g.,","they are not the only ones, e.g., Salmon et al. (2015). However,"
+"Puma
+and Cook, 2010; Brown and Pervez, 2014). However,",such datasets have currently not been used for modeling studies.
+"for numerical models
+these
+information are
+commonly kept","The MIRCA2000 dataset
+can be used not only to derive"
+"constant across
+the years albeit
+for a ﬁxed monthly cycle. A","the area irrigated, but
+it provides information about
+the crops"
+summary of the available dataset at the time is given in Table 1.,"Lobell
+et
+al.
+(2009)
+cultivated
+in
+the
+reference
+year
+2000."
+"Most
+of
+the
+studies
+include
+the
+spatial
+information on",extended the FAO area equipped for irrigation dataset by a plant
+"irrigation through the area equipped for
+irrigation map (Döll",functional type (PFT) for irrigated crops. The new PFT fraction
+"et
+al., 2005, 2013)
+from the FAO
+and Siebert, 2002; Siebert","is subtracted to the original value to ensure a consistent
+total"
+"AQUASTAT database (e.g., Bonﬁls and Lobell, 2007; Sacks et al.,",agricultural area with the control simulation. While the method
+"2009;
+Saeed et
+al.,
+2009; Leng
+et
+al.,
+2013; Lu et
+al.,
+2015;",proposed by Lobell et al. (2009) does not modify any of the plant
+"Valmassoi et al., 2020a). This
+is a global gridded dataset
+that","properties, Leng et al. (2017) added the crop type information"
+"combines
+the national
+level census data of agricultural water","to the Community Land Model (CLM, v4.5). These data can be"
+"usage for areas equipped for
+irrigation, giving the percentage","used to determine the area fraction within a grid cell
+that
+is of"

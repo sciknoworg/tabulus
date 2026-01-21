@@ -1,0 +1,127 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+Whileirrigationwatergenerallycomesfromeithersurface,the local nor at the global scales. Further, there is a lot of
+,
+andgroundwatersources,itisawell-knowproblemthatpipes,variability among the studies with respect to the irrigation
+,
+orchannelsareusedtotransportthewatertothefields.From,water amount and its parameterization, especially in Earth
+,
+the modeling perspective this means that the sources might,system modeling approaches. Another open issue is the low
+,
+notbelocatednear-enoughtobeconsideredinthesamegrid-,confidenceontheimpactofirrigationonprecipitation.While
+,
+point,needinganinternalwaterredistribution,asidefromthe,the ongoing increase in resolution of the models is helping
+,
+inclusionofthewaterlossfromthepipestotheEarthsystem.,to better understand this feedback, the inclusion of specific
+,
+Lengetal.(2017)proposeawaterextractionschemebasedon,irrigationparameterizationspreventsthereplicationofsimilar
+,
+thewaterextractiondataset(cfSection3.5),whichallowsalsofor,schemes with small differences in the parameters and/or the
+,
+usingnearbygrid-pointinthesamebasin.Whilesuchapproach,thresholds’choices.
+,
+providesasuitabletheoreticalbase,itcanbeappliedsafelyonly,Therefore, there is a strong need for a more coordinated
+,
+tocoarsemodelresolutionsduetotheimportanceofdrainage,andconsistentimplementationsofirrigationparameterizations
+,
+direction in actual irrigation practices (Brouwer et al., 1985b),in order to assess model and process uncertainties together
+,
+and the usage of open air irrigation channels (Moghazi and,with better observational datasets. This would also support
+,
+Ismail,1997;Kimaroetal.,2019).,developmentsfornumerousapplicationsthatrangefromimpact
+,
+,modelingtonumericalweatherpredictionandseasonaltosub-
+,
+,seasonalforecasting,tomoreconsistentreanalyzesproductsand
+5.3. Model limitations,integratedimpactassessmentforothersectors(e.g.,agriculture).
+,
+The limitations in representing irrigation in Earth system,
+,
+modelsdoesnotlieonlyinthepossiblephysicalrepresentations,6.1. Consistency across models and
+,
+discussed before. In fact, the model representation of the,regions
+,
+Earthsystemprocessesthemselvesaffectthecomplexityofthe,
+,
+irrigationparameterizations.,
+,
+,TheinclusionofirrigationinEarthsystemmodelsdoesnot
+Section 3.3.2 already introduced this concept when,
+,
+,always reflect a consistent and realistic process representation
+differentiatingtherepresentationofirrigationaswaterapplied,
+,
+,and/or adequate spatio-temporal scales considerations (see
+at the surface. There, the possibility of irrigation water,
+,
+,Section 4). Especially with respect to the initialization of
+interactingwiththeplantleavescoulddependontheavailability,
+,
+,irrigation, the variety of threshold and/or target values leads
+ofacanopywaterbalanceschemeinthemodelitself.Themodel,
+,
+,to a large variation of irrigation water amounts applied in
+parameterizations can influence not only that, but also the,
+,
+,the different models (see Section 5.1). The approach toward
+possibilityofincludingwaterextractionmethodsmentionedin,
+,
+,more consistent implementations should already start at the
+theprevioussection,thusclosingthewaterbalance.Numerical,
+,
+,differences in the energy partitioning (e.g., Sacks et al., 2009;
+weather prediction models in particular might not have a,
+,
+,Krakaueretal.,2016).Further,itiscrucialfortheprecipitation
+dynamicriverroutingsystemand/oragroundwatertable,e.g.,,
+,
+,feedbackduetotheconvectionrepresentationissuesinmodels
+ICON,WRF-ARWwithNoahlandsurfacemodel(Skamarock,
+,
+,(Prein et al., 2021). Therefore, a shift in paradigm would be
+etal.,2008;Schättleretal.,2018).,
+,
+,prudent, from developing a multitude of parameterizations
+Further,modelswithstaticlanduseandcovermapsarenot,
+,
+,to synthesizing available schemes in a process- and scale-
+going to be able to capture the crop rotations performed and,
+,
+,based approach consistent across the available models. New
+theinteractionbetweenirrigation,landparametersandclimate,,
+,
+,parameterizations and studies should always have a clear
+which has been showed to have a strong impact depending,
+,
+,reasoningfortheirirrigationwateramountestimatesaswellas
+on the region considered (McDermid et al., 2017). Singh,
+,
+,well-motivatedthresholdchoices.Currently,onlytheWeather
+et al. (2018) show how the crop cover management, and not,
+,
+,ResearchandForecasting(WRF-ARW),theCommunityLand
+onlyirrigation,canaffecttheland-atmospherecouplingasthe,8
+,Model(CLM)andtheNASAGISS includeexplicitlyirrigation,
+agriculture mid-latitude areas lies in the energetic transitional,
+,
+,the first two as a parameterization and the latter as a forcing.
+regimes.,
+,
+,Thereisnoknownplanstoincludeirrigationinothermodels
+,thanICON-LAM,intheDETECTproject9.Further,thereisa
+,
+6. Research perspectives,need to properly include the water extraction from the soil in
+,
+,ordertoclosethewaterbudget,whichiscurrentlyavailableonly
+,
+,inCLM.
+,
+Despite the advances in existing literature, several open,
+,
+research questions still exist. For instance, there is large,
+,
+confidence about a cooling effect of irrigation (cf. AR5) but,8 https://simplex.giss.nasa.gov/snapshots/
+,
+the magnitude of this effect is still not certain neither at,9 https://www.lf.uni-bonn.de/en/research/crc-detect
+,
+FrontiersinWater 16,frontiersin.org

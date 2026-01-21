@@ -1,0 +1,319 @@
+0,1
+Valmassoi and Keller,10.3389/frwa.2022.906664
+"perspective,
+the activation is crucial due to the anthropogenic",processes is an innovative research ﬁeld that calls for a trans-
+"nature
+of
+the
+process.
+Spatially,
+the
+irrigation
+activation
+is",disciplinary approach involving atmospheric- and soil-physics
+"driven mainly by invariant ﬁelds,
+such as
+the area equipped","as well
+as
+agro-meteorology
+and
+agronomy. A consistent"
+"for
+irrigation
+or
+the
+crop
+types. With
+respect
+to
+temporal","across-scales
+irrigation framework
+for Earth
+system models"
+"activation, diﬀerent concepts are employed, e.g., ﬁxed diurnal","would
+strongly
+beneﬁt weather
+and
+seasonal-to-subseasonal"
+"irrigation cycle and/or physical thresholds,
+i.e., soil moisture is","forecasts,
+as well
+as new reanalyzes
+and climate prediction."
+falling below a speciﬁc threshold. The irrigation water amount,"In
+this
+regard,
+the
+importance
+of
+irrigation
+in
+the
+Earth"
+"is
+either
+calculated
+from available
+census
+surveys, modeled","system is
+further highlighted by the changing climate and its"
+"dataset or derived from the physical thresholds, as described in","impact on food security,
+as
+sustained by the United Nation"
+Section 3.2.,"Sustainable Development Goals (United Nations, 2014). Thus,"
+"In the existing studies, four diﬀerent approaches on how to","further advances
+in irrigation parameterizations may help to"
+apply the irrigation water to the model are utilized: (i) to the soil,"address past climate uncertainties, as well as to enhance climate"
+"moisture at diﬀerent depths, (ii) to the surface as precipitation","projections,
+thus, providing better estimates of water
+scarcity"
+"before or after the canopy interception, (iii) to the atmospheric","and requirements
+for
+food-production in the light of climate"
+"rain water, or (iv) as a water vapor source. A few studies also use",change and related adaptation and mitigation strategies.
+a data assimilation approach to implicitly include the eﬀects of,
+irrigation.,
+,Author contributions
+"Further
+consideration
+has
+been
+given
+on
+how",
+"parameterizations
+relate
+to
+the
+various
+irrigation
+delivery",
+,"AV:
+conceptualization,
+methodology,
+and
+writing—"
+"methods used in agriculture (summarized in Section 2.1), and",
+,"original
+draft.
+AV
+and
+JK:
+writing—review
+and
+editing."
+"to
+the multiple
+spatio-temporal
+scales
+in the Earth system.",
+,"Both authors
+contributed
+to
+the
+article
+and
+approved
+the"
+While most studies follow an approach to use surface delivery,
+,submitted version.
+"methods or
+sprinklers
+that put
+irrigation water directly onto",
+"or
+below
+the
+canopy,
+one
+parameterization
+(see
+Section",
+"3.3.3)
+is
+suitable
+to
+also
+represent
+the
+interaction
+of
+the",
+"sprinkler water with
+atmospheric
+processes. However,
+the",
+,Funding
+"employed delivery method has
+to be
+adapted to the model’s",
+"spatio-temporal
+scale
+representation
+(see
+Section
+4.2)
+and",
+,"This work
+has
+been
+conducted
+based
+on
+funding
+by"
+"to
+physical
+considerations
+(see
+Section
+4.3). Therefore,
+the",
+,"the
+German
+Federal Ministry
+for Digital
+and
+Transport"
+"multitude
+of
+irrigation
+parameterizations
+in
+literature
+and",
+,"(Grant
+No.
+BMVI/DWD
+4818DWDP5A)
+and
+by
+the"
+"their
+seemingly
+arbitrary
+use
+depending
+on
+the
+scales,
+is",
+,"Deutsche
+Forschungsgemeinschaft
+(DFG, German Research"
+"one of
+the principal
+causes of
+the diﬀerent
+irrigation water",
+,Foundation)—SFB 1502/1-2022—Project No. 450058266.
+"amount
+estimates
+(see
+Section
+5.1)
+and
+the
+corresponding",
+uncertainty.,
+,
+"In
+this
+review, we
+have
+identify
+some
+key
+challenges",Conﬂict of interest
+"and
+opportunities
+for
+future
+developments
+of
+irrigation",
+"parameterizations. These reach from a consistent
+inter-model",The authors declare that the research was conducted in the
+processes representation to a consequent reporting of irrigation,absence of any commercial or ﬁnancial relationships that could
+"amounts
+(including
+standardized
+units,
+e.g., mm s−1),
+to
+a",be construed as a potential conﬂict of interest.
+realistic water extraction implementation that allows for a closed,
+water budget. The proposed approaches would enable a better,
+"process-related estimation of uncertainties across studies, which",Publisher’s note
+"is
+currently not possible. Further,
+they would also allow for",
+"broader investigations of
+the impacts at a climatological
+scale","All
+claims
+expressed
+in
+this
+article
+are
+solely
+those"
+"in the
+context of
+a
+changing
+climate. The
+establishment of","of
+the
+authors
+and
+do
+not
+necessarily
+represent
+those"
+enhanced observational dataset would also be desirable either,"of
+their
+aﬃliated
+organizations,
+or
+those
+of
+the
+publisher,"
+for use in independent evaluation eﬀorts or as a more realistic,"the
+editors
+and
+the
+reviewers. Any
+product
+that may
+be"
+input for the models.,"evaluated
+in
+this
+article,
+or
+claim that may
+be made
+by"
+"In conclusion,
+the inclusion of
+irrigation in Earth system","its manufacturer,
+is
+not
+guaranteed
+or
+endorsed
+by
+the"
+"models
+and
+the
+investigation
+of
+their
+eﬀects
+and
+feedback",publisher.

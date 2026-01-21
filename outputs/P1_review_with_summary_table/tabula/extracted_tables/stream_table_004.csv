@@ -1,0 +1,38 @@
+"a In the supplementary material, Lo and Famiglietti (2013) says that the amount of water is evenly applied in each time step over the growing period (May to October). b (Pei et al., 2016)"
+"report that the irrigation rate is representative of the High Plains farmland, but the information originates from the Kansas Geological Survey (KGS) and from personal communication"
+with farmers.
+"simulations for only a few days. Ozdogan et al. (2006) mention without and with plant water stress, which includes all root-zone"
+that their irrigation rate is derived in a way to keep the soil layers.
+"moisture at saturation, but it is neither mentioned how it is This water calculation allows to investigate the interannual"
+calculated nor where the water is applied to. This approach volumes used and potentially compare them with the estimates
+can include the interannual variability of the water used for available.
+"irrigation, however most of the studies use the amount from"
+a reference year. The Wisser et al. (2010) map can be used to
+"integrate the temporal resolution of the irrigation water amount,"
+but that is done only in the studies employing the simulations by 3.3. Application of irrigation water
+Cook et al. (2015). A reason could be in the limitations of offline
+"irrigation water estimations, discussed later in Section 5.1. Here, we group the existing parameterizations by the model"
+quantity that is directly altered after the conceptualization of
+Figure 1. Understanding where the irrigation water is applied
+3.2.2. Soil-driven irrigation water amount within a numerical model allows to identify the directly affected
+"As previously seen, physical constraints can be used to processes in the Earth system, as well as the efficiency of the"
+"initiate irrigation, and from those the necessary water amount technique. From the literature, irrigation has been assumed"
+"can be calculated starting from the water available to the to affect directly (i) soil moisture at different levels, (ii)"
+"plants (θ ). While Marcella and Eltahir a(2014) propose a precipitation at the surface, (iii) the rain water mixing ratio and"
+method that accounts for explicitly including the porosity in the the (iv) water vapor flux.
+"computation, others rely on the threshold definition itself:"
+∑Z
+"W I = max(θ at,i · h i − θ i · h , 0) i(6) 3.3.1. Irrigation as soil moisture"
+i Most of the available parameterizations see irrigation as a
+"direct modification to the soil moisture, but they use different"
+where θi has to be calculated only for the liquid water content assumptions regarding the parameters. Table 3 groups the
+"to already account for the plant-available water. The maximum parameterizations by the soil moisture quantity they relate to,"
+"function is used in Leng et al. (2013), but not by e.g., Decker the reference value to trigger it and the part of the soil column"
+"et al. (2017), Wu et al. (2018), and Liu et al. (2021). This implies affected. In the following, we describe the parameterizations and"
+that Leng et al. (2013) does not allow for a surplus in one their parameters in more detail.
+"layer to reduce the deficit in another. The different studies also First of all, we highlight how the view of irrigation as direct"
+apply different Z-values to determine how many soil-layers are soil moisture modification (Process D of Figure 1) is widely
+"considered: Leng et al. (2013) and Decker et al. (2017) use all the spread among past as well as recent studies, from Chase et al."
+"layers between the surface and the root-zone, while e.g.,Wu et al. (1999) to Leng et al. (2017). This representation type is used with"
+"(2018) and Liu et al. (2021) only use the first two layers. The drip a wide variety of parameters, affected soil levels as well as several"
+method by Evans and Zaitchik (2008) calculates the irrigation activation threshold usages. The latter is now used to group a

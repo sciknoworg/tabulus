@@ -1,0 +1,88 @@
+0,1
+Map of the area equipped for irrigation by Siebert et al. (2013). Pie charts representing the number of studies that report irrigation water amounts,
+"for each SREX area, divided in global (blue) and regional (orange).",
+"In addition, Figure 2 shows how several
+irrigated regions,","the irrigation water amount at least on an annual bases, model-"
+"such as Western Asia (WAS), Sahara (SAH), Western Africa",based data are available. To date there are several global dataset
+"(WAF) or Southern-East Asia (SEA), are currently not included",that use complex hydrological models to compute the irrigation
+"signiﬁcantly in literature probably due to their small extent, the","(2002), Siebert and
+water
+requirements, e.g., Döll and Siebert"
+lack of available data or a low fraction of irrigated area.,"Döll (2010), Wisser et al. (2010), and Wada et al. (2014). These"
+"It
+should be noted that no study addressed the potential",datasets provide irrigation water amount as output at horizontal
+"impacts of
+irrigation in Central- or
+South-America, despite","resolutions of about 55–110 km, with the exception of Siebert"
+"having areas densely equipped for irrigation (e.g., coastal areas of","and Döll
+(2010)
+at
+about 9 km;
+for more
+information refer"
+"Northern Mexico, Central Chile). This is all the more surprising","to Wada et al.
+(2014).
+It
+should, however, be noted that
+the"
+"as
+their climate conditions and/or
+relevance for
+food security","oﬄine water computation through models has
+limitations
+(cf"
+"marks
+them as
+regions of
+interest
+in the context of changing","(2002) purely rely on
+Section 5.1), and only Döll and Siebert"
+climate and equality.,"observational data as forcing (CRU TS 1.0), while the others use"
+,a combination of the CRU dataset and reanalyzes products.
+,"Enhanced dataset
+together with uncertainty estimates can"
+6.2. New observational datasets,"help
+to
+better
+integrate
+irrigation
+as
+a
+human
+activity
+in"
+,Earth system approaches an reanalyzes especially with respect
+An important limitation on the implementation of irrigation,"to an enhanced representation of
+the
+terrestrial water
+cycle."
+parameterizations and their validation is the lack of appropriate,"Two ﬁeld campaigns
+in the
+recent years have
+addressed the"
+"dataset. This involves several aspects such as the extent of
+the",impact of irrigation on the climate system employing intensive
+"irrigated area in a speciﬁc period, spatial information of the main","observational
+periods
+(IOPs),
+namely GRAINEX10
+(Phillips"
+"irrigation delivery methods, or the yearly/seasonal water amount","et
+al.,
+2022)
+and LIAISE11. LIASE ﬁeld campaign data
+and"
+used for irrigation as well as the time of application.,"review has not been published yet,
+as
+it was undergoing in"
+"In the past, maps of area equipped for irrigation have been",2021. Irrigation water volumes used during GRAINEX were not
+"generated (Siebert et al., 2005, 2013), which highlight
+the area","available due to policy issues in Nebraska (Christopher Phillips,"
+that can be potentially be irrigated. These maps are created based,
+"on census, so they do not have an annual update, and there is",
+"no spatial
+information on the irrigation delivery methods used.","10
+https://www.eol.ucar.edu/ﬁeld_projects/grainex"
+"While there are no observational/census dataset
+that provide","11
+https://liaise.aeris-data.fr/about/"

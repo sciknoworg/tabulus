@@ -1,0 +1,5 @@
+- Library: Tabula
+- PDF: P2_tables_no_review_summary.pdf
+- Attempts:
+  - stream: extracted=0, saved_nonempty=0
+  - lattice: extracted=0, saved_nonempty=0

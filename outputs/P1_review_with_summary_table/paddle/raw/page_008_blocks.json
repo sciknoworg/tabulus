@@ -1,0 +1,3509 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 8,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 21,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.9912211298942566,
+          "poly": [
+            [
+              99,
+              16
+            ],
+            [
+              286,
+              27
+            ],
+            [
+              284,
+              51
+            ],
+            [
+              98,
+              39
+            ]
+          ],
+          "bbox_xyxy": [
+            98,
+            16,
+            286,
+            51
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9933047890663147,
+          "poly": [
+            [
+              1157,
+              19
+            ],
+            [
+              1395,
+              16
+            ],
+            [
+              1395,
+              40
+            ],
+            [
+              1158,
+              43
+            ]
+          ],
+          "bbox_xyxy": [
+            1157,
+            16,
+            1395,
+            43
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Area considered",
+          "confidence": 0.9998249411582947,
+          "poly": [
+            [
+              105,
+              205
+            ],
+            [
+              278,
+              212
+            ],
+            [
+              277,
+              239
+            ],
+            [
+              104,
+              232
+            ]
+          ],
+          "bbox_xyxy": [
+            104,
+            205,
+            278,
+            239
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Irrigation rate (WI mm s−1)",
+          "confidence": 0.9838071465492249,
+          "poly": [
+            [
+              400,
+              216
+            ],
+            [
+              682,
+              208
+            ],
+            [
+              682,
+              239
+            ],
+            [
+              401,
+              247
+            ]
+          ],
+          "bbox_xyxy": [
+            400,
+            208,
+            682,
+            247
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Data source",
+          "confidence": 0.9998952746391296,
+          "poly": [
+            [
+              776,
+              212
+            ],
+            [
+              902,
+              215
+            ],
+            [
+              902,
+              238
+            ],
+            [
+              776,
+              236
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            212,
+            902,
+            238
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "References",
+          "confidence": 0.9999803304672241,
+          "poly": [
+            [
+              1078,
+              213
+            ],
+            [
+              1194,
+              210
+            ],
+            [
+              1194,
+              235
+            ],
+            [
+              1078,
+              237
+            ]
+          ],
+          "bbox_xyxy": [
+            1078,
+            210,
+            1194,
+            237
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": " In the supplementary material, Lo and Famigliett (2013) says that the amount of water is evenly applied in each time step over the growing period (May to October). b (Pei et al., 2016)",
+          "confidence": 0.9182685613632202,
+          "poly": [
+            [
+              106,
+              607
+            ],
+            [
+              1388,
+              603
+            ],
+            [
+              1388,
+              633
+            ],
+            [
+              106,
+              637
+            ]
+          ],
+          "bbox_xyxy": [
+            106,
+            603,
+            1388,
+            637
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "simulations for only a few days. Ozdogan et al. (2006) mention",
+          "confidence": 0.987350583076477,
+          "poly": [
+            [
+              112,
+              717
+            ],
+            [
+              716,
+              717
+            ],
+            [
+              716,
+              741
+            ],
+            [
+              112,
+              741
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            717,
+            716,
+            741
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "without and with plant water stress, which includes all root-zone",
+          "confidence": 0.9930246472358704,
+          "poly": [
+            [
+              770,
+              714
+            ],
+            [
+              1391,
+              710
+            ],
+            [
+              1391,
+              738
+            ],
+            [
+              770,
+              742
+            ]
+          ],
+          "bbox_xyxy": [
+            770,
+            710,
+            1391,
+            742
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "This water calculation allows to investigate the interannual",
+          "confidence": 0.9897734522819519,
+          "poly": [
+            [
+              806,
+              781
+            ],
+            [
+              1393,
+              775
+            ],
+            [
+              1393,
+              805
+            ],
+            [
+              806,
+              811
+            ]
+          ],
+          "bbox_xyxy": [
+            806,
+            775,
+            1393,
+            811
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "3.2.2. Soil-driven irrigation water amount",
+          "confidence": 0.9982549548149109,
+          "poly": [
+            [
+              113,
+              1155
+            ],
+            [
+              636,
+              1152
+            ],
+            [
+              637,
+              1179
+            ],
+            [
+              113,
+              1182
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1152,
+            637,
+            1182
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "the (iv) water vapor flux.",
+          "confidence": 0.9886236190795898,
+          "poly": [
+            [
+              772,
+              1315
+            ],
+            [
+              1013,
+              1312
+            ],
+            [
+              1013,
+              1339
+            ],
+            [
+              772,
+              1342
+            ]
+          ],
+          "bbox_xyxy": [
+            772,
+            1312,
+            1013,
+            1342
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "computation, others rely on the threshold definition itself:",
+          "confidence": 0.9797573089599609,
+          "poly": [
+            [
+              114,
+              1356
+            ],
+            [
+              661,
+              1354
+            ],
+            [
+              661,
+              1381
+            ],
+            [
+              114,
+              1383
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1354,
+            661,
+            1383
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "(6)",
+          "confidence": 0.9986429810523987,
+          "poly": [
+            [
+              684,
+              1449
+            ],
+            [
+              721,
+              1449
+            ],
+            [
+              721,
+              1480
+            ],
+            [
+              684,
+              1480
+            ]
+          ],
+          "bbox_xyxy": [
+            684,
+            1449,
+            721,
+            1480
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "i",
+          "confidence": 0.9970765113830566,
+          "poly": [
+            [
+              322,
+              1485
+            ],
+            [
+              342,
+              1485
+            ],
+            [
+              342,
+              1504
+            ],
+            [
+              322,
+              1504
+            ]
+          ],
+          "bbox_xyxy": [
+            322,
+            1485,
+            342,
+            1504
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "affected. In the following, we describe the parameterizations and",
+          "confidence": 0.9871405959129333,
+          "poly": [
+            [
+              773,
+              1635
+            ],
+            [
+              1402,
+              1640
+            ],
+            [
+              1402,
+              1667
+            ],
+            [
+              773,
+              1662
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            1635,
+            1402,
+            1667
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "method by Evans and Zaitchik (2008) calculates the irrigation",
+          "confidence": 0.9838488101959229,
+          "poly": [
+            [
+              116,
+              1875
+            ],
+            [
+              717,
+              1873
+            ],
+            [
+              717,
+              1900
+            ],
+            [
+              116,
+              1902
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1873,
+            717,
+            1902
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "activation threshold usages. The latter is now used to group a",
+          "confidence": 0.9827560782432556,
+          "poly": [
+            [
+              773,
+              1873
+            ],
+            [
+              1399,
+              1877
+            ],
+            [
+              1399,
+              1900
+            ],
+            [
+              773,
+              1896
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            1873,
+            1399,
+            1900
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "water amount as the difference between the evapotranspiration",
+          "confidence": 0.9959984421730042,
+          "poly": [
+            [
+              115,
+              1911
+            ],
+            [
+              717,
+              1909
+            ],
+            [
+              717,
+              1932
+            ],
+            [
+              115,
+              1935
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1909,
+            717,
+            1935
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "more in depth presentation of the studies.",
+          "confidence": 0.9935614466667175,
+          "poly": [
+            [
+              773,
+              1908
+            ],
+            [
+              1178,
+              1909
+            ],
+            [
+              1178,
+              1933
+            ],
+            [
+              773,
+              1931
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            1908,
+            1178,
+            1933
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "Frontiers in Water",
+          "confidence": 0.996313750743866,
+          "poly": [
+            [
+              113,
+              2053
+            ],
+            [
+              269,
+              2049
+            ],
+            [
+              270,
+              2073
+            ],
+            [
+              113,
+              2077
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            2049,
+            270,
+            2077
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "08",
+          "confidence": 0.9999530911445618,
+          "poly": [
+            [
+              728,
+              2045
+            ],
+            [
+              761,
+              2045
+            ],
+            [
+              761,
+              2076
+            ],
+            [
+              728,
+              2076
+            ]
+          ],
+          "bbox_xyxy": [
+            728,
+            2045,
+            761,
+            2076
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.9998409748077393,
+          "poly": [
+            [
+              1268,
+              2046
+            ],
+            [
+              1398,
+              2048
+            ],
+            [
+              1398,
+              2069
+            ],
+            [
+              1268,
+              2067
+            ]
+          ],
+          "bbox_xyxy": [
+            1268,
+            2046,
+            1398,
+            2069
+          ],
+          "reading_order": 22
+        }
+      ]
+    },
+    {
+      "block_id": 15,
+      "label": "header",
+      "score": 0.8657505512237549,
+      "bbox_xyxy": [
+        137,
+        102,
+        302,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 14,
+      "label": "header",
+      "score": 0.8806270360946655,
+      "bbox_xyxy": [
+        1127,
+        102,
+        1342,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "figure_title",
+      "score": 0.8865363001823425,
+      "bbox_xyxy": [
+        136,
+        228,
+        911,
+        247
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "table",
+      "score": 0.9834826588630676,
+      "bbox_xyxy": [
+        135,
+        264,
+        1344,
+        610
+      ],
+      "lines": [
+        {
+          "text": "California Central Valley",
+          "confidence": 0.9992617964744568,
+          "poly": [
+            [
+              107,
+              271
+            ],
+            [
+              299,
+              280
+            ],
+            [
+              298,
+              304
+            ],
+            [
+              106,
+              296
+            ]
+          ],
+          "bbox_xyxy": [
+            106,
+            271,
+            299,
+            304
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "2.6 · 10−5 a",
+          "confidence": 0.973637580871582,
+          "poly": [
+            [
+              498,
+              280
+            ],
+            [
+              587,
+              275
+            ],
+            [
+              588,
+              300
+            ],
+            [
+              499,
+              305
+            ]
+          ],
+          "bbox_xyxy": [
+            498,
+            275,
+            588,
+            305
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Siebert and Döll, 2010",
+          "confidence": 0.9815589785575867,
+          "poly": [
+            [
+              777,
+              276
+            ],
+            [
+              947,
+              278
+            ],
+            [
+              946,
+              298
+            ],
+            [
+              777,
+              296
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            276,
+            947,
+            298
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Lo and Famiglietti, 2013",
+          "confidence": 0.9772176742553711,
+          "poly": [
+            [
+              1077,
+              278
+            ],
+            [
+              1265,
+              274
+            ],
+            [
+              1265,
+              295
+            ],
+            [
+              1077,
+              299
+            ]
+          ],
+          "bbox_xyxy": [
+            1077,
+            274,
+            1265,
+            299
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "4.8225 · 10−5",
+          "confidence": 0.9855010509490967,
+          "poly": [
+            [
+              492,
+              317
+            ],
+            [
+              593,
+              312
+            ],
+            [
+              594,
+              334
+            ],
+            [
+              493,
+              339
+            ]
+          ],
+          "bbox_xyxy": [
+            492,
+            312,
+            594,
+            339
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Not mentioned",
+          "confidence": 0.983479380607605,
+          "poly": [
+            [
+              778,
+              314
+            ],
+            [
+              894,
+              314
+            ],
+            [
+              894,
+              331
+            ],
+            [
+              778,
+              331
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            314,
+            894,
+            331
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Kueppers et al., 2008",
+          "confidence": 0.9768022894859314,
+          "poly": [
+            [
+              1076,
+              313
+            ],
+            [
+              1239,
+              309
+            ],
+            [
+              1240,
+              333
+            ],
+            [
+              1077,
+              337
+            ]
+          ],
+          "bbox_xyxy": [
+            1076,
+            309,
+            1240,
+            337
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Central Great Plains",
+          "confidence": 0.9888825416564941,
+          "poly": [
+            [
+              108,
+              343
+            ],
+            [
+              269,
+              349
+            ],
+            [
+              268,
+              373
+            ],
+            [
+              107,
+              367
+            ]
+          ],
+          "bbox_xyxy": [
+            107,
+            343,
+            269,
+            373
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "1.4 · 10−3",
+          "confidence": 0.9986578822135925,
+          "poly": [
+            [
+              504,
+              351
+            ],
+            [
+              580,
+              345
+            ],
+            [
+              582,
+              368
+            ],
+            [
+              506,
+              373
+            ]
+          ],
+          "bbox_xyxy": [
+            504,
+            345,
+            582,
+            373
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Not mentioned",
+          "confidence": 0.9787750244140625,
+          "poly": [
+            [
+              778,
+              349
+            ],
+            [
+              894,
+              349
+            ],
+            [
+              894,
+              366
+            ],
+            [
+              778,
+              366
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            349,
+            894,
+            366
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "Lawston et al., 2015",
+          "confidence": 0.990687370300293,
+          "poly": [
+            [
+              1076,
+              348
+            ],
+            [
+              1229,
+              346
+            ],
+            [
+              1230,
+              366
+            ],
+            [
+              1076,
+              368
+            ]
+          ],
+          "bbox_xyxy": [
+            1076,
+            346,
+            1230,
+            368
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Ogalla Aquifer",
+          "confidence": 0.9998308420181274,
+          "poly": [
+            [
+              108,
+              379
+            ],
+            [
+              227,
+              382
+            ],
+            [
+              226,
+              406
+            ],
+            [
+              108,
+              403
+            ]
+          ],
+          "bbox_xyxy": [
+            108,
+            379,
+            227,
+            406
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "2 · 10−4",
+          "confidence": 0.9353975653648376,
+          "poly": [
+            [
+              509,
+              384
+            ],
+            [
+              573,
+              379
+            ],
+            [
+              575,
+              401
+            ],
+            [
+              511,
+              406
+            ]
+          ],
+          "bbox_xyxy": [
+            509,
+            379,
+            575,
+            406
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Not mentioned",
+          "confidence": 0.9988589882850647,
+          "poly": [
+            [
+              777,
+              381
+            ],
+            [
+              895,
+              381
+            ],
+            [
+              895,
+              401
+            ],
+            [
+              777,
+              401
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            381,
+            895,
+            401
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Harding et al., 2015",
+          "confidence": 0.9894649386405945,
+          "poly": [
+            [
+              1077,
+              382
+            ],
+            [
+              1228,
+              380
+            ],
+            [
+              1229,
+              401
+            ],
+            [
+              1077,
+              403
+            ]
+          ],
+          "bbox_xyxy": [
+            1077,
+            380,
+            1229,
+            403
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Continental United States",
+          "confidence": 0.9920241832733154,
+          "poly": [
+            [
+              110,
+              414
+            ],
+            [
+              308,
+              422
+            ],
+            [
+              307,
+              443
+            ],
+            [
+              110,
+              434
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            414,
+            308,
+            443
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "2 · 10−4",
+          "confidence": 0.962388277053833,
+          "poly": [
+            [
+              509,
+              418
+            ],
+            [
+              573,
+              413
+            ],
+            [
+              575,
+              435
+            ],
+            [
+              511,
+              440
+            ]
+          ],
+          "bbox_xyxy": [
+            509,
+            413,
+            575,
+            440
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "Not mentioned",
+          "confidence": 0.9990801215171814,
+          "poly": [
+            [
+              777,
+              416
+            ],
+            [
+              895,
+              416
+            ],
+            [
+              895,
+              436
+            ],
+            [
+              777,
+              436
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            416,
+            895,
+            436
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "Lu et al., 2015",
+          "confidence": 0.9853524565696716,
+          "poly": [
+            [
+              1076,
+              416
+            ],
+            [
+              1185,
+              414
+            ],
+            [
+              1185,
+              435
+            ],
+            [
+              1076,
+              437
+            ]
+          ],
+          "bbox_xyxy": [
+            1076,
+            414,
+            1185,
+            437
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "5 ·10−3",
+          "confidence": 0.8894316554069519,
+          "poly": [
+            [
+              509,
+              452
+            ],
+            [
+              574,
+              448
+            ],
+            [
+              576,
+              470
+            ],
+            [
+              511,
+              474
+            ]
+          ],
+          "bbox_xyxy": [
+            509,
+            448,
+            576,
+            474
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "KGS and communication",
+          "confidence": 0.9978339672088623,
+          "poly": [
+            [
+              778,
+              450
+            ],
+            [
+              972,
+              451
+            ],
+            [
+              972,
+              469
+            ],
+            [
+              778,
+              468
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            450,
+            972,
+            469
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "b",
+          "confidence": 0.8706192374229431,
+          "poly": [
+            [
+              971,
+              453
+            ],
+            [
+              979,
+              453
+            ],
+            [
+              979,
+              462
+            ],
+            [
+              971,
+              462
+            ]
+          ],
+          "bbox_xyxy": [
+            971,
+            453,
+            979,
+            462
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "Pei et al., 2016",
+          "confidence": 0.9766048192977905,
+          "poly": [
+            [
+              1077,
+              450
+            ],
+            [
+              1189,
+              450
+            ],
+            [
+              1189,
+              470
+            ],
+            [
+              1077,
+              470
+            ]
+          ],
+          "bbox_xyxy": [
+            1077,
+            450,
+            1189,
+            470
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "Northern Italy",
+          "confidence": 0.9894956946372986,
+          "poly": [
+            [
+              109,
+              482
+            ],
+            [
+              226,
+              487
+            ],
+            [
+              225,
+              512
+            ],
+            [
+              108,
+              507
+            ]
+          ],
+          "bbox_xyxy": [
+            108,
+            482,
+            226,
+            512
+          ],
+          "reading_order": 23
+        },
+        {
+          "text": "5.2 · 10−4",
+          "confidence": 0.9774459004402161,
+          "poly": [
+            [
+              504,
+              488
+            ],
+            [
+              579,
+              482
+            ],
+            [
+              581,
+              504
+            ],
+            [
+              506,
+              510
+            ]
+          ],
+          "bbox_xyxy": [
+            504,
+            482,
+            581,
+            510
+          ],
+          "reading_order": 24
+        },
+        {
+          "text": "Eurostat",
+          "confidence": 0.999956488609314,
+          "poly": [
+            [
+              778,
+              486
+            ],
+            [
+              845,
+              486
+            ],
+            [
+              845,
+              504
+            ],
+            [
+              778,
+              504
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            486,
+            845,
+            504
+          ],
+          "reading_order": 25
+        },
+        {
+          "text": "Valmassoi et al., 2020c",
+          "confidence": 0.986294150352478,
+          "poly": [
+            [
+              1076,
+              484
+            ],
+            [
+              1249,
+              484
+            ],
+            [
+              1249,
+              504
+            ],
+            [
+              1076,
+              504
+            ]
+          ],
+          "bbox_xyxy": [
+            1076,
+            484,
+            1249,
+            504
+          ],
+          "reading_order": 26
+        },
+        {
+          "text": "Turkey",
+          "confidence": 0.999970018863678,
+          "poly": [
+            [
+              108,
+              514
+            ],
+            [
+              175,
+              518
+            ],
+            [
+              173,
+              547
+            ],
+            [
+              106,
+              543
+            ]
+          ],
+          "bbox_xyxy": [
+            106,
+            514,
+            175,
+            547
+          ],
+          "reading_order": 27
+        },
+        {
+          "text": "1.3 · 10−4",
+          "confidence": 0.9871114492416382,
+          "poly": [
+            [
+              505,
+              521
+            ],
+            [
+              580,
+              516
+            ],
+            [
+              582,
+              538
+            ],
+            [
+              506,
+              543
+            ]
+          ],
+          "bbox_xyxy": [
+            505,
+            516,
+            582,
+            543
+          ],
+          "reading_order": 28
+        },
+        {
+          "text": "Derived",
+          "confidence": 0.9843661189079285,
+          "poly": [
+            [
+              777,
+              518
+            ],
+            [
+              843,
+              518
+            ],
+            [
+              843,
+              538
+            ],
+            [
+              777,
+              538
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            518,
+            843,
+            538
+          ],
+          "reading_order": 29
+        },
+        {
+          "text": "Ozdogan et al., 2006",
+          "confidence": 0.9817115068435669,
+          "poly": [
+            [
+              1075,
+              518
+            ],
+            [
+              1235,
+              515
+            ],
+            [
+              1236,
+              539
+            ],
+            [
+              1075,
+              542
+            ]
+          ],
+          "bbox_xyxy": [
+            1075,
+            515,
+            1236,
+            542
+          ],
+          "reading_order": 30
+        },
+        {
+          "text": "Global",
+          "confidence": 0.9999513030052185,
+          "poly": [
+            [
+              109,
+              551
+            ],
+            [
+              169,
+              551
+            ],
+            [
+              169,
+              577
+            ],
+            [
+              109,
+              577
+            ]
+          ],
+          "bbox_xyxy": [
+            109,
+            551,
+            169,
+            577
+          ],
+          "reading_order": 31
+        },
+        {
+          "text": "Map",
+          "confidence": 0.9998796582221985,
+          "poly": [
+            [
+              521,
+              551
+            ],
+            [
+              566,
+              554
+            ],
+            [
+              564,
+              583
+            ],
+            [
+              519,
+              580
+            ]
+          ],
+          "bbox_xyxy": [
+            519,
+            551,
+            566,
+            583
+          ],
+          "reading_order": 32
+        },
+        {
+          "text": "Wisser et al., 2010",
+          "confidence": 0.9866193532943726,
+          "poly": [
+            [
+              779,
+              552
+            ],
+            [
+              914,
+              552
+            ],
+            [
+              914,
+              572
+            ],
+            [
+              779,
+              572
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            552,
+            914,
+            572
+          ],
+          "reading_order": 33
+        },
+        {
+          "text": "Krakauer et al., 2016",
+          "confidence": 0.9893210530281067,
+          "poly": [
+            [
+              1077,
+              553
+            ],
+            [
+              1235,
+              552
+            ],
+            [
+              1236,
+              572
+            ],
+            [
+              1077,
+              573
+            ]
+          ],
+          "bbox_xyxy": [
+            1077,
+            552,
+            1236,
+            573
+          ],
+          "reading_order": 34
+        }
+      ]
+    },
+    {
+      "block_id": 20,
+      "label": "text",
+      "score": 0.7549455165863037,
+      "bbox_xyxy": [
+        134,
+        636,
+        1343,
+        700
+      ],
+      "lines": [
+        {
+          "text": "report that the irrigation rate is representative of the High Plains farmland, but the information originates from the Kansas Geological Survey (KGS) and from personal communication",
+          "confidence": 0.9759833216667175,
+          "poly": [
+            [
+              108,
+              634
+            ],
+            [
+              1390,
+              629
+            ],
+            [
+              1390,
+              657
+            ],
+            [
+              108,
+              662
+            ]
+          ],
+          "bbox_xyxy": [
+            108,
+            629,
+            1390,
+            662
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "with farmers.",
+          "confidence": 0.9869769811630249,
+          "poly": [
+            [
+              109,
+              659
+            ],
+            [
+              209,
+              662
+            ],
+            [
+              208,
+              684
+            ],
+            [
+              109,
+              681
+            ]
+          ],
+          "bbox_xyxy": [
+            109,
+            659,
+            209,
+            684
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 9,
+      "label": "text",
+      "score": 0.9347573518753052,
+      "bbox_xyxy": [
+        765,
+        732,
+        1343,
+        785
+      ],
+      "lines": [
+        {
+          "text": "layers.",
+          "confidence": 0.999911904335022,
+          "poly": [
+            [
+              768,
+              747
+            ],
+            [
+              839,
+              747
+            ],
+            [
+              839,
+              777
+            ],
+            [
+              768,
+              777
+            ]
+          ],
+          "bbox_xyxy": [
+            768,
+            747,
+            839,
+            777
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.985772430896759,
+      "bbox_xyxy": [
+        134,
+        733,
+        714,
+        1068
+      ],
+      "lines": [
+        {
+          "text": "that their irrigation rate is derived in a way to keep the soil",
+          "confidence": 0.9661755561828613,
+          "poly": [
+            [
+              110,
+              750
+            ],
+            [
+              718,
+              749
+            ],
+            [
+              718,
+              776
+            ],
+            [
+              110,
+              777
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            749,
+            718,
+            777
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "moisture at saturation, but it is neither mentioned how it is",
+          "confidence": 0.9842588305473328,
+          "poly": [
+            [
+              110,
+              785
+            ],
+            [
+              718,
+              782
+            ],
+            [
+              718,
+              809
+            ],
+            [
+              110,
+              812
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            782,
+            718,
+            812
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "calculated nor where the water is applied to. This approach",
+          "confidence": 0.9900422692298889,
+          "poly": [
+            [
+              112,
+              820
+            ],
+            [
+              717,
+              818
+            ],
+            [
+              717,
+              842
+            ],
+            [
+              112,
+              844
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            818,
+            717,
+            844
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "can include the interannual variability of the water used for",
+          "confidence": 0.9810858964920044,
+          "poly": [
+            [
+              111,
+              855
+            ],
+            [
+              718,
+              851
+            ],
+            [
+              718,
+              874
+            ],
+            [
+              111,
+              879
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            851,
+            718,
+            879
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "irrigation, however most of the studies use the amount from",
+          "confidence": 0.9765642285346985,
+          "poly": [
+            [
+              110,
+              887
+            ],
+            [
+              718,
+              881
+            ],
+            [
+              718,
+              908
+            ],
+            [
+              110,
+              913
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            881,
+            718,
+            913
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "a reference year. The Wisser et al. (2010) map can be used to",
+          "confidence": 0.9748929142951965,
+          "poly": [
+            [
+              109,
+              921
+            ],
+            [
+              718,
+              915
+            ],
+            [
+              718,
+              942
+            ],
+            [
+              109,
+              948
+            ]
+          ],
+          "bbox_xyxy": [
+            109,
+            915,
+            718,
+            948
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "integrate the temporal resolution of the irrigation water amount,",
+          "confidence": 0.9759998917579651,
+          "poly": [
+            [
+              109,
+              954
+            ],
+            [
+              717,
+              949
+            ],
+            [
+              717,
+              976
+            ],
+            [
+              109,
+              981
+            ]
+          ],
+          "bbox_xyxy": [
+            109,
+            949,
+            717,
+            981
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "but that is done only in the studies employing the simulations by",
+          "confidence": 0.9821798205375671,
+          "poly": [
+            [
+              109,
+              988
+            ],
+            [
+              717,
+              982
+            ],
+            [
+              717,
+              1009
+            ],
+            [
+              109,
+              1015
+            ]
+          ],
+          "bbox_xyxy": [
+            109,
+            982,
+            717,
+            1015
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Cook et al. (2015). A reason could be in the limitations of offline",
+          "confidence": 0.9832673668861389,
+          "poly": [
+            [
+              111,
+              1021
+            ],
+            [
+              718,
+              1015
+            ],
+            [
+              718,
+              1041
+            ],
+            [
+              111,
+              1047
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            1015,
+            718,
+            1047
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "irrigation water estimations, discussed later in Section 5.1.",
+          "confidence": 0.9732798337936401,
+          "poly": [
+            [
+              110,
+              1056
+            ],
+            [
+              661,
+              1049
+            ],
+            [
+              661,
+              1076
+            ],
+            [
+              110,
+              1083
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            1049,
+            661,
+            1083
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "text",
+      "score": 0.9602826237678528,
+      "bbox_xyxy": [
+        765,
+        795,
+        1344,
+        879
+      ],
+      "lines": [
+        {
+          "text": "volumes used and potentially compare them with the estimates",
+          "confidence": 0.9919406175613403,
+          "poly": [
+            [
+              769,
+              816
+            ],
+            [
+              1394,
+              809
+            ],
+            [
+              1394,
+              840
+            ],
+            [
+              769,
+              847
+            ]
+          ],
+          "bbox_xyxy": [
+            769,
+            809,
+            1394,
+            847
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "available.",
+          "confidence": 0.9998098611831665,
+          "poly": [
+            [
+              770,
+              849
+            ],
+            [
+              865,
+              849
+            ],
+            [
+              865,
+              877
+            ],
+            [
+              770,
+              877
+            ]
+          ],
+          "bbox_xyxy": [
+            770,
+            849,
+            865,
+            877
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 10,
+      "label": "paragraph_title",
+      "score": 0.9133355617523193,
+      "bbox_xyxy": [
+        767,
+        974,
+        1239,
+        1002
+      ],
+      "lines": [
+        {
+          "text": "3.3. Application of irrigation water",
+          "confidence": 0.9977132081985474,
+          "poly": [
+            [
+              771,
+              972
+            ],
+            [
+              1281,
+              971
+            ],
+            [
+              1281,
+              1005
+            ],
+            [
+              771,
+              1006
+            ]
+          ],
+          "bbox_xyxy": [
+            771,
+            971,
+            1281,
+            1006
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9845852255821228,
+      "bbox_xyxy": [
+        764,
+        1041,
+        1344,
+        1314
+      ],
+      "lines": [
+        {
+          "text": "Here, we group the existing parameterizations by the model",
+          "confidence": 0.9894336462020874,
+          "poly": [
+            [
+              808,
+              1048
+            ],
+            [
+              1401,
+              1043
+            ],
+            [
+              1401,
+              1069
+            ],
+            [
+              808,
+              1074
+            ]
+          ],
+          "bbox_xyxy": [
+            808,
+            1043,
+            1401,
+            1074
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "quantity that is directly altered after the conceptualization of",
+          "confidence": 0.984162449836731,
+          "poly": [
+            [
+              771,
+              1082
+            ],
+            [
+              1403,
+              1077
+            ],
+            [
+              1403,
+              1104
+            ],
+            [
+              771,
+              1109
+            ]
+          ],
+          "bbox_xyxy": [
+            771,
+            1077,
+            1403,
+            1109
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Figure 1. Understanding where the irrigation water is applied",
+          "confidence": 0.9746202826499939,
+          "poly": [
+            [
+              773,
+              1116
+            ],
+            [
+              1400,
+              1113
+            ],
+            [
+              1400,
+              1137
+            ],
+            [
+              773,
+              1140
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            1113,
+            1400,
+            1140
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "within a numerical model allows to identify the directly affected",
+          "confidence": 0.9822661280632019,
+          "poly": [
+            [
+              771,
+              1148
+            ],
+            [
+              1401,
+              1146
+            ],
+            [
+              1401,
+              1172
+            ],
+            [
+              771,
+              1174
+            ]
+          ],
+          "bbox_xyxy": [
+            771,
+            1146,
+            1401,
+            1174
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "processes in the Earth system, as well as the efficiency of the",
+          "confidence": 0.9830266237258911,
+          "poly": [
+            [
+              770,
+              1183
+            ],
+            [
+              1402,
+              1178
+            ],
+            [
+              1402,
+              1204
+            ],
+            [
+              770,
+              1209
+            ]
+          ],
+          "bbox_xyxy": [
+            770,
+            1178,
+            1402,
+            1209
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "technique. From the literature, irrigation has been assumed",
+          "confidence": 0.984754741191864,
+          "poly": [
+            [
+              772,
+              1217
+            ],
+            [
+              1401,
+              1212
+            ],
+            [
+              1401,
+              1236
+            ],
+            [
+              772,
+              1241
+            ]
+          ],
+          "bbox_xyxy": [
+            772,
+            1212,
+            1401,
+            1241
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "to affect directly (i) soil moisture at different levels, (ii)",
+          "confidence": 0.9763453602790833,
+          "poly": [
+            [
+              771,
+              1247
+            ],
+            [
+              1400,
+              1244
+            ],
+            [
+              1400,
+              1271
+            ],
+            [
+              771,
+              1274
+            ]
+          ],
+          "bbox_xyxy": [
+            771,
+            1244,
+            1400,
+            1274
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "precipitation at the surface, (iii) the rain water mixing ratio and",
+          "confidence": 0.9899289608001709,
+          "poly": [
+            [
+              770,
+              1281
+            ],
+            [
+              1401,
+              1277
+            ],
+            [
+              1401,
+              1304
+            ],
+            [
+              770,
+              1308
+            ]
+          ],
+          "bbox_xyxy": [
+            770,
+            1277,
+            1401,
+            1308
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 11,
+      "label": "paragraph_title",
+      "score": 0.9029732346534729,
+      "bbox_xyxy": [
+        135,
+        1140,
+        639,
+        1163
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.9776472449302673,
+      "bbox_xyxy": [
+        135,
+        1175,
+        714,
+        1353
+      ],
+      "lines": [
+        {
+          "text": "As previously seen, physical constraints can be used to",
+          "confidence": 0.9845921397209167,
+          "poly": [
+            [
+              150,
+              1191
+            ],
+            [
+              717,
+              1188
+            ],
+            [
+              717,
+              1215
+            ],
+            [
+              151,
+              1219
+            ]
+          ],
+          "bbox_xyxy": [
+            150,
+            1188,
+            717,
+            1219
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "initiate irrigation, and from those the necessary water amount",
+          "confidence": 0.9996293783187866,
+          "poly": [
+            [
+              112,
+              1222
+            ],
+            [
+              719,
+              1221
+            ],
+            [
+              719,
+              1250
+            ],
+            [
+              112,
+              1251
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1221,
+            719,
+            1251
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "can be calculated starting from the water available to the",
+          "confidence": 0.9799701571464539,
+          "poly": [
+            [
+              112,
+              1254
+            ],
+            [
+              719,
+              1252
+            ],
+            [
+              719,
+              1282
+            ],
+            [
+              112,
+              1284
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1252,
+            719,
+            1284
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "plants (θa). While Marcella and Eltahir (2014) propose a",
+          "confidence": 0.9750617146492004,
+          "poly": [
+            [
+              112,
+              1287
+            ],
+            [
+              720,
+              1286
+            ],
+            [
+              720,
+              1317
+            ],
+            [
+              112,
+              1318
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1286,
+            720,
+            1318
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "method that accounts for explicitly including the porosity in the",
+          "confidence": 0.9785737991333008,
+          "poly": [
+            [
+              115,
+              1322
+            ],
+            [
+              718,
+              1322
+            ],
+            [
+              718,
+              1349
+            ],
+            [
+              115,
+              1349
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1322,
+            718,
+            1349
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "formula",
+      "score": 0.9553670883178711,
+      "bbox_xyxy": [
+        265,
+        1390,
+        588,
+        1464
+      ],
+      "lines": [
+        {
+          "text": "Z",
+          "confidence": 0.9959557056427002,
+          "poly": [
+            [
+              320,
+              1422
+            ],
+            [
+              343,
+              1422
+            ],
+            [
+              343,
+              1445
+            ],
+            [
+              320,
+              1445
+            ]
+          ],
+          "bbox_xyxy": [
+            320,
+            1422,
+            343,
+            1445
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "WI = ∑ max(θat,i · hi − θ · hi, 0)",
+          "confidence": 0.920508861541748,
+          "poly": [
+            [
+              247,
+              1443
+            ],
+            [
+              588,
+              1443
+            ],
+            [
+              588,
+              1484
+            ],
+            [
+              247,
+              1484
+            ]
+          ],
+          "bbox_xyxy": [
+            247,
+            1443,
+            588,
+            1484
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 12,
+      "label": "paragraph_title",
+      "score": 0.8942438364028931,
+      "bbox_xyxy": [
+        766,
+        1405,
+        1149,
+        1430
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 18,
+      "label": "formula_number",
+      "score": 0.8519368171691895,
+      "bbox_xyxy": [
+        688,
+        1418,
+        713,
+        1441
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9805227518081665,
+      "bbox_xyxy": [
+        764,
+        1441,
+        1344,
+        1650
+      ],
+      "lines": [
+        {
+          "text": "3.3.1. Irrigation as soil moisture",
+          "confidence": 0.9925463199615479,
+          "poly": [
+            [
+              775,
+              1437
+            ],
+            [
+              1180,
+              1437
+            ],
+            [
+              1180,
+              1464
+            ],
+            [
+              775,
+              1464
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            1437,
+            1180,
+            1464
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Most of the available parameterizations see irrigation as a",
+          "confidence": 0.9964859485626221,
+          "poly": [
+            [
+              811,
+              1472
+            ],
+            [
+              1403,
+              1476
+            ],
+            [
+              1403,
+              1501
+            ],
+            [
+              811,
+              1497
+            ]
+          ],
+          "bbox_xyxy": [
+            811,
+            1472,
+            1403,
+            1501
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "direct modification to the soil moisture, but they use different",
+          "confidence": 0.997495174407959,
+          "poly": [
+            [
+              774,
+              1504
+            ],
+            [
+              1404,
+              1508
+            ],
+            [
+              1404,
+              1535
+            ],
+            [
+              774,
+              1531
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            1504,
+            1404,
+            1535
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "assumptions regarding the parameters. Table 3 groups the",
+          "confidence": 0.9718343019485474,
+          "poly": [
+            [
+              772,
+              1536
+            ],
+            [
+              1404,
+              1539
+            ],
+            [
+              1404,
+              1570
+            ],
+            [
+              772,
+              1566
+            ]
+          ],
+          "bbox_xyxy": [
+            772,
+            1536,
+            1404,
+            1570
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "parameterizations by the soil moisture quantity they relate to,",
+          "confidence": 0.9837119579315186,
+          "poly": [
+            [
+              772,
+              1568
+            ],
+            [
+              1403,
+              1573
+            ],
+            [
+              1403,
+              1603
+            ],
+            [
+              772,
+              1599
+            ]
+          ],
+          "bbox_xyxy": [
+            772,
+            1568,
+            1403,
+            1603
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "the reference value to trigger it and the part of the soil column",
+          "confidence": 0.9928735494613647,
+          "poly": [
+            [
+              773,
+              1602
+            ],
+            [
+              1402,
+              1606
+            ],
+            [
+              1402,
+              1634
+            ],
+            [
+              773,
+              1630
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            1602,
+            1402,
+            1634
+          ],
+          "reading_order": 5
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9868454933166504,
+      "bbox_xyxy": [
+        135,
+        1502,
+        714,
+        1867
+      ],
+      "lines": [
+        {
+          "text": "where θi has to be calculated only for the liquid water content",
+          "confidence": 0.9720091819763184,
+          "poly": [
+            [
+              115,
+              1543
+            ],
+            [
+              719,
+              1542
+            ],
+            [
+              719,
+              1566
+            ],
+            [
+              115,
+              1567
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1542,
+            719,
+            1567
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "to already account for the plant-available water. The maximum",
+          "confidence": 0.9823700785636902,
+          "poly": [
+            [
+              114,
+              1576
+            ],
+            [
+              720,
+              1572
+            ],
+            [
+              720,
+              1599
+            ],
+            [
+              114,
+              1602
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1572,
+            720,
+            1602
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "function is used in Leng et al. (2013), but not by e.g., Decker",
+          "confidence": 0.9972435235977173,
+          "poly": [
+            [
+              114,
+              1607
+            ],
+            [
+              719,
+              1605
+            ],
+            [
+              719,
+              1633
+            ],
+            [
+              114,
+              1635
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1605,
+            719,
+            1635
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "et al. (2017), Wu et al. (2018), and Liu et al. (2021). This implies",
+          "confidence": 0.9618606567382812,
+          "poly": [
+            [
+              114,
+              1639
+            ],
+            [
+              719,
+              1638
+            ],
+            [
+              719,
+              1665
+            ],
+            [
+              114,
+              1666
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1638,
+            719,
+            1666
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "that Leng et al. (2013) does not allow for a surplus in one",
+          "confidence": 0.9862588047981262,
+          "poly": [
+            [
+              114,
+              1674
+            ],
+            [
+              720,
+              1673
+            ],
+            [
+              720,
+              1700
+            ],
+            [
+              114,
+              1701
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1673,
+            720,
+            1701
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "layer to reduce the deficit in another. The different studies also",
+          "confidence": 0.9804971814155579,
+          "poly": [
+            [
+              114,
+              1709
+            ],
+            [
+              718,
+              1705
+            ],
+            [
+              718,
+              1731
+            ],
+            [
+              114,
+              1735
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1705,
+            718,
+            1735
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "apply different Z-values to determine how many soil-layers are",
+          "confidence": 0.974931001663208,
+          "poly": [
+            [
+              116,
+              1744
+            ],
+            [
+              719,
+              1740
+            ],
+            [
+              719,
+              1764
+            ],
+            [
+              116,
+              1768
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1740,
+            719,
+            1768
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "considered: Leng et al. (2013) and Decker et al. (2017) use all the",
+          "confidence": 0.9780576229095459,
+          "poly": [
+            [
+              114,
+              1775
+            ],
+            [
+              719,
+              1771
+            ],
+            [
+              719,
+              1798
+            ],
+            [
+              114,
+              1802
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1771,
+            719,
+            1802
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "layers between the surface and the root-zone, while e.g., Wu et al.",
+          "confidence": 0.9984596371650696,
+          "poly": [
+            [
+              114,
+              1808
+            ],
+            [
+              718,
+              1804
+            ],
+            [
+              718,
+              1831
+            ],
+            [
+              114,
+              1835
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1804,
+            718,
+            1835
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "(2018) and Liu et al. (2021) only use the first two layers. The drip",
+          "confidence": 0.9809222221374512,
+          "poly": [
+            [
+              115,
+              1841
+            ],
+            [
+              717,
+              1838
+            ],
+            [
+              717,
+              1865
+            ],
+            [
+              115,
+              1868
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1838,
+            717,
+            1868
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9806832671165466,
+      "bbox_xyxy": [
+        764,
+        1658,
+        1343,
+        1868
+      ],
+      "lines": [
+        {
+          "text": "their parameters in more detail.",
+          "confidence": 0.9794769883155823,
+          "poly": [
+            [
+              774,
+              1672
+            ],
+            [
+              1079,
+              1671
+            ],
+            [
+              1079,
+              1695
+            ],
+            [
+              774,
+              1696
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            1671,
+            1079,
+            1696
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "First of all, we highlight how the view of irrigation as direct",
+          "confidence": 0.9961407780647278,
+          "poly": [
+            [
+              811,
+              1703
+            ],
+            [
+              1401,
+              1708
+            ],
+            [
+              1401,
+              1734
+            ],
+            [
+              811,
+              1729
+            ]
+          ],
+          "bbox_xyxy": [
+            811,
+            1703,
+            1401,
+            1734
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "soil moisture modification (Process D of Figure 1) is widely",
+          "confidence": 0.9838036894798279,
+          "poly": [
+            [
+              773,
+              1736
+            ],
+            [
+              1401,
+              1741
+            ],
+            [
+              1401,
+              1768
+            ],
+            [
+              773,
+              1763
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            1736,
+            1401,
+            1768
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "spread among past as well as recent studies, from Chase et al.",
+          "confidence": 0.9820888042449951,
+          "poly": [
+            [
+              774,
+              1773
+            ],
+            [
+              1398,
+              1774
+            ],
+            [
+              1398,
+              1798
+            ],
+            [
+              774,
+              1797
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            1773,
+            1398,
+            1798
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "(1999) to Leng et al. (2017). This representation type is used with",
+          "confidence": 0.9810459613800049,
+          "poly": [
+            [
+              774,
+              1805
+            ],
+            [
+              1398,
+              1809
+            ],
+            [
+              1398,
+              1833
+            ],
+            [
+              774,
+              1829
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            1805,
+            1398,
+            1833
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "a wide variety of parameters, affected soil levels as well as several",
+          "confidence": 0.9932958483695984,
+          "poly": [
+            [
+              773,
+              1838
+            ],
+            [
+              1399,
+              1841
+            ],
+            [
+              1399,
+              1865
+            ],
+            [
+              773,
+              1862
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            1838,
+            1399,
+            1865
+          ],
+          "reading_order": 5
+        }
+      ]
+    },
+    {
+      "block_id": 17,
+      "label": "footer",
+      "score": 0.8564375638961792,
+      "bbox_xyxy": [
+        138,
+        1976,
+        278,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 16,
+      "label": "footer",
+      "score": 0.8594288229942322,
+      "bbox_xyxy": [
+        1227,
+        1977,
+        1343,
+        1994
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 19,
+      "label": "number",
+      "score": 0.812292218208313,
+      "bbox_xyxy": [
+        732,
+        1978,
+        752,
+        1993
+      ],
+      "lines": []
+    }
+  ]
+}

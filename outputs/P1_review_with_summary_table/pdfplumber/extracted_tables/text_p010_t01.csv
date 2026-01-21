@@ -1,0 +1,99 @@
+ValmassoiandKeller,,10.3389/frwa.2022.906664
+,,
+TABLE4 Summaryoftheirrigationparameterizationsaswaterappliedtothesurfacewiththedifferentparameter,sused,intheavailablestudies.
+,,
+Thresholdtype Referencevalue CaNopyinteraction References,,
+,,
+Timing Mapa No Sacksetal.,2009;Lee,etal.,20,11;Krakaueretal.,2016
+,,
+Mapaandtemporalvariation No Cooketal.,2015,202,0,
+,,
+5.2·10−4/sensitivity Yes Valmassoietal.,2020a,,
+,,
+5.2·10−4/sensitivity No Valmassoietal.,2020a,,
+,,
+SoilMoistureavailability 0.5 Yes Ozdoganetal.,2009;,Qianet,al.,2013
+,,
+0.2 Yes Peietal.,2014,,
+,,
+0.1 Yes Lawstonetal.,2015,,
+,,
+0.43 Yes Yangetal.,2016,,
+,,
+0.48–0.55 No Wuetal.,2018,,
+,,
+0.5–0.6 Yes Liuetal.,2021,,
+,,
+Calibrated No Lengetal.,2013,,
+,,
+0.7 No Lengetal.,2013,,
+,,
+0.7/Calibrated Yes Lengetal.,2017,,
+,,
+0.7/Calibrated No Lengetal.,2017,,
+,,
+ThethresholdinthetimingreferstotheirrigationwaterdatasetbyWisseretal.(2010)andtheirrigationwaterrate(WI)expressedinmms−1.,,
+,,
+value, Marcella and Eltahir (2014) allow to both conserve the 3.3.2.Irrigationaswater,appli,edatthesurface
+,,
+water balance of the column and to return the water needed Whenirrigationisappliedas,water,atthesurface,themain
+,,
+forirrigationasadiagnostic.Fewstudiesusethresholdvaluesas differencebetweentheparameter,izatrio,nsliesinthederivation
+,,
+fractionofthefieldcapacity,e.g.,50%KanamaruandKanamitsu of the amount used, aside from,the t,hresholds employed. As
+,,
+(2008) or 90% for Sorooshian et al. (2012). Sorooshian et al. can be observed from Table4, t,he pa,rameterizations are also
+,,
+(2012) use Kueppers et al. (2007), Kanamaru and Kanamitsu differentiatedbytheirimpactont,heca,nopywaterbalance.
+,,
+(2008) and Haddeland et al. (2006) to justify the threshold The differentiation is mentio,ned b,ecause some numerical
+,,
+choice.However,Kueppersetal.(2007)donotuseanythreshold modelsdonotincludeacanopyw,aterb,alanceequationintheir
+,,
+andHaddelandetal.(2006)onlymentionthatirrigationstarts land surface scheme, e.g., WRF’,s Rapi,d Update Cycle (RUC)
+,,
+when the evapotranspiration is limited by the soil moisture. (Smirnovaetal.,2016),ortheT,erraL,andSurfacemodelused
+,,
+Whilethethresholdforwaterstressdependsonthecroptype in both COSMO and ICON m,odels,(Schättler et al., 2018).
+,,
+and stage, Brouwer et al. (1985b) suggests that for general Therefore,itisimportanttodiffe,rentia,teirrigationapplication
+,,
+crops it is half the total available water, which is a function that interact with the canopy or,not,,given the availability of
+,,
+of the difference between the field capacity and the wilting canopywaterbalanceschemesin,thenu,mericalmodels.
+,,
+point. Table4highlightshowthepa,ramet,erizationsthatapplythe
+,,
+Another method used in literature to continuously affect water at the surface can be divid,ed in,two different threshold
+,,
+thesoilmoistureisusedbyKueppersetal.(2008)intheDavis types,i.e.,basedonthetimingan,dthes,oilmoistureavailability.
+,,
+Regional Climate Model (DRCM). There, the authors add the The first threshold uses a-pr,iori w,ater estimations for the
+watertothesurfacesoilmoistureatauniformrateof4.8225· application,eithercomingfromt,heWi,sseretal.(2010)dataset
+,,
+−5mms −1forallthetimestepsinthesimulations.
+10 or county-based estimates. Sack,s et,al. (2009), Cook et al.
+,,
+Studiesthatemploythissoilmoistureavailabilitythreshold (2015, 2020), and Krakauer et,al. (2,016) also added the a-
+,,
+typedonotnecessarilyapplytheirrigationwatertoresetthesoil prioriirrigationvaluesasrain-rat,esalb,eitbypassingthecanopy
+,,
+moisturetothethresholdvalue.Sorooshianetal.(2011)useit interception. The map used by,Sacks,et al. (2009), and thus
+,,
+onlytotriggerirrigationandthesoilmoistureisincreasedusing by Lee et al. (2011), to determ,ine th,e irrigation amount is
+,,
+thedeterminedirrigationratesuntilitreachesthefieldcapacity. invariant in their simulation, w,hile C,ook et al. (2015, 2020)
+,,
+On the other hand, Leng et al. (2017) apply the irrigation andKrakaueretal.(2016)usethe,same,reconstructedirrigation
+,,
+wateramountcalculatedfromEquation(6)toallroot-zonesoil rate from Wisser et al. (2010),, but,for the periods 1901–
+,,
+layers directly. There the threshold level for the irrigation is 2002 and 2000, respectively. Val,masso,i et al. (2020a) instead
+,,
+calculated using Equation (4), and a Firr parameter is used to useestimatescomingfromtheE,urosta,tcensusdata(Eurostat,
+tunetheparameterizationforeachadministrativeregionwithin 2013),andthesensitivityisperfo,rmed,bychangingthenumber
+,,
+thedomainbyemployingtheSiebertandDöll(2010)irrigation of consecutive hours (hI) with,the d,aily amount being kept
+waterusemap. constant.,,
+,,
+FrontiersinWater 10,,frontiersin.org

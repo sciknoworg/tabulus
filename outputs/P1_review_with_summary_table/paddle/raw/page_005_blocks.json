@@ -1,0 +1,3534 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 5,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 16,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.9726487398147583,
+          "poly": [
+            [
+              102,
+              21
+            ],
+            [
+              290,
+              32
+            ],
+            [
+              288,
+              56
+            ],
+            [
+              101,
+              44
+            ]
+          ],
+          "bbox_xyxy": [
+            101,
+            21,
+            290,
+            56
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9998125433921814,
+          "poly": [
+            [
+              1162,
+              23
+            ],
+            [
+              1409,
+              15
+            ],
+            [
+              1410,
+              39
+            ],
+            [
+              1163,
+              47
+            ]
+          ],
+          "bbox_xyxy": [
+            1162,
+            15,
+            1410,
+            47
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Area covered",
+          "confidence": 0.9872460961341858,
+          "poly": [
+            [
+              638,
+              214
+            ],
+            [
+              776,
+              210
+            ],
+            [
+              776,
+              235
+            ],
+            [
+              639,
+              239
+            ]
+          ],
+          "bbox_xyxy": [
+            638,
+            210,
+            776,
+            239
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Resolution",
+          "confidence": 0.9999702572822571,
+          "poly": [
+            [
+              814,
+              211
+            ],
+            [
+              932,
+              208
+            ],
+            [
+              933,
+              233
+            ],
+            [
+              814,
+              235
+            ]
+          ],
+          "bbox_xyxy": [
+            814,
+            208,
+            933,
+            235
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "References",
+          "confidence": 0.9999764561653137,
+          "poly": [
+            [
+              972,
+              210
+            ],
+            [
+              1091,
+              207
+            ],
+            [
+              1091,
+              231
+            ],
+            [
+              973,
+              233
+            ]
+          ],
+          "bbox_xyxy": [
+            972,
+            207,
+            1091,
+            233
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "-",
+          "confidence": 0.9994874000549316,
+          "poly": [
+            [
+              113,
+              322
+            ],
+            [
+              125,
+              326
+            ],
+            [
+              120,
+              340
+            ],
+            [
+              108,
+              336
+            ]
+          ],
+          "bbox_xyxy": [
+            108,
+            322,
+            125,
+            340
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "(iii) physical time-varying thresholds, or a combination of any",
+          "confidence": 0.9945958256721497,
+          "poly": [
+            [
+              114,
+              538
+            ],
+            [
+              720,
+              531
+            ],
+            [
+              720,
+              559
+            ],
+            [
+              114,
+              565
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            531,
+            720,
+            565
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "of the irrigated land within a grid cell. The first of these",
+          "confidence": 0.9768030047416687,
+          "poly": [
+            [
+              774,
+              530
+            ],
+            [
+              1408,
+              523
+            ],
+            [
+              1408,
+              549
+            ],
+            [
+              774,
+              556
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            523,
+            1408,
+            556
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "3.1.1. Spatial dimension",
+          "confidence": 0.9996315836906433,
+          "poly": [
+            [
+              114,
+              1205
+            ],
+            [
+              415,
+              1200
+            ],
+            [
+              415,
+              1227
+            ],
+            [
+              114,
+              1232
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1200,
+            415,
+            1232
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "combines the national level census data of agricultural water",
+          "confidence": 0.9784355759620667,
+          "poly": [
+            [
+              114,
+              1872
+            ],
+            [
+              719,
+              1871
+            ],
+            [
+              719,
+              1898
+            ],
+            [
+              114,
+              1899
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1871,
+            719,
+            1899
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "to the Community Land Model (CLM, v4.5). These data can be",
+          "confidence": 0.9930020570755005,
+          "poly": [
+            [
+              775,
+              1869
+            ],
+            [
+              1406,
+              1870
+            ],
+            [
+              1406,
+              1894
+            ],
+            [
+              775,
+              1893
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            1869,
+            1406,
+            1894
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "usage for areas equipped for irrigation, giving the percentage",
+          "confidence": 0.9931797385215759,
+          "poly": [
+            [
+              116,
+              1909
+            ],
+            [
+              717,
+              1909
+            ],
+            [
+              717,
+              1932
+            ],
+            [
+              116,
+              1932
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1909,
+            717,
+            1932
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "used to determine the area fraction within a grid cell that is of",
+          "confidence": 0.9851861596107483,
+          "poly": [
+            [
+              776,
+              1904
+            ],
+            [
+              1408,
+              1904
+            ],
+            [
+              1408,
+              1928
+            ],
+            [
+              776,
+              1928
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1904,
+            1408,
+            1928
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Frontiers in Water",
+          "confidence": 0.9884325861930847,
+          "poly": [
+            [
+              112,
+              2052
+            ],
+            [
+              269,
+              2046
+            ],
+            [
+              270,
+              2070
+            ],
+            [
+              113,
+              2076
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            2046,
+            270,
+            2076
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "05",
+          "confidence": 0.999965488910675,
+          "poly": [
+            [
+              730,
+              2045
+            ],
+            [
+              762,
+              2045
+            ],
+            [
+              762,
+              2075
+            ],
+            [
+              730,
+              2075
+            ]
+          ],
+          "bbox_xyxy": [
+            730,
+            2045,
+            762,
+            2075
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.9999037384986877,
+          "poly": [
+            [
+              1275,
+              2041
+            ],
+            [
+              1405,
+              2044
+            ],
+            [
+              1404,
+              2065
+            ],
+            [
+              1274,
+              2062
+            ]
+          ],
+          "bbox_xyxy": [
+            1274,
+            2041,
+            1405,
+            2065
+          ],
+          "reading_order": 15
+        }
+      ]
+    },
+    {
+      "block_id": 12,
+      "label": "header",
+      "score": 0.8697012662887573,
+      "bbox_xyxy": [
+        137,
+        102,
+        302,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 11,
+      "label": "header",
+      "score": 0.8807819485664368,
+      "bbox_xyxy": [
+        1127,
+        102,
+        1342,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 10,
+      "label": "figure_title",
+      "score": 0.8875822424888611,
+      "bbox_xyxy": [
+        136,
+        227,
+        1055,
+        247
+      ],
+      "lines": [
+        {
+          "text": "Dataset name",
+          "confidence": 0.999664306640625,
+          "poly": [
+            [
+              108,
+              212
+            ],
+            [
+              254,
+              218
+            ],
+            [
+              253,
+              242
+            ],
+            [
+              107,
+              236
+            ]
+          ],
+          "bbox_xyxy": [
+            107,
+            212,
+            254,
+            242
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Variables",
+          "confidence": 0.9999803900718689,
+          "poly": [
+            [
+              383,
+              215
+            ],
+            [
+              481,
+              211
+            ],
+            [
+              482,
+              239
+            ],
+            [
+              384,
+              243
+            ]
+          ],
+          "bbox_xyxy": [
+            383,
+            211,
+            482,
+            243
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "table",
+      "score": 0.9747431874275208,
+      "bbox_xyxy": [
+        136,
+        264,
+        1345,
+        495
+      ],
+      "lines": [
+        {
+          "text": "Global Map of Irrigation Areas",
+          "confidence": 0.9884580969810486,
+          "poly": [
+            [
+              111,
+              280
+            ],
+            [
+              345,
+              284
+            ],
+            [
+              344,
+              305
+            ],
+            [
+              111,
+              301
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            280,
+            345,
+            305
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Area equipped for irrigation",
+          "confidence": 0.9978453516960144,
+          "poly": [
+            [
+              384,
+              281
+            ],
+            [
+              597,
+              279
+            ],
+            [
+              597,
+              300
+            ],
+            [
+              384,
+              302
+            ]
+          ],
+          "bbox_xyxy": [
+            384,
+            279,
+            597,
+            302
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Global",
+          "confidence": 0.9999460577964783,
+          "poly": [
+            [
+              636,
+              276
+            ],
+            [
+              695,
+              273
+            ],
+            [
+              696,
+              299
+            ],
+            [
+              637,
+              301
+            ]
+          ],
+          "bbox_xyxy": [
+            636,
+            273,
+            696,
+            301
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "50",
+          "confidence": 0.9993377923965454,
+          "poly": [
+            [
+              858,
+              271
+            ],
+            [
+              886,
+              271
+            ],
+            [
+              886,
+              298
+            ],
+            [
+              858,
+              298
+            ]
+          ],
+          "bbox_xyxy": [
+            858,
+            271,
+            886,
+            298
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Siebert et al., 2005",
+          "confidence": 0.9823412895202637,
+          "poly": [
+            [
+              973,
+              274
+            ],
+            [
+              1116,
+              272
+            ],
+            [
+              1116,
+              293
+            ],
+            [
+              973,
+              295
+            ]
+          ],
+          "bbox_xyxy": [
+            973,
+            272,
+            1116,
+            295
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Area equipped for irrigation",
+          "confidence": 0.9920972585678101,
+          "poly": [
+            [
+              385,
+              317
+            ],
+            [
+              598,
+              314
+            ],
+            [
+              598,
+              335
+            ],
+            [
+              385,
+              338
+            ]
+          ],
+          "bbox_xyxy": [
+            385,
+            314,
+            598,
+            338
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Global",
+          "confidence": 0.999974250793457,
+          "poly": [
+            [
+              638,
+              310
+            ],
+            [
+              696,
+              310
+            ],
+            [
+              696,
+              335
+            ],
+            [
+              638,
+              335
+            ]
+          ],
+          "bbox_xyxy": [
+            638,
+            310,
+            696,
+            335
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "0.08330",
+          "confidence": 0.9707094430923462,
+          "poly": [
+            [
+              839,
+              307
+            ],
+            [
+              905,
+              305
+            ],
+            [
+              906,
+              330
+            ],
+            [
+              840,
+              332
+            ]
+          ],
+          "bbox_xyxy": [
+            839,
+            305,
+            906,
+            332
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Siebert et al., 2013",
+          "confidence": 0.9952378273010254,
+          "poly": [
+            [
+              973,
+              309
+            ],
+            [
+              1116,
+              307
+            ],
+            [
+              1116,
+              327
+            ],
+            [
+              973,
+              329
+            ]
+          ],
+          "bbox_xyxy": [
+            973,
+            307,
+            1116,
+            329
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "MIRCA2000",
+          "confidence": 0.9999487996101379,
+          "poly": [
+            [
+              111,
+              350
+            ],
+            [
+              213,
+              352
+            ],
+            [
+              213,
+              374
+            ],
+            [
+              111,
+              372
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            350,
+            213,
+            374
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "26 irrigated/ rainfed crops",
+          "confidence": 0.9951398372650146,
+          "poly": [
+            [
+              385,
+              351
+            ],
+            [
+              582,
+              348
+            ],
+            [
+              582,
+              369
+            ],
+            [
+              385,
+              372
+            ]
+          ],
+          "bbox_xyxy": [
+            385,
+            348,
+            582,
+            372
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Global",
+          "confidence": 0.9999475479125977,
+          "poly": [
+            [
+              636,
+              344
+            ],
+            [
+              695,
+              342
+            ],
+            [
+              696,
+              367
+            ],
+            [
+              637,
+              369
+            ]
+          ],
+          "bbox_xyxy": [
+            636,
+            342,
+            696,
+            369
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "0.08330",
+          "confidence": 0.9855879545211792,
+          "poly": [
+            [
+              838,
+              341
+            ],
+            [
+              905,
+              339
+            ],
+            [
+              906,
+              364
+            ],
+            [
+              839,
+              366
+            ]
+          ],
+          "bbox_xyxy": [
+            838,
+            339,
+            906,
+            366
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Portmann et al., 2010",
+          "confidence": 0.9967818260192871,
+          "poly": [
+            [
+              973,
+              343
+            ],
+            [
+              1141,
+              341
+            ],
+            [
+              1142,
+              361
+            ],
+            [
+              973,
+              363
+            ]
+          ],
+          "bbox_xyxy": [
+            973,
+            341,
+            1142,
+            363
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "MODIS-based map",
+          "confidence": 0.9881202578544617,
+          "poly": [
+            [
+              111,
+              385
+            ],
+            [
+              262,
+              389
+            ],
+            [
+              261,
+              413
+            ],
+            [
+              111,
+              409
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            385,
+            262,
+            413
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Irrigated area",
+          "confidence": 0.94328373670578,
+          "poly": [
+            [
+              383,
+              385
+            ],
+            [
+              492,
+              383
+            ],
+            [
+              492,
+              408
+            ],
+            [
+              383,
+              410
+            ]
+          ],
+          "bbox_xyxy": [
+            383,
+            383,
+            492,
+            410
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "Continental US",
+          "confidence": 0.9997332692146301,
+          "poly": [
+            [
+              638,
+              382
+            ],
+            [
+              759,
+              378
+            ],
+            [
+              760,
+              399
+            ],
+            [
+              639,
+              403
+            ]
+          ],
+          "bbox_xyxy": [
+            638,
+            378,
+            760,
+            403
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "500 m",
+          "confidence": 0.989189624786377,
+          "poly": [
+            [
+              845,
+              378
+            ],
+            [
+              901,
+              378
+            ],
+            [
+              901,
+              400
+            ],
+            [
+              845,
+              400
+            ]
+          ],
+          "bbox_xyxy": [
+            845,
+            378,
+            901,
+            400
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "Ozdogan and Gutman, 2008",
+          "confidence": 0.9882546067237854,
+          "poly": [
+            [
+              973,
+              377
+            ],
+            [
+              1195,
+              373
+            ],
+            [
+              1195,
+              397
+            ],
+            [
+              974,
+              401
+            ]
+          ],
+          "bbox_xyxy": [
+            973,
+            373,
+            1195,
+            401
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "MIrAD-US",
+          "confidence": 0.9994886517524719,
+          "poly": [
+            [
+              111,
+              421
+            ],
+            [
+              204,
+              423
+            ],
+            [
+              204,
+              445
+            ],
+            [
+              111,
+              443
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            421,
+            204,
+            445
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "Irrigated area",
+          "confidence": 0.9908116459846497,
+          "poly": [
+            [
+              382,
+              420
+            ],
+            [
+              492,
+              417
+            ],
+            [
+              492,
+              442
+            ],
+            [
+              383,
+              445
+            ]
+          ],
+          "bbox_xyxy": [
+            382,
+            417,
+            492,
+            445
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "Continental US",
+          "confidence": 0.9755758047103882,
+          "poly": [
+            [
+              639,
+              416
+            ],
+            [
+              759,
+              413
+            ],
+            [
+              760,
+              434
+            ],
+            [
+              640,
+              437
+            ]
+          ],
+          "bbox_xyxy": [
+            639,
+            413,
+            760,
+            437
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "250 m",
+          "confidence": 0.9932451248168945,
+          "poly": [
+            [
+              844,
+              411
+            ],
+            [
+              902,
+              411
+            ],
+            [
+              902,
+              436
+            ],
+            [
+              844,
+              436
+            ]
+          ],
+          "bbox_xyxy": [
+            844,
+            411,
+            902,
+            436
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "Pervez and Brown, 2010; Brown and Pervez, 2014",
+          "confidence": 0.9910195469856262,
+          "poly": [
+            [
+              973,
+              412
+            ],
+            [
+              1359,
+              408
+            ],
+            [
+              1359,
+              428
+            ],
+            [
+              973,
+              432
+            ]
+          ],
+          "bbox_xyxy": [
+            973,
+            408,
+            1359,
+            432
+          ],
+          "reading_order": 23
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9878911972045898,
+      "bbox_xyxy": [
+        763,
+        565,
+        1345,
+        1524
+      ],
+      "lines": [
+        {
+          "text": "dataset had a spatial resolution of 5o (Siebert et al., 2005),",
+          "confidence": 0.9723339676856995,
+          "poly": [
+            [
+              775,
+              562
+            ],
+            [
+              1407,
+              556
+            ],
+            [
+              1407,
+              582
+            ],
+            [
+              775,
+              588
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            556,
+            1407,
+            588
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "with the newest at a 0.0833° resolution (around 9 km at mid-",
+          "confidence": 0.978262186050415,
+          "poly": [
+            [
+              774,
+              596
+            ],
+            [
+              1406,
+              590
+            ],
+            [
+              1406,
+              616
+            ],
+            [
+              774,
+              622
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            590,
+            1406,
+            622
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "latitudes, Siebert et al., 2013). While Siebert and Döll (2010)",
+          "confidence": 0.9908595085144043,
+          "poly": [
+            [
+              774,
+              631
+            ],
+            [
+              1405,
+              625
+            ],
+            [
+              1405,
+              649
+            ],
+            [
+              774,
+              655
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            625,
+            1405,
+            655
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "provide the area equipped for irrigation, Portmann et al. (2010)",
+          "confidence": 0.9934213161468506,
+          "poly": [
+            [
+              773,
+              663
+            ],
+            [
+              1407,
+              658
+            ],
+            [
+              1407,
+              685
+            ],
+            [
+              773,
+              690
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            658,
+            1407,
+            690
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "made the MIRCA2000 dataset of monthly distribution fields",
+          "confidence": 0.9853043556213379,
+          "poly": [
+            [
+              774,
+              694
+            ],
+            [
+              1408,
+              691
+            ],
+            [
+              1408,
+              718
+            ],
+            [
+              774,
+              721
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            691,
+            1408,
+            721
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "of the irrigation/rainfed agricultural area available, divided in",
+          "confidence": 0.9985312819480896,
+          "poly": [
+            [
+              774,
+              729
+            ],
+            [
+              1408,
+              726
+            ],
+            [
+              1408,
+              754
+            ],
+            [
+              774,
+              757
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            726,
+            1408,
+            757
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "26 classes also at a spatial resolution of 0.0833° representative",
+          "confidence": 0.9883691668510437,
+          "poly": [
+            [
+              774,
+              764
+            ],
+            [
+              1408,
+              761
+            ],
+            [
+              1408,
+              787
+            ],
+            [
+              774,
+              790
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            761,
+            1408,
+            790
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "for the time period 1998-2002. The dataset further includes",
+          "confidence": 0.9869024753570557,
+          "poly": [
+            [
+              774,
+              797
+            ],
+            [
+              1408,
+              793
+            ],
+            [
+              1408,
+              820
+            ],
+            [
+              774,
+              824
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            793,
+            1408,
+            824
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "spatial information about multi-cropping agricultural land as",
+          "confidence": 0.9961996078491211,
+          "poly": [
+            [
+              774,
+              832
+            ],
+            [
+              1408,
+              827
+            ],
+            [
+              1408,
+              854
+            ],
+            [
+              774,
+              859
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            827,
+            1408,
+            859
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "well as irrigation calendars. MIRCA200o has been used in",
+          "confidence": 0.981952965259552,
+          "poly": [
+            [
+              774,
+              865
+            ],
+            [
+              1408,
+              859
+            ],
+            [
+              1408,
+              885
+            ],
+            [
+              774,
+              891
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            859,
+            1408,
+            891
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "multiple studies, e.g., Leng et al. (2017), Cheng et al. (2021),",
+          "confidence": 0.9833682775497437,
+          "poly": [
+            [
+              775,
+              899
+            ],
+            [
+              1408,
+              893
+            ],
+            [
+              1408,
+              920
+            ],
+            [
+              775,
+              925
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            893,
+            1408,
+            925
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "and Liu et al. (2021). For the continental United States, two",
+          "confidence": 0.9948956966400146,
+          "poly": [
+            [
+              775,
+              931
+            ],
+            [
+              1409,
+              927
+            ],
+            [
+              1409,
+              953
+            ],
+            [
+              775,
+              957
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            927,
+            1409,
+            957
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "other datasets of irrigated areas are available at higher resolution,",
+          "confidence": 0.9786527156829834,
+          "poly": [
+            [
+              775,
+              966
+            ],
+            [
+              1409,
+              962
+            ],
+            [
+              1409,
+              988
+            ],
+            [
+              775,
+              992
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            962,
+            1409,
+            992
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "namely (i) Ozdogan and Gutman (2008) at ~500 meters",
+          "confidence": 0.9786322116851807,
+          "poly": [
+            [
+              774,
+              1001
+            ],
+            [
+              1411,
+              994
+            ],
+            [
+              1411,
+              1021
+            ],
+            [
+              774,
+              1028
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            994,
+            1411,
+            1028
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "resolution and (ii) the Irrigated Agriculture Dataset (MIrAD-",
+          "confidence": 0.9898801445960999,
+          "poly": [
+            [
+              774,
+              1034
+            ],
+            [
+              1410,
+              1028
+            ],
+            [
+              1410,
+              1055
+            ],
+            [
+              774,
+              1061
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            1028,
+            1410,
+            1061
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "US) developed by Pervez and Brown (2010) and Brown and",
+          "confidence": 0.9812071323394775,
+          "poly": [
+            [
+              775,
+              1069
+            ],
+            [
+              1411,
+              1063
+            ],
+            [
+              1411,
+              1087
+            ],
+            [
+              775,
+              1093
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            1063,
+            1411,
+            1093
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "Pervez (2014) at 250 meters. Both datasets are based on MODIS",
+          "confidence": 0.9879407286643982,
+          "poly": [
+            [
+              775,
+              1103
+            ],
+            [
+              1411,
+              1098
+            ],
+            [
+              1411,
+              1121
+            ],
+            [
+              775,
+              1126
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            1098,
+            1411,
+            1126
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "measurements and agricultural census maps. While the former",
+          "confidence": 0.9777311086654663,
+          "poly": [
+            [
+              776,
+              1137
+            ],
+            [
+              1412,
+              1132
+            ],
+            [
+              1412,
+              1156
+            ],
+            [
+              776,
+              1161
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1132,
+            1412,
+            1161
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "combines also climatological indexes and supervised decision-",
+          "confidence": 0.984684407711029,
+          "poly": [
+            [
+              776,
+              1170
+            ],
+            [
+              1412,
+              1166
+            ],
+            [
+              1412,
+              1189
+            ],
+            [
+              776,
+              1193
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1166,
+            1412,
+            1193
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "based classification algorithm, the latter uses only vegetation",
+          "confidence": 0.9932133555412292,
+          "poly": [
+            [
+              776,
+              1202
+            ],
+            [
+              1412,
+              1200
+            ],
+            [
+              1412,
+              1223
+            ],
+            [
+              776,
+              1226
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1200,
+            1412,
+            1226
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "considerations as well as county-level census data. MIrAD-US",
+          "confidence": 0.989669919013977,
+          "poly": [
+            [
+              776,
+              1237
+            ],
+            [
+              1413,
+              1232
+            ],
+            [
+              1413,
+              1256
+            ],
+            [
+              776,
+              1260
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1232,
+            1413,
+            1260
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "also provides temporal information on changes of irrigated land",
+          "confidence": 0.994424045085907,
+          "poly": [
+            [
+              777,
+              1270
+            ],
+            [
+              1413,
+              1266
+            ],
+            [
+              1413,
+              1290
+            ],
+            [
+              777,
+              1294
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1266,
+            1413,
+            1294
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "and is updated every 5 years (Brown and Pervez, 2014). While",
+          "confidence": 0.9791484475135803,
+          "poly": [
+            [
+              777,
+              1303
+            ],
+            [
+              1413,
+              1299
+            ],
+            [
+              1413,
+              1323
+            ],
+            [
+              777,
+              1327
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1299,
+            1413,
+            1327
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "the dataset ofOzdogan and Gutman (2008) has been used by",
+          "confidence": 0.9834007620811462,
+          "poly": [
+            [
+              777,
+              1334
+            ],
+            [
+              1414,
+              1332
+            ],
+            [
+              1414,
+              1359
+            ],
+            [
+              777,
+              1361
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1332,
+            1414,
+            1361
+          ],
+          "reading_order": 23
+        },
+        {
+          "text": "Ozdogan et al. (2009), Leng et al. (2013), Qian et al. (2013),",
+          "confidence": 0.9765720367431641,
+          "poly": [
+            [
+              778,
+              1367
+            ],
+            [
+              1413,
+              1364
+            ],
+            [
+              1413,
+              1392
+            ],
+            [
+              778,
+              1395
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1364,
+            1413,
+            1395
+          ],
+          "reading_order": 24
+        },
+        {
+          "text": "and Harding et al. (2015), MIrAD-US was employed in, e.g., Pei",
+          "confidence": 0.9951211214065552,
+          "poly": [
+            [
+              778,
+              1401
+            ],
+            [
+              1415,
+              1399
+            ],
+            [
+              1415,
+              1426
+            ],
+            [
+              778,
+              1428
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1399,
+            1415,
+            1428
+          ],
+          "reading_order": 25
+        },
+        {
+          "text": "et al. (2016). While the previously mentioned dataset have been",
+          "confidence": 0.9820544719696045,
+          "poly": [
+            [
+              778,
+              1434
+            ],
+            [
+              1414,
+              1432
+            ],
+            [
+              1414,
+              1459
+            ],
+            [
+              778,
+              1461
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1432,
+            1414,
+            1461
+          ],
+          "reading_order": 26
+        },
+        {
+          "text": "widely used across modeling studies, it is worth to mention that",
+          "confidence": 0.9888203740119934,
+          "poly": [
+            [
+              778,
+              1467
+            ],
+            [
+              1415,
+              1466
+            ],
+            [
+              1415,
+              1493
+            ],
+            [
+              778,
+              1494
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1466,
+            1415,
+            1494
+          ],
+          "reading_order": 27
+        },
+        {
+          "text": "they are not the only ones, e.g., Salmon et al. (2015). However,",
+          "confidence": 0.9799253940582275,
+          "poly": [
+            [
+              777,
+              1499
+            ],
+            [
+              1414,
+              1501
+            ],
+            [
+              1414,
+              1528
+            ],
+            [
+              777,
+              1526
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1499,
+            1414,
+            1528
+          ],
+          "reading_order": 28
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "text",
+      "score": 0.9434117078781128,
+      "bbox_xyxy": [
+        135,
+        566,
+        714,
+        618
+      ],
+      "lines": [
+        {
+          "text": "of these.",
+          "confidence": 0.997955858707428,
+          "poly": [
+            [
+              112,
+              568
+            ],
+            [
+              198,
+              568
+            ],
+            [
+              198,
+              596
+            ],
+            [
+              112,
+              596
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            568,
+            198,
+            596
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Then, we will detail the existing parameterization",
+          "confidence": 0.9862586259841919,
+          "poly": [
+            [
+              149,
+              601
+            ],
+            [
+              720,
+              598
+            ],
+            [
+              720,
+              626
+            ],
+            [
+              150,
+              629
+            ]
+          ],
+          "bbox_xyxy": [
+            149,
+            598,
+            720,
+            629
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9826250076293945,
+      "bbox_xyxy": [
+        135,
+        628,
+        714,
+        868
+      ],
+      "lines": [
+        {
+          "text": "approaches. These can be divided into four groups distinguished",
+          "confidence": 0.9809643030166626,
+          "poly": [
+            [
+              113,
+              636
+            ],
+            [
+              720,
+              631
+            ],
+            [
+              720,
+              658
+            ],
+            [
+              113,
+              663
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            631,
+            720,
+            663
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "by the model quantity that is directly affected by the irrigation",
+          "confidence": 0.9802583456039429,
+          "poly": [
+            [
+              112,
+              669
+            ],
+            [
+              719,
+              664
+            ],
+            [
+              719,
+              691
+            ],
+            [
+              112,
+              696
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            664,
+            719,
+            696
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "(i.e., where the irrigation water is applied to), and, thus, where",
+          "confidence": 0.986427903175354,
+          "poly": [
+            [
+              112,
+              704
+            ],
+            [
+              720,
+              698
+            ],
+            [
+              720,
+              724
+            ],
+            [
+              112,
+              730
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            698,
+            720,
+            730
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "direct impacts on the model's governing equations arise.",
+          "confidence": 0.9962689280509949,
+          "poly": [
+            [
+              112,
+              737
+            ],
+            [
+              719,
+              731
+            ],
+            [
+              719,
+              758
+            ],
+            [
+              112,
+              764
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            731,
+            719,
+            764
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Irrigation can be represented as (i) a change in soil moisture, (ii)",
+          "confidence": 0.9915789365768433,
+          "poly": [
+            [
+              112,
+              771
+            ],
+            [
+              718,
+              765
+            ],
+            [
+              718,
+              792
+            ],
+            [
+              112,
+              798
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            765,
+            718,
+            798
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "water applied at the surface, (iii) a water vapor source, and (iv) a",
+          "confidence": 0.988609790802002,
+          "poly": [
+            [
+              111,
+              806
+            ],
+            [
+              720,
+              798
+            ],
+            [
+              720,
+              825
+            ],
+            [
+              111,
+              833
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            798,
+            720,
+            833
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "modification to the model rain water.",
+          "confidence": 0.9905083179473877,
+          "poly": [
+            [
+              113,
+              840
+            ],
+            [
+              469,
+              836
+            ],
+            [
+              469,
+              858
+            ],
+            [
+              113,
+              863
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            836,
+            469,
+            863
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "paragraph_title",
+      "score": 0.9070164561271667,
+      "bbox_xyxy": [
+        137,
+        937,
+        467,
+        964
+      ],
+      "lines": [
+        {
+          "text": "3.1. Irrigation activation",
+          "confidence": 0.9966671466827393,
+          "poly": [
+            [
+              113,
+              937
+            ],
+            [
+              459,
+              933
+            ],
+            [
+              459,
+              964
+            ],
+            [
+              113,
+              968
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            933,
+            459,
+            968
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.973061203956604,
+      "bbox_xyxy": [
+        135,
+        1006,
+        714,
+        1121
+      ],
+      "lines": [
+        {
+          "text": "In this section, we present the approaches used to",
+          "confidence": 0.9827715158462524,
+          "poly": [
+            [
+              149,
+              1010
+            ],
+            [
+              720,
+              1003
+            ],
+            [
+              720,
+              1030
+            ],
+            [
+              150,
+              1037
+            ]
+          ],
+          "bbox_xyxy": [
+            149,
+            1003,
+            720,
+            1037
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "activate irrigation parameterizations. We distinguish between",
+          "confidence": 0.9894460439682007,
+          "poly": [
+            [
+              114,
+              1046
+            ],
+            [
+              719,
+              1037
+            ],
+            [
+              719,
+              1062
+            ],
+            [
+              114,
+              1071
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1037,
+            719,
+            1071
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "the approaches of using (i) spatial information, (ii) temporal",
+          "confidence": 0.9585885405540466,
+          "poly": [
+            [
+              113,
+              1078
+            ],
+            [
+              720,
+              1071
+            ],
+            [
+              720,
+              1097
+            ],
+            [
+              113,
+              1104
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1071,
+            720,
+            1104
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "constraints and (iii) physical thresholds.",
+          "confidence": 0.9871671795845032,
+          "poly": [
+            [
+              114,
+              1112
+            ],
+            [
+              492,
+              1106
+            ],
+            [
+              492,
+              1130
+            ],
+            [
+              114,
+              1136
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1106,
+            492,
+            1136
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 9,
+      "label": "paragraph_title",
+      "score": 0.9042921662330627,
+      "bbox_xyxy": [
+        136,
+        1187,
+        428,
+        1211
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9865122437477112,
+      "bbox_xyxy": [
+        134,
+        1221,
+        715,
+        1618
+      ],
+      "lines": [
+        {
+          "text": "In this approach, geographical fields are used as time",
+          "confidence": 0.9903988242149353,
+          "poly": [
+            [
+              148,
+              1239
+            ],
+            [
+              721,
+              1235
+            ],
+            [
+              721,
+              1262
+            ],
+            [
+              149,
+              1265
+            ]
+          ],
+          "bbox_xyxy": [
+            148,
+            1235,
+            721,
+            1265
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "invariant information to determine the initialization of",
+          "confidence": 0.9873350262641907,
+          "poly": [
+            [
+              112,
+              1271
+            ],
+            [
+              724,
+              1269
+            ],
+            [
+              724,
+              1296
+            ],
+            [
+              112,
+              1298
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1269,
+            724,
+            1298
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "irrigation, and these includes (i) the area equipped for",
+          "confidence": 0.9850620627403259,
+          "poly": [
+            [
+              112,
+              1304
+            ],
+            [
+              722,
+              1302
+            ],
+            [
+              722,
+              1330
+            ],
+            [
+              112,
+              1332
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1302,
+            722,
+            1332
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "irrigation, (ii) the vegetation state data set, and (iii) the",
+          "confidence": 0.97910475730896,
+          "poly": [
+            [
+              112,
+              1338
+            ],
+            [
+              722,
+              1336
+            ],
+            [
+              722,
+              1363
+            ],
+            [
+              112,
+              1365
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1336,
+            722,
+            1365
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "crop-types. In reality, these parameters are subject to changes",
+          "confidence": 0.986156165599823,
+          "poly": [
+            [
+              112,
+              1373
+            ],
+            [
+              723,
+              1371
+            ],
+            [
+              723,
+              1398
+            ],
+            [
+              112,
+              1400
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1371,
+            723,
+            1400
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "from 1 year to the next, since climatic conditions and weather",
+          "confidence": 0.9836453795433044,
+          "poly": [
+            [
+              112,
+              1407
+            ],
+            [
+              721,
+              1405
+            ],
+            [
+              721,
+              1429
+            ],
+            [
+              112,
+              1431
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1405,
+            721,
+            1431
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "patterns may change. Also other parameters may vary due to",
+          "confidence": 0.982660174369812,
+          "poly": [
+            [
+              110,
+              1442
+            ],
+            [
+              722,
+              1438
+            ],
+            [
+              722,
+              1465
+            ],
+            [
+              110,
+              1469
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            1438,
+            722,
+            1469
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "the anthropogenic nature of irrigation, e.g., crop types could",
+          "confidence": 0.996218740940094,
+          "poly": [
+            [
+              111,
+              1474
+            ],
+            [
+              722,
+              1471
+            ],
+            [
+              722,
+              1498
+            ],
+            [
+              111,
+              1501
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            1471,
+            722,
+            1501
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "be rotated, the area equipped for irrigation can be altered (e.g.,",
+          "confidence": 0.9640716910362244,
+          "poly": [
+            [
+              112,
+              1507
+            ],
+            [
+              720,
+              1505
+            ],
+            [
+              720,
+              1531
+            ],
+            [
+              112,
+              1533
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1505,
+            720,
+            1533
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Puma and Cook, 2010; Brown and Pervez, 2014). However,",
+          "confidence": 0.9819546341896057,
+          "poly": [
+            [
+              112,
+              1541
+            ],
+            [
+              721,
+              1538
+            ],
+            [
+              721,
+              1562
+            ],
+            [
+              112,
+              1565
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1538,
+            721,
+            1565
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "for numerical models these information are commonly kept",
+          "confidence": 0.9959763288497925,
+          "poly": [
+            [
+              112,
+              1574
+            ],
+            [
+              721,
+              1574
+            ],
+            [
+              721,
+              1596
+            ],
+            [
+              112,
+              1596
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1574,
+            721,
+            1596
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "constant across the years albeit for a fixed monthly cycle. A",
+          "confidence": 0.9963631629943848,
+          "poly": [
+            [
+              112,
+              1608
+            ],
+            [
+              720,
+              1604
+            ],
+            [
+              720,
+              1628
+            ],
+            [
+              112,
+              1632
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1604,
+            720,
+            1632
+          ],
+          "reading_order": 11
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9841775894165039,
+      "bbox_xyxy": [
+        763,
+        1531,
+        1344,
+        1865
+      ],
+      "lines": [
+        {
+          "text": "such datasets have currently not been used for modeling studies.",
+          "confidence": 0.9912184476852417,
+          "poly": [
+            [
+              778,
+              1532
+            ],
+            [
+              1414,
+              1534
+            ],
+            [
+              1414,
+              1561
+            ],
+            [
+              778,
+              1559
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1532,
+            1414,
+            1561
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "The MIRCA2000 dataset can be used not only to derive",
+          "confidence": 0.9858533143997192,
+          "poly": [
+            [
+              815,
+              1564
+            ],
+            [
+              1414,
+              1567
+            ],
+            [
+              1414,
+              1594
+            ],
+            [
+              815,
+              1590
+            ]
+          ],
+          "bbox_xyxy": [
+            815,
+            1564,
+            1414,
+            1594
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "the area irrigated, but it provides information about the crops",
+          "confidence": 0.9881220459938049,
+          "poly": [
+            [
+              777,
+              1596
+            ],
+            [
+              1414,
+              1599
+            ],
+            [
+              1414,
+              1629
+            ],
+            [
+              777,
+              1626
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1596,
+            1414,
+            1629
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "cultivated in the reference year 2000. Lobell et al. (2009)",
+          "confidence": 0.9824718832969666,
+          "poly": [
+            [
+              777,
+              1630
+            ],
+            [
+              1412,
+              1633
+            ],
+            [
+              1412,
+              1661
+            ],
+            [
+              777,
+              1658
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1630,
+            1412,
+            1661
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "extended the FAO area equipped for irrigation dataset by a plant",
+          "confidence": 0.9898086190223694,
+          "poly": [
+            [
+              777,
+              1664
+            ],
+            [
+              1412,
+              1667
+            ],
+            [
+              1412,
+              1694
+            ],
+            [
+              777,
+              1691
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1664,
+            1412,
+            1694
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "functional type (PFT) for irrigated crops. The new PFT fraction",
+          "confidence": 0.984559178352356,
+          "poly": [
+            [
+              776,
+              1698
+            ],
+            [
+              1410,
+              1700
+            ],
+            [
+              1410,
+              1727
+            ],
+            [
+              776,
+              1725
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1698,
+            1410,
+            1727
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "is subtracted to the original value to ensure a consistent total",
+          "confidence": 0.9807710647583008,
+          "poly": [
+            [
+              776,
+              1734
+            ],
+            [
+              1409,
+              1736
+            ],
+            [
+              1409,
+              1760
+            ],
+            [
+              776,
+              1758
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1734,
+            1409,
+            1760
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "agricultural area with the control simulation. While the method",
+          "confidence": 0.9866173267364502,
+          "poly": [
+            [
+              778,
+              1770
+            ],
+            [
+              1409,
+              1770
+            ],
+            [
+              1409,
+              1793
+            ],
+            [
+              778,
+              1793
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1770,
+            1409,
+            1793
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "proposed by Lobell et al. (2009) does not modify any of the plant",
+          "confidence": 0.985601007938385,
+          "poly": [
+            [
+              775,
+              1801
+            ],
+            [
+              1408,
+              1803
+            ],
+            [
+              1408,
+              1829
+            ],
+            [
+              775,
+              1827
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            1801,
+            1408,
+            1829
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "properties, Leng et al. (2017) added the crop type information",
+          "confidence": 0.9944568872451782,
+          "poly": [
+            [
+              775,
+              1836
+            ],
+            [
+              1406,
+              1838
+            ],
+            [
+              1406,
+              1862
+            ],
+            [
+              775,
+              1860
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            1836,
+            1406,
+            1862
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9826275110244751,
+      "bbox_xyxy": [
+        134,
+        1627,
+        715,
+        1869
+      ],
+      "lines": [
+        {
+          "text": "summary of the available dataset at the time is given in Table 1.",
+          "confidence": 0.9794203639030457,
+          "poly": [
+            [
+              111,
+              1640
+            ],
+            [
+              713,
+              1635
+            ],
+            [
+              713,
+              1662
+            ],
+            [
+              111,
+              1667
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            1635,
+            713,
+            1667
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Most of the studies include the spatial information on",
+          "confidence": 0.9826237559318542,
+          "poly": [
+            [
+              149,
+              1672
+            ],
+            [
+              721,
+              1670
+            ],
+            [
+              721,
+              1697
+            ],
+            [
+              150,
+              1699
+            ]
+          ],
+          "bbox_xyxy": [
+            149,
+            1670,
+            721,
+            1699
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "irrigation through the area equipped for irrigation map (Döll",
+          "confidence": 0.985867440700531,
+          "poly": [
+            [
+              112,
+              1708
+            ],
+            [
+              722,
+              1702
+            ],
+            [
+              722,
+              1729
+            ],
+            [
+              112,
+              1735
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1702,
+            722,
+            1735
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "and Siebert, 2002; Siebert et al., 2005, 2013) from the FAO",
+          "confidence": 0.9838976263999939,
+          "poly": [
+            [
+              112,
+              1741
+            ],
+            [
+              720,
+              1737
+            ],
+            [
+              720,
+              1761
+            ],
+            [
+              112,
+              1765
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1737,
+            720,
+            1765
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "AQUASTAT database (e.g., Bonfils and Lobell, 2007; Sacks et al.,",
+          "confidence": 0.9817745089530945,
+          "poly": [
+            [
+              113,
+              1774
+            ],
+            [
+              719,
+              1771
+            ],
+            [
+              719,
+              1795
+            ],
+            [
+              113,
+              1798
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1771,
+            719,
+            1798
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "2009; Saeed et al., 2009; Leng et al., 2013; Lu et al., 2015;",
+          "confidence": 0.9845900535583496,
+          "poly": [
+            [
+              113,
+              1807
+            ],
+            [
+              719,
+              1804
+            ],
+            [
+              719,
+              1828
+            ],
+            [
+              113,
+              1831
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1804,
+            719,
+            1831
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Valmassoi et al., 2020a). This is a global gridded dataset that",
+          "confidence": 0.9948423504829407,
+          "poly": [
+            [
+              114,
+              1838
+            ],
+            [
+              719,
+              1837
+            ],
+            [
+              719,
+              1862
+            ],
+            [
+              114,
+              1863
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1837,
+            719,
+            1863
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 14,
+      "label": "footer",
+      "score": 0.8575032949447632,
+      "bbox_xyxy": [
+        138,
+        1976,
+        278,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "footer",
+      "score": 0.8618625402450562,
+      "bbox_xyxy": [
+        1227,
+        1976,
+        1343,
+        1994
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 15,
+      "label": "number",
+      "score": 0.8041388988494873,
+      "bbox_xyxy": [
+        731,
+        1977,
+        751,
+        1993
+      ],
+      "lines": []
+    }
+  ]
+}

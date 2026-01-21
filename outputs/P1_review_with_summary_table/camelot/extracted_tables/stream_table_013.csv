@@ -1,0 +1,212 @@
+0,1
+Calibrated,"Root-zone levels
+Leng et al., 2017"
+Several studies that investigate irrigation parameterizations,"the
+threshold of
+40% based on the
+examination of
+the
+soil"
+"in
+atmospheric
+numerical models,
+represent
+irrigation
+as","moisture in their control experiment (Lobell et al., 2009). There,"
+"an
+invariant modiﬁcation
+on
+some
+of
+the
+physical model","the monthly
+averaged values were below that
+threshold for"
+variables with some studies using the aforementioned activation,"the whole local
+summer
+season, and above for the remainder"
+"thresholds,
+such as
+timing,
+to reset
+these variables. The most","of
+the year. For
+completeness,
+sensitivity tests with diﬀerent"
+common approach is to set the soil moisture ﬁeld to a predeﬁned,"thresholds were performed for
+the
+arbitrary
+values of
+30%,"
+"reference value, e.g.,
+the ﬁeld capacity
+the saturation level (θs),","50% and 90%, where
+the
+latter was
+considered an extreme"
+"or
+a
+fraction of
+them.
+In this
+context,
+the
+saturation
+(θfc),","(2006a),
+that
+value. Despite the considerations by Lobell et al."
+"level
+approach implies usually much wetter
+conditions
+than","et
+al.
+(2008)
+for
+the
+same
+approach was used by Kueppers"
+"the soil at ﬁeld capacity,
+since the former
+includes ﬁlling the","Regional Spectral Model (RSM). In a follow up study, Kanamaru"
+"pores. However,
+this water
+is
+strongly bound and not
+really","and Kanamitsu (2008)
+argue
+that
+the previously prescribed"
+"available
+to the plants. While
+some
+studies do not
+limit
+the","soil moisture
+in RSM was
+too high. Therefore,
+they
+set
+top"
+"depth of the impact of the irrigation (e.g., Lobell et al., 2006a),","soil
+layer
+at ﬁeld capacity as
+the highest
+irrigation scenario."
+"others hypothesize that only the upper layers are aﬀected, such","Saeed et al.
+(2009)
+justify the choice aﬃrming that
+irrigation"
+"et
+al.,
+2003;
+Lobell
+as
+the
+upper
+20–40
+cm (e.g., Adegoke","practices
+are
+assumed
+to
+fulﬁll
+optimal
+conditions
+for
+the"
+"et al., 2009; Liu et al., 2021),
+the ﬁrst meter
+(Kueppers et al.,","crops,
+in order to “transpire at a potential rate.” As reasoning,"
+"2007), or
+the
+layers
+that
+include
+the plant
+roots
+(Sorooshian","the
+authors
+refer
+to
+a
+highly
+simpliﬁed
+vegetation stomata"
+"the available
+et al., 2011; Leng et al., 2017). For soil saturation,","regulation. We therefore assume that
+the potential
+rate refers"
+"studies use very diﬀerent threshold values, from 100% in Lobell",to the evapotranspiration observed under no soil water stresses
+"et
+al.
+(2006a), Kanamaru
+and Kanamitsu
+(2008), Kueppers","(Brouwer et al., 1985b)."
+"(2008), Evans
+and Zaitchik (2008),
+and Lawston et
+al.
+et
+al.","Instead of
+saturating the
+soil moisture,
+some
+studies use"
+"(2015),
+to 90% for Tuinenburg et al.
+(2014) and their follow-","the ﬁeld capacity as it
+is the upper limit of
+the plant available"
+"up studies, 75% for Saeed et al.
+(2009), and down to 40% for","the studies here correct
+water (Kirkham, 2005). While most of"
+"Lobell
+et
+al.
+(2009). Lobell
+et
+al.
+(2006a)
+and the
+follow-up","the soil moisture for the whole simulation, Chase et al. (1999)"
+"work of Lobell et al.
+(2009) provide a useful
+set of
+sensitivity","uses
+this value as
+the initial condition for
+the simulation. As"
+"experiments with diﬀerent
+saturation thresholds and diﬀerent","in the previous
+threshold, also here
+the
+studies use multiple"
+"depths
+aﬀected.
+In
+both
+of
+their
+all
+soil
+columns
+deﬁned","threshold values,
+from 100 to 50%. The
+studies
+that
+set
+the"
+"as
+cropland within the Community Atmospheric Model
+v.3","soil moisture at ﬁeld capacity diﬀer both in the depth aﬀected,"
+"(CAM3) are aﬀected throughout
+the whole simulation. Lobell","the root-zone levels (upper 1 m) or the upmost 40 cm, and in"
+et al. (2006a) meant to represent irrigation with the soil saturated,"the conservation of
+the water applied. While Kueppers et al."
+"only as a sensitivity experiment, and the follow-up determined","(2007)
+and Liu et
+al.
+(2021)
+just
+set
+the new soil moisture"

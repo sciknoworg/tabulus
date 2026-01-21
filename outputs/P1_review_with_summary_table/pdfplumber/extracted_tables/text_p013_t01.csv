@@ -1,0 +1,138 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+4.2. Scale considerations,Thescaleconsiderationsareanotherpossiblereasonofthelack
+,
+,ofirrigation-specificdeliverymethodinglobalcoarseresolution
+,
+Fromtheprevioussectionconsideration,itisclearthatthe,studies, aside from the absence of adequate global or regional
+,
+parameterizationrelationtotheactualdeliverymethoddepends,maps. However, the actual representation becomes important
+,
+onthescalesconsidered.,whenthespatio-temporalresolutionofthemodelsareincreased
+,
+The sprinkler delivery methods discussed above relate to,tobetterrepresentotherlandand/oratmosphericprocesses,e.g.,
+,
+differentverticalatmosphericscales.Further,theupwardwater,convection.
+,
+distribution through irrigation depends also on the lower,
+,
+atmospheric model layer thickness. This was introduced by,
+,
+Boucher et al. (2004), where they argue that the modification,
+,4.3. Physical considerations
+of the atmospheric moisture content by the direct effect of,
+,
+,
+irrigationwasintendedasasensitivityexperiment.Assprinklers,
+,
+arenotabletospraythewaterveryfarfromthesurface,models,As previously mentioned, the soil moisture content
+,
+,
+withverythickatmosphericlayersnearthesurface,mightnot,regulates the evapotranspiration regimes accordingly to the
+,
+,
+beabletorealisticallyincludetheverticalwaterdispersionthat,limitationfactors(Seneviratneetal.,2010).Soilmoisturevalues
+,
+would be observed. Thus, a suitable vertical model resolution,below the critical value (θc) lead to plants regulating the
+,
+might be needed to restrict the direct vertical influence of,evapotranspirationdependingontheavailablesoilwater,leading
+,
+,
+the sprinkler delivery method on the atmosphere (Figure1,,toasoilmoisturelimitedregime.Ontheotherhand,whenthe
+,
+,
+Process C). While the maximum heights of water dispersion,soil moisture content is above the critical value, the incoming
+,
+,
+fromsprinklersvarygreatlyonthespecificsofthesystemitself,energy is limiting the evapotranspiration, and therefore the
+,
+,
+(Phocaides, 2000), modern efficient low-pressure systems with,surfaceenergypartitioning(Seneviratneetal.,2010).
+,
+,
+center-pivot and moving systems reach heights of 1–3 meters,Theevapotranspirationregimeimpactstheactualresponse
+,
+,
+and2–4metersabovethesoil,respectively(Bjorneberg,2013).,of the atmospheric system when irrigation increases the soil
+,
+,
+Alayerthicknessatthesurfaceofthesescalesisnotpracticalfor,moisture above the critical value. This is addressed by Lobell
+,
+,
+anumericalmodelabovehorizontalresolutionsofakilometer,,et al. (2009), with the usage of the sensitivity simulations
+,
+,
+duetothestabilityofthenumericsolutions.However,thelowest,of irrigation as different percentages of the saturated soil
+,
+,
+atmosphericmodelthicknesscanbeincreasetoamoresuitable,moisturevalue(30,40,50,90).Theyhighlightthatsimulatedair
+,
+,
+valueifthemodeltimestepisincludedintheconsideration.In,temperatures are almost identical for the experiments, which
+,
+,
+fact,thesprinklerirrigationwatercanbeadvectedupwardbythe,meansthatthemodeledevapotranspirationfluxesareinsensitive
+,
+,
+atmosphericturbulencedirectly,iftheintegrationtimeislong,tosoilmoistureincreasesabove30%oftheirsaturationlevels.
+,
+,
+enough.,The 30% threshold is lower than the commonly assumed p-
+,
+,
+However, for large enough horizontal resolutions the,value of 0.5 for the crops (see Equation 2 in Section 3.1.3,
+,
+,
+sprinkler delivery method could be parameterized also with,Brouwer et al., 1985b). In their model version, the equation
+,
+,
+thesurfacewaterapplicationabovethecanopyofSection3.3.2,governingsoilevaporationsaturatesbetween20and30%ofthe
+,
+,
+(Figure1, Process B), as the direct horizontal diffusion can be,soil saturation, depending on the texture (Lobell et al., 2009).
+,
+,
+neglected. If the timestep of the modeling setting is further,In addition, the plant transpiration accounts for one-third of
+,
+,
+increased,thentheinfiltrationoftheirrigationwaterfromthe,theevapotranspirationfluxanditissimilarlyinsensitivetosoil
+,
+,
+surfacetotheunderneathsoillayerscantakeplacewithinthe,moisture levels above 30% above the saturation value. Lobell
+,
+,
+sametimestep.Thus,thesoil-moistureincreaseduetoirrigation,et al. (2009) further discuss how the frequency of irrigation
+,
+,
+happens instantaneously from the land-atmosphere coupling,ratherthanthethresholdlevelcandeterminetheimpactonthe
+,
+,
+perspective, thus, leading to irrigation directly affecting soil,atmosphere.Whilethethresholdmightnotdirectlyimpactthe
+,
+,
+moisture(cf.Section3.3.1).,atmospheric variables, it is, however, crucial to determine the
+,
+,
+Another scale consideration has to be made regarding the,wateramountasitisrelevantforEarthsystemwaterbalances
+,
+,
+canopywaterbalanceimpactontheirrigationapplication.The,andsustainabilityconsiderations.
+,
+timestep length has to be suitable with the modeling7 and,
+,
+climate conditions to properly capture irrigation entering the,
+,
+canopywaterbalance.Forexample,duringdryconditionsthe,5. Uncertainties and limitations
+permanenceofwaterontheleavesisverylow,thusthemodel,
+timestep has to be tuned to correctly capture its temporal,5.1. Irrigation water amount
+,
+variability.,
+,
+,This section provides an overview of the uncertainties
+,
+,
+7 Thisincludesalsothetotalamountofwaterappliedasirrigationon,and limitations regarding the irrigation water amount of the
+,
+thecanopyitself.,various studies. The irrigation water amount also provides an
+,
+FrontiersinWater 13,frontiersin.org

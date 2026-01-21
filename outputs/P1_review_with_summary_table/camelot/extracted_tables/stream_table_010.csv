@@ -1,0 +1,188 @@
+0,1
+"threshold (SMA, θat) deﬁned as:",Other physical thresholds have been mentioned in literature
+,"but without further justiﬁcation, such as not activating irrigation"
+θ − θwp,
+"(3)
+θat =",(i) when the soil temperature is below 12oC (arbitrarily deﬁned
+θfc − θwp,
+,"by Kueppers et al., 2008), (ii) during large solar radiation ﬂux"
+,"periods,
+i.e.,
+solar
+radiation less
+than 50 Wm−2
+(arbitrarily"
+"which leads to a diﬀerent
+formulation of θc and p. This allows",
+,"deﬁned by Sorooshian et al., 2011), (iii) until the ﬁrst 10 cm soil"
+"for a tuning of
+the SMA to a speciﬁc
+case
+study,
+instead of",
+,"temperature exceed 5oC in the previous 24 h, (iv) until the daily"
+"using crop and soil types, whose dataset have a coarse resolution",
+,"mean 2-meter temperature is above 8oC (Pei et al., 2016)."
+"In literature,
+the
+following SMA
+(e.g., MIRCA2000 Table 1).",
+thresholds are used: 0.5 by Ozdogan et al. (2009) and Qian et al.,
+"(2013), 0.2 by Pei
+et al.
+(2014) and Pei
+et al.
+(2016), 0.1 by",
+,3.2. Irrigation water calculation
+"Lawston et al. (2015)2, 0.6 by Yang et al. (2016)3, and 0.47–0.5",
+"and 0.45, 0.5–0.6, as well as 0.55 and 0.48 by Sorooshian et al.",
+,"As highlighted in multiple studies, the amount of irrigation"
+"(2011), Liu et al. (2021), and Wu et al. (2018)4, respectively. The",
+,water applied plays a crucial role in the impact. Depending on
+"thresholds are evaluated for diﬀerent soil
+layers in the studies:",
+,"the threshold and timing deﬁnition, the methods found can be"
+"Pei et al. (2016) evaluate it against the second soil
+layer (10–40",
+,grouped into (i) a-priori estimation and (ii) driven by the soil
+"cm), Ozdogan et al. (2009), Sorooshian et al. (2011), Yang et al.",
+,conditions.
+"(2016), and Lawston et al. (2015) use the root-zone levels, and",
+Wu et al. (2018) and Liu et al. (2021) apply the thresholds to the,
+weighted average of the ﬁrst two soil layers.,
+,"3.2.1. A-priori
+irrigation water amount"
+"(2017) apply a
+It
+should be mentioned that Decker et al.",
+,"Several
+studies use
+estimates provided by
+local, national"
+"variation of Equation (3), and instead of the ﬁeld capacity, they",
+,or international entities given as annual accumulated volumes.
+"use
+the
+saturation soil moisture
+threshold value
+(θs). There,",
+,Examples from existing studies for the sources include but are
+θat = 0.5 has to be met in all the layers in the root-zone.,
+,"not limited to the Kansas Geological Survey (Pei et al., 2016), the"
+The wide range of possible SMA threshold values leads to,
+,United States Geological Survey (USGS) water use report and
+the inclusion of regimes that could be already considered water,
+,province-level data for China from the China State Statistical
+"soil
+stress
+for
+some crops
+(Brouwer et al., 1985b). The target",
+,"et
+al.,
+2009),
+or Eurostat
+(European Union)
+Bureau
+(Sacks"
+moisture value is aimed to prevent plant water stress within the,
+,"irrigation water amount reports (Valmassoi et al., 2020a). Other"
+"modeling framework. Therefore, Leng et al. (2013) formulates",
+,"authors use irrigation water amount reconstructions, which are"
+"the new threshold5 as the weighted average of
+the critical soil",
+,"created combining irrigation maps and oﬄine models, e.g., Cook"
+moisture and the saturation one for each soil layer as:,
+,"(2015) with the dataset by Wisser
+et
+al.
+(2010). These
+et
+al."
+,reconstructed amounts are provided as irrigation rates.
+"(4)
+θat,i = Firr · θs,i + (1 − Firr) · θc,i",
+,"In general,
+these data
+are
+transferred onto an irrigation"
+,depth (mm · m−2 · y−1) by assuming that irrigation takes place
+"is
+the
+i-th layer
+soil moisture
+where θs,i
+saturation. The Firr",
+"is used as a weighting factor, between 0 and 1,
+to determine","in a
+certain fraction of
+the
+area,
+e.g.,
+the
+area
+equipped for"
+"the relevance of
+the two thresholds. At
+the limits,
+the scheme’s","et al.
+(2020a) assume
+irrigation. More
+speciﬁcally, Valmassoi"
+,"that
+the annual amount
+is applied only over the summer crop"
+assumption falls back to the saturation soil moisture (Firr = 1),
+"the other limit when plants start experiencing
+and Firr = 0 at","season, thus, deriving an irrigation depth in mm d−1 (VI), which"
+water stress.,"is expressed as irrigation water rate (WI, in mm s−1) as:"
+,VI
+"2
+They
+refer
+to 10% above the “stress point,” citing Equation 3 as","(5)
+WI =
+TI"
+,hI
+"threshold calculation. However,
+from the formulation it could not be",
+"deduced whether 10% above the 0.5 original threshold, or 10% above the",
+,where hI
+wilting point is intended as stress point.,
+,and TI
+"3
+The threshold is there incorrectly called “relative soil moisture,” which","and the next, in contrast to most other studies, where irrigation"
+,
+usually refers to the percentage ratio of the volumetric soil water content,is applied every day (TI = 1).
+"against the ﬁeld capacity (e.g., Su et al., 2003).","Overall, studies report various irrigation rates for diﬀerent"
+"4
+The study does not
+indicate how the two thresholds are applied",regions. A summary of these are presented in Table 2.
+differently in the two crop regions of the domain.,"The
+irrigation
+rate
+values
+span
+across
+two
+orders
+of"
+"5
+To harmonize the equations
+in this paper,
+the derivation of
+this",magnitude over an area that covers the continental United States
+"irrigation scheme is re-written to use the volumetric water content
+(θ)","or parts of
+it.
+It
+should be noted that
+some studies cover
+the"
+"instead of the absolute water content (W or S), following Seneviratne et al.","same
+region but
+for
+sometimes
+very diﬀerent periods,
+from"
+(2010).,diﬀerent decades or multi-year data sets to short high-resolution

@@ -1,0 +1,66 @@
+S.Siebertetal.: Groundwateruseforirrigation–aglobalinvento,ry 1865
+,
+document first the data, definitions and methods used in,areaharvested(AHI)denotetheportionoftheareaequipped
+the development of the inventory (Sect. 2). Then we show,for irrigation that is actually irrigated in a given year.
+resultsattheglobal,regionalandcountryscale(Sect.3),we,The AAI refers to physical areas and irrigated land that
+discussthemajoruncertaintiesandlimitationsandcompare,is cultivated more than once a year is counted only once,
+our results to independent estimates (Sect. 4). For a,whileinthecaseoftheAHI,landareathatisharvestedand
+complete country-wise documentation of data sources and,irrigatedmorethanonceinthesameyeariscounteddouble
+assumptionsmadewhendevelopingthedatasetreadersare,or threefold, depending on the number of crop harvests on
+referred to Supplement S1. Area equipped for irrigation,,thesamearea. ConsequentlyAAIisalwayssmallerorequal
+area actually irrigated and the consumptive water use from,toAEIandAHI.
+groundwater, surface water and non-conventional water,
+sources are listed for each country in Supplement S2, in,2.2 Dataandmethods
+addition to tables and figures shown in the manuscript.,
+Supplement S3 provides the countries in each continent,,2.2.1 Subdivisionofirrigatedareasintoareas
+regionandsub-region,whiletheacronymsusedinthisarticle,irrigatedwithgroundwater,surfacewateror
+arelistedandexplainedinSupplementS4.,non-conventionalwatersources
+,
+,
+,Statistics on area equipped for irrigation with groundwater
+,(AEI GW), with surface water (AEI SW) or with water de-
+2 Definitions,dataandmethods,
+,
+,rivedfromnon-conventionalsources(AEI NC)andonarea
+,
+2.1 Termsanddefinitions,actuallyirrigatedwithgroundwater(AAI GW),withsurface
+,water (AAI SW) or with water from non-conventional
+,
+Groundwater is usually defined as water contained in,sources (AAI NC) were collected from national census
+an aquifer matrix located beneath the surface in the,reports or online data bases and complemented with
+saturated zone, as opposed to free surface water bodies,country information available from the FAO-AQUASTAT
+like streams, reservoirs, or lakes. But clearly the dynamic,library, data collected by other international organizations
+exchange between groundwater and surface water through,or statistical services (e.g. Eurostat) or data taken from
+the hydrological cycle is complex and makes categorical,the literature. The inventory contains statistics for
+definitions problematic: groundwater may become surface,15038nationalorsub-nationaladministrativeunits(Fig.1).
+water through springs and drainage into rivers, lakes and,For many countries the statistics on AEI are consistent
+wetlands. Conversely, surface water bodies may seep into,with data used to develop version 4 of the Global Map of
+thegroundandrechargetheaquifers, e.g.whenfloodwater,Irrigation Areas (GMIA; Siebert et al., 2005 updated by
+percolatesthroughtheunsaturatedzonetothesaturatedzone.,Siebertetal.,2006)becausethesamesourcesofinformation
+However, to be consistent with definitions in many water,were used. However, for several countries more recent
+use statistics, we distinguish three possible types of water:,statisticsbecameavailableandreplacedtheGMIAstatistics.
+groundwater, surface water and non-conventional water,For almost all countries it was required to fill gaps in the
+sources. Water withdrawn from aquifers using wells, and,statistics caused by missing data. Furthermore, AEI is
+water taken from springs is considered to be groundwater.,reportedinmostcasesaspartoflandusestatisticswhileAAI
+Waterextracteddirectlyfromrivers,lakes,ponds,reservoirs,isusuallycollectedaspartofwaterusesurveys.Thereforein
+or wetlands is defined as surface water while treated,manycountriesdifferentministriesareresponsibletoprocess
+wastewater and desalinated water are considered to be,the data and to provide the statistics resulting in different
+non-conventional sources of water. Surface water that,referenceyearsanddifferentresolutionofthestatistics. We
+infiltratesaquifersduetogroundwaterpumpingclosetothe,usedthefollowingrulesfortheselectionofstatisticsusedfor
+surface water body and is extracted from the groundwater,thisinventoryandtofilldatagaps:
+,
+,
+(bank filtrates) are in general categorised as groundwater.,1. Statistics provided at high resolution, for the most
+The term conjunctive use of groundwater and surface water,recentreferenceyearandusingsimilardefinitions,were
+referstotheintentionaluseofbothwatersources.,preferredunlessprovedwrong(seeSupplementS1).
+Withregardtoirrigationpractice,definitionsare,
+usedinthisarticleaccordingtotheFAOAQUASTAT,2. IfstatisticsonAEIwereavailableathigherresolutionas
+glossary (http://www.fao.org/nr/water/aquastat/data/,compared to AAI statistics, then AAI was downscaled
+glossary/search.html?lang=en). First, the area equipped,by using the ratio between AAI and AEI reported at
+for irrigation (AEI) is the area of the land that is equipped,lowerresolution(e.g.iftheratiobetweenAAIandAEI
+with infrastructure to provide water to crops. It includes,was 0.8 for a first level administrative unit and for the
+areas equipped for full/partial control irrigation, equipped,secondleveladministrativeunitsonlyAEIwasknown,
+lowland areas, and areas equipped for spate irrigation.,then AAI was computed as 80% of AEI for all the
+Second, the area actually irrigated (AAI) and the irrigated,second-leveladministrativeunits).
+,
+www.hydrol-earth-syst-sci.net/14/1863/2010/,Hydrol. EarthSyst. Sci.,14,1863–1880,2010

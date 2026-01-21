@@ -1,0 +1,221 @@
+0,1
+Valmassoi and Keller,10.3389/frwa.2022.906664
+"For example, Sacks et al.
+(2009) used prescribed ocean states",derivation and (iii) oﬄine derivation. While there is no current
+"and a 30-years
+simulation, and since the dataset
+for building","best practice, we highlight the main limitations of each method"
+"the irrigation maps were taken around the year 2000, we assume","so that past and future works’
+irrigation impact on climate can"
+their simulations are representative of that year. This makes the,"be contextualized. The ﬁxed amount
+seems
+the best
+solution"
+estimates of the irrigation rates of Sacks et al. (2009) comparable,"when the volumes come from a reliable source, and it includes"
+"with the ones from Krakauer et al. (2016), which are two order","less than optimal irrigation volumes, which are commonly used"
+"magnitude lower. While the two studies use the same period,","in real world applications
+(Siebert and Döll, 2010). However,"
+"they do not use the same model or irrigation rate. Therefore, we","this might
+not
+be
+applicable
+for
+areas
+and/or
+region with"
+cannot draw sustained conclusions about the large diﬀerences of,"data scarcity, or it can lead to representativity issues in multi-"
+the surface cooling eﬀects over irrigated areas (0.061 and 0.665,"year
+simulations.
+In this
+case,
+a
+good solution is
+to derive"
+"K, respectively).","the
+irrigation water
+amount within each timestep. However,"
+"It
+is even more diﬃcult
+to compare studies that cover the",such approach could lead to unrealistic water amounts due to
+"same region but
+for diﬀerent periods. However, depending on","the model biases
+themselves. Even in the
+absence of model"
+"the geographical area,
+the irrigation water use might not have","biases, the water needed is a function of the soil characteristics,"
+"changed drastically over
+time
+(Puma
+and Cook,
+2010). The","i.e., soil
+types and parameters, or agricultural practices, which"
+"situation is easier if there is an overlap, such as for SAS, WNA","are not well
+represented. The
+online
+computation of water"
+"shows
+an irrigation rate
+or EAS.
+In those
+cases, Table 5 still",requirements opens up the possibility to include a validation or
+"variability as high as four orders’ magnitude. For example,
+the","comparison of the obtained results to available census data, and"
+diﬀerence observed for EAS would lead to a minimum irrigation,a discussion about the volumes obtained with the oﬄine derived
+"water amount diﬀerence of about 34 mm · d−1, considering the","dataset.
+The
+oﬄine
+dataset
+provides
+an
+interesting model"
+"(2016) and Liu et al.
+(2021). Similarly,
+rates
+from Yang et al.","output with a consistent
+spatial and temporal
+representation,"
+"WNA irrigation rate diﬀerences
+lead to a minimum diurnal",which seems suitable to be used as forcing for a earth system
+"diﬀerence of
+about
+20 mm · d−1, which is higher
+than the","simulation. However,
+these datasets exhibit several
+limitations"
+maximum value of 3.4 mm · d−1 that is the diurnal accumulated,"as, ﬁrst and foremost,
+they do not account
+for
+the
+feedback"
+"precipitation in the upwind side of the Sierra Nevada (Yang et al.,","eﬀect
+that
+irrigation
+has
+on
+the
+atmosphere, which
+is
+the"
+"2017). Furthermore, diﬀerences in the irrigation volumes can be","reason of
+including explicitly the irrigation parameterizations"
+explained when considering both the model grid resolution and,"et
+al.
+(2008)
+show that
+in the Earth system models. Wisser"
+"the spatial distribution of the irrigated area. In fact, coarse model","the
+combined uncertainty of
+crop management
+and weather"
+resolution is not able to capture the high spatial variability that,conditions can lead to water estimations uncertainties of 30%
+leads to very diﬀerent irrigation volumes driven by the climate,"circa, with the weather
+variability having
+a
+strong
+regional"
+"conditions (Decker et al., 2017).","component
+leading up to ±70% variability. Similar results are"
+"While
+some
+authors
+use
+the
+available
+irrigation","found by Decker
+et
+al.
+(2017), where
+they obtained a
+25%"
+"reconstructions
+or
+estimates
+to
+calibrate
+their model
+or
+as",increase in irrigation water when using oﬄine model for south
+"input
+(e.g., Tuinenburg et al., 2014; Krakauer et al., 2016; Pei","eastern Australia (Decker et al., 2017). This problem could be"
+"et al., 2016; Leng et al., 2017) use them for comparison. Pei",partially resolved if only observational datasets are used to force
+"et al.
+(2016) ﬁnd biases
+in the heavily irrigated areas
+in their","the model,
+so that
+the crop-water demand is aﬀected by the"
+"study, which is
+just
+in part due
+to the discrepancies of
+the","eﬀect of
+irrigation on the atmosphere. However, observational"
+irrigation fraction map when compared to the used MODIS,"datasets are generally not dense enough, which can cause an"
+"irrigated croplands. However, the main source of the diﬀerences","increase of
+irrigation water demand due to the lack of
+small-"
+"is
+ascribed
+to
+the
+assumptions
+in
+the
+irrigation
+scheme,","et
+al.
+(2017)
+in a
+scales
+representation,
+as
+shown by Decker"
+"intended as the irrigation rate and duration (see Section 3.3.3),",modeling approach.
+which is not representative for other regions and/or irrigation,
+"al.
+(2014) ﬁnd that diﬀerences
+in
+techniques. Tuinenburg et",
+"irrigation water amount with respect
+to the reference Siebert",5.2. Irrigation water extraction
+"and Döll (2010) varies a lot depending on the model used, from",
+5 to 89% for the same season (MAM). This leads to a diurnal,While the irrigation water amount used in the simulations
+diﬀerence of water applied of a similar magnitude of the diurnal,"is
+crucial
+for
+any
+consideration and/or
+comparison between"
+"average precipitation for most of the models (Tuinenburg et al.,","the
+studies
+available
+in
+literature,
+its
+source
+for
+extraction"
+2014).,"provides several uncertainties. Similarly to the actual
+irrigation"
+"To summarize,
+the uncertainties
+related to the
+irrigation","volumes used, also the source type and location is diﬃcult
+to"
+"amount
+thus
+can
+be
+ascribed
+to
+their
+assumptions
+in
+the","determine. First of all,
+irrigation water is either pumped from"
+"calculation.
+In the literature there are three diﬀerent ways
+to","the groundwater or taken from surface sources, such as rivers,"
+"obtain the irrigation water amount:
+(i) ﬁxed value,
+(ii) online","lakes or dams (Döll et al., 2012; Wada et al., 2014)."

@@ -1,0 +1,107 @@
+ValmassoiandKeller 10.3389/frwa.2022.906664
+
+TABLE2 Tableofreportedirrigationrates(W I)ofvariousstudiesusingana-priorivolume/rate.
+
+−
+Areaconsidered Irrigationrate(WImms 1) Datasource References
+
+CaliforniaCentralValley 2.6·10−5a SiebertandDöll,2010 LoandFamiglietti,2013
+
+4.8225·10−5 Notmentioned Kueppersetal.,2008
+
+CentralGreatPlains 1.4·10−3 Notmentioned Lawstonetal.,2015
+
+OgallaAquifer 2·10−4 Notmentioned Hardingetal.,2015
+
+ContinentalUnitedStates 2·10−4 Notmentioned Luetal.,2015
+
+5·10−3 KGSandcommunicationb Peietal.,2016
+
+NorthernItaly 5.2·10−4 Eurostat Valmassoietal.,2020c
+
+Turkey 1.3·10−4 Derived Ozdoganetal.,2006
+
+Global Map Wisseretal.,2010 Krakaueretal.,2016
+
+aInthesupplementarymaterial,LoandFamiglietti(2013)saysthattheamountofwaterisevenlyappliedineachtimestepoverthegrowingperiod(MaytoOctober).b(Peietal.,2016)
+reportthattheirrigationrateisrepresentativeoftheHighPlainsfarmland,buttheinformationoriginatesfromtheKansasGeologicalSurvey(KGS)andfrompersonalcommunication
+withfarmers.
+
+simulationsforonlyafewdays.Ozdoganetal.(2006)mention withoutandwithplantwaterstress,whichincludesallroot-zone
+
+that their irrigation rate is derived in a way to keep the soil layers.
+
+moisture at saturation, but it is neither mentioned how it is Thiswatercalculationallowstoinvestigatetheinterannual
+
+calculated nor where the water is applied to. This approach volumesusedandpotentiallycomparethemwiththeestimates
+
+can include the interannual variability of the water used for available.
+
+irrigation, however most of the studies use the amount from
+
+a reference year. The Wisser et al. (2010) map can be used to
+
+integratethetemporalresolutionoftheirrigationwateramount,
+
+3.3. Application of irrigation water
+butthatisdoneonlyinthestudiesemployingthesimulationsby
+
+Cooketal.(2015).Areasoncouldbeinthelimitationsofoffline
+irrigationwaterestimations,discussedlaterinSection5.1. Here,wegrouptheexistingparameterizationsbythemodel
+quantity that is directly altered after the conceptualization of
+
+Figure1. Understanding where the irrigation water is applied
+
+3.2.2.Soil-drivenirrigationwateramount withinanumericalmodelallowstoidentifythedirectlyaffected
+
+processes in the Earth system, as well as the efficiency of the
+As previously seen, physical constraints can be used to
+
+
+technique. From the literature, irrigation has been assumed
+initiateirrigation,andfromthosethenecessarywateramount
+
+
+to affect directly (i) soil moisture at different levels, (ii)
+can be calculated starting from the water available to the
+
+plants (θ ). While Marcella and Eltahir (2014) propose a precipitationatthesurface,(iii)therainwatermixingratioand
+a
+the(iv)watervaporflux.
+methodthataccountsforexplicitlyincludingtheporosityinthe
+
+
+computation,othersrelyonthethresholddefinitionitself:
+
+Z
+3.3.1.Irrigationassoilmoisture
+= θ · −θ ·
+WI Xmax( at,i hi i hi,0) (6)
+Most of the available parameterizations see irrigation as a
+i
+directmodificationtothesoilmoisture,buttheyusedifferent
+
+whereθ i hastobecalculatedonlyfortheliquidwatercontent assumptions regarding the parameters. Table3 groups the
+toalreadyaccountfortheplant-availablewater.Themaximum parameterizations by the soil moisture quantity they relate to,
+
+function is used in Leng et al. (2013), but not by e.g., Decker thereferencevaluetotriggeritandthepartofthesoilcolumn
+
+etal.(2017),Wuetal.(2018),andLiuetal.(2021).Thisimplies affected.Inthefollowing,wedescribetheparameterizationsand
+
+that Leng et al. (2013) does not allow for a surplus in one theirparametersinmoredetail.
+
+layertoreducethedeficitinanother.Thedifferentstudiesalso Firstofall,wehighlighthowtheviewofirrigationasdirect
+
+applydifferentZ-valuestodeterminehowmanysoil-layersare soil moisture modification (Process D of Figure1) is widely
+
+considered:Lengetal.(2013)andDeckeretal.(2017)useallthe spread among past as well as recent studies, from Chase et al.
+
+layersbetweenthesurfaceandtheroot-zone,whilee.g.,Wuetal. (1999)toLengetal.(2017).Thisrepresentationtypeisusedwith
+
+(2018)andLiuetal.(2021)onlyusethefirsttwolayers.Thedrip awidevarietyofparameters,affectedsoillevelsaswellasseveral
+
+method by Evans and Zaitchik (2008) calculates the irrigation activation threshold usages. The latter is now used to group a
+
+wateramountasthedifferencebetweentheevapotranspiration moreindepthpresentationofthestudies.
+
+FrontiersinWater 08 frontiersin.org

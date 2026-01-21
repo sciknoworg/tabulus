@@ -1,0 +1,3193 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 13,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 19,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.9759958386421204,
+          "poly": [
+            [
+              102,
+              10
+            ],
+            [
+              287,
+              19
+            ],
+            [
+              285,
+              43
+            ],
+            [
+              101,
+              34
+            ]
+          ],
+          "bbox_xyxy": [
+            101,
+            10,
+            287,
+            43
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9876625537872314,
+          "poly": [
+            [
+              1176,
+              26
+            ],
+            [
+              1418,
+              28
+            ],
+            [
+              1418,
+              51
+            ],
+            [
+              1176,
+              49
+            ]
+          ],
+          "bbox_xyxy": [
+            1176,
+            26,
+            1418,
+            51
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "4.2. Scale considerations",
+          "confidence": 0.9977371096611023,
+          "poly": [
+            [
+              109,
+              145
+            ],
+            [
+              477,
+              155
+            ],
+            [
+              477,
+              189
+            ],
+            [
+              108,
+              179
+            ]
+          ],
+          "bbox_xyxy": [
+            108,
+            145,
+            477,
+            189
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "The scale considerations are another possible reason of the lack",
+          "confidence": 0.9830837249755859,
+          "poly": [
+            [
+              785,
+              162
+            ],
+            [
+              1419,
+              164
+            ],
+            [
+              1419,
+              187
+            ],
+            [
+              785,
+              185
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            162,
+            1419,
+            187
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "of irrigation-specific delivery method in global coarse resolution",
+          "confidence": 0.9917780756950378,
+          "poly": [
+            [
+              785,
+              195
+            ],
+            [
+              1419,
+              198
+            ],
+            [
+              1419,
+              222
+            ],
+            [
+              785,
+              219
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            195,
+            1419,
+            222
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "parameterization relation to the actual delivery method depends",
+          "confidence": 0.997635543346405,
+          "poly": [
+            [
+              111,
+              260
+            ],
+            [
+              726,
+              263
+            ],
+            [
+              726,
+              290
+            ],
+            [
+              111,
+              287
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            260,
+            726,
+            290
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "different vertical atmospheric scales. Further, the upward water",
+          "confidence": 0.9794390201568604,
+          "poly": [
+            [
+              112,
+              361
+            ],
+            [
+              727,
+              365
+            ],
+            [
+              727,
+              395
+            ],
+            [
+              112,
+              391
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            361,
+            727,
+            395
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "4.3. Physical considerations",
+          "confidence": 0.9992720484733582,
+          "poly": [
+            [
+              781,
+              485
+            ],
+            [
+              1201,
+              489
+            ],
+            [
+              1201,
+              520
+            ],
+            [
+              781,
+              515
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            485,
+            1201,
+            520
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "As previously mentioned, the soil moisture content",
+          "confidence": 0.990222692489624,
+          "poly": [
+            [
+              817,
+              559
+            ],
+            [
+              1425,
+              562
+            ],
+            [
+              1425,
+              589
+            ],
+            [
+              817,
+              586
+            ]
+          ],
+          "bbox_xyxy": [
+            817,
+            559,
+            1425,
+            589
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "water amount as it is relevant for Earth system water balances",
+          "confidence": 0.9971139430999756,
+          "poly": [
+            [
+              776,
+              1566
+            ],
+            [
+              1403,
+              1572
+            ],
+            [
+              1403,
+              1599
+            ],
+            [
+              776,
+              1593
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1566,
+            1403,
+            1599
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "and sustainability considerations.",
+          "confidence": 0.9778509736061096,
+          "poly": [
+            [
+              778,
+              1601
+            ],
+            [
+              1101,
+              1602
+            ],
+            [
+              1101,
+              1626
+            ],
+            [
+              778,
+              1625
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1601,
+            1101,
+            1626
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "timestep has to be tuned to correctly capture its temporal",
+          "confidence": 0.9983295798301697,
+          "poly": [
+            [
+              116,
+              1774
+            ],
+            [
+              719,
+              1777
+            ],
+            [
+              719,
+              1800
+            ],
+            [
+              116,
+              1797
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1774,
+            719,
+            1800
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "variability.",
+          "confidence": 0.976387083530426,
+          "poly": [
+            [
+              114,
+              1802
+            ],
+            [
+              222,
+              1805
+            ],
+            [
+              221,
+              1834
+            ],
+            [
+              113,
+              1831
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1802,
+            222,
+            1834
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "7 This includes also the total amount of water applied as irrigation on",
+          "confidence": 0.9881331920623779,
+          "poly": [
+            [
+              114,
+              1881
+            ],
+            [
+              716,
+              1887
+            ],
+            [
+              716,
+              1908
+            ],
+            [
+              114,
+              1902
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1881,
+            716,
+            1908
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "and limitations regarding the irrigation water amount of the",
+          "confidence": 0.9847213625907898,
+          "poly": [
+            [
+              774,
+              1874
+            ],
+            [
+              1394,
+              1878
+            ],
+            [
+              1394,
+              1906
+            ],
+            [
+              774,
+              1902
+            ]
+          ],
+          "bbox_xyxy": [
+            774,
+            1874,
+            1394,
+            1906
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "the canopy itself.",
+          "confidence": 0.9922866821289062,
+          "poly": [
+            [
+              114,
+              1916
+            ],
+            [
+              264,
+              1912
+            ],
+            [
+              265,
+              1936
+            ],
+            [
+              114,
+              1940
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1912,
+            265,
+            1940
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "various studies. The irrigation water amount also provides an",
+          "confidence": 0.9917733073234558,
+          "poly": [
+            [
+              773,
+              1909
+            ],
+            [
+              1393,
+              1911
+            ],
+            [
+              1393,
+              1938
+            ],
+            [
+              773,
+              1935
+            ]
+          ],
+          "bbox_xyxy": [
+            773,
+            1909,
+            1393,
+            1938
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "Frontiers inWater",
+          "confidence": 0.9948674440383911,
+          "poly": [
+            [
+              112,
+              2048
+            ],
+            [
+              269,
+              2043
+            ],
+            [
+              270,
+              2067
+            ],
+            [
+              112,
+              2072
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            2043,
+            270,
+            2072
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "13",
+          "confidence": 0.9999690651893616,
+          "poly": [
+            [
+              730,
+              2050
+            ],
+            [
+              760,
+              2050
+            ],
+            [
+              760,
+              2077
+            ],
+            [
+              730,
+              2077
+            ]
+          ],
+          "bbox_xyxy": [
+            730,
+            2050,
+            760,
+            2077
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.9999340772628784,
+          "poly": [
+            [
+              1265,
+              2047
+            ],
+            [
+              1392,
+              2047
+            ],
+            [
+              1392,
+              2071
+            ],
+            [
+              1265,
+              2071
+            ]
+          ],
+          "bbox_xyxy": [
+            1265,
+            2047,
+            1392,
+            2071
+          ],
+          "reading_order": 19
+        }
+      ]
+    },
+    {
+      "block_id": 12,
+      "label": "header",
+      "score": 0.8756006360054016,
+      "bbox_xyxy": [
+        1127,
+        102,
+        1342,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "header",
+      "score": 0.8639297485351562,
+      "bbox_xyxy": [
+        137,
+        103,
+        303,
+        120
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "paragraph_title",
+      "score": 0.9083415865898132,
+      "bbox_xyxy": [
+        136,
+        221,
+        480,
+        246
+      ],
+      "lines": [
+        {
+          "text": "From the previous section consideration, it is clear that the",
+          "confidence": 0.9715868234634399,
+          "poly": [
+            [
+              147,
+              224
+            ],
+            [
+              727,
+              228
+            ],
+            [
+              727,
+              256
+            ],
+            [
+              146,
+              252
+            ]
+          ],
+          "bbox_xyxy": [
+            146,
+            224,
+            727,
+            256
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9823712110519409,
+      "bbox_xyxy": [
+        764,
+        226,
+        1344,
+        434
+      ],
+      "lines": [
+        {
+          "text": "studies, aside from the absence of adequate global or regional",
+          "confidence": 0.9806879162788391,
+          "poly": [
+            [
+              783,
+              228
+            ],
+            [
+              1419,
+              232
+            ],
+            [
+              1419,
+              256
+            ],
+            [
+              783,
+              252
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            228,
+            1419,
+            256
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "maps. However, the actual representation becomes important",
+          "confidence": 0.9835216999053955,
+          "poly": [
+            [
+              783,
+              263
+            ],
+            [
+              1421,
+              266
+            ],
+            [
+              1421,
+              291
+            ],
+            [
+              783,
+              288
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            263,
+            1421,
+            291
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "when the spatio-temporal resolution of the models are increased",
+          "confidence": 0.9930384159088135,
+          "poly": [
+            [
+              781,
+              295
+            ],
+            [
+              1422,
+              298
+            ],
+            [
+              1422,
+              325
+            ],
+            [
+              781,
+              322
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            295,
+            1422,
+            325
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "to better represent other land and/or atmospheric processes, e.g.,",
+          "confidence": 0.9967523217201233,
+          "poly": [
+            [
+              781,
+              329
+            ],
+            [
+              1421,
+              335
+            ],
+            [
+              1421,
+              362
+            ],
+            [
+              781,
+              356
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            329,
+            1421,
+            362
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "convection.",
+          "confidence": 0.9997547268867493,
+          "poly": [
+            [
+              781,
+              365
+            ],
+            [
+              898,
+              365
+            ],
+            [
+              898,
+              389
+            ],
+            [
+              781,
+              389
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            365,
+            898,
+            389
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.9647542238235474,
+      "bbox_xyxy": [
+        135,
+        288,
+        714,
+        371
+      ],
+      "lines": [
+        {
+          "text": "on the scales considered.",
+          "confidence": 0.9979144930839539,
+          "poly": [
+            [
+              112,
+              294
+            ],
+            [
+              350,
+              298
+            ],
+            [
+              349,
+              322
+            ],
+            [
+              112,
+              318
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            294,
+            350,
+            322
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "The sprinkler delivery methods discussed above relate to",
+          "confidence": 0.9905789494514465,
+          "poly": [
+            [
+              148,
+              327
+            ],
+            [
+              727,
+              331
+            ],
+            [
+              727,
+              362
+            ],
+            [
+              147,
+              358
+            ]
+          ],
+          "bbox_xyxy": [
+            147,
+            327,
+            727,
+            362
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9876952767372131,
+      "bbox_xyxy": [
+        135,
+        381,
+        715,
+        1184
+      ],
+      "lines": [
+        {
+          "text": "distribution through irrigation depends also on the lower",
+          "confidence": 0.9947062134742737,
+          "poly": [
+            [
+              112,
+              396
+            ],
+            [
+              727,
+              397
+            ],
+            [
+              727,
+              428
+            ],
+            [
+              112,
+              427
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            396,
+            727,
+            428
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "atmospheric model layer thickness. This was introduced by",
+          "confidence": 0.9874632358551025,
+          "poly": [
+            [
+              113,
+              434
+            ],
+            [
+              724,
+              434
+            ],
+            [
+              724,
+              461
+            ],
+            [
+              113,
+              461
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            434,
+            724,
+            461
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Boucher et al. (2004), where they argue that the modification",
+          "confidence": 0.9760406613349915,
+          "poly": [
+            [
+              113,
+              467
+            ],
+            [
+              725,
+              467
+            ],
+            [
+              725,
+              494
+            ],
+            [
+              113,
+              494
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            467,
+            725,
+            494
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "of the atmospheric moisture content by the direct effect of",
+          "confidence": 0.969953179359436,
+          "poly": [
+            [
+              112,
+              498
+            ],
+            [
+              728,
+              499
+            ],
+            [
+              728,
+              529
+            ],
+            [
+              112,
+              527
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            498,
+            728,
+            529
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "irrigation was intended as a sensitivity experiment. As sprinklers",
+          "confidence": 0.9983963370323181,
+          "poly": [
+            [
+              112,
+              532
+            ],
+            [
+              725,
+              535
+            ],
+            [
+              725,
+              561
+            ],
+            [
+              112,
+              559
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            532,
+            725,
+            561
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "are not able to spray the water very far from the surface, models",
+          "confidence": 0.9760066270828247,
+          "poly": [
+            [
+              112,
+              566
+            ],
+            [
+              724,
+              568
+            ],
+            [
+              724,
+              595
+            ],
+            [
+              112,
+              593
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            566,
+            724,
+            595
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "with very thick atmospheric layers near the surface, might not",
+          "confidence": 0.9837893843650818,
+          "poly": [
+            [
+              112,
+              599
+            ],
+            [
+              724,
+              603
+            ],
+            [
+              724,
+              630
+            ],
+            [
+              112,
+              626
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            599,
+            724,
+            630
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "be able to realistically include the vertical water dispersion that",
+          "confidence": 0.9822900295257568,
+          "poly": [
+            [
+              111,
+              633
+            ],
+            [
+              724,
+              636
+            ],
+            [
+              724,
+              663
+            ],
+            [
+              111,
+              660
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            633,
+            724,
+            663
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "would be observed. Thus, a suitable vertical model resolution",
+          "confidence": 0.9929763078689575,
+          "poly": [
+            [
+              112,
+              669
+            ],
+            [
+              723,
+              671
+            ],
+            [
+              723,
+              695
+            ],
+            [
+              112,
+              693
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            669,
+            723,
+            695
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "might be needed to restrict the direct vertical influence of",
+          "confidence": 0.9769705533981323,
+          "poly": [
+            [
+              112,
+              703
+            ],
+            [
+              725,
+              704
+            ],
+            [
+              725,
+              728
+            ],
+            [
+              112,
+              727
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            703,
+            725,
+            728
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "the sprinkler delivery method on the atmosphere (Figure 1,",
+          "confidence": 0.9909108281135559,
+          "poly": [
+            [
+              111,
+              736
+            ],
+            [
+              723,
+              738
+            ],
+            [
+              723,
+              764
+            ],
+            [
+              111,
+              762
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            736,
+            723,
+            764
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Process C). While the maximum heights of water dispersion",
+          "confidence": 0.9816946983337402,
+          "poly": [
+            [
+              111,
+              770
+            ],
+            [
+              723,
+              771
+            ],
+            [
+              723,
+              798
+            ],
+            [
+              111,
+              797
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            770,
+            723,
+            798
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "from sprinklers vary greatly on the specifics of the system itself",
+          "confidence": 0.9829866886138916,
+          "poly": [
+            [
+              113,
+              806
+            ],
+            [
+              724,
+              806
+            ],
+            [
+              724,
+              830
+            ],
+            [
+              113,
+              830
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            806,
+            724,
+            830
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "(Phocaides, 2000), modern efficient low-pressure systems with",
+          "confidence": 0.9733204245567322,
+          "poly": [
+            [
+              114,
+              840
+            ],
+            [
+              722,
+              840
+            ],
+            [
+              722,
+              864
+            ],
+            [
+              114,
+              864
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            840,
+            722,
+            864
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "center-pivot and moving systems reach heights of 1-3 meters",
+          "confidence": 0.9859033823013306,
+          "poly": [
+            [
+              111,
+              873
+            ],
+            [
+              723,
+              872
+            ],
+            [
+              723,
+              898
+            ],
+            [
+              111,
+              899
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            872,
+            723,
+            899
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "and 24 meters above the soil, respectively (Bjorneberg, 2013).",
+          "confidence": 0.9832273125648499,
+          "poly": [
+            [
+              112,
+              907
+            ],
+            [
+              721,
+              907
+            ],
+            [
+              721,
+              931
+            ],
+            [
+              112,
+              931
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            907,
+            721,
+            931
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "A layer thickness at the surface of these scales is not practical for",
+          "confidence": 0.9983451962471008,
+          "poly": [
+            [
+              111,
+              940
+            ],
+            [
+              723,
+              939
+            ],
+            [
+              723,
+              966
+            ],
+            [
+              111,
+              967
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            939,
+            723,
+            967
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "a numerical model above horizontal resolutions of a kilometer,",
+          "confidence": 0.9880916476249695,
+          "poly": [
+            [
+              111,
+              975
+            ],
+            [
+              721,
+              975
+            ],
+            [
+              721,
+              999
+            ],
+            [
+              111,
+              999
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            975,
+            721,
+            999
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "due to the stability of the numeric solutions. However, the lowest",
+          "confidence": 0.9808269739151001,
+          "poly": [
+            [
+              113,
+              1010
+            ],
+            [
+              720,
+              1010
+            ],
+            [
+              720,
+              1033
+            ],
+            [
+              113,
+              1033
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1010,
+            720,
+            1033
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "atmospheric model thickness can be increase to a more suitable",
+          "confidence": 0.9975400567054749,
+          "poly": [
+            [
+              111,
+              1044
+            ],
+            [
+              720,
+              1042
+            ],
+            [
+              720,
+              1066
+            ],
+            [
+              111,
+              1068
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            1042,
+            720,
+            1068
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "value if the model timestep is included in the consideration. In",
+          "confidence": 0.984370231628418,
+          "poly": [
+            [
+              112,
+              1077
+            ],
+            [
+              720,
+              1077
+            ],
+            [
+              720,
+              1100
+            ],
+            [
+              112,
+              1100
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1077,
+            720,
+            1100
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "fact, the sprinkler irrigation water can be advected upward by the",
+          "confidence": 0.9945133328437805,
+          "poly": [
+            [
+              112,
+              1110
+            ],
+            [
+              720,
+              1111
+            ],
+            [
+              720,
+              1135
+            ],
+            [
+              112,
+              1134
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1110,
+            720,
+            1135
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "atmospheric turbulence directly, if the integration time is long",
+          "confidence": 0.9959042072296143,
+          "poly": [
+            [
+              112,
+              1142
+            ],
+            [
+              720,
+              1145
+            ],
+            [
+              720,
+              1169
+            ],
+            [
+              112,
+              1166
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1142,
+            720,
+            1169
+          ],
+          "reading_order": 22
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "paragraph_title",
+      "score": 0.9118026494979858,
+      "bbox_xyxy": [
+        766,
+        524,
+        1149,
+        551
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9846416115760803,
+      "bbox_xyxy": [
+        764,
+        592,
+        1344,
+        863
+      ],
+      "lines": [
+        {
+          "text": "regulates the evapotranspiration regimes accordingly to the",
+          "confidence": 0.9920236468315125,
+          "poly": [
+            [
+              781,
+              595
+            ],
+            [
+              1422,
+              598
+            ],
+            [
+              1422,
+              622
+            ],
+            [
+              781,
+              619
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            595,
+            1422,
+            622
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "limitation factors (Seneviratne et al., 2010). Soil moisture values",
+          "confidence": 0.9927264451980591,
+          "poly": [
+            [
+              780,
+              627
+            ],
+            [
+              1423,
+              632
+            ],
+            [
+              1423,
+              656
+            ],
+            [
+              780,
+              651
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            627,
+            1423,
+            656
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "below the critical value (θc) lead to plants regulating the",
+          "confidence": 0.9918122291564941,
+          "poly": [
+            [
+              780,
+              660
+            ],
+            [
+              1423,
+              667
+            ],
+            [
+              1422,
+              691
+            ],
+            [
+              780,
+              684
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            660,
+            1423,
+            691
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "evapotranspiration depending on the available soil water, leading",
+          "confidence": 0.9845529198646545,
+          "poly": [
+            [
+              779,
+              695
+            ],
+            [
+              1424,
+              701
+            ],
+            [
+              1423,
+              727
+            ],
+            [
+              779,
+              721
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            695,
+            1424,
+            727
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "to a soil moisture limited regime. On the other hand, when the",
+          "confidence": 0.9883855581283569,
+          "poly": [
+            [
+              780,
+              729
+            ],
+            [
+              1422,
+              735
+            ],
+            [
+              1422,
+              759
+            ],
+            [
+              780,
+              753
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            729,
+            1422,
+            759
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "soil moisture content is above the critical value, the incoming",
+          "confidence": 0.9837186336517334,
+          "poly": [
+            [
+              780,
+              762
+            ],
+            [
+              1422,
+              769
+            ],
+            [
+              1422,
+              793
+            ],
+            [
+              780,
+              786
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            762,
+            1422,
+            793
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "energy is limiting the evapotranspiration, and therefore the",
+          "confidence": 0.9977262616157532,
+          "poly": [
+            [
+              780,
+              799
+            ],
+            [
+              1421,
+              801
+            ],
+            [
+              1421,
+              825
+            ],
+            [
+              780,
+              823
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            799,
+            1421,
+            825
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "surface energy partitioning (Seneviratne et al., 2010).",
+          "confidence": 0.983590841293335,
+          "poly": [
+            [
+              779,
+              830
+            ],
+            [
+              1308,
+              832
+            ],
+            [
+              1308,
+              859
+            ],
+            [
+              779,
+              857
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            830,
+            1308,
+            859
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9878899455070496,
+      "bbox_xyxy": [
+        764,
+        871,
+        1344,
+        1579
+      ],
+      "lines": [
+        {
+          "text": "The evapotranspiration regime impacts the actual response",
+          "confidence": 0.9852752089500427,
+          "poly": [
+            [
+              816,
+              864
+            ],
+            [
+              1421,
+              867
+            ],
+            [
+              1421,
+              892
+            ],
+            [
+              816,
+              889
+            ]
+          ],
+          "bbox_xyxy": [
+            816,
+            864,
+            1421,
+            892
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "of the atmospheric system when irrigation increases the soil",
+          "confidence": 0.9948155879974365,
+          "poly": [
+            [
+              780,
+              897
+            ],
+            [
+              1420,
+              899
+            ],
+            [
+              1420,
+              923
+            ],
+            [
+              780,
+              921
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            897,
+            1420,
+            923
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "moisture above the critical value. This is addressed by Lobell",
+          "confidence": 0.9881527423858643,
+          "poly": [
+            [
+              779,
+              931
+            ],
+            [
+              1419,
+              933
+            ],
+            [
+              1419,
+              957
+            ],
+            [
+              779,
+              955
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            931,
+            1419,
+            957
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "et al. (2009), with the usage of the sensitivity simulations",
+          "confidence": 0.9795714616775513,
+          "poly": [
+            [
+              777,
+              964
+            ],
+            [
+              1421,
+              967
+            ],
+            [
+              1421,
+              994
+            ],
+            [
+              777,
+              991
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            964,
+            1421,
+            994
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "of irrigation as different percentages of the saturated soil",
+          "confidence": 0.9695757031440735,
+          "poly": [
+            [
+              780,
+              1001
+            ],
+            [
+              1420,
+              1001
+            ],
+            [
+              1420,
+              1025
+            ],
+            [
+              780,
+              1025
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1001,
+            1420,
+            1025
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "moisture value (30,40,50,90). They highlight that simulated air",
+          "confidence": 0.9917246103286743,
+          "poly": [
+            [
+              779,
+              1036
+            ],
+            [
+              1420,
+              1036
+            ],
+            [
+              1420,
+              1059
+            ],
+            [
+              779,
+              1059
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1036,
+            1420,
+            1059
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "temperatures are almost identical for the experiments, which",
+          "confidence": 0.9934538006782532,
+          "poly": [
+            [
+              778,
+              1070
+            ],
+            [
+              1419,
+              1070
+            ],
+            [
+              1419,
+              1093
+            ],
+            [
+              778,
+              1093
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1070,
+            1419,
+            1093
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "means that the modeled evapotranspiration fluxes are insensitive",
+          "confidence": 0.9888170957565308,
+          "poly": [
+            [
+              778,
+              1103
+            ],
+            [
+              1419,
+              1104
+            ],
+            [
+              1419,
+              1128
+            ],
+            [
+              778,
+              1127
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1103,
+            1419,
+            1128
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "to soil moisture increases above 30% of their saturation levels.",
+          "confidence": 0.9960688948631287,
+          "poly": [
+            [
+              777,
+              1137
+            ],
+            [
+              1418,
+              1138
+            ],
+            [
+              1418,
+              1161
+            ],
+            [
+              777,
+              1160
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1137,
+            1418,
+            1161
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "The 30% threshold is lower than the commonly assumed p-",
+          "confidence": 0.9878654479980469,
+          "poly": [
+            [
+              778,
+              1168
+            ],
+            [
+              1415,
+              1173
+            ],
+            [
+              1415,
+              1197
+            ],
+            [
+              778,
+              1192
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1168,
+            1415,
+            1197
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "value of 0.5 for the crops (see Equation 2 in Section 3.1.3,",
+          "confidence": 0.9938575029373169,
+          "poly": [
+            [
+              778,
+              1204
+            ],
+            [
+              1415,
+              1207
+            ],
+            [
+              1415,
+              1231
+            ],
+            [
+              778,
+              1227
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1204,
+            1415,
+            1231
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Brouwer et al., 1985b). In their model version, the equation",
+          "confidence": 0.990496814250946,
+          "poly": [
+            [
+              777,
+              1235
+            ],
+            [
+              1415,
+              1240
+            ],
+            [
+              1415,
+              1266
+            ],
+            [
+              777,
+              1262
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1235,
+            1415,
+            1266
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "governing soil evaporation saturates between 20 and 30% of the",
+          "confidence": 0.977724015712738,
+          "poly": [
+            [
+              777,
+              1271
+            ],
+            [
+              1414,
+              1270
+            ],
+            [
+              1414,
+              1297
+            ],
+            [
+              777,
+              1298
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1270,
+            1414,
+            1298
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "soil saturation, depending on the texture (Lobell et al., 2o09).",
+          "confidence": 0.9744028449058533,
+          "poly": [
+            [
+              778,
+              1303
+            ],
+            [
+              1411,
+              1306
+            ],
+            [
+              1411,
+              1330
+            ],
+            [
+              778,
+              1327
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1303,
+            1411,
+            1330
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "In addition, the plant transpiration accounts for one-third of",
+          "confidence": 0.9857344627380371,
+          "poly": [
+            [
+              778,
+              1337
+            ],
+            [
+              1412,
+              1339
+            ],
+            [
+              1412,
+              1363
+            ],
+            [
+              778,
+              1361
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1337,
+            1412,
+            1363
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "the evapotranspiration flux and it is similarly insensitive to soil",
+          "confidence": 0.9783577919006348,
+          "poly": [
+            [
+              778,
+              1369
+            ],
+            [
+              1410,
+              1371
+            ],
+            [
+              1410,
+              1398
+            ],
+            [
+              778,
+              1396
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1369,
+            1410,
+            1398
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "moisture levels above 30% above the saturation value. Lobell",
+          "confidence": 0.991420328617096,
+          "poly": [
+            [
+              778,
+              1402
+            ],
+            [
+              1408,
+              1405
+            ],
+            [
+              1408,
+              1429
+            ],
+            [
+              778,
+              1426
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1402,
+            1408,
+            1429
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "et al. (2009) further discuss how the frequency of irrigation",
+          "confidence": 0.9741581082344055,
+          "poly": [
+            [
+              777,
+              1435
+            ],
+            [
+              1407,
+              1440
+            ],
+            [
+              1407,
+              1467
+            ],
+            [
+              777,
+              1462
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1435,
+            1407,
+            1467
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "rather than the threshold level can determine the impact on the",
+          "confidence": 0.9892678260803223,
+          "poly": [
+            [
+              777,
+              1467
+            ],
+            [
+              1407,
+              1472
+            ],
+            [
+              1407,
+              1499
+            ],
+            [
+              777,
+              1494
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1467,
+            1407,
+            1499
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "atmosphere. While the threshold might not directly impact the",
+          "confidence": 0.9887897968292236,
+          "poly": [
+            [
+              777,
+              1501
+            ],
+            [
+              1405,
+              1505
+            ],
+            [
+              1405,
+              1532
+            ],
+            [
+              777,
+              1528
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1501,
+            1405,
+            1532
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "atmospheric variables, it is, however, crucial to determine the",
+          "confidence": 0.9795371294021606,
+          "poly": [
+            [
+              778,
+              1536
+            ],
+            [
+              1403,
+              1539
+            ],
+            [
+              1403,
+              1563
+            ],
+            [
+              778,
+              1560
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1536,
+            1403,
+            1563
+          ],
+          "reading_order": 20
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9853423833847046,
+      "bbox_xyxy": [
+        135,
+        1191,
+        715,
+        1525
+      ],
+      "lines": [
+        {
+          "text": "enough.",
+          "confidence": 0.999933660030365,
+          "poly": [
+            [
+              109,
+              1175
+            ],
+            [
+              194,
+              1175
+            ],
+            [
+              194,
+              1207
+            ],
+            [
+              109,
+              1207
+            ]
+          ],
+          "bbox_xyxy": [
+            109,
+            1175,
+            194,
+            1207
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "However, for large enough horizontal resolutions the",
+          "confidence": 0.9768569469451904,
+          "poly": [
+            [
+              150,
+              1210
+            ],
+            [
+              721,
+              1212
+            ],
+            [
+              721,
+              1236
+            ],
+            [
+              149,
+              1233
+            ]
+          ],
+          "bbox_xyxy": [
+            149,
+            1210,
+            721,
+            1236
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "sprinkler delivery method could be parameterized also with",
+          "confidence": 0.9823803901672363,
+          "poly": [
+            [
+              113,
+              1243
+            ],
+            [
+              721,
+              1244
+            ],
+            [
+              721,
+              1268
+            ],
+            [
+              113,
+              1267
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1243,
+            721,
+            1268
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "the surface water application above the canopy of Section 3.3.2",
+          "confidence": 0.9956507086753845,
+          "poly": [
+            [
+              112,
+              1274
+            ],
+            [
+              721,
+              1278
+            ],
+            [
+              721,
+              1302
+            ],
+            [
+              112,
+              1298
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1274,
+            721,
+            1302
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "(Figure 1, Process B), as the direct horizontal diffusion can be",
+          "confidence": 0.9890788197517395,
+          "poly": [
+            [
+              112,
+              1307
+            ],
+            [
+              722,
+              1309
+            ],
+            [
+              722,
+              1336
+            ],
+            [
+              112,
+              1334
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1307,
+            722,
+            1336
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "neglected. If the timestep of the modeling setting is further",
+          "confidence": 0.9806820750236511,
+          "poly": [
+            [
+              113,
+              1342
+            ],
+            [
+              721,
+              1345
+            ],
+            [
+              721,
+              1369
+            ],
+            [
+              113,
+              1366
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1342,
+            721,
+            1369
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "increased, then the infiltration of the irrigation water from the",
+          "confidence": 0.9794186949729919,
+          "poly": [
+            [
+              113,
+              1376
+            ],
+            [
+              721,
+              1378
+            ],
+            [
+              721,
+              1401
+            ],
+            [
+              113,
+              1399
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1376,
+            721,
+            1401
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "surface to the underneath soil layers can take place within the",
+          "confidence": 0.9910666346549988,
+          "poly": [
+            [
+              114,
+              1409
+            ],
+            [
+              720,
+              1411
+            ],
+            [
+              720,
+              1435
+            ],
+            [
+              114,
+              1433
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1409,
+            720,
+            1435
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "same timestep. Thus, the soil-moisture increase due to irrigation",
+          "confidence": 0.9934203028678894,
+          "poly": [
+            [
+              114,
+              1444
+            ],
+            [
+              720,
+              1447
+            ],
+            [
+              720,
+              1471
+            ],
+            [
+              114,
+              1468
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1444,
+            720,
+            1471
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "happens instantaneously from the land-atmosphere coupling",
+          "confidence": 0.9871865510940552,
+          "poly": [
+            [
+              113,
+              1477
+            ],
+            [
+              720,
+              1480
+            ],
+            [
+              720,
+              1504
+            ],
+            [
+              113,
+              1501
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1477,
+            720,
+            1504
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "perspective, thus, leading to irrigation directly affecting soil",
+          "confidence": 0.9791373014450073,
+          "poly": [
+            [
+              115,
+              1513
+            ],
+            [
+              720,
+              1513
+            ],
+            [
+              720,
+              1536
+            ],
+            [
+              115,
+              1536
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1513,
+            720,
+            1536
+          ],
+          "reading_order": 10
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.981283962726593,
+      "bbox_xyxy": [
+        135,
+        1532,
+        715,
+        1773
+      ],
+      "lines": [
+        {
+          "text": "moisture (cf. Section 3.3.1).",
+          "confidence": 0.9975897669792175,
+          "poly": [
+            [
+              114,
+              1543
+            ],
+            [
+              375,
+              1546
+            ],
+            [
+              375,
+              1569
+            ],
+            [
+              114,
+              1565
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1543,
+            375,
+            1569
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Another scale consideration has to be made regarding the",
+          "confidence": 0.979763925075531,
+          "poly": [
+            [
+              152,
+              1575
+            ],
+            [
+              720,
+              1578
+            ],
+            [
+              720,
+              1601
+            ],
+            [
+              151,
+              1599
+            ]
+          ],
+          "bbox_xyxy": [
+            151,
+            1575,
+            720,
+            1601
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "canopy water balance impact on the irrigation application. The",
+          "confidence": 0.9806680083274841,
+          "poly": [
+            [
+              115,
+              1609
+            ],
+            [
+              720,
+              1610
+            ],
+            [
+              720,
+              1634
+            ],
+            [
+              115,
+              1633
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1609,
+            720,
+            1634
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "timestep length has to be suitable with the modeling' and",
+          "confidence": 0.9703932404518127,
+          "poly": [
+            [
+              115,
+              1641
+            ],
+            [
+              720,
+              1643
+            ],
+            [
+              720,
+              1667
+            ],
+            [
+              115,
+              1665
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1641,
+            720,
+            1667
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "climate conditions to properly capture irrigation entering the",
+          "confidence": 0.9978922009468079,
+          "poly": [
+            [
+              116,
+              1674
+            ],
+            [
+              720,
+              1679
+            ],
+            [
+              720,
+              1703
+            ],
+            [
+              116,
+              1698
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1674,
+            720,
+            1703
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "canopy water balance. For example, during dry conditions the",
+          "confidence": 0.9969978332519531,
+          "poly": [
+            [
+              115,
+              1708
+            ],
+            [
+              720,
+              1710
+            ],
+            [
+              720,
+              1734
+            ],
+            [
+              115,
+              1732
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1708,
+            720,
+            1734
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "permanence of water on the leaves is very low, thus the model",
+          "confidence": 0.9899371266365051,
+          "poly": [
+            [
+              116,
+              1741
+            ],
+            [
+              720,
+              1742
+            ],
+            [
+              720,
+              1766
+            ],
+            [
+              116,
+              1765
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1741,
+            720,
+            1766
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 10,
+      "label": "paragraph_title",
+      "score": 0.9036442041397095,
+      "bbox_xyxy": [
+        766,
+        1659,
+        1251,
+        1686
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 11,
+      "label": "paragraph_title",
+      "score": 0.8934937119483948,
+      "bbox_xyxy": [
+        767,
+        1715,
+        1156,
+        1742
+      ],
+      "lines": [
+        {
+          "text": "5. Uncertainties and limitations",
+          "confidence": 0.9994362592697144,
+          "poly": [
+            [
+              776,
+              1708
+            ],
+            [
+              1296,
+              1713
+            ],
+            [
+              1296,
+              1744
+            ],
+            [
+              776,
+              1739
+            ]
+          ],
+          "bbox_xyxy": [
+            776,
+            1708,
+            1296,
+            1744
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "text",
+      "score": 0.9615112543106079,
+      "bbox_xyxy": [
+        765,
+        1782,
+        1344,
+        1868
+      ],
+      "lines": [
+        {
+          "text": "5.1. Irrigation water amount",
+          "confidence": 0.9969009757041931,
+          "poly": [
+            [
+              775,
+              1769
+            ],
+            [
+              1192,
+              1774
+            ],
+            [
+              1192,
+              1804
+            ],
+            [
+              775,
+              1799
+            ]
+          ],
+          "bbox_xyxy": [
+            775,
+            1769,
+            1192,
+            1804
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "This section provides an overview of the uncertainties",
+          "confidence": 0.990017831325531,
+          "poly": [
+            [
+              812,
+              1840
+            ],
+            [
+              1394,
+              1845
+            ],
+            [
+              1394,
+              1872
+            ],
+            [
+              812,
+              1867
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1840,
+            1394,
+            1872
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 17,
+      "label": "footnote",
+      "score": 0.6253960132598877,
+      "bbox_xyxy": [
+        135,
+        1822,
+        714,
+        1873
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 18,
+      "label": "text",
+      "score": 0.5427428483963013,
+      "bbox_xyxy": [
+        135,
+        1822,
+        714,
+        1873
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 14,
+      "label": "footer",
+      "score": 0.860170304775238,
+      "bbox_xyxy": [
+        138,
+        1976,
+        279,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 15,
+      "label": "footer",
+      "score": 0.8567197322845459,
+      "bbox_xyxy": [
+        1227,
+        1977,
+        1343,
+        1995
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 16,
+      "label": "number",
+      "score": 0.8042269349098206,
+      "bbox_xyxy": [
+        732,
+        1978,
+        752,
+        1993
+      ],
+      "lines": []
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+becomeimportantinsustainingthefoodproduction.Whileonly,lack of related data and tools. The ongoing improvement
+,
+20% of the cultivated land is irrigated, it accounts for about,in the observational networks and systems, both in quantity
+,
+40% of the total food production (Bin Abdullah, 2006; Siebert,and quality (i.e., spatial resolution), and the advancements
+,
+andDöll,2010;Sridhar,2013).Furthermore,irrigationenables,of numerical models opened up promising perspective in
+,
+an increased food security especially in regions which would,investigating the impact of the irrigation management on the
+,
+not otherwise allow for crop growth due to adverse climate,Earthsystem.
+,
+conditions, such as very arid areas (Sridhar, 2013). However,,Thefirstobservationalstudiesontheimpactofirrigationon
+,
+agriculturalwaterscarcityisalreadyaffecting39%oftheglobal,theEarthsystemcanbedatedbacktothe1953withthestudy
+,
+cropland areas and that this is bound to increase in the next,byChudnowskii,referredbydeVries(1959)whenatheoretical
+,
+decades(Liuetal.,2022).,framework for the energy balance and the near-surface is
+,
+Agriculture is also one of the three main activities driving,presented. Later on, Budyko (1972) highlights irrigation as an
+,
+naturallandconversion(Luyssaertetal.,2014;McDermidetal.,,important modification to the evapotranspiration, as evidence
+,
+2017). In this respect, land cover changes have only recently,fromobservationsshowed.Thefirstmodelingstudiesreferring
+,
+beenhighlightedasanimportantfactorintheclimatesystemas,to irrigation can be found in Milly and Dunne (1994). While
+,
+describedbyMahmoodetal.(2014).Theyfurtherhighlighthow,their study focuses on the sensitivity of the water cycle to the
+,
+notonlylanduseconversionbutalsoitsmanagementcancause,capacity of the land to hold water, they argue that the results
+,
+considerableimpactsontheEarthsystemwithirrigationbeing,canbeinterpretedalsoasaanthropogenicmodificationofthe
+,
+the practice with the largest bio-geophysical effect on climate.,water cycle, intended as irrigation. The first modeling studies
+,
+Sometimestheeffectofthemanagementschangeshasthesame,explicitlyaddressingirrigationareregionalworksbyLoharand
+,
+impactthatthechangesinlandcoverdo(Jiaetal.,2019).,Pal (1995) for India first, and then by De Ridder and Gallée
+,
+Irrigation generally refers to the agriculture practices of,(1998) for Israel and Segal et al. (1998) for the Contiguous
+,
+wateringplants.Althoughirrigationearliestrecordsdatebackto,United States. The first global studies about irrigation were
+,
+theClassicalGreekandImperialRomanperiods,archaeological,published some years later, e.g., Boucher et al. (2004). While
+worksdateitbackto5000BC(Angelakιsetal.,2020).Despite,mostoftheobservationalstudiesarguehowirrigationmodifies
+,
+irrigation being present and crucial throughout the centuries,,the evapotranspiration (de Vries, 1959; Flohn, 1963), the first
+,
+thevastexpansionofitsusewasanon-linearprocessstringin,modeling studies include both irrigation as a modification of
+,
+theearly1800s.Thisdevelopmentincludedtheinteractionnot,thesoilmoisture(LoharandPal,1995;DeRidderandGallée,
+,
+onlywithintheentrepreneurialsectorbutalsowithengineering,1998) and as a evaporation modification (Segal et al., 1998;
+andpublicadministration(Angelakιsetal.,2020).Todate,the,Boucher et al., 2004; Evans and Zaitchik, 2008). Most of the
+,
+irrigationtechniquesusedacrosstheworldvarydependingon,studiesinvolved withdesigning anirrigationparameterization
+,
+the climate conditions and historical context, aside than from,follow the work by Kueppers et al. (2007) and their concept
+,
+thefundingavailable.Despitetheverydifferentconditions,the,ofirrigationassoilmoisturemodification,despiteLobelletal.
+,
+irrigation techniques can be grouped into four categories (i.e.,,(2006a) using it first and highlighting how it was mentioned
+,
+surface,sprinkler,micro,andsubirrigation),dependingonhow,onlyasanextremescenario.Lobelletal.(2006a,b)openedup
+,
+thewaterisdeliveredtotheplants(seeSection2.1).,the topic of irrigation at the global scales and showed how its
+,
+Aside from increasing the agricultural yield and food,relevance in the context of a changing climate. Lobell et al.
+,
+security, irrigation is a land management practice that,(2008) and later Cook et al. (2011) demonstrated how the
+,
+is often accompanied by permanent and irreversible land,irrigation signal did mask the increase in temperatures due to
+transformations(Angelakιsetal.,2020).Thisiscausedbyboth,climatechangeatmultiplefoodbasketsacrosstheworld,after
+,
+themodificationofthelandtoadaptforbothagriculturaluse,seeingitforCaliforniainapreviousstudy(BonfilsandLobell,
+,
+and the distribution networks and the water and salt balances,2007). Sacks et al. (2009) was the first study that attempted
+,
+changes (Squatriti, 1998). Further, irrigation increases the soil,toincludeirrigationwaterasarationalofseveraldrivers,and
+,
+water available to the plants. This, in turn, impacts the soil-,limit its amount, which was identified as the key aspect in
+,
+atmospherefeedback,assoilmoistureisaninlandwatersource,bothcomparisonsandapplicabilitytothereality.However,the
+,
+for the atmosphere through evapotranspiration (Seneviratne,core mathematical representation of irrigation developed by
+,
+et al., 2010). The land evapotranspiration is also a major,Ozdogan et al. (2009) follows Kueppers et al. (2007), and not
+,
+component of the water cycle, thus influencing not only the,Boucheretal.(2004),andfurtherdefinesirrigationasdrivenby
+,
+energetic surface balance, but also the atmospheric processes,thesoilmoistureavailability.Lengetal.(2013)developedoneof
+,
+themselves.,themostusedirrigationparameterizationsafterOzdoganetal.
+,
+While irrigation has been used throughout the millennia,,(2009),affirmingirrigationasaphysicalmodificationofthesoil
+,
+its effect on the climate system has only been addressed,moisture.Thisschemeiswidelyusedalsoinfollow-upregional
+,
+in recent decades, the reason being the complexity of the,andhighresolutionstudiesacrosstheglobe,irrespectiveofthe
+,
+involved feedback processes within the Earth system and the,irrigationtime-scalesandtechniques.Thisparameterizationby
+,
+FrontiersinWater 02,frontiersin.org

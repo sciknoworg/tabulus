@@ -1,0 +1,100 @@
+S.Siebertetal.: Groundwateruseforirrigation–aglobalinvento,ry 1867
+,
+,
+For only about 12% of the 15038 administrative units,,MIRCA2000. Therefore, a scaling coefficient cs was
+1
+statistics on AEI or AAI by source of water have been,computedforeachadministrativeunitas
+available (Fig. 1 and Table 1). However, about 75% of the,
+,AEI
+,
+globalAEIislocatedinthese1739administrativeunits. For,cs = (1)
+1
+7274 administrative units containing 17% of the total AEI,,AEI
+MIRCA
+,
+waterusestatisticswereusedtocomputeAEI GW,AEI SW,where AEI was the area equipped for irrigation recorded in
+,
+and AEI NC. For 6025 administrative units containing 7%,thenewinventory(ha)andAEI wastheareaequipped
+MIRCA
+oftheglobalAEI,otherdataorownestimateswereapplied.,for irrigation used for the same administrative unit when
+The data for the different spatial units represent different,developing the MIRCA2000 data set (ha). Then, a second
+,
+periods of time, such that it is impossible to state exactly,scalingcoefficientcs wascomputedas
+2
+,
+forwhichtimeperiodthisglobalinventoryisrepresentative.,
+Inmanyunits,however,thesituationaroundtheyear2000is, cs1 × A A A H I IMIRCA if AAI > cs 1 × AHIMIRCA
+,AAI
+represented. Foradetailedcountry-wisedescriptionofinput,cs 2 = cs1 ×MMGAMIRCA if AAI < cs 1 × MMGAMIRCA (2)
+data,referencesandmethodsusedtodevelopthisinventory,,
+1 else
+,
+,
+readersarereferredtoSupplementS1.,where AAI was the area actually irrigated recorded in the
+,
+,
+,new inventory (ha), AHI was the harvested area of
+MIRCA
+2.2.2 Calculationofconsumptivewateruseinirrigation,irrigated crops in MIRCA2000 (ha) and MMGA was
+MIRCA
+andbreakdownbywatersources,the maximum of the sum of monthly growing areas of all
+,
+,
+,irrigated crops in MIRCA2000 (ha). MMGA was
+,MIRCA
+Average consumptive use of irrigation water was computed,computed by adding up in each 5 arc-minute grid cell the
+,
+for each administrative unit using the Global Crop Water,growing area of all irrigated crops for each month and by
+,
+Model GCWM (Siebert and Do¨ll, 2010). It was then,afterwards selecting the maximum of the 12 total monthly
+,
+subdivided into irrigation consumptive water use from,growingareas.AHI islargerthanMMGA when
+,MIRCA MIRCA
+groundwater(ICWU GW),irrigationconsumptivewateruse,irrigatedcropsarecultivatedindifferentseasonswithoutan
+,
+fromsurfacewater(ICWU SW)andirrigationconsumptive,overlap of the growing season, e.g. when multi-cropping
+,
+waterusefromnon-conventionalwatersources(ICWU NC),occurs. Therefore AAI has to be larger or equal to
+,
+usingtheratiosofAAI GW,AAI SWandAAI NCtototal,MMGA and lower or equal to AHI which is
+,MIRCA MIRCA
+AAI. GCWM was applied using climate data for the period,reflected by Eq. (2). The adjusted irrigation water use was
+,
+1998–2002,andtheFAOPenman-Monteithmethod(Allenet,thencomputedforeachadministrativeunitas
+,
+al.,1998)wasusedtocomputereferenceevapotranspiration.,
+,
+In GCWM irrigation consumptive water use is computed,ICWU = cs × cs × ICWU (3)
+1 2 GCWM
+as the difference between potential crop evapotranspiration,
+(calculated as reference evapotranspiration multiplied by a,where ICWU was the consumptive use of irrigation water
+crop and growing stage specific “crop factor”) and water,in the new inventory (m3yr−1) and ICWU was the
+GCWM
+limited actual evapotranspiration of the same crop under,consumptiveuseofirrigationwaterascomputedbyGCWM
+,3 −1
+rainfed conditions. The model considers 26 different crop,usingtheMIRCA2000cropdata(m yr ).
+classes and evapotranspiration is simulated based on a soil,In 443 administrative units with an AEI of 377978ha
+water balance performed in daily time steps. Cropping,(0.12% of total AEI), AAI was larger than 0 in the new
+patternsandcroppingseasonsareprovidedbyMIRCA2000,inventory but AEI and ICWU was zero. This
+MIRCA GCWM
+(Portmannetal.,2010),aglobaldatasetofmonthlyirrigated,happened mainly in regions where the resolution of the
+and rainfed crop areas of these 26 crop classes at 5arc-min,irrigation statistics was much higher in the new inventory
+resolutionandmainlybasedonFAOcroppingcalendarsand,as compared to the resolution of the statistics in version 4
+cropping factors. The growing areas of irrigated crops in,of the global irrigation map as used when developing
+MIRCA2000areconsistentwithversion4oftheglobalmap,MIRCA2000 (e.g. in Mexico and Chile). ICWU for
+of irrigation areas but not with the inventory of irrigation,these administrative units was computed by interpolating
+areaspresentedherebecausetheirrigatedareadatabasewas,ICWU per MMGA from grid cells belonging
+GCWM MIRCA
+updated with new information in many administrative units,toneighbouringadministrativeunitsandbymultiplyingthis
+(see Sect. 2.2.1 and Supplement S1). Therefore, a scaling,interpolatedratiowiththereportedAAI.
+,
+procedurewasappliedtoadaptthewaterusescomputedwith,
+,
+GCWM based on MIRCA2000 to irrigated area statistics,3 Results
+usedinthisinventory.,
+IrrigationwateruseismorecloselyrelatedtoAAIthanto,3.1 Irrigatedareaandconsumptiveirrigationwateruse
+AEI. A scaling coefficient based on AAI per administrative,
+unitinthisinventoryascomparedtoMIRCA2000,however,,TotalAEIrecordedinthisinventoryis301millionhawhile
+could not be computed because AAI is not reported by,total AAI is 253millionha, i.e. about 84% of the equipped
+,
+www.hydrol-earth-syst-sci.net/14/1863/2010/,Hydrol. EarthSyst. Sci.,14,1863–1880,2010

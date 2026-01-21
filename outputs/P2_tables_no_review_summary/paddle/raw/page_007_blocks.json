@@ -1,0 +1,1478 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 7,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 7,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9833558201789856,
+          "poly": [
+            [
+              25,
+              22
+            ],
+            [
+              325,
+              44
+            ],
+            [
+              323,
+              75
+            ],
+            [
+              23,
+              53
+            ]
+          ],
+          "bbox_xyxy": [
+            23,
+            22,
+            325,
+            75
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "7 of 16",
+          "confidence": 0.9742949604988098,
+          "poly": [
+            [
+              1531,
+              26
+            ],
+            [
+              1617,
+              28
+            ],
+            [
+              1615,
+              65
+            ],
+            [
+              1529,
+              63
+            ]
+          ],
+          "bbox_xyxy": [
+            1529,
+            26,
+            1617,
+            65
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "as an integral part of the organizational structure of the corporation. Thus, schemes are",
+          "confidence": 0.9892143607139587,
+          "poly": [
+            [
+              427,
+              189
+            ],
+            [
+              1610,
+              172
+            ],
+            [
+              1610,
+              212
+            ],
+            [
+              428,
+              229
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            172,
+            1610,
+            229
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "operated by unskilled and on-job trained staff with no adequate irrigation engineering",
+          "confidence": 0.9900527596473694,
+          "poly": [
+            [
+              429,
+              230
+            ],
+            [
+              1607,
+              214
+            ],
+            [
+              1607,
+              251
+            ],
+            [
+              430,
+              268
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            214,
+            1607,
+            268
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "header",
+      "score": 0.8895488977432251,
+      "bbox_xyxy": [
+        96,
+        144,
+        360,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 6,
+      "label": "number",
+      "score": 0.7505510449409485,
+      "bbox_xyxy": [
+        1484,
+        144,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9749245047569275,
+      "bbox_xyxy": [
+        455,
+        268,
+        1553,
+        436
+      ],
+      "lines": [
+        {
+          "text": "knowledge and technical skill. The visible consequences of such unwise management",
+          "confidence": 0.982007622718811,
+          "poly": [
+            [
+              428,
+              267
+            ],
+            [
+              1608,
+              252
+            ],
+            [
+              1608,
+              289
+            ],
+            [
+              429,
+              305
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            252,
+            1608,
+            305
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "of irrigation are widespread salinity development, groundwater rise, and related water-",
+          "confidence": 0.9823915362358093,
+          "poly": [
+            [
+              428,
+              305
+            ],
+            [
+              1610,
+              289
+            ],
+            [
+              1610,
+              329
+            ],
+            [
+              429,
+              345
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            289,
+            1610,
+            345
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "logging and deterioration of soil fertility and loss of agricultural land.",
+          "confidence": 0.9808906316757202,
+          "poly": [
+            [
+              428,
+              344
+            ],
+            [
+              1337,
+              332
+            ],
+            [
+              1337,
+              369
+            ],
+            [
+              429,
+              381
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            332,
+            1337,
+            381
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Next to the ESC, the smallholder farming community is the largest beneficiary of",
+          "confidence": 0.9794034957885742,
+          "poly": [
+            [
+              490,
+              380
+            ],
+            [
+              1603,
+              368
+            ],
+            [
+              1603,
+              405
+            ],
+            [
+              490,
+              417
+            ]
+          ],
+          "bbox_xyxy": [
+            490,
+            368,
+            1603,
+            417
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "medium and large-scale irrigation development implemented and managed by the gov-",
+          "confidence": 0.9933491349220276,
+          "poly": [
+            [
+              428,
+              420
+            ],
+            [
+              1603,
+              409
+            ],
+            [
+              1603,
+              444
+            ],
+            [
+              429,
+              454
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            409,
+            1603,
+            454
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9852643609046936,
+      "bbox_xyxy": [
+        455,
+        442,
+        1554,
+        820
+      ],
+      "lines": [
+        {
+          "text": "ernment. Such projects are used by hundreds and thousands of smallholder farmers and",
+          "confidence": 0.9820349812507629,
+          "poly": [
+            [
+              427,
+              458
+            ],
+            [
+              1600,
+              446
+            ],
+            [
+              1600,
+              480
+            ],
+            [
+              428,
+              491
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            446,
+            1600,
+            491
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "jointly managed by the Irrigation Development Commission (IDC) and the users. The IDC",
+          "confidence": 0.9989955425262451,
+          "poly": [
+            [
+              426,
+              493
+            ],
+            [
+              1598,
+              484
+            ],
+            [
+              1598,
+              518
+            ],
+            [
+              427,
+              527
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            484,
+            1598,
+            527
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "is responsible for water allocation and distribution through operation of the headwork",
+          "confidence": 0.9921647906303406,
+          "poly": [
+            [
+              426,
+              528
+            ],
+            [
+              1598,
+              523
+            ],
+            [
+              1598,
+              557
+            ],
+            [
+              427,
+              562
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            523,
+            1598,
+            562
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "and main system. Irrigators are organized and form irrigation water users associations",
+          "confidence": 0.9902346134185791,
+          "poly": [
+            [
+              426,
+              566
+            ],
+            [
+              1598,
+              562
+            ],
+            [
+              1598,
+              595
+            ],
+            [
+              426,
+              599
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            562,
+            1598,
+            599
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "(IWUAs) that are responsible for tertiary and quaternary level irrigation management.",
+          "confidence": 0.9939374327659607,
+          "poly": [
+            [
+              428,
+              601
+            ],
+            [
+              1600,
+              601
+            ],
+            [
+              1600,
+              634
+            ],
+            [
+              428,
+              634
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            601,
+            1600,
+            634
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Local agricultural bureaus facilitate the establishment of IWUAs and with limited support",
+          "confidence": 0.9836483001708984,
+          "poly": [
+            [
+              428,
+              638
+            ],
+            [
+              1597,
+              638
+            ],
+            [
+              1597,
+              672
+            ],
+            [
+              428,
+              672
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            638,
+            1597,
+            672
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "services to enhance their capacities. The major operation and maintenance works remain",
+          "confidence": 0.9806509613990784,
+          "poly": [
+            [
+              427,
+              677
+            ],
+            [
+              1596,
+              677
+            ],
+            [
+              1596,
+              710
+            ],
+            [
+              427,
+              710
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            677,
+            1596,
+            710
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "the responsibility of the government, which is not properly undertaken. There is a lack of",
+          "confidence": 0.9902756810188293,
+          "poly": [
+            [
+              429,
+              715
+            ],
+            [
+              1596,
+              715
+            ],
+            [
+              1596,
+              748
+            ],
+            [
+              429,
+              748
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            715,
+            1596,
+            748
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "coordination among these parties involved in irrigation development and management.",
+          "confidence": 0.989712655544281,
+          "poly": [
+            [
+              430,
+              751
+            ],
+            [
+              1576,
+              751
+            ],
+            [
+              1576,
+              785
+            ],
+            [
+              430,
+              785
+            ]
+          ],
+          "bbox_xyxy": [
+            430,
+            751,
+            1576,
+            785
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Generally, irrigation development in Ethiopia has been largely focusing on infrastruc-",
+          "confidence": 0.9774062633514404,
+          "poly": [
+            [
+              489,
+              786
+            ],
+            [
+              1600,
+              787
+            ],
+            [
+              1600,
+              824
+            ],
+            [
+              489,
+              823
+            ]
+          ],
+          "bbox_xyxy": [
+            489,
+            786,
+            1600,
+            824
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.983551025390625,
+      "bbox_xyxy": [
+        455,
+        826,
+        1554,
+        1169
+      ],
+      "lines": [
+        {
+          "text": "ture construction. That means that the important role of irrigation management is largely",
+          "confidence": 0.9894367456436157,
+          "poly": [
+            [
+              428,
+              824
+            ],
+            [
+              1595,
+              827
+            ],
+            [
+              1595,
+              864
+            ],
+            [
+              428,
+              861
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            824,
+            1595,
+            864
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "overlooked. Consequently, several studies indicate that the performance of irrigation",
+          "confidence": 0.9900445342063904,
+          "poly": [
+            [
+              429,
+              861
+            ],
+            [
+              1594,
+              862
+            ],
+            [
+              1594,
+              902
+            ],
+            [
+              429,
+              901
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            861,
+            1594,
+            902
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "schemes, measured with several applicable indicators, is poor [1420]; While the causes for",
+          "confidence": 0.9957905411720276,
+          "poly": [
+            [
+              429,
+              900
+            ],
+            [
+              1595,
+              899
+            ],
+            [
+              1595,
+              936
+            ],
+            [
+              429,
+              937
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            899,
+            1595,
+            937
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "low performance are diverse, it is largely attributed to inadequate management of schemes.",
+          "confidence": 0.9866899847984314,
+          "poly": [
+            [
+              430,
+              938
+            ],
+            [
+              1598,
+              938
+            ],
+            [
+              1598,
+              975
+            ],
+            [
+              430,
+              975
+            ]
+          ],
+          "bbox_xyxy": [
+            430,
+            938,
+            1598,
+            975
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Not only are the productivity and efficiency of schemes low but also the areas irrigated are",
+          "confidence": 0.9873570203781128,
+          "poly": [
+            [
+              429,
+              974
+            ],
+            [
+              1595,
+              972
+            ],
+            [
+              1595,
+              1012
+            ],
+            [
+              429,
+              1014
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            972,
+            1595,
+            1014
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "far below the potential irrigable areas created by project implementation. Reports indicate",
+          "confidence": 0.9831231236457825,
+          "poly": [
+            [
+              430,
+              1012
+            ],
+            [
+              1592,
+              1010
+            ],
+            [
+              1592,
+              1048
+            ],
+            [
+              430,
+              1050
+            ]
+          ],
+          "bbox_xyxy": [
+            430,
+            1010,
+            1592,
+            1050
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "that currently, about 50% of the irrigation schemes are considered as proving functional",
+          "confidence": 0.9789010882377625,
+          "poly": [
+            [
+              431,
+              1049
+            ],
+            [
+              1593,
+              1047
+            ],
+            [
+              1593,
+              1087
+            ],
+            [
+              431,
+              1089
+            ]
+          ],
+          "bbox_xyxy": [
+            431,
+            1047,
+            1593,
+            1089
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "services, the remaining 34% of the implemented schemes are not utilized with full capacity,",
+          "confidence": 0.9894189238548279,
+          "poly": [
+            [
+              432,
+              1087
+            ],
+            [
+              1595,
+              1086
+            ],
+            [
+              1595,
+              1126
+            ],
+            [
+              432,
+              1127
+            ]
+          ],
+          "bbox_xyxy": [
+            432,
+            1086,
+            1595,
+            1127
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "and 16% are non-functional [21].",
+          "confidence": 0.9889647960662842,
+          "poly": [
+            [
+              435,
+              1128
+            ],
+            [
+              845,
+              1124
+            ],
+            [
+              845,
+              1158
+            ],
+            [
+              436,
+              1162
+            ]
+          ],
+          "bbox_xyxy": [
+            435,
+            1124,
+            845,
+            1162
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9863259196281433,
+      "bbox_xyxy": [
+        455,
+        1176,
+        1553,
+        1901
+      ],
+      "lines": [
+        {
+          "text": "In most instances, the performances of irrigation schemes implemented by the gov-",
+          "confidence": 0.9969966411590576,
+          "poly": [
+            [
+              492,
+              1164
+            ],
+            [
+              1594,
+              1163
+            ],
+            [
+              1594,
+              1198
+            ],
+            [
+              492,
+              1199
+            ]
+          ],
+          "bbox_xyxy": [
+            492,
+            1163,
+            1594,
+            1199
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "ernment and development partners and operated either by the community or jointly",
+          "confidence": 0.9817035794258118,
+          "poly": [
+            [
+              434,
+              1202
+            ],
+            [
+              1592,
+              1197
+            ],
+            [
+              1592,
+              1235
+            ],
+            [
+              434,
+              1239
+            ]
+          ],
+          "bbox_xyxy": [
+            434,
+            1197,
+            1592,
+            1239
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "by a government body and the community are poor compared to traditional schemes.",
+          "confidence": 0.9890459179878235,
+          "poly": [
+            [
+              433,
+              1241
+            ],
+            [
+              1595,
+              1234
+            ],
+            [
+              1595,
+              1271
+            ],
+            [
+              434,
+              1278
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            1234,
+            1595,
+            1278
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Solomon and Kitamura [22] studied Betmera-Hiwane, one of the ancient traditional ir-",
+          "confidence": 0.9935405254364014,
+          "poly": [
+            [
+              435,
+              1277
+            ],
+            [
+              1593,
+              1273
+            ],
+            [
+              1593,
+              1307
+            ],
+            [
+              435,
+              1311
+            ]
+          ],
+          "bbox_xyxy": [
+            435,
+            1273,
+            1593,
+            1311
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "rigation schemes in Tigray, and found the management peculiarities contributing to its",
+          "confidence": 0.9907349944114685,
+          "poly": [
+            [
+              435,
+              1313
+            ],
+            [
+              1590,
+              1310
+            ],
+            [
+              1590,
+              1347
+            ],
+            [
+              435,
+              1350
+            ]
+          ],
+          "bbox_xyxy": [
+            435,
+            1310,
+            1590,
+            1350
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "enduring success to be the presence of communally constructed local rules, locally designed",
+          "confidence": 0.9886781573295593,
+          "poly": [
+            [
+              434,
+              1349
+            ],
+            [
+              1590,
+              1346
+            ],
+            [
+              1590,
+              1383
+            ],
+            [
+              434,
+              1386
+            ]
+          ],
+          "bbox_xyxy": [
+            434,
+            1346,
+            1590,
+            1386
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "hydraulic control structures, ownership feeling of the irrigators and accountability of water",
+          "confidence": 0.9723712801933289,
+          "poly": [
+            [
+              433,
+              1385
+            ],
+            [
+              1591,
+              1384
+            ],
+            [
+              1591,
+              1421
+            ],
+            [
+              433,
+              1422
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            1384,
+            1591,
+            1422
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "distributors to the irrigation management, the culture for mobilizing communal resources,",
+          "confidence": 0.9897748827934265,
+          "poly": [
+            [
+              434,
+              1421
+            ],
+            [
+              1594,
+              1420
+            ],
+            [
+              1594,
+              1457
+            ],
+            [
+              434,
+              1458
+            ]
+          ],
+          "bbox_xyxy": [
+            434,
+            1420,
+            1594,
+            1458
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "and the culture of self-initiating local water management strategies. Sometimes, the scheme",
+          "confidence": 0.9808611273765564,
+          "poly": [
+            [
+              435,
+              1457
+            ],
+            [
+              1590,
+              1458
+            ],
+            [
+              1590,
+              1492
+            ],
+            [
+              435,
+              1491
+            ]
+          ],
+          "bbox_xyxy": [
+            435,
+            1457,
+            1590,
+            1492
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "management decisions made by government-delegated authorities in guiding smallholder",
+          "confidence": 0.9874891638755798,
+          "poly": [
+            [
+              434,
+              1495
+            ],
+            [
+              1590,
+              1494
+            ],
+            [
+              1590,
+              1528
+            ],
+            [
+              434,
+              1529
+            ]
+          ],
+          "bbox_xyxy": [
+            434,
+            1494,
+            1590,
+            1529
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "irrigators may not yield positive results. It is important to recognize that farmers have a",
+          "confidence": 0.9780445098876953,
+          "poly": [
+            [
+              433,
+              1532
+            ],
+            [
+              1590,
+              1529
+            ],
+            [
+              1590,
+              1566
+            ],
+            [
+              433,
+              1569
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            1529,
+            1590,
+            1569
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "better site-specific understanding of their farms and resources in the area and can make",
+          "confidence": 0.9837013483047485,
+          "poly": [
+            [
+              431,
+              1568
+            ],
+            [
+              1591,
+              1565
+            ],
+            [
+              1591,
+              1602
+            ],
+            [
+              431,
+              1605
+            ]
+          ],
+          "bbox_xyxy": [
+            431,
+            1565,
+            1591,
+            1605
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "problem-solving decisions. The authors of [23] studied farmers' participation in the man-",
+          "confidence": 0.9875384569168091,
+          "poly": [
+            [
+              429,
+              1604
+            ],
+            [
+              1596,
+              1600
+            ],
+            [
+              1596,
+              1641
+            ],
+            [
+              430,
+              1645
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1600,
+            1596,
+            1645
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "agement decision making of the Gumselassa irrigation scheme in the Tigray region of",
+          "confidence": 0.9829664826393127,
+          "poly": [
+            [
+              429,
+              1639
+            ],
+            [
+              1594,
+              1636
+            ],
+            [
+              1594,
+              1680
+            ],
+            [
+              429,
+              1683
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1636,
+            1594,
+            1683
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Ethiopia. Water shortage was found to be the major problem threatening the scheme. The",
+          "confidence": 0.9991994500160217,
+          "poly": [
+            [
+              428,
+              1674
+            ],
+            [
+              1594,
+              1672
+            ],
+            [
+              1594,
+              1719
+            ],
+            [
+              428,
+              1721
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            1672,
+            1594,
+            1721
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "their own decisions to solve the recurrent problems such as water shortages, they came",
+          "confidence": 0.9805400967597961,
+          "poly": [
+            [
+              426,
+              1782
+            ],
+            [
+              1591,
+              1785
+            ],
+            [
+              1591,
+              1833
+            ],
+            [
+              425,
+              1830
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1782,
+            1591,
+            1833
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "up with innovative adaptation strategies to the prevailing water scarcity. With minimal",
+          "confidence": 0.9795117378234863,
+          "poly": [
+            [
+              424,
+              1820
+            ],
+            [
+              1591,
+              1819
+            ],
+            [
+              1591,
+              1870
+            ],
+            [
+              424,
+              1871
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1819,
+            1591,
+            1871
+          ],
+          "reading_order": 16
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9793835878372192,
+      "bbox_xyxy": [
+        456,
+        1907,
+        1553,
+        2147
+      ],
+      "lines": [
+        {
+          "text": "demonstrated success histories in many parts of the country.",
+          "confidence": 0.9875118732452393,
+          "poly": [
+            [
+              425,
+              1897
+            ],
+            [
+              1200,
+              1898
+            ],
+            [
+              1200,
+              1940
+            ],
+            [
+              425,
+              1938
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1897,
+            1200,
+            1940
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "The success of small-scale traditional irrigation has been attracting the attention of",
+          "confidence": 0.9881670475006104,
+          "poly": [
+            [
+              485,
+              1926
+            ],
+            [
+              1593,
+              1938
+            ],
+            [
+              1592,
+              1986
+            ],
+            [
+              485,
+              1974
+            ]
+          ],
+          "bbox_xyxy": [
+            485,
+            1926,
+            1593,
+            1986
+          ],
+          "reading_order": 1
+        }
+      ]
+    }
+  ]
+}

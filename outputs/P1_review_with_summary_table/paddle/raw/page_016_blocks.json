@@ -1,0 +1,3169 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 16,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 17,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.983117401599884,
+          "poly": [
+            [
+              113,
+              16
+            ],
+            [
+              297,
+              29
+            ],
+            [
+              295,
+              53
+            ],
+            [
+              111,
+              40
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            16,
+            297,
+            53
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9998777508735657,
+          "poly": [
+            [
+              1180,
+              33
+            ],
+            [
+              1422,
+              31
+            ],
+            [
+              1422,
+              52
+            ],
+            [
+              1180,
+              54
+            ]
+          ],
+          "bbox_xyxy": [
+            1180,
+            31,
+            1422,
+            54
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "While irrigation water generally comes from either surface",
+          "confidence": 0.995648205280304,
+          "poly": [
+            [
+              150,
+              158
+            ],
+            [
+              733,
+              172
+            ],
+            [
+              732,
+              205
+            ],
+            [
+              149,
+              191
+            ]
+          ],
+          "bbox_xyxy": [
+            149,
+            158,
+            733,
+            205
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "the local nor at the global scales. Further, there is a lot of",
+          "confidence": 0.9589008092880249,
+          "poly": [
+            [
+              788,
+              173
+            ],
+            [
+              1425,
+              165
+            ],
+            [
+              1426,
+              189
+            ],
+            [
+              788,
+              197
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            165,
+            1426,
+            197
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "and groundwater sources, it is a well-know problem that pipes",
+          "confidence": 0.9820088148117065,
+          "poly": [
+            [
+              115,
+              194
+            ],
+            [
+              731,
+              205
+            ],
+            [
+              730,
+              234
+            ],
+            [
+              115,
+              224
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            194,
+            731,
+            234
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "variability among the studies with respect to the irrigation",
+          "confidence": 0.9888296127319336,
+          "poly": [
+            [
+              787,
+              203
+            ],
+            [
+              1425,
+              199
+            ],
+            [
+              1425,
+              226
+            ],
+            [
+              787,
+              230
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            199,
+            1425,
+            230
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "agriculture mid-latitude areas lies in the energetic transitional",
+          "confidence": 0.9924502968788147,
+          "poly": [
+            [
+              117,
+              1623
+            ],
+            [
+              726,
+              1623
+            ],
+            [
+              726,
+              1647
+            ],
+            [
+              117,
+              1647
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1623,
+            726,
+            1647
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "regimes.",
+          "confidence": 0.9999512434005737,
+          "poly": [
+            [
+              113,
+              1653
+            ],
+            [
+              203,
+              1656
+            ],
+            [
+              202,
+              1687
+            ],
+            [
+              113,
+              1685
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1653,
+            203,
+            1687
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "order to close the water budget, which is currently available only",
+          "confidence": 0.9770559668540955,
+          "poly": [
+            [
+              780,
+              1767
+            ],
+            [
+              1407,
+              1777
+            ],
+            [
+              1407,
+              1801
+            ],
+            [
+              780,
+              1791
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1767,
+            1407,
+            1801
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "in CLM.",
+          "confidence": 0.9976733326911926,
+          "poly": [
+            [
+              777,
+              1800
+            ],
+            [
+              864,
+              1800
+            ],
+            [
+              864,
+              1825
+            ],
+            [
+              777,
+              1825
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1800,
+            864,
+            1825
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "confidence about a cooling effect of irrigation (cf. AR5) but",
+          "confidence": 0.9775879383087158,
+          "poly": [
+            [
+              120,
+              1882
+            ],
+            [
+              722,
+              1883
+            ],
+            [
+              722,
+              1907
+            ],
+            [
+              120,
+              1906
+            ]
+          ],
+          "bbox_xyxy": [
+            120,
+            1882,
+            722,
+            1907
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "8 https://simplex.giss.nasa.gov/snapshots/",
+          "confidence": 0.9864817261695862,
+          "poly": [
+            [
+              773,
+              1878
+            ],
+            [
+              1160,
+              1891
+            ],
+            [
+              1159,
+              1921
+            ],
+            [
+              772,
+              1908
+            ]
+          ],
+          "bbox_xyxy": [
+            772,
+            1878,
+            1160,
+            1921
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "the magnitude of this effect is still not certain neither at",
+          "confidence": 0.9862512946128845,
+          "poly": [
+            [
+              121,
+              1916
+            ],
+            [
+              723,
+              1916
+            ],
+            [
+              723,
+              1939
+            ],
+            [
+              121,
+              1939
+            ]
+          ],
+          "bbox_xyxy": [
+            121,
+            1916,
+            723,
+            1939
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "9",
+          "confidence": 0.9999251365661621,
+          "poly": [
+            [
+              777,
+              1919
+            ],
+            [
+              796,
+              1919
+            ],
+            [
+              796,
+              1937
+            ],
+            [
+              777,
+              1937
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1919,
+            796,
+            1937
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "https://www.lf.uni-bonn.de/en/research/crc-detect",
+          "confidence": 0.997822642326355,
+          "poly": [
+            [
+              792,
+              1917
+            ],
+            [
+              1260,
+              1928
+            ],
+            [
+              1260,
+              1948
+            ],
+            [
+              792,
+              1937
+            ]
+          ],
+          "bbox_xyxy": [
+            792,
+            1917,
+            1260,
+            1948
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Frontiers inWater",
+          "confidence": 0.9759051203727722,
+          "poly": [
+            [
+              119,
+              2054
+            ],
+            [
+              274,
+              2051
+            ],
+            [
+              274,
+              2075
+            ],
+            [
+              119,
+              2078
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            2051,
+            274,
+            2078
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "16",
+          "confidence": 0.9999940991401672,
+          "poly": [
+            [
+              733,
+              2052
+            ],
+            [
+              764,
+              2052
+            ],
+            [
+              764,
+              2079
+            ],
+            [
+              733,
+              2079
+            ]
+          ],
+          "bbox_xyxy": [
+            733,
+            2052,
+            764,
+            2079
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.9998704791069031,
+          "poly": [
+            [
+              1273,
+              2060
+            ],
+            [
+              1408,
+              2065
+            ],
+            [
+              1407,
+              2089
+            ],
+            [
+              1272,
+              2084
+            ]
+          ],
+          "bbox_xyxy": [
+            1272,
+            2060,
+            1408,
+            2089
+          ],
+          "reading_order": 17
+        }
+      ]
+    },
+    {
+      "block_id": 15,
+      "label": "header",
+      "score": 0.8564969897270203,
+      "bbox_xyxy": [
+        137,
+        102,
+        302,
+        120
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "header",
+      "score": 0.8722285032272339,
+      "bbox_xyxy": [
+        1127,
+        102,
+        1342,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9868932962417603,
+      "bbox_xyxy": [
+        134,
+        226,
+        714,
+        683
+      ],
+      "lines": [
+        {
+          "text": "or channels are used to transport the water to the fields. From",
+          "confidence": 0.9910811185836792,
+          "poly": [
+            [
+              114,
+              228
+            ],
+            [
+              731,
+              236
+            ],
+            [
+              730,
+              266
+            ],
+            [
+              114,
+              258
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            228,
+            731,
+            266
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "the modeling perspective this means that the sources might",
+          "confidence": 0.9780847430229187,
+          "poly": [
+            [
+              115,
+              263
+            ],
+            [
+              730,
+              271
+            ],
+            [
+              729,
+              301
+            ],
+            [
+              115,
+              293
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            263,
+            730,
+            301
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "not be located near-enough to be considered in the same grid-",
+          "confidence": 0.9700304269790649,
+          "poly": [
+            [
+              115,
+              297
+            ],
+            [
+              728,
+              303
+            ],
+            [
+              727,
+              334
+            ],
+            [
+              115,
+              328
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            297,
+            728,
+            334
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "point, needing an internal water redistribution, aside from the",
+          "confidence": 0.9950482845306396,
+          "poly": [
+            [
+              114,
+              333
+            ],
+            [
+              730,
+              337
+            ],
+            [
+              730,
+              368
+            ],
+            [
+              114,
+              364
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            333,
+            730,
+            368
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "inclusion of the water loss from the pipes to the Earth system.",
+          "confidence": 0.9914947748184204,
+          "poly": [
+            [
+              115,
+              367
+            ],
+            [
+              728,
+              372
+            ],
+            [
+              728,
+              400
+            ],
+            [
+              115,
+              395
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            367,
+            728,
+            400
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Leng et al. (2017) propose a water extraction scheme based on",
+          "confidence": 0.9844375848770142,
+          "poly": [
+            [
+              115,
+              401
+            ],
+            [
+              729,
+              404
+            ],
+            [
+              729,
+              435
+            ],
+            [
+              115,
+              432
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            401,
+            729,
+            435
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "the water extraction dataset (cf Section 3.5), which allows also for",
+          "confidence": 0.9847770929336548,
+          "poly": [
+            [
+              114,
+              435
+            ],
+            [
+              728,
+              438
+            ],
+            [
+              728,
+              468
+            ],
+            [
+              114,
+              465
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            435,
+            728,
+            468
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "using nearby grid-point in the same basin. While such approach",
+          "confidence": 0.9891262054443359,
+          "poly": [
+            [
+              115,
+              470
+            ],
+            [
+              729,
+              473
+            ],
+            [
+              729,
+              503
+            ],
+            [
+              115,
+              500
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            470,
+            729,
+            503
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "provides a suitable theoretical base, it can be applied safely only",
+          "confidence": 0.9907686710357666,
+          "poly": [
+            [
+              116,
+              505
+            ],
+            [
+              728,
+              506
+            ],
+            [
+              728,
+              533
+            ],
+            [
+              116,
+              532
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            505,
+            728,
+            533
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "to coarse model resolutions due to the importance of drainage",
+          "confidence": 0.9815542101860046,
+          "poly": [
+            [
+              115,
+              537
+            ],
+            [
+              728,
+              541
+            ],
+            [
+              728,
+              567
+            ],
+            [
+              115,
+              564
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            537,
+            728,
+            567
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "direction in actual irrigation practices (Brouwer et al., 1985b)",
+          "confidence": 0.9785540103912354,
+          "poly": [
+            [
+              115,
+              568
+            ],
+            [
+              727,
+              572
+            ],
+            [
+              727,
+              602
+            ],
+            [
+              115,
+              598
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            568,
+            727,
+            602
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "and the usage of open air irrigation channels (Moghazi and",
+          "confidence": 0.9817720651626587,
+          "poly": [
+            [
+              116,
+              603
+            ],
+            [
+              727,
+              607
+            ],
+            [
+              727,
+              635
+            ],
+            [
+              116,
+              631
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            603,
+            727,
+            635
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "Ismail, 1997; Kimaro et al., 2019).",
+          "confidence": 0.9934371709823608,
+          "poly": [
+            [
+              115,
+              637
+            ],
+            [
+              438,
+              639
+            ],
+            [
+              437,
+              666
+            ],
+            [
+              115,
+              664
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            637,
+            438,
+            666
+          ],
+          "reading_order": 12
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9852315783500671,
+      "bbox_xyxy": [
+        764,
+        226,
+        1344,
+        528
+      ],
+      "lines": [
+        {
+          "text": "water amount and its parameterization, especially in Earth",
+          "confidence": 0.980690598487854,
+          "poly": [
+            [
+              786,
+              237
+            ],
+            [
+              1425,
+              235
+            ],
+            [
+              1425,
+              259
+            ],
+            [
+              786,
+              261
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            235,
+            1425,
+            261
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "system modeling approaches. Another open issue is the low",
+          "confidence": 0.9973932504653931,
+          "poly": [
+            [
+              787,
+              271
+            ],
+            [
+              1427,
+              271
+            ],
+            [
+              1427,
+              295
+            ],
+            [
+              787,
+              295
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            271,
+            1427,
+            295
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "confidence on the impact of irrigation on precipitation. While",
+          "confidence": 0.9904903769493103,
+          "poly": [
+            [
+              787,
+              305
+            ],
+            [
+              1427,
+              305
+            ],
+            [
+              1427,
+              328
+            ],
+            [
+              787,
+              328
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            305,
+            1427,
+            328
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "the ongoing increase in resolution of the models is helping",
+          "confidence": 0.9817122220993042,
+          "poly": [
+            [
+              784,
+              335
+            ],
+            [
+              1428,
+              337
+            ],
+            [
+              1428,
+              365
+            ],
+            [
+              784,
+              363
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            335,
+            1428,
+            365
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "to better understand this feedback, the inclusion of specific",
+          "confidence": 0.9905452132225037,
+          "poly": [
+            [
+              784,
+              371
+            ],
+            [
+              1427,
+              372
+            ],
+            [
+              1427,
+              396
+            ],
+            [
+              784,
+              395
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            371,
+            1427,
+            396
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "irrigation parameterizations prevents the replication of similar",
+          "confidence": 0.9879099726676941,
+          "poly": [
+            [
+              786,
+              407
+            ],
+            [
+              1427,
+              407
+            ],
+            [
+              1427,
+              430
+            ],
+            [
+              786,
+              430
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            407,
+            1427,
+            430
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "schemes with small differences in the parameters and/or the",
+          "confidence": 0.9907914400100708,
+          "poly": [
+            [
+              784,
+              439
+            ],
+            [
+              1427,
+              441
+            ],
+            [
+              1427,
+              465
+            ],
+            [
+              784,
+              463
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            439,
+            1427,
+            465
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "thresholds' choices.",
+          "confidence": 0.9860118627548218,
+          "poly": [
+            [
+              783,
+              472
+            ],
+            [
+              977,
+              474
+            ],
+            [
+              977,
+              498
+            ],
+            [
+              783,
+              496
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            472,
+            977,
+            498
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Therefore, there is a strong need for a more coordinated",
+          "confidence": 0.990960955619812,
+          "poly": [
+            [
+              821,
+              507
+            ],
+            [
+              1427,
+              508
+            ],
+            [
+              1427,
+              531
+            ],
+            [
+              821,
+              530
+            ]
+          ],
+          "bbox_xyxy": [
+            821,
+            507,
+            1427,
+            531
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9825555086135864,
+      "bbox_xyxy": [
+        764,
+        537,
+        1344,
+        779
+      ],
+      "lines": [
+        {
+          "text": "and consistent implementations of irrigation parameterizations",
+          "confidence": 0.99242103099823,
+          "poly": [
+            [
+              784,
+              538
+            ],
+            [
+              1427,
+              541
+            ],
+            [
+              1427,
+              568
+            ],
+            [
+              784,
+              565
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            538,
+            1427,
+            568
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "in order to assess model and process uncertainties together",
+          "confidence": 0.9823557734489441,
+          "poly": [
+            [
+              783,
+              574
+            ],
+            [
+              1427,
+              577
+            ],
+            [
+              1427,
+              601
+            ],
+            [
+              783,
+              598
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            574,
+            1427,
+            601
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "with better observational datasets. This would also support",
+          "confidence": 0.9776636958122253,
+          "poly": [
+            [
+              782,
+              605
+            ],
+            [
+              1429,
+              609
+            ],
+            [
+              1428,
+              636
+            ],
+            [
+              782,
+              632
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            605,
+            1429,
+            636
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "developments for numerous applications that range from impact",
+          "confidence": 0.9879445433616638,
+          "poly": [
+            [
+              783,
+              641
+            ],
+            [
+              1428,
+              643
+            ],
+            [
+              1428,
+              670
+            ],
+            [
+              783,
+              668
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            641,
+            1428,
+            670
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "modeling to numerical weather prediction and seasonal to sub-",
+          "confidence": 0.9904968738555908,
+          "poly": [
+            [
+              784,
+              677
+            ],
+            [
+              1426,
+              678
+            ],
+            [
+              1426,
+              702
+            ],
+            [
+              784,
+              701
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            677,
+            1426,
+            702
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "seasonal forecasting, to more consistent reanalyzes products and",
+          "confidence": 0.9917914867401123,
+          "poly": [
+            [
+              782,
+              709
+            ],
+            [
+              1428,
+              711
+            ],
+            [
+              1428,
+              738
+            ],
+            [
+              782,
+              736
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            709,
+            1428,
+            738
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "integrated impact assessment for other sectors (e.g., agriculture).",
+          "confidence": 0.9930286407470703,
+          "poly": [
+            [
+              782,
+              743
+            ],
+            [
+              1427,
+              745
+            ],
+            [
+              1427,
+              772
+            ],
+            [
+              782,
+              770
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            743,
+            1427,
+            772
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 10,
+      "label": "paragraph_title",
+      "score": 0.9120192527770996,
+      "bbox_xyxy": [
+        137,
+        753,
+        435,
+        778
+      ],
+      "lines": [
+        {
+          "text": "5.3. Model limitations",
+          "confidence": 0.9898760318756104,
+          "poly": [
+            [
+              118,
+              738
+            ],
+            [
+              432,
+              740
+            ],
+            [
+              432,
+              771
+            ],
+            [
+              118,
+              769
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            738,
+            432,
+            771
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.9766700863838196,
+      "bbox_xyxy": [
+        135,
+        820,
+        715,
+        968
+      ],
+      "lines": [
+        {
+          "text": "The limitations in representing irrigation in Earth system",
+          "confidence": 0.997908353805542,
+          "poly": [
+            [
+              154,
+              813
+            ],
+            [
+              725,
+              817
+            ],
+            [
+              725,
+              843
+            ],
+            [
+              153,
+              839
+            ]
+          ],
+          "bbox_xyxy": [
+            153,
+            813,
+            725,
+            843
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "models does not lie only in the possible physical representations",
+          "confidence": 0.9961566925048828,
+          "poly": [
+            [
+              116,
+              848
+            ],
+            [
+              726,
+              850
+            ],
+            [
+              726,
+              875
+            ],
+            [
+              116,
+              873
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            848,
+            726,
+            875
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "discussed before. In fact, the model representation of the",
+          "confidence": 0.9927164912223816,
+          "poly": [
+            [
+              116,
+              881
+            ],
+            [
+              726,
+              882
+            ],
+            [
+              726,
+              907
+            ],
+            [
+              116,
+              906
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            881,
+            726,
+            907
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Earth system processes themselves affect the complexity of the",
+          "confidence": 0.9712696671485901,
+          "poly": [
+            [
+              115,
+              918
+            ],
+            [
+              725,
+              918
+            ],
+            [
+              725,
+              942
+            ],
+            [
+              115,
+              942
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            918,
+            725,
+            942
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "irrigation parameterizations.",
+          "confidence": 0.9998359680175781,
+          "poly": [
+            [
+              114,
+              954
+            ],
+            [
+              390,
+              954
+            ],
+            [
+              390,
+              977
+            ],
+            [
+              114,
+              977
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            954,
+            390,
+            977
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "paragraph_title",
+      "score": 0.9429084062576294,
+      "bbox_xyxy": [
+        765,
+        857,
+        1261,
+        920
+      ],
+      "lines": [
+        {
+          "text": "6.1. Consistency across models and",
+          "confidence": 0.9983074069023132,
+          "poly": [
+            [
+              782,
+              852
+            ],
+            [
+              1331,
+              853
+            ],
+            [
+              1331,
+              886
+            ],
+            [
+              782,
+              885
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            852,
+            1331,
+            886
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "regions",
+          "confidence": 0.999875545501709,
+          "poly": [
+            [
+              779,
+              888
+            ],
+            [
+              901,
+              891
+            ],
+            [
+              900,
+              930
+            ],
+            [
+              778,
+              927
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            888,
+            901,
+            930
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9879918694496155,
+      "bbox_xyxy": [
+        764,
+        958,
+        1344,
+        1758
+      ],
+      "lines": [
+        {
+          "text": "The inclusion of irrigation in Earth system models does not",
+          "confidence": 0.9790863990783691,
+          "poly": [
+            [
+              822,
+              964
+            ],
+            [
+              1427,
+              966
+            ],
+            [
+              1427,
+              990
+            ],
+            [
+              822,
+              988
+            ]
+          ],
+          "bbox_xyxy": [
+            822,
+            964,
+            1427,
+            990
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "always reflect a consistent and realistic process representation",
+          "confidence": 0.9952775835990906,
+          "poly": [
+            [
+              782,
+              998
+            ],
+            [
+              1427,
+              1000
+            ],
+            [
+              1427,
+              1027
+            ],
+            [
+              782,
+              1025
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            998,
+            1427,
+            1027
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "and/or adequate spatio-temporal scales considerations (see",
+          "confidence": 0.993310809135437,
+          "poly": [
+            [
+              783,
+              1034
+            ],
+            [
+              1426,
+              1034
+            ],
+            [
+              1426,
+              1058
+            ],
+            [
+              783,
+              1058
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1034,
+            1426,
+            1058
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Section 4). Especially with respect to the initialization of",
+          "confidence": 0.9897449016571045,
+          "poly": [
+            [
+              783,
+              1067
+            ],
+            [
+              1427,
+              1067
+            ],
+            [
+              1427,
+              1091
+            ],
+            [
+              783,
+              1091
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1067,
+            1427,
+            1091
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "irrigation, the variety of threshold and/or target values leads",
+          "confidence": 0.9976057410240173,
+          "poly": [
+            [
+              782,
+              1099
+            ],
+            [
+              1426,
+              1101
+            ],
+            [
+              1426,
+              1128
+            ],
+            [
+              782,
+              1126
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1099,
+            1426,
+            1128
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "to a large variation of irrigation water amounts applied in",
+          "confidence": 0.9908060431480408,
+          "poly": [
+            [
+              781,
+              1134
+            ],
+            [
+              1426,
+              1137
+            ],
+            [
+              1426,
+              1164
+            ],
+            [
+              781,
+              1161
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1134,
+            1426,
+            1164
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "the different models (see Section 5.1). The approach toward",
+          "confidence": 0.9971730709075928,
+          "poly": [
+            [
+              783,
+              1168
+            ],
+            [
+              1425,
+              1172
+            ],
+            [
+              1425,
+              1196
+            ],
+            [
+              783,
+              1192
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1168,
+            1425,
+            1196
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "more consistent implementations should already start at the",
+          "confidence": 0.9844186305999756,
+          "poly": [
+            [
+              783,
+              1203
+            ],
+            [
+              1424,
+              1205
+            ],
+            [
+              1424,
+              1230
+            ],
+            [
+              783,
+              1227
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1203,
+            1424,
+            1230
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "differences in the energy partitioning (e.g., Sacks et al., 2009;",
+          "confidence": 0.9786070585250854,
+          "poly": [
+            [
+              784,
+              1235
+            ],
+            [
+              1423,
+              1241
+            ],
+            [
+              1423,
+              1264
+            ],
+            [
+              784,
+              1259
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            1235,
+            1423,
+            1264
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Krakauer et al., 2016). Further, it is crucial for the precipitation",
+          "confidence": 0.9961705207824707,
+          "poly": [
+            [
+              783,
+              1267
+            ],
+            [
+              1422,
+              1272
+            ],
+            [
+              1422,
+              1299
+            ],
+            [
+              783,
+              1294
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1267,
+            1422,
+            1299
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "feedback due to the convection representation issues in models",
+          "confidence": 0.9983056783676147,
+          "poly": [
+            [
+              783,
+              1303
+            ],
+            [
+              1422,
+              1306
+            ],
+            [
+              1422,
+              1330
+            ],
+            [
+              783,
+              1327
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1303,
+            1422,
+            1330
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "(Prein et al., 2021). Therefore, a shift in paradigm would be",
+          "confidence": 0.9844422340393066,
+          "poly": [
+            [
+              784,
+              1335
+            ],
+            [
+              1422,
+              1338
+            ],
+            [
+              1422,
+              1365
+            ],
+            [
+              784,
+              1362
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            1335,
+            1422,
+            1365
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "prudent, from developing a multitude of parameterizations",
+          "confidence": 0.9924488663673401,
+          "poly": [
+            [
+              781,
+              1369
+            ],
+            [
+              1423,
+              1371
+            ],
+            [
+              1423,
+              1401
+            ],
+            [
+              781,
+              1399
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1369,
+            1423,
+            1401
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "to synthesizing available schemes in a process- and scale-",
+          "confidence": 0.98830246925354,
+          "poly": [
+            [
+              781,
+              1404
+            ],
+            [
+              1420,
+              1408
+            ],
+            [
+              1420,
+              1434
+            ],
+            [
+              781,
+              1430
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1404,
+            1420,
+            1434
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "based approach consistent across the available models. New",
+          "confidence": 0.9947795271873474,
+          "poly": [
+            [
+              782,
+              1438
+            ],
+            [
+              1421,
+              1442
+            ],
+            [
+              1421,
+              1466
+            ],
+            [
+              782,
+              1462
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1438,
+            1421,
+            1466
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "parameterizations and studies should always have a clear",
+          "confidence": 0.9768312573432922,
+          "poly": [
+            [
+              781,
+              1470
+            ],
+            [
+              1421,
+              1472
+            ],
+            [
+              1421,
+              1502
+            ],
+            [
+              781,
+              1500
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1470,
+            1421,
+            1502
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "reasoning for their irrigation water amount estimates as well as",
+          "confidence": 0.995689868927002,
+          "poly": [
+            [
+              781,
+              1504
+            ],
+            [
+              1419,
+              1508
+            ],
+            [
+              1419,
+              1535
+            ],
+            [
+              781,
+              1531
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1504,
+            1419,
+            1535
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "well-motivated threshold choices. Currently, only the Weather",
+          "confidence": 0.981582760810852,
+          "poly": [
+            [
+              781,
+              1535
+            ],
+            [
+              1418,
+              1542
+            ],
+            [
+              1418,
+              1569
+            ],
+            [
+              781,
+              1561
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1535,
+            1418,
+            1569
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "Research and Forecasting (WRF-ARW), the Community Land",
+          "confidence": 0.9965857863426208,
+          "poly": [
+            [
+              781,
+              1567
+            ],
+            [
+              1416,
+              1575
+            ],
+            [
+              1416,
+              1603
+            ],
+            [
+              781,
+              1595
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1567,
+            1416,
+            1603
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "Model (CLM) and the NASA GISS8 include explicitly irrigation,",
+          "confidence": 0.987379789352417,
+          "poly": [
+            [
+              781,
+              1599
+            ],
+            [
+              1414,
+              1608
+            ],
+            [
+              1414,
+              1635
+            ],
+            [
+              781,
+              1627
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1599,
+            1414,
+            1635
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "the first two as a parameterization and the latter as a forcing.",
+          "confidence": 0.9984003305435181,
+          "poly": [
+            [
+              781,
+              1634
+            ],
+            [
+              1412,
+              1643
+            ],
+            [
+              1412,
+              1670
+            ],
+            [
+              781,
+              1661
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1634,
+            1412,
+            1670
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "There is no known plans to include irrigation in other models",
+          "confidence": 0.9852944016456604,
+          "poly": [
+            [
+              782,
+              1668
+            ],
+            [
+              1410,
+              1676
+            ],
+            [
+              1410,
+              1700
+            ],
+            [
+              782,
+              1692
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1668,
+            1410,
+            1700
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "than ICON-LAM, in the DETECT project 9. Further, there is a",
+          "confidence": 0.9769814610481262,
+          "poly": [
+            [
+              781,
+              1701
+            ],
+            [
+              1410,
+              1709
+            ],
+            [
+              1410,
+              1733
+            ],
+            [
+              781,
+              1725
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1701,
+            1410,
+            1733
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "need to properly include the water extraction from the soil in",
+          "confidence": 0.9866279363632202,
+          "poly": [
+            [
+              781,
+              1735
+            ],
+            [
+              1408,
+              1742
+            ],
+            [
+              1408,
+              1766
+            ],
+            [
+              781,
+              1759
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1735,
+            1408,
+            1766
+          ],
+          "reading_order": 23
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9862803816795349,
+      "bbox_xyxy": [
+        135,
+        976,
+        714,
+        1340
+      ],
+      "lines": [
+        {
+          "text": "Section 3.3.2 already introduced this concept when",
+          "confidence": 0.9991299510002136,
+          "poly": [
+            [
+              152,
+              986
+            ],
+            [
+              725,
+              986
+            ],
+            [
+              725,
+              1010
+            ],
+            [
+              152,
+              1010
+            ]
+          ],
+          "bbox_xyxy": [
+            152,
+            986,
+            725,
+            1010
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "differentiating the representation of irrigation as water applied",
+          "confidence": 0.9933164119720459,
+          "poly": [
+            [
+              116,
+              1020
+            ],
+            [
+              726,
+              1020
+            ],
+            [
+              726,
+              1044
+            ],
+            [
+              116,
+              1044
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1020,
+            726,
+            1044
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "at the surface. There, the possibility of irrigation water",
+          "confidence": 0.9922813773155212,
+          "poly": [
+            [
+              114,
+              1053
+            ],
+            [
+              726,
+              1053
+            ],
+            [
+              726,
+              1077
+            ],
+            [
+              114,
+              1077
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1053,
+            726,
+            1077
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "interacting with the plant leaves could depend on the availability",
+          "confidence": 0.9838441610336304,
+          "poly": [
+            [
+              115,
+              1087
+            ],
+            [
+              725,
+              1087
+            ],
+            [
+              725,
+              1111
+            ],
+            [
+              115,
+              1111
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1087,
+            725,
+            1111
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "of a canopy water balance scheme in the model itself. The model",
+          "confidence": 0.9782872796058655,
+          "poly": [
+            [
+              114,
+              1121
+            ],
+            [
+              725,
+              1119
+            ],
+            [
+              725,
+              1143
+            ],
+            [
+              114,
+              1145
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1119,
+            725,
+            1145
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "parameterizations can influence not only that, but also the",
+          "confidence": 0.9874805808067322,
+          "poly": [
+            [
+              113,
+              1155
+            ],
+            [
+              726,
+              1153
+            ],
+            [
+              726,
+              1177
+            ],
+            [
+              113,
+              1179
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1153,
+            726,
+            1179
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "possibility of including water extraction methods mentioned in",
+          "confidence": 0.9964802861213684,
+          "poly": [
+            [
+              114,
+              1189
+            ],
+            [
+              725,
+              1188
+            ],
+            [
+              725,
+              1212
+            ],
+            [
+              114,
+              1213
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1188,
+            725,
+            1213
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "the previous section, thus closing the water balance. Numerical",
+          "confidence": 0.9787352681159973,
+          "poly": [
+            [
+              115,
+              1222
+            ],
+            [
+              726,
+              1222
+            ],
+            [
+              726,
+              1245
+            ],
+            [
+              115,
+              1245
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1222,
+            726,
+            1245
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "weather prediction models in particular might not have a",
+          "confidence": 0.9969574809074402,
+          "poly": [
+            [
+              113,
+              1252
+            ],
+            [
+              728,
+              1254
+            ],
+            [
+              728,
+              1281
+            ],
+            [
+              113,
+              1279
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1252,
+            728,
+            1281
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "dynamic river routing system and/or a groundwater table, e.g.,",
+          "confidence": 0.998766303062439,
+          "poly": [
+            [
+              114,
+              1285
+            ],
+            [
+              726,
+              1288
+            ],
+            [
+              726,
+              1316
+            ],
+            [
+              114,
+              1313
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1285,
+            726,
+            1316
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "ICON, WRF-ARW with Noah land surface model (Skamarock",
+          "confidence": 0.9795214533805847,
+          "poly": [
+            [
+              113,
+              1318
+            ],
+            [
+              727,
+              1321
+            ],
+            [
+              727,
+              1348
+            ],
+            [
+              113,
+              1345
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1318,
+            727,
+            1348
+          ],
+          "reading_order": 10
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9842860698699951,
+      "bbox_xyxy": [
+        134,
+        1349,
+        714,
+        1622
+      ],
+      "lines": [
+        {
+          "text": "et al., 2008;Schättler et al., 2018).",
+          "confidence": 0.986360490322113,
+          "poly": [
+            [
+              114,
+              1355
+            ],
+            [
+              434,
+              1354
+            ],
+            [
+              434,
+              1378
+            ],
+            [
+              114,
+              1379
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1354,
+            434,
+            1379
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Further, models with static land use and cover maps are not",
+          "confidence": 0.9986624717712402,
+          "poly": [
+            [
+              152,
+              1387
+            ],
+            [
+              727,
+              1392
+            ],
+            [
+              727,
+              1416
+            ],
+            [
+              151,
+              1411
+            ]
+          ],
+          "bbox_xyxy": [
+            151,
+            1387,
+            727,
+            1416
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "going to be able to capture the crop rotations performed and",
+          "confidence": 0.9794622659683228,
+          "poly": [
+            [
+              114,
+              1423
+            ],
+            [
+              727,
+              1424
+            ],
+            [
+              727,
+              1451
+            ],
+            [
+              114,
+              1450
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1423,
+            727,
+            1451
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "the interaction between irrigation, land parameters and climate,",
+          "confidence": 0.9893568754196167,
+          "poly": [
+            [
+              115,
+              1457
+            ],
+            [
+              725,
+              1459
+            ],
+            [
+              725,
+              1483
+            ],
+            [
+              115,
+              1481
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1457,
+            725,
+            1483
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "which has been showed to have a strong impact depending",
+          "confidence": 0.9733060598373413,
+          "poly": [
+            [
+              114,
+              1489
+            ],
+            [
+              727,
+              1491
+            ],
+            [
+              727,
+              1518
+            ],
+            [
+              114,
+              1516
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1489,
+            727,
+            1518
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "on the region considered (McDermid et al., 2017). Singh",
+          "confidence": 0.9988489747047424,
+          "poly": [
+            [
+              115,
+              1524
+            ],
+            [
+              725,
+              1526
+            ],
+            [
+              725,
+              1550
+            ],
+            [
+              115,
+              1548
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1524,
+            725,
+            1550
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "et al. (2018) show how the crop cover management, and not",
+          "confidence": 0.9963590502738953,
+          "poly": [
+            [
+              115,
+              1556
+            ],
+            [
+              728,
+              1557
+            ],
+            [
+              728,
+              1584
+            ],
+            [
+              115,
+              1582
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1556,
+            728,
+            1584
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "only irrigation, can affect the land-atmosphere coupling as the",
+          "confidence": 0.9752854108810425,
+          "poly": [
+            [
+              117,
+              1589
+            ],
+            [
+              726,
+              1590
+            ],
+            [
+              726,
+              1614
+            ],
+            [
+              117,
+              1613
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1589,
+            726,
+            1614
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 11,
+      "label": "paragraph_title",
+      "score": 0.9110713601112366,
+      "bbox_xyxy": [
+        136,
+        1681,
+        521,
+        1711
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 7,
+      "label": "text",
+      "score": 0.9698261022567749,
+      "bbox_xyxy": [
+        135,
+        1750,
+        715,
+        1868
+      ],
+      "lines": [
+        {
+          "text": "6. Research perspectives",
+          "confidence": 0.9839658141136169,
+          "poly": [
+            [
+              116,
+              1741
+            ],
+            [
+              524,
+              1744
+            ],
+            [
+              524,
+              1781
+            ],
+            [
+              116,
+              1778
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1741,
+            524,
+            1781
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Despite the advances in existing literature, several open",
+          "confidence": 0.9607397317886353,
+          "poly": [
+            [
+              157,
+              1818
+            ],
+            [
+              723,
+              1818
+            ],
+            [
+              723,
+              1842
+            ],
+            [
+              157,
+              1842
+            ]
+          ],
+          "bbox_xyxy": [
+            157,
+            1818,
+            723,
+            1842
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "research questions still exist. For instance, there is large",
+          "confidence": 0.981921374797821,
+          "poly": [
+            [
+              120,
+              1851
+            ],
+            [
+              722,
+              1851
+            ],
+            [
+              722,
+              1874
+            ],
+            [
+              120,
+              1874
+            ]
+          ],
+          "bbox_xyxy": [
+            120,
+            1851,
+            722,
+            1874
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 9,
+      "label": "footnote",
+      "score": 0.9185419678688049,
+      "bbox_xyxy": [
+        765,
+        1815,
+        1213,
+        1866
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 14,
+      "label": "footer",
+      "score": 0.8649840354919434,
+      "bbox_xyxy": [
+        138,
+        1976,
+        278,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 12,
+      "label": "footer",
+      "score": 0.8722580075263977,
+      "bbox_xyxy": [
+        1227,
+        1977,
+        1343,
+        1994
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 16,
+      "label": "number",
+      "score": 0.806360125541687,
+      "bbox_xyxy": [
+        732,
+        1978,
+        752,
+        1993
+      ],
+      "lines": []
+    }
+  ]
+}

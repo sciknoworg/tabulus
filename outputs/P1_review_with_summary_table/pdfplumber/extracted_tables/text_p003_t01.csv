@@ -1,0 +1,113 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+Leng et al. (2013) is further implemented to close the water,
+,
+cyclebyaddingtheirrigationwaterextraction(Lengetal.,2014,,
+,
+2017). Only later with Leng et al. (2017) and Valmassoi et al.,
+,
+(2020a),theirrigationwaterisnotseenasadirectmodification,
+,
+ofthesoilmoisture,butincludesaphysicalrepresentationofthe,
+,
+process, e.g., the interaction of the irrigation with the canopy.,
+,
+While the importance of the irrigation volume used in the,
+,
+simulationishighlightedsinceSacksetal.(2009),onlyDecker,
+,
+etal.(2017)demonstratesthepitfallsofusingofflineirrigation,
+,
+computationstoforcesimulationsandtheimportanceofhaving,
+,
+high-resolutions.,FIGURE1
+Inthisreview,wefirstdefineirrigationintheEarthsystem,Irrigationwaterdeliverymethodconceptualizationinthe
+(cf. Section 2), presenting both its techniques divided by the,modelingperspective,figureadaptedfromValmassoietal.
+main delivery methods (cf. Section 2.1) and the impact found,(2020a).ProcessAcanrepresentthesurfaceirrigationandthe
+,micro,dependingonthespatialextentandamountofwater
+inpreviousstudies(cf.Section2.2).Thentheexistingirrigation,used,aswellasthesprinklerappliedonlybelowthefoliage.
+parameterizations (ct. Section 3) are described, categorized,ProcessBandCcanbothrepresentthesprinklerdepending
+,howhighabovethecanopythesprinklerwaterisapplied.
+,
+basedontheactivationmethod(ct.Section3.1)andthevariables,ProcessDinsteadreflectsthesubirrigation.Foranin-depth
+,
+that are directly affected (cf. Section 3.3) by the estimated,discussionrefertoSection4.3.
+,
+irrigation water (cf. Section 3.2). In Section 4, we discuss,
+,
+the relation of the irrigation parameterizations to the actual,
+,
+techniqueseitherthroughtheprocessrepresentation(cfSection,
+,depend on the height (over/under the foliage, respectively
+,
+4.1)orviatherelevantspatio-temporalscales(cfSection4.2),,
+,B/C and A) and diameter of the application, and rate
+,
+highlighting some relevant physical considerations (cf Section,
+,(Phocaides,2000;Bjorneberg,2013).
+,
+4.3). In Section 5.1, we provide an overview of the irrigation,
+,3. Micro: the so-called “localized” irrigation, where the water
+,
+water amount applied in the available studies including both,
+,isdelivereddirectlyaroundalimitedsoilsurfacearoundthe
+,
+the focus region and the period considered. Finally, we point,
+,plants.Further,thewaterisappliedatalowrateandpressure.
+,
+outfutureresearchperspectivesinthisfield(cfSection6),and,
+,However, this method is mainly employed in permanently
+,
+provideasummaryandthemainconclusionsinSection7.,
+,installedsystems,e.g.,trees,vineyards(Bjorneberg,2013).
+,
+,4. Subirrigation (D): in this method, the water is applied to
+2. Irrigation in the earth system,changethewatertableheight(Bjorneberg,2013),andithas
+,
+,a high potential for areas with a high degree of drainage
+,
+2.1. Irrigation techniques,requirements(Irmak,2018).Thismethodisgenerallyusedin
+,
+,thehorticulturalindustryingreenhousesandnurseryplant
+In modern agriculture, there are several irrigation,productions (Irmak, 2018). However, it is not used in arid
+techniques that have been developed to meet specific,orsemi-aridareas,asirrigationwaterisneededforthecrop
+crop/regional needs. Originally, the irrigation techniques,germination(Bjorneberg,2013).
+aregroupedintothreemainsystems[Brouweretal.(1985a,b),,
+,While the description seems generic, the wide geographical
+,
+amajorreferenceforirrigationinagriculture]namelysurface,,
+,variability and its constant evolution over time makes very
+,
+drip and sprinkler. More recent sources that attempt to,
+,complicatedtogiveageneraldefinition.
+,
+generalize irrigation techniques across the world tend to,
+,The Food and Agriculture Organization (FAO) provides
+,
+group them into four main delivery methods, and call the,
+,six training manuals for irrigation (e.g., Brouwer et al.,
+,
+“drip” technique “micro” (Phocaides, 2000; Bjorneberg, 2013;,
+,1985a,b, Manual 1 and 5), which are still considered the
+,
+Irmak, 2018). The four methods can be represented with the,
+,starting point for addressing irrigation in general. For specific
+,
+conceptualizationofFigure1andaredefined,asgeneralandas,
+,moderninformationonthetechniquesandtherecommended
+,
+specificaspossible,asfollows:,
+,configurations,thebasereferenceshouldbePhocaides(2000),
+1. Surface (A): the water is delivered to the field through,Bjorneberg(2013),Irmak(2018),andBrouweretal.(1985b).
+hydrants and it is either spread over the whole area,
+,
+(furrow/basin irrigation) or from its borders (border,
+irrigation)(Brouweretal.,1985b;Phocaides,2000).,2.2. Irrigation impact on the Earth system
+,
+2. Sprinkler:thewaterisdeliveredasraindropsthatprecipitate,
+,
+overtheagriculturalarea.Thereareseveralvariationsofthis,As mentioned in the introduction, the importance of
+,
+method, and for this purpose, we highlight that they can,irrigation goes beyond the agricultural aspect as it affects the
+,
+FrontiersinWater 03,frontiersin.org

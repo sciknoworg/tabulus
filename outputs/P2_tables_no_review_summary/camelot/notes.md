@@ -1,0 +1,5 @@
+- Library: Camelot
+- PDF: P2_tables_no_review_summary.pdf
+- Attempts:
+  - stream: extracted=17, saved=17
+  - lattice: extracted=2, saved=2

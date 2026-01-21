@@ -1,0 +1,1674 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 2,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 11,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9986081719398499,
+          "poly": [
+            [
+              26,
+              23
+            ],
+            [
+              326,
+              46
+            ],
+            [
+              323,
+              78
+            ],
+            [
+              24,
+              55
+            ]
+          ],
+          "bbox_xyxy": [
+            24,
+            23,
+            326,
+            78
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "2 of 16",
+          "confidence": 0.9887148141860962,
+          "poly": [
+            [
+              1530,
+              37
+            ],
+            [
+              1614,
+              37
+            ],
+            [
+              1614,
+              73
+            ],
+            [
+              1530,
+              73
+            ]
+          ],
+          "bbox_xyxy": [
+            1530,
+            37,
+            1614,
+            73
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "that needs to be developed to boost agricultural production for ensuring food security and",
+          "confidence": 0.9819809794425964,
+          "poly": [
+            [
+              423,
+              177
+            ],
+            [
+              1607,
+              170
+            ],
+            [
+              1607,
+              211
+            ],
+            [
+              424,
+              218
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            170,
+            1607,
+            218
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "poverty alleviation.",
+          "confidence": 0.9882431030273438,
+          "poly": [
+            [
+              425,
+              220
+            ],
+            [
+              686,
+              220
+            ],
+            [
+              686,
+              254
+            ],
+            [
+              425,
+              254
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            220,
+            686,
+            254
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "An overall summary of the review and conclusions is also provided.",
+          "confidence": 0.9871543049812317,
+          "poly": [
+            [
+              405,
+              1646
+            ],
+            [
+              1303,
+              1642
+            ],
+            [
+              1303,
+              1682
+            ],
+            [
+              406,
+              1686
+            ]
+          ],
+          "bbox_xyxy": [
+            405,
+            1642,
+            1303,
+            1686
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "agricultural production and achieve food self-sufficiency [8]. Kloos H. [8] pointed out that",
+          "confidence": 0.9873155355453491,
+          "poly": [
+            [
+              399,
+              2090
+            ],
+            [
+              1594,
+              2101
+            ],
+            [
+              1593,
+              2152
+            ],
+            [
+              398,
+              2141
+            ]
+          ],
+          "bbox_xyxy": [
+            398,
+            2090,
+            1594,
+            2152
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "the government-funded initiatives of irrigation development were unsustainable partly",
+          "confidence": 0.992023229598999,
+          "poly": [
+            [
+              399,
+              2128
+            ],
+            [
+              1592,
+              2141
+            ],
+            [
+              1591,
+              2189
+            ],
+            [
+              398,
+              2176
+            ]
+          ],
+          "bbox_xyxy": [
+            398,
+            2128,
+            1592,
+            2189
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "header",
+      "score": 0.8890718817710876,
+      "bbox_xyxy": [
+        96,
+        144,
+        360,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 10,
+      "label": "number",
+      "score": 0.7534683346748352,
+      "bbox_xyxy": [
+        1485,
+        144,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9521015882492065,
+      "bbox_xyxy": [
+        454,
+        263,
+        1551,
+        326
+      ],
+      "lines": [
+        {
+          "text": "In Ethiopia, agriculture is the dominant economic sector and food supplier to the",
+          "confidence": 0.9869042634963989,
+          "poly": [
+            [
+              486,
+              254
+            ],
+            [
+              1606,
+              248
+            ],
+            [
+              1606,
+              288
+            ],
+            [
+              486,
+              294
+            ]
+          ],
+          "bbox_xyxy": [
+            486,
+            248,
+            1606,
+            294
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "nation, and it relies largely on rainfall. It contributes 43% of the GDP, about 80% of employ-",
+          "confidence": 0.9918259382247925,
+          "poly": [
+            [
+              424,
+              296
+            ],
+            [
+              1606,
+              290
+            ],
+            [
+              1606,
+              324
+            ],
+            [
+              425,
+              330
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            290,
+            1606,
+            330
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9874619245529175,
+      "bbox_xyxy": [
+        455,
+        333,
+        1554,
+        780
+      ],
+      "lines": [
+        {
+          "text": "ment, and approximately 75% of export commodity values [6]. The vulnerability of the",
+          "confidence": 0.9929534196853638,
+          "poly": [
+            [
+              424,
+              332
+            ],
+            [
+              1603,
+              326
+            ],
+            [
+              1603,
+              363
+            ],
+            [
+              425,
+              370
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            326,
+            1603,
+            370
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "sector to rainfall amount and distribution is more pronounced as crop production domi-",
+          "confidence": 0.9890730977058411,
+          "poly": [
+            [
+              421,
+              370
+            ],
+            [
+              1607,
+              364
+            ],
+            [
+              1607,
+              404
+            ],
+            [
+              422,
+              410
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            364,
+            1607,
+            410
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "nates (67%) the agricultural GDP [7]. In view of the increasing population growth and food",
+          "confidence": 0.9846720099449158,
+          "poly": [
+            [
+              421,
+              409
+            ],
+            [
+              1600,
+              404
+            ],
+            [
+              1600,
+              443
+            ],
+            [
+              422,
+              447
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            404,
+            1600,
+            447
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "demand on one hand and increasing pressure on rain-fed agriculture due to land degra-",
+          "confidence": 0.9887427687644958,
+          "poly": [
+            [
+              422,
+              444
+            ],
+            [
+              1603,
+              447
+            ],
+            [
+              1603,
+              484
+            ],
+            [
+              421,
+              481
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            444,
+            1603,
+            484
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "dation and climate variability on the other, the important role of irrigation development",
+          "confidence": 0.9847316741943359,
+          "poly": [
+            [
+              422,
+              482
+            ],
+            [
+              1600,
+              485
+            ],
+            [
+              1600,
+              521
+            ],
+            [
+              421,
+              518
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            482,
+            1600,
+            521
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "is indispensible. However, despite the recognition of the important role of irrigation in",
+          "confidence": 0.992534339427948,
+          "poly": [
+            [
+              422,
+              520
+            ],
+            [
+              1596,
+              523
+            ],
+            [
+              1596,
+              557
+            ],
+            [
+              421,
+              554
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            520,
+            1596,
+            557
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "minimizing the risk of crop failure due to drought and sustaining agricultural production,",
+          "confidence": 0.9906469583511353,
+          "poly": [
+            [
+              422,
+              558
+            ],
+            [
+              1598,
+              562
+            ],
+            [
+              1598,
+              595
+            ],
+            [
+              421,
+              591
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            558,
+            1598,
+            595
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "well-planned irrigation development targeting medium and large-scale schemes has started",
+          "confidence": 0.9936646819114685,
+          "poly": [
+            [
+              421,
+              595
+            ],
+            [
+              1595,
+              600
+            ],
+            [
+              1595,
+              634
+            ],
+            [
+              420,
+              629
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            595,
+            1595,
+            634
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "only two decades ago. Just for the purpose of planning and development convenience,",
+          "confidence": 0.9888617396354675,
+          "poly": [
+            [
+              422,
+              631
+            ],
+            [
+              1598,
+              639
+            ],
+            [
+              1598,
+              673
+            ],
+            [
+              421,
+              665
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            631,
+            1598,
+            673
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "irrigation typology of Ethiopia is classified under three categories: namely as small-scale",
+          "confidence": 0.9974862337112427,
+          "poly": [
+            [
+              422,
+              670
+            ],
+            [
+              1593,
+              676
+            ],
+            [
+              1593,
+              710
+            ],
+            [
+              421,
+              704
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            670,
+            1593,
+            710
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "(<200 hectare), medium scale (2003000 ha), and large-scale (> 3000 ha) irrigation.",
+          "confidence": 0.9941837191581726,
+          "poly": [
+            [
+              421,
+              707
+            ],
+            [
+              1488,
+              712
+            ],
+            [
+              1488,
+              746
+            ],
+            [
+              420,
+              741
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            707,
+            1488,
+            746
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Disappointingly, the total area under irrigation is not well known, as irrigation is",
+          "confidence": 0.9792293310165405,
+          "poly": [
+            [
+              483,
+              745
+            ],
+            [
+              1593,
+              752
+            ],
+            [
+              1593,
+              786
+            ],
+            [
+              483,
+              779
+            ]
+          ],
+          "bbox_xyxy": [
+            483,
+            745,
+            1593,
+            786
+          ],
+          "reading_order": 11
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9865948557853699,
+      "bbox_xyxy": [
+        455,
+        787,
+        1553,
+        1131
+      ],
+      "lines": [
+        {
+          "text": "implemented by different actors (Federal Government, Regional Governments, Sugar",
+          "confidence": 0.9872886538505554,
+          "poly": [
+            [
+              419,
+              780
+            ],
+            [
+              1595,
+              788
+            ],
+            [
+              1595,
+              825
+            ],
+            [
+              418,
+              817
+            ]
+          ],
+          "bbox_xyxy": [
+            418,
+            780,
+            1595,
+            825
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Corporation, Development Partners, Private Investors, and Farmer), and no one is respon-",
+          "confidence": 0.9958952069282532,
+          "poly": [
+            [
+              419,
+              818
+            ],
+            [
+              1599,
+              825
+            ],
+            [
+              1599,
+              863
+            ],
+            [
+              418,
+              856
+            ]
+          ],
+          "bbox_xyxy": [
+            418,
+            818,
+            1599,
+            863
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "sible for data collection and management. The major problem in relation to the irrigation",
+          "confidence": 0.9960612654685974,
+          "poly": [
+            [
+              420,
+              857
+            ],
+            [
+              1594,
+              864
+            ],
+            [
+              1594,
+              899
+            ],
+            [
+              419,
+              892
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            857,
+            1594,
+            899
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "development trend in this country is that the scant sources provide different figures re-",
+          "confidence": 0.9883373379707336,
+          "poly": [
+            [
+              420,
+              895
+            ],
+            [
+              1597,
+              899
+            ],
+            [
+              1597,
+              936
+            ],
+            [
+              419,
+              932
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            895,
+            1597,
+            936
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "lated to the extent of area under irrigation in the country, and one is not certain which",
+          "confidence": 0.9939624071121216,
+          "poly": [
+            [
+              419,
+              932
+            ],
+            [
+              1592,
+              938
+            ],
+            [
+              1592,
+              972
+            ],
+            [
+              418,
+              966
+            ]
+          ],
+          "bbox_xyxy": [
+            418,
+            932,
+            1592,
+            972
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "is more accurate. Hence, the purpose of this review work was to gather published and",
+          "confidence": 0.9785171747207642,
+          "poly": [
+            [
+              418,
+              970
+            ],
+            [
+              1592,
+              972
+            ],
+            [
+              1592,
+              1009
+            ],
+            [
+              417,
+              1007
+            ]
+          ],
+          "bbox_xyxy": [
+            417,
+            970,
+            1592,
+            1009
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "unpublished information from relevant sources and then review, analyze, and organize the",
+          "confidence": 0.9886878728866577,
+          "poly": [
+            [
+              419,
+              1008
+            ],
+            [
+              1592,
+              1009
+            ],
+            [
+              1592,
+              1047
+            ],
+            [
+              419,
+              1046
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            1008,
+            1592,
+            1047
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "results in such a way that it provides historical trends and the current status of irrigation",
+          "confidence": 0.9881491661071777,
+          "poly": [
+            [
+              419,
+              1046
+            ],
+            [
+              1591,
+              1047
+            ],
+            [
+              1591,
+              1085
+            ],
+            [
+              419,
+              1084
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            1046,
+            1591,
+            1085
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "development as well as challenges facing the sector.",
+          "confidence": 0.9833115935325623,
+          "poly": [
+            [
+              420,
+              1084
+            ],
+            [
+              1091,
+              1084
+            ],
+            [
+              1091,
+              1124
+            ],
+            [
+              420,
+              1124
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            1084,
+            1091,
+            1124
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "paragraph_title",
+      "score": 0.9081619381904602,
+      "bbox_xyxy": [
+        457,
+        1162,
+        1096,
+        1187
+      ],
+      "lines": [
+        {
+          "text": "2. Literatures and Procedures Used for the Review",
+          "confidence": 0.9853107929229736,
+          "poly": [
+            [
+              419,
+              1154
+            ],
+            [
+              1090,
+              1151
+            ],
+            [
+              1090,
+              1185
+            ],
+            [
+              420,
+              1188
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            1151,
+            1090,
+            1188
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9841744899749756,
+      "bbox_xyxy": [
+        455,
+        1205,
+        1553,
+        1443
+      ],
+      "lines": [
+        {
+          "text": "Modern irrigation development has relatively short history in Ethiopia. Research,",
+          "confidence": 0.9963575601577759,
+          "poly": [
+            [
+              477,
+              1198
+            ],
+            [
+              1594,
+              1199
+            ],
+            [
+              1594,
+              1236
+            ],
+            [
+              477,
+              1235
+            ]
+          ],
+          "bbox_xyxy": [
+            477,
+            1198,
+            1594,
+            1236
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "monitoring, and evaluation of the development of irrigation are rarely done. Hence,",
+          "confidence": 0.9903970956802368,
+          "poly": [
+            [
+              420,
+              1238
+            ],
+            [
+              1593,
+              1238
+            ],
+            [
+              1593,
+              1272
+            ],
+            [
+              420,
+              1272
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            1238,
+            1593,
+            1272
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "published materials related to irrigation development are scanty. Even irrigation-related",
+          "confidence": 0.9896977543830872,
+          "poly": [
+            [
+              417,
+              1275
+            ],
+            [
+              1591,
+              1273
+            ],
+            [
+              1591,
+              1310
+            ],
+            [
+              418,
+              1312
+            ]
+          ],
+          "bbox_xyxy": [
+            417,
+            1273,
+            1591,
+            1312
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "facts and figures cited in different reports are different. For this review, the following",
+          "confidence": 0.9695128798484802,
+          "poly": [
+            [
+              418,
+              1310
+            ],
+            [
+              1589,
+              1313
+            ],
+            [
+              1589,
+              1348
+            ],
+            [
+              417,
+              1345
+            ]
+          ],
+          "bbox_xyxy": [
+            417,
+            1310,
+            1589,
+            1348
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "materials were used: the published articles or unpublished articles, annul and strategic",
+          "confidence": 0.9816976189613342,
+          "poly": [
+            [
+              416,
+              1348
+            ],
+            [
+              1589,
+              1351
+            ],
+            [
+              1589,
+              1385
+            ],
+            [
+              415,
+              1382
+            ]
+          ],
+          "bbox_xyxy": [
+            415,
+            1348,
+            1589,
+            1385
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "plans, reports of the Ministry of Water, Irrigation, and Energy as well as Ministry of",
+          "confidence": 0.9759740829467773,
+          "poly": [
+            [
+              413,
+              1386
+            ],
+            [
+              1592,
+              1385
+            ],
+            [
+              1592,
+              1422
+            ],
+            [
+              414,
+              1423
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1385,
+            1592,
+            1423
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Agriculture, proceedings of workshops and symposia, etc.",
+          "confidence": 0.9978145956993103,
+          "poly": [
+            [
+              415,
+              1423
+            ],
+            [
+              1169,
+              1423
+            ],
+            [
+              1169,
+              1457
+            ],
+            [
+              415,
+              1457
+            ]
+          ],
+          "bbox_xyxy": [
+            415,
+            1423,
+            1169,
+            1457
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9817903637886047,
+      "bbox_xyxy": [
+        455,
+        1449,
+        1556,
+        1653
+      ],
+      "lines": [
+        {
+          "text": "It terms of procedures, the review was designed to provide the brief picture of his-",
+          "confidence": 0.9865562915802002,
+          "poly": [
+            [
+              471,
+              1458
+            ],
+            [
+              1593,
+              1461
+            ],
+            [
+              1593,
+              1495
+            ],
+            [
+              471,
+              1492
+            ]
+          ],
+          "bbox_xyxy": [
+            471,
+            1458,
+            1593,
+            1495
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "torical evolution of irrigation development and management as well as the current status",
+          "confidence": 0.988703727722168,
+          "poly": [
+            [
+              413,
+              1499
+            ],
+            [
+              1590,
+              1499
+            ],
+            [
+              1590,
+              1532
+            ],
+            [
+              413,
+              1532
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1499,
+            1590,
+            1532
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "and challenges facing its development. The problems of irrigation development are multi-",
+          "confidence": 0.9887265563011169,
+          "poly": [
+            [
+              410,
+              1535
+            ],
+            [
+              1593,
+              1534
+            ],
+            [
+              1593,
+              1571
+            ],
+            [
+              410,
+              1572
+            ]
+          ],
+          "bbox_xyxy": [
+            410,
+            1534,
+            1593,
+            1572
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "faceted and interrelated; thus, they can be presented in the form of problem nest. The causes",
+          "confidence": 0.9870361685752869,
+          "poly": [
+            [
+              411,
+              1573
+            ],
+            [
+              1588,
+              1573
+            ],
+            [
+              1588,
+              1607
+            ],
+            [
+              411,
+              1607
+            ]
+          ],
+          "bbox_xyxy": [
+            411,
+            1573,
+            1588,
+            1607
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "and effects of the major problems are discussed and improvement options are implied.",
+          "confidence": 0.9915539622306824,
+          "poly": [
+            [
+              408,
+              1608
+            ],
+            [
+              1592,
+              1608
+            ],
+            [
+              1592,
+              1648
+            ],
+            [
+              408,
+              1648
+            ]
+          ],
+          "bbox_xyxy": [
+            408,
+            1608,
+            1592,
+            1648
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "paragraph_title",
+      "score": 0.8879052996635437,
+      "bbox_xyxy": [
+        457,
+        1686,
+        1216,
+        1715
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "paragraph_title",
+      "score": 0.8453564643859863,
+      "bbox_xyxy": [
+        458,
+        1723,
+        962,
+        1751
+      ],
+      "lines": [
+        {
+          "text": "3. History and Status of Irrigation Development in Ethiopia",
+          "confidence": 0.9795336723327637,
+          "poly": [
+            [
+              405,
+              1710
+            ],
+            [
+              1216,
+              1707
+            ],
+            [
+              1216,
+              1750
+            ],
+            [
+              405,
+              1753
+            ]
+          ],
+          "bbox_xyxy": [
+            405,
+            1707,
+            1216,
+            1753
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9865838885307312,
+      "bbox_xyxy": [
+        455,
+        1766,
+        1553,
+        2112
+      ],
+      "lines": [
+        {
+          "text": "3.1. Brief History of Irrigation Development",
+          "confidence": 0.9939024448394775,
+          "poly": [
+            [
+              407,
+              1756
+            ],
+            [
+              936,
+              1749
+            ],
+            [
+              936,
+              1783
+            ],
+            [
+              408,
+              1790
+            ]
+          ],
+          "bbox_xyxy": [
+            407,
+            1749,
+            936,
+            1790
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Cursory reports indicate that small-scale irrigation development in Ethiopia has a long",
+          "confidence": 0.9742288589477539,
+          "poly": [
+            [
+              464,
+              1793
+            ],
+            [
+              1589,
+              1798
+            ],
+            [
+              1589,
+              1846
+            ],
+            [
+              464,
+              1841
+            ]
+          ],
+          "bbox_xyxy": [
+            464,
+            1793,
+            1589,
+            1846
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "history that probably pre-dates the Axum empire more than 2000 years ago [8]. However,",
+          "confidence": 0.9894207715988159,
+          "poly": [
+            [
+              402,
+              1830
+            ],
+            [
+              1592,
+              1834
+            ],
+            [
+              1592,
+              1882
+            ],
+            [
+              402,
+              1878
+            ]
+          ],
+          "bbox_xyxy": [
+            402,
+            1830,
+            1592,
+            1882
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "it might have been less important because rain-fed agriculture, terraces, and small-scale",
+          "confidence": 0.993689775466919,
+          "poly": [
+            [
+              402,
+              1869
+            ],
+            [
+              1589,
+              1873
+            ],
+            [
+              1589,
+              1918
+            ],
+            [
+              402,
+              1913
+            ]
+          ],
+          "bbox_xyxy": [
+            402,
+            1869,
+            1589,
+            1918
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "irrigation were found sufficient to sustain ancient populations [9]. In many parts of the",
+          "confidence": 0.9788439273834229,
+          "poly": [
+            [
+              401,
+              1904
+            ],
+            [
+              1589,
+              1912
+            ],
+            [
+              1589,
+              1959
+            ],
+            [
+              400,
+              1951
+            ]
+          ],
+          "bbox_xyxy": [
+            400,
+            1904,
+            1589,
+            1959
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "and rainwater harvesting has been practiced for several years. However, greater attention",
+          "confidence": 0.9887381792068481,
+          "poly": [
+            [
+              399,
+              1977
+            ],
+            [
+              1592,
+              1989
+            ],
+            [
+              1591,
+              2039
+            ],
+            [
+              398,
+              2027
+            ]
+          ],
+          "bbox_xyxy": [
+            398,
+            1977,
+            1592,
+            2039
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "was given to small-scale peasant-based irrigation development following the recurrent",
+          "confidence": 0.9812089800834656,
+          "poly": [
+            [
+              398,
+              2015
+            ],
+            [
+              1593,
+              2028
+            ],
+            [
+              1592,
+              2076
+            ],
+            [
+              397,
+              2064
+            ]
+          ],
+          "bbox_xyxy": [
+            397,
+            2015,
+            1593,
+            2076
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "drought and famine experienced by the country in the 1970s and 1980s as a strategy to boost",
+          "confidence": 0.9946755170822144,
+          "poly": [
+            [
+              399,
+              2052
+            ],
+            [
+              1594,
+              2065
+            ],
+            [
+              1593,
+              2115
+            ],
+            [
+              398,
+              2103
+            ]
+          ],
+          "bbox_xyxy": [
+            398,
+            2052,
+            1594,
+            2115
+          ],
+          "reading_order": 7
+        }
+      ]
+    }
+  ]
+}

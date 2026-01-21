@@ -1,0 +1,109 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+soil moisture, which in turn has a crucial role in the context,Leng et al., 2015; Kang and Eltahir, 2018; Wu et al., 2018), or
+,
+of surface energy and water balance (Seneviratne et al., 2010).,the Contiguous United States (e.g., Pei et al., 2016; Lu et al.,
+,
+Irrigationlandmanagementpracticeshavebeenrecognizedasa,2017) as well as smaller areas like California (e.g., Kueppers
+,
+crucialcomponentoftheanthropogenicimpactontheclimate,etal.,2007;Sorooshianetal.,2011;Yangetal.,2017),orparts
+,
+(Sacksetal.,2009;Luyssaertetal.,2014;Thieryetal.,2020),but,of Italy (e.g., Valmassoi et al., 2020a; Dari et al., 2021). Most
+,
+wasincludedonlyinthemostrecentIntergovernmentalPanel,studies show a strong diurnal cycle of the expected irrigation-
+,
+on Climate Change (IPCC) 5th Assessment Report (AR5) (Jia,inducedcoolingeffectwherethediurnalmaximumtemperature
+,
+etal.,2019;Thieryetal.,2020).Furthermore,irrigationhasto,isimpactedmostwhiletheminimumseemsnottobeaffected
+,
+be considered as a major unaccounted anthropogenic source,(e.g., Kueppers et al., 2007; Jia et al., 2019). This pronounced
+,
+of water vapor (Boucher et al., 2004), and accounts for intra-,diurnal cycle is also reflected in the boundary layer structure,
+,
+and inter-basin water extraction and redistribution. While the,whereseveralstudiesobservedaloweringoftheboundarylayer
+,
+impactofirrigationonthelocalclimatecanbedetectedinin-situ,height due to the combined decrease of the temperature and
+,
+observations and remote sensing products, numerical models,increaseofthewatervapor(e.g.,Pielkeetal.,2007;Mahmood
+,
+canalsobeutilizedtounderstandmorecomplexfeedbackeffects,etal.,2008;Valmassoietal.,2020c).
+,
+aswellastheirimplicationsfortheEarthsystemasawhole.,With respect to effects on atmospheric circulations, the
+,
+The goal of irrigation is to increase water available for,spatial heterogeneity of the irrigated areas is reflected in the
+,
+crops and, thus, sustain them throughout the growing season.,horizontal discontinuity of the affected fluxes as well as local
+,
+Therefore, a major effect is an increase in the soil moisture,circulation changes (e.g., Barnston and Schickedanz, 1984;
+,
+content. In absence of precipitation, this can be used as a,Pielke and Zeng, 1989; Kueppers et al., 2007; Aegerter et al.,
+,
+basisfordetectionalgorithms,e.g.,developedbyLawstonetal.,2017).Thechangesinthermodynamicairmasspropertiesand
+,
+(2017),Broccaetal.(2018),orZaussingeretal.(2019).Suchan,circulation are found to potentially affect precipitation locally
+,
+increaseinsoilmoisturebyirrigationisalsoobservedinmany,and/or downwind, due to water vapor transport (e.g., Bonfils
+,
+modeling studies (e.g., Boucher et al., 2004; Kueppers et al.,,andLobell,2007;Deangelisetal.,2010;Weietal.,2013)and/or
+,
+2007; Sacks et al., 2009; Puma and Cook, 2010; Thiery et al.,,thechangeinstability(Valmassoietal.,2020b).Theseregional
+,
+2017;Valmassoietal.,2020b).Thereisveryhighconfidence(Jia,changesarefoundtoaffectthelargescalesynopticcirculations,
+,
+etal.,2019)thatahighersoilmoisturecontentaffectsthesurface,suchastheweakeningandthedelayingoftheIndianMonsoon
+,
+energypartitioningbyincreasingtheupwardmoisturefluxand,(e.g., Douglas et al., 2009; Saeed et al., 2009; Lee and Ngan,
+,
+decreasingthesensibleheatflux(Thieryetal.,2017;Valmassoi,2011; Guimberteau et al., 2012) or the change in the remote
+,
+etal.,2020c).TheassociatedchangeintheBowenratiocauses,precipitationpatternsovertheSahelregion(e.g.,Weietal.,2013;
+,
+the widely observed surface cooling effect of irrigation (e.g.,,ImandEltahir,2014).
+,
+Lobelletal.,2006a,2009;Kueppersetal.,2007;PumaandCook,,Whilethereisaregionalcomponentoftheirrigationimpact
+,
+2010; Sorooshian et al., 2011; Thiery et al., 2017; Valmassoi,ontheEarthsystem,Sacksetal.(2009)andWadaetal.(2013)
+,
+et al., 2020a; Nie et al., 2021), and the increase in the near-,identify the irrigation representation in models and the water
+,
+surfaceatmosphericmoisture(Mahmoodetal.,2008).Whilethe,amount used as crucial causes of the associated uncertainties,
+,
+globalannualcoolingof1.3KdescribedinLobelletal.(2006a),suchastheregionalsignals.
+,
+seems somewhat high, Boucher et al. (2004) and Thiery et al.,
+,
+(2017)provideestimatesthatlookmorerealisticwith0.05and,
+,
+0.20K,respectively.Further,allstudiesshowsthatthecooling,
+,
+has a strong regional component. The decrease in the diurnal,
+,
+,3. Existing irrigation
+maximumtemperaturescangofrom3to8K(deRosnay,2003;,
+,
+Douglasetal.,2009;Saeedetal.,2009;Guimberteauetal.,2012;,parameterizations
+Tuinenburg et al., 2014). The high variability is both due to,
+,
+regionalsignalsbutcanbecausedbytheoverestimationofthe,In order to represent the irrigation process and its effects
+,
+coolingeffectinglobalstudies,i.e.,upto4.9timeshigherinthe,asrealisticallyaspossibleinthemodelingoftheEarthsystem,
+,
+Indo-GangeticPlainofIndiaintheglobalstudybyThieryetal.,parametrizations of this process have been developed. In
+,
+(2020)ascomparedtosimulationswithrealisticwatervolumes,the following, we present the main equations of the various
+,
+andhighresolutionsimulations(Jhaetal.,2022).,parameterizationapproachesalbeitwithaharmonizednotation.
+,
+Regional studies are often used to further investigate the,First,wewilldiscussthetopicofirrigationactivationwhich
+,
+signalsofirrigationandprovidedeeperinsightstotheinvolved,is crucial due to the anthropogenic nature of the process.
+,
+processesandtheireffects.Suchstudiesmostlyfocusonlarger,,Here, timing generally refers to the decision to activate the
+,
+highly irrigated areas such as India (e.g., de Rosnay, 2003;,irrigationparameterization.Therearemainlythreeapproaches
+,
+Douglas et al., 2009; Saeed et al., 2009; Guimberteau et al.,,todeterminewhenirrigationisinitialized,namely,theusageof
+,
+2012; Tuinenburg et al., 2014), the North China Plain (e.g.,,(i)geographicalinvariantspatialfields,(ii)thetimeoftheday,
+,
+FrontiersinWater 04,frontiersin.org

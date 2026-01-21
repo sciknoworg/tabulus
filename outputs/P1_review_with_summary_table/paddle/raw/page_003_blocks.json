@@ -1,0 +1,3000 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 3,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 22,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.9963976144790649,
+          "poly": [
+            [
+              116,
+              20
+            ],
+            [
+              303,
+              30
+            ],
+            [
+              302,
+              54
+            ],
+            [
+              114,
+              43
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            20,
+            303,
+            54
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9997766613960266,
+          "poly": [
+            [
+              1207,
+              32
+            ],
+            [
+              1466,
+              27
+            ],
+            [
+              1466,
+              50
+            ],
+            [
+              1207,
+              55
+            ]
+          ],
+          "bbox_xyxy": [
+            1207,
+            27,
+            1466,
+            55
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Leng et al. (2013) is further implemented to close the water",
+          "confidence": 0.9809726476669312,
+          "poly": [
+            [
+              117,
+              158
+            ],
+            [
+              743,
+              167
+            ],
+            [
+              742,
+              201
+            ],
+            [
+              117,
+              192
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            158,
+            743,
+            201
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "cycle by adding the irrigation water extraction (Leng et al., 2014,",
+          "confidence": 0.9901562333106995,
+          "poly": [
+            [
+              118,
+              193
+            ],
+            [
+              741,
+              199
+            ],
+            [
+              740,
+              232
+            ],
+            [
+              118,
+              227
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            193,
+            741,
+            232
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Irrigation water delivery method conceptualization in the",
+          "confidence": 0.9810552597045898,
+          "poly": [
+            [
+              826,
+              549
+            ],
+            [
+              1336,
+              550
+            ],
+            [
+              1336,
+              571
+            ],
+            [
+              826,
+              570
+            ]
+          ],
+          "bbox_xyxy": [
+            826,
+            549,
+            1336,
+            571
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "provide a summary and the main conclusions in Section 7.",
+          "confidence": 0.9816884994506836,
+          "poly": [
+            [
+              116,
+              1083
+            ],
+            [
+              674,
+              1078
+            ],
+            [
+              674,
+              1102
+            ],
+            [
+              116,
+              1107
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1078,
+            674,
+            1107
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "installed systems, e.g., trees, vineyards (Bjorneberg, 2013).",
+          "confidence": 0.9913623332977295,
+          "poly": [
+            [
+              812,
+              1098
+            ],
+            [
+              1396,
+              1102
+            ],
+            [
+              1396,
+              1126
+            ],
+            [
+              812,
+              1122
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1098,
+            1396,
+            1126
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "2. Irrigation in the earth system",
+          "confidence": 0.9812334179878235,
+          "poly": [
+            [
+              117,
+              1162
+            ],
+            [
+              629,
+              1163
+            ],
+            [
+              629,
+              1198
+            ],
+            [
+              117,
+              1197
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1162,
+            629,
+            1198
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "2.1. Irrigation techniques",
+          "confidence": 0.9993855953216553,
+          "poly": [
+            [
+              119,
+              1223
+            ],
+            [
+              482,
+              1223
+            ],
+            [
+              482,
+              1252
+            ],
+            [
+              119,
+              1252
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1223,
+            482,
+            1252
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "germination (Bjorneberg, 2013).",
+          "confidence": 0.9988219141960144,
+          "poly": [
+            [
+              813,
+              1368
+            ],
+            [
+              1131,
+              1368
+            ],
+            [
+              1131,
+              1391
+            ],
+            [
+              813,
+              1391
+            ]
+          ],
+          "bbox_xyxy": [
+            813,
+            1368,
+            1131,
+            1391
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "conceptualization of Figure 1 and are defined, as general and as",
+          "confidence": 0.9684855937957764,
+          "poly": [
+            [
+              114,
+              1630
+            ],
+            [
+              724,
+              1630
+            ],
+            [
+              724,
+              1654
+            ],
+            [
+              114,
+              1654
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1630,
+            724,
+            1654
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "configurations, the base reference should be Phocaides (2o00),",
+          "confidence": 0.9820338487625122,
+          "poly": [
+            [
+              782,
+              1680
+            ],
+            [
+              1415,
+              1682
+            ],
+            [
+              1415,
+              1706
+            ],
+            [
+              782,
+              1704
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1680,
+            1415,
+            1706
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "Bjorneberg(2013), Irmak (2018), and Brouwer et al. (1985b).",
+          "confidence": 0.982621431350708,
+          "poly": [
+            [
+              781,
+              1713
+            ],
+            [
+              1383,
+              1714
+            ],
+            [
+              1383,
+              1738
+            ],
+            [
+              781,
+              1737
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1713,
+            1383,
+            1738
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "over the agricultural area. There are several variations of this",
+          "confidence": 0.9891432523727417,
+          "poly": [
+            [
+              139,
+              1881
+            ],
+            [
+              720,
+              1877
+            ],
+            [
+              720,
+              1901
+            ],
+            [
+              139,
+              1905
+            ]
+          ],
+          "bbox_xyxy": [
+            139,
+            1877,
+            720,
+            1905
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "As mentioned in the introduction, the importance of",
+          "confidence": 0.9904969334602356,
+          "poly": [
+            [
+              816,
+              1876
+            ],
+            [
+              1413,
+              1875
+            ],
+            [
+              1413,
+              1898
+            ],
+            [
+              816,
+              1899
+            ]
+          ],
+          "bbox_xyxy": [
+            816,
+            1875,
+            1413,
+            1899
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "method, and for this purpose, we highlight that they can",
+          "confidence": 0.9896677732467651,
+          "poly": [
+            [
+              138,
+              1914
+            ],
+            [
+              720,
+              1913
+            ],
+            [
+              720,
+              1936
+            ],
+            [
+              138,
+              1937
+            ]
+          ],
+          "bbox_xyxy": [
+            138,
+            1913,
+            720,
+            1937
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "irrigation goes beyond the agricultural aspect as it affects the",
+          "confidence": 0.9869837760925293,
+          "poly": [
+            [
+              777,
+              1909
+            ],
+            [
+              1410,
+              1906
+            ],
+            [
+              1410,
+              1932
+            ],
+            [
+              777,
+              1936
+            ]
+          ],
+          "bbox_xyxy": [
+            777,
+            1906,
+            1410,
+            1936
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "Frontiers in Water",
+          "confidence": 0.9747979640960693,
+          "poly": [
+            [
+              104,
+              2060
+            ],
+            [
+              263,
+              2053
+            ],
+            [
+              264,
+              2077
+            ],
+            [
+              105,
+              2084
+            ]
+          ],
+          "bbox_xyxy": [
+            104,
+            2053,
+            264,
+            2084
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "03",
+          "confidence": 0.9997914433479309,
+          "poly": [
+            [
+              734,
+              2050
+            ],
+            [
+              764,
+              2050
+            ],
+            [
+              764,
+              2076
+            ],
+            [
+              734,
+              2076
+            ]
+          ],
+          "bbox_xyxy": [
+            734,
+            2050,
+            764,
+            2076
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.9998862743377686,
+          "poly": [
+            [
+              1276,
+              2040
+            ],
+            [
+              1405,
+              2042
+            ],
+            [
+              1405,
+              2063
+            ],
+            [
+              1276,
+              2061
+            ]
+          ],
+          "bbox_xyxy": [
+            1276,
+            2040,
+            1405,
+            2063
+          ],
+          "reading_order": 19
+        }
+      ]
+    },
+    {
+      "block_id": 18,
+      "label": "header",
+      "score": 0.8525135517120361,
+      "bbox_xyxy": [
+        137,
+        102,
+        303,
+        120
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 15,
+      "label": "header",
+      "score": 0.8752415180206299,
+      "bbox_xyxy": [
+        1127,
+        102,
+        1343,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9869810342788696,
+      "bbox_xyxy": [
+        134,
+        226,
+        714,
+        559
+      ],
+      "lines": [
+        {
+          "text": "2017). Only later with Leng et al. (2017) and Valmassoi et al.",
+          "confidence": 0.9844765067100525,
+          "poly": [
+            [
+              117,
+              228
+            ],
+            [
+              740,
+              232
+            ],
+            [
+              739,
+              265
+            ],
+            [
+              117,
+              261
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            228,
+            740,
+            265
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "(2020a), the irrigation water is not seen as a direct modification",
+          "confidence": 0.98717200756073,
+          "poly": [
+            [
+              117,
+              262
+            ],
+            [
+              740,
+              266
+            ],
+            [
+              739,
+              299
+            ],
+            [
+              117,
+              295
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            262,
+            740,
+            299
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "of the soil moisture, but includes a physical representation of the",
+          "confidence": 0.9956119656562805,
+          "poly": [
+            [
+              118,
+              297
+            ],
+            [
+              738,
+              301
+            ],
+            [
+              737,
+              332
+            ],
+            [
+              118,
+              328
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            297,
+            738,
+            332
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "process, e.g., the interaction of the irrigation with the canopy.",
+          "confidence": 0.9847533106803894,
+          "poly": [
+            [
+              117,
+              334
+            ],
+            [
+              737,
+              336
+            ],
+            [
+              737,
+              366
+            ],
+            [
+              117,
+              364
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            334,
+            737,
+            366
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "While the importance of the irrigation volume used in the",
+          "confidence": 0.9952458739280701,
+          "poly": [
+            [
+              117,
+              366
+            ],
+            [
+              738,
+              368
+            ],
+            [
+              738,
+              399
+            ],
+            [
+              117,
+              397
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            366,
+            738,
+            399
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "simulation is highlighted since Sacks et al. (2009), only Decker",
+          "confidence": 0.9923033714294434,
+          "poly": [
+            [
+              117,
+              401
+            ],
+            [
+              738,
+              401
+            ],
+            [
+              738,
+              434
+            ],
+            [
+              117,
+              434
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            401,
+            738,
+            434
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "et al. (2017) demonstrates the pitfalls of using offline irrigation",
+          "confidence": 0.9859281182289124,
+          "poly": [
+            [
+              118,
+              437
+            ],
+            [
+              735,
+              438
+            ],
+            [
+              735,
+              465
+            ],
+            [
+              118,
+              464
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            437,
+            735,
+            465
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "computations to force simulations and the importance of having",
+          "confidence": 0.9878037571907043,
+          "poly": [
+            [
+              117,
+              471
+            ],
+            [
+              735,
+              472
+            ],
+            [
+              735,
+              499
+            ],
+            [
+              117,
+              498
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            471,
+            735,
+            499
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "high-resolutions.",
+          "confidence": 0.9999788999557495,
+          "poly": [
+            [
+              115,
+              502
+            ],
+            [
+              286,
+              506
+            ],
+            [
+              286,
+              534
+            ],
+            [
+              115,
+              530
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            502,
+            286,
+            534
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "In this review, we first define irrigation in the Earth system",
+          "confidence": 0.9928014278411865,
+          "poly": [
+            [
+              155,
+              538
+            ],
+            [
+              732,
+              540
+            ],
+            [
+              732,
+              564
+            ],
+            [
+              154,
+              562
+            ]
+          ],
+          "bbox_xyxy": [
+            154,
+            538,
+            732,
+            564
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 12,
+      "label": "image",
+      "score": 0.9302046298980713,
+      "bbox_xyxy": [
+        774,
+        236,
+        1344,
+        544
+      ],
+      "lines": [
+        {
+          "text": "FIGURE 1",
+          "confidence": 0.9997038841247559,
+          "poly": [
+            [
+              827,
+              527
+            ],
+            [
+              897,
+              527
+            ],
+            [
+              897,
+              545
+            ],
+            [
+              827,
+              545
+            ]
+          ],
+          "bbox_xyxy": [
+            827,
+            527,
+            897,
+            545
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9880145788192749,
+      "bbox_xyxy": [
+        135,
+        569,
+        714,
+        1090
+      ],
+      "lines": [
+        {
+          "text": "(cf. Section 2), presenting both its techniques divided by the",
+          "confidence": 0.9833024144172668,
+          "poly": [
+            [
+              119,
+              573
+            ],
+            [
+              732,
+              573
+            ],
+            [
+              732,
+              597
+            ],
+            [
+              119,
+              597
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            573,
+            732,
+            597
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "main delivery methods (cf. Section 2.1) and the impact found",
+          "confidence": 0.9906703233718872,
+          "poly": [
+            [
+              118,
+              607
+            ],
+            [
+              731,
+              607
+            ],
+            [
+              731,
+              631
+            ],
+            [
+              118,
+              631
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            607,
+            731,
+            631
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "in previous studies (cf. Section 2.2). Then the existing irrigation",
+          "confidence": 0.9901542067527771,
+          "poly": [
+            [
+              115,
+              639
+            ],
+            [
+              732,
+              640
+            ],
+            [
+              732,
+              667
+            ],
+            [
+              115,
+              666
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            639,
+            732,
+            667
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "parameterizations (ct. Section 3) are described, categorized",
+          "confidence": 0.9909880757331848,
+          "poly": [
+            [
+              115,
+              675
+            ],
+            [
+              731,
+              673
+            ],
+            [
+              731,
+              700
+            ],
+            [
+              115,
+              702
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            673,
+            731,
+            702
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "based on the activation method (ct. Section 3.1) and the variables",
+          "confidence": 0.9807628393173218,
+          "poly": [
+            [
+              115,
+              709
+            ],
+            [
+              730,
+              708
+            ],
+            [
+              730,
+              732
+            ],
+            [
+              115,
+              733
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            708,
+            730,
+            733
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "that are directly affected (cf. Section 3.3) by the estimated",
+          "confidence": 0.9876155257225037,
+          "poly": [
+            [
+              115,
+              742
+            ],
+            [
+              730,
+              740
+            ],
+            [
+              730,
+              767
+            ],
+            [
+              115,
+              769
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            740,
+            730,
+            769
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "irrigation water (cf. Section 3.2). In Section 4, we discuss",
+          "confidence": 0.9753947854042053,
+          "poly": [
+            [
+              115,
+              777
+            ],
+            [
+              730,
+              774
+            ],
+            [
+              730,
+              800
+            ],
+            [
+              115,
+              803
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            774,
+            730,
+            803
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "the relation of the irrigation parameterizations to the actual",
+          "confidence": 0.9789389371871948,
+          "poly": [
+            [
+              115,
+              811
+            ],
+            [
+              729,
+              810
+            ],
+            [
+              729,
+              834
+            ],
+            [
+              115,
+              835
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            810,
+            729,
+            835
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "techniques either through the process representation (cf Section",
+          "confidence": 0.9946829080581665,
+          "poly": [
+            [
+              116,
+              846
+            ],
+            [
+              728,
+              843
+            ],
+            [
+              728,
+              866
+            ],
+            [
+              116,
+              870
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            843,
+            728,
+            870
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "4.1) or via the relevant spatio-temporal scales (cf Section 4.2),",
+          "confidence": 0.9942492246627808,
+          "poly": [
+            [
+              114,
+              878
+            ],
+            [
+              728,
+              874
+            ],
+            [
+              728,
+              900
+            ],
+            [
+              114,
+              903
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            874,
+            728,
+            903
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "highlighting some relevant physical considerations (cf Section",
+          "confidence": 0.9906601309776306,
+          "poly": [
+            [
+              115,
+              913
+            ],
+            [
+              728,
+              909
+            ],
+            [
+              728,
+              933
+            ],
+            [
+              115,
+              937
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            909,
+            728,
+            937
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "4.3). In Section 5.1, we provide an overview of the irrigation",
+          "confidence": 0.9691062569618225,
+          "poly": [
+            [
+              114,
+              947
+            ],
+            [
+              727,
+              944
+            ],
+            [
+              727,
+              968
+            ],
+            [
+              114,
+              971
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            944,
+            727,
+            971
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "water amount applied in the available studies including both",
+          "confidence": 0.9848327040672302,
+          "poly": [
+            [
+              114,
+              982
+            ],
+            [
+              727,
+              977
+            ],
+            [
+              727,
+              1001
+            ],
+            [
+              114,
+              1006
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            977,
+            727,
+            1006
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "the focus region and the period considered. Finally, we point",
+          "confidence": 0.9772188663482666,
+          "poly": [
+            [
+              114,
+              1014
+            ],
+            [
+              728,
+              1010
+            ],
+            [
+              728,
+              1036
+            ],
+            [
+              114,
+              1040
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1010,
+            728,
+            1040
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "out future research perspectives in this field (cf Section 6), and",
+          "confidence": 0.9765526652336121,
+          "poly": [
+            [
+              115,
+              1048
+            ],
+            [
+              727,
+              1042
+            ],
+            [
+              727,
+              1068
+            ],
+            [
+              115,
+              1074
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1042,
+            727,
+            1074
+          ],
+          "reading_order": 14
+        }
+      ]
+    },
+    {
+      "block_id": 20,
+      "label": "figure_title",
+      "score": 0.6696281433105469,
+      "bbox_xyxy": [
+        796,
+        579,
+        1293,
+        778
+      ],
+      "lines": [
+        {
+          "text": "modeling perspective, figure adapted from Valmassoi et al.",
+          "confidence": 0.9822524785995483,
+          "poly": [
+            [
+              827,
+              574
+            ],
+            [
+              1350,
+              574
+            ],
+            [
+              1350,
+              597
+            ],
+            [
+              827,
+              597
+            ]
+          ],
+          "bbox_xyxy": [
+            827,
+            574,
+            1350,
+            597
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "(2020a). Process A can represent the surface irrigation and the",
+          "confidence": 0.9832053780555725,
+          "poly": [
+            [
+              825,
+              597
+            ],
+            [
+              1384,
+              599
+            ],
+            [
+              1384,
+              623
+            ],
+            [
+              825,
+              621
+            ]
+          ],
+          "bbox_xyxy": [
+            825,
+            597,
+            1384,
+            623
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "micro, depending on the spatial extent and amount of water",
+          "confidence": 0.9890205264091492,
+          "poly": [
+            [
+              824,
+              622
+            ],
+            [
+              1367,
+              623
+            ],
+            [
+              1367,
+              647
+            ],
+            [
+              824,
+              646
+            ]
+          ],
+          "bbox_xyxy": [
+            824,
+            622,
+            1367,
+            647
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "used, as well as the sprinkler applied only below the foliage.",
+          "confidence": 0.9931672215461731,
+          "poly": [
+            [
+              824,
+              647
+            ],
+            [
+              1358,
+              649
+            ],
+            [
+              1358,
+              673
+            ],
+            [
+              824,
+              671
+            ]
+          ],
+          "bbox_xyxy": [
+            824,
+            647,
+            1358,
+            673
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Process B and C can both represent the sprinkler depending",
+          "confidence": 0.9943174719810486,
+          "poly": [
+            [
+              823,
+              671
+            ],
+            [
+              1363,
+              674
+            ],
+            [
+              1363,
+              697
+            ],
+            [
+              823,
+              694
+            ]
+          ],
+          "bbox_xyxy": [
+            823,
+            671,
+            1363,
+            697
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "how high above the canopy the sprinkler water is applied.",
+          "confidence": 0.9935705661773682,
+          "poly": [
+            [
+              823,
+              695
+            ],
+            [
+              1339,
+              699
+            ],
+            [
+              1338,
+              723
+            ],
+            [
+              823,
+              719
+            ]
+          ],
+          "bbox_xyxy": [
+            823,
+            695,
+            1339,
+            723
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Process D instead reflects the subirrigation. For an in-depth",
+          "confidence": 0.9882649779319763,
+          "poly": [
+            [
+              823,
+              720
+            ],
+            [
+              1354,
+              724
+            ],
+            [
+              1354,
+              745
+            ],
+            [
+              823,
+              741
+            ]
+          ],
+          "bbox_xyxy": [
+            823,
+            720,
+            1354,
+            745
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "discussion refer to Section 4.3.",
+          "confidence": 0.9943230152130127,
+          "poly": [
+            [
+              823,
+              744
+            ],
+            [
+              1093,
+              747
+            ],
+            [
+              1093,
+              767
+            ],
+            [
+              823,
+              764
+            ]
+          ],
+          "bbox_xyxy": [
+            823,
+            744,
+            1093,
+            767
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 21,
+      "label": "text",
+      "score": 0.5411443710327148,
+      "bbox_xyxy": [
+        796,
+        579,
+        1293,
+        778
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "text",
+      "score": 0.9632097482681274,
+      "bbox_xyxy": [
+        791,
+        866,
+        1345,
+        951
+      ],
+      "lines": [
+        {
+          "text": "depend on the height (over/under the foliage, respectively",
+          "confidence": 0.9767857193946838,
+          "poly": [
+            [
+              815,
+              859
+            ],
+            [
+              1437,
+              862
+            ],
+            [
+              1436,
+              892
+            ],
+            [
+              815,
+              888
+            ]
+          ],
+          "bbox_xyxy": [
+            815,
+            859,
+            1437,
+            892
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "B/C and A) and diameter of the application, and rate",
+          "confidence": 0.994916558265686,
+          "poly": [
+            [
+              814,
+              892
+            ],
+            [
+              1436,
+              896
+            ],
+            [
+              1435,
+              923
+            ],
+            [
+              814,
+              919
+            ]
+          ],
+          "bbox_xyxy": [
+            814,
+            892,
+            1436,
+            923
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "(Phocaides, 2000;Bjorneberg, 2013).",
+          "confidence": 0.9896187782287598,
+          "poly": [
+            [
+              815,
+              928
+            ],
+            [
+              1176,
+              929
+            ],
+            [
+              1176,
+              953
+            ],
+            [
+              815,
+              952
+            ]
+          ],
+          "bbox_xyxy": [
+            815,
+            928,
+            1176,
+            953
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9774511456489563,
+      "bbox_xyxy": [
+        768,
+        960,
+        1345,
+        1108
+      ],
+      "lines": [
+        {
+          "text": "3. Micro: the so-called \"localized\" irrigation, where the water",
+          "confidence": 0.9835883975028992,
+          "poly": [
+            [
+              784,
+              961
+            ],
+            [
+              1434,
+              964
+            ],
+            [
+              1433,
+              988
+            ],
+            [
+              784,
+              985
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            961,
+            1434,
+            988
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "is delivered directly around a limited soil surface around the",
+          "confidence": 0.9903930425643921,
+          "poly": [
+            [
+              813,
+              994
+            ],
+            [
+              1432,
+              998
+            ],
+            [
+              1431,
+              1022
+            ],
+            [
+              813,
+              1018
+            ]
+          ],
+          "bbox_xyxy": [
+            813,
+            994,
+            1432,
+            1022
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "plants. Further, the water is applied at a low rate and pressure.",
+          "confidence": 0.9823601245880127,
+          "poly": [
+            [
+              812,
+              1029
+            ],
+            [
+              1431,
+              1032
+            ],
+            [
+              1431,
+              1059
+            ],
+            [
+              812,
+              1056
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1029,
+            1431,
+            1059
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "However, this method is mainly employed in permanently",
+          "confidence": 0.9955253005027771,
+          "poly": [
+            [
+              812,
+              1062
+            ],
+            [
+              1431,
+              1067
+            ],
+            [
+              1430,
+              1094
+            ],
+            [
+              812,
+              1089
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1062,
+            1431,
+            1094
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9834136962890625,
+      "bbox_xyxy": [
+        768,
+        1117,
+        1344,
+        1358
+      ],
+      "lines": [
+        {
+          "text": "4. Subirrigation (D): in this method, the water is applied to",
+          "confidence": 0.9792386293411255,
+          "poly": [
+            [
+              781,
+              1131
+            ],
+            [
+              1428,
+              1135
+            ],
+            [
+              1428,
+              1159
+            ],
+            [
+              781,
+              1155
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1131,
+            1428,
+            1159
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "change the water table height (Bjorneberg, 2013), and it has",
+          "confidence": 0.9779539108276367,
+          "poly": [
+            [
+              812,
+              1165
+            ],
+            [
+              1428,
+              1169
+            ],
+            [
+              1428,
+              1193
+            ],
+            [
+              812,
+              1189
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1165,
+            1428,
+            1193
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "a high potential for areas with a high degree of drainage",
+          "confidence": 0.9699302315711975,
+          "poly": [
+            [
+              811,
+              1195
+            ],
+            [
+              1428,
+              1203
+            ],
+            [
+              1427,
+              1230
+            ],
+            [
+              811,
+              1222
+            ]
+          ],
+          "bbox_xyxy": [
+            811,
+            1195,
+            1428,
+            1230
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "requirements (Irmak, 2018). This method is generally used in",
+          "confidence": 0.9927953481674194,
+          "poly": [
+            [
+              812,
+              1231
+            ],
+            [
+              1426,
+              1237
+            ],
+            [
+              1426,
+              1260
+            ],
+            [
+              812,
+              1255
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1231,
+            1426,
+            1260
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "the horticultural industry in greenhouses and nursery plant",
+          "confidence": 0.9899430274963379,
+          "poly": [
+            [
+              812,
+              1263
+            ],
+            [
+              1427,
+              1269
+            ],
+            [
+              1426,
+              1293
+            ],
+            [
+              812,
+              1287
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1263,
+            1427,
+            1293
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "productions (Irmak, 2018). However, it is not used in arid",
+          "confidence": 0.9755339026451111,
+          "poly": [
+            [
+              812,
+              1300
+            ],
+            [
+              1426,
+              1301
+            ],
+            [
+              1426,
+              1325
+            ],
+            [
+              812,
+              1324
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1300,
+            1426,
+            1325
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "or semi-arid areas, as irrigation water is needed for the crop",
+          "confidence": 0.9796148538589478,
+          "poly": [
+            [
+              812,
+              1331
+            ],
+            [
+              1424,
+              1337
+            ],
+            [
+              1423,
+              1361
+            ],
+            [
+              812,
+              1355
+            ]
+          ],
+          "bbox_xyxy": [
+            812,
+            1331,
+            1424,
+            1361
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 13,
+      "label": "paragraph_title",
+      "score": 0.9173656702041626,
+      "bbox_xyxy": [
+        136,
+        1146,
+        622,
+        1176
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 14,
+      "label": "paragraph_title",
+      "score": 0.9159020185470581,
+      "bbox_xyxy": [
+        137,
+        1201,
+        484,
+        1231
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9875872731208801,
+      "bbox_xyxy": [
+        135,
+        1269,
+        714,
+        1635
+      ],
+      "lines": [
+        {
+          "text": "In modern agriculture, there are several irrigation",
+          "confidence": 0.9880623817443848,
+          "poly": [
+            [
+              152,
+              1291
+            ],
+            [
+              727,
+              1295
+            ],
+            [
+              727,
+              1322
+            ],
+            [
+              151,
+              1318
+            ]
+          ],
+          "bbox_xyxy": [
+            151,
+            1291,
+            727,
+            1322
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "techniques that have been developed to meet specific",
+          "confidence": 0.982659101486206,
+          "poly": [
+            [
+              117,
+              1325
+            ],
+            [
+              727,
+              1328
+            ],
+            [
+              727,
+              1355
+            ],
+            [
+              117,
+              1352
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1325,
+            727,
+            1355
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "crop/regional needs. Originally, the irrigation techniques",
+          "confidence": 0.9983897805213928,
+          "poly": [
+            [
+              117,
+              1360
+            ],
+            [
+              726,
+              1364
+            ],
+            [
+              726,
+              1388
+            ],
+            [
+              117,
+              1384
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1360,
+            726,
+            1388
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "are grouped into three main systems [Brouwer et al. (1985a,b),",
+          "confidence": 0.973665714263916,
+          "poly": [
+            [
+              116,
+              1397
+            ],
+            [
+              725,
+              1398
+            ],
+            [
+              725,
+              1422
+            ],
+            [
+              116,
+              1421
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1397,
+            725,
+            1422
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "a major reference for irrigation in agriculture] namely surface,",
+          "confidence": 0.9865943789482117,
+          "poly": [
+            [
+              114,
+              1430
+            ],
+            [
+              725,
+              1432
+            ],
+            [
+              725,
+              1456
+            ],
+            [
+              114,
+              1454
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1430,
+            725,
+            1456
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "drip and sprinkler. More recent sources that attempt to",
+          "confidence": 0.9946377873420715,
+          "poly": [
+            [
+              116,
+              1463
+            ],
+            [
+              726,
+              1466
+            ],
+            [
+              726,
+              1490
+            ],
+            [
+              116,
+              1487
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1463,
+            726,
+            1490
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "generalize irrigation techniques across the world tend to",
+          "confidence": 0.987755298614502,
+          "poly": [
+            [
+              116,
+              1498
+            ],
+            [
+              725,
+              1498
+            ],
+            [
+              725,
+              1522
+            ],
+            [
+              116,
+              1522
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1498,
+            725,
+            1522
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "group them into four main delivery methods, and call the",
+          "confidence": 0.9801620841026306,
+          "poly": [
+            [
+              115,
+              1531
+            ],
+            [
+              725,
+              1530
+            ],
+            [
+              725,
+              1554
+            ],
+            [
+              115,
+              1555
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1530,
+            725,
+            1555
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "\"drip\" technique \"micro\" (Phocaides, 2000; Bjorneberg, 2013;",
+          "confidence": 0.9726015329360962,
+          "poly": [
+            [
+              113,
+              1561
+            ],
+            [
+              727,
+              1563
+            ],
+            [
+              727,
+              1590
+            ],
+            [
+              113,
+              1588
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1561,
+            727,
+            1590
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Irmak, 2018). The four methods can be represented with the",
+          "confidence": 0.9806045889854431,
+          "poly": [
+            [
+              114,
+              1594
+            ],
+            [
+              725,
+              1596
+            ],
+            [
+              725,
+              1621
+            ],
+            [
+              114,
+              1619
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1594,
+            725,
+            1621
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "text",
+      "score": 0.9672908782958984,
+      "bbox_xyxy": [
+        764,
+        1380,
+        1345,
+        1465
+      ],
+      "lines": [
+        {
+          "text": "While the description seems generic, the wide geographical",
+          "confidence": 0.9819101691246033,
+          "poly": [
+            [
+              783,
+              1415
+            ],
+            [
+              1424,
+              1420
+            ],
+            [
+              1424,
+              1444
+            ],
+            [
+              783,
+              1439
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1415,
+            1424,
+            1444
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "variability and its constant evolution over time makes very",
+          "confidence": 0.9939581751823425,
+          "poly": [
+            [
+              783,
+              1448
+            ],
+            [
+              1423,
+              1453
+            ],
+            [
+              1423,
+              1477
+            ],
+            [
+              783,
+              1472
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1448,
+            1423,
+            1477
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9834316372871399,
+      "bbox_xyxy": [
+        764,
+        1473,
+        1344,
+        1683
+      ],
+      "lines": [
+        {
+          "text": "complicated to give a general definition.",
+          "confidence": 0.9823593497276306,
+          "poly": [
+            [
+              783,
+              1482
+            ],
+            [
+              1178,
+              1484
+            ],
+            [
+              1178,
+              1508
+            ],
+            [
+              783,
+              1506
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1482,
+            1178,
+            1508
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "The Food and Agriculture Organization (FAO) provides",
+          "confidence": 0.9805691242218018,
+          "poly": [
+            [
+              822,
+              1514
+            ],
+            [
+              1422,
+              1519
+            ],
+            [
+              1422,
+              1543
+            ],
+            [
+              822,
+              1538
+            ]
+          ],
+          "bbox_xyxy": [
+            822,
+            1514,
+            1422,
+            1543
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "six training manuals for irrigation (e.g., Brouwer et al.,",
+          "confidence": 0.9895997643470764,
+          "poly": [
+            [
+              782,
+              1547
+            ],
+            [
+              1423,
+              1551
+            ],
+            [
+              1423,
+              1577
+            ],
+            [
+              782,
+              1572
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1547,
+            1423,
+            1577
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "1985a,b, Manual 1 and 5), which are still considered the",
+          "confidence": 0.9912919998168945,
+          "poly": [
+            [
+              783,
+              1580
+            ],
+            [
+              1421,
+              1585
+            ],
+            [
+              1421,
+              1608
+            ],
+            [
+              783,
+              1604
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1580,
+            1421,
+            1608
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "starting point for addressing irrigation in general. For specific",
+          "confidence": 0.9968420267105103,
+          "poly": [
+            [
+              783,
+              1614
+            ],
+            [
+              1419,
+              1617
+            ],
+            [
+              1419,
+              1641
+            ],
+            [
+              783,
+              1638
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1614,
+            1419,
+            1641
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "modern information on the techniques and the recommended",
+          "confidence": 0.9902902841567993,
+          "poly": [
+            [
+              782,
+              1646
+            ],
+            [
+              1418,
+              1650
+            ],
+            [
+              1418,
+              1673
+            ],
+            [
+              782,
+              1669
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1646,
+            1418,
+            1673
+          ],
+          "reading_order": 5
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.9744277000427246,
+      "bbox_xyxy": [
+        138,
+        1658,
+        714,
+        1773
+      ],
+      "lines": [
+        {
+          "text": "specific as possible, as follows:",
+          "confidence": 0.9989146590232849,
+          "poly": [
+            [
+              113,
+              1663
+            ],
+            [
+              400,
+              1665
+            ],
+            [
+              400,
+              1690
+            ],
+            [
+              113,
+              1688
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1663,
+            400,
+            1690
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "1. Surface (A): the water is delivered to the field through",
+          "confidence": 0.9957929849624634,
+          "poly": [
+            [
+              113,
+              1713
+            ],
+            [
+              722,
+              1713
+            ],
+            [
+              722,
+              1736
+            ],
+            [
+              113,
+              1736
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1713,
+            722,
+            1736
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "hydrants and it is either spread over the whole area",
+          "confidence": 0.9950243234634399,
+          "poly": [
+            [
+              139,
+              1747
+            ],
+            [
+              723,
+              1745
+            ],
+            [
+              723,
+              1769
+            ],
+            [
+              139,
+              1771
+            ]
+          ],
+          "bbox_xyxy": [
+            139,
+            1745,
+            723,
+            1771
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 11,
+      "label": "paragraph_title",
+      "score": 0.9302125573158264,
+      "bbox_xyxy": [
+        767,
+        1745,
+        1338,
+        1774
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 8,
+      "label": "text",
+      "score": 0.9651761054992676,
+      "bbox_xyxy": [
+        138,
+        1782,
+        716,
+        1868
+      ],
+      "lines": [
+        {
+          "text": "(furrow/basin irrigation) or from its borders (border",
+          "confidence": 0.9983586668968201,
+          "poly": [
+            [
+              140,
+              1780
+            ],
+            [
+              722,
+              1777
+            ],
+            [
+              722,
+              1801
+            ],
+            [
+              140,
+              1804
+            ]
+          ],
+          "bbox_xyxy": [
+            140,
+            1777,
+            722,
+            1804
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "irrigation) (Brouwer et al., 1985b;Phocaides, 2000).",
+          "confidence": 0.9893906116485596,
+          "poly": [
+            [
+              139,
+              1813
+            ],
+            [
+              633,
+              1811
+            ],
+            [
+              633,
+              1835
+            ],
+            [
+              139,
+              1837
+            ]
+          ],
+          "bbox_xyxy": [
+            139,
+            1811,
+            633,
+            1837
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "2. Sprinkler: the water is delivered as raindrops that precipitate",
+          "confidence": 0.9784441590309143,
+          "poly": [
+            [
+              107,
+              1846
+            ],
+            [
+              721,
+              1844
+            ],
+            [
+              721,
+              1868
+            ],
+            [
+              107,
+              1870
+            ]
+          ],
+          "bbox_xyxy": [
+            107,
+            1844,
+            721,
+            1870
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 10,
+      "label": "text",
+      "score": 0.951808512210846,
+      "bbox_xyxy": [
+        765,
+        1813,
+        1344,
+        1869
+      ],
+      "lines": [
+        {
+          "text": "2.2. Irrigation impact on the Earth system",
+          "confidence": 0.9869242310523987,
+          "poly": [
+            [
+              779,
+              1802
+            ],
+            [
+              1405,
+              1805
+            ],
+            [
+              1405,
+              1836
+            ],
+            [
+              779,
+              1833
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1802,
+            1405,
+            1836
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 16,
+      "label": "footer",
+      "score": 0.8694155216217041,
+      "bbox_xyxy": [
+        138,
+        1976,
+        279,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 17,
+      "label": "footer",
+      "score": 0.8688876628875732,
+      "bbox_xyxy": [
+        1227,
+        1977,
+        1343,
+        1994
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 19,
+      "label": "number",
+      "score": 0.8156599998474121,
+      "bbox_xyxy": [
+        732,
+        1978,
+        752,
+        1993
+      ],
+      "lines": []
+    }
+  ]
+}

@@ -1,0 +1,4891 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 21,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 50,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.9988676905632019,
+          "poly": [
+            [
+              110,
+              2
+            ],
+            [
+              298,
+              16
+            ],
+            [
+              296,
+              40
+            ],
+            [
+              108,
+              26
+            ]
+          ],
+          "bbox_xyxy": [
+            108,
+            2,
+            298,
+            40
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9997539520263672,
+          "poly": [
+            [
+              1186,
+              26
+            ],
+            [
+              1434,
+              23
+            ],
+            [
+              1435,
+              44
+            ],
+            [
+              1186,
+              47
+            ]
+          ],
+          "bbox_xyxy": [
+            1186,
+            23,
+            1435,
+            47
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Hirsch, A. L., Wilhelm, M. Davin, E. L., Thiery, W., and Seneviratne, S. I. (2017).",
+          "confidence": 0.9701468348503113,
+          "poly": [
+            [
+              129,
+              149
+            ],
+            [
+              735,
+              165
+            ],
+            [
+              734,
+              192
+            ],
+            [
+              128,
+              176
+            ]
+          ],
+          "bbox_xyxy": [
+            128,
+            149,
+            735,
+            192
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Leng, G., Tang, Q., Huang, M., and Leung, L.-Y. R. (2015). A comparative",
+          "confidence": 0.9812456965446472,
+          "poly": [
+            [
+              807,
+              168
+            ],
+            [
+              1434,
+              160
+            ],
+            [
+              1435,
+              181
+            ],
+            [
+              807,
+              189
+            ]
+          ],
+          "bbox_xyxy": [
+            807,
+            160,
+            1435,
+            189
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Can climate-effective land management reduce regional warming? J. Geophys. Res.",
+          "confidence": 0.9888232350349426,
+          "poly": [
+            [
+              112,
+              169
+            ],
+            [
+              736,
+              185
+            ],
+            [
+              735,
+              215
+            ],
+            [
+              112,
+              199
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            169,
+            736,
+            215
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "analysis of the impacts of climate change and irrigation on land surface and",
+          "confidence": 0.9814776182174683,
+          "poly": [
+            [
+              791,
+              188
+            ],
+            [
+              1434,
+              180
+            ],
+            [
+              1435,
+              201
+            ],
+            [
+              791,
+              208
+            ]
+          ],
+          "bbox_xyxy": [
+            791,
+            180,
+            1435,
+            208
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Atmospher. 122, 22692288. doi: 10.1002/2016JD026125",
+          "confidence": 0.9894236922264099,
+          "poly": [
+            [
+              113,
+              193
+            ],
+            [
+              541,
+              203
+            ],
+            [
+              540,
+              231
+            ],
+            [
+              113,
+              221
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            193,
+            541,
+            231
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "subsurface hydrology in the North China Plain. Regional Environ. Change 15,",
+          "confidence": 0.9902253150939941,
+          "poly": [
+            [
+              790,
+              207
+            ],
+            [
+              1435,
+              201
+            ],
+            [
+              1436,
+              224
+            ],
+            [
+              790,
+              230
+            ]
+          ],
+          "bbox_xyxy": [
+            790,
+            201,
+            1436,
+            230
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Leng, G., Leung, L. R., and Huang, M. (2017). Significant impacts of irrigation",
+          "confidence": 0.9795160293579102,
+          "poly": [
+            [
+              129,
+              1869
+            ],
+            [
+              726,
+              1876
+            ],
+            [
+              726,
+              1897
+            ],
+            [
+              129,
+              1890
+            ]
+          ],
+          "bbox_xyxy": [
+            129,
+            1869,
+            726,
+            1897
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "under arid region conditions. Irrigat. Sci. 17, 105110. doi: 10.1007/s002710050028",
+          "confidence": 0.9964715242385864,
+          "poly": [
+            [
+              786,
+              1864
+            ],
+            [
+              1428,
+              1873
+            ],
+            [
+              1427,
+              1894
+            ],
+            [
+              786,
+              1885
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            1864,
+            1428,
+            1894
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "water sources and methods on modeling irrigation effects in the ACME land model.",
+          "confidence": 0.9884327054023743,
+          "poly": [
+            [
+              111,
+              1890
+            ],
+            [
+              727,
+              1897
+            ],
+            [
+              727,
+              1920
+            ],
+            [
+              111,
+              1912
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            1890,
+            727,
+            1920
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Nie, W., Zaitchik, B. F., Rodell, M., Kumar, S. V., Arsenault, K. R., and",
+          "confidence": 0.9802330732345581,
+          "poly": [
+            [
+              801,
+              1898
+            ],
+            [
+              1428,
+              1905
+            ],
+            [
+              1427,
+              1926
+            ],
+            [
+              801,
+              1918
+            ]
+          ],
+          "bbox_xyxy": [
+            801,
+            1898,
+            1428,
+            1926
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "J. Adv. Model. Earth Syst. 9, 16651683. doi: 10.1002/2016MS000885",
+          "confidence": 0.983948290348053,
+          "poly": [
+            [
+              111,
+              1912
+            ],
+            [
+              625,
+              1919
+            ],
+            [
+              625,
+              1939
+            ],
+            [
+              111,
+              1932
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            1912,
+            625,
+            1939
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Badr, H. S. (2021). Irrigation water demand sensitivity to climate variability",
+          "confidence": 0.9813485741615295,
+          "poly": [
+            [
+              785,
+              1919
+            ],
+            [
+              1427,
+              1928
+            ],
+            [
+              1426,
+              1948
+            ],
+            [
+              785,
+              1939
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            1919,
+            1427,
+            1948
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Frontiers in Water",
+          "confidence": 0.9994160532951355,
+          "poly": [
+            [
+              110,
+              2073
+            ],
+            [
+              266,
+              2068
+            ],
+            [
+              267,
+              2089
+            ],
+            [
+              110,
+              2094
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            2068,
+            267,
+            2094
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "21",
+          "confidence": 0.99998539686203,
+          "poly": [
+            [
+              740,
+              2073
+            ],
+            [
+              769,
+              2073
+            ],
+            [
+              769,
+              2099
+            ],
+            [
+              740,
+              2099
+            ]
+          ],
+          "bbox_xyxy": [
+            740,
+            2073,
+            769,
+            2099
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.9998868107795715,
+          "poly": [
+            [
+              1293,
+              2076
+            ],
+            [
+              1427,
+              2080
+            ],
+            [
+              1426,
+              2104
+            ],
+            [
+              1292,
+              2100
+            ]
+          ],
+          "bbox_xyxy": [
+            1292,
+            2076,
+            1427,
+            2104
+          ],
+          "reading_order": 16
+        }
+      ]
+    },
+    {
+      "block_id": 42,
+      "label": "header",
+      "score": 0.8975074291229248,
+      "bbox_xyxy": [
+        137,
+        103,
+        303,
+        120
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 20,
+      "label": "header",
+      "score": 0.9082828760147095,
+      "bbox_xyxy": [
+        1127,
+        103,
+        1343,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 1,
+      "label": "reference",
+      "score": 0.979661762714386,
+      "bbox_xyxy": [
+        137,
+        230,
+        716,
+        1856
+      ],
+      "lines": [
+        {
+          "text": "Im, E.-S., and Eltahir, E. A. B. (2014). Enhancement of rainfall and runoff",
+          "confidence": 0.9909855127334595,
+          "poly": [
+            [
+              130,
+              228
+            ],
+            [
+              736,
+              237
+            ],
+            [
+              735,
+              264
+            ],
+            [
+              130,
+              255
+            ]
+          ],
+          "bbox_xyxy": [
+            130,
+            228,
+            736,
+            264
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "upstream fromirrigation location i  cimate model of West Africa. Water Reur.",
+          "confidence": 0.7838544249534607,
+          "poly": [
+            [
+              114,
+              250
+            ],
+            [
+              735,
+              258
+            ],
+            [
+              734,
+              288
+            ],
+            [
+              114,
+              280
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            250,
+            735,
+            288
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Res. 50, 8651-8674. doi: 10.1002/2014W.R.015592",
+          "confidence": 0.9785178899765015,
+          "poly": [
+            [
+              114,
+              273
+            ],
+            [
+              493,
+              279
+            ],
+            [
+              493,
+              305
+            ],
+            [
+              114,
+              299
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            273,
+            493,
+            305
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "IPCC, W. I. (2014). Summary for Policymakers. Technical report.",
+          "confidence": 0.9789005517959595,
+          "poly": [
+            [
+              131,
+              306
+            ],
+            [
+              621,
+              312
+            ],
+            [
+              621,
+              340
+            ],
+            [
+              131,
+              334
+            ]
+          ],
+          "bbox_xyxy": [
+            131,
+            306,
+            621,
+            340
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Irmak, S. (2018). Subirrigation in Agricultural Fields. Technical report, Nebraska",
+          "confidence": 0.9920186996459961,
+          "poly": [
+            [
+              132,
+              340
+            ],
+            [
+              734,
+              346
+            ],
+            [
+              733,
+              373
+            ],
+            [
+              132,
+              367
+            ]
+          ],
+          "bbox_xyxy": [
+            132,
+            340,
+            734,
+            373
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Extension Publications.",
+          "confidence": 0.9995426535606384,
+          "poly": [
+            [
+              116,
+              364
+            ],
+            [
+              298,
+              370
+            ],
+            [
+              298,
+              391
+            ],
+            [
+              116,
+              385
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            364,
+            298,
+            391
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Jha, R., Mondal, A., Devanand, A., Roxy, M. K., and Ghosh, S. (2022). Limited",
+          "confidence": 0.9822618365287781,
+          "poly": [
+            [
+              131,
+              396
+            ],
+            [
+              734,
+              399
+            ],
+            [
+              734,
+              426
+            ],
+            [
+              131,
+              423
+            ]
+          ],
+          "bbox_xyxy": [
+            131,
+            396,
+            734,
+            426
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "influence of rrigation on pre-monsoon heat stress in the Indo-Gangetic Plain. Nat.",
+          "confidence": 0.9537968635559082,
+          "poly": [
+            [
+              114,
+              418
+            ],
+            [
+              733,
+              419
+            ],
+            [
+              733,
+              449
+            ],
+            [
+              114,
+              448
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            418,
+            733,
+            449
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Commun. 13, 1−10. doi: 10.1038/s41467-022-31962-5",
+          "confidence": 0.9812583923339844,
+          "poly": [
+            [
+              116,
+              442
+            ],
+            [
+              517,
+              443
+            ],
+            [
+              517,
+              467
+            ],
+            [
+              116,
+              466
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            442,
+            517,
+            467
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Jia, G., Shevliakova, E., Artaxo, P., De Noblet-Ducoudré, N., Houghton, R.,",
+          "confidence": 0.9966164231300354,
+          "poly": [
+            [
+              132,
+              475
+            ],
+            [
+              730,
+              475
+            ],
+            [
+              730,
+              498
+            ],
+            [
+              132,
+              498
+            ]
+          ],
+          "bbox_xyxy": [
+            132,
+            475,
+            730,
+            498
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "House, J., et al. (2019). \"Land-climate interactions,\" in Climate Change and Land:",
+          "confidence": 0.9799794554710388,
+          "poly": [
+            [
+              117,
+              497
+            ],
+            [
+              732,
+              497
+            ],
+            [
+              732,
+              520
+            ],
+            [
+              117,
+              520
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            497,
+            732,
+            520
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "An IPCC Special Report on Climate Change, Desertification, Land Degradation,",
+          "confidence": 0.9880419373512268,
+          "poly": [
+            [
+              116,
+              520
+            ],
+            [
+              731,
+              517
+            ],
+            [
+              731,
+              540
+            ],
+            [
+              116,
+              542
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            517,
+            731,
+            542
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "Sustainable\" Land Management, Food Security, and Greenhouse Gas Fluxes in",
+          "confidence": 0.9751266241073608,
+          "poly": [
+            [
+              116,
+              540
+            ],
+            [
+              732,
+              538
+            ],
+            [
+              732,
+              561
+            ],
+            [
+              116,
+              563
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            538,
+            732,
+            563
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Terrestrial Ecosystems, eds P. R. Shukla, J. Skea, E. Calvo Buendia, V. Masson-",
+          "confidence": 0.9846904277801514,
+          "poly": [
+            [
+              117,
+              561
+            ],
+            [
+              732,
+              561
+            ],
+            [
+              732,
+              584
+            ],
+            [
+              117,
+              584
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            561,
+            732,
+            584
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Delmotte, H.-O. Pörtner, D. C. Roberts, P. Zhai, R. Slade, S. Connors, R. van",
+          "confidence": 0.9811700582504272,
+          "poly": [
+            [
+              117,
+              584
+            ],
+            [
+              731,
+              584
+            ],
+            [
+              731,
+              604
+            ],
+            [
+              117,
+              604
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            584,
+            731,
+            604
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Diemen, M. Ferrat, E. Haughey, S. Luz, S. Neogi, M. Pathak, J. Petzold, J. Portugal",
+          "confidence": 0.988353967666626,
+          "poly": [
+            [
+              115,
+              604
+            ],
+            [
+              731,
+              606
+            ],
+            [
+              731,
+              629
+            ],
+            [
+              115,
+              627
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            604,
+            731,
+            629
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "Pereira, P. Vyas, E. Huntley, K. Kissick, M, Belkacemi, J. Malley.",
+          "confidence": 0.9894129633903503,
+          "poly": [
+            [
+              115,
+              626
+            ],
+            [
+              594,
+              627
+            ],
+            [
+              594,
+              651
+            ],
+            [
+              115,
+              650
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            626,
+            594,
+            651
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "Kala, J., and Hirsch, A. L. (2020). Could crop albedo modification",
+          "confidence": 0.9856220483779907,
+          "poly": [
+            [
+              132,
+              659
+            ],
+            [
+              731,
+              659
+            ],
+            [
+              731,
+              682
+            ],
+            [
+              132,
+              682
+            ]
+          ],
+          "bbox_xyxy": [
+            132,
+            659,
+            731,
+            682
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "reduce regional warming over Australia? Weather Clim. Extremes 30, 100282.",
+          "confidence": 0.9934821128845215,
+          "poly": [
+            [
+              116,
+              682
+            ],
+            [
+              730,
+              682
+            ],
+            [
+              730,
+              705
+            ],
+            [
+              116,
+              705
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            682,
+            730,
+            705
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "doi: 10.1016/j.wace.2020.100282",
+          "confidence": 0.9973545670509338,
+          "poly": [
+            [
+              115,
+              704
+            ],
+            [
+              357,
+              705
+            ],
+            [
+              357,
+              726
+            ],
+            [
+              115,
+              725
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            704,
+            357,
+            726
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "Kanamaru, H., and Kanamitsu, M. (2008). Model diagnosis of nighttime",
+          "confidence": 0.9767829775810242,
+          "poly": [
+            [
+              131,
+              736
+            ],
+            [
+              729,
+              738
+            ],
+            [
+              729,
+              758
+            ],
+            [
+              131,
+              756
+            ]
+          ],
+          "bbox_xyxy": [
+            131,
+            736,
+            729,
+            758
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "minimum temperature warming during summer due to irrigation in the california",
+          "confidence": 0.984571099281311,
+          "poly": [
+            [
+              115,
+              758
+            ],
+            [
+              730,
+              758
+            ],
+            [
+              730,
+              781
+            ],
+            [
+              115,
+              781
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            758,
+            730,
+            781
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "central valley. J. Hydrometeorol. 9, 10611072. doi: 10.1175/2008JHM967.1",
+          "confidence": 0.9892175197601318,
+          "poly": [
+            [
+              115,
+              780
+            ],
+            [
+              673,
+              780
+            ],
+            [
+              673,
+              803
+            ],
+            [
+              115,
+              803
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            780,
+            673,
+            803
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "Kang, S., and Eltahir, E. A. B. (2018). North China plain threatened by",
+          "confidence": 0.9904353022575378,
+          "poly": [
+            [
+              131,
+              814
+            ],
+            [
+              729,
+              814
+            ],
+            [
+              729,
+              834
+            ],
+            [
+              131,
+              834
+            ]
+          ],
+          "bbox_xyxy": [
+            131,
+            814,
+            729,
+            834
+          ],
+          "reading_order": 23
+        },
+        {
+          "text": "deadly heatwaves due to climate change and irrigation. Nat. Commun. 9, 2894.",
+          "confidence": 0.994498610496521,
+          "poly": [
+            [
+              115,
+              836
+            ],
+            [
+              728,
+              836
+            ],
+            [
+              728,
+              856
+            ],
+            [
+              115,
+              856
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            836,
+            728,
+            856
+          ],
+          "reading_order": 24
+        },
+        {
+          "text": "doi: 10.1038/s41467-018-05252-y",
+          "confidence": 0.9993718266487122,
+          "poly": [
+            [
+              114,
+              856
+            ],
+            [
+              366,
+              860
+            ],
+            [
+              366,
+              881
+            ],
+            [
+              114,
+              877
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            856,
+            366,
+            881
+          ],
+          "reading_order": 25
+        },
+        {
+          "text": "Kimaro, J. G., Scharsich, V., Kolb, A., Huwe, B., and Bogner, C. (2019).",
+          "confidence": 0.9812431335449219,
+          "poly": [
+            [
+              131,
+              889
+            ],
+            [
+              729,
+              889
+            ],
+            [
+              729,
+              909
+            ],
+            [
+              131,
+              909
+            ]
+          ],
+          "bbox_xyxy": [
+            131,
+            889,
+            729,
+            909
+          ],
+          "reading_order": 26
+        },
+        {
+          "text": "Distribution of traditional irrigation canals and their discharge dynamics",
+          "confidence": 0.9809663891792297,
+          "poly": [
+            [
+              114,
+              912
+            ],
+            [
+              729,
+              912
+            ],
+            [
+              729,
+              932
+            ],
+            [
+              114,
+              932
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            912,
+            729,
+            932
+          ],
+          "reading_order": 27
+        },
+        {
+          "text": "at the southern slopes of Mount Kilimanjaro. Front. Environ. Sci. 7, 24.",
+          "confidence": 0.9839438199996948,
+          "poly": [
+            [
+              113,
+              934
+            ],
+            [
+              728,
+              932
+            ],
+            [
+              728,
+              953
+            ],
+            [
+              113,
+              955
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            932,
+            728,
+            955
+          ],
+          "reading_order": 28
+        },
+        {
+          "text": "doi: 10.3389/fenvs.2019.00024",
+          "confidence": 0.9991328120231628,
+          "poly": [
+            [
+              114,
+              956
+            ],
+            [
+              341,
+              956
+            ],
+            [
+              341,
+              976
+            ],
+            [
+              114,
+              976
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            956,
+            341,
+            976
+          ],
+          "reading_order": 29
+        },
+        {
+          "text": "Kirkham, M. (2005). \"Field capacity, wilting point, available water, and the non-",
+          "confidence": 0.9762254953384399,
+          "poly": [
+            [
+              131,
+              989
+            ],
+            [
+              727,
+              989
+            ],
+            [
+              727,
+              1009
+            ],
+            [
+              131,
+              1009
+            ]
+          ],
+          "bbox_xyxy": [
+            131,
+            989,
+            727,
+            1009
+          ],
+          "reading_order": 30
+        },
+        {
+          "text": "limiting water range,\" in Principles of Soil and Plant Water Relations (Elsevier),",
+          "confidence": 0.9918264746665955,
+          "poly": [
+            [
+              112,
+              1011
+            ],
+            [
+              729,
+              1008
+            ],
+            [
+              729,
+              1032
+            ],
+            [
+              112,
+              1035
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1008,
+            729,
+            1035
+          ],
+          "reading_order": 31
+        },
+        {
+          "text": "101115. Available online at:https://www.sciencedirect.com/science/article/pii/",
+          "confidence": 0.9951963424682617,
+          "poly": [
+            [
+              112,
+              1032
+            ],
+            [
+              729,
+              1031
+            ],
+            [
+              729,
+              1055
+            ],
+            [
+              112,
+              1056
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1031,
+            729,
+            1056
+          ],
+          "reading_order": 32
+        },
+        {
+          "text": "B9780124097513500086?via%3Dihub",
+          "confidence": 0.9998118281364441,
+          "poly": [
+            [
+              112,
+              1056
+            ],
+            [
+              395,
+              1052
+            ],
+            [
+              395,
+              1072
+            ],
+            [
+              112,
+              1076
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1052,
+            395,
+            1076
+          ],
+          "reading_order": 33
+        },
+        {
+          "text": "Krakauer, N. Y., Puma, M. J., Cook, B. I., Gentine, P., and Nazarenko, L. (2016).",
+          "confidence": 0.980768084526062,
+          "poly": [
+            [
+              129,
+              1086
+            ],
+            [
+              728,
+              1087
+            ],
+            [
+              728,
+              1108
+            ],
+            [
+              129,
+              1107
+            ]
+          ],
+          "bbox_xyxy": [
+            129,
+            1086,
+            728,
+            1108
+          ],
+          "reading_order": 34
+        },
+        {
+          "text": "Ocean-atmosphere interactions modulate irrigation's climate impacts. Earth Syst.",
+          "confidence": 0.9935674667358398,
+          "poly": [
+            [
+              112,
+              1108
+            ],
+            [
+              728,
+              1108
+            ],
+            [
+              728,
+              1132
+            ],
+            [
+              112,
+              1132
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1108,
+            728,
+            1132
+          ],
+          "reading_order": 35
+        },
+        {
+          "text": "Dyn. 7, 863876. doi: 10.5194/esd-7-863-2016",
+          "confidence": 0.9829851984977722,
+          "poly": [
+            [
+              111,
+              1131
+            ],
+            [
+              458,
+              1127
+            ],
+            [
+              458,
+              1151
+            ],
+            [
+              111,
+              1155
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            1127,
+            458,
+            1155
+          ],
+          "reading_order": 36
+        },
+        {
+          "text": "Kueppers, L. M., Snyder, M. A., and Sloan, L. C. (2007). Irrigation cooling",
+          "confidence": 0.9747464060783386,
+          "poly": [
+            [
+              127,
+              1158
+            ],
+            [
+              730,
+              1162
+            ],
+            [
+              730,
+              1189
+            ],
+            [
+              127,
+              1185
+            ]
+          ],
+          "bbox_xyxy": [
+            127,
+            1158,
+            730,
+            1189
+          ],
+          "reading_order": 37
+        },
+        {
+          "text": "effect: regional climate forcing by land-use change. Geophys. Res. Lett. 34, L03703.",
+          "confidence": 0.9815638661384583,
+          "poly": [
+            [
+              111,
+              1183
+            ],
+            [
+              729,
+              1184
+            ],
+            [
+              729,
+              1208
+            ],
+            [
+              111,
+              1207
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            1183,
+            729,
+            1208
+          ],
+          "reading_order": 38
+        },
+        {
+          "text": "doi: 10.1029/2006GL028679",
+          "confidence": 0.9979087710380554,
+          "poly": [
+            [
+              112,
+              1207
+            ],
+            [
+              325,
+              1202
+            ],
+            [
+              326,
+              1223
+            ],
+            [
+              112,
+              1228
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1202,
+            326,
+            1228
+          ],
+          "reading_order": 39
+        },
+        {
+          "text": "Kueppers, L. M., Snyder, M. A., Sloan, L. C., Cayan, D., Jin, J., Kanamaru, H., et al.",
+          "confidence": 0.9710709452629089,
+          "poly": [
+            [
+              128,
+              1236
+            ],
+            [
+              729,
+              1238
+            ],
+            [
+              729,
+              1262
+            ],
+            [
+              128,
+              1260
+            ]
+          ],
+          "bbox_xyxy": [
+            128,
+            1236,
+            729,
+            1262
+          ],
+          "reading_order": 40
+        },
+        {
+          "text": "(2008). Seasonal temperature responses to land-use change in the western United",
+          "confidence": 0.9727431535720825,
+          "poly": [
+            [
+              112,
+              1256
+            ],
+            [
+              730,
+              1258
+            ],
+            [
+              730,
+              1285
+            ],
+            [
+              112,
+              1283
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1256,
+            730,
+            1285
+          ],
+          "reading_order": 41
+        },
+        {
+          "text": "States. Glob. Planet Change 60, 250264. doi: 10.1016/j.gloplacha.2007.03.005",
+          "confidence": 0.9860990643501282,
+          "poly": [
+            [
+              112,
+              1279
+            ],
+            [
+              690,
+              1282
+            ],
+            [
+              690,
+              1306
+            ],
+            [
+              112,
+              1303
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1279,
+            690,
+            1306
+          ],
+          "reading_order": 42
+        },
+        {
+          "text": "Lawston, P. M., Santanello, J. A., and Kumar, S. V. (2017). Irrigation signals",
+          "confidence": 0.9960098266601562,
+          "poly": [
+            [
+              128,
+              1311
+            ],
+            [
+              729,
+              1317
+            ],
+            [
+              729,
+              1340
+            ],
+            [
+              128,
+              1334
+            ]
+          ],
+          "bbox_xyxy": [
+            128,
+            1311,
+            729,
+            1340
+          ],
+          "reading_order": 43
+        },
+        {
+          "text": "detected from SMAP soil moisture retrievals. Geophys. Res. Lett. 44, 860-811.",
+          "confidence": 0.9740343689918518,
+          "poly": [
+            [
+              112,
+              1332
+            ],
+            [
+              730,
+              1337
+            ],
+            [
+              730,
+              1361
+            ],
+            [
+              112,
+              1356
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            1332,
+            730,
+            1361
+          ],
+          "reading_order": 44
+        },
+        {
+          "text": "doi: 10.1002/2017GL075733",
+          "confidence": 0.9988285303115845,
+          "poly": [
+            [
+              116,
+              1359
+            ],
+            [
+              325,
+              1359
+            ],
+            [
+              325,
+              1376
+            ],
+            [
+              116,
+              1376
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1359,
+            325,
+            1376
+          ],
+          "reading_order": 45
+        },
+        {
+          "text": "Lawston, P. M., Santanello, J. A., Zaitchik, B. F., and Rodell, M. (2015). Impact",
+          "confidence": 0.9801390171051025,
+          "poly": [
+            [
+              130,
+              1388
+            ],
+            [
+              729,
+              1395
+            ],
+            [
+              728,
+              1416
+            ],
+            [
+              130,
+              1409
+            ]
+          ],
+          "bbox_xyxy": [
+            130,
+            1388,
+            729,
+            1416
+          ],
+          "reading_order": 46
+        },
+        {
+          "text": "of irrigation methods on land surface model spinup and initialization of WRF",
+          "confidence": 0.9958499073982239,
+          "poly": [
+            [
+              115,
+              1411
+            ],
+            [
+              729,
+              1415
+            ],
+            [
+              729,
+              1436
+            ],
+            [
+              115,
+              1432
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1411,
+            729,
+            1436
+          ],
+          "reading_order": 47
+        },
+        {
+          "text": "forecasts. J. Hydrometeorol. 16, 11351154. doi: 10.1175/JHM-D-14-0203.1",
+          "confidence": 0.9934670925140381,
+          "poly": [
+            [
+              115,
+              1434
+            ],
+            [
+              672,
+              1437
+            ],
+            [
+              672,
+              1457
+            ],
+            [
+              115,
+              1454
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1434,
+            672,
+            1457
+          ],
+          "reading_order": 48
+        },
+        {
+          "text": "Lee, E., Sacks, W. J., Chase, T. N., and Foley, J. A. (2011). Simulated impacts of",
+          "confidence": 0.9850152134895325,
+          "poly": [
+            [
+              131,
+              1466
+            ],
+            [
+              731,
+              1471
+            ],
+            [
+              731,
+              1491
+            ],
+            [
+              131,
+              1486
+            ]
+          ],
+          "bbox_xyxy": [
+            131,
+            1466,
+            731,
+            1491
+          ],
+          "reading_order": 49
+        },
+        {
+          "text": "irrigation on the atmospheric circulation over Asia. J. Geophys. Res. 116, D08114.",
+          "confidence": 0.9887387156486511,
+          "poly": [
+            [
+              116,
+              1489
+            ],
+            [
+              729,
+              1493
+            ],
+            [
+              729,
+              1513
+            ],
+            [
+              116,
+              1509
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1489,
+            729,
+            1513
+          ],
+          "reading_order": 50
+        },
+        {
+          "text": "doi: 10.1029/2010JD014740",
+          "confidence": 0.9918662905693054,
+          "poly": [
+            [
+              116,
+              1511
+            ],
+            [
+              323,
+              1514
+            ],
+            [
+              323,
+              1534
+            ],
+            [
+              116,
+              1531
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1511,
+            323,
+            1534
+          ],
+          "reading_order": 51
+        },
+        {
+          "text": "Lee, P., and Ngan, F. (2011). Coupling of important physical processes in",
+          "confidence": 0.9810091853141785,
+          "poly": [
+            [
+              132,
+              1546
+            ],
+            [
+              730,
+              1550
+            ],
+            [
+              730,
+              1570
+            ],
+            [
+              132,
+              1565
+            ]
+          ],
+          "bbox_xyxy": [
+            132,
+            1546,
+            730,
+            1570
+          ],
+          "reading_order": 52
+        },
+        {
+          "text": "the planetary boundary layer between meteorological and chemistry models for",
+          "confidence": 0.9947148561477661,
+          "poly": [
+            [
+              116,
+              1568
+            ],
+            [
+              730,
+              1572
+            ],
+            [
+              730,
+              1592
+            ],
+            [
+              116,
+              1588
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1568,
+            730,
+            1592
+          ],
+          "reading_order": 53
+        },
+        {
+          "text": "regional to continental scale air quality forecasting: an overview. Atmospher. 2,",
+          "confidence": 0.9886193871498108,
+          "poly": [
+            [
+              116,
+              1589
+            ],
+            [
+              730,
+              1592
+            ],
+            [
+              730,
+              1613
+            ],
+            [
+              116,
+              1610
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1589,
+            730,
+            1613
+          ],
+          "reading_order": 54
+        },
+        {
+          "text": "464483. doi: 10.3390/atmos2030464",
+          "confidence": 0.9964380860328674,
+          "poly": [
+            [
+              116,
+              1612
+            ],
+            [
+              392,
+              1614
+            ],
+            [
+              392,
+              1632
+            ],
+            [
+              116,
+              1630
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1612,
+            392,
+            1632
+          ],
+          "reading_order": 55
+        },
+        {
+          "text": "Leng, G., Huang, M., Tang, Q., Gao, H., and Leung, L. R. (2014).",
+          "confidence": 0.9864128232002258,
+          "poly": [
+            [
+              131,
+              1646
+            ],
+            [
+              729,
+              1648
+            ],
+            [
+              729,
+              1669
+            ],
+            [
+              131,
+              1667
+            ]
+          ],
+          "bbox_xyxy": [
+            131,
+            1646,
+            729,
+            1669
+          ],
+          "reading_order": 56
+        },
+        {
+          "text": "Modeling the effects of groundwater-fed irrigation on terrestrial hydrology",
+          "confidence": 0.9745597243309021,
+          "poly": [
+            [
+              115,
+              1666
+            ],
+            [
+              729,
+              1671
+            ],
+            [
+              729,
+              1694
+            ],
+            [
+              115,
+              1689
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1666,
+            729,
+            1694
+          ],
+          "reading_order": 57
+        },
+        {
+          "text": "over the conterminous United States. J. Hydrometeorol. 15, 957972.",
+          "confidence": 0.9795659184455872,
+          "poly": [
+            [
+              114,
+              1690
+            ],
+            [
+              729,
+              1693
+            ],
+            [
+              729,
+              1713
+            ],
+            [
+              114,
+              1710
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1690,
+            729,
+            1713
+          ],
+          "reading_order": 58
+        },
+        {
+          "text": "doi: 10.1175/JHM-D-13-049.1",
+          "confidence": 0.9868406653404236,
+          "poly": [
+            [
+              114,
+              1711
+            ],
+            [
+              342,
+              1713
+            ],
+            [
+              341,
+              1733
+            ],
+            [
+              114,
+              1731
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1711,
+            342,
+            1733
+          ],
+          "reading_order": 59
+        },
+        {
+          "text": "Leng, G., Huang, M., Tang, Q., Sacks, W. J., Lei, H., and Leung, L. R.",
+          "confidence": 0.9891964793205261,
+          "poly": [
+            [
+              130,
+              1748
+            ],
+            [
+              729,
+              1751
+            ],
+            [
+              729,
+              1772
+            ],
+            [
+              130,
+              1769
+            ]
+          ],
+          "bbox_xyxy": [
+            130,
+            1748,
+            729,
+            1772
+          ],
+          "reading_order": 60
+        },
+        {
+          "text": "(2013). Modeling the effects of irrigation on land surface fluxes and states",
+          "confidence": 0.991828203201294,
+          "poly": [
+            [
+              115,
+              1769
+            ],
+            [
+              729,
+              1774
+            ],
+            [
+              729,
+              1794
+            ],
+            [
+              115,
+              1789
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1769,
+            729,
+            1794
+          ],
+          "reading_order": 61
+        },
+        {
+          "text": "over the conterminous United States: sensitivity to input data and model",
+          "confidence": 0.9792290925979614,
+          "poly": [
+            [
+              113,
+              1791
+            ],
+            [
+              729,
+              1795
+            ],
+            [
+              729,
+              1815
+            ],
+            [
+              113,
+              1811
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1791,
+            729,
+            1815
+          ],
+          "reading_order": 62
+        },
+        {
+          "text": "parameters. J. Geophys. Res. tmospheres 118, 97899803. doi: 10.1002/jgrd.",
+          "confidence": 0.9962025284767151,
+          "poly": [
+            [
+              114,
+              1812
+            ],
+            [
+              726,
+              1817
+            ],
+            [
+              726,
+              1838
+            ],
+            [
+              114,
+              1833
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1812,
+            726,
+            1838
+          ],
+          "reading_order": 63
+        },
+        {
+          "text": "50792",
+          "confidence": 0.9999749064445496,
+          "poly": [
+            [
+              113,
+              1833
+            ],
+            [
+              164,
+              1833
+            ],
+            [
+              164,
+              1854
+            ],
+            [
+              113,
+              1854
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1833,
+            164,
+            1854
+          ],
+          "reading_order": 64
+        }
+      ]
+    },
+    {
+      "block_id": 15,
+      "label": "reference_content",
+      "score": 0.9128863215446472,
+      "bbox_xyxy": [
+        138,
+        230,
+        715,
+        289
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 0,
+      "label": "reference",
+      "score": 0.9811054468154907,
+      "bbox_xyxy": [
+        766,
+        230,
+        1347,
+        1858
+      ],
+      "lines": [
+        {
+          "text": "251263. doi: 10.1007/s10113-014-0640-x",
+          "confidence": 0.9938743114471436,
+          "poly": [
+            [
+              790,
+              229
+            ],
+            [
+              1115,
+              227
+            ],
+            [
+              1115,
+              247
+            ],
+            [
+              790,
+              249
+            ]
+          ],
+          "bbox_xyxy": [
+            790,
+            227,
+            1115,
+            249
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Liu, G., Wang, W., Shao, Q., Wei, J., Zheng, J., Liu, B., et al. (2021). Simulating",
+          "confidence": 0.9844557046890259,
+          "poly": [
+            [
+              806,
+              261
+            ],
+            [
+              1435,
+              258
+            ],
+            [
+              1436,
+              279
+            ],
+            [
+              806,
+              282
+            ]
+          ],
+          "bbox_xyxy": [
+            806,
+            258,
+            1436,
+            282
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "the climatic effects of irrigation over china by using the WRF-noah model",
+          "confidence": 0.9885284304618835,
+          "poly": [
+            [
+              788,
+              282
+            ],
+            [
+              1436,
+              278
+            ],
+            [
+              1437,
+              301
+            ],
+            [
+              788,
+              305
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            278,
+            1437,
+            305
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "system with mosaic approach. J. Geophys. Res. Atmospher. 126, e2020JD034428.",
+          "confidence": 0.9872549772262573,
+          "poly": [
+            [
+              789,
+              305
+            ],
+            [
+              1434,
+              301
+            ],
+            [
+              1435,
+              322
+            ],
+            [
+              789,
+              326
+            ]
+          ],
+          "bbox_xyxy": [
+            789,
+            301,
+            1435,
+            326
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "doi: 10.1029/2020JD034428",
+          "confidence": 0.9992950558662415,
+          "poly": [
+            [
+              791,
+              328
+            ],
+            [
+              1002,
+              328
+            ],
+            [
+              1002,
+              345
+            ],
+            [
+              791,
+              345
+            ]
+          ],
+          "bbox_xyxy": [
+            791,
+            328,
+            1002,
+            345
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Liu, X., Liu, W., Tang, Q., Liu, B., Wada, Y., and Yang, H. (2022). Global",
+          "confidence": 0.9871816039085388,
+          "poly": [
+            [
+              805,
+              358
+            ],
+            [
+              1435,
+              356
+            ],
+            [
+              1436,
+              377
+            ],
+            [
+              805,
+              379
+            ]
+          ],
+          "bbox_xyxy": [
+            805,
+            356,
+            1436,
+            379
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "agricultural water scarcity assessment incorporating blue and green water",
+          "confidence": 0.9923284649848938,
+          "poly": [
+            [
+              789,
+              381
+            ],
+            [
+              1437,
+              379
+            ],
+            [
+              1438,
+              399
+            ],
+            [
+              789,
+              401
+            ]
+          ],
+          "bbox_xyxy": [
+            789,
+            379,
+            1438,
+            401
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "availability under future climate change. Earths Future 10, e2021EF002567.",
+          "confidence": 0.9885950088500977,
+          "poly": [
+            [
+              788,
+              401
+            ],
+            [
+              1437,
+              400
+            ],
+            [
+              1437,
+              420
+            ],
+            [
+              788,
+              421
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            400,
+            1437,
+            421
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "doi: 10.1029/2021EF002567",
+          "confidence": 0.9941501617431641,
+          "poly": [
+            [
+              789,
+              423
+            ],
+            [
+              1002,
+              424
+            ],
+            [
+              1002,
+              442
+            ],
+            [
+              789,
+              441
+            ]
+          ],
+          "bbox_xyxy": [
+            789,
+            423,
+            1002,
+            442
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Lo, M., and Famiglietti, J. S. (2013). Irrigation in California's central valley",
+          "confidence": 0.9752448797225952,
+          "poly": [
+            [
+              805,
+              455
+            ],
+            [
+              1437,
+              455
+            ],
+            [
+              1437,
+              475
+            ],
+            [
+              805,
+              475
+            ]
+          ],
+          "bbox_xyxy": [
+            805,
+            455,
+            1437,
+            475
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "strengthens the southwestern U.S. water cycle. Geophys. Res. Lett. 40, 301306.",
+          "confidence": 0.9634362459182739,
+          "poly": [
+            [
+              788,
+              475
+            ],
+            [
+              1437,
+              476
+            ],
+            [
+              1437,
+              496
+            ],
+            [
+              788,
+              495
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            475,
+            1437,
+            496
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "doi: 10.1002/grl.50108",
+          "confidence": 0.9993882775306702,
+          "poly": [
+            [
+              788,
+              496
+            ],
+            [
+              960,
+              497
+            ],
+            [
+              960,
+              518
+            ],
+            [
+              788,
+              516
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            496,
+            960,
+            518
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "Lobell, D., Bala, G., Mirin, A., Phillips, T., Maxwell, R., and Rotman, D.",
+          "confidence": 0.9938098788261414,
+          "poly": [
+            [
+              804,
+              527
+            ],
+            [
+              1436,
+              532
+            ],
+            [
+              1435,
+              551
+            ],
+            [
+              804,
+              547
+            ]
+          ],
+          "bbox_xyxy": [
+            804,
+            527,
+            1436,
+            551
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "(2009). Regional differences in the influence of irrigation on climate. J. Clim. 22,",
+          "confidence": 0.9921584129333496,
+          "poly": [
+            [
+              788,
+              549
+            ],
+            [
+              1436,
+              553
+            ],
+            [
+              1435,
+              574
+            ],
+            [
+              788,
+              570
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            549,
+            1436,
+            574
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "22482255. doi: 10.1175/2008JCLI2703.1",
+          "confidence": 0.99730384349823,
+          "poly": [
+            [
+              787,
+              571
+            ],
+            [
+              1106,
+              574
+            ],
+            [
+              1106,
+              595
+            ],
+            [
+              787,
+              592
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            571,
+            1106,
+            595
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Lobell, D. B., Bala, G., Bonfils, C., and Duffy, P. B. (2006a). Potential bias of model",
+          "confidence": 0.9738253951072693,
+          "poly": [
+            [
+              803,
+              604
+            ],
+            [
+              1435,
+              610
+            ],
+            [
+              1434,
+              630
+            ],
+            [
+              803,
+              624
+            ]
+          ],
+          "bbox_xyxy": [
+            803,
+            604,
+            1435,
+            630
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "projected greenhouse warming in irrigated regions. Geophys. Res. Lett. 33, L13709.",
+          "confidence": 0.9960709810256958,
+          "poly": [
+            [
+              787,
+              627
+            ],
+            [
+              1435,
+              632
+            ],
+            [
+              1434,
+              652
+            ],
+            [
+              787,
+              647
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            627,
+            1435,
+            652
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "doi: 10.1029/2006GL026770",
+          "confidence": 0.9964054822921753,
+          "poly": [
+            [
+              788,
+              649
+            ],
+            [
+              1006,
+              652
+            ],
+            [
+              1006,
+              669
+            ],
+            [
+              788,
+              666
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            649,
+            1006,
+            669
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "Lobell, D. B., Bala, G., and Duffy, P. B. (2006b). Biogeophysical impacts",
+          "confidence": 0.9842498898506165,
+          "poly": [
+            [
+              804,
+              679
+            ],
+            [
+              1434,
+              688
+            ],
+            [
+              1433,
+              709
+            ],
+            [
+              804,
+              700
+            ]
+          ],
+          "bbox_xyxy": [
+            804,
+            679,
+            1434,
+            709
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "of cropland management changes on climate. Geophys. Res. Lett. 33, L06708.",
+          "confidence": 0.9900033473968506,
+          "poly": [
+            [
+              787,
+              702
+            ],
+            [
+              1434,
+              710
+            ],
+            [
+              1433,
+              730
+            ],
+            [
+              787,
+              722
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            702,
+            1434,
+            730
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "doi: 10.1029/2005GL025492",
+          "confidence": 0.996552586555481,
+          "poly": [
+            [
+              788,
+              724
+            ],
+            [
+              1006,
+              726
+            ],
+            [
+              1006,
+              746
+            ],
+            [
+              788,
+              744
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            724,
+            1006,
+            746
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "Lobell, D. B., Bonfils, C., and Faurès, J. -M. (2008). The role of irrigation",
+          "confidence": 0.9799430966377258,
+          "poly": [
+            [
+              803,
+              755
+            ],
+            [
+              1434,
+              763
+            ],
+            [
+              1433,
+              783
+            ],
+            [
+              803,
+              775
+            ]
+          ],
+          "bbox_xyxy": [
+            803,
+            755,
+            1434,
+            783
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "expansion in past and future temperature trends. Earth Interact. 12, 111.",
+          "confidence": 0.9927877187728882,
+          "poly": [
+            [
+              787,
+              778
+            ],
+            [
+              1436,
+              783
+            ],
+            [
+              1435,
+              806
+            ],
+            [
+              787,
+              801
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            778,
+            1436,
+            806
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "doi: 10.1175/2007EI241.1",
+          "confidence": 0.996740996837616,
+          "poly": [
+            [
+              788,
+              802
+            ],
+            [
+              983,
+              803
+            ],
+            [
+              983,
+              821
+            ],
+            [
+              788,
+              820
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            802,
+            983,
+            821
+          ],
+          "reading_order": 23
+        },
+        {
+          "text": "Lobell, D. B., Schlenker, W., and Costa-Roberts, J. (2011). Climate",
+          "confidence": 0.983453094959259,
+          "poly": [
+            [
+              803,
+              832
+            ],
+            [
+              1434,
+              838
+            ],
+            [
+              1433,
+              859
+            ],
+            [
+              803,
+              853
+            ]
+          ],
+          "bbox_xyxy": [
+            803,
+            832,
+            1434,
+            859
+          ],
+          "reading_order": 24
+        },
+        {
+          "text": "trends and global crop production since 1980. Science 333, 616-620.",
+          "confidence": 0.9686383008956909,
+          "poly": [
+            [
+              787,
+              855
+            ],
+            [
+              1434,
+              860
+            ],
+            [
+              1433,
+              881
+            ],
+            [
+              787,
+              875
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            855,
+            1434,
+            881
+          ],
+          "reading_order": 25
+        },
+        {
+          "text": "doi: 10.1126/science.1204531",
+          "confidence": 0.9995335340499878,
+          "poly": [
+            [
+              789,
+              879
+            ],
+            [
+              1012,
+              879
+            ],
+            [
+              1012,
+              896
+            ],
+            [
+              789,
+              896
+            ]
+          ],
+          "bbox_xyxy": [
+            789,
+            879,
+            1012,
+            896
+          ],
+          "reading_order": 26
+        },
+        {
+          "text": "Lohar, D., and Pal, B. (1995). The effect of irrigation on premonsoon",
+          "confidence": 0.9725371599197388,
+          "poly": [
+            [
+              801,
+              907
+            ],
+            [
+              1436,
+              914
+            ],
+            [
+              1435,
+              937
+            ],
+            [
+              801,
+              930
+            ]
+          ],
+          "bbox_xyxy": [
+            801,
+            907,
+            1436,
+            937
+          ],
+          "reading_order": 27
+        },
+        {
+          "text": "season precipitation over South West Bengal, India. J. Clim. 8, 25672570.",
+          "confidence": 0.9827760457992554,
+          "poly": [
+            [
+              786,
+              932
+            ],
+            [
+              1435,
+              936
+            ],
+            [
+              1434,
+              956
+            ],
+            [
+              786,
+              952
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            932,
+            1435,
+            956
+          ],
+          "reading_order": 28
+        },
+        {
+          "text": "doi: 10.1175/1520-0442(1995)008andlt;2567:TEOIOPandgt;2.0.CO;2",
+          "confidence": 0.9930897355079651,
+          "poly": [
+            [
+              787,
+              954
+            ],
+            [
+              1325,
+              957
+            ],
+            [
+              1325,
+              978
+            ],
+            [
+              787,
+              975
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            954,
+            1325,
+            978
+          ],
+          "reading_order": 29
+        },
+        {
+          "text": "Lu, Y., Harding, K., and Kueppers, L. (2017). Irrigation effects on land-",
+          "confidence": 0.9849072694778442,
+          "poly": [
+            [
+              802,
+              987
+            ],
+            [
+              1434,
+              992
+            ],
+            [
+              1433,
+              1012
+            ],
+            [
+              802,
+              1007
+            ]
+          ],
+          "bbox_xyxy": [
+            802,
+            987,
+            1434,
+            1012
+          ],
+          "reading_order": 30
+        },
+        {
+          "text": "atmosphere coupling strength in the United States. J. Clim. 30, 36713685.",
+          "confidence": 0.9804067611694336,
+          "poly": [
+            [
+              786,
+              1010
+            ],
+            [
+              1435,
+              1014
+            ],
+            [
+              1434,
+              1034
+            ],
+            [
+              786,
+              1030
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            1010,
+            1435,
+            1034
+          ],
+          "reading_order": 31
+        },
+        {
+          "text": "doi: 10.1175/JCLI-D-15-0706.1",
+          "confidence": 0.9925901293754578,
+          "poly": [
+            [
+              786,
+              1033
+            ],
+            [
+              1026,
+              1034
+            ],
+            [
+              1026,
+              1054
+            ],
+            [
+              786,
+              1053
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            1033,
+            1026,
+            1054
+          ],
+          "reading_order": 32
+        },
+        {
+          "text": "Lu, Y., Jin, J., and Kueppers, L. M. (2015). Crop growth and irrigation",
+          "confidence": 0.9756039977073669,
+          "poly": [
+            [
+              801,
+              1064
+            ],
+            [
+              1435,
+              1070
+            ],
+            [
+              1434,
+              1090
+            ],
+            [
+              801,
+              1084
+            ]
+          ],
+          "bbox_xyxy": [
+            801,
+            1064,
+            1435,
+            1090
+          ],
+          "reading_order": 33
+        },
+        {
+          "text": "interact to influence surface fluxes in a regional climate-cropland model",
+          "confidence": 0.9877203106880188,
+          "poly": [
+            [
+              785,
+              1086
+            ],
+            [
+              1436,
+              1092
+            ],
+            [
+              1435,
+              1112
+            ],
+            [
+              785,
+              1106
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            1086,
+            1436,
+            1112
+          ],
+          "reading_order": 34
+        },
+        {
+          "text": "(WRF3.3-CLM4crop). Clim. Dyn. 45, 33473363. doi: 10.1007/s00382-015-",
+          "confidence": 0.9843644499778748,
+          "poly": [
+            [
+              786,
+              1109
+            ],
+            [
+              1435,
+              1114
+            ],
+            [
+              1434,
+              1135
+            ],
+            [
+              786,
+              1130
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            1109,
+            1435,
+            1135
+          ],
+          "reading_order": 35
+        },
+        {
+          "text": "2543-z",
+          "confidence": 0.9210188984870911,
+          "poly": [
+            [
+              784,
+              1132
+            ],
+            [
+              843,
+              1132
+            ],
+            [
+              843,
+              1153
+            ],
+            [
+              784,
+              1153
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            1132,
+            843,
+            1153
+          ],
+          "reading_order": 36
+        },
+        {
+          "text": "Luyssaert, S., Jammet, M., Stoy, P. C., Estel, S., Pongratz, J., Ceschia, E.,",
+          "confidence": 0.9882069230079651,
+          "poly": [
+            [
+              801,
+              1165
+            ],
+            [
+              1436,
+              1171
+            ],
+            [
+              1435,
+              1191
+            ],
+            [
+              801,
+              1185
+            ]
+          ],
+          "bbox_xyxy": [
+            801,
+            1165,
+            1436,
+            1191
+          ],
+          "reading_order": 37
+        },
+        {
+          "text": "et al. (2014). Land management and land-cover change have impacts of",
+          "confidence": 0.9981492161750793,
+          "poly": [
+            [
+              785,
+              1187
+            ],
+            [
+              1438,
+              1193
+            ],
+            [
+              1437,
+              1213
+            ],
+            [
+              785,
+              1207
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            1187,
+            1438,
+            1213
+          ],
+          "reading_order": 38
+        },
+        {
+          "text": "similar magnitude on surface temperature. Nat. Clim. Chang 4, 389-393.",
+          "confidence": 0.9852082133293152,
+          "poly": [
+            [
+              785,
+              1208
+            ],
+            [
+              1435,
+              1215
+            ],
+            [
+              1434,
+              1235
+            ],
+            [
+              785,
+              1228
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            1208,
+            1435,
+            1235
+          ],
+          "reading_order": 39
+        },
+        {
+          "text": "doi: 10.1038/nclimate2196",
+          "confidence": 0.9771116375923157,
+          "poly": [
+            [
+              787,
+              1231
+            ],
+            [
+              992,
+              1233
+            ],
+            [
+              992,
+              1250
+            ],
+            [
+              787,
+              1249
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            1231,
+            992,
+            1250
+          ],
+          "reading_order": 40
+        },
+        {
+          "text": "Mahmood, R., Hubbard, K. G., Leeper, R. D., and Foster, S. A. (2008). Increase",
+          "confidence": 0.9895660281181335,
+          "poly": [
+            [
+              802,
+              1262
+            ],
+            [
+              1435,
+              1269
+            ],
+            [
+              1434,
+              1290
+            ],
+            [
+              802,
+              1283
+            ]
+          ],
+          "bbox_xyxy": [
+            802,
+            1262,
+            1435,
+            1290
+          ],
+          "reading_order": 41
+        },
+        {
+          "text": "in near-surface atmospheric moisture content due to land use changes: evidence",
+          "confidence": 0.9957113265991211,
+          "poly": [
+            [
+              785,
+              1285
+            ],
+            [
+              1435,
+              1291
+            ],
+            [
+              1434,
+              1311
+            ],
+            [
+              785,
+              1305
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            1285,
+            1435,
+            1311
+          ],
+          "reading_order": 42
+        },
+        {
+          "text": "from the observed dewpoint temperature data. Mon. Weather Rev. 136, 15541561.",
+          "confidence": 0.9867451786994934,
+          "poly": [
+            [
+              786,
+              1307
+            ],
+            [
+              1435,
+              1313
+            ],
+            [
+              1434,
+              1333
+            ],
+            [
+              786,
+              1327
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            1307,
+            1435,
+            1333
+          ],
+          "reading_order": 43
+        },
+        {
+          "text": "doi: 10.1175/2007MWR2040.1",
+          "confidence": 0.9978801012039185,
+          "poly": [
+            [
+              787,
+              1331
+            ],
+            [
+              1022,
+              1333
+            ],
+            [
+              1022,
+              1350
+            ],
+            [
+              787,
+              1348
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            1331,
+            1022,
+            1350
+          ],
+          "reading_order": 44
+        },
+        {
+          "text": "Mahmood, R., Pielke, R. A., Hubbard, K. G., Niyogi, D., Dirmeyer, P. A.,",
+          "confidence": 0.9862808585166931,
+          "poly": [
+            [
+              803,
+              1361
+            ],
+            [
+              1435,
+              1368
+            ],
+            [
+              1434,
+              1389
+            ],
+            [
+              803,
+              1382
+            ]
+          ],
+          "bbox_xyxy": [
+            803,
+            1361,
+            1435,
+            1389
+          ],
+          "reading_order": 45
+        },
+        {
+          "text": "Mcalpine, C., et al. (2014). Land cover changes and their biogeophysical effects on",
+          "confidence": 0.9814497232437134,
+          "poly": [
+            [
+              787,
+              1384
+            ],
+            [
+              1435,
+              1390
+            ],
+            [
+              1434,
+              1411
+            ],
+            [
+              787,
+              1405
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            1384,
+            1435,
+            1411
+          ],
+          "reading_order": 46
+        },
+        {
+          "text": "climate. Int. J. Climatol. 34, 929953. doi: 10.1002/joc.3736",
+          "confidence": 0.9802687168121338,
+          "poly": [
+            [
+              787,
+              1405
+            ],
+            [
+              1246,
+              1411
+            ],
+            [
+              1245,
+              1431
+            ],
+            [
+              787,
+              1425
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            1405,
+            1246,
+            1431
+          ],
+          "reading_order": 47
+        },
+        {
+          "text": "Manabe, S., Smagorinsky, J., Strickler, R. F., Manabe, S., Smagorinsky,",
+          "confidence": 0.984161913394928,
+          "poly": [
+            [
+              804,
+              1437
+            ],
+            [
+              1435,
+              1446
+            ],
+            [
+              1434,
+              1467
+            ],
+            [
+              804,
+              1458
+            ]
+          ],
+          "bbox_xyxy": [
+            804,
+            1437,
+            1435,
+            1467
+          ],
+          "reading_order": 48
+        },
+        {
+          "text": "J., and Strickler, R. F. (1965). Simulated climatology of a general",
+          "confidence": 0.9691952466964722,
+          "poly": [
+            [
+              785,
+              1458
+            ],
+            [
+              1437,
+              1466
+            ],
+            [
+              1436,
+              1489
+            ],
+            [
+              785,
+              1481
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            1458,
+            1437,
+            1489
+          ],
+          "reading_order": 49
+        },
+        {
+          "text": "circulation model with a hydrologic cycle. Mon. Weather Rev. 93, 769-798.",
+          "confidence": 0.9698819518089294,
+          "poly": [
+            [
+              787,
+              1481
+            ],
+            [
+              1435,
+              1490
+            ],
+            [
+              1434,
+              1510
+            ],
+            [
+              787,
+              1501
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            1481,
+            1435,
+            1510
+          ],
+          "reading_order": 50
+        },
+        {
+          "text": "doi: 10.1175/1520-0493(1965)093andlt;0769:SCOAGCandgt;2.3.CO;2",
+          "confidence": 0.9972381591796875,
+          "poly": [
+            [
+              788,
+              1502
+            ],
+            [
+              1334,
+              1511
+            ],
+            [
+              1333,
+              1532
+            ],
+            [
+              788,
+              1523
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            1502,
+            1334,
+            1532
+          ],
+          "reading_order": 51
+        },
+        {
+          "text": "Manik, S. M., Pengilley, G., Dean, G., Field, B., Shabala, S., and Zhou, M. (2019).",
+          "confidence": 0.9806280732154846,
+          "poly": [
+            [
+              805,
+              1535
+            ],
+            [
+              1434,
+              1545
+            ],
+            [
+              1433,
+              1565
+            ],
+            [
+              805,
+              1554
+            ]
+          ],
+          "bbox_xyxy": [
+            805,
+            1535,
+            1434,
+            1565
+          ],
+          "reading_order": 52
+        },
+        {
+          "text": "Soil and crop management practices to minimize the impact of waterlogging on",
+          "confidence": 0.9944600462913513,
+          "poly": [
+            [
+              788,
+              1554
+            ],
+            [
+              1434,
+              1567
+            ],
+            [
+              1433,
+              1590
+            ],
+            [
+              788,
+              1577
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            1554,
+            1434,
+            1590
+          ],
+          "reading_order": 53
+        },
+        {
+          "text": "crop productivity. Front. Plant Sci. 10:140. doi: 10.3389/fpls.2019.00140",
+          "confidence": 0.9808980822563171,
+          "poly": [
+            [
+              788,
+              1576
+            ],
+            [
+              1347,
+              1586
+            ],
+            [
+              1346,
+              1609
+            ],
+            [
+              788,
+              1599
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            1576,
+            1347,
+            1609
+          ],
+          "reading_order": 54
+        },
+        {
+          "text": "Marcella, M. P., and Eltahir, E. A. (2014). Introducing an irrigation scheme to",
+          "confidence": 0.9673532247543335,
+          "poly": [
+            [
+              805,
+              1609
+            ],
+            [
+              1432,
+              1623
+            ],
+            [
+              1431,
+              1642
+            ],
+            [
+              805,
+              1629
+            ]
+          ],
+          "bbox_xyxy": [
+            805,
+            1609,
+            1432,
+            1642
+          ],
+          "reading_order": 55
+        },
+        {
+          "text": "a regional climate model: a case study over West Africa. J. Clim. 27, 5708-5723.",
+          "confidence": 0.9618533849716187,
+          "poly": [
+            [
+              786,
+              1630
+            ],
+            [
+              1433,
+              1640
+            ],
+            [
+              1432,
+              1663
+            ],
+            [
+              786,
+              1653
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            1630,
+            1433,
+            1663
+          ],
+          "reading_order": 56
+        },
+        {
+          "text": "doi: 10.1175/JCLI-D-13-00116.1",
+          "confidence": 0.9933584332466125,
+          "poly": [
+            [
+              787,
+              1653
+            ],
+            [
+              1039,
+              1657
+            ],
+            [
+              1038,
+              1677
+            ],
+            [
+              787,
+              1673
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            1653,
+            1039,
+            1677
+          ],
+          "reading_order": 57
+        },
+        {
+          "text": "McDermid, S. S., Mearns, L. O., and Ruane, A. C. (2017). Representing",
+          "confidence": 0.9807289242744446,
+          "poly": [
+            [
+              803,
+              1684
+            ],
+            [
+              1432,
+              1696
+            ],
+            [
+              1431,
+              1720
+            ],
+            [
+              803,
+              1708
+            ]
+          ],
+          "bbox_xyxy": [
+            803,
+            1684,
+            1432,
+            1720
+          ],
+          "reading_order": 58
+        },
+        {
+          "text": "agriculture in Earth system models: approaches and priorities for development. J.",
+          "confidence": 0.9832322597503662,
+          "poly": [
+            [
+              786,
+              1707
+            ],
+            [
+              1431,
+              1718
+            ],
+            [
+              1430,
+              1741
+            ],
+            [
+              786,
+              1730
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            1707,
+            1431,
+            1741
+          ],
+          "reading_order": 59
+        },
+        {
+          "text": "Adv. Model. Earth Syst. 9, 22302265. doi: 10.1002/2016MS000749",
+          "confidence": 0.9967067837715149,
+          "poly": [
+            [
+              787,
+              1730
+            ],
+            [
+              1307,
+              1738
+            ],
+            [
+              1307,
+              1759
+            ],
+            [
+              787,
+              1751
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            1730,
+            1307,
+            1759
+          ],
+          "reading_order": 60
+        },
+        {
+          "text": "Milly, P. C. D., and Dunne, K. A. (1994). Sensitivity of the global",
+          "confidence": 0.9735576510429382,
+          "poly": [
+            [
+              802,
+              1763
+            ],
+            [
+              1430,
+              1773
+            ],
+            [
+              1429,
+              1796
+            ],
+            [
+              802,
+              1786
+            ]
+          ],
+          "bbox_xyxy": [
+            802,
+            1763,
+            1430,
+            1796
+          ],
+          "reading_order": 61
+        },
+        {
+          "text": "water cycle to the water-holding capacity of land. J. Clim. 7, 506-526.",
+          "confidence": 0.9818392395973206,
+          "poly": [
+            [
+              785,
+              1786
+            ],
+            [
+              1429,
+              1795
+            ],
+            [
+              1428,
+              1818
+            ],
+            [
+              785,
+              1809
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            1786,
+            1429,
+            1818
+          ],
+          "reading_order": 62
+        },
+        {
+          "text": "doi: 10.1175/1520-0442(1994)007andlt;0506:SOTGWCandgt;2.0.CO;2",
+          "confidence": 0.9965139627456665,
+          "poly": [
+            [
+              786,
+              1809
+            ],
+            [
+              1335,
+              1817
+            ],
+            [
+              1334,
+              1838
+            ],
+            [
+              786,
+              1830
+            ]
+          ],
+          "bbox_xyxy": [
+            786,
+            1809,
+            1335,
+            1838
+          ],
+          "reading_order": 63
+        },
+        {
+          "text": "Moghazi, H. E., and Ismail, E. S. (1997). A study of losses from field channels",
+          "confidence": 0.993209719657898,
+          "poly": [
+            [
+              803,
+              1842
+            ],
+            [
+              1428,
+              1851
+            ],
+            [
+              1427,
+              1871
+            ],
+            [
+              803,
+              1862
+            ]
+          ],
+          "bbox_xyxy": [
+            803,
+            1842,
+            1428,
+            1871
+          ],
+          "reading_order": 64
+        }
+      ]
+    },
+    {
+      "block_id": 12,
+      "label": "reference_content",
+      "score": 0.919277012348175,
+      "bbox_xyxy": [
+        766,
+        230,
+        1346,
+        309
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 29,
+      "label": "reference_content",
+      "score": 0.9041763544082642,
+      "bbox_xyxy": [
+        139,
+        298,
+        716,
+        358
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 10,
+      "label": "reference_content",
+      "score": 0.9207781553268433,
+      "bbox_xyxy": [
+        767,
+        319,
+        1345,
+        399
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 49,
+      "label": "reference_content",
+      "score": 0.7999885678291321,
+      "bbox_xyxy": [
+        152,
+        368,
+        611,
+        391
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 47,
+      "label": "reference_content",
+      "score": 0.8799313306808472,
+      "bbox_xyxy": [
+        138,
+        399,
+        715,
+        440
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 11,
+      "label": "reference_content",
+      "score": 0.9194967746734619,
+      "bbox_xyxy": [
+        767,
+        408,
+        1346,
+        489
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 27,
+      "label": "reference_content",
+      "score": 0.9045792818069458,
+      "bbox_xyxy": [
+        138,
+        449,
+        715,
+        508
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 31,
+      "label": "reference_content",
+      "score": 0.9037995338439941,
+      "bbox_xyxy": [
+        768,
+        498,
+        1346,
+        559
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 2,
+      "label": "reference_content",
+      "score": 0.9427321553230286,
+      "bbox_xyxy": [
+        138,
+        518,
+        715,
+        679
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 26,
+      "label": "reference_content",
+      "score": 0.9050371050834656,
+      "bbox_xyxy": [
+        768,
+        568,
+        1346,
+        627
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 35,
+      "label": "reference_content",
+      "score": 0.9022039771080017,
+      "bbox_xyxy": [
+        768,
+        637,
+        1346,
+        698
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 33,
+      "label": "reference_content",
+      "score": 0.9026665091514587,
+      "bbox_xyxy": [
+        139,
+        687,
+        715,
+        748
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 37,
+      "label": "reference_content",
+      "score": 0.9013904333114624,
+      "bbox_xyxy": [
+        768,
+        708,
+        1346,
+        768
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 41,
+      "label": "reference_content",
+      "score": 0.8976442217826843,
+      "bbox_xyxy": [
+        139,
+        758,
+        716,
+        817
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 30,
+      "label": "reference_content",
+      "score": 0.9039909243583679,
+      "bbox_xyxy": [
+        768,
+        777,
+        1345,
+        837
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 38,
+      "label": "reference_content",
+      "score": 0.9004296064376831,
+      "bbox_xyxy": [
+        139,
+        827,
+        714,
+        887
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 32,
+      "label": "reference_content",
+      "score": 0.9027280211448669,
+      "bbox_xyxy": [
+        768,
+        846,
+        1346,
+        907
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "reference_content",
+      "score": 0.9186089038848877,
+      "bbox_xyxy": [
+        138,
+        897,
+        714,
+        976
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 39,
+      "label": "reference_content",
+      "score": 0.9002906084060669,
+      "bbox_xyxy": [
+        767,
+        917,
+        1346,
+        977
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 21,
+      "label": "reference_content",
+      "score": 0.9077463746070862,
+      "bbox_xyxy": [
+        767,
+        986,
+        1345,
+        1047
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 14,
+      "label": "reference_content",
+      "score": 0.9183618426322937,
+      "bbox_xyxy": [
+        138,
+        987,
+        714,
+        1065
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "reference_content",
+      "score": 0.9209124445915222,
+      "bbox_xyxy": [
+        768,
+        1056,
+        1346,
+        1136
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 23,
+      "label": "reference_content",
+      "score": 0.9066372513771057,
+      "bbox_xyxy": [
+        139,
+        1076,
+        714,
+        1136
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 36,
+      "label": "reference_content",
+      "score": 0.9019248485565186,
+      "bbox_xyxy": [
+        138,
+        1145,
+        714,
+        1205
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 6,
+      "label": "reference_content",
+      "score": 0.9213272333145142,
+      "bbox_xyxy": [
+        767,
+        1146,
+        1347,
+        1226
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 25,
+      "label": "reference_content",
+      "score": 0.9054377675056458,
+      "bbox_xyxy": [
+        139,
+        1216,
+        714,
+        1276
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 7,
+      "label": "reference_content",
+      "score": 0.9209752082824707,
+      "bbox_xyxy": [
+        768,
+        1235,
+        1346,
+        1316
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 17,
+      "label": "reference_content",
+      "score": 0.909203052520752,
+      "bbox_xyxy": [
+        139,
+        1285,
+        714,
+        1345
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 18,
+      "label": "reference_content",
+      "score": 0.9089818596839905,
+      "bbox_xyxy": [
+        768,
+        1325,
+        1346,
+        1385
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 34,
+      "label": "reference_content",
+      "score": 0.9024178981781006,
+      "bbox_xyxy": [
+        139,
+        1355,
+        715,
+        1414
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 8,
+      "label": "reference_content",
+      "score": 0.9209341406822205,
+      "bbox_xyxy": [
+        768,
+        1395,
+        1346,
+        1474
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 19,
+      "label": "reference_content",
+      "score": 0.908831775188446,
+      "bbox_xyxy": [
+        138,
+        1424,
+        716,
+        1485
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 24,
+      "label": "reference_content",
+      "score": 0.9064304828643799,
+      "bbox_xyxy": [
+        767,
+        1485,
+        1346,
+        1545
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 5,
+      "label": "reference_content",
+      "score": 0.9264324307441711,
+      "bbox_xyxy": [
+        138,
+        1497,
+        715,
+        1577
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 16,
+      "label": "reference_content",
+      "score": 0.9092172384262085,
+      "bbox_xyxy": [
+        767,
+        1555,
+        1346,
+        1614
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 4,
+      "label": "reference_content",
+      "score": 0.9272980690002441,
+      "bbox_xyxy": [
+        138,
+        1589,
+        715,
+        1669
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 22,
+      "label": "reference_content",
+      "score": 0.9073949456214905,
+      "bbox_xyxy": [
+        768,
+        1624,
+        1346,
+        1683
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "reference_content",
+      "score": 0.9310725927352905,
+      "bbox_xyxy": [
+        138,
+        1682,
+        715,
+        1781
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 28,
+      "label": "reference_content",
+      "score": 0.9043006896972656,
+      "bbox_xyxy": [
+        767,
+        1693,
+        1346,
+        1753
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 46,
+      "label": "reference_content",
+      "score": 0.8807078003883362,
+      "bbox_xyxy": [
+        768,
+        1764,
+        1346,
+        1804
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 40,
+      "label": "reference_content",
+      "score": 0.8994835615158081,
+      "bbox_xyxy": [
+        137,
+        1794,
+        715,
+        1853
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 45,
+      "label": "reference_content",
+      "score": 0.8815736174583435,
+      "bbox_xyxy": [
+        768,
+        1813,
+        1346,
+        1854
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 43,
+      "label": "footer",
+      "score": 0.8878605961799622,
+      "bbox_xyxy": [
+        138,
+        1977,
+        279,
+        1994
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 48,
+      "label": "number",
+      "score": 0.82509446144104,
+      "bbox_xyxy": [
+        732,
+        1978,
+        751,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 44,
+      "label": "footer",
+      "score": 0.8857170939445496,
+      "bbox_xyxy": [
+        1228,
+        1978,
+        1344,
+        1995
+      ],
+      "lines": []
+    }
+  ]
+}

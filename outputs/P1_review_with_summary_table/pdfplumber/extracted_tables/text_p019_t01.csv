@@ -1,0 +1,102 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+perspective, the activation is crucial due to the anthropogenic,processes is an innovative research field that calls for a trans-
+,
+nature of the process. Spatially, the irrigation activation is,disciplinary approach involving atmospheric- and soil-physics
+,
+driven mainly by invariant fields, such as the area equipped,as well as agro-meteorology and agronomy. A consistent
+,
+for irrigation or the crop types. With respect to temporal,across-scales irrigation framework for Earth system models
+,
+activation, different concepts are employed, e.g., fixed diurnal,would strongly benefit weather and seasonal-to-subseasonal
+,
+irrigationcycleand/orphysicalthresholds,i.e.,soilmoistureis,forecasts, as well as new reanalyzes and climate prediction.
+,
+fallingbelowaspecificthreshold.Theirrigationwateramount,In this regard, the importance of irrigation in the Earth
+,
+is either calculated from available census surveys, modeled,system is further highlighted by the changing climate and its
+,
+datasetorderivedfromthephysicalthresholds,asdescribedin,impact on food security, as sustained by the United Nation
+,
+Section3.2.,Sustainable Development Goals (United Nations, 2014). Thus,
+,
+Intheexistingstudies,fourdifferentapproachesonhowto,further advances in irrigation parameterizations may help to
+,
+applytheirrigationwatertothemodelareutilized:(i)tothesoil,addresspastclimateuncertainties,aswellastoenhanceclimate
+,
+moistureatdifferentdepths,(ii)tothesurfaceasprecipitation,projections, thus, providing better estimates of water scarcity
+,
+beforeorafterthecanopyinterception,(iii)totheatmospheric,and requirements for food-production in the light of climate
+,
+rainwater,or(iv)asawatervaporsource.Afewstudiesalsouse,changeandrelatedadaptationandmitigationstrategies.
+,
+adataassimilationapproachtoimplicitlyincludetheeffectsof,
+,
+irrigation.,
+,
+,Author contributions
+Further consideration has been given on how,
+,
+parameterizations relate to the various irrigation delivery,
+,
+methods used in agriculture (summarized in Section 2.1), and,AV: conceptualization, methodology, and writing—
+,
+,
+to the multiple spatio-temporal scales in the Earth system.,original draft. AV and JK: writing—review and editing.
+,
+,
+Whilemoststudiesfollowanapproachtousesurfacedelivery,Both authors contributed to the article and approved the
+,
+,
+methods or sprinklers that put irrigation water directly onto,submittedversion.
+,
+,
+or below the canopy, one parameterization (see Section,
+,
+3.3.3) is suitable to also represent the interaction of the,
+,
+sprinkler water with atmospheric processes. However, the,Funding
+,
+employed delivery method has to be adapted to the model’s,
+,
+spatio-temporal scale representation (see Section 4.2) and,
+,
+,This work has been conducted based on funding by
+to physical considerations (see Section 4.3). Therefore, the,
+,
+,the German Federal Ministry for Digital and Transport
+multitude of irrigation parameterizations in literature and,
+,
+,(Grant No. BMVI/DWD 4818DWDP5A) and by the
+their seemingly arbitrary use depending on the scales, is,
+,
+,Deutsche Forschungsgemeinschaft (DFG, German Research
+one of the principal causes of the different irrigation water,
+,
+,Foundation)—SFB1502/1-2022—ProjectNo.450058266.
+amount estimates (see Section 5.1) and the corresponding,
+,
+uncertainty.,
+In this review, we have identify some key challenges,Conflict of interest
+and opportunities for future developments of irrigation,
+,
+parameterizations. These reach from a consistent inter-model,Theauthorsdeclarethattheresearchwasconductedinthe
+processesrepresentationtoaconsequentreportingofirrigation,absenceofanycommercialorfinancialrelationshipsthatcould
+−1),
+amounts (including standardized units, e.g., mms to a,beconstruedasapotentialconflictofinterest.
+realisticwaterextractionimplementationthatallowsforaclosed,
+,
+waterbudget.Theproposedapproacheswouldenableabetter,
+,
+process-relatedestimationofuncertaintiesacrossstudies,which,Publisher’s note
+,
+is currently not possible. Further, they would also allow for,
+broader investigations of the impacts at a climatological scale,All claims expressed in this article are solely those
+in the context of a changing climate. The establishment of,of the authors and do not necessarily represent those
+enhanced observational dataset would also be desirable either,of their affiliated organizations, or those of the publisher,
+foruseinindependentevaluationeffortsorasamorerealistic,the editors and the reviewers. Any product that may be
+inputforthemodels.,evaluated in this article, or claim that may be made by
+In conclusion, the inclusion of irrigation in Earth system,its manufacturer, is not guaranteed or endorsed by the
+models and the investigation of their effects and feedback,publisher.
+,
+FrontiersinWater 19,frontiersin.org

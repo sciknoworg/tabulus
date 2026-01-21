@@ -1,0 +1,1635 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 16,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 18,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "16 of 16",
+          "confidence": 0.9564651250839233,
+          "poly": [
+            [
+              1512,
+              0
+            ],
+            [
+              1603,
+              4
+            ],
+            [
+              1601,
+              38
+            ],
+            [
+              1510,
+              33
+            ]
+          ],
+          "bbox_xyxy": [
+            1510,
+            0,
+            1603,
+            38
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9810903072357178,
+          "poly": [
+            [
+              15,
+              17
+            ],
+            [
+              309,
+              12
+            ],
+            [
+              309,
+              47
+            ],
+            [
+              15,
+              52
+            ]
+          ],
+          "bbox_xyxy": [
+            15,
+            12,
+            309,
+            52
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Daniel, G.; Asciolla, B.G.S.; Kgler, B. Critical review on improving irrigation water use efficiency: Advances, challenges, and",
+          "confidence": 0.9044241309165955,
+          "poly": [
+            [
+              71,
+              149
+            ],
+            [
+              1602,
+              138
+            ],
+            [
+              1602,
+              188
+            ],
+            [
+              72,
+              199
+            ]
+          ],
+          "bbox_xyxy": [
+            71,
+            138,
+            1602,
+            199
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "27.",
+          "confidence": 0.9999076724052429,
+          "poly": [
+            [
+              8,
+              167
+            ],
+            [
+              55,
+              164
+            ],
+            [
+              57,
+              195
+            ],
+            [
+              10,
+              198
+            ]
+          ],
+          "bbox_xyxy": [
+            8,
+            164,
+            57,
+            198
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "opportunities in the Ethiopia context. Water Energy Nexus. 2020, 3, 143154. [CrossRef]",
+          "confidence": 0.9889477491378784,
+          "poly": [
+            [
+              78,
+              198
+            ],
+            [
+              1114,
+              181
+            ],
+            [
+              1114,
+              217
+            ],
+            [
+              79,
+              234
+            ]
+          ],
+          "bbox_xyxy": [
+            78,
+            181,
+            1114,
+            234
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "28.",
+          "confidence": 0.999934196472168,
+          "poly": [
+            [
+              7,
+              238
+            ],
+            [
+              54,
+              238
+            ],
+            [
+              54,
+              271
+            ],
+            [
+              7,
+              271
+            ]
+          ],
+          "bbox_xyxy": [
+            7,
+            238,
+            54,
+            271
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Annys, S.; Passel, S.V.; Dessein, J.; Adgo, E.; Nyssen, J. From fast-track implementation to livelihood deterioration: The dam-based",
+          "confidence": 0.9777868986129761,
+          "poly": [
+            [
+              73,
+              227
+            ],
+            [
+              1599,
+              214
+            ],
+            [
+              1599,
+              258
+            ],
+            [
+              74,
+              271
+            ]
+          ],
+          "bbox_xyxy": [
+            73,
+            214,
+            1599,
+            271
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "29.",
+          "confidence": 0.9998281002044678,
+          "poly": [
+            [
+              5,
+              311
+            ],
+            [
+              54,
+              311
+            ],
+            [
+              54,
+              347
+            ],
+            [
+              5,
+              347
+            ]
+          ],
+          "bbox_xyxy": [
+            5,
+            311,
+            54,
+            347
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "30.",
+          "confidence": 0.999902069568634,
+          "poly": [
+            [
+              4,
+              386
+            ],
+            [
+              52,
+              386
+            ],
+            [
+              52,
+              420
+            ],
+            [
+              4,
+              420
+            ]
+          ],
+          "bbox_xyxy": [
+            4,
+            386,
+            52,
+            420
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "31.",
+          "confidence": 0.9999141693115234,
+          "poly": [
+            [
+              2,
+              459
+            ],
+            [
+              52,
+              459
+            ],
+            [
+              52,
+              495
+            ],
+            [
+              2,
+              495
+            ]
+          ],
+          "bbox_xyxy": [
+            2,
+            459,
+            52,
+            495
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "32.",
+          "confidence": 0.999954879283905,
+          "poly": [
+            [
+              3,
+              498
+            ],
+            [
+              50,
+              498
+            ],
+            [
+              50,
+              531
+            ],
+            [
+              3,
+              531
+            ]
+          ],
+          "bbox_xyxy": [
+            3,
+            498,
+            50,
+            531
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "33.",
+          "confidence": 0.9999396800994873,
+          "poly": [
+            [
+              0,
+              570
+            ],
+            [
+              49,
+              567
+            ],
+            [
+              51,
+              603
+            ],
+            [
+              1,
+              606
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            567,
+            51,
+            606
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "34.",
+          "confidence": 0.9999151229858398,
+          "poly": [
+            [
+              0,
+              715
+            ],
+            [
+              45,
+              712
+            ],
+            [
+              47,
+              746
+            ],
+            [
+              0,
+              748
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            712,
+            47,
+            748
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "35.",
+          "confidence": 0.9999783635139465,
+          "poly": [
+            [
+              0,
+              787
+            ],
+            [
+              43,
+              784
+            ],
+            [
+              45,
+              818
+            ],
+            [
+              0,
+              821
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            784,
+            45,
+            821
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "36.",
+          "confidence": 0.9999710917472839,
+          "poly": [
+            [
+              0,
+              897
+            ],
+            [
+              42,
+              894
+            ],
+            [
+              44,
+              927
+            ],
+            [
+              0,
+              930
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            894,
+            44,
+            930
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "37.",
+          "confidence": 0.9999260902404785,
+          "poly": [
+            [
+              0,
+              968
+            ],
+            [
+              41,
+              965
+            ],
+            [
+              43,
+              999
+            ],
+            [
+              0,
+              1002
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            965,
+            43,
+            1002
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "38.",
+          "confidence": 0.9999580383300781,
+          "poly": [
+            [
+              0,
+              1042
+            ],
+            [
+              41,
+              1039
+            ],
+            [
+              43,
+              1072
+            ],
+            [
+              0,
+              1075
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            1039,
+            43,
+            1075
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "39.",
+          "confidence": 0.9998298287391663,
+          "poly": [
+            [
+              0,
+              1115
+            ],
+            [
+              41,
+              1112
+            ],
+            [
+              43,
+              1145
+            ],
+            [
+              0,
+              1148
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            1112,
+            43,
+            1148
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "40.",
+          "confidence": 0.9997563362121582,
+          "poly": [
+            [
+              0,
+              1187
+            ],
+            [
+              40,
+              1184
+            ],
+            [
+              42,
+              1217
+            ],
+            [
+              0,
+              1220
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            1184,
+            42,
+            1220
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "41.",
+          "confidence": 0.9999157786369324,
+          "poly": [
+            [
+              0,
+              1258
+            ],
+            [
+              40,
+              1255
+            ],
+            [
+              42,
+              1287
+            ],
+            [
+              0,
+              1290
+            ]
+          ],
+          "bbox_xyxy": [
+            0,
+            1255,
+            42,
+            1290
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "District, North Wollo, Ethiopia. Agriculture 2016, 6, 27. [CrossRef]",
+          "confidence": 0.9781751036643982,
+          "poly": [
+            [
+              69,
+              1287
+            ],
+            [
+              861,
+              1281
+            ],
+            [
+              861,
+              1314
+            ],
+            [
+              69,
+              1320
+            ]
+          ],
+          "bbox_xyxy": [
+            69,
+            1281,
+            861,
+            1320
+          ],
+          "reading_order": 20
+        }
+      ]
+    },
+    {
+      "block_id": 11,
+      "label": "header",
+      "score": 0.8992230296134949,
+      "bbox_xyxy": [
+        95,
+        144,
+        361,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 17,
+      "label": "number",
+      "score": 0.6772137880325317,
+      "bbox_xyxy": [
+        1474,
+        145,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 0,
+      "label": "reference",
+      "score": 0.9825336933135986,
+      "bbox_xyxy": [
+        94,
+        267,
+        1556,
+        1290
+      ],
+      "lines": [
+        {
+          "text": "Ribb Irrigation and Drainage Project in Northwest Ethiopia. Agric. Syst. 2020, 184, 102909. [CrossRef]",
+          "confidence": 0.9812312126159668,
+          "poly": [
+            [
+              75,
+              269
+            ],
+            [
+              1290,
+              255
+            ],
+            [
+              1290,
+              292
+            ],
+            [
+              76,
+              307
+            ]
+          ],
+          "bbox_xyxy": [
+            75,
+            255,
+            1290,
+            307
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Eneyew, A. Five Key Constraints to Small Scale Irrigation Development in Ethiopia: Socio-Economic View. Glob. Adv. Res. J.",
+          "confidence": 0.9892845749855042,
+          "poly": [
+            [
+              71,
+              302
+            ],
+            [
+              1601,
+              287
+            ],
+            [
+              1601,
+              332
+            ],
+            [
+              72,
+              347
+            ]
+          ],
+          "bbox_xyxy": [
+            71,
+            287,
+            1601,
+            347
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Manag. Bus. Stud. 2014, 3, 441444.",
+          "confidence": 0.9756414890289307,
+          "poly": [
+            [
+              76,
+              349
+            ],
+            [
+              493,
+              340
+            ],
+            [
+              493,
+              371
+            ],
+            [
+              77,
+              380
+            ]
+          ],
+          "bbox_xyxy": [
+            76,
+            340,
+            493,
+            380
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Gamachw, A.; Tadele, G. Assessment of Status of Irrigation Practice and Utilization in Western Hararghe Zone, Oromia, Ethiopia",
+          "confidence": 0.9827939867973328,
+          "poly": [
+            [
+              71,
+              376
+            ],
+            [
+              1600,
+              361
+            ],
+            [
+              1600,
+              405
+            ],
+            [
+              72,
+              420
+            ]
+          ],
+          "bbox_xyxy": [
+            71,
+            361,
+            1600,
+            420
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Civ. Environ. Res. 2018, 10, 113.",
+          "confidence": 0.9990829825401306,
+          "poly": [
+            [
+              74,
+              422
+            ],
+            [
+              456,
+              416
+            ],
+            [
+              456,
+              447
+            ],
+            [
+              75,
+              453
+            ]
+          ],
+          "bbox_xyxy": [
+            74,
+            416,
+            456,
+            453
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Gebremeskel, G. Irrigation in Ethiopia, A review. J. Environ. Earth Sci. 2015, 5, 141147.",
+          "confidence": 0.987798810005188,
+          "poly": [
+            [
+              71,
+              455
+            ],
+            [
+              1115,
+              437
+            ],
+            [
+              1115,
+              476
+            ],
+            [
+              72,
+              494
+            ]
+          ],
+          "bbox_xyxy": [
+            71,
+            437,
+            1115,
+            494
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Meja, M.; Bassa, M.; Mirkeno, T. Assessing the challenges of irrigation development in Ethiopia: A review. Int. J. Eng. Res. Technol.",
+          "confidence": 0.9880601763725281,
+          "poly": [
+            [
+              69,
+              487
+            ],
+            [
+              1598,
+              469
+            ],
+            [
+              1598,
+              514
+            ],
+            [
+              70,
+              531
+            ]
+          ],
+          "bbox_xyxy": [
+            69,
+            469,
+            1598,
+            531
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "2020, 9, 215221.",
+          "confidence": 0.9733603000640869,
+          "poly": [
+            [
+              72,
+              533
+            ],
+            [
+              273,
+              528
+            ],
+            [
+              274,
+              560
+            ],
+            [
+              73,
+              564
+            ]
+          ],
+          "bbox_xyxy": [
+            72,
+            528,
+            274,
+            564
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Asmerom, T.; Hagos, A.; Kasiem, S. Aggregation, Analysis and Synthesis of Disclosure and Assurance Report of Construction",
+          "confidence": 0.9789880514144897,
+          "poly": [
+            [
+              65,
+              557
+            ],
+            [
+              1599,
+              539
+            ],
+            [
+              1600,
+              589
+            ],
+            [
+              66,
+              607
+            ]
+          ],
+          "bbox_xyxy": [
+            65,
+            539,
+            1600,
+            607
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "/ /infrastructuretransparency.org/wp-content/uploads/2018/06/2183_CoST-Ethiopia-Aggregation-Study.pdf (accessed on",
+          "confidence": 0.9838927984237671,
+          "poly": [
+            [
+              65,
+              630
+            ],
+            [
+              1597,
+              614
+            ],
+            [
+              1597,
+              661
+            ],
+            [
+              66,
+              677
+            ]
+          ],
+          "bbox_xyxy": [
+            65,
+            614,
+            1597,
+            677
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "12 March 2019).",
+          "confidence": 0.9813967943191528,
+          "poly": [
+            [
+              69,
+              676
+            ],
+            [
+              262,
+              674
+            ],
+            [
+              263,
+              706
+            ],
+            [
+              70,
+              708
+            ]
+          ],
+          "bbox_xyxy": [
+            69,
+            674,
+            263,
+            708
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Gurmu, Z.A.; Ritzema, R.; de Fraiture, C.; Ayana, M. Stakeholder Roles and Perspectives on Sedimentation Management in",
+          "confidence": 0.9881924986839294,
+          "poly": [
+            [
+              65,
+              704
+            ],
+            [
+              1596,
+              689
+            ],
+            [
+              1596,
+              733
+            ],
+            [
+              66,
+              748
+            ]
+          ],
+          "bbox_xyxy": [
+            65,
+            689,
+            1596,
+            748
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "Small-Scale Irrigation Schemes in Ethiopia. Sustainability 2019, 11, 6121.",
+          "confidence": 0.9847446084022522,
+          "poly": [
+            [
+              70,
+              748
+            ],
+            [
+              927,
+              734
+            ],
+            [
+              928,
+              767
+            ],
+            [
+              71,
+              781
+            ]
+          ],
+          "bbox_xyxy": [
+            70,
+            734,
+            928,
+            781
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Haileslassie, A.; Hagos, F.; Agide, Z.; Tesema, E.; Hoekstra, D.; Langan, S. Institutions for irrigation water management in",
+          "confidence": 0.9902437329292297,
+          "poly": [
+            [
+              67,
+              779
+            ],
+            [
+              1595,
+              762
+            ],
+            [
+              1595,
+              802
+            ],
+            [
+              68,
+              819
+            ]
+          ],
+          "bbox_xyxy": [
+            67,
+            762,
+            1595,
+            819
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Ethiopia: Assessing diversity and service delivery. In LIVES Working Paper; International Livestock Research Institute (ILRI):",
+          "confidence": 0.9904209971427917,
+          "poly": [
+            [
+              68,
+              817
+            ],
+            [
+              1596,
+              799
+            ],
+            [
+              1596,
+              836
+            ],
+            [
+              69,
+              854
+            ]
+          ],
+          "bbox_xyxy": [
+            68,
+            799,
+            1596,
+            854
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Nairobi, Kenya, 2016; p. 17.",
+          "confidence": 0.9991961121559143,
+          "poly": [
+            [
+              69,
+              858
+            ],
+            [
+              403,
+              853
+            ],
+            [
+              404,
+              884
+            ],
+            [
+              70,
+              889
+            ]
+          ],
+          "bbox_xyxy": [
+            69,
+            853,
+            404,
+            889
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "Ayana, M.; Gebremeskel, T.; Mengistu, A.; Fasil, E.; Melkamu, M. Irrigation water pricing in Awash River Basin of Ethiopia:",
+          "confidence": 0.9834229350090027,
+          "poly": [
+            [
+              68,
+              892
+            ],
+            [
+              1595,
+              873
+            ],
+            [
+              1596,
+              910
+            ],
+            [
+              69,
+              929
+            ]
+          ],
+          "bbox_xyxy": [
+            68,
+            873,
+            1596,
+            929
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "Evaluation of its impact on scheme-level irrigation performances and willingness to pay. Afr. J. Agric. Res. 2015, 10, 554565.",
+          "confidence": 0.9886192083358765,
+          "poly": [
+            [
+              65,
+              928
+            ],
+            [
+              1557,
+              906
+            ],
+            [
+              1558,
+              946
+            ],
+            [
+              66,
+              968
+            ]
+          ],
+          "bbox_xyxy": [
+            65,
+            906,
+            1558,
+            968
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "Levidow, L.; Zaccari, D.; Maia, R.; Vivas, E.; Todorovic, M.; Scardigno, A. Improving water-efficient irrigation: Prospects and",
+          "confidence": 0.9876077175140381,
+          "poly": [
+            [
+              64,
+              962
+            ],
+            [
+              1594,
+              940
+            ],
+            [
+              1595,
+              983
+            ],
+            [
+              65,
+              1005
+            ]
+          ],
+          "bbox_xyxy": [
+            64,
+            940,
+            1595,
+            1005
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "difficulties ofinnovative practices. Agric. Water Manag. 2014, 146, 8494. [CrossRef]",
+          "confidence": 0.977471649646759,
+          "poly": [
+            [
+              69,
+              1002
+            ],
+            [
+              1067,
+              990
+            ],
+            [
+              1068,
+              1023
+            ],
+            [
+              70,
+              1035
+            ]
+          ],
+          "bbox_xyxy": [
+            69,
+            990,
+            1068,
+            1035
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "Lipton, M.; Litchfield, J.; Faures, J.-M. The effects of irrigation on poverty: A framework for analysis. Water Policy 2003, 5, 413427.",
+          "confidence": 0.9876290559768677,
+          "poly": [
+            [
+              65,
+              1037
+            ],
+            [
+              1600,
+              1008
+            ],
+            [
+              1601,
+              1052
+            ],
+            [
+              66,
+              1081
+            ]
+          ],
+          "bbox_xyxy": [
+            65,
+            1008,
+            1601,
+            1081
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "[CrossRef]",
+          "confidence": 0.9949871301651001,
+          "poly": [
+            [
+              67,
+              1076
+            ],
+            [
+              204,
+              1071
+            ],
+            [
+              205,
+              1106
+            ],
+            [
+              68,
+              1111
+            ]
+          ],
+          "bbox_xyxy": [
+            67,
+            1071,
+            205,
+            1111
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "Wheeler, S.A.; Zuo, A.; Bjornlund, H.; Mdemu, M.V.; Rooyen, A.V.; Munguambe, P. An overview of extension use in irrigated",
+          "confidence": 0.9901368618011475,
+          "poly": [
+            [
+              65,
+              1111
+            ],
+            [
+              1596,
+              1082
+            ],
+            [
+              1597,
+              1123
+            ],
+            [
+              66,
+              1152
+            ]
+          ],
+          "bbox_xyxy": [
+            65,
+            1082,
+            1597,
+            1152
+          ],
+          "reading_order": 22
+        },
+        {
+          "text": "agriculture and case studies in south-eastern Africa. Int. J. Water Resour. Dev. 2016, 33, 755769. [CrossRef]",
+          "confidence": 0.9790332913398743,
+          "poly": [
+            [
+              67,
+              1150
+            ],
+            [
+              1346,
+              1125
+            ],
+            [
+              1347,
+              1159
+            ],
+            [
+              68,
+              1184
+            ]
+          ],
+          "bbox_xyxy": [
+            67,
+            1125,
+            1347,
+            1184
+          ],
+          "reading_order": 23
+        },
+        {
+          "text": "Yami, M. Irrigation projects in Ethiopia: What can be done to enhance effectiveness under 'challenging contexts'? Int. J. Sustain.",
+          "confidence": 0.9797361493110657,
+          "poly": [
+            [
+              65,
+              1182
+            ],
+            [
+              1600,
+              1152
+            ],
+            [
+              1601,
+              1193
+            ],
+            [
+              66,
+              1223
+            ]
+          ],
+          "bbox_xyxy": [
+            65,
+            1152,
+            1601,
+            1223
+          ],
+          "reading_order": 24
+        },
+        {
+          "text": "Dev. World Ecol. 2015. [CrossRef]",
+          "confidence": 0.9841793179512024,
+          "poly": [
+            [
+              68,
+              1220
+            ],
+            [
+              466,
+              1213
+            ],
+            [
+              466,
+              1243
+            ],
+            [
+              69,
+              1250
+            ]
+          ],
+          "bbox_xyxy": [
+            68,
+            1213,
+            466,
+            1250
+          ],
+          "reading_order": 25
+        },
+        {
+          "text": "Mengistie, D.; Kidane, D. Assessment of the Impact of Small-Scale Irrigation on Household Livelihood Improvement at Gubalafto",
+          "confidence": 0.9856326580047607,
+          "poly": [
+            [
+              64,
+              1251
+            ],
+            [
+              1601,
+              1225
+            ],
+            [
+              1602,
+              1269
+            ],
+            [
+              65,
+              1295
+            ]
+          ],
+          "bbox_xyxy": [
+            64,
+            1225,
+            1602,
+            1295
+          ],
+          "reading_order": 26
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "reference_content",
+      "score": 0.9011683464050293,
+      "bbox_xyxy": [
+        95,
+        269,
+        1552,
+        331
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "reference_content",
+      "score": 0.9043274521827698,
+      "bbox_xyxy": [
+        95,
+        333,
+        1553,
+        394
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 4,
+      "label": "reference_content",
+      "score": 0.903109610080719,
+      "bbox_xyxy": [
+        95,
+        397,
+        1557,
+        457
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 5,
+      "label": "reference_content",
+      "score": 0.9017687439918518,
+      "bbox_xyxy": [
+        95,
+        462,
+        1557,
+        519
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 16,
+      "label": "reference_content",
+      "score": 0.8282408714294434,
+      "bbox_xyxy": [
+        94,
+        525,
+        1115,
+        555
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 15,
+      "label": "reference_content",
+      "score": 0.8952888250350952,
+      "bbox_xyxy": [
+        94,
+        557,
+        1555,
+        617
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 1,
+      "label": "reference_content",
+      "score": 0.9380921125411987,
+      "bbox_xyxy": [
+        95,
+        622,
+        1556,
+        743
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 14,
+      "label": "reference_content",
+      "score": 0.895500898361206,
+      "bbox_xyxy": [
+        95,
+        747,
+        1554,
+        808
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 2,
+      "label": "reference_content",
+      "score": 0.9255722761154175,
+      "bbox_xyxy": [
+        95,
+        812,
+        1556,
+        904
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 6,
+      "label": "reference_content",
+      "score": 0.9013907313346863,
+      "bbox_xyxy": [
+        94,
+        908,
+        1556,
+        969
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 12,
+      "label": "reference_content",
+      "score": 0.8973312377929688,
+      "bbox_xyxy": [
+        94,
+        972,
+        1555,
+        1033
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "reference_content",
+      "score": 0.9002576470375061,
+      "bbox_xyxy": [
+        94,
+        1036,
+        1557,
+        1096
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 8,
+      "label": "reference_content",
+      "score": 0.900897741317749,
+      "bbox_xyxy": [
+        95,
+        1100,
+        1554,
+        1161
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 13,
+      "label": "reference_content",
+      "score": 0.8967388868331909,
+      "bbox_xyxy": [
+        94,
+        1164,
+        1555,
+        1223
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 10,
+      "label": "reference_content",
+      "score": 0.9002087712287903,
+      "bbox_xyxy": [
+        94,
+        1227,
+        1554,
+        1288
+      ],
+      "lines": []
+    }
+  ]
+}

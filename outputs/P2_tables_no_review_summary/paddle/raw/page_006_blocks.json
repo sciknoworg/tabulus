@@ -1,0 +1,1503 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 6,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 9,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.997056245803833,
+          "poly": [
+            [
+              29,
+              18
+            ],
+            [
+              330,
+              44
+            ],
+            [
+              327,
+              78
+            ],
+            [
+              26,
+              52
+            ]
+          ],
+          "bbox_xyxy": [
+            26,
+            18,
+            330,
+            78
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "6 of 16",
+          "confidence": 0.999693751335144,
+          "poly": [
+            [
+              1533,
+              44
+            ],
+            [
+              1614,
+              44
+            ],
+            [
+              1614,
+              76
+            ],
+            [
+              1533,
+              76
+            ]
+          ],
+          "bbox_xyxy": [
+            1533,
+            44,
+            1614,
+            76
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "There are also federal and regional subsidiary enterprises that have been widely",
+          "confidence": 0.9756832122802734,
+          "poly": [
+            [
+              493,
+              186
+            ],
+            [
+              1609,
+              182
+            ],
+            [
+              1609,
+              222
+            ],
+            [
+              493,
+              226
+            ]
+          ],
+          "bbox_xyxy": [
+            493,
+            182,
+            1609,
+            226
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "engaging in the study, design supervision, and construction of irrigation projects. The major",
+          "confidence": 0.9957571625709534,
+          "poly": [
+            [
+              432,
+              228
+            ],
+            [
+              1608,
+              221
+            ],
+            [
+              1608,
+              262
+            ],
+            [
+              433,
+              269
+            ]
+          ],
+          "bbox_xyxy": [
+            432,
+            221,
+            1608,
+            269
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "by frequent restructuring that involved also the movement of human and physical re-",
+          "confidence": 0.9832228422164917,
+          "poly": [
+            [
+              432,
+              420
+            ],
+            [
+              1603,
+              417
+            ],
+            [
+              1603,
+              454
+            ],
+            [
+              432,
+              457
+            ]
+          ],
+          "bbox_xyxy": [
+            432,
+            417,
+            1603,
+            457
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "3.2.2. State of Irrigation Management",
+          "confidence": 0.9876980185508728,
+          "poly": [
+            [
+              433,
+              635
+            ],
+            [
+              918,
+              636
+            ],
+            [
+              918,
+              670
+            ],
+            [
+              433,
+              669
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            635,
+            918,
+            670
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "In addition to the federal institutions highlighted in the previous section, the regional",
+          "confidence": 0.9895989894866943,
+          "poly": [
+            [
+              495,
+              683
+            ],
+            [
+              1592,
+              688
+            ],
+            [
+              1592,
+              718
+            ],
+            [
+              495,
+              713
+            ]
+          ],
+          "bbox_xyxy": [
+            495,
+            683,
+            1592,
+            718
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "header",
+      "score": 0.8902246952056885,
+      "bbox_xyxy": [
+        96,
+        144,
+        361,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 8,
+      "label": "number",
+      "score": 0.6591932773590088,
+      "bbox_xyxy": [
+        1485,
+        145,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.976576030254364,
+      "bbox_xyxy": [
+        455,
+        267,
+        1552,
+        435
+      ],
+      "lines": [
+        {
+          "text": "ones are Ethiopian Construction, Design and Supervision Works Corporation, Regional",
+          "confidence": 0.9913698434829712,
+          "poly": [
+            [
+              432,
+              266
+            ],
+            [
+              1605,
+              259
+            ],
+            [
+              1605,
+              300
+            ],
+            [
+              433,
+              307
+            ]
+          ],
+          "bbox_xyxy": [
+            432,
+            259,
+            1605,
+            307
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Enterprises such as Water Works Design, and Supervision Enterprise and Water Works",
+          "confidence": 0.995991587638855,
+          "poly": [
+            [
+              431,
+              303
+            ],
+            [
+              1604,
+              297
+            ],
+            [
+              1604,
+              341
+            ],
+            [
+              432,
+              348
+            ]
+          ],
+          "bbox_xyxy": [
+            431,
+            297,
+            1604,
+            348
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Construction Enterprise.",
+          "confidence": 0.9792954325675964,
+          "poly": [
+            [
+              434,
+              342
+            ],
+            [
+              756,
+              346
+            ],
+            [
+              755,
+              380
+            ],
+            [
+              433,
+              376
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            342,
+            756,
+            380
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "In general, water resources and irrigation management instructions are characterized",
+          "confidence": 0.9939510822296143,
+          "poly": [
+            [
+              493,
+              381
+            ],
+            [
+              1602,
+              375
+            ],
+            [
+              1602,
+              415
+            ],
+            [
+              493,
+              421
+            ]
+          ],
+          "bbox_xyxy": [
+            493,
+            375,
+            1602,
+            421
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9793609976768494,
+      "bbox_xyxy": [
+        455,
+        442,
+        1554,
+        644
+      ],
+      "lines": [
+        {
+          "text": "sources. Institutional instability causes staff frustrations that might lead to migration (staff",
+          "confidence": 0.9941501617431641,
+          "poly": [
+            [
+              431,
+              458
+            ],
+            [
+              1599,
+              455
+            ],
+            [
+              1599,
+              492
+            ],
+            [
+              431,
+              495
+            ]
+          ],
+          "bbox_xyxy": [
+            431,
+            455,
+            1599,
+            495
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "turnover) and lack of interest to join the institution. In all these courses, important institu-",
+          "confidence": 0.9889286160469055,
+          "poly": [
+            [
+              433,
+              496
+            ],
+            [
+              1599,
+              497
+            ],
+            [
+              1599,
+              528
+            ],
+            [
+              433,
+              527
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            496,
+            1599,
+            528
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "tional memories including project documents are lost, threatening the overall development",
+          "confidence": 0.9890048503875732,
+          "poly": [
+            [
+              433,
+              533
+            ],
+            [
+              1595,
+              535
+            ],
+            [
+              1595,
+              566
+            ],
+            [
+              433,
+              564
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            533,
+            1595,
+            566
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "of the sector.",
+          "confidence": 0.9995962977409363,
+          "poly": [
+            [
+              434,
+              569
+            ],
+            [
+              600,
+              571
+            ],
+            [
+              599,
+              602
+            ],
+            [
+              433,
+              600
+            ]
+          ],
+          "bbox_xyxy": [
+            433,
+            569,
+            600,
+            602
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "paragraph_title",
+      "score": 0.9027462005615234,
+      "bbox_xyxy": [
+        457,
+        679,
+        920,
+        708
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9877964854240417,
+      "bbox_xyxy": [
+        455,
+        722,
+        1553,
+        1239
+      ],
+      "lines": [
+        {
+          "text": "states have been engaging in the development and management of irrigation in their",
+          "confidence": 0.9916151762008667,
+          "poly": [
+            [
+              435,
+              720
+            ],
+            [
+              1594,
+              722
+            ],
+            [
+              1594,
+              755
+            ],
+            [
+              435,
+              753
+            ]
+          ],
+          "bbox_xyxy": [
+            435,
+            720,
+            1594,
+            755
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "respective regions through appropriate organs. For this purpose, many regional states",
+          "confidence": 0.9942446351051331,
+          "poly": [
+            [
+              435,
+              758
+            ],
+            [
+              1593,
+              760
+            ],
+            [
+              1593,
+              794
+            ],
+            [
+              435,
+              792
+            ]
+          ],
+          "bbox_xyxy": [
+            435,
+            758,
+            1593,
+            794
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "have established irrigation development authorities toward the end of the 1990s (for",
+          "confidence": 0.9817218780517578,
+          "poly": [
+            [
+              434,
+              795
+            ],
+            [
+              1594,
+              796
+            ],
+            [
+              1594,
+              830
+            ],
+            [
+              434,
+              829
+            ]
+          ],
+          "bbox_xyxy": [
+            434,
+            795,
+            1594,
+            830
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "example, Oromia Irrigation Development Authority in 2000 for Oromia Region in Ethiopia).",
+          "confidence": 0.9926086664199829,
+          "poly": [
+            [
+              435,
+              832
+            ],
+            [
+              1596,
+              834
+            ],
+            [
+              1596,
+              871
+            ],
+            [
+              435,
+              869
+            ]
+          ],
+          "bbox_xyxy": [
+            435,
+            832,
+            1596,
+            871
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Other regions had also similar authorities or bureaus to deal with irrigation development",
+          "confidence": 0.9907594323158264,
+          "poly": [
+            [
+              436,
+              869
+            ],
+            [
+              1594,
+              870
+            ],
+            [
+              1594,
+              907
+            ],
+            [
+              436,
+              906
+            ]
+          ],
+          "bbox_xyxy": [
+            436,
+            869,
+            1594,
+            907
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "activities in their respective regions, specifically small-scale and to some extent medium-",
+          "confidence": 0.9906786680221558,
+          "poly": [
+            [
+              438,
+              909
+            ],
+            [
+              1597,
+              908
+            ],
+            [
+              1597,
+              942
+            ],
+            [
+              438,
+              943
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            908,
+            1597,
+            943
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "scale irrigation projects. These authorities and bureaus have also undergone frequent",
+          "confidence": 0.9882727861404419,
+          "poly": [
+            [
+              437,
+              943
+            ],
+            [
+              1595,
+              942
+            ],
+            [
+              1595,
+              982
+            ],
+            [
+              437,
+              983
+            ]
+          ],
+          "bbox_xyxy": [
+            437,
+            942,
+            1595,
+            983
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "restructuring in a similar fashion as that of federal level institutions. Currently, the irrigation",
+          "confidence": 0.9865956902503967,
+          "poly": [
+            [
+              437,
+              981
+            ],
+            [
+              1593,
+              978
+            ],
+            [
+              1593,
+              1018
+            ],
+            [
+              437,
+              1021
+            ]
+          ],
+          "bbox_xyxy": [
+            437,
+            978,
+            1593,
+            1021
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "development activities of the regions are carried out by Regional Water, Irrigation, and",
+          "confidence": 0.9939577579498291,
+          "poly": [
+            [
+              440,
+              1020
+            ],
+            [
+              1591,
+              1018
+            ],
+            [
+              1591,
+              1055
+            ],
+            [
+              440,
+              1057
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            1018,
+            1591,
+            1057
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Energy Development Bureaus. While these bureaus jointly with regional water works",
+          "confidence": 0.9895967245101929,
+          "poly": [
+            [
+              440,
+              1057
+            ],
+            [
+              1591,
+              1054
+            ],
+            [
+              1591,
+              1092
+            ],
+            [
+              440,
+              1095
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            1054,
+            1591,
+            1095
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "design and supervision enterprises and regional water works construction enterprises are",
+          "confidence": 0.985338568687439,
+          "poly": [
+            [
+              442,
+              1096
+            ],
+            [
+              1592,
+              1092
+            ],
+            [
+              1592,
+              1129
+            ],
+            [
+              442,
+              1133
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1092,
+            1592,
+            1133
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "actively engaging in the study, design, and construction of irrigation projects, bureaus",
+          "confidence": 0.9830005168914795,
+          "poly": [
+            [
+              444,
+              1131
+            ],
+            [
+              1590,
+              1128
+            ],
+            [
+              1590,
+              1165
+            ],
+            [
+              444,
+              1169
+            ]
+          ],
+          "bbox_xyxy": [
+            444,
+            1128,
+            1590,
+            1169
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "of regional and zonal agriculture are responsible for providing irrigation management",
+          "confidence": 0.9907026290893555,
+          "poly": [
+            [
+              443,
+              1170
+            ],
+            [
+              1592,
+              1167
+            ],
+            [
+              1592,
+              1204
+            ],
+            [
+              443,
+              1206
+            ]
+          ],
+          "bbox_xyxy": [
+            443,
+            1167,
+            1592,
+            1206
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "support services to farmers.",
+          "confidence": 0.9885121583938599,
+          "poly": [
+            [
+              443,
+              1210
+            ],
+            [
+              788,
+              1207
+            ],
+            [
+              788,
+              1242
+            ],
+            [
+              443,
+              1244
+            ]
+          ],
+          "bbox_xyxy": [
+            443,
+            1207,
+            788,
+            1244
+          ],
+          "reading_order": 13
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9835512042045593,
+      "bbox_xyxy": [
+        456,
+        1245,
+        1554,
+        1519
+      ],
+      "lines": [
+        {
+          "text": "Medium and large-scale irrigation schemes are developed to serve three categories of",
+          "confidence": 0.9892717003822327,
+          "poly": [
+            [
+              499,
+              1245
+            ],
+            [
+              1592,
+              1240
+            ],
+            [
+              1592,
+              1277
+            ],
+            [
+              499,
+              1282
+            ]
+          ],
+          "bbox_xyxy": [
+            499,
+            1240,
+            1592,
+            1282
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "users and operators. These are (1) the Ethiopian Sugar Corporation (ESC) for sugarcane",
+          "confidence": 0.9862971901893616,
+          "poly": [
+            [
+              442,
+              1280
+            ],
+            [
+              1590,
+              1278
+            ],
+            [
+              1590,
+              1315
+            ],
+            [
+              442,
+              1317
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1278,
+            1590,
+            1317
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "production and processing; (2) private investors for the production of commercial crops;",
+          "confidence": 0.9934127926826477,
+          "poly": [
+            [
+              441,
+              1317
+            ],
+            [
+              1594,
+              1314
+            ],
+            [
+              1594,
+              1351
+            ],
+            [
+              441,
+              1354
+            ]
+          ],
+          "bbox_xyxy": [
+            441,
+            1314,
+            1594,
+            1354
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "and (3) smallholder farms for subsistence farming and surplus production to be marketed.",
+          "confidence": 0.9869731664657593,
+          "poly": [
+            [
+              442,
+              1355
+            ],
+            [
+              1592,
+              1353
+            ],
+            [
+              1592,
+              1386
+            ],
+            [
+              442,
+              1388
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1353,
+            1592,
+            1388
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "However, the involvement of private investors in the irrigation sector remained low due",
+          "confidence": 0.9986113905906677,
+          "poly": [
+            [
+              442,
+              1390
+            ],
+            [
+              1589,
+              1389
+            ],
+            [
+              1589,
+              1423
+            ],
+            [
+              442,
+              1424
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1389,
+            1589,
+            1424
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "to the high investment cost of irrigation development. Hence, irrigation infrastructure",
+          "confidence": 0.985144317150116,
+          "poly": [
+            [
+              442,
+              1425
+            ],
+            [
+              1588,
+              1427
+            ],
+            [
+              1588,
+              1460
+            ],
+            [
+              442,
+              1458
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1425,
+            1588,
+            1460
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "development such as dams and big canals are carried out largely by the government within",
+          "confidence": 0.9801750183105469,
+          "poly": [
+            [
+              442,
+              1461
+            ],
+            [
+              1588,
+              1463
+            ],
+            [
+              1588,
+              1497
+            ],
+            [
+              442,
+              1495
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1461,
+            1588,
+            1497
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "the framework of its political and socio-economic development policies and programs.",
+          "confidence": 0.9934765696525574,
+          "poly": [
+            [
+              442,
+              1498
+            ],
+            [
+              1555,
+              1501
+            ],
+            [
+              1555,
+              1534
+            ],
+            [
+              442,
+              1531
+            ]
+          ],
+          "bbox_xyxy": [
+            442,
+            1498,
+            1555,
+            1534
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9872156977653503,
+      "bbox_xyxy": [
+        455,
+        1524,
+        1552,
+        2007
+      ],
+      "lines": [
+        {
+          "text": "Following the increasing demand for sugar production in the country both for do-",
+          "confidence": 0.9891737103462219,
+          "poly": [
+            [
+              498,
+              1535
+            ],
+            [
+              1592,
+              1537
+            ],
+            [
+              1592,
+              1570
+            ],
+            [
+              498,
+              1568
+            ]
+          ],
+          "bbox_xyxy": [
+            498,
+            1535,
+            1592,
+            1570
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "mestic and export markets, more and more emphasis was given to the expansion of sugar",
+          "confidence": 0.9907355904579163,
+          "poly": [
+            [
+              440,
+              1570
+            ],
+            [
+              1590,
+              1572
+            ],
+            [
+              1590,
+              1610
+            ],
+            [
+              440,
+              1608
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            1570,
+            1590,
+            1610
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "factories and sugarcane production during the last decade. To address the demand, the ESC",
+          "confidence": 0.9918970465660095,
+          "poly": [
+            [
+              440,
+              1608
+            ],
+            [
+              1590,
+              1609
+            ],
+            [
+              1590,
+              1646
+            ],
+            [
+              440,
+              1645
+            ]
+          ],
+          "bbox_xyxy": [
+            440,
+            1608,
+            1590,
+            1646
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "was established in 2010 as autonomous government enterprise to manage the production",
+          "confidence": 0.9880468249320984,
+          "poly": [
+            [
+              438,
+              1644
+            ],
+            [
+              1590,
+              1648
+            ],
+            [
+              1590,
+              1685
+            ],
+            [
+              438,
+              1681
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            1644,
+            1590,
+            1685
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "and processing of sugarcane. At present, the ESC is managing some 160,921 hectares of",
+          "confidence": 0.9919449090957642,
+          "poly": [
+            [
+              438,
+              1679
+            ],
+            [
+              1592,
+              1681
+            ],
+            [
+              1592,
+              1722
+            ],
+            [
+              438,
+              1720
+            ]
+          ],
+          "bbox_xyxy": [
+            438,
+            1679,
+            1592,
+            1722
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "irrigated land for sugarcane production distributed over eight projects area located in",
+          "confidence": 0.9881580471992493,
+          "poly": [
+            [
+              437,
+              1713
+            ],
+            [
+              1591,
+              1716
+            ],
+            [
+              1591,
+              1760
+            ],
+            [
+              437,
+              1757
+            ]
+          ],
+          "bbox_xyxy": [
+            437,
+            1713,
+            1591,
+            1760
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "different potential areas of the Ethiopia (Wonji Showa, Metahara, Fichaa, and Arjo Didessa",
+          "confidence": 0.9841928482055664,
+          "poly": [
+            [
+              437,
+              1747
+            ],
+            [
+              1592,
+              1753
+            ],
+            [
+              1592,
+              1800
+            ],
+            [
+              436,
+              1794
+            ]
+          ],
+          "bbox_xyxy": [
+            436,
+            1747,
+            1592,
+            1800
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "are old, others are operating far below their design capacities due to excessive delays in the",
+          "confidence": 0.9853298664093018,
+          "poly": [
+            [
+              431,
+              1889
+            ],
+            [
+              1592,
+              1902
+            ],
+            [
+              1591,
+              1952
+            ],
+            [
+              430,
+              1939
+            ]
+          ],
+          "bbox_xyxy": [
+            430,
+            1889,
+            1592,
+            1952
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9703196287155151,
+      "bbox_xyxy": [
+        455,
+        2012,
+        1552,
+        2147
+      ],
+      "lines": [
+        {
+          "text": "total irrigated area under medium and large-scale projects in the country.",
+          "confidence": 0.9818884134292603,
+          "poly": [
+            [
+              430,
+              1999
+            ],
+            [
+              1370,
+              2011
+            ],
+            [
+              1369,
+              2058
+            ],
+            [
+              429,
+              2046
+            ]
+          ],
+          "bbox_xyxy": [
+            429,
+            1999,
+            1370,
+            2058
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "However, the growing concern about schemes operated by the ESC is that focus has",
+          "confidence": 0.9807466268539429,
+          "poly": [
+            [
+              491,
+              2031
+            ],
+            [
+              1590,
+              2055
+            ],
+            [
+              1589,
+              2103
+            ],
+            [
+              490,
+              2079
+            ]
+          ],
+          "bbox_xyxy": [
+            490,
+            2031,
+            1590,
+            2103
+          ],
+          "reading_order": 1
+        }
+      ]
+    }
+  ]
+}

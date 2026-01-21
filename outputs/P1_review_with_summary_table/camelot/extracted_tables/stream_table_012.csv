@@ -1,0 +1,19 @@
+0,1,2,3,4
+TABLE 3,Summary of parameterizations with irrigation implemented as soil moisture modiﬁcation.,,,
+Threshold type,Physical quantity,Reference value,Depth aﬀected,References
+Invariant modiﬁcation,θs,100%,Whole column,"Lobell et al., 2006a; Evans and Zaitchik, 2008;"
+,,,,"Kanamaru and Kanamitsu, 2008; Kueppers et al.,"
+,,,,"2008; Lawston et al., 2015"
+,,100%,Upper 20 cm,"Adegoke et al., 2003"
+,,"40% (30,50,90)",Upper 30 cm,"Lobell et al., 2009"
+,,75%,Not mentioned,"Saeed et al., 2009"
+,,90%,Top-layer,"Tuinenburg et al., 2014; de Vrese and Hagemann,"
+,,,,2018
+,θfc,75%,-,"Chase et al., 1999"
+,,100%,Upper 1 meter,"Kueppers et al., 2007; Marcella and Eltahir, 2014"
+,,100%,Upper 40 cm,"Liu et al., 2021"
+,,50%,Top-layer,"Kanamaru and Kanamitsu, 2008"
+,,90%,Root-zone levels,"Sorooshian et al., 2011, 2012"
+,θ,4.8 · 10−5 mm s−1,Upper layer,"Kueppers et al., 2008"
+Soil Moisture availability,θat,0.45–0.5,Root-zone levels,"Sorooshian et al., 2011"
+,,Calibrated,Root-zone levels,"Leng et al., 2017"

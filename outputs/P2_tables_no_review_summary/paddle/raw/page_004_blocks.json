@@ -1,0 +1,2167 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 4,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 11,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9866845607757568,
+          "poly": [
+            [
+              23,
+              11
+            ],
+            [
+              326,
+              28
+            ],
+            [
+              324,
+              62
+            ],
+            [
+              21,
+              46
+            ]
+          ],
+          "bbox_xyxy": [
+            21,
+            11,
+            326,
+            62
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "4 of 16",
+          "confidence": 0.9942412376403809,
+          "poly": [
+            [
+              1528,
+              25
+            ],
+            [
+              1611,
+              25
+            ],
+            [
+              1611,
+              61
+            ],
+            [
+              1528,
+              61
+            ]
+          ],
+          "bbox_xyxy": [
+            1528,
+            25,
+            1611,
+            61
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Table 1. Chronological development of medium and large-scale irrigation [12].",
+          "confidence": 0.9848010540008545,
+          "poly": [
+            [
+              351,
+              163
+            ],
+            [
+              1286,
+              169
+            ],
+            [
+              1286,
+              206
+            ],
+            [
+              351,
+              200
+            ]
+          ],
+          "bbox_xyxy": [
+            351,
+            163,
+            1286,
+            206
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Year",
+          "confidence": 0.999970555305481,
+          "poly": [
+            [
+              111,
+              217
+            ],
+            [
+              175,
+              222
+            ],
+            [
+              172,
+              253
+            ],
+            [
+              108,
+              248
+            ]
+          ],
+          "bbox_xyxy": [
+            108,
+            217,
+            175,
+            253
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "1954",
+          "confidence": 0.9999479055404663,
+          "poly": [
+            [
+              342,
+              230
+            ],
+            [
+              400,
+              230
+            ],
+            [
+              400,
+              261
+            ],
+            [
+              342,
+              261
+            ]
+          ],
+          "bbox_xyxy": [
+            342,
+            230,
+            400,
+            261
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "1957",
+          "confidence": 0.9999895095825195,
+          "poly": [
+            [
+              563,
+              232
+            ],
+            [
+              622,
+              232
+            ],
+            [
+              622,
+              262
+            ],
+            [
+              563,
+              262
+            ]
+          ],
+          "bbox_xyxy": [
+            563,
+            232,
+            622,
+            262
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "1962",
+          "confidence": 0.9999281167984009,
+          "poly": [
+            [
+              788,
+              235
+            ],
+            [
+              848,
+              235
+            ],
+            [
+              848,
+              265
+            ],
+            [
+              788,
+              265
+            ]
+          ],
+          "bbox_xyxy": [
+            788,
+            235,
+            848,
+            265
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "1965",
+          "confidence": 0.9999830722808838,
+          "poly": [
+            [
+              1037,
+              236
+            ],
+            [
+              1095,
+              236
+            ],
+            [
+              1095,
+              266
+            ],
+            [
+              1037,
+              266
+            ]
+          ],
+          "bbox_xyxy": [
+            1037,
+            236,
+            1095,
+            266
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "1980",
+          "confidence": 0.9999834895133972,
+          "poly": [
+            [
+              1308,
+              236
+            ],
+            [
+              1367,
+              236
+            ],
+            [
+              1367,
+              267
+            ],
+            [
+              1308,
+              267
+            ]
+          ],
+          "bbox_xyxy": [
+            1308,
+            236,
+            1367,
+            267
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "1997",
+          "confidence": 0.9999778270721436,
+          "poly": [
+            [
+              1509,
+              235
+            ],
+            [
+              1571,
+              232
+            ],
+            [
+              1572,
+              263
+            ],
+            [
+              1511,
+              266
+            ]
+          ],
+          "bbox_xyxy": [
+            1509,
+            232,
+            1572,
+            266
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "Scheme name",
+          "confidence": 0.9999093413352966,
+          "poly": [
+            [
+              62,
+              259
+            ],
+            [
+              224,
+              271
+            ],
+            [
+              222,
+              299
+            ],
+            [
+              60,
+              287
+            ]
+          ],
+          "bbox_xyxy": [
+            60,
+            259,
+            224,
+            299
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Wonii Sugar estate",
+          "confidence": 0.9819916486740112,
+          "poly": [
+            [
+              268,
+              271
+            ],
+            [
+              472,
+              277
+            ],
+            [
+              472,
+              308
+            ],
+            [
+              267,
+              302
+            ]
+          ],
+          "bbox_xyxy": [
+            267,
+            271,
+            472,
+            308
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "Metahara sugar estate",
+          "confidence": 0.9997605085372925,
+          "poly": [
+            [
+              948,
+              280
+            ],
+            [
+              1179,
+              285
+            ],
+            [
+              1179,
+              312
+            ],
+            [
+              947,
+              307
+            ]
+          ],
+          "bbox_xyxy": [
+            947,
+            280,
+            1179,
+            312
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "Melka Werer Melka Sedi",
+          "confidence": 0.9983320832252502,
+          "poly": [
+            [
+              1206,
+              283
+            ],
+            [
+              1465,
+              280
+            ],
+            [
+              1465,
+              307
+            ],
+            [
+              1206,
+              311
+            ]
+          ],
+          "bbox_xyxy": [
+            1206,
+            280,
+            1465,
+            311
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Fincha",
+          "confidence": 0.9999659657478333,
+          "poly": [
+            [
+              1497,
+              279
+            ],
+            [
+              1579,
+              276
+            ],
+            [
+              1580,
+              306
+            ],
+            [
+              1498,
+              309
+            ]
+          ],
+          "bbox_xyxy": [
+            1497,
+            276,
+            1580,
+            309
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "Area (ha)",
+          "confidence": 0.9970223903656006,
+          "poly": [
+            [
+              85,
+              288
+            ],
+            [
+              203,
+              296
+            ],
+            [
+              200,
+              332
+            ],
+            [
+              83,
+              324
+            ]
+          ],
+          "bbox_xyxy": [
+            83,
+            288,
+            203,
+            332
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "80 years ago. However, public investment-supported development of irrigation was partic-",
+          "confidence": 0.9933633208274841,
+          "poly": [
+            [
+              427,
+              434
+            ],
+            [
+              1600,
+              437
+            ],
+            [
+              1600,
+              474
+            ],
+            [
+              427,
+              471
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            434,
+            1600,
+            474
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "3.2.1. Evolution of Water Resources and Irrigation Management Institutions",
+          "confidence": 0.9884958267211914,
+          "poly": [
+            [
+              426,
+              732
+            ],
+            [
+              1415,
+              735
+            ],
+            [
+              1415,
+              768
+            ],
+            [
+              426,
+              765
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            732,
+            1415,
+            768
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "1993, the IDD was dissolved and its responsibility transferred to MoNREP.",
+          "confidence": 0.9800764322280884,
+          "poly": [
+            [
+              418,
+              1460
+            ],
+            [
+              1393,
+              1463
+            ],
+            [
+              1392,
+              1504
+            ],
+            [
+              417,
+              1501
+            ]
+          ],
+          "bbox_xyxy": [
+            417,
+            1460,
+            1393,
+            1504
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "Department, which was largely responsible for the study, design, and implementation of",
+          "confidence": 0.9957771897315979,
+          "poly": [
+            [
+              404,
+              2059
+            ],
+            [
+              1596,
+              2076
+            ],
+            [
+              1595,
+              2120
+            ],
+            [
+              403,
+              2104
+            ]
+          ],
+          "bbox_xyxy": [
+            403,
+            2059,
+            1596,
+            2120
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "medium and large-scale irrigation projects.",
+          "confidence": 0.989162802696228,
+          "poly": [
+            [
+              405,
+              2104
+            ],
+            [
+              967,
+              2111
+            ],
+            [
+              967,
+              2145
+            ],
+            [
+              404,
+              2138
+            ]
+          ],
+          "bbox_xyxy": [
+            404,
+            2104,
+            967,
+            2145
+          ],
+          "reading_order": 20
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "header",
+      "score": 0.8895696401596069,
+      "bbox_xyxy": [
+        96,
+        144,
+        361,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 10,
+      "label": "number",
+      "score": 0.7505083680152893,
+      "bbox_xyxy": [
+        1486,
+        145,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 6,
+      "label": "figure_title",
+      "score": 0.9042025804519653,
+      "bbox_xyxy": [
+        388,
+        266,
+        1257,
+        294
+      ],
+      "lines": [
+        {
+          "text": "Sille state farm",
+          "confidence": 0.9995564222335815,
+          "poly": [
+            [
+              510,
+              275
+            ],
+            [
+              674,
+              277
+            ],
+            [
+              674,
+              306
+            ],
+            [
+              510,
+              303
+            ]
+          ],
+          "bbox_xyxy": [
+            510,
+            275,
+            674,
+            306
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Merti and Bilated",
+          "confidence": 0.9798963069915771,
+          "poly": [
+            [
+              719,
+              277
+            ],
+            [
+              914,
+              279
+            ],
+            [
+              913,
+              307
+            ],
+            [
+              719,
+              305
+            ]
+          ],
+          "bbox_xyxy": [
+            719,
+            277,
+            914,
+            307
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "table",
+      "score": 0.9743499159812927,
+      "bbox_xyxy": [
+        97,
+        314,
+        1551,
+        425
+      ],
+      "lines": [
+        {
+          "text": "5900",
+          "confidence": 0.9861438870429993,
+          "poly": [
+            [
+              342,
+              304
+            ],
+            [
+              402,
+              304
+            ],
+            [
+              402,
+              335
+            ],
+            [
+              342,
+              335
+            ]
+          ],
+          "bbox_xyxy": [
+            342,
+            304,
+            402,
+            335
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "1500",
+          "confidence": 0.9999840259552002,
+          "poly": [
+            [
+              562,
+              304
+            ],
+            [
+              622,
+              304
+            ],
+            [
+              622,
+              338
+            ],
+            [
+              562,
+              338
+            ]
+          ],
+          "bbox_xyxy": [
+            562,
+            304,
+            622,
+            338
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "1638, 1000",
+          "confidence": 0.9985442161560059,
+          "poly": [
+            [
+              757,
+              307
+            ],
+            [
+              877,
+              307
+            ],
+            [
+              877,
+              338
+            ],
+            [
+              757,
+              338
+            ]
+          ],
+          "bbox_xyxy": [
+            757,
+            307,
+            877,
+            338
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "11,000",
+          "confidence": 0.9998886585235596,
+          "poly": [
+            [
+              1026,
+              307
+            ],
+            [
+              1102,
+              307
+            ],
+            [
+              1102,
+              340
+            ],
+            [
+              1026,
+              340
+            ]
+          ],
+          "bbox_xyxy": [
+            1026,
+            307,
+            1102,
+            340
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "10,000",
+          "confidence": 0.999925434589386,
+          "poly": [
+            [
+              1294,
+              311
+            ],
+            [
+              1374,
+              308
+            ],
+            [
+              1375,
+              345
+            ],
+            [
+              1295,
+              348
+            ]
+          ],
+          "bbox_xyxy": [
+            1294,
+            308,
+            1375,
+            348
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "8500",
+          "confidence": 0.999956488609314,
+          "poly": [
+            [
+              1505,
+              308
+            ],
+            [
+              1568,
+              305
+            ],
+            [
+              1570,
+              338
+            ],
+            [
+              1507,
+              341
+            ]
+          ],
+          "bbox_xyxy": [
+            1505,
+            305,
+            1570,
+            341
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "As highlighted above, modern irrigation development started in Awash Basin more",
+          "confidence": 0.9979069232940674,
+          "poly": [
+            [
+              492,
+              394
+            ],
+            [
+              1599,
+              399
+            ],
+            [
+              1599,
+              436
+            ],
+            [
+              492,
+              432
+            ]
+          ],
+          "bbox_xyxy": [
+            492,
+            394,
+            1599,
+            436
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9842066764831543,
+      "bbox_xyxy": [
+        455,
+        470,
+        1554,
+        709
+      ],
+      "lines": [
+        {
+          "text": "ularly stimulated following the drought and famine in 1973 and 1984. As a result, in ad-",
+          "confidence": 0.9835085272789001,
+          "poly": [
+            [
+              428,
+              472
+            ],
+            [
+              1600,
+              473
+            ],
+            [
+              1600,
+              507
+            ],
+            [
+              428,
+              506
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            472,
+            1600,
+            507
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "dition to communal irrigated farms, large numbers of state farms were created through",
+          "confidence": 0.9952449202537537,
+          "poly": [
+            [
+              428,
+              508
+            ],
+            [
+              1594,
+              513
+            ],
+            [
+              1594,
+              547
+            ],
+            [
+              427,
+              542
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            508,
+            1594,
+            547
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "the nationalization of most of the private irrigation farms in the 1970s and 1980s. Al-",
+          "confidence": 0.9916349649429321,
+          "poly": [
+            [
+              428,
+              548
+            ],
+            [
+              1597,
+              550
+            ],
+            [
+              1597,
+              581
+            ],
+            [
+              428,
+              579
+            ]
+          ],
+          "bbox_xyxy": [
+            428,
+            548,
+            1597,
+            581
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "though with slow pace, specifically in the 1990s, the irrigation development has continued",
+          "confidence": 0.9933529496192932,
+          "poly": [
+            [
+              427,
+              586
+            ],
+            [
+              1593,
+              588
+            ],
+            [
+              1593,
+              622
+            ],
+            [
+              427,
+              620
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            586,
+            1593,
+            622
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "to expand to other river basins.",
+          "confidence": 0.9724226593971252,
+          "poly": [
+            [
+              426,
+              625
+            ],
+            [
+              839,
+              622
+            ],
+            [
+              839,
+              656
+            ],
+            [
+              427,
+              659
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            622,
+            839,
+            659
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "3.2. Irrigation Management",
+          "confidence": 0.9992467164993286,
+          "poly": [
+            [
+              430,
+              693
+            ],
+            [
+              764,
+              693
+            ],
+            [
+              764,
+              724
+            ],
+            [
+              430,
+              724
+            ]
+          ],
+          "bbox_xyxy": [
+            430,
+            693,
+            764,
+            724
+          ],
+          "reading_order": 5
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "paragraph_title",
+      "score": 0.8942288756370544,
+      "bbox_xyxy": [
+        458,
+        740,
+        780,
+        768
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "paragraph_title",
+      "score": 0.8737696409225464,
+      "bbox_xyxy": [
+        456,
+        779,
+        1391,
+        808
+      ],
+      "lines": [
+        {
+          "text": "Similar to modern irrigation development, the water management institution has a",
+          "confidence": 0.9876890182495117,
+          "poly": [
+            [
+              490,
+              778
+            ],
+            [
+              1593,
+              782
+            ],
+            [
+              1593,
+              816
+            ],
+            [
+              490,
+              812
+            ]
+          ],
+          "bbox_xyxy": [
+            490,
+            778,
+            1593,
+            816
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9867459535598755,
+      "bbox_xyxy": [
+        455,
+        822,
+        1552,
+        1164
+      ],
+      "lines": [
+        {
+          "text": "short history in Ethiopia. The chronological evolution of the water institutions is depicted",
+          "confidence": 0.9897825717926025,
+          "poly": [
+            [
+              427,
+              815
+            ],
+            [
+              1593,
+              816
+            ],
+            [
+              1593,
+              856
+            ],
+            [
+              427,
+              855
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            815,
+            1593,
+            856
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "in Figure 2. The first water sector institution, Water Resources Department, was created in",
+          "confidence": 0.9879704713821411,
+          "poly": [
+            [
+              426,
+              854
+            ],
+            [
+              1593,
+              855
+            ],
+            [
+              1593,
+              893
+            ],
+            [
+              426,
+              892
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            854,
+            1593,
+            893
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "1956 under the then Ministry of Public Works and Communication. Since then, the water",
+          "confidence": 0.9836413264274597,
+          "poly": [
+            [
+              425,
+              892
+            ],
+            [
+              1595,
+              891
+            ],
+            [
+              1595,
+              931
+            ],
+            [
+              425,
+              932
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            891,
+            1595,
+            932
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "sector in Ethiopia has passed through considerable institutional changes and development.",
+          "confidence": 0.9942688941955566,
+          "poly": [
+            [
+              427,
+              931
+            ],
+            [
+              1597,
+              931
+            ],
+            [
+              1597,
+              971
+            ],
+            [
+              427,
+              971
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            931,
+            1597,
+            971
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Before a Federal Political administrative system was established in early 1991, the public",
+          "confidence": 0.9890188574790955,
+          "poly": [
+            [
+              426,
+              967
+            ],
+            [
+              1593,
+              968
+            ],
+            [
+              1593,
+              1009
+            ],
+            [
+              426,
+              1008
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            967,
+            1593,
+            1009
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "agencies involved in the water sector include the Valley Development Studies Authority",
+          "confidence": 0.9887122511863708,
+          "poly": [
+            [
+              425,
+              1007
+            ],
+            [
+              1594,
+              1006
+            ],
+            [
+              1594,
+              1050
+            ],
+            [
+              425,
+              1051
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1006,
+            1594,
+            1051
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "(1962), National Water Resources Commission (1971), Ethiopian Water Resource Authority",
+          "confidence": 0.9794232845306396,
+          "poly": [
+            [
+              425,
+              1043
+            ],
+            [
+              1594,
+              1046
+            ],
+            [
+              1594,
+              1089
+            ],
+            [
+              424,
+              1086
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1043,
+            1594,
+            1089
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "(1975), Valley Agricultural Development Authority (1977), and National Water Resources",
+          "confidence": 0.9812483787536621,
+          "poly": [
+            [
+              425,
+              1085
+            ],
+            [
+              1593,
+              1084
+            ],
+            [
+              1593,
+              1125
+            ],
+            [
+              425,
+              1126
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1084,
+            1593,
+            1126
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Commission (1981).",
+          "confidence": 0.9945261478424072,
+          "poly": [
+            [
+              427,
+              1128
+            ],
+            [
+              679,
+              1123
+            ],
+            [
+              679,
+              1157
+            ],
+            [
+              428,
+              1162
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            1123,
+            679,
+            1162
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9862914085388184,
+      "bbox_xyxy": [
+        455,
+        1170,
+        1552,
+        1477
+      ],
+      "lines": [
+        {
+          "text": "As indicated in the previous section, the early history of irrigation development",
+          "confidence": 0.9878832101821899,
+          "poly": [
+            [
+              485,
+              1158
+            ],
+            [
+              1593,
+              1163
+            ],
+            [
+              1593,
+              1203
+            ],
+            [
+              485,
+              1198
+            ]
+          ],
+          "bbox_xyxy": [
+            485,
+            1158,
+            1593,
+            1203
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "in Ethiopia was dominated by small-scale irrigation. The development of small-scale",
+          "confidence": 0.9922012090682983,
+          "poly": [
+            [
+              425,
+              1199
+            ],
+            [
+              1591,
+              1201
+            ],
+            [
+              1591,
+              1239
+            ],
+            [
+              425,
+              1237
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1199,
+            1591,
+            1239
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "irrigation was carried out by different institutions such as the surface water division of the",
+          "confidence": 0.9822785258293152,
+          "poly": [
+            [
+              426,
+              1239
+            ],
+            [
+              1592,
+              1239
+            ],
+            [
+              1592,
+              1276
+            ],
+            [
+              426,
+              1276
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            1239,
+            1592,
+            1276
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "soil and water conservation department under the then Ministry of Agriculture (MoA). In",
+          "confidence": 0.9880018830299377,
+          "poly": [
+            [
+              424,
+              1278
+            ],
+            [
+              1591,
+              1278
+            ],
+            [
+              1591,
+              1315
+            ],
+            [
+              424,
+              1315
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1278,
+            1591,
+            1315
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "1984, the division was restructured to the Irrigation Development Department (IDD) under",
+          "confidence": 0.9928174614906311,
+          "poly": [
+            [
+              423,
+              1314
+            ],
+            [
+              1591,
+              1317
+            ],
+            [
+              1591,
+              1351
+            ],
+            [
+              423,
+              1348
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            1314,
+            1591,
+            1351
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "the MoA, which was entrusted with the planning and construction of small-scale irrigation",
+          "confidence": 0.9810802340507507,
+          "poly": [
+            [
+              423,
+              1350
+            ],
+            [
+              1591,
+              1354
+            ],
+            [
+              1591,
+              1391
+            ],
+            [
+              422,
+              1387
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            1350,
+            1591,
+            1391
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "that was mostly utilized by agricultural co-operatives [13]. With the establishment of the",
+          "confidence": 0.9836510419845581,
+          "poly": [
+            [
+              422,
+              1388
+            ],
+            [
+              1591,
+              1391
+            ],
+            [
+              1591,
+              1428
+            ],
+            [
+              421,
+              1425
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            1388,
+            1591,
+            1428
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Ministry of Natural Resources Development and Environmental Protection (MoNREP) in",
+          "confidence": 0.9821938276290894,
+          "poly": [
+            [
+              420,
+              1423
+            ],
+            [
+              1591,
+              1427
+            ],
+            [
+              1591,
+              1467
+            ],
+            [
+              419,
+              1463
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            1423,
+            1591,
+            1467
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.983665943145752,
+      "bbox_xyxy": [
+        455,
+        1484,
+        1555,
+        1722
+      ],
+      "lines": [
+        {
+          "text": "Based on the new federal administrative structure implemented in 1991, the regional",
+          "confidence": 0.9892520904541016,
+          "poly": [
+            [
+              476,
+              1499
+            ],
+            [
+              1590,
+              1505
+            ],
+            [
+              1590,
+              1541
+            ],
+            [
+              476,
+              1535
+            ]
+          ],
+          "bbox_xyxy": [
+            476,
+            1499,
+            1590,
+            1541
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "bureaus of natural resources development took over the responsibility to undertake small-",
+          "confidence": 0.9840332269668579,
+          "poly": [
+            [
+              417,
+              1539
+            ],
+            [
+              1592,
+              1544
+            ],
+            [
+              1592,
+              1578
+            ],
+            [
+              416,
+              1573
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            1539,
+            1592,
+            1578
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "scale irrigation development. MoNREP was dissolved in 1995, and its responsibility was",
+          "confidence": 0.9923324584960938,
+          "poly": [
+            [
+              417,
+              1577
+            ],
+            [
+              1588,
+              1582
+            ],
+            [
+              1588,
+              1616
+            ],
+            [
+              416,
+              1611
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            1577,
+            1588,
+            1616
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "shared among MoA and the newly established Ministry of Water Resources (MoWR).",
+          "confidence": 0.9697122573852539,
+          "poly": [
+            [
+              415,
+              1611
+            ],
+            [
+              1593,
+              1618
+            ],
+            [
+              1593,
+              1654
+            ],
+            [
+              414,
+              1647
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            1611,
+            1593,
+            1654
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "While the MoWR had a regulatory role in water resources development and management,",
+          "confidence": 0.9812367558479309,
+          "poly": [
+            [
+              413,
+              1649
+            ],
+            [
+              1592,
+              1657
+            ],
+            [
+              1592,
+              1694
+            ],
+            [
+              412,
+              1686
+            ]
+          ],
+          "bbox_xyxy": [
+            412,
+            1649,
+            1592,
+            1694
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "regional bureaus of Water, Mines, and Energy Resources Development were responsible",
+          "confidence": 0.9916722774505615,
+          "poly": [
+            [
+              413,
+              1687
+            ],
+            [
+              1589,
+              1692
+            ],
+            [
+              1589,
+              1733
+            ],
+            [
+              412,
+              1728
+            ]
+          ],
+          "bbox_xyxy": [
+            412,
+            1687,
+            1589,
+            1733
+          ],
+          "reading_order": 5
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.986478865146637,
+      "bbox_xyxy": [
+        456,
+        1729,
+        1555,
+        2073
+      ],
+      "lines": [
+        {
+          "text": "for small-scale irrigation development in their respective regions.",
+          "confidence": 0.9982643723487854,
+          "poly": [
+            [
+              412,
+              1723
+            ],
+            [
+              1265,
+              1726
+            ],
+            [
+              1265,
+              1766
+            ],
+            [
+              411,
+              1763
+            ]
+          ],
+          "bbox_xyxy": [
+            411,
+            1723,
+            1265,
+            1766
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Accordingly, the MoWR has facilitated the issuance of several water resources regula-",
+          "confidence": 0.9831477403640747,
+          "poly": [
+            [
+              470,
+              1755
+            ],
+            [
+              1595,
+              1767
+            ],
+            [
+              1594,
+              1811
+            ],
+            [
+              470,
+              1799
+            ]
+          ],
+          "bbox_xyxy": [
+            470,
+            1755,
+            1595,
+            1811
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "tory frameworks, namely Water Resources Management Policy (1999), Water Resources",
+          "confidence": 0.9894313216209412,
+          "poly": [
+            [
+              409,
+              1795
+            ],
+            [
+              1591,
+              1804
+            ],
+            [
+              1591,
+              1848
+            ],
+            [
+              408,
+              1839
+            ]
+          ],
+          "bbox_xyxy": [
+            408,
+            1795,
+            1591,
+            1848
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Management Proclamation (2000), National Water Resources Development Strategy (2001),",
+          "confidence": 0.9951107501983643,
+          "poly": [
+            [
+              407,
+              1830
+            ],
+            [
+              1595,
+              1841
+            ],
+            [
+              1595,
+              1889
+            ],
+            [
+              406,
+              1877
+            ]
+          ],
+          "bbox_xyxy": [
+            406,
+            1830,
+            1595,
+            1889
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Fifteen year (20022016) Water Resources Development Program (2002), and Water Re-",
+          "confidence": 0.9922952651977539,
+          "poly": [
+            [
+              408,
+              1869
+            ],
+            [
+              1595,
+              1882
+            ],
+            [
+              1595,
+              1926
+            ],
+            [
+              407,
+              1913
+            ]
+          ],
+          "bbox_xyxy": [
+            407,
+            1869,
+            1595,
+            1926
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "sources Regulation (2005). In 2005, the MoWR was restructured to encompass the energy",
+          "confidence": 0.9725490808486938,
+          "poly": [
+            [
+              405,
+              1905
+            ],
+            [
+              1594,
+              1920
+            ],
+            [
+              1593,
+              1970
+            ],
+            [
+              404,
+              1955
+            ]
+          ],
+          "bbox_xyxy": [
+            404,
+            1905,
+            1594,
+            1970
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "sector and named as the Ministry of Water and Energy (MoWE). In all these regulatory",
+          "confidence": 0.9839361310005188,
+          "poly": [
+            [
+              405,
+              1943
+            ],
+            [
+              1594,
+              1960
+            ],
+            [
+              1593,
+              2008
+            ],
+            [
+              404,
+              1991
+            ]
+          ],
+          "bbox_xyxy": [
+            404,
+            1943,
+            1594,
+            2008
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "frameworks and development programs, irrigation expansion was given due attention.",
+          "confidence": 0.9901862740516663,
+          "poly": [
+            [
+              406,
+              1985
+            ],
+            [
+              1597,
+              2001
+            ],
+            [
+              1596,
+              2044
+            ],
+            [
+              405,
+              2028
+            ]
+          ],
+          "bbox_xyxy": [
+            405,
+            1985,
+            1597,
+            2044
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Under both Ministries (MoWR and MoWE), irrigation was represented by the Irrigation",
+          "confidence": 0.9922410249710083,
+          "poly": [
+            [
+              405,
+              2021
+            ],
+            [
+              1593,
+              2039
+            ],
+            [
+              1592,
+              2080
+            ],
+            [
+              404,
+              2062
+            ]
+          ],
+          "bbox_xyxy": [
+            404,
+            2021,
+            1593,
+            2080
+          ],
+          "reading_order": 8
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+model,duetotheuncertaintiesrelatedtowaterextractionand,4.1. Process representation
+,
+model limitations. Only Leng et al. (2014), and later Leng,
+,
+etal.(2017),includetheirrigationwaterextractionwithinthe,Whencomparingtheavailableparameterizationsregarding
+,
+numerical scheme. Leng et al. (2014) use the USGS census,their irrigation delivery method, one distinctive characteristic
+,
+data, and later the Siebert and Döll (2010) dataset, for water,is the variable to which the irrigation water WI is applied to.
+withdrawaltodefinetheratioofirrigatedwaterextractedfrom,Figure1 provides a conceptualization of the delivery methods
+,
+,
+surfacewater(f )andgroundwater(f )withrespecttothe
+srf grd,fromthemodelingperspective,whichshowswhereinthemodel
+totalamount.Toallowfordifferentsourcesofwaterwithdrawal,,domain the water could be applied with respect to the plant
+,
+therespectivewaterstorage(Ssrc)isupdatedforeveryirrigated,canopy.
+gridpointbysubtractingwateramount(WI)weighingitsratio:,Inmicro-irrigation(cf.Section2.1)theapplicationofwater
+′,iswithinthediameterofthecanopy,i.e.,intheorderofmeters.
+S =Ssrc −WI ·fsrc (8)
+src,However, numerical models have grid sizes that are larger by
+,
+where src can stand for either groundwater (grd) or surface,atleasttwoordersofmagnitudeandcan,thus,notrealistically
+sources(srf).Forthegroundwaterextraction,Lengetal.(2017),representthisprocess.
+update the water table with the weighted irrigation water,While the temporal scales of irrigation can also not be
+extraction(W ·f )dividedbythesoilyield(S ).Further,the,represented explicitly, the quick water release associated with
+I src y,
+weightedirrigationextractionisincludedalsointhewaterstored,surfaceirrigationcanbeemulatedbyscalingthewateramount
+intheunconfinedaquiferbelowthelowestmodellevelandthe,with a specific time, as shown in Section 3.3.2 by Leng et al.
+totalgroundwaterstorage(Lengetal.,2014).,(2017). When the temporal aspect of the water release is not
+The extraction scheme allows also for non-local water,considered, the surface and the sprinkler delivery methods,
+extraction,withinthesamebasin(g),incasethesurfacewater,thatapplythewaterbelowthefoliage,canbebothinterpreted
+requirement cannot be met locally. This is done by updating,as water introduced below the crop canopy or directly onto
+(Equation8),forS ,as:
+srf,the surface (Figure1, Process A). In this case, the irrigation
+′,techniques can be represented with the parameterizations in
+S =max(S −WI ·f ,0) (9)
+srf srf srf,Section3.3.2thatdonotincludethecanopyinterception.
+,When sprinkler water is injected above the plant foliage,
+,
+To determine the new extraction in the n non-irrigated grid,
+,it could be implemented either by process B or C in
+,
+pointsintheg-basin,onlyifEquation(8)forthesurfacesources,
+,Figure1 depending on the distance between the delivery
+,
+isnegative,as:,
+,system and the canopy. If the water is applied close to
+abs(S −WI ·fsrc)
+S ′ =S − srf (10),the foliage (process B), water loss might be minimal with
+srf,g srf,g n,respect to wind or droplet evaporation effects (Bjorneberg,
+,
+,
+′
+IftheS isnotsufficienttosatisfytherequirements,thewater,2013). If the distance is larger, droplet evaporation and
+srf,g,
+,
+isassumedtocomefromothersources,e.g.,inter-basin,butthe,wind advection become relevant, such that the water is
+,
+,
+actualmethodisnotspecified.,subject to rain water micro-physical atmospheric processes
+,
+,(Figure1, Process C) as described in Section 3.3.3. It
+,
+,could similarly be seen as an atmospheric water source
+,
+4. Representation of irrigation in,
+,(Section 3.3.4) as atmospheric water vapor is directly
+,
+models,affected.
+,For the subirrigation delivery method (Figure1, Process
+,
+When anthropogenic processes such as irrigation are,D), a water table height change is induced. Specifically,
+,
+included in a numerical model, a complex requirement is to,the water table is brought to the surface level or the
+,
+have representation that is suitable and generic enough. We,vertical location of the saturated area within the soil is
+,
+discuss this issue from three perspectives. First, the process,altered as described by the parameterizations in Section
+,
+representation itself, which is not always clear and straight-,3.3.1. However, it should be noted that for several crop
+,
+forward for some of the existing irrigation parameterizations,types a saturated soil can cause issues for the plants’ health
+,
+withregardtohowtheserelatetotheactualirrigationtechniques,(Bradley et al., 2017). The consequence of too much water
+,
+as described in Section 2.1. Second, scale representation plays,in and over the soil could, thus, result in severe losses. This
+,
+an important role. As irrigation impacts the soil moisture,,holds even for rice fields, which are tolerant to flood/water
+,
+the soil moisture variations can span across multiple spatial,excess but suffer the consequences of anaerobic environment
+and temporal scales, from the order of one meter to 106 km,conditions (Panda and Barik, 2021). Furthermore, a lowering
+,
+and 1 min to more than a decade, respectively (Seneviratne,of the water table through effective drainage can overall
+,
+etal.,2010).Third,physicalconsiderationswithrespecttothe,improve the crop-yield (Gramlich et al., 2018; Manik et al.,
+,
+interactionofsoilmoisturecontent,plantsandirrigation.,2019).
+,
+FrontiersinWater 12,frontiersin.org

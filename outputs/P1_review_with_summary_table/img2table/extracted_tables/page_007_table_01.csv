@@ -1,0 +1,11 @@
+0,1,2,3,4
+Area considered,Irrigation rate (WI mm,),Data source,References
+California Central Valley,2.6 · 10−5 a,,"Siebert and Döll, 2010","Lo and Famiglietti, 2013"
+,4.8225 · 10−5,,Not mentioned,"Kueppers et al., 2008"
+Central Great Plains,1.4 · 10−3,,Not mentioned,"Lawston et al., 2015"
+Ogalla Aquifer,2 · 10−4,,Not mentioned,"Harding et al., 2015"
+Continental United States,2 · 10−4,,Not mentioned,"Lu et al., 2015"
+,5 · 10−3,,KGS and communication b,"Pei et al., 2016"
+Northern Italy,5.2 · 10−4,,Eurostat,"Valmassoi et al., 2020c"
+Turkey,1.3 · 10−4,,Derived,"Ozdogan et al., 2006"
+Global,Map,,"Wisser et al., 2010","Krakauer et al., 2016"

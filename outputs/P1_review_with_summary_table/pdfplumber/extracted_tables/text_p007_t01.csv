@@ -1,0 +1,115 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+threshold(SMA,θat)definedas:,Otherphysicalthresholdshavebeenmentionedinliterature
+θ−θwp
+θ =,butwithoutfurtherjustification,suchasnotactivatingirrigation
+o
+at θ −θwp (3)
+fc,(i)whenthesoiltemperatureisbelow12 C(arbitrarilydefined
+by Kueppers et al., 2008), (ii) during large solar radiation flux
+,−2
+whichleadstoadifferentformulationofθ andp.Thisallows,periods, i.e., solar radiation less than 50Wm (arbitrarily
+c,
+for a tuning of the SMA to a specific case study, instead of,definedbySorooshianetal.,2011),(iii)untilthefirst10cmsoil
+,o
+usingcropandsoiltypes,whosedatasethaveacoarseresolution,temperatureexceed5 Cintheprevious24h,(iv)untilthedaily
+,o
+(e.g., MIRCA2000 Table1). In literature, the following SMA,mean2-metertemperatureisabove8 C(Peietal.,2016).
+,
+,
+thresholdsareused:0.5byOzdoganetal.(2009)andQianetal.,
+,
+(2013), 0.2 by Pei et al. (2014) and Pei et al. (2016), 0.1 by,
+,
+Lawstonetal.(2015)2,0.6byYangetal.(2016)3,and0.47–0.5,3.2. Irrigation water calculation
+,
+,
+and0.45,0.5–0.6,aswellas0.55and0.48bySorooshianetal.,
+(2011),Liuetal.(2021),andWuetal.(2018)4,respectively.The,Ashighlightedinmultiplestudies,theamountofirrigation
+,
+,
+thresholdsareevaluatedfordifferentsoillayersinthestudies:,waterappliedplaysacrucialroleintheimpact.Dependingon
+,
+,
+Peietal.(2016)evaluateitagainstthesecondsoillayer(10–40,thethresholdandtimingdefinition,themethodsfoundcanbe
+,
+,
+cm),Ozdoganetal.(2009),Sorooshianetal.(2011),Yangetal.,groupedinto(i)a-prioriestimationand(ii)drivenbythesoil
+,
+,
+(2016),andLawstonetal.(2015)usetheroot-zonelevels,and,conditions.
+,
+,
+Wuetal.(2018)andLiuetal.(2021)applythethresholdstothe,
+,
+,
+weightedaverageofthefirsttwosoillayers.,
+,3.2.1.A-prioriirrigationwateramount
+It should be mentioned that Decker et al. (2017) apply a,
+,
+,Several studies use estimates provided by local, national
+variationofEquation(3),andinsteadofthefieldcapacity,they,
+,orinternationalentitiesgivenasannualaccumulatedvolumes.
+use the saturation soil moisture (θ ). There, threshold value,
+s,Examplesfromexistingstudiesforthesourcesincludebutare
+θ =0.5hastobemetinallthelayersintheroot-zone.,
+at,notlimitedtotheKansasGeologicalSurvey(Peietal.,2016),the
+The wide range of possible SMA threshold values leads to,
+,United States Geological Survey (USGS) water use report and
+theinclusionofregimesthatcouldbealreadyconsideredwater,
+,
+,province-level data for China from the China State Statistical
+stress for some crops (Brouwer et al., 1985b). The target soil,
+,
+,Bureau (Sacks et al., 2009), or Eurostat (European Union)
+moisturevalueisaimedtopreventplantwaterstresswithinthe,
+,
+,irrigationwateramountreports(Valmassoietal.,2020a).Other
+modeling framework. Therefore, Leng et al. (2013) formulates,
+,
+5,authorsuseirrigationwateramountreconstructions,whichare
+the new threshold as the weighted average of the critical soil,
+,
+,createdcombiningirrigationmapsandofflinemodels,e.g.,Cook
+moistureandthesaturationoneforeachsoillayeras:,
+,
+,et al. (2015) with the dataset by Wisser et al. (2010). These
+,
+= · + − ·,reconstructedamountsareprovidedasirrigationrates.
+θ at,i Firr θ s,i (1 Firr) θ c,i (4),
+,In general, these data are transferred onto an irrigation
+,· −2· −1
+where θ s,i is the i-th layer soil moisture saturation. The Firr,depth(mm m y )byassumingthatirrigationtakesplace
+is used as a weighting factor, between 0 and 1, to determine,in a certain fraction of the area, e.g., the area equipped for
+therelevanceofthetwothresholds.Atthelimits,thescheme’s,irrigation. More specifically, Valmassoi et al. (2020a) assume
+assumptionfallsbacktothesaturationsoilmoisture(Firr = 1),thattheannualamountisappliedonlyoverthesummercrop
+andFirr = 0attheotherlimitwhenplantsstartexperiencing,−1(VI),which
+season,thus,derivinganirrigationdepthinmmd
+waterstress.,−1)as:
+isexpressedasirrigationwaterrate(WI,inmms
+,
+,VI
+W = T (5)
+2 They refer to 10% above the “stress point,” citing Equation 3 as,I I
+hI
+threshold calculation. However, from the formulation it could not be,
+,
+deducedwhether10%abovethe0.5originalthreshold,or10%abovethe,where hI is the aforementioned number of consecutive hours
+wiltingpointisintendedasstresspoint.,andTI thenumberofdaysbetweenoneirrigationapplication
+3 Thethresholdisthereincorrectlycalled“relativesoilmoisture,”which,andthenext,incontrasttomostotherstudies,whereirrigation
+usuallyreferstothepercentageratioofthevolumetricsoilwatercontent,isappliedeveryday(TI =1).
+againstthefieldcapacity(e.g.,Suetal.,2003).,Overall,studiesreportvariousirrigationratesfordifferent
+,
+4 The study does not indicate how the two thresholds are applied,regions.AsummaryofthesearepresentedinTable2.
+,
+differentlyinthetwocropregionsofthedomain.,The irrigation rate values span across two orders of
+,
+5 To harmonize the equations in this paper, the derivation of this,magnitudeoveranareathatcoversthecontinentalUnitedStates
+,
+irrigationschemeisre-writtentousethevolumetricwatercontent(θ),or parts of it. It should be noted that some studies cover the
+,
+insteadoftheabsolutewatercontent(WorS),followingSeneviratneetal.,same region but for sometimes very different periods, from
+,
+(2010).,differentdecadesormulti-yeardatasetstoshorthigh-resolution
+,
+FrontiersinWater 07,frontiersin.org

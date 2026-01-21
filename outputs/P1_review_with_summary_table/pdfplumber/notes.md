@@ -1,0 +1,5 @@
+- Library: pdfplumber
+- PDF: P1_review_with_summary_table.pdf
+- Attempts:
+  - lines: extracted=0, saved=0
+  - text: extracted=23, saved=23

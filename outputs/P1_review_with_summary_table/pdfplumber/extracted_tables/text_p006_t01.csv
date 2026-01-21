@@ -1,0 +1,98 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+aspecificcrop-typeandwhetheritisirrigatedornot.Irrigation,irrigationisonlyendedincombinationwithotherthresholds.
+,
+canthenbeappliedonlytotheirrigatedportionofthegridcell,For example, Valmassoi et al. (2020a) include an arbitrary
+,
+fractiononwhichcropsaregrown.Ifthereisaresidualinthe,beginning and end of irrigation, indicated in terms of Julian
+,
+crop partitioning within each grid cell, it is considered as an,days. Further, irrigation does not need to be applied each day
+,
+unmanagedcropanditistreatedasaC3-typeofgrass.Another,despite a potential plant water stress. For example, Evans and
+,
+way to include specific vegetation properties is by including,Zaitchik (2008) and Valmassoi et al. (2020a) apply irrigation
+,
+irrigatedcropsspecificvegetationparameters,whichhavealow,onceevery7days,andevery7,3and1days,respectively.This
+,
+roughness length, low stomatal resistance, leaf area similar to,deviating timing enables the parameterization to allow for a
+,
+grasslandandforest,andalbedosimilartodeciduousbroad-leaf,moreflexibleandmorerealisticapproach.
+,
+trees.ThishasbeendonebyKueppersetal.(2007)intheirstudy,
+,
+usingtheRegCM3numericalmodel(Sethetal.,2007).,
+,
+Aside from using the vegetation and its parameters as,3.1.3.Physicalthreshold
+constantintime,itcanbeusedtoregulateirrigationaswell.For,The previously mentioned irrigation thresholds do not
+example, the Leaf Area Index (LAI) or the greenness fraction,explicitly account for the plant water stress. However, this
+(GF)canbeusedtodetermineiftheplantgrowingseasonhas,characteristiciscrucialandwouldcontributetoamorerealistic
+started or ended. These spatial data are usually an invariant,representation of the irrigation process. In general, plants do
+geographicalfieldwithanannualcycle.Lengetal.(2013)and,not suffer water stress when the soil moisture falls below field
+Luetal.(2015)startirrigationaftertheleafemergence(LAI >,capacity1,becausetherootsareabletopartlyextractthewater
+2 −2,
+0.1m m ),butSacksetal.(2009)irrigatesonlywhentheLAI,bound by the soil matrix, so there is Ready Available Water
+exceeds the 80% threshold for cropland areas. Ozdogan et al.,(RAW) for the plants. The lower limit of the extraction is the
+(2009)insteadcreateaGF-thresholdtoaccountfortheirrigation,wiltingpoint(θwp),atwhichwaterissostronglyboundtothe
+,
+season,as:,soilmatrixthattherootsarenotabletoextractit.Theamountof
+,
+,
+= + · −,waterthatthesoilcanhold(andplantscanextract)betweenthe
+GF GFmin 0.4 (GFmax GFmin) (1)
+th,
+,fieldcapacityandthewiltingpointistheTotalAvailableWater
+,
+This means that the season begins and ends when 40% of the,(TAW). The ratio between RAW and TAW is defined as the
+annual range (GFmax − GFmin) is reached, which allows to,depletionfraction(p),whichdependsoncroptypeandsoiltype.
+include areas with very different growing season in the same,Giventhisdefinition,pcanbeusedtodeterminewhentheplant
+,
+simulation.,suffers water stress and thus relates to a specific soil moisture
+,value,calledcriticalsoilmoisture(θc):
+,
+,
+3.1.2.Temporalconstraint,= ·
+,θc p θ (2)
+fc
+A popular approach to activate the irrigation,
+,
+parameterizationistoemploytemporalconstraints.Withinthis,
+,Valuesofpcanlargelyvarydependingontheplanttypeandneed
+framework,aspecifichourofthedayischosentoactivatethe,
+,to be corrected for high evapotranspiration regimes (Brouwer
+irrigation(e.g.,Adegokeetal.,2003;Lengetal.,2013;Valmassoi,
+,etal.,1985b)5mm/d.However,avalueofp=0.5iscommonly
+et al., 2020a). This time can be used to either set a model,
+,usedformanycrops(Brouweretal.,1985b).Manabeetal.(1965)
+prognosticvariabletoatargetvalue,e.g.,Adegokeetal.(2003),
+,and Seneviratne et al. (2010) use higher values of p, namely,
+wheresoilmoistureissettosaturationat00UTC,ortocombine,
+itwithadurationinhours.Thelatterapproachisexpressedas,0.5to0.8and0.75,respectively,withhighrisevegetationbeing
+,included (e.g., conifer trees p = 0.7). This concept has been
+thenumberofconsecutivehourshI,andisusedtolocalizethe,implementedusingthe(i)β function(Olesonetal.,2013,p.169)
+irrigation procedure in time (e.g., Leng et al., 2013; Valmassoi,t
+,and(ii)asoilmoistureindex(Seneviratneetal.,2010),SMI.The
+etal.,2020a).Examplesofdifferentstarthoursandlengthare06,
+,former is the result of a weighted average of the plant wilting
+localand4h(e.g.,Ozdoganetal.,2009;Lengetal.,2013;Yang,
+,factorandthefractionofrootsforallconsideredlayers(Oleson
+etal.,2016),08(Liuetal.,2021)or09(EvansandZaitchik,2008;,
+,etal.,2013)p.169.Ingeneral,theplantissufferingstressifβtis
+Wuetal.,2018)localtimeandfor2hand30min,respectively,,
+,lessthan1(e.g.,Lengetal.,2013;Luetal.,2015),with0being
+orasensitivitytotheseparametersbyValmassoietal.(2020a).,
+,theasymptoticvalueleadingtothepermanentwiltingpoint.For
+The irrigation duration period is usually employed to equally,
+,thesoilmoistureindex,norootdensityinformationisneeded.
+partition the calculated water over all the consecutive hours,,
+−,Ozdoganetal.(2009)introducedtheSoilMoistureAvailability
+transformingthequantitytoarate(mms 1),forexample.Only,
+,
+inPeietal.(2016)the2hdurationisusedtoapplyirrigationat,
+,
+aspecifiedrate,wheneverthesoilmoisturethresholdismet.,1 Fieldcapacityisdefinedasthelowerlimitabovewhichwatercannot
+,
+Withthedescribedapproaches,thetemporalconstrainsare,beheldagainstgravitationaldrainage.Thevaluedependsonthesoiltype.
+,
+appliedeachdaythroughoutthewholesimulationperiod,and,Forfurtherreference,seeSeneviratneetal.(2010).
+,
+FrontiersinWater 06,frontiersin.org

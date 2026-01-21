@@ -1,0 +1,128 @@
+0,1
+The threshold in the timing refers to the irrigation water dataset by Wisser et al. (2010) and the irrigation water rate (WI ) expressed in mm s−1.,
+"value, Marcella and Eltahir (2014) allow to both conserve the",3.3.2. Irrigation as water applied at the surface
+"water balance of
+the column and to return the water needed","When irrigation is applied as water at the surface, the main"
+for irrigation as a diagnostic. Few studies use threshold values as,diﬀerence between the parameterizatrions lies in the derivation
+"fraction of the ﬁeld capacity, e.g., 50% Kanamaru and Kanamitsu","of
+the amount used, aside from the thresholds employed. As"
+"(2008) or 90% for Sorooshian et al.
+(2012). Sorooshian et al.","the parameterizations are also
+can be observed from Table 4,"
+"(2012) use Kueppers et al.
+(2007), Kanamaru and Kanamitsu",diﬀerentiated by their impact on the canopy water balance.
+"(2008)
+and Haddeland et
+al.
+(2006)
+to justify
+the
+threshold",The diﬀerentiation is mentioned because some numerical
+"choice. However, Kueppers et al. (2007) do not use any threshold",models do not include a canopy water balance equation in their
+and Haddeland et al. (2006) only mention that irrigation starts,"land surface scheme, e.g., WRF’s Rapid Update Cycle (RUC)"
+"when the
+evapotranspiration is
+limited by the
+soil moisture.","(Smirnova et al., 2016), or the Terra Land Surface model used"
+While the threshold for water stress depends on the crop type,"in both COSMO and ICON models
+(Schättler
+et
+al., 2018)."
+"et
+al.
+(1985b)
+suggests
+that
+for
+general
+and stage, Brouwer","Therefore,
+it is important to diﬀerentiate irrigation application"
+"crops
+it
+is half
+the
+total available water, which is a function","that
+interact with the canopy or not, given the availability of"
+"of
+the diﬀerence between the ﬁeld capacity
+and the wilting",canopy water balance schemes in the numerical models.
+point.,Table 4 highlights how the parameterizations that apply the
+Another method used in literature to continuously aﬀect,"water at
+the surface can be divided in two diﬀerent
+threshold"
+the soil moisture is used by Kueppers et al. (2008) in the Davis,"types, i.e., based on the timing and the soil moisture availability."
+"Regional Climate Model
+(DRCM). There,
+the authors add the","The ﬁrst
+threshold uses a-priori water estimations
+for
+the"
+water to the surface soil moisture at a uniform rate of 4.8225 ·,"application, either coming from the Wisser et al. (2010) dataset"
+10−5 mm s−1 for all the time steps in the simulations.,"or
+county-based
+estimates.
+Sacks
+et
+al.
+(2009), Cook
+et
+al."
+Studies that employ this soil moisture availability threshold,"(2015,
+2020),
+and Krakauer
+et
+al.
+(2016)
+also added the
+a-"
+type do not necessarily apply the irrigation water to reset the soil,priori irrigation values as rain-rates albeit bypassing the canopy
+moisture to the threshold value. Sorooshian et al. (2011) use it,"interception. The map used by Sacks
+et al.
+(2009), and thus"
+only to trigger irrigation and the soil moisture is increased using,"et
+al.
+(2011),
+to determine
+the
+irrigation amount
+is
+by Lee"
+the determined irrigation rates until it reaches the ﬁeld capacity.,"invariant
+in their
+simulation, while Cook et
+al.
+(2015, 2020)"
+"et
+al.
+(2017)
+apply
+the
+irrigation
+On the
+other hand, Leng",and Krakauer et al. (2016) use the same reconstructed irrigation
+water amount calculated from Equation (6) to all root-zone soil,"et
+al.
+(2010),
+but
+for
+the
+periods
+1901–
+rate
+from Wisser"
+"layers directly. There
+the
+threshold level
+for
+the
+irrigation is","2002 and 2000,
+respectively. Valmassoi
+et al.
+(2020a)
+instead"
+"calculated using Equation (4), and a Firr parameter is used to","use estimates coming from the Eurostat census data (Eurostat,"
+tune the parameterization for each administrative region within,"2013), and the sensitivity is performed by changing the number"
+the domain by employing the Siebert and Döll (2010) irrigation,"of
+consecutive hours
+(hI) with the daily amount being kept"
+water use map.,constant.

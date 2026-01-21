@@ -1,0 +1,99 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+The soil moisture availability threshold comes from either,Boucher et al. (2004) derives the irrigation as a water
+,
+(i)Equation(3)(Ozdoganetal.,2009)or(ii)Equation(4)from,vapor flux spatial field combining two dataset: the annual net
+,
+Leng et al. (2013). In the studies that follow Ozdogan et al.,evapotranspiration from irrigation derived from a scenario
+,
+(2009)theirrigationwaterisappliedabovethecanopy(e.g.,Pei,approachatcountrylevelandtheareaequippedforirrigation
+,
+etal.,2014;Yangetal.,2016),andonlyWuetal.(2018)applyit,(DöllandSiebert,2002).Theyincludedthisinformationinfive
+,
+withoutcanopyinteraction.Thereasonliesintheiraffirmation,methods of increasing complexity, with the first four taken as
+thattheirrigationwater isincluded aseffective precipitation6,,sensitivityexperiments,andthefifthbeingusedinanumerical
+,
+whichdoesnotincludetheinterception.,climateexperiment.Inthesensitivityexperiments,irrigationis
+,
+ForthesoilmoisturethresholddefinedinitiallybyLengetal.,represented as additional water vapor in the atmosphere with
+,
+(2013)(cf.Equation4),thewaterisapplieddirectlyatthesurface,different horizontal and vertical distributions. For the climate
+,
+afterthecanopyinterception.Inalaterwork,Lengetal.(2017),simulation,Boucheretal.(2004)prescribeanartificialsurface
+,
+addtwootherwaystoincludetheirrigationwater:(i)directly,watervaporsourceequaltotheirrigationfluxdeterminedfrom
+,
+on the canopy and (ii) on the ground surface. Similarly, also,thespatialdata.Thisadditionalwaterfluxentersintheenergy
+,
+Valmassoietal.(2020a)providestwodifferentparameterizations,balance as an evaporative cooling term in the surface energy
+,
+calleddripandchanneldependingifthewaterinteractswiththe,budget of the model, independently from the meteorological
+,
+canopyornot,respectively.Inbothparameterizations’sets,the,conditions.
+,
+irrigationwater(WI)isaddedtotheprecipitationmodelfield.,Evans and Zaitchik (2008) instead modify the canopy
+InthecaseofLengetal.(2017)irrigationappliedatthesurface,,resistance, thus directly affecting the plant evapotranspiration
+,
+theamountisalsoscaledbyaspecificperiodtoallowforaquick,calculation. While this is not clearly stated in the study, the
+,
+pouringontheground.,irrigationwaterisnotappliedintheformofliquidwater(e.g.,
+,
+,precipitation, soil moisture) as the soil moisture values are
+,
+,similartothecontrolsimulation.
+3.3.3.Irrigationasatmosphericrainwater,
+,
+Previous studies mentioned that the application of the,
+irrigation water to the precipitation field takes place at the,3.4. Accounting for irrigation through
+canopy,whichdoesnotaccountforthedropletsevaporationor,data assimilation
+driftlossintheatmosphere.Wearecurrentlynotawareofany,
+,
+other than the “sprinkler” scheme by Valmassoi et al. (2020a),When irrigation is not represented in a physical model,
+thatincludestheseprocessestowhichtheirrigationwatercan,an alternative way to include the effect of irrigation in the
+beexposed.Toaccountforpossiblemicrophysicalprocesses,the,model state is to apply a data assimilation approach. Here,
+irrigationwaterhastobeaddedtotherainwatermixingratioas:,the analysis increments to the soil moisture content do not
+,
+WI
+=,only represent the forecast deviations of precipitation and
+Q (7)
+I,k 1z ρ
+k k,evaporation but also account for the errors due to the lack
+,ofirrigationprocesses.Thismechanismhasbeenindicatedby
+,
+where ρ is the air density in the kth-layer of 1z thickness.
+k k,TuinenburganddeVries(2017)fortheERA-Interimreanalysis,
+Therainrateismodifiedonlyinthelowestmass-layer,soitis,in which the soil moisture analysis increments are linked to
+,
+assumedthatthesprinklerwaterdoesnotdirectlyreachbeyond,irrigation patterns. As irrigation is not directly observed by
+,
+thefirstmodellayer.Intheirstudy,Valmassoietal.(2020a)set,measurementsprovidingspatialcoverage,effortsarefocusingon
+,
+theheightofsuchlevelto20meters.,correctingthesoilmoisturewithrespecttotheirrigation-related
+,
+WhilestudiessuchasOzdoganetal.(2009)usesthesame,effects.ApossibleapproachistoassimilateGRACEsatellitedata
+,
+name(“sprinkler”)fortheirrepresentation,theyneverincludea,(e.g.,Girottoetal.,2017)whichhasthetotalcolumnwaterasa
+,
+directatmosphericinteractionwiththeirrigationdroplets.,residualofthemaingravimetricmeasurements.Nieetal.(2019)
+,
+,provide a more thorough study comparing assimilated soil
+,
+,moistureandanirrigationparameterizationandtheirrespective
+,
+3.3.4.Irrigationaswatervaporsource,effect on groundwater storage representation. While this is a
+,
+Theinclusionofirrigationasawatervaporsourcereflects,relativelynewfield,itisapromisingapproachtoeitheraccount
+the theoretical considerations made by de Vries (1959) and,forthemissingwaterredistributionduetohumanactionorasa
+Flohn (1963) in investigating the impact of irrigation on the,tooltoidentifymodelshortcomingsrelatedtoirrigation.
+climatesystem.Thisapproachhasbeenusedbyonlytwostudies:,
+,
+Boucheretal.(2004)andEvansandZaitchik(2008).,
+,3.5. Irrigation water source
+,
+6 Defined in the AMS Glossary as: the portion of precipitation,
+,
+that remains in the soil https://glossary.ametsoc.org/wiki/,Most of the previously presented irrigation schemes do
+,
+Effective_precipitation.,introduce the irrigation water (WI) ad hoc in the numerical
+,
+FrontiersinWater 11,frontiersin.org

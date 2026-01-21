@@ -1,0 +1,13 @@
+"and groundwater sources, it is a well-know problem that pipes",variability among the studies with respect to the irrigation
+or channels are used to transport the water to the fields. From,"water amount and its parameterization, especially in Earth"
+the modeling perspective this means that the sources might,system modeling approaches. Another open issue is the low
+not be located near-enough to be considered in the same grid-,confidence on the impact of irrigation on precipitation. While
+"point, needing an internal water redistribution, aside from the",the ongoing increase in resolution of the models is helping
+inclusion of the water loss from the pipes to the Earth system.,"to better understand this feedback, the inclusion of specific"
+Leng et al. (2017) propose a water extraction scheme based on,irrigation parameterizations prevents the replication of similar
+"the water extraction dataset (cf Section 3.5), which allows also for",schemes with small differences in the parameters and/or the
+using nearby grid-point in the same basin. While such approach,thresholds’ choices.
+"provides a suitable theoretical base, it can be applied safely only","Therefore, there is a strong need for a more coordinated"
+to coarse model resolutions due to the importance of drainage,and consistent implementations of irrigation parameterizations
+"direction in actual irrigation practices (Brouwer et al., 1985b)",in order to assess model and process uncertainties together
+and the usage of open air irrigation channels (Moghazi and,with better observational datasets. This would also support

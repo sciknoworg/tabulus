@@ -1,0 +1,48 @@
+The soil moisture availability threshold comes from either Boucher et al. (2004) derives the irrigation as a water
+"(i) Equation (3) (Ozdogan et al., 2009) or (ii) Equation (4) from vapor flux spatial field combining two dataset: the annual net"
+Leng et al. (2013). In the studies that follow Ozdogan et al. evapotranspiration from irrigation derived from a scenario
+"(2009) the irrigation water is applied above the canopy (e.g., Pei approach at country level and the area equipped for irrigation"
+"et al., 2014; Yang et al., 2016), and only Wu et al. (2018) apply it (Döll and Siebert, 2002). They included this information in five"
+"without canopy interaction. The reason lies in their affirmation methods of increasing complexity, with the first four taken as"
+"that the irrigation water is included as effective precipitation6, sensitivity experiments, and the fifth being used in a numerical"
+"which does not include the interception. climate experiment. In the sensitivity experiments, irrigation is"
+For the soil moisture threshold defined initially by Leng et al. represented as additional water vapor in the atmosphere with
+"(2013) (cf. Equation 4), the water is applied directly at the surface different horizontal and vertical distributions. For the climate"
+"after the canopy interception. In a later work, Leng et al. (2017) simulation, Boucher et al. (2004) prescribe an artificial surface"
+add two other ways to include the irrigation water: (i) directly water vapor source equal to the irrigation flux determined from
+"on the canopy and (ii) on the ground surface. Similarly, also the spatial data. This additional water flux enters in the energy"
+Valmassoi et al. (2020a) provides two different parameterizations balance as an evaporative cooling term in the surface energy
+"called drip and channel depending if the water interacts with the budget of the model, independently from the meteorological"
+"canopy or not, respectively. In both parameterizations’ sets, the conditions."
+irrigation water (WI) is added to the precipitation model field. Evans and Zaitchik (2008) instead modify the canopy
+"In the case of Leng et al. (2017) irrigation applied at the surface, resistance, thus directly affecting the plant evapotranspiration"
+"the amount is also scaled by a specific period to allow for a quick calculation. While this is not clearly stated in the study, the"
+"pouring on the ground. irrigation water is not applied in the form of liquid water (e.g.,"
+"precipitation, soil moisture) as the soil moisture values are"
+similar to the control simulation.
+3.3.3. Irrigation as atmospheric rain water
+Previous studies mentioned that the application of the
+irrigation water to the precipitation field takes place at the 3.4. Accounting for irrigation through
+"canopy, which does not account for the droplets evaporation or data assimilation"
+drift loss in the atmosphere. We are currently not aware of any
+"other than the “sprinkler” scheme by Valmassoi et al. (2020a) When irrigation is not represented in a physical model,"
+that includes these processes to which the irrigation water can an alternative way to include the effect of irrigation in the
+"be exposed. To account for possible microphysical processes, the model state is to apply a data assimilation approach. Here,"
+irrigation water has to be added to the rain water mixing ratio as: the analysis increments to the soil moisture content do not
+only represent the forecast deviations of precipitation andWI
+"QI,k = (7) evaporation but also account for the errors due to the lack"
+1zk ρk
+of irrigation processes. This mechanism has been indicated by
+"where ρk is the air density in the kth-layer of 1zk thickness. Tuinenburg and de Vries (2017) for the ERA-Interim reanalysis,"
+"The rain rate is modified only in the lowest mass-layer, so it is in which the soil moisture analysis increments are linked to"
+assumed that the sprinkler water does not directly reach beyond irrigation patterns. As irrigation is not directly observed by
+"the first model layer. In their study, Valmassoi et al. (2020a) set measurements providing spatial coverage, efforts are focusing on"
+the height of such level to 20 meters. correcting the soil moisture with respect to the irrigation-related
+While studies such as Ozdogan et al. (2009) uses the same effects. A possible approach is to assimilate GRACE satellite data
+"name (“sprinkler”) for their representation, they never include a (e.g., Girotto et al., 2017) which has the total column water as a"
+direct atmospheric interaction with the irrigation droplets. residual of the main gravimetric measurements. Nie et al. (2019)
+provide a more thorough study comparing assimilated soil
+moisture and an irrigation parameterization and their respective
+3.3.4. Irrigation as water vapor source effect on groundwater storage representation. While this is a
+"The inclusion of irrigation as a water vapor source reflects relatively new field, it is a promising approach to either account"
+the theoretical considerations made by de Vries (1959) and for the missing water redistribution due to human action or as a

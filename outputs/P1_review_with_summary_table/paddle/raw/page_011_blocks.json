@@ -1,0 +1,3302 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P1_review_with_summary_table.pdf",
+  "page_number": 11,
+  "dpi": 180,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 23,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1489,
+        2106
+      ],
+      "lines": [
+        {
+          "text": "Valmassoi and Keller",
+          "confidence": 0.978967547416687,
+          "poly": [
+            [
+              109,
+              17
+            ],
+            [
+              293,
+              28
+            ],
+            [
+              291,
+              52
+            ],
+            [
+              107,
+              40
+            ]
+          ],
+          "bbox_xyxy": [
+            107,
+            17,
+            293,
+            52
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "10.3389/frwa.2022.906664",
+          "confidence": 0.9998588562011719,
+          "poly": [
+            [
+              1182,
+              32
+            ],
+            [
+              1425,
+              32
+            ],
+            [
+              1425,
+              52
+            ],
+            [
+              1182,
+              52
+            ]
+          ],
+          "bbox_xyxy": [
+            1182,
+            32,
+            1425,
+            52
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "The soil moisture availability threshold comes from either",
+          "confidence": 0.992116391658783,
+          "poly": [
+            [
+              147,
+              158
+            ],
+            [
+              731,
+              168
+            ],
+            [
+              730,
+              198
+            ],
+            [
+              146,
+              188
+            ]
+          ],
+          "bbox_xyxy": [
+            146,
+            158,
+            731,
+            198
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Boucher et al. (2004) derives the irrigation as a water",
+          "confidence": 0.9714560508728027,
+          "poly": [
+            [
+              826,
+              169
+            ],
+            [
+              1426,
+              169
+            ],
+            [
+              1426,
+              192
+            ],
+            [
+              826,
+              192
+            ]
+          ],
+          "bbox_xyxy": [
+            826,
+            169,
+            1426,
+            192
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "(i) Equation (3) (Ozdogan et al., 2009) or (ii) Equation (4) from",
+          "confidence": 0.9742092490196228,
+          "poly": [
+            [
+              112,
+              192
+            ],
+            [
+              730,
+              201
+            ],
+            [
+              729,
+              231
+            ],
+            [
+              112,
+              223
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            192,
+            730,
+            231
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "vapor flux spatial field combining two dataset: the annual net",
+          "confidence": 0.9768539071083069,
+          "poly": [
+            [
+              787,
+              202
+            ],
+            [
+              1427,
+              202
+            ],
+            [
+              1427,
+              226
+            ],
+            [
+              787,
+              226
+            ]
+          ],
+          "bbox_xyxy": [
+            787,
+            202,
+            1427,
+            226
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Evans and Zaitchik (2008) instead modify the canopy",
+          "confidence": 0.9529072046279907,
+          "poly": [
+            [
+              817,
+              702
+            ],
+            [
+              1427,
+              709
+            ],
+            [
+              1426,
+              739
+            ],
+            [
+              817,
+              732
+            ]
+          ],
+          "bbox_xyxy": [
+            817,
+            702,
+            1427,
+            739
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "irrigation water has to be added to the rain water mixing ratio as:",
+          "confidence": 0.9834234714508057,
+          "poly": [
+            [
+              116,
+              1173
+            ],
+            [
+              725,
+              1172
+            ],
+            [
+              725,
+              1196
+            ],
+            [
+              116,
+              1197
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1172,
+            725,
+            1197
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "(7)",
+          "confidence": 0.9982590675354004,
+          "poly": [
+            [
+              689,
+              1234
+            ],
+            [
+              730,
+              1234
+            ],
+            [
+              730,
+              1269
+            ],
+            [
+              689,
+              1269
+            ]
+          ],
+          "bbox_xyxy": [
+            689,
+            1234,
+            730,
+            1269
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "∆zk ρk",
+          "confidence": 0.9825460910797119,
+          "poly": [
+            [
+              421,
+              1250
+            ],
+            [
+              495,
+              1257
+            ],
+            [
+              492,
+              1287
+            ],
+            [
+              418,
+              1280
+            ]
+          ],
+          "bbox_xyxy": [
+            418,
+            1250,
+            495,
+            1287
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "direct atmospheric interaction with the irrigation droplets.",
+          "confidence": 0.9854328036308289,
+          "poly": [
+            [
+              119,
+              1543
+            ],
+            [
+              674,
+              1543
+            ],
+            [
+              674,
+              1566
+            ],
+            [
+              119,
+              1566
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1543,
+            674,
+            1566
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "for the missing water redistribution due to human action or as a",
+          "confidence": 0.9835188388824463,
+          "poly": [
+            [
+              781,
+              1702
+            ],
+            [
+              1400,
+              1707
+            ],
+            [
+              1400,
+              1730
+            ],
+            [
+              781,
+              1725
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1702,
+            1400,
+            1730
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "tool to identify model shortcomings related to irrigation.",
+          "confidence": 0.987108051776886,
+          "poly": [
+            [
+              781,
+              1734
+            ],
+            [
+              1326,
+              1739
+            ],
+            [
+              1325,
+              1763
+            ],
+            [
+              781,
+              1758
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1734,
+            1326,
+            1763
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "climate system. This approach has been used by only two studies:",
+          "confidence": 0.9899126887321472,
+          "poly": [
+            [
+              119,
+              1763
+            ],
+            [
+              723,
+              1761
+            ],
+            [
+              723,
+              1785
+            ],
+            [
+              119,
+              1787
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1761,
+            723,
+            1787
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "Boucher et al. (2004) and Evans and Zaitchik (2008).",
+          "confidence": 0.9707168340682983,
+          "poly": [
+            [
+              118,
+              1795
+            ],
+            [
+              616,
+              1794
+            ],
+            [
+              616,
+              1817
+            ],
+            [
+              118,
+              1818
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            1794,
+            616,
+            1818
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "3.5. Irrigation water source",
+          "confidence": 0.9965320825576782,
+          "poly": [
+            [
+              779,
+              1824
+            ],
+            [
+              1175,
+              1830
+            ],
+            [
+              1175,
+              1858
+            ],
+            [
+              779,
+              1852
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            1824,
+            1175,
+            1858
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "that remains in the soil https://glossary.ametsoc.org/wiki/",
+          "confidence": 0.9657378792762756,
+          "poly": [
+            [
+              115,
+              1900
+            ],
+            [
+              721,
+              1895
+            ],
+            [
+              721,
+              1920
+            ],
+            [
+              115,
+              1926
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1895,
+            721,
+            1926
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "Most of the previously presented irrigation schemes do",
+          "confidence": 0.9868918061256409,
+          "poly": [
+            [
+              814,
+              1893
+            ],
+            [
+              1394,
+              1898
+            ],
+            [
+              1394,
+              1925
+            ],
+            [
+              814,
+              1919
+            ]
+          ],
+          "bbox_xyxy": [
+            814,
+            1893,
+            1394,
+            1925
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "Effective_precipitation.",
+          "confidence": 0.9978435635566711,
+          "poly": [
+            [
+              119,
+              1935
+            ],
+            [
+              317,
+              1931
+            ],
+            [
+              317,
+              1952
+            ],
+            [
+              119,
+              1956
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1931,
+            317,
+            1956
+          ],
+          "reading_order": 18
+        },
+        {
+          "text": "introduce the irrigation water (WI) ad hoc in the numerical",
+          "confidence": 0.9863923788070679,
+          "poly": [
+            [
+              778,
+              1924
+            ],
+            [
+              1394,
+              1929
+            ],
+            [
+              1394,
+              1955
+            ],
+            [
+              778,
+              1951
+            ]
+          ],
+          "bbox_xyxy": [
+            778,
+            1924,
+            1394,
+            1955
+          ],
+          "reading_order": 19
+        },
+        {
+          "text": "Frontiers in Water",
+          "confidence": 0.9698540568351746,
+          "poly": [
+            [
+              118,
+              2041
+            ],
+            [
+              274,
+              2036
+            ],
+            [
+              274,
+              2058
+            ],
+            [
+              118,
+              2063
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            2036,
+            274,
+            2063
+          ],
+          "reading_order": 20
+        },
+        {
+          "text": "11",
+          "confidence": 0.9999527335166931,
+          "poly": [
+            [
+              733,
+              2031
+            ],
+            [
+              762,
+              2031
+            ],
+            [
+              762,
+              2057
+            ],
+            [
+              733,
+              2057
+            ]
+          ],
+          "bbox_xyxy": [
+            733,
+            2031,
+            762,
+            2057
+          ],
+          "reading_order": 21
+        },
+        {
+          "text": "frontiersin.org",
+          "confidence": 0.999927282333374,
+          "poly": [
+            [
+              1265,
+              2032
+            ],
+            [
+              1392,
+              2034
+            ],
+            [
+              1392,
+              2055
+            ],
+            [
+              1265,
+              2053
+            ]
+          ],
+          "bbox_xyxy": [
+            1265,
+            2032,
+            1392,
+            2055
+          ],
+          "reading_order": 22
+        }
+      ]
+    },
+    {
+      "block_id": 20,
+      "label": "header",
+      "score": 0.8570690751075745,
+      "bbox_xyxy": [
+        137,
+        102,
+        302,
+        120
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 16,
+      "label": "header",
+      "score": 0.8738540410995483,
+      "bbox_xyxy": [
+        1127,
+        102,
+        1342,
+        119
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9838546514511108,
+      "bbox_xyxy": [
+        134,
+        226,
+        714,
+        466
+      ],
+      "lines": [
+        {
+          "text": "Leng et al. (2013). In the studies that follow Ozdogan et al.",
+          "confidence": 0.9730388522148132,
+          "poly": [
+            [
+              111,
+              226
+            ],
+            [
+              729,
+              232
+            ],
+            [
+              728,
+              262
+            ],
+            [
+              111,
+              256
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            226,
+            729,
+            262
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "(2009) the irrigation water is applied above the canopy (e.g., Pei",
+          "confidence": 0.9696447253227234,
+          "poly": [
+            [
+              112,
+              260
+            ],
+            [
+              729,
+              266
+            ],
+            [
+              728,
+              297
+            ],
+            [
+              112,
+              291
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            260,
+            729,
+            297
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "et al., 2014; Yang et al., 2016), and only Wu et al. (2018) apply it",
+          "confidence": 0.9849601984024048,
+          "poly": [
+            [
+              112,
+              295
+            ],
+            [
+              729,
+              301
+            ],
+            [
+              728,
+              332
+            ],
+            [
+              112,
+              326
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            295,
+            729,
+            332
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "without canopy interaction. The reason lies in their affirmation",
+          "confidence": 0.9892717599868774,
+          "poly": [
+            [
+              111,
+              330
+            ],
+            [
+              728,
+              334
+            ],
+            [
+              728,
+              365
+            ],
+            [
+              111,
+              361
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            330,
+            728,
+            365
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "that the irrigation water is included as effective precipitation6,",
+          "confidence": 0.9718427062034607,
+          "poly": [
+            [
+              110,
+              363
+            ],
+            [
+              728,
+              367
+            ],
+            [
+              728,
+              400
+            ],
+            [
+              110,
+              396
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            363,
+            728,
+            400
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "which does not include the interception.",
+          "confidence": 0.9784812927246094,
+          "poly": [
+            [
+              113,
+              400
+            ],
+            [
+              501,
+              404
+            ],
+            [
+              501,
+              431
+            ],
+            [
+              113,
+              427
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            400,
+            501,
+            431
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "For the soil moisture threshold defined initially by Leng et al.",
+          "confidence": 0.9888644814491272,
+          "poly": [
+            [
+              149,
+              436
+            ],
+            [
+              725,
+              437
+            ],
+            [
+              725,
+              464
+            ],
+            [
+              148,
+              463
+            ]
+          ],
+          "bbox_xyxy": [
+            148,
+            436,
+            725,
+            464
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9875456690788269,
+      "bbox_xyxy": [
+        763,
+        227,
+        1344,
+        714
+      ],
+      "lines": [
+        {
+          "text": "evapotranspiration from irrigation derived from a scenario",
+          "confidence": 0.9898442029953003,
+          "poly": [
+            [
+              785,
+              235
+            ],
+            [
+              1425,
+              236
+            ],
+            [
+              1425,
+              260
+            ],
+            [
+              785,
+              259
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            235,
+            1425,
+            260
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "approach at country level and the area equipped for irrigation",
+          "confidence": 0.9942449927330017,
+          "poly": [
+            [
+              784,
+              267
+            ],
+            [
+              1427,
+              269
+            ],
+            [
+              1427,
+              296
+            ],
+            [
+              784,
+              294
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            267,
+            1427,
+            296
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "(Döll and Siebert, 2002). They included this information in five",
+          "confidence": 0.9816696047782898,
+          "poly": [
+            [
+              785,
+              300
+            ],
+            [
+              1427,
+              302
+            ],
+            [
+              1427,
+              329
+            ],
+            [
+              785,
+              327
+            ]
+          ],
+          "bbox_xyxy": [
+            785,
+            300,
+            1427,
+            329
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "methods of increasing complexity, with the first four taken as",
+          "confidence": 0.9867281317710876,
+          "poly": [
+            [
+              784,
+              335
+            ],
+            [
+              1427,
+              339
+            ],
+            [
+              1427,
+              363
+            ],
+            [
+              784,
+              359
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            335,
+            1427,
+            363
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "sensitivity experiments, and the fifth being used in a numerical",
+          "confidence": 0.9782701134681702,
+          "poly": [
+            [
+              783,
+              368
+            ],
+            [
+              1428,
+              371
+            ],
+            [
+              1428,
+              398
+            ],
+            [
+              783,
+              395
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            368,
+            1428,
+            398
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "climate experiment. In the sensitivity experiments, irrigation is",
+          "confidence": 0.9985065460205078,
+          "poly": [
+            [
+              783,
+              401
+            ],
+            [
+              1428,
+              406
+            ],
+            [
+              1427,
+              432
+            ],
+            [
+              783,
+              427
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            401,
+            1428,
+            432
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "represented as additional water vapor in the atmosphere with",
+          "confidence": 0.9845251441001892,
+          "poly": [
+            [
+              782,
+              436
+            ],
+            [
+              1428,
+              439
+            ],
+            [
+              1428,
+              466
+            ],
+            [
+              782,
+              463
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            436,
+            1428,
+            466
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "different horizontal and vertical distributions. For the climate",
+          "confidence": 0.9784358143806458,
+          "poly": [
+            [
+              782,
+              468
+            ],
+            [
+              1429,
+              473
+            ],
+            [
+              1428,
+              500
+            ],
+            [
+              782,
+              495
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            468,
+            1429,
+            500
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "simulation, Boucher et al. (2004) prescribe an artificial surface",
+          "confidence": 0.985194981098175,
+          "poly": [
+            [
+              781,
+              503
+            ],
+            [
+              1428,
+              507
+            ],
+            [
+              1428,
+              534
+            ],
+            [
+              781,
+              529
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            503,
+            1428,
+            534
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "water vapor source equal to the irrigation flux determined from",
+          "confidence": 0.9853785037994385,
+          "poly": [
+            [
+              781,
+              537
+            ],
+            [
+              1427,
+              539
+            ],
+            [
+              1427,
+              566
+            ],
+            [
+              781,
+              564
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            537,
+            1427,
+            566
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "the spatial data. This additional water flux enters in the energy",
+          "confidence": 0.9891695380210876,
+          "poly": [
+            [
+              780,
+              567
+            ],
+            [
+              1428,
+              574
+            ],
+            [
+              1427,
+              604
+            ],
+            [
+              780,
+              597
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            567,
+            1428,
+            604
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "balance as an evaporative cooling term in the surface energy",
+          "confidence": 0.9777990579605103,
+          "poly": [
+            [
+              779,
+              602
+            ],
+            [
+              1428,
+              608
+            ],
+            [
+              1427,
+              638
+            ],
+            [
+              779,
+              632
+            ]
+          ],
+          "bbox_xyxy": [
+            779,
+            602,
+            1428,
+            638
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "budget of the model, independently from the meteorological",
+          "confidence": 0.9845297336578369,
+          "poly": [
+            [
+              781,
+              637
+            ],
+            [
+              1426,
+              642
+            ],
+            [
+              1425,
+              669
+            ],
+            [
+              781,
+              664
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            637,
+            1426,
+            669
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "conditions.",
+          "confidence": 0.9999721646308899,
+          "poly": [
+            [
+              781,
+              673
+            ],
+            [
+              896,
+              673
+            ],
+            [
+              896,
+              698
+            ],
+            [
+              781,
+              698
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            673,
+            896,
+            698
+          ],
+          "reading_order": 13
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.986441969871521,
+      "bbox_xyxy": [
+        135,
+        475,
+        714,
+        842
+      ],
+      "lines": [
+        {
+          "text": "(2013) (cf. Equation 4), the water is applied directly at the surface",
+          "confidence": 0.992140531539917,
+          "poly": [
+            [
+              115,
+              470
+            ],
+            [
+              727,
+              470
+            ],
+            [
+              727,
+              497
+            ],
+            [
+              115,
+              497
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            470,
+            727,
+            497
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "after the canopy interception. In a later work, Leng et al. (2017)",
+          "confidence": 0.9903298616409302,
+          "poly": [
+            [
+              114,
+              503
+            ],
+            [
+              726,
+              504
+            ],
+            [
+              726,
+              531
+            ],
+            [
+              114,
+              529
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            503,
+            726,
+            531
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "add two other ways to include the irrigation water: (i) directly",
+          "confidence": 0.984747052192688,
+          "poly": [
+            [
+              113,
+              535
+            ],
+            [
+              727,
+              537
+            ],
+            [
+              727,
+              564
+            ],
+            [
+              113,
+              562
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            535,
+            727,
+            564
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "on the canopy and (ii) on the ground surface. Similarly, also",
+          "confidence": 0.9978160262107849,
+          "poly": [
+            [
+              113,
+              569
+            ],
+            [
+              726,
+              571
+            ],
+            [
+              726,
+              598
+            ],
+            [
+              113,
+              596
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            569,
+            726,
+            598
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Valmassoi et al. (2020a) provides two different parameterizations",
+          "confidence": 0.9843267202377319,
+          "poly": [
+            [
+              112,
+              602
+            ],
+            [
+              727,
+              605
+            ],
+            [
+              727,
+              632
+            ],
+            [
+              112,
+              629
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            602,
+            727,
+            632
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "called drip and channel depending if the water interacts with the",
+          "confidence": 0.9742267727851868,
+          "poly": [
+            [
+              113,
+              635
+            ],
+            [
+              726,
+              639
+            ],
+            [
+              726,
+              666
+            ],
+            [
+              113,
+              662
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            635,
+            726,
+            666
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "canopy or not, respectively. In both parameterizations' sets, the",
+          "confidence": 0.9889728426933289,
+          "poly": [
+            [
+              114,
+              674
+            ],
+            [
+              725,
+              674
+            ],
+            [
+              725,
+              698
+            ],
+            [
+              114,
+              698
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            674,
+            725,
+            698
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "irrigation water (WI) is added to the precipitation model field.",
+          "confidence": 0.9848954677581787,
+          "poly": [
+            [
+              113,
+              706
+            ],
+            [
+              724,
+              707
+            ],
+            [
+              724,
+              731
+            ],
+            [
+              113,
+              730
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            706,
+            724,
+            731
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "In the case of Leng et al. (2017) irrigation applied at the surface,",
+          "confidence": 0.9851449131965637,
+          "poly": [
+            [
+              111,
+              738
+            ],
+            [
+              724,
+              740
+            ],
+            [
+              724,
+              767
+            ],
+            [
+              111,
+              765
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            738,
+            724,
+            767
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "the amount is also scaled by a specific period to allow for a quick",
+          "confidence": 0.9806628823280334,
+          "poly": [
+            [
+              113,
+              775
+            ],
+            [
+              724,
+              775
+            ],
+            [
+              724,
+              799
+            ],
+            [
+              113,
+              799
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            775,
+            724,
+            799
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "pouring on the ground.",
+          "confidence": 0.9996122717857361,
+          "poly": [
+            [
+              111,
+              808
+            ],
+            [
+              341,
+              810
+            ],
+            [
+              340,
+              837
+            ],
+            [
+              111,
+              835
+            ]
+          ],
+          "bbox_xyxy": [
+            111,
+            808,
+            341,
+            837
+          ],
+          "reading_order": 10
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9766050577163696,
+      "bbox_xyxy": [
+        764,
+        723,
+        1344,
+        901
+      ],
+      "lines": [
+        {
+          "text": "resistance, thus directly affecting the plant evapotranspiration",
+          "confidence": 0.9786946177482605,
+          "poly": [
+            [
+              781,
+              741
+            ],
+            [
+              1425,
+              743
+            ],
+            [
+              1425,
+              767
+            ],
+            [
+              781,
+              765
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            741,
+            1425,
+            767
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "calculation. While this is not clearly stated in the study, the",
+          "confidence": 0.9872746467590332,
+          "poly": [
+            [
+              782,
+              774
+            ],
+            [
+              1424,
+              776
+            ],
+            [
+              1424,
+              800
+            ],
+            [
+              782,
+              798
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            774,
+            1424,
+            800
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "irrigation water is not applied in the form of liquid water (e.g.,",
+          "confidence": 0.9941530227661133,
+          "poly": [
+            [
+              781,
+              806
+            ],
+            [
+              1422,
+              808
+            ],
+            [
+              1422,
+              835
+            ],
+            [
+              781,
+              833
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            806,
+            1422,
+            835
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "precipitation, soil moisture) as the soil moisture values are",
+          "confidence": 0.9936541318893433,
+          "poly": [
+            [
+              780,
+              841
+            ],
+            [
+              1424,
+              839
+            ],
+            [
+              1424,
+              866
+            ],
+            [
+              780,
+              868
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            839,
+            1424,
+            868
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "similar to the control simulation.",
+          "confidence": 0.996391773223877,
+          "poly": [
+            [
+              783,
+              875
+            ],
+            [
+              1105,
+              875
+            ],
+            [
+              1105,
+              897
+            ],
+            [
+              783,
+              897
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            875,
+            1105,
+            897
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 14,
+      "label": "paragraph_title",
+      "score": 0.8997853994369507,
+      "bbox_xyxy": [
+        136,
+        901,
+        644,
+        925
+      ],
+      "lines": [
+        {
+          "text": "3.3.3. Irrigation as atmospheric rain water",
+          "confidence": 0.9853578805923462,
+          "poly": [
+            [
+              114,
+              899
+            ],
+            [
+              647,
+              899
+            ],
+            [
+              647,
+              926
+            ],
+            [
+              114,
+              926
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            899,
+            647,
+            926
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9811176657676697,
+      "bbox_xyxy": [
+        135,
+        936,
+        715,
+        1178
+      ],
+      "lines": [
+        {
+          "text": "Previous studies mentioned that the application of the",
+          "confidence": 0.9799777269363403,
+          "poly": [
+            [
+              149,
+              937
+            ],
+            [
+              723,
+              935
+            ],
+            [
+              723,
+              959
+            ],
+            [
+              150,
+              961
+            ]
+          ],
+          "bbox_xyxy": [
+            149,
+            935,
+            723,
+            961
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "irrigation water to the precipitation field takes place at the",
+          "confidence": 0.9863839149475098,
+          "poly": [
+            [
+              112,
+              971
+            ],
+            [
+              725,
+              968
+            ],
+            [
+              725,
+              994
+            ],
+            [
+              112,
+              997
+            ]
+          ],
+          "bbox_xyxy": [
+            112,
+            968,
+            725,
+            997
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "canopy, which does not account for the droplets evaporation or",
+          "confidence": 0.9993237853050232,
+          "poly": [
+            [
+              113,
+              1006
+            ],
+            [
+              724,
+              1003
+            ],
+            [
+              724,
+              1027
+            ],
+            [
+              113,
+              1030
+            ]
+          ],
+          "bbox_xyxy": [
+            113,
+            1003,
+            724,
+            1030
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "drift loss in the atmosphere. We are currently not aware of any",
+          "confidence": 0.9880889058113098,
+          "poly": [
+            [
+              114,
+              1038
+            ],
+            [
+              724,
+              1037
+            ],
+            [
+              724,
+              1061
+            ],
+            [
+              114,
+              1062
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1037,
+            724,
+            1062
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "other than the \"sprinkler\" scheme by Valmassoi et al. (2020a)",
+          "confidence": 0.9888531565666199,
+          "poly": [
+            [
+              115,
+              1072
+            ],
+            [
+              722,
+              1070
+            ],
+            [
+              722,
+              1094
+            ],
+            [
+              115,
+              1096
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1070,
+            722,
+            1096
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "that includes these processes to which the irrigation water can",
+          "confidence": 0.9873347282409668,
+          "poly": [
+            [
+              115,
+              1105
+            ],
+            [
+              724,
+              1105
+            ],
+            [
+              724,
+              1129
+            ],
+            [
+              115,
+              1129
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1105,
+            724,
+            1129
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "be exposed. To account for possible microphysical processes, the",
+          "confidence": 0.9858598113059998,
+          "poly": [
+            [
+              115,
+              1139
+            ],
+            [
+              724,
+              1137
+            ],
+            [
+              724,
+              1161
+            ],
+            [
+              115,
+              1163
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1137,
+            724,
+            1163
+          ],
+          "reading_order": 6
+        }
+      ]
+    },
+    {
+      "block_id": 10,
+      "label": "paragraph_title",
+      "score": 0.9363220930099487,
+      "bbox_xyxy": [
+        766,
+        965,
+        1288,
+        1026
+      ],
+      "lines": [
+        {
+          "text": "3.4. Accounting for irrigation through",
+          "confidence": 0.9904064536094666,
+          "poly": [
+            [
+              781,
+              963
+            ],
+            [
+              1350,
+              965
+            ],
+            [
+              1350,
+              998
+            ],
+            [
+              781,
+              996
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            963,
+            1350,
+            998
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "data assimilation",
+          "confidence": 0.9996821284294128,
+          "poly": [
+            [
+              782,
+              1005
+            ],
+            [
+              1031,
+              1005
+            ],
+            [
+              1031,
+              1032
+            ],
+            [
+              782,
+              1032
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1005,
+            1031,
+            1032
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9877292513847351,
+      "bbox_xyxy": [
+        763,
+        1066,
+        1344,
+        1714
+      ],
+      "lines": [
+        {
+          "text": "When irrigation is not represented in a physical model,",
+          "confidence": 0.9773579239845276,
+          "poly": [
+            [
+              819,
+              1077
+            ],
+            [
+              1415,
+              1077
+            ],
+            [
+              1415,
+              1101
+            ],
+            [
+              819,
+              1101
+            ]
+          ],
+          "bbox_xyxy": [
+            819,
+            1077,
+            1415,
+            1101
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "an alternative way to include the effect of irrigation in the",
+          "confidence": 0.9834299087524414,
+          "poly": [
+            [
+              780,
+              1112
+            ],
+            [
+              1416,
+              1110
+            ],
+            [
+              1416,
+              1136
+            ],
+            [
+              780,
+              1138
+            ]
+          ],
+          "bbox_xyxy": [
+            780,
+            1110,
+            1416,
+            1138
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "model state is to apply a data assimilation approach. Here,",
+          "confidence": 0.9807963967323303,
+          "poly": [
+            [
+              782,
+              1145
+            ],
+            [
+              1414,
+              1146
+            ],
+            [
+              1414,
+              1170
+            ],
+            [
+              782,
+              1169
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1145,
+            1414,
+            1170
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "the analysis increments to the soil moisture content do not",
+          "confidence": 0.983038604259491,
+          "poly": [
+            [
+              781,
+              1179
+            ],
+            [
+              1415,
+              1178
+            ],
+            [
+              1415,
+              1202
+            ],
+            [
+              781,
+              1203
+            ]
+          ],
+          "bbox_xyxy": [
+            781,
+            1178,
+            1415,
+            1203
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "only represent the forecast deviations of precipitation and",
+          "confidence": 0.9700888395309448,
+          "poly": [
+            [
+              783,
+              1213
+            ],
+            [
+              1414,
+              1213
+            ],
+            [
+              1414,
+              1236
+            ],
+            [
+              783,
+              1236
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1213,
+            1414,
+            1236
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "evaporation but also account for the errors due to the lack",
+          "confidence": 0.9886552691459656,
+          "poly": [
+            [
+              782,
+              1245
+            ],
+            [
+              1413,
+              1243
+            ],
+            [
+              1413,
+              1267
+            ],
+            [
+              782,
+              1269
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1243,
+            1413,
+            1269
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "of irrigation processes. This mechanism has been indicated by",
+          "confidence": 0.9820431470870972,
+          "poly": [
+            [
+              783,
+              1278
+            ],
+            [
+              1412,
+              1278
+            ],
+            [
+              1412,
+              1302
+            ],
+            [
+              783,
+              1302
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1278,
+            1412,
+            1302
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Tuinenburg and de Vries (2017) for the ERA-Interim reanalysis,",
+          "confidence": 0.9804561734199524,
+          "poly": [
+            [
+              783,
+              1311
+            ],
+            [
+              1410,
+              1311
+            ],
+            [
+              1410,
+              1335
+            ],
+            [
+              783,
+              1335
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1311,
+            1410,
+            1335
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "in which the soil moisture analysis increments are linked to",
+          "confidence": 0.9728516936302185,
+          "poly": [
+            [
+              783,
+              1344
+            ],
+            [
+              1410,
+              1344
+            ],
+            [
+              1410,
+              1367
+            ],
+            [
+              783,
+              1367
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1344,
+            1410,
+            1367
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "irrigation patterns. As irrigation is not directly observed by",
+          "confidence": 0.9850695133209229,
+          "poly": [
+            [
+              784,
+              1379
+            ],
+            [
+              1409,
+              1379
+            ],
+            [
+              1409,
+              1402
+            ],
+            [
+              784,
+              1402
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            1379,
+            1409,
+            1402
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "measurements providing spatial coverage, efforts are focusing on",
+          "confidence": 0.9914885759353638,
+          "poly": [
+            [
+              783,
+              1412
+            ],
+            [
+              1408,
+              1411
+            ],
+            [
+              1408,
+              1435
+            ],
+            [
+              783,
+              1436
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1411,
+            1408,
+            1436
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "correcting the soil moisture with respect to the irrigation-related",
+          "confidence": 0.9808365702629089,
+          "poly": [
+            [
+              784,
+              1445
+            ],
+            [
+              1407,
+              1445
+            ],
+            [
+              1407,
+              1468
+            ],
+            [
+              784,
+              1468
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            1445,
+            1407,
+            1468
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "effects. A possible approach is to assimilate GRACE satellite data",
+          "confidence": 0.9970930814743042,
+          "poly": [
+            [
+              784,
+              1477
+            ],
+            [
+              1407,
+              1477
+            ],
+            [
+              1407,
+              1500
+            ],
+            [
+              784,
+              1500
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            1477,
+            1407,
+            1500
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "(e.g., Girotto et al., 2017) which has the total column water as a",
+          "confidence": 0.9940785765647888,
+          "poly": [
+            [
+              784,
+              1508
+            ],
+            [
+              1408,
+              1508
+            ],
+            [
+              1408,
+              1535
+            ],
+            [
+              784,
+              1535
+            ]
+          ],
+          "bbox_xyxy": [
+            784,
+            1508,
+            1408,
+            1535
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "residual of the main gravimetric measurements. Nie et al. (2019)",
+          "confidence": 0.9808051586151123,
+          "poly": [
+            [
+              783,
+              1540
+            ],
+            [
+              1402,
+              1542
+            ],
+            [
+              1402,
+              1566
+            ],
+            [
+              783,
+              1564
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1540,
+            1402,
+            1566
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "provide a more thorough study comparing assimilated soil",
+          "confidence": 0.9903326034545898,
+          "poly": [
+            [
+              783,
+              1573
+            ],
+            [
+              1404,
+              1573
+            ],
+            [
+              1404,
+              1599
+            ],
+            [
+              783,
+              1599
+            ]
+          ],
+          "bbox_xyxy": [
+            783,
+            1573,
+            1404,
+            1599
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "moisture and an irrigation parameterization and their respective",
+          "confidence": 0.989793062210083,
+          "poly": [
+            [
+              782,
+              1604
+            ],
+            [
+              1402,
+              1607
+            ],
+            [
+              1402,
+              1631
+            ],
+            [
+              782,
+              1628
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1604,
+            1402,
+            1631
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "effect on groundwater storage representation. While this is a",
+          "confidence": 0.9945974349975586,
+          "poly": [
+            [
+              782,
+              1637
+            ],
+            [
+              1401,
+              1641
+            ],
+            [
+              1401,
+              1665
+            ],
+            [
+              782,
+              1661
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1637,
+            1401,
+            1665
+          ],
+          "reading_order": 17
+        },
+        {
+          "text": "relatively new field, it is a promising approach to either account",
+          "confidence": 0.9844141006469727,
+          "poly": [
+            [
+              782,
+              1670
+            ],
+            [
+              1400,
+              1673
+            ],
+            [
+              1400,
+              1697
+            ],
+            [
+              782,
+              1694
+            ]
+          ],
+          "bbox_xyxy": [
+            782,
+            1670,
+            1400,
+            1697
+          ],
+          "reading_order": 18
+        }
+      ]
+    },
+    {
+      "block_id": 11,
+      "label": "formula",
+      "score": 0.9361950159072876,
+      "bbox_xyxy": [
+        354,
+        1203,
+        496,
+        1259
+      ],
+      "lines": [
+        {
+          "text": "WI",
+          "confidence": 0.9913691282272339,
+          "poly": [
+            [
+              433,
+              1213
+            ],
+            [
+              481,
+              1216
+            ],
+            [
+              479,
+              1253
+            ],
+            [
+              431,
+              1250
+            ]
+          ],
+          "bbox_xyxy": [
+            431,
+            1213,
+            481,
+            1253
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "QI,k =",
+          "confidence": 0.924529492855072,
+          "poly": [
+            [
+              342,
+              1232
+            ],
+            [
+              421,
+              1236
+            ],
+            [
+              419,
+              1274
+            ],
+            [
+              340,
+              1270
+            ]
+          ],
+          "bbox_xyxy": [
+            340,
+            1232,
+            421,
+            1274
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 19,
+      "label": "formula_number",
+      "score": 0.8579055666923523,
+      "bbox_xyxy": [
+        688,
+        1219,
+        713,
+        1242
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 7,
+      "label": "text",
+      "score": 0.9736781716346741,
+      "bbox_xyxy": [
+        135,
+        1285,
+        714,
+        1431
+      ],
+      "lines": [
+        {
+          "text": "where ρk is the air density in the kth-layer of Δzk thickness.",
+          "confidence": 0.968802273273468,
+          "poly": [
+            [
+              115,
+              1309
+            ],
+            [
+              726,
+              1308
+            ],
+            [
+              726,
+              1335
+            ],
+            [
+              115,
+              1336
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1308,
+            726,
+            1336
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "The rain rate is modified only in the lowest mass-layer, so it is",
+          "confidence": 0.9838897585868835,
+          "poly": [
+            [
+              116,
+              1343
+            ],
+            [
+              726,
+              1343
+            ],
+            [
+              726,
+              1367
+            ],
+            [
+              116,
+              1367
+            ]
+          ],
+          "bbox_xyxy": [
+            116,
+            1343,
+            726,
+            1367
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "assumed that the sprinkler water does not directly reach beyond",
+          "confidence": 0.9877560138702393,
+          "poly": [
+            [
+              114,
+              1376
+            ],
+            [
+              726,
+              1375
+            ],
+            [
+              726,
+              1402
+            ],
+            [
+              114,
+              1403
+            ]
+          ],
+          "bbox_xyxy": [
+            114,
+            1375,
+            726,
+            1403
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "the first model layer. In their study, Valmassoi et al. (2020a) set",
+          "confidence": 0.9928313493728638,
+          "poly": [
+            [
+              115,
+              1410
+            ],
+            [
+              727,
+              1409
+            ],
+            [
+              727,
+              1436
+            ],
+            [
+              115,
+              1437
+            ]
+          ],
+          "bbox_xyxy": [
+            115,
+            1409,
+            727,
+            1437
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 22,
+      "label": "formula",
+      "score": 0.5667961239814758,
+      "bbox_xyxy": [
+        580,
+        1288,
+        617,
+        1310
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 8,
+      "label": "text",
+      "score": 0.9554334282875061,
+      "bbox_xyxy": [
+        136,
+        1440,
+        714,
+        1526
+      ],
+      "lines": [
+        {
+          "text": "the height of such level to 20 meters.",
+          "confidence": 0.9923776388168335,
+          "poly": [
+            [
+              117,
+              1445
+            ],
+            [
+              465,
+              1443
+            ],
+            [
+              465,
+              1467
+            ],
+            [
+              117,
+              1469
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1443,
+            465,
+            1469
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "While studies such asOzdogan et al. (2009) uses the same",
+          "confidence": 0.9754316210746765,
+          "poly": [
+            [
+              153,
+              1477
+            ],
+            [
+              726,
+              1476
+            ],
+            [
+              726,
+              1500
+            ],
+            [
+              153,
+              1501
+            ]
+          ],
+          "bbox_xyxy": [
+            153,
+            1476,
+            726,
+            1501
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "name (\"sprinkler\") for their representation, they never include a",
+          "confidence": 0.9938750267028809,
+          "poly": [
+            [
+              117,
+              1510
+            ],
+            [
+              726,
+              1509
+            ],
+            [
+              726,
+              1533
+            ],
+            [
+              117,
+              1534
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1509,
+            726,
+            1534
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 15,
+      "label": "paragraph_title",
+      "score": 0.8989582657814026,
+      "bbox_xyxy": [
+        136,
+        1587,
+        596,
+        1611
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 6,
+      "label": "text",
+      "score": 0.974921703338623,
+      "bbox_xyxy": [
+        135,
+        1622,
+        715,
+        1768
+      ],
+      "lines": [
+        {
+          "text": "3.3.4. Irrigation as water vapor source",
+          "confidence": 0.9897883534431458,
+          "poly": [
+            [
+              118,
+              1628
+            ],
+            [
+              600,
+              1631
+            ],
+            [
+              600,
+              1658
+            ],
+            [
+              118,
+              1655
+            ]
+          ],
+          "bbox_xyxy": [
+            118,
+            1628,
+            600,
+            1658
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "The inclusion of irrigation as a water vapor source reflects",
+          "confidence": 0.9927074909210205,
+          "poly": [
+            [
+              156,
+              1666
+            ],
+            [
+              725,
+              1666
+            ],
+            [
+              725,
+              1690
+            ],
+            [
+              156,
+              1690
+            ]
+          ],
+          "bbox_xyxy": [
+            156,
+            1666,
+            725,
+            1690
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "the theoretical considerations made by de Vries (1959) and",
+          "confidence": 0.9858616590499878,
+          "poly": [
+            [
+              119,
+              1698
+            ],
+            [
+              725,
+              1698
+            ],
+            [
+              725,
+              1721
+            ],
+            [
+              119,
+              1721
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1698,
+            725,
+            1721
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Flohn (1963) in investigating the impact of irrigation on the",
+          "confidence": 0.9714602828025818,
+          "poly": [
+            [
+              119,
+              1730
+            ],
+            [
+              724,
+              1729
+            ],
+            [
+              724,
+              1753
+            ],
+            [
+              119,
+              1754
+            ]
+          ],
+          "bbox_xyxy": [
+            119,
+            1729,
+            724,
+            1754
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 13,
+      "label": "paragraph_title",
+      "score": 0.9036582112312317,
+      "bbox_xyxy": [
+        767,
+        1776,
+        1141,
+        1803
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 12,
+      "label": "footnote",
+      "score": 0.9212044477462769,
+      "bbox_xyxy": [
+        134,
+        1813,
+        715,
+        1896
+      ],
+      "lines": [
+        {
+          "text": "6 Defined in the AMs Glossary as: the portion of precipitation",
+          "confidence": 0.9852290153503418,
+          "poly": [
+            [
+              117,
+              1868
+            ],
+            [
+              721,
+              1865
+            ],
+            [
+              721,
+              1886
+            ],
+            [
+              117,
+              1889
+            ]
+          ],
+          "bbox_xyxy": [
+            117,
+            1865,
+            721,
+            1889
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 9,
+      "label": "text",
+      "score": 0.9380700588226318,
+      "bbox_xyxy": [
+        765,
+        1843,
+        1344,
+        1898
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 17,
+      "label": "footer",
+      "score": 0.8643748164176941,
+      "bbox_xyxy": [
+        138,
+        1976,
+        279,
+        1993
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 18,
+      "label": "footer",
+      "score": 0.8594112396240234,
+      "bbox_xyxy": [
+        1227,
+        1977,
+        1343,
+        1995
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 21,
+      "label": "number",
+      "score": 0.7969955205917358,
+      "bbox_xyxy": [
+        732,
+        1978,
+        751,
+        1993
+      ],
+      "lines": []
+    }
+  ]
+}

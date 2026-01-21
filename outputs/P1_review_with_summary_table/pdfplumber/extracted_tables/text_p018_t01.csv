@@ -1,0 +1,106 @@
+ValmassoiandKeller,10.3389/frwa.2022.906664
+,
+personalcommunication).However,theGrainEXIOPsprovide,underestimates/overestimates the impacts of these practices
+,
+a fair good knowledge of the timing and the field locations,(Kala and Hirsch, 2020; Jha et al., 2022). In particular, Kala
+,
+through indirect observations (Phillips et al., 2022), e.g., soil,and Hirsch (2020) shows how high albedo crops have higher
+,
+moisturepeaksinabsenceofprecipitation.Thisconcepthasalso,potentials in Australia than what expected by Hirsch et al.
+,
+beenpreviouslyusedbyBroccaetal.(2014)fortheSM2RAIN,(2017).Similarly,inassumingirrigationhasastrongpotential
+,
+algorithm,whichcombinessoilmoisturesatelliteproductswith,for climate mitigation, we neglect both the already existing
+,
+rainfall estimations to quantify the missing precipitation. The,impactofirrigatedlandsonclimatechange(Cooketal.,2011)
+,
+algorithm has been later implemented in Brocca et al. (2018),andthefactthatglobalmodelslikelyoverestimatesitscooling
+,
+to better include the irrigation volumes and validate them for,impact(Jhaetal.,2022).Whentheseconceptsareincludedinthe
+,
+pilotsitesintheUS,EuropeandAustralia.Whilethismethod,climateprojectionsandsimulations,thentheexpectedincrease
+,
+performedwellinperiodsoflowrainfallandifsatellitesretrieval,inwaterscarcityfortheagriculturalareashastobeincludedin
+,
+have low uncertainties, it cannot be applied to sites affected,limitingtheirrigationvolumesthatcanbeapplied.
+,
+by snow or frozen soil or when rainfall happens throughout,Finally, it is crucial to realize that all the down-stream
+,
+theyear.,applicationsthatusemodelorreanalyzesdatawillbenefitfrom
+,
+,explicitly including irrigation. Specific applications might rely
+,
+,on soil water or near-surface data, where irrigation has the
+6.3. Applications,largesteffects.Furthermore,alldown-streammodelandimpact
+,
+,assessments that use ESM outputs and refer to agricultural-
+,
+Thelackofexplicitirrigationrepresentationcannotbefully,relatedprocesseswillstronglybenefit[e.g.,agriculturaldrought
+,
+correctedathighresolutioninatmosphericreanalyzesproducts,warnings (Seneviratne et al., 2010), yield calculations (Lobell
+,
+due to the lack of direct soil moisture observations that can,etal.,2011;Chatzopoulosetal.,2019;Zampierietal.,2019)].
+,
+be assimilated into the system state and help to correct the,
+,
+verticalwaterredistributioninthesoil.Thisaspecthasalready,
+,
+been discussed by Tuinenburg and de Vries (2017) showing,7. Summary and conclusions
+significant biases in the ERA-Interim reanalysis. Therefore,,
+,
+irrigation processes needs to be included also in reanalyzes to,In this review, we presented the developments in the
+,
+allow for a correct representation of the Earth system water,implementations of the irrigation parameterizations for Earth
+,
+budget.,SystemModels(ESMs).
+,
+When we consider the impact of irrigation on the,IrrigationinfluencesvariousEarthsystemcomponentsand
+,
+atmosphericstateanddynamics,theeffectsofthechangesrange,processes partly resulting in feedback effects. While some
+,
+from diurnal to seasonal scales. This is going to impact the,of these impacts are well-studied, others are not yet fully
+,
+weatheraswellastheseasonal/sub-seasonalpredictabilitywith,understood and there is often disagreement on the extent
+,
+different magnitudes. Most of the predictability improvement,of the impacts in literature. For instance, the IPCC’s 5th
+,
+is expected to be related to a more suitable soil water content,Assessment Report (AR5) assesses a high confidence on the
+,
+with its importance being summarized in Seneviratne et al.,irrigationcoolingeffect(e.g.,Jiaetal.,2019),butitsmagnitude
+,
+(2010). The impact of irrigation then is further complicated,is not certain. Further, the changes in the surface energy
+,
+in investigating the multi-year variability, as the volume used,balance are found to affect both the air masses properties
+,
+is not constant. However, currently only Cook et al. (2015),and the circulation, potentially causing local and/or remote
+,
+investigateirrigationasatemporalvaryingforcingatthespatial,precipitation feedback. Thus, local anthropogenic changes in
+resolutionof2o×2.5olatitude/longitude.Whiletheyneedthis,the water cycle affect the Earth system at multiple scales.
+,
+coarseresolutiontoruna150-years(1850–200)simulationwith,However, while the surface physical feedback of irrigation
+,
+5 ensemble members, it is not enough to capture most of the,seemsclear,significantuncertaintiesremainsinthequantitative
+,
+highlyirrigatedareasinEuropeortheAmericas,butonlythe,aspects. On the one hand, this uncertainty is related to the
+,
+largestonesinSouthandEastAsia(SAS,EAS).,underlyingsoil-atmospherecouplinganditsimplementationin
+,
+Evenwhenirrigationitselfisincludedinthestudies,there,Earth system models (Seneviratne et al., 2010). On the other
+,
+is a lack of quantification of the feedback between different,hand, the uncertainty can also be ascribed to the irrigation
+,
+anthropogenic land transitions, such as conversion between,parameterizations themselves and the ambiguity on actual
+,
+cropping systems (McDermid et al., 2017), or the different,irrigationwateramountsamongexistingresearchstudies.
+,
+impacts irrigation can have on Earth system depending on,Thecurrentlyavailableparameterizationsarecollectedand
+,
+differenttypesofcrops.Infact,whileeffectlandmanagement,classifiedinSection3,dependingontheactivationmethod(see
+,
+andirrigationhasbeensuggestedbyseveralauthorsasapossible,Section 3.1) and the model quantity that is directly affected
+,
+path for climate mitigation (Hirsch et al., 2017), but more,(see Section 3.3) by irrigation. While the latter category is
+,
+work needs to be done in that regard as global models likely,more straight-forward from a numerical modeling physical
+,
+FrontiersinWater 18,frontiersin.org

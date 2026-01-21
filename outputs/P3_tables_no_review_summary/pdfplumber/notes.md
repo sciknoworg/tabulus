@@ -1,0 +1,5 @@
+- Library: pdfplumber
+- PDF: P3_tables_no_review_summary.pdf
+- Attempts:
+  - lines: extracted=2, saved=2
+  - text: extracted=18, saved=18

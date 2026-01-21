@@ -1,0 +1,1544 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 13,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 10,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9943159222602844,
+          "poly": [
+            [
+              21,
+              21
+            ],
+            [
+              323,
+              43
+            ],
+            [
+              320,
+              76
+            ],
+            [
+              19,
+              54
+            ]
+          ],
+          "bbox_xyxy": [
+            19,
+            21,
+            323,
+            76
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "13 of 16",
+          "confidence": 0.933542013168335,
+          "poly": [
+            [
+              1515,
+              44
+            ],
+            [
+              1607,
+              42
+            ],
+            [
+              1608,
+              75
+            ],
+            [
+              1515,
+              77
+            ]
+          ],
+          "bbox_xyxy": [
+            1515,
+            42,
+            1608,
+            77
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Concerning irrigation management, there is a clear vicious circle of the arc \"weak man-",
+          "confidence": 0.980522096157074,
+          "poly": [
+            [
+              423,
+              186
+            ],
+            [
+              1608,
+              181
+            ],
+            [
+              1608,
+              222
+            ],
+            [
+              424,
+              227
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            181,
+            1608,
+            227
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "agement capacity →poorly operated and maintained system →poor system performance",
+          "confidence": 0.9952571988105774,
+          "poly": [
+            [
+              424,
+              227
+            ],
+            [
+              1603,
+              221
+            ],
+            [
+              1603,
+              262
+            ],
+            [
+              425,
+              268
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            221,
+            1603,
+            268
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "4.4. Other Support Services and Issues",
+          "confidence": 0.983038067817688,
+          "poly": [
+            [
+              423,
+              706
+            ],
+            [
+              890,
+              706
+            ],
+            [
+              890,
+              736
+            ],
+            [
+              423,
+              736
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            706,
+            890,
+            736
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Water application through irrigation is only one input to the agricultural production",
+          "confidence": 0.9919939637184143,
+          "poly": [
+            [
+              484,
+              751
+            ],
+            [
+              1593,
+              755
+            ],
+            [
+              1593,
+              786
+            ],
+            [
+              484,
+              782
+            ]
+          ],
+          "bbox_xyxy": [
+            484,
+            751,
+            1593,
+            786
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "the available water, hence reducing their irrigable areas [31].",
+          "confidence": 0.9902631640434265,
+          "poly": [
+            [
+              421,
+              1786
+            ],
+            [
+              1198,
+              1784
+            ],
+            [
+              1198,
+              1822
+            ],
+            [
+              422,
+              1824
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            1784,
+            1198,
+            1824
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "5. Summary and Conclusions",
+          "confidence": 0.9964231252670288,
+          "poly": [
+            [
+              421,
+              1858
+            ],
+            [
+              814,
+              1850
+            ],
+            [
+              814,
+              1881
+            ],
+            [
+              422,
+              1889
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            1850,
+            814,
+            1889
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 8,
+      "label": "header",
+      "score": 0.8829226493835449,
+      "bbox_xyxy": [
+        96,
+        144,
+        360,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 9,
+      "label": "number",
+      "score": 0.7349290251731873,
+      "bbox_xyxy": [
+        1475,
+        144,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9757035970687866,
+      "bbox_xyxy": [
+        455,
+        267,
+        1553,
+        436
+      ],
+      "lines": [
+        {
+          "text": "→low productivity→low income→weak management capacity\". Converting this vicious",
+          "confidence": 0.9871469736099243,
+          "poly": [
+            [
+              424,
+              263
+            ],
+            [
+              1603,
+              257
+            ],
+            [
+              1603,
+              302
+            ],
+            [
+              425,
+              308
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            257,
+            1603,
+            308
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "circle into a virtuous circle requires building the capacity of irrigation management institu-",
+          "confidence": 0.9862281084060669,
+          "poly": [
+            [
+              421,
+              299
+            ],
+            [
+              1606,
+              295
+            ],
+            [
+              1606,
+              342
+            ],
+            [
+              422,
+              346
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            295,
+            1606,
+            346
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "tions including that of irrigators'.",
+          "confidence": 0.9942734837532043,
+          "poly": [
+            [
+              426,
+              341
+            ],
+            [
+              864,
+              343
+            ],
+            [
+              864,
+              375
+            ],
+            [
+              425,
+              372
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            341,
+            864,
+            375
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Apart from the poor performances of irrigation schemes, unwise management of irri-",
+          "confidence": 0.9843522906303406,
+          "poly": [
+            [
+              485,
+              377
+            ],
+            [
+              1603,
+              371
+            ],
+            [
+              1603,
+              415
+            ],
+            [
+              485,
+              421
+            ]
+          ],
+          "bbox_xyxy": [
+            485,
+            371,
+            1603,
+            421
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "gation water has been causing multitudes of undesirable consequences on the environment.",
+          "confidence": 0.992444634437561,
+          "poly": [
+            [
+              422,
+              416
+            ],
+            [
+              1600,
+              412
+            ],
+            [
+              1600,
+              451
+            ],
+            [
+              423,
+              454
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            412,
+            1600,
+            454
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9845176935195923,
+      "bbox_xyxy": [
+        455,
+        442,
+        1553,
+        716
+      ],
+      "lines": [
+        {
+          "text": "The development of salinity, sodicity, and water-logging in many large and medium-scale",
+          "confidence": 0.984648585319519,
+          "poly": [
+            [
+              420,
+              451
+            ],
+            [
+              1597,
+              449
+            ],
+            [
+              1597,
+              490
+            ],
+            [
+              421,
+              492
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            449,
+            1597,
+            492
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "irrigation schemes in lowland areas of the country is increasing [13,36]. Hence, the rate at",
+          "confidence": 0.9886928200721741,
+          "poly": [
+            [
+              423,
+              491
+            ],
+            [
+              1596,
+              491
+            ],
+            [
+              1596,
+              524
+            ],
+            [
+              423,
+              524
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            491,
+            1596,
+            524
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "which the county is losing its fertile agricultural land to these unwanted consequences of",
+          "confidence": 0.989154040813446,
+          "poly": [
+            [
+              421,
+              526
+            ],
+            [
+              1596,
+              527
+            ],
+            [
+              1596,
+              561
+            ],
+            [
+              421,
+              560
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            526,
+            1596,
+            561
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "irrigation has been rising. Although there are many factors that are contributing to these",
+          "confidence": 0.9864969849586487,
+          "poly": [
+            [
+              421,
+              563
+            ],
+            [
+              1594,
+              565
+            ],
+            [
+              1594,
+              598
+            ],
+            [
+              421,
+              596
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            563,
+            1594,
+            598
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "problems, low irrigation efficiencies as a result of inadequate knowledge and the skill of",
+          "confidence": 0.9856704473495483,
+          "poly": [
+            [
+              420,
+              598
+            ],
+            [
+              1596,
+              599
+            ],
+            [
+              1596,
+              636
+            ],
+            [
+              420,
+              635
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            598,
+            1596,
+            636
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "irrigators can be considered as the major factor [12,32,36].",
+          "confidence": 0.9922510981559753,
+          "poly": [
+            [
+              423,
+              636
+            ],
+            [
+              1167,
+              638
+            ],
+            [
+              1167,
+              672
+            ],
+            [
+              422,
+              670
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            636,
+            1167,
+            672
+          ],
+          "reading_order": 5
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "paragraph_title",
+      "score": 0.9026038646697998,
+      "bbox_xyxy": [
+        457,
+        749,
+        901,
+        776
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9867308735847473,
+      "bbox_xyxy": [
+        455,
+        792,
+        1552,
+        1170
+      ],
+      "lines": [
+        {
+          "text": "system. Timely and reliable water supplies enhance greater cropping intensities which",
+          "confidence": 0.9928617477416992,
+          "poly": [
+            [
+              423,
+              789
+            ],
+            [
+              1593,
+              789
+            ],
+            [
+              1593,
+              823
+            ],
+            [
+              423,
+              823
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            789,
+            1593,
+            823
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "when integrated with other appropriate agricultural inputs can push up agricultural pro-",
+          "confidence": 0.9902336597442627,
+          "poly": [
+            [
+              420,
+              824
+            ],
+            [
+              1598,
+              826
+            ],
+            [
+              1598,
+              863
+            ],
+            [
+              420,
+              861
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            824,
+            1598,
+            863
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "ductivity [36]. The adoption of improved irrigated agricultural innovations by farmers",
+          "confidence": 0.9856058359146118,
+          "poly": [
+            [
+              422,
+              862
+            ],
+            [
+              1594,
+              861
+            ],
+            [
+              1594,
+              898
+            ],
+            [
+              422,
+              899
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            861,
+            1594,
+            899
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "is believed to be of prime importance for improving farming practices that enhance the",
+          "confidence": 0.9720838069915771,
+          "poly": [
+            [
+              422,
+              901
+            ],
+            [
+              1592,
+              901
+            ],
+            [
+              1592,
+              935
+            ],
+            [
+              422,
+              935
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            901,
+            1592,
+            935
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "productivity, profitability, and sustainability of their farms. Such innovations include",
+          "confidence": 0.9872079491615295,
+          "poly": [
+            [
+              421,
+              938
+            ],
+            [
+              1593,
+              934
+            ],
+            [
+              1593,
+              971
+            ],
+            [
+              422,
+              975
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            934,
+            1593,
+            975
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "high-yielding varieties, new types of fertilizers, modern farm technologies and practices",
+          "confidence": 0.9801219701766968,
+          "poly": [
+            [
+              422,
+              976
+            ],
+            [
+              1592,
+              973
+            ],
+            [
+              1592,
+              1010
+            ],
+            [
+              423,
+              1013
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            973,
+            1592,
+            1013
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "of land and water management, and new strategies of market engagement, among oth-",
+          "confidence": 0.9741716980934143,
+          "poly": [
+            [
+              425,
+              1015
+            ],
+            [
+              1593,
+              1014
+            ],
+            [
+              1593,
+              1045
+            ],
+            [
+              425,
+              1046
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1014,
+            1593,
+            1046
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "ers [25,3740]. While extension services are necessary to help farmers adapt and implement",
+          "confidence": 0.994809091091156,
+          "poly": [
+            [
+              424,
+              1052
+            ],
+            [
+              1592,
+              1049
+            ],
+            [
+              1592,
+              1083
+            ],
+            [
+              424,
+              1086
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1049,
+            1592,
+            1086
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "improved practices, access to credit and market provide financial capacity and thereby",
+          "confidence": 0.9931357502937317,
+          "poly": [
+            [
+              425,
+              1088
+            ],
+            [
+              1592,
+              1084
+            ],
+            [
+              1592,
+              1122
+            ],
+            [
+              426,
+              1126
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1084,
+            1592,
+            1126
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "enable farmers to invest in improved agricultural inputs and technologies.",
+          "confidence": 0.9857683777809143,
+          "poly": [
+            [
+              426,
+              1125
+            ],
+            [
+              1392,
+              1122
+            ],
+            [
+              1392,
+              1156
+            ],
+            [
+              426,
+              1160
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            1122,
+            1392,
+            1160
+          ],
+          "reading_order": 9
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9867187142372131,
+      "bbox_xyxy": [
+        455,
+        1175,
+        1552,
+        1588
+      ],
+      "lines": [
+        {
+          "text": "However, unlike agriculture, the irrigation sector in Ethiopia is not well supported",
+          "confidence": 0.9913985729217529,
+          "poly": [
+            [
+              484,
+              1161
+            ],
+            [
+              1591,
+              1160
+            ],
+            [
+              1591,
+              1195
+            ],
+            [
+              484,
+              1196
+            ]
+          ],
+          "bbox_xyxy": [
+            484,
+            1160,
+            1591,
+            1196
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "by extension services. Most often, irrigation is practiced without adequate know-how,",
+          "confidence": 0.9869688153266907,
+          "poly": [
+            [
+              425,
+              1201
+            ],
+            [
+              1595,
+              1198
+            ],
+            [
+              1595,
+              1232
+            ],
+            [
+              425,
+              1235
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1198,
+            1595,
+            1235
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "which resulted in undesirable consequences such as soil salinity, groundwater rise, water-",
+          "confidence": 0.9991121888160706,
+          "poly": [
+            [
+              423,
+              1238
+            ],
+            [
+              1598,
+              1234
+            ],
+            [
+              1598,
+              1270
+            ],
+            [
+              424,
+              1274
+            ]
+          ],
+          "bbox_xyxy": [
+            423,
+            1234,
+            1598,
+            1274
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "logging, and the degradation of soil fertility. Moreover, the lack of appropriate financing",
+          "confidence": 0.9906111359596252,
+          "poly": [
+            [
+              424,
+              1274
+            ],
+            [
+              1593,
+              1271
+            ],
+            [
+              1593,
+              1308
+            ],
+            [
+              424,
+              1311
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1271,
+            1593,
+            1311
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "mechanisms and access to market has been threatening the success of irrigation, which in",
+          "confidence": 0.9946083426475525,
+          "poly": [
+            [
+              426,
+              1312
+            ],
+            [
+              1591,
+              1309
+            ],
+            [
+              1591,
+              1342
+            ],
+            [
+              426,
+              1345
+            ]
+          ],
+          "bbox_xyxy": [
+            426,
+            1309,
+            1591,
+            1345
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "turn affected the likelihoods of irrigators and limited their capacity to invest in improved",
+          "confidence": 0.9893205761909485,
+          "poly": [
+            [
+              424,
+              1348
+            ],
+            [
+              1591,
+              1345
+            ],
+            [
+              1591,
+              1379
+            ],
+            [
+              424,
+              1382
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1345,
+            1591,
+            1382
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "farm inputs and technologies [27,30,33,41]. The overall consequence is the deterioration",
+          "confidence": 0.9784034490585327,
+          "poly": [
+            [
+              424,
+              1385
+            ],
+            [
+              1591,
+              1382
+            ],
+            [
+              1591,
+              1416
+            ],
+            [
+              424,
+              1419
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1382,
+            1591,
+            1419
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "of many of the irrigation systems and poor performances. The effects of low farm income",
+          "confidence": 0.996185839176178,
+          "poly": [
+            [
+              425,
+              1421
+            ],
+            [
+              1592,
+              1418
+            ],
+            [
+              1592,
+              1452
+            ],
+            [
+              425,
+              1455
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1418,
+            1592,
+            1455
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "and inadequate capacity to afford improved technologies can be explained by a vicious",
+          "confidence": 0.9823623895645142,
+          "poly": [
+            [
+              425,
+              1456
+            ],
+            [
+              1590,
+              1455
+            ],
+            [
+              1590,
+              1489
+            ],
+            [
+              425,
+              1490
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1455,
+            1590,
+            1490
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "circle of the form \"poor irrigation management combined with low use of improved farm",
+          "confidence": 0.9848618507385254,
+          "poly": [
+            [
+              425,
+              1493
+            ],
+            [
+              1590,
+              1492
+            ],
+            [
+              1590,
+              1526
+            ],
+            [
+              425,
+              1527
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1492,
+            1590,
+            1527
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "inputs cause decreases in crop yields and production, which in turn leads to low income",
+          "confidence": 0.9856241345405579,
+          "poly": [
+            [
+              425,
+              1532
+            ],
+            [
+              1590,
+              1528
+            ],
+            [
+              1590,
+              1562
+            ],
+            [
+              426,
+              1566
+            ]
+          ],
+          "bbox_xyxy": [
+            425,
+            1528,
+            1590,
+            1566
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "and finally the inability to purchase improved inputs and technologies.",
+          "confidence": 0.9878115653991699,
+          "poly": [
+            [
+              424,
+              1568
+            ],
+            [
+              1344,
+              1566
+            ],
+            [
+              1344,
+              1599
+            ],
+            [
+              424,
+              1601
+            ]
+          ],
+          "bbox_xyxy": [
+            424,
+            1566,
+            1344,
+            1601
+          ],
+          "reading_order": 11
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9787346124649048,
+      "bbox_xyxy": [
+        455,
+        1594,
+        1553,
+        1798
+      ],
+      "lines": [
+        {
+          "text": "Moreover, the sustainability of irrigation systems is largely threatened by watershed",
+          "confidence": 0.9915364980697632,
+          "poly": [
+            [
+              481,
+              1604
+            ],
+            [
+              1589,
+              1603
+            ],
+            [
+              1589,
+              1637
+            ],
+            [
+              481,
+              1638
+            ]
+          ],
+          "bbox_xyxy": [
+            481,
+            1603,
+            1589,
+            1638
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "degradation and the resulting floods, soil erosion, and sedimentation [24]. Irrigation in-",
+          "confidence": 0.9855702519416809,
+          "poly": [
+            [
+              422,
+              1639
+            ],
+            [
+              1595,
+              1635
+            ],
+            [
+              1595,
+              1676
+            ],
+            [
+              423,
+              1680
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            1635,
+            1595,
+            1680
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "frastructures such as dams, diversion headworks, and canals are frequently damaged by",
+          "confidence": 0.9792251586914062,
+          "poly": [
+            [
+              421,
+              1675
+            ],
+            [
+              1591,
+              1675
+            ],
+            [
+              1591,
+              1715
+            ],
+            [
+              421,
+              1715
+            ]
+          ],
+          "bbox_xyxy": [
+            421,
+            1675,
+            1591,
+            1715
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "floods, and their projected life is shortened by excessive sedimentation from the degraded",
+          "confidence": 0.9951905012130737,
+          "poly": [
+            [
+              420,
+              1711
+            ],
+            [
+              1590,
+              1709
+            ],
+            [
+              1590,
+              1750
+            ],
+            [
+              421,
+              1752
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            1709,
+            1590,
+            1752
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "uplands [2,13]. Many schemes are facing water shortage due to drought and the overuse of",
+          "confidence": 0.9869531989097595,
+          "poly": [
+            [
+              419,
+              1746
+            ],
+            [
+              1592,
+              1743
+            ],
+            [
+              1592,
+              1790
+            ],
+            [
+              420,
+              1793
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            1743,
+            1592,
+            1793
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 7,
+      "label": "paragraph_title",
+      "score": 0.8961329460144043,
+      "bbox_xyxy": [
+        458,
+        1830,
+        835,
+        1857
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "text",
+      "score": 0.9835126399993896,
+      "bbox_xyxy": [
+        455,
+        1873,
+        1553,
+        2149
+      ],
+      "lines": [
+        {
+          "text": "In this study, the irrigation development in Ethiopia, historical background, develop-",
+          "confidence": 0.9814774990081787,
+          "poly": [
+            [
+              478,
+              1891
+            ],
+            [
+              1593,
+              1902
+            ],
+            [
+              1593,
+              1946
+            ],
+            [
+              478,
+              1935
+            ]
+          ],
+          "bbox_xyxy": [
+            478,
+            1891,
+            1593,
+            1946
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "indigenous knowledge-based irrigation has been practiced in Ethiopia for over 2000 years.",
+          "confidence": 0.9881120324134827,
+          "poly": [
+            [
+              416,
+              2000
+            ],
+            [
+              1596,
+              2014
+            ],
+            [
+              1595,
+              2062
+            ],
+            [
+              415,
+              2048
+            ]
+          ],
+          "bbox_xyxy": [
+            415,
+            2000,
+            1596,
+            2062
+          ],
+          "reading_order": 1
+        }
+      ]
+    }
+  ]
+}

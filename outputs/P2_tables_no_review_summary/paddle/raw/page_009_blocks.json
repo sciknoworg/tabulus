@@ -1,0 +1,1665 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 9,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 8,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9909946918487549,
+          "poly": [
+            [
+              17,
+              2
+            ],
+            [
+              320,
+              25
+            ],
+            [
+              317,
+              58
+            ],
+            [
+              14,
+              35
+            ]
+          ],
+          "bbox_xyxy": [
+            14,
+            2,
+            320,
+            58
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "9 of 16",
+          "confidence": 0.9989752769470215,
+          "poly": [
+            [
+              1513,
+              30
+            ],
+            [
+              1595,
+              30
+            ],
+            [
+              1595,
+              63
+            ],
+            [
+              1513,
+              63
+            ]
+          ],
+          "bbox_xyxy": [
+            1513,
+            30,
+            1595,
+            63
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "600,000",
+          "confidence": 0.9988322854042053,
+          "poly": [
+            [
+              107,
+              152
+            ],
+            [
+              230,
+              162
+            ],
+            [
+              227,
+              201
+            ],
+            [
+              104,
+              191
+            ]
+          ],
+          "bbox_xyxy": [
+            104,
+            152,
+            230,
+            201
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "539,726",
+          "confidence": 0.9989249110221863,
+          "poly": [
+            [
+              1130,
+              241
+            ],
+            [
+              1244,
+              241
+            ],
+            [
+              1244,
+              276
+            ],
+            [
+              1130,
+              276
+            ]
+          ],
+          "bbox_xyxy": [
+            1130,
+            241,
+            1244,
+            276
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Area under irrigation (ha)",
+          "confidence": 0.9600741267204285,
+          "poly": [
+            [
+              74,
+              305
+            ],
+            [
+              111,
+              305
+            ],
+            [
+              111,
+              674
+            ],
+            [
+              74,
+              674
+            ]
+          ],
+          "bbox_xyxy": [
+            74,
+            305,
+            111,
+            674
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "of water, low efficiency, etc. [17,26,27].",
+          "confidence": 0.988898754119873,
+          "poly": [
+            [
+              422,
+              2019
+            ],
+            [
+              915,
+              2011
+            ],
+            [
+              916,
+              2044
+            ],
+            [
+              423,
+              2052
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            2011,
+            916,
+            2052
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Table 2 presents the plan targets and achievements of medium and large-scale irriga-",
+          "confidence": 0.9942259788513184,
+          "poly": [
+            [
+              484,
+              2050
+            ],
+            [
+              1594,
+              2048
+            ],
+            [
+              1594,
+              2089
+            ],
+            [
+              484,
+              2091
+            ]
+          ],
+          "bbox_xyxy": [
+            484,
+            2048,
+            1594,
+            2091
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "tion development over the last one and half decades.",
+          "confidence": 0.9860594868659973,
+          "poly": [
+            [
+              422,
+              2094
+            ],
+            [
+              1109,
+              2087
+            ],
+            [
+              1109,
+              2121
+            ],
+            [
+              423,
+              2128
+            ]
+          ],
+          "bbox_xyxy": [
+            422,
+            2087,
+            1109,
+            2128
+          ],
+          "reading_order": 7
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "header",
+      "score": 0.8788048028945923,
+      "bbox_xyxy": [
+        96,
+        144,
+        360,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 7,
+      "label": "number",
+      "score": 0.7344218492507935,
+      "bbox_xyxy": [
+        1485,
+        144,
+        1551,
+        165
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 3,
+      "label": "chart",
+      "score": 0.9763986468315125,
+      "bbox_xyxy": [
+        146,
+        273,
+        1512,
+        928
+      ],
+      "lines": [
+        {
+          "text": "500,000",
+          "confidence": 0.9791231751441956,
+          "poly": [
+            [
+              106,
+              256
+            ],
+            [
+              229,
+              266
+            ],
+            [
+              226,
+              306
+            ],
+            [
+              103,
+              296
+            ]
+          ],
+          "bbox_xyxy": [
+            103,
+            256,
+            229,
+            306
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Area developed during the period",
+          "confidence": 0.9786542654037476,
+          "poly": [
+            [
+              1171,
+              348
+            ],
+            [
+              1550,
+              342
+            ],
+            [
+              1551,
+              372
+            ],
+            [
+              1171,
+              378
+            ]
+          ],
+          "bbox_xyxy": [
+            1171,
+            342,
+            1551,
+            378
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "400,000",
+          "confidence": 0.9916395545005798,
+          "poly": [
+            [
+              106,
+              362
+            ],
+            [
+              227,
+              369
+            ],
+            [
+              225,
+              409
+            ],
+            [
+              104,
+              402
+            ]
+          ],
+          "bbox_xyxy": [
+            104,
+            362,
+            227,
+            409
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Cumulative area developed",
+          "confidence": 0.9883665442466736,
+          "poly": [
+            [
+              1113,
+              407
+            ],
+            [
+              1486,
+              402
+            ],
+            [
+              1486,
+              430
+            ],
+            [
+              1113,
+              435
+            ]
+          ],
+          "bbox_xyxy": [
+            1113,
+            402,
+            1486,
+            435
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "300,000",
+          "confidence": 0.9937230348587036,
+          "poly": [
+            [
+              106,
+              467
+            ],
+            [
+              226,
+              474
+            ],
+            [
+              224,
+              513
+            ],
+            [
+              104,
+              506
+            ]
+          ],
+          "bbox_xyxy": [
+            104,
+            467,
+            226,
+            513
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "283,084",
+          "confidence": 0.9944944381713867,
+          "poly": [
+            [
+              1054,
+              471
+            ],
+            [
+              1170,
+              476
+            ],
+            [
+              1169,
+              516
+            ],
+            [
+              1052,
+              511
+            ]
+          ],
+          "bbox_xyxy": [
+            1052,
+            471,
+            1170,
+            516
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "200,000",
+          "confidence": 0.9865894317626953,
+          "poly": [
+            [
+              108,
+              571
+            ],
+            [
+              226,
+              577
+            ],
+            [
+              224,
+              617
+            ],
+            [
+              106,
+              611
+            ]
+          ],
+          "bbox_xyxy": [
+            106,
+            571,
+            226,
+            617
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "127,242",
+          "confidence": 0.999889075756073,
+          "poly": [
+            [
+              865,
+              636
+            ],
+            [
+              980,
+              636
+            ],
+            [
+              980,
+              675
+            ],
+            [
+              865,
+              675
+            ]
+          ],
+          "bbox_xyxy": [
+            865,
+            636,
+            980,
+            675
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "100,000",
+          "confidence": 0.9959395527839661,
+          "poly": [
+            [
+              112,
+              679
+            ],
+            [
+              227,
+              685
+            ],
+            [
+              225,
+              726
+            ],
+            [
+              110,
+              719
+            ]
+          ],
+          "bbox_xyxy": [
+            110,
+            679,
+            227,
+            726
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "77,445",
+          "confidence": 0.9977247714996338,
+          "poly": [
+            [
+              680,
+              701
+            ],
+            [
+              781,
+              699
+            ],
+            [
+              782,
+              738
+            ],
+            [
+              681,
+              740
+            ]
+          ],
+          "bbox_xyxy": [
+            680,
+            699,
+            782,
+            740
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "30,400",
+          "confidence": 0.9969415664672852,
+          "poly": [
+            [
+              292,
+              734
+            ],
+            [
+              392,
+              737
+            ],
+            [
+              391,
+              774
+            ],
+            [
+              291,
+              771
+            ]
+          ],
+          "bbox_xyxy": [
+            291,
+            734,
+            392,
+            774
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "21555",
+          "confidence": 0.9997285604476929,
+          "poly": [
+            [
+              493,
+              773
+            ],
+            [
+              591,
+              771
+            ],
+            [
+              592,
+              800
+            ],
+            [
+              494,
+              802
+            ]
+          ],
+          "bbox_xyxy": [
+            493,
+            771,
+            592,
+            802
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "1991",
+          "confidence": 0.9999830722808838,
+          "poly": [
+            [
+              310,
+              842
+            ],
+            [
+              380,
+              842
+            ],
+            [
+              380,
+              876
+            ],
+            [
+              310,
+              876
+            ]
+          ],
+          "bbox_xyxy": [
+            310,
+            842,
+            380,
+            876
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "19932005",
+          "confidence": 0.9999412298202515,
+          "poly": [
+            [
+              463,
+              844
+            ],
+            [
+              611,
+              846
+            ],
+            [
+              611,
+              878
+            ],
+            [
+              462,
+              876
+            ]
+          ],
+          "bbox_xyxy": [
+            462,
+            844,
+            611,
+            878
+          ],
+          "reading_order": 13
+        },
+        {
+          "text": "20062010",
+          "confidence": 0.9999076724052429,
+          "poly": [
+            [
+              652,
+              847
+            ],
+            [
+              801,
+              847
+            ],
+            [
+              801,
+              878
+            ],
+            [
+              652,
+              878
+            ]
+          ],
+          "bbox_xyxy": [
+            652,
+            847,
+            801,
+            878
+          ],
+          "reading_order": 14
+        },
+        {
+          "text": "20112014",
+          "confidence": 0.9999760985374451,
+          "poly": [
+            [
+              845,
+              848
+            ],
+            [
+              993,
+              848
+            ],
+            [
+              993,
+              879
+            ],
+            [
+              845,
+              879
+            ]
+          ],
+          "bbox_xyxy": [
+            845,
+            848,
+            993,
+            879
+          ],
+          "reading_order": 15
+        },
+        {
+          "text": "20152019",
+          "confidence": 0.9999217391014099,
+          "poly": [
+            [
+              1033,
+              845
+            ],
+            [
+              1183,
+              842
+            ],
+            [
+              1184,
+              876
+            ],
+            [
+              1033,
+              879
+            ]
+          ],
+          "bbox_xyxy": [
+            1033,
+            842,
+            1184,
+            879
+          ],
+          "reading_order": 16
+        },
+        {
+          "text": "Period/Year",
+          "confidence": 0.999891459941864,
+          "poly": [
+            [
+              641,
+              893
+            ],
+            [
+              811,
+              895
+            ],
+            [
+              811,
+              926
+            ],
+            [
+              641,
+              924
+            ]
+          ],
+          "bbox_xyxy": [
+            641,
+            893,
+            811,
+            926
+          ],
+          "reading_order": 17
+        }
+      ]
+    },
+    {
+      "block_id": 5,
+      "label": "figure_title",
+      "score": 0.9444441199302673,
+      "bbox_xyxy": [
+        149,
+        958,
+        1491,
+        1020
+      ],
+      "lines": [
+        {
+          "text": "  quelatr  ",
+          "confidence": 0.5431103110313416,
+          "poly": [
+            [
+              89,
+              945
+            ],
+            [
+              1527,
+              946
+            ],
+            [
+              1527,
+              996
+            ],
+            [
+              89,
+              995
+            ]
+          ],
+          "bbox_xyxy": [
+            89,
+            945,
+            1527,
+            996
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "from MoWIE).",
+          "confidence": 0.9910926818847656,
+          "poly": [
+            [
+              94,
+              990
+            ],
+            [
+              274,
+              997
+            ],
+            [
+              272,
+              1031
+            ],
+            [
+              93,
+              1024
+            ]
+          ],
+          "bbox_xyxy": [
+            93,
+            990,
+            274,
+            1031
+          ],
+          "reading_order": 1
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9813710451126099,
+      "bbox_xyxy": [
+        454,
+        1047,
+        1554,
+        1251
+      ],
+      "lines": [
+        {
+          "text": "Before the implementation of the development plans, the expansion rate of the area",
+          "confidence": 0.9861294627189636,
+          "poly": [
+            [
+              480,
+              1056
+            ],
+            [
+              1585,
+              1046
+            ],
+            [
+              1586,
+              1084
+            ],
+            [
+              480,
+              1095
+            ]
+          ],
+          "bbox_xyxy": [
+            480,
+            1046,
+            1586,
+            1095
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "equipped for medium and large-scale irrigation was very slow, i.e., only 21,555 hectares",
+          "confidence": 0.9800937175750732,
+          "poly": [
+            [
+              420,
+              1100
+            ],
+            [
+              1586,
+              1086
+            ],
+            [
+              1587,
+              1123
+            ],
+            [
+              421,
+              1137
+            ]
+          ],
+          "bbox_xyxy": [
+            420,
+            1086,
+            1587,
+            1137
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "over 12 years. This has increased to an additional area of 77,445 hectares after the im-",
+          "confidence": 0.9730996489524841,
+          "poly": [
+            [
+              419,
+              1140
+            ],
+            [
+              1590,
+              1125
+            ],
+            [
+              1591,
+              1159
+            ],
+            [
+              420,
+              1174
+            ]
+          ],
+          "bbox_xyxy": [
+            419,
+            1125,
+            1591,
+            1174
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "plementation of the PASDEP. Then, after the two consecutive plans of GTP I and GTP II",
+          "confidence": 0.9874604344367981,
+          "poly": [
+            [
+              417,
+              1178
+            ],
+            [
+              1588,
+              1163
+            ],
+            [
+              1589,
+              1200
+            ],
+            [
+              418,
+              1215
+            ]
+          ],
+          "bbox_xyxy": [
+            417,
+            1163,
+            1589,
+            1215
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "additional irrigated area, expansion of about 127,242 and 283,084 hectares, respectively,",
+          "confidence": 0.9880725145339966,
+          "poly": [
+            [
+              417,
+              1215
+            ],
+            [
+              1590,
+              1203
+            ],
+            [
+              1590,
+              1242
+            ],
+            [
+              418,
+              1253
+            ]
+          ],
+          "bbox_xyxy": [
+            417,
+            1203,
+            1590,
+            1253
+          ],
+          "reading_order": 4
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9872270226478577,
+      "bbox_xyxy": [
+        455,
+        1256,
+        1552,
+        1774
+      ],
+      "lines": [
+        {
+          "text": "was achieved. This marks an annual expansion rate of 12.9% and 24.5%, respectively.",
+          "confidence": 0.9848790168762207,
+          "poly": [
+            [
+              414,
+              1253
+            ],
+            [
+              1529,
+              1242
+            ],
+            [
+              1529,
+              1283
+            ],
+            [
+              415,
+              1293
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            1242,
+            1529,
+            1293
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "As depicted in Figure 3, the total area equipped for medium and large-scale irrigation",
+          "confidence": 0.9928233027458191,
+          "poly": [
+            [
+              478,
+              1289
+            ],
+            [
+              1588,
+              1280
+            ],
+            [
+              1589,
+              1320
+            ],
+            [
+              478,
+              1329
+            ]
+          ],
+          "bbox_xyxy": [
+            478,
+            1280,
+            1589,
+            1329
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "by 2019 is about 539,726 hectare. However, it must be noted that the actual irrigated",
+          "confidence": 0.9905366897583008,
+          "poly": [
+            [
+              415,
+              1328
+            ],
+            [
+              1587,
+              1317
+            ],
+            [
+              1588,
+              1354
+            ],
+            [
+              416,
+              1365
+            ]
+          ],
+          "bbox_xyxy": [
+            415,
+            1317,
+            1588,
+            1365
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "area is far less than the figure indicated here. For instance, information collected from",
+          "confidence": 0.9857111573219299,
+          "poly": [
+            [
+              414,
+              1366
+            ],
+            [
+              1588,
+              1354
+            ],
+            [
+              1589,
+              1394
+            ],
+            [
+              415,
+              1406
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            1354,
+            1589,
+            1406
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "fifteen large-scale irrigation projects showed that only 34% of the 382,060 hectares of land",
+          "confidence": 0.9886177182197571,
+          "poly": [
+            [
+              413,
+              1403
+            ],
+            [
+              1589,
+              1391
+            ],
+            [
+              1590,
+              1435
+            ],
+            [
+              414,
+              1447
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1391,
+            1590,
+            1447
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "potentially equipped for irrigation was actually irrigated. There were two main reasons for",
+          "confidence": 0.9870340824127197,
+          "poly": [
+            [
+              412,
+              1444
+            ],
+            [
+              1590,
+              1431
+            ],
+            [
+              1591,
+              1472
+            ],
+            [
+              413,
+              1485
+            ]
+          ],
+          "bbox_xyxy": [
+            412,
+            1431,
+            1591,
+            1485
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "this discrepancy. (1) First, there was delay in the construction of some component parts of",
+          "confidence": 0.9889548420906067,
+          "poly": [
+            [
+              413,
+              1482
+            ],
+            [
+              1589,
+              1471
+            ],
+            [
+              1590,
+              1511
+            ],
+            [
+              414,
+              1522
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1471,
+            1590,
+            1522
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "the irrigation system, for instance, canals and field channels, intake structures, head/cross",
+          "confidence": 0.9952985048294067,
+          "poly": [
+            [
+              414,
+              1522
+            ],
+            [
+              1588,
+              1510
+            ],
+            [
+              1589,
+              1547
+            ],
+            [
+              415,
+              1559
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            1510,
+            1589,
+            1559
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "regulators, land leveling and shaping, etc. This means that there is a lack of end-to-end",
+          "confidence": 0.9935325980186462,
+          "poly": [
+            [
+              413,
+              1561
+            ],
+            [
+              1588,
+              1548
+            ],
+            [
+              1589,
+              1585
+            ],
+            [
+              414,
+              1598
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1548,
+            1589,
+            1598
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "planning of projects. (2) The second reason was the malfunctioning or non-functionality",
+          "confidence": 0.9970299005508423,
+          "poly": [
+            [
+              413,
+              1598
+            ],
+            [
+              1588,
+              1586
+            ],
+            [
+              1589,
+              1624
+            ],
+            [
+              414,
+              1636
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1586,
+            1589,
+            1636
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "of important canals and structures. In most cases, dams are constructed and filled with",
+          "confidence": 0.9771114587783813,
+          "poly": [
+            [
+              414,
+              1637
+            ],
+            [
+              1588,
+              1622
+            ],
+            [
+              1589,
+              1659
+            ],
+            [
+              415,
+              1674
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            1622,
+            1589,
+            1674
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "water long before the construction of conveyance and distribution canals, field channels,",
+          "confidence": 0.9832030534744263,
+          "poly": [
+            [
+              412,
+              1673
+            ],
+            [
+              1592,
+              1660
+            ],
+            [
+              1593,
+              1701
+            ],
+            [
+              413,
+              1714
+            ]
+          ],
+          "bbox_xyxy": [
+            412,
+            1660,
+            1593,
+            1714
+          ],
+          "reading_order": 11
+        },
+        {
+          "text": "and land preparation for irrigation are done. It is common that some years elapse until the",
+          "confidence": 0.9914183616638184,
+          "poly": [
+            [
+              413,
+              1709
+            ],
+            [
+              1590,
+              1696
+            ],
+            [
+              1591,
+              1740
+            ],
+            [
+              414,
+              1753
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1696,
+            1591,
+            1753
+          ],
+          "reading_order": 12
+        },
+        {
+          "text": "water reaches the field and the provision of irrigation services commences. Due to this and",
+          "confidence": 0.9850694537162781,
+          "poly": [
+            [
+              413,
+              1749
+            ],
+            [
+              1588,
+              1734
+            ],
+            [
+              1589,
+              1775
+            ],
+            [
+              414,
+              1790
+            ]
+          ],
+          "bbox_xyxy": [
+            413,
+            1734,
+            1589,
+            1790
+          ],
+          "reading_order": 13
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "text",
+      "score": 0.9779788851737976,
+      "bbox_xyxy": [
+        455,
+        1780,
+        1554,
+        1948
+      ],
+      "lines": [
+        {
+          "text": "other reasons, irrigation systems serve only a limited area, which is often less than the area",
+          "confidence": 0.9891061782836914,
+          "poly": [
+            [
+              414,
+              1786
+            ],
+            [
+              1589,
+              1772
+            ],
+            [
+              1590,
+              1816
+            ],
+            [
+              415,
+              1831
+            ]
+          ],
+          "bbox_xyxy": [
+            414,
+            1772,
+            1590,
+            1831
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "projected during feasibility study and detail design.",
+          "confidence": 0.9842358827590942,
+          "poly": [
+            [
+              416,
+              1831
+            ],
+            [
+              1092,
+              1816
+            ],
+            [
+              1093,
+              1853
+            ],
+            [
+              417,
+              1868
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            1816,
+            1093,
+            1868
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Moreover, the shrinkage of irrigation area is also attributed to many problems such as",
+          "confidence": 0.9736824631690979,
+          "poly": [
+            [
+              477,
+              1861
+            ],
+            [
+              1587,
+              1852
+            ],
+            [
+              1588,
+              1893
+            ],
+            [
+              477,
+              1903
+            ]
+          ],
+          "bbox_xyxy": [
+            477,
+            1852,
+            1588,
+            1903
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "lack of proper provision of farm level irrigation facilities, headwork and canal sedimenta-",
+          "confidence": 0.9944235682487488,
+          "poly": [
+            [
+              415,
+              1900
+            ],
+            [
+              1593,
+              1884
+            ],
+            [
+              1594,
+              1928
+            ],
+            [
+              416,
+              1944
+            ]
+          ],
+          "bbox_xyxy": [
+            415,
+            1884,
+            1594,
+            1944
+          ],
+          "reading_order": 3
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9462912082672119,
+      "bbox_xyxy": [
+        456,
+        1953,
+        1555,
+        2019
+      ],
+      "lines": [
+        {
+          "text": "tion, seepage through foundation, deterioration of major structural facilities, unsuitable",
+          "confidence": 0.9936697483062744,
+          "poly": [
+            [
+              416,
+              1939
+            ],
+            [
+              1588,
+              1924
+            ],
+            [
+              1589,
+              1967
+            ],
+            [
+              417,
+              1982
+            ]
+          ],
+          "bbox_xyxy": [
+            416,
+            1924,
+            1589,
+            1982
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "field and canal layout and construction, missing of important hydraulic structures, shortage",
+          "confidence": 0.988756000995636,
+          "poly": [
+            [
+              418,
+              1976
+            ],
+            [
+              1586,
+              1968
+            ],
+            [
+              1586,
+              2010
+            ],
+            [
+              419,
+              2017
+            ]
+          ],
+          "bbox_xyxy": [
+            418,
+            1968,
+            1586,
+            2017
+          ],
+          "reading_order": 1
+        }
+      ]
+    }
+  ]
+}

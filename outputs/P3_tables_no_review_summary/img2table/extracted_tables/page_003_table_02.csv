@@ -1,0 +1,40 @@
+0,1,2,3
+,,3.,"If statistics on the source of irrigation water were
+available for AEI only or for AAI only, then the fraction
+of area irrigated with water from the different sources"
+,,,"was assumed to be the same, e.g. if 15% of the AEI was"
+,,4.,"reported to be irrigated with groundwater and AAI GW
+was unknown, then AAI GW was set to 15% of total
+AAI as well.
+If the extent of AEI and AAI irrigated with water from"
+,"Region
+Sub-region
+Statistical unit",,"the different sources was unknown but irrigation water
+use from different sources was reported, then the water"
+,"No irrigation
+AEI_GW statistics
+AAI_GW statistics
+IWWD_GW statistics
+Others or own estimate",5.,"use statistics were used to downscale the irrigated area
+statistics (e.g. if 20% of irrigation water use was from
+groundwater, then it was assumed that also 20% of AEI
+and of AAI were irrigated with groundwater).
+If for specific countries the source of irrigation water
+was unknown for AEI and AAI and water use statistics
+were not available as well, the percentage of AEI
+and AAI irrigated with groundwater, surface water
+or non-conventional sources was estimated based on"
+,,,"other information, e.g. qualitative estimates in the"
+"Fig. 1. Regions and sub-regions used in this paper as well as
+administrative units distinguished in the groundwater irrigation","Fig. 1. Regions and sub-regions used in this paper as well as
+administrative units distinguished in the groundwater irrigation",,"literature, based on borehole inventories or based on the
+availability of water resources."
+"inventory (top), and type of input data used to develop the
+inventory (bottom). AEI GW = area equipped for irrigation with
+groundwater, AAI GW = area actually irrigated with groundwater,
+IWWD GW = groundwater withdrawals for irrigation (see the","inventory (top), and type of input data used to develop the
+inventory (bottom). AEI GW = area equipped for irrigation with
+groundwater, AAI GW = area actually irrigated with groundwater,
+IWWD GW = groundwater withdrawals for irrigation (see the",6.,"Areas with conjunctive use of groundwater and surface
+water were assigned with 50% to AEI GW and 50% to
+AEI SW if not otherwise noted."

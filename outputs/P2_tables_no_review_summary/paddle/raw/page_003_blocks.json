@@ -1,0 +1,1172 @@
+{
+  "pdf": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\data\\pdfs\\P2_tables_no_review_summary.pdf",
+  "page_number": 3,
+  "dpi": 200,
+  "ocr_labels_used": [
+    "table",
+    "chart",
+    "text",
+    "figure"
+  ],
+  "blocks": [
+    {
+      "block_id": 8,
+      "label": "unassigned",
+      "score": 1.0,
+      "bbox_xyxy": [
+        0,
+        0,
+        1654,
+        2339
+      ],
+      "lines": [
+        {
+          "text": "Sustainability 2021, 13, 5646",
+          "confidence": 0.9886031150817871,
+          "poly": [
+            [
+              8,
+              16
+            ],
+            [
+              301,
+              34
+            ],
+            [
+              299,
+              66
+            ],
+            [
+              6,
+              49
+            ]
+          ],
+          "bbox_xyxy": [
+            6,
+            16,
+            301,
+            66
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "3 of 16",
+          "confidence": 0.9990221261978149,
+          "poly": [
+            [
+              1510,
+              47
+            ],
+            [
+              1590,
+              47
+            ],
+            [
+              1590,
+              76
+            ],
+            [
+              1510,
+              76
+            ]
+          ],
+          "bbox_xyxy": [
+            1510,
+            47,
+            1590,
+            76
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "due to the social instability created during the national villagization program that led to the",
+          "confidence": 0.9907174110412598,
+          "poly": [
+            [
+              399,
+              170
+            ],
+            [
+              1589,
+              174
+            ],
+            [
+              1589,
+              215
+            ],
+            [
+              399,
+              211
+            ]
+          ],
+          "bbox_xyxy": [
+            399,
+            170,
+            1589,
+            215
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "resettlement of peasants and abandonment of irrigated lands in the old settlement areas.",
+          "confidence": 0.9844793677330017,
+          "poly": [
+            [
+              398,
+              208
+            ],
+            [
+              1578,
+              213
+            ],
+            [
+              1577,
+              251
+            ],
+            [
+              398,
+              246
+            ]
+          ],
+          "bbox_xyxy": [
+            398,
+            208,
+            1578,
+            251
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Medium and large-scale commercial irrigated farms have started in the Upper and",
+          "confidence": 0.9879339933395386,
+          "poly": [
+            [
+              458,
+              245
+            ],
+            [
+              1588,
+              249
+            ],
+            [
+              1588,
+              287
+            ],
+            [
+              458,
+              283
+            ]
+          ],
+          "bbox_xyxy": [
+            458,
+            245,
+            1588,
+            287
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "basins of the country.",
+          "confidence": 0.997825562953949,
+          "poly": [
+            [
+              395,
+              316
+            ],
+            [
+              679,
+              325
+            ],
+            [
+              678,
+              356
+            ],
+            [
+              394,
+              347
+            ]
+          ],
+          "bbox_xyxy": [
+            394,
+            316,
+            679,
+            356
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "(a)",
+          "confidence": 0.9925248026847839,
+          "poly": [
+            [
+              499,
+              442
+            ],
+            [
+              549,
+              442
+            ],
+            [
+              549,
+              485
+            ],
+            [
+              499,
+              485
+            ]
+          ],
+          "bbox_xyxy": [
+            499,
+            442,
+            549,
+            485
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Tendaho",
+          "confidence": 0.9990665316581726,
+          "poly": [
+            [
+              1002,
+              460
+            ],
+            [
+              1106,
+              465
+            ],
+            [
+              1104,
+              493
+            ],
+            [
+              1001,
+              488
+            ]
+          ],
+          "bbox_xyxy": [
+            1001,
+            460,
+            1106,
+            493
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Figure 1. Location map, Ethiopia with its major river basins (a) and Awash Basin (b) and areas",
+          "confidence": 0.9930395483970642,
+          "poly": [
+            [
+              367,
+              1233
+            ],
+            [
+              1590,
+              1229
+            ],
+            [
+              1590,
+              1266
+            ],
+            [
+              367,
+              1270
+            ]
+          ],
+          "bbox_xyxy": [
+            367,
+            1229,
+            1590,
+            1270
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 6,
+      "label": "header",
+      "score": 0.8893670439720154,
+      "bbox_xyxy": [
+        96,
+        144,
+        360,
+        167
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 7,
+      "label": "number",
+      "score": 0.7478604316711426,
+      "bbox_xyxy": [
+        1485,
+        144,
+        1551,
+        166
+      ],
+      "lines": []
+    },
+    {
+      "block_id": 5,
+      "label": "text",
+      "score": 0.9434347152709961,
+      "bbox_xyxy": [
+        455,
+        267,
+        1551,
+        331
+      ],
+      "lines": [
+        {
+          "text": "Middle Awash River Basin (Figure 1), which is one of the most intensively developed",
+          "confidence": 0.9832949638366699,
+          "poly": [
+            [
+              394,
+              279
+            ],
+            [
+              1587,
+              287
+            ],
+            [
+              1587,
+              324
+            ],
+            [
+              394,
+              316
+            ]
+          ],
+          "bbox_xyxy": [
+            394,
+            279,
+            1587,
+            324
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 4,
+      "label": "text",
+      "score": 0.9591997861862183,
+      "bbox_xyxy": [
+        455,
+        338,
+        1550,
+        436
+      ],
+      "lines": [
+        {
+          "text": "(b)",
+          "confidence": 0.9986626505851746,
+          "poly": [
+            [
+              879,
+              394
+            ],
+            [
+              925,
+              394
+            ],
+            [
+              925,
+              432
+            ],
+            [
+              879,
+              432
+            ]
+          ],
+          "bbox_xyxy": [
+            879,
+            394,
+            925,
+            432
+          ],
+          "reading_order": 0
+        }
+      ]
+    },
+    {
+      "block_id": 2,
+      "label": "image",
+      "score": 0.9738511443138123,
+      "bbox_xyxy": [
+        468,
+        478,
+        1520,
+        1224
+      ],
+      "lines": [
+        {
+          "text": "Kombolcha",
+          "confidence": 0.9999544620513916,
+          "poly": [
+            [
+              879,
+              562
+            ],
+            [
+              1009,
+              568
+            ],
+            [
+              1008,
+              596
+            ],
+            [
+              877,
+              590
+            ]
+          ],
+          "bbox_xyxy": [
+            877,
+            562,
+            1009,
+            596
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Awash River",
+          "confidence": 0.999207079410553,
+          "poly": [
+            [
+              1038,
+              631
+            ],
+            [
+              1130,
+              490
+            ],
+            [
+              1161,
+              510
+            ],
+            [
+              1069,
+              652
+            ]
+          ],
+          "bbox_xyxy": [
+            1038,
+            490,
+            1161,
+            652
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "Kemisie",
+          "confidence": 0.9999249577522278,
+          "poly": [
+            [
+              876,
+              633
+            ],
+            [
+              973,
+              638
+            ],
+            [
+              971,
+              667
+            ],
+            [
+              874,
+              662
+            ]
+          ],
+          "bbox_xyxy": [
+            874,
+            633,
+            973,
+            667
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "Gewane",
+          "confidence": 0.9998019337654114,
+          "poly": [
+            [
+              1051,
+              763
+            ],
+            [
+              1151,
+              771
+            ],
+            [
+              1149,
+              799
+            ],
+            [
+              1049,
+              791
+            ]
+          ],
+          "bbox_xyxy": [
+            1049,
+            763,
+            1151,
+            799
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Dire Dawa",
+          "confidence": 0.9824833273887634,
+          "poly": [
+            [
+              1195,
+              856
+            ],
+            [
+              1325,
+              858
+            ],
+            [
+              1325,
+              887
+            ],
+            [
+              1195,
+              885
+            ]
+          ],
+          "bbox_xyxy": [
+            1195,
+            856,
+            1325,
+            887
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "Melka Werer",
+          "confidence": 0.991532564163208,
+          "poly": [
+            [
+              947,
+              892
+            ],
+            [
+              1097,
+              894
+            ],
+            [
+              1096,
+              921
+            ],
+            [
+              946,
+              919
+            ]
+          ],
+          "bbox_xyxy": [
+            946,
+            892,
+            1097,
+            921
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Metahara",
+          "confidence": 0.9989712238311768,
+          "poly": [
+            [
+              832,
+              981
+            ],
+            [
+              949,
+              985
+            ],
+            [
+              948,
+              1013
+            ],
+            [
+              831,
+              1009
+            ]
+          ],
+          "bbox_xyxy": [
+            831,
+            981,
+            949,
+            1013
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "Middle Awash",
+          "confidence": 0.9799549579620361,
+          "poly": [
+            [
+              1109,
+              984
+            ],
+            [
+              1288,
+              984
+            ],
+            [
+              1288,
+              1011
+            ],
+            [
+              1109,
+              1011
+            ]
+          ],
+          "bbox_xyxy": [
+            1109,
+            984,
+            1288,
+            1011
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "Addis Ababa",
+          "confidence": 0.9819517731666565,
+          "poly": [
+            [
+              619,
+              1000
+            ],
+            [
+              769,
+              1000
+            ],
+            [
+              769,
+              1024
+            ],
+            [
+              619,
+              1024
+            ]
+          ],
+          "bbox_xyxy": [
+            619,
+            1000,
+            769,
+            1024
+          ],
+          "reading_order": 8
+        },
+        {
+          "text": "Adama",
+          "confidence": 0.9999457597732544,
+          "poly": [
+            [
+              741,
+              1032
+            ],
+            [
+              834,
+              1038
+            ],
+            [
+              833,
+              1066
+            ],
+            [
+              739,
+              1060
+            ]
+          ],
+          "bbox_xyxy": [
+            739,
+            1032,
+            834,
+            1066
+          ],
+          "reading_order": 9
+        },
+        {
+          "text": "Upper Awash",
+          "confidence": 0.9939088225364685,
+          "poly": [
+            [
+              1007,
+              1091
+            ],
+            [
+              1175,
+              1086
+            ],
+            [
+              1176,
+              1117
+            ],
+            [
+              1007,
+              1122
+            ]
+          ],
+          "bbox_xyxy": [
+            1007,
+            1086,
+            1176,
+            1122
+          ],
+          "reading_order": 10
+        },
+        {
+          "text": "Koka Lake",
+          "confidence": 0.999700665473938,
+          "poly": [
+            [
+              667,
+              1106
+            ],
+            [
+              794,
+              1109
+            ],
+            [
+              794,
+              1134
+            ],
+            [
+              667,
+              1131
+            ]
+          ],
+          "bbox_xyxy": [
+            667,
+            1106,
+            794,
+            1134
+          ],
+          "reading_order": 11
+        }
+      ]
+    },
+    {
+      "block_id": 3,
+      "label": "figure_title",
+      "score": 0.9639071822166443,
+      "bbox_xyxy": [
+        455,
+        1251,
+        1552,
+        1387
+      ],
+      "lines": [
+        {
+          "text": "where modern irrigation has started (in the Upper Awash—Wonji and Metahara Sugar Estates,",
+          "confidence": 0.993027925491333,
+          "poly": [
+            [
+              366,
+              1271
+            ],
+            [
+              1593,
+              1271
+            ],
+            [
+              1593,
+              1305
+            ],
+            [
+              366,
+              1305
+            ]
+          ],
+          "bbox_xyxy": [
+            366,
+            1271,
+            1593,
+            1305
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "Merti Nura Era, Tibila and in the Middle Awash—Amibara, Kesem Sugar Estate and Gewane Cotton",
+          "confidence": 0.990267813205719,
+          "poly": [
+            [
+              366,
+              1310
+            ],
+            [
+              1588,
+              1310
+            ],
+            [
+              1588,
+              1340
+            ],
+            [
+              366,
+              1340
+            ]
+          ],
+          "bbox_xyxy": [
+            366,
+            1310,
+            1588,
+            1340
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "farm) (modified and adapted from [10]).",
+          "confidence": 0.9872108697891235,
+          "poly": [
+            [
+              365,
+              1349
+            ],
+            [
+              860,
+              1347
+            ],
+            [
+              860,
+              1377
+            ],
+            [
+              365,
+              1379
+            ]
+          ],
+          "bbox_xyxy": [
+            365,
+            1347,
+            860,
+            1379
+          ],
+          "reading_order": 2
+        }
+      ]
+    },
+    {
+      "block_id": 0,
+      "label": "text",
+      "score": 0.9871174097061157,
+      "bbox_xyxy": [
+        455,
+        1416,
+        1553,
+        1898
+      ],
+      "lines": [
+        {
+          "text": "The early irrigation development was entirely initiated by joint concession with",
+          "confidence": 0.9879686236381531,
+          "poly": [
+            [
+              427,
+              1409
+            ],
+            [
+              1587,
+              1409
+            ],
+            [
+              1587,
+              1439
+            ],
+            [
+              427,
+              1439
+            ]
+          ],
+          "bbox_xyxy": [
+            427,
+            1409,
+            1587,
+            1439
+          ],
+          "reading_order": 0
+        },
+        {
+          "text": "companies from abroad. More specifically, irrigated sugarcane farms and factories of Wonji",
+          "confidence": 0.9953662157058716,
+          "poly": [
+            [
+              361,
+              1443
+            ],
+            [
+              1589,
+              1441
+            ],
+            [
+              1589,
+              1478
+            ],
+            [
+              361,
+              1480
+            ]
+          ],
+          "bbox_xyxy": [
+            361,
+            1441,
+            1589,
+            1480
+          ],
+          "reading_order": 1
+        },
+        {
+          "text": "(5000 ha) and Metahara (11,000 ha) commenced operation in 1954 and 1965 respectively by",
+          "confidence": 0.9818781018257141,
+          "poly": [
+            [
+              362,
+              1481
+            ],
+            [
+              1588,
+              1481
+            ],
+            [
+              1588,
+              1515
+            ],
+            [
+              362,
+              1515
+            ]
+          ],
+          "bbox_xyxy": [
+            362,
+            1481,
+            1588,
+            1515
+          ],
+          "reading_order": 2
+        },
+        {
+          "text": "bilateral agreement between the Emperial Government of Ethiopia and a Dutch company,",
+          "confidence": 0.9884501695632935,
+          "poly": [
+            [
+              360,
+              1515
+            ],
+            [
+              1592,
+              1515
+            ],
+            [
+              1592,
+              1555
+            ],
+            [
+              360,
+              1555
+            ]
+          ],
+          "bbox_xyxy": [
+            360,
+            1515,
+            1592,
+            1555
+          ],
+          "reading_order": 3
+        },
+        {
+          "text": "Hangler Vondr Amsterdam (HVA). Following the inauguration of the Koga dam in 1960,",
+          "confidence": 0.9949166178703308,
+          "poly": [
+            [
+              358,
+              1553
+            ],
+            [
+              1593,
+              1551
+            ],
+            [
+              1593,
+              1591
+            ],
+            [
+              358,
+              1593
+            ]
+          ],
+          "bbox_xyxy": [
+            358,
+            1551,
+            1593,
+            1593
+          ],
+          "reading_order": 4
+        },
+        {
+          "text": "several large-scale irrigation projects were developed by private companies in the whole",
+          "confidence": 0.9824739098548889,
+          "poly": [
+            [
+              358,
+              1590
+            ],
+            [
+              1589,
+              1588
+            ],
+            [
+              1589,
+              1629
+            ],
+            [
+              358,
+              1631
+            ]
+          ],
+          "bbox_xyxy": [
+            358,
+            1588,
+            1589,
+            1631
+          ],
+          "reading_order": 5
+        },
+        {
+          "text": "Awash Basin. Around Merti and Jeju areas, about 1638 ha farm was developed in 1961/62",
+          "confidence": 0.9920789003372192,
+          "poly": [
+            [
+              357,
+              1625
+            ],
+            [
+              1588,
+              1626
+            ],
+            [
+              1588,
+              1667
+            ],
+            [
+              357,
+              1666
+            ]
+          ],
+          "bbox_xyxy": [
+            357,
+            1625,
+            1588,
+            1667
+          ],
+          "reading_order": 6
+        },
+        {
+          "text": "horticultural crops farm in 1975 which is called the Metri fruit processing plant. Then,",
+          "confidence": 0.9774021506309509,
+          "poly": [
+            [
+              353,
+              1732
+            ],
+            [
+              1594,
+              1735
+            ],
+            [
+              1594,
+              1786
+            ],
+            [
+              353,
+              1783
+            ]
+          ],
+          "bbox_xyxy": [
+            353,
+            1732,
+            1594,
+            1786
+          ],
+          "reading_order": 7
+        },
+        {
+          "text": "fruits, banana, avocado, and papaya. The farm was first owned by the Haile Selassie First",
+          "confidence": 0.9863298535346985,
+          "poly": [
+            [
+              353,
+              1843
+            ],
+            [
+              1591,
+              1852
+            ],
+            [
+              1591,
+              1904
+            ],
+            [
+              353,
+              1894
+            ]
+          ],
+          "bbox_xyxy": [
+            353,
+            1843,
+            1591,
+            1904
+          ],
+          "reading_order": 8
+        }
+      ]
+    },
+    {
+      "block_id": 1,
+      "label": "text",
+      "score": 0.9842336177825928,
+      "bbox_xyxy": [
+        454,
+        1905,
+        1553,
+        2179
+      ],
+      "lines": [
+        {
+          "text": "Prince Trust Leul Ras Astrat Kassa [11].",
+          "confidence": 0.9908205270767212,
+          "poly": [
+            [
+              357,
+              1893
+            ],
+            [
+              891,
+              1888
+            ],
+            [
+              892,
+              1922
+            ],
+            [
+              357,
+              1928
+            ]
+          ],
+          "bbox_xyxy": [
+            357,
+            1888,
+            892,
+            1928
+          ],
+          "reading_order": 0
+        }
+      ]
+    }
+  ]
+}

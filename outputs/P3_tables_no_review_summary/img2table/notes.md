@@ -1,0 +1,9 @@
+- Library: img2table
+- PDF: P3_tables_no_review_summary.pdf
+- OCR: TesseractOCR(lang='eng')
+- Settings:
+  - borderless_tables=True
+  - min_confidence=50
+- Attempts:
+  - extracted_tables=9
+  - saved_tables=9
