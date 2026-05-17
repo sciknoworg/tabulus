@@ -1,0 +1,8 @@
+services:
+  kreuzberg:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kreuzberg-api:latest
+    ports:
+      - "8010:8010"

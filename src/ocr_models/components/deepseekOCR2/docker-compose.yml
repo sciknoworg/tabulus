@@ -1,0 +1,20 @@
+services:
+  deepseek_ocr2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: deepseek-ocr2-image:latest
+    ports:
+      - "8000:8000"
+    gpus: all
+    volumes:
+      - D:\Master\MasterArbeit\Issues\tabulus\outputs:/app/outputs
+      - hf_cache:/root/.cache/huggingface
+    environment:
+      - HF_HOME=/root/.cache/huggingface
+      - HF_HUB_DISABLE_TELEMETRY=1
+      # REMOVE this line:
+      # - HF_HUB_ENABLE_HF_TRANSFER=1
+
+volumes:
+  hf_cache:

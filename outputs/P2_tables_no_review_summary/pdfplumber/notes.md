@@ -1,5 +1,0 @@
-- Library: pdfplumber
-- PDF: P2_tables_no_review_summary.pdf
-- Attempts:
-  - lines: extracted=0, saved=0
-  - text: extracted=16, saved=16

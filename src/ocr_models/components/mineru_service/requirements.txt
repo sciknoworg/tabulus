@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+pydantic
+requests
+mineru[core]
+scipy==1.15.3

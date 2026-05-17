@@ -1,0 +1,91 @@
+version: "3.9"
+
+services:
+  ui_input:
+    build:
+      context: ./ui_input
+      dockerfile: Dockerfile
+    container_name: ui_input
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./ui_input:/app
+      - /app/node_modules
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////app/data/temp.db
+      MINERU_API_URL: http://mineru_service:8001
+      PADDLEOCR_API_URL: http://paddleocr_service:8000
+      GROBID_URL: http://grobid:8070
+      KREUZBERG_API_URL: http://kreuzberg:8010/extract
+      CROSSREF_MAILTO: ""
+    volumes:
+      - backend_data:/app/data
+    depends_on:
+      - mineru_service
+      - paddleocr_service
+      - grobid
+      - kreuzberg
+    restart: unless-stopped
+
+  mineru_service:
+    build:
+      context: ./mineru_service
+      dockerfile: Dockerfile
+    container_name: mineru_service
+    ports:
+      - "8001:8001"
+    volumes:
+      - backend_data:/app/data
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  paddleocr_service:
+    build:
+      context: ./paddleocr_service
+      dockerfile: Dockerfile
+    container_name: paddleocr_service
+    ports:
+      - "8002:8000"
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  grobid:
+    image: grobid/grobid:0.8.2-full
+    container_name: grobid
+    ports:
+      - "8070:8070"
+    restart: unless-stopped
+
+  kreuzberg:
+    build:
+      context: ./kreuzberg_service
+      dockerfile: Dockerfile
+    container_name: kreuzberg
+    image: kreuzberg-api:latest
+    ports:
+      - "8010:8010"
+    restart: unless-stopped
+
+volumes:
+  backend_data:

@@ -1,0 +1,390 @@
+.page {
+  padding: 32px;
+  font-family: Arial, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.pageSubtitle {
+  color: #475569;
+  margin-bottom: 24px;
+}
+
+.stepCard {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  background: #fff;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.stepDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot_idle {
+  background: #94a3b8;
+}
+
+.dot_pending {
+  background: #f59e0b;
+}
+
+.dot_running {
+  background: #3b82f6;
+}
+
+.dot_success {
+  background: #22c55e;
+}
+
+.dot_error {
+  background: #ef4444;
+}
+
+.stepTitle {
+  margin: 0;
+}
+
+.statusBadge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #f8fafc;
+  font-size: 12px;
+  color: #334155;
+}
+
+.stepMessage {
+  margin-top: 0;
+  color: #475569;
+}
+
+.uploadArea {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fileInput {
+  max-width: 320px;
+}
+
+.primaryButton {
+  width: fit-content;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #0f172a;
+  color: #fff;
+  cursor: pointer;
+}
+
+.primaryButton:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.summaryCard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f8fafc;
+}
+
+.summaryCard p {
+  margin: 0 0 8px 0;
+}
+
+.summaryCard p:last-child {
+  margin-bottom: 0;
+}
+
+.sectionHeader {
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  margin: 0 0 6px 0;
+}
+
+.sectionText {
+  margin: 0;
+  color: #64748b;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.resultCard {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+
+.metaBlock p {
+  margin: 0 0 8px 0;
+}
+
+.fileName {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  color: #64748b;
+  word-break: break-all;
+}
+
+.imageButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.previewImage {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  display: block;
+}
+
+.ocrGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.ocrCard {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  background: #fff;
+}
+
+.ocrCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.ocrCardTitle {
+  margin: 0 0 8px 0;
+}
+
+.ocrCardMeta {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.refBadgeYes {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.refBadgeNo {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.detectionBox {
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: #eff6ff;
+}
+
+.detectionBox p {
+  margin: 0 0 8px 0;
+}
+
+.detectionBox p:last-child {
+  margin-bottom: 0;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.dataCell {
+  border: 1px solid #cbd5e1;
+  padding: 6px;
+  vertical-align: top;
+  background: #fff;
+}
+
+.headerCell {
+  background: #f8fafc;
+  font-weight: 600;
+}
+
+.rawBox {
+  white-space: pre-wrap;
+  font-size: 12px;
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin: 0;
+}
+
+.emptyBox {
+  padding: 12px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #64748b;
+}
+
+.errorBox {
+  padding: 12px;
+  border-radius: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  font-size: 13px;
+}
+
+.infoBox {
+  margin-top: 20px;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  color: #475569;
+}
+
+.downloadButton {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #0f172a;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.downloadButton:hover {
+  background: #1e293b;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.modalContent {
+  position: relative;
+  max-width: 95vw;
+  max-height: 95vh;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  overflow: auto;
+}
+
+.modalCloseButton {
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.modalImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 12px;
+}
+
+.multiMatchList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.multiMatchItem {
+  padding: 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  word-break: break-word;
+}
+
+.kreuzbergInfoBox {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255, 180, 0, 0.08);
+  border: 1px solid rgba(255, 180, 0, 0.3);
+}
+
+.kreuzbergHint {
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: 0.75;
+}

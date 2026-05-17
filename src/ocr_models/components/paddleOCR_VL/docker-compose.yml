@@ -1,0 +1,13 @@
+services:
+  paddle_ocr_vl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: paddle-ocr-vl-api:latest
+    ports:
+      - "8002:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
