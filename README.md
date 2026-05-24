@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/logo.png" alt="Tabulus logo" width="150"/>
+  <img src="./assets/logo.png" alt="Tabulus logo" width="170"/>
 </p>
 
 # Scientific PDF Table Extraction Pipeline
