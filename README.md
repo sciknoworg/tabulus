@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/logo.png" alt="Tabulus logo" width="150"/>
+</p>
+
 # Scientific PDF Table Extraction Pipeline
 
 A modular multi-stage pipeline for extracting scientific tables, detecting bibliography references, resolving DOI information, and generating structured machine-readable outputs from scientific PDF documents.
