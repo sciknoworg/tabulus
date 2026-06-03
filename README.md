@@ -1,17 +1,11 @@
-<<<<<<< HEAD
 <p align="center">
   <img src="./assets/logo.png" alt="Tabulus logo" width="170"/>
 </p>
 
-# Scientific PDF Table Extraction Pipeline
-=======
-# Tabulus: Scientific PDF Table Extraction Pipeline
->>>>>>> 52a7ee2 (Update README and documentation and NuExtract3 addition)
-
+# 📚 Tabulus: Scientific PDF Table Extraction Pipeline
 ![Pipeline](assets/img/pipeline.png)
 
-## Overview
-
+## 🔍 Overview
 Tabulus is a modular multi-stage pipeline for extracting structured table data from scientific PDF documents.
 
 The system combines document analysis, OCR, bibliography extraction, reference matching, and DOI enrichment into a unified workflow that transforms scientific publications into machine-readable data suitable for further analysis, knowledge graph integration, and research evaluation.
@@ -20,32 +14,29 @@ The project was developed as part of a Master's thesis investigating scientific 
 
 ---
 
-## Features
+## ✨ Features
 
-### Scientific Table Extraction
+### 📄 Scientific Table Extraction
 
 * Automated table detection from scientific PDFs
 * Table cropping and preprocessing
 * OCR-based table reconstruction
 * Structured CSV generation
 
-### Bibliography-Aware Processing
-
+### 🔗 Bibliography-Aware Processing
 * Automatic reference table detection
 * Bibliography extraction from full publications
 * Reference matching between tables and bibliography entries
 * DOI enrichment using Crossref
 
-### Research & Evaluation
-
+### 📊 Research & Evaluation
 * OCR benchmarking framework
 * RMS-based table similarity evaluation
 * Precision, Recall, and F1-score analysis
 * Runtime benchmarking
 * Reproducible evaluation workflows
 
-### System Design
-
+### 🏗️ System Design
 * Modular microservice architecture
 * REST-based communication
 * Docker deployment
@@ -54,8 +45,7 @@ The project was developed as part of a Master's thesis investigating scientific 
 
 ---
 
-## Pipeline Workflow
-
+## ⚙️ Pipeline Workflow
 ```text
 Scientific PDF
       ↓
@@ -64,11 +54,12 @@ MinerU Table Detection
 Table Cropping
       ↓
 OCR Extraction
-(PaddleOCR-VL, DeepSeek OCR, Chandra OCR, Kreuzberg OCR)
+(PaddleOCR-VL, DeepSeek OCR, Chandra OCR, Kreuzberg OCR, NuExtract3)
       ↓
 Reference Table Detection
       ↓
-Bibliography Extraction (GROBID)
+Bibliography Extraction
+(GROBID / Kreuzberg + Regex)
       ↓
 Reference Matching
       ↓
@@ -81,39 +72,72 @@ Interactive Visualization UI
 
 ---
 
-## Repository Structure
-
+## 📁 Repository Structure
 ```text
 tabulus/
 │
-├── src/
-│   ├── Tabulus/
-│   ├── ocr_models/
-│   ├── evaluation/
-│   └── dataset/
-│
 ├── assets/
-├── docker-compose.yml
-└── README.md
+│   ├── img/
+│   └── logo.png
+│
+├── dataset/
+│   └── README.md
+│
+├── evaluation/
+│   ├── deplot/
+│   ├── new_results/
+│   ├── plots/
+│   │   ├── reference_extraction/
+│   │   ├── scripts/
+│   │   └── table_extraction/
+│   ├── scripts/
+│   └── README.md
+│
+├── src/
+│   ├── ocr_models/
+│   │   ├── components/
+│   │   │   ├── deepseekOCR2/
+│   │   │   ├── Kreuzberg/
+│   │   │   ├── mineru_service/
+│   │   │   ├── NuExtract3/
+│   │   │   └── paddleOCR_VL/
+│   │   ├── KISSKI/
+│   │   │   ├── Chandra/
+│   │   │   └── NuExtract3/
+│   │   ├── runners/
+│   │   └── README.md
+│   │
+│   └── Tabulus/
+│       ├── backend/
+│       ├── kreuzberg_service/
+│       ├── mineru_service/
+│       ├── paddleocr_service/
+│       ├── ui_input/
+│       ├── docker-compose.yml
+│       └── README.md
+│
+├── .gitignore
+├── LICENSE
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-## Main Components
-
-| Component  | Purpose                                         |
-| ---------- | ----------------------------------------------- |
-| Tabulus    | Complete production pipeline                    |
-| OCR Models | OCR services and benchmarking components        |
-| Evaluation | Evaluation scripts, metrics, and visualizations |
-| Dataset    | Benchmark dataset and ground-truth annotations  |
+## 🧩 Main Components
+| Component        | Purpose                                                    |
+| ---------------- | ---------------------------------------------------------- |
+| `src/Tabulus`    | Complete production pipeline                               |
+| `src/ocr_models` | OCR services, runners, and benchmarking components         |
+| `evaluation`     | Evaluation scripts, metrics, and visualizations            |
+| `dataset`        | Benchmark dataset documentation and ground-truth structure |
+| `assets`         | Images and visual resources used in the documentation      |
 
 Detailed documentation for each component is available in the corresponding README files.
 
 ---
 
-## OCR Technologies
-
+## 🤖 OCR Technologies
 The project evaluates and integrates multiple OCR and document understanding approaches:
 
 * MinerU
@@ -121,13 +145,13 @@ The project evaluates and integrates multiple OCR and document understanding app
 * DeepSeek OCR 2
 * Chandra OCR
 * Kreuzberg OCR
+* NuExtract3
 * GROBID
 
 ---
 
-## Dataset
-
-The project includes a manually curated evaluation dataset containing:
+## 🗄️ Dataset
+The project uses a manually curated evaluation dataset containing:
 
 * scientific publications,
 * annotated tables,
@@ -136,20 +160,19 @@ The project includes a manually curated evaluation dataset containing:
 * DOI matching results,
 * evaluation metrics.
 
-The complete dataset is distributed separately due to its size.
+The complete dataset exceeds 700 MB and is distributed separately.
 
 See:
 
 ```text
-src/dataset/README.md
+dataset/README.md
 ```
 
 for details.
 
 ---
 
-## Evaluation
-
+## 📈 Evaluation
 A comprehensive evaluation framework is included for analyzing:
 
 * table extraction quality,
@@ -162,29 +185,34 @@ A comprehensive evaluation framework is included for analyzing:
 Generated benchmark plots and visualizations are available in:
 
 ```text
-src/evaluation/
+evaluation/plots/
 ```
 
 See:
 
 ```text
-src/evaluation/README.md
+evaluation/README.md
 ```
 
 for detailed documentation.
 
 ---
 
-## Running the Pipeline
-
-### Prerequisites
-
+## 🚀 Running the Pipeline
+### 📋 Prerequisites
 * Docker Desktop
 * Docker Compose
 * Python 3.11+
-* NVIDIA GPU (optional)
+* NVIDIA GPU with CUDA support, recommended for OCR models
 
-### Start All Services
+### ▶️ Start All Services
+Navigate to the final pipeline folder:
+
+```bash
+cd src/Tabulus
+```
+
+Start the services:
 
 ```bash
 docker compose up --build
@@ -196,30 +224,27 @@ This command starts:
 * Backend API
 * MinerU Service
 * PaddleOCR-VL Service
-* GROBID Service
 * Kreuzberg OCR Service
 
 After startup, the web interface can be accessed through the browser.
 
 ---
 
-## Documentation
-
+## 📖 Documentation
 Additional documentation is available in:
 
 ```text
 src/Tabulus/README.md
 src/ocr_models/README.md
-src/evaluation/README.md
-src/dataset/README.md
+evaluation/README.md
+dataset/README.md
 ```
 
 Each README contains detailed setup instructions, implementation details, API documentation, evaluation procedures, and usage examples.
 
 ---
 
-## Research Context
-
+## 🎓 Research Context
 This repository accompanies a Master's thesis focused on:
 
 * scientific table extraction,
@@ -231,14 +256,12 @@ This repository accompanies a Master's thesis focused on:
 
 ---
 
-## Citation
-
+## 📑 Citation
 If you use this repository in your research, please cite the associated Master's thesis.
 
 Citation information will be added after publication.
 
 ---
 
-## License
-
+## 📜 License
 This project is provided for research and educational purposes.
