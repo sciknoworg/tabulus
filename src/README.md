@@ -1,17 +1,14 @@
-Here is a clean `README.md` for `src/ocr_models/`:
-
-````md
 # OCR Model Evaluation Components
 
 This folder contains the OCR model services and runner scripts used during the evaluation phase of the project.
 
-The final Tabulus pipeline is located in `src/Tabulus/` and has its own README that describes the complete pipeline workflow.
+The final Tabulus pipeline is located in `src/Tabulus/` and contains a dedicated README describing the complete pipeline workflow.
 
 ---
 
 ## Folder Structure
 
-
+```text
 ocr_models/
 ├── components/
 │   ├── deepseekOCR2/
@@ -32,11 +29,11 @@ ocr_models/
     ├── runner_mineru_deepseek_tables_and_refs.py
     ├── runner_mineru_paddle_tables.py
     └── runner_paddle_references.py
-````
-
+```
 
 ---
-# Python Environment
+
+## Python Environment
 
 The runner scripts were developed and tested using a Python virtual environment.
 
@@ -70,13 +67,13 @@ Depending on the OCR component, additional model-specific dependencies may be re
 
 ---
 
-# Docker Components
+## Docker Components
 
 Each OCR component can be started separately from its own folder.
 
 ---
 
-## MinerU Service
+### MinerU Service
 
 Used to detect and crop tables from PDF files.
 
@@ -89,7 +86,7 @@ The MinerU service is used by several runners to create table PNG crops before a
 
 ---
 
-## DeepSeek OCR 2
+### DeepSeek OCR 2
 
 Used for table OCR and optional reference extraction.
 
@@ -112,7 +109,7 @@ runner_mineru_deepseek_tables_and_refs.py
 
 ---
 
-## PaddleOCR-VL
+### PaddleOCR-VL
 
 Used for table OCR and reference extraction.
 
@@ -136,7 +133,7 @@ runner_paddle_references.py
 
 ---
 
-## Kreuzberg
+### Kreuzberg
 
 Used for raw text extraction from PDFs and OCR extraction from table PNG images.
 
@@ -160,7 +157,7 @@ runner_kreuzberg_table_png.py
 
 ---
 
-# Runner Scripts
+## Runner Scripts
 
 Run all runner scripts from:
 
@@ -172,10 +169,9 @@ This is important because the imports are based on this working directory.
 
 ---
 
-## MinerU + DeepSeek Tables and References
+### MinerU + DeepSeek Tables and References
 
-This runner first uses MinerU to crop table images from the PDF.
-Then it can optionally send these table crops to DeepSeek OCR 2.
+This runner first uses MinerU to crop table images from the PDF and can optionally send the generated table crops to DeepSeek OCR 2.
 
 ```bash
 python runners/runner_mineru_deepseek_tables_and_refs.py \
@@ -204,7 +200,7 @@ python runners/runner_mineru_deepseek_tables_and_refs.py \
 
 ---
 
-## MinerU + PaddleOCR-VL Tables
+### MinerU + PaddleOCR-VL Tables
 
 This runner first uses MinerU to crop tables and then sends the cropped table images to PaddleOCR-VL.
 
@@ -216,7 +212,7 @@ python runners/runner_mineru_paddle_tables.py \
 
 ---
 
-## PaddleOCR-VL References
+### PaddleOCR-VL References
 
 This runner sends a PDF directly to the PaddleOCR-VL reference extraction endpoint.
 
@@ -229,7 +225,7 @@ python runners/runner_paddle_references.py \
 
 ---
 
-## Kreuzberg Raw References
+### Kreuzberg Raw References
 
 This runner sends a PDF to Kreuzberg and extracts the raw reference section starting from a given page.
 
@@ -242,7 +238,7 @@ python runners/runner_kreuzberg_raw_references.py \
 
 ---
 
-## Kreuzberg Table PNG OCR
+### Kreuzberg Table PNG OCR
 
 This runner sends a single table PNG image to Kreuzberg and saves the extracted table as CSV, Markdown, and JSON.
 
@@ -254,11 +250,11 @@ python runners/runner_kreuzberg_table_png.py \
 
 ---
 
-# Chandra on KISSKI
+## Chandra on KISSKI
 
 Chandra was executed remotely on the KISSKI cluster via SSH and Slurm.
 
-The required Slurm scripts are located here:
+The required Slurm scripts are located in:
 
 ```text
 KISSKI/Chandra/bin/
@@ -270,7 +266,7 @@ These scripts are not Docker-based.
 
 ---
 
-## Chandra Table PNG to CSV
+### Chandra Table PNG to CSV
 
 This runner uploads a PNG table image to KISSKI, submits a Slurm job, downloads the Markdown output, and converts it to CSV.
 
@@ -282,7 +278,7 @@ python runners/runner_chandra_png_to_csv.py \
 
 ---
 
-## Chandra Raw References
+### Chandra Raw References
 
 This runner uploads a PDF to KISSKI and submits a Slurm job for raw reference text extraction.
 
@@ -296,14 +292,15 @@ The result is created remotely on the KISSKI system.
 
 ---
 
-# Notes
+## Notes
 
-* The OCR components are evaluation/test components.
-* They are not the final Tabulus pipeline.
+* The OCR components are evaluation and benchmarking components.
+* They are not part of the final Tabulus pipeline.
 * The final pipeline is located in `src/Tabulus/`.
-* `src/Tabulus/README.md` describes the full pipeline process.
+* `src/Tabulus/README.md` describes the complete production workflow.
 * Large datasets and generated outputs should not be committed to the repository.
-* Recommended ignored folders include:
+
+Recommended ignored folders:
 
 ```text
 data/
@@ -314,4 +311,3 @@ env/
 __pycache__/
 *.pyc
 ```
-

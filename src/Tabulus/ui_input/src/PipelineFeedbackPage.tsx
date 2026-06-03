@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './PipelineFeedbackPage.module.css';
+import Papa from 'papaparse';
 
 type StepStatus = 'idle' | 'pending' | 'running' | 'success' | 'error';
 
@@ -224,11 +225,14 @@ export default function PipelineFeedbackPage() {
   const [modalImageUrl, setModalImageUrl] = useState<string | null>(null);
   const [modalImageAlt, setModalImageAlt] = useState('');
   const [csvPreviews, setCsvPreviews] = useState<CsvPreview[]>([]);
-  const parseCsv = (text: string): string[][] => {
-  return text
-    .trim()
-    .split(/\r?\n/)
-    .map((line) => line.split(',').map((cell) => cell.trim()));
+
+
+const parseCsv = (text: string): string[][] => {
+  const parsed = Papa.parse<string[]>(text, {
+    skipEmptyLines: true,
+  });
+
+  return parsed.data;
 };
   const resetStateForNewFile = () => {
     setResult(null);

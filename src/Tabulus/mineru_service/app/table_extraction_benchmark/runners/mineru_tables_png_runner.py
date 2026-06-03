@@ -240,7 +240,7 @@ def run(pdf_path: Path, out_dir: Path):
         *_mineru_cmd(),
         "-p", str(pdf_path),
         "-o", str(mineru_out),
-        "-b", "Tabulus",
+        "-b", "pipeline",
         "--device", "cuda",
         "-m", "ocr",
         "-t", "true",

@@ -36,12 +36,13 @@ def plot_processed_tables(
 
     # ✅ neutral colors (no red/orange/yellow)
     colors = [
-        "#4C72B0",  # muted blue
-        "#55A868",  # muted green
-        "#8172B2",  # muted purple
-        "#64B5CD",  # soft cyan-blue (fallback if more models)
-        "#8C8C8C",  # gray
+        "#4C9F9F",  # muted blue
+        "#4C72B0",  # muted green
+        "#55A868",  # muted purple
+        "#8172B2",  # soft cyan-blue (fallback if more models)
+        "#B8860B",  # gray
     ]
+
 
     plt.figure(figsize=(9, 5))
 
@@ -102,10 +103,12 @@ def plot_type_1(output_dir: str | Path):
     total_tables = 540
 
     model_data = {
+        "Kreuzberg": 530,
         "Deepseek OCR 2": 497,
         "Paddle VL 2": 524,
         "Chandra 2": 509,
-        "Kreuzberg": 530
+
+        "NuExtract 3": 536
     }
 
     plot_processed_tables(

@@ -795,6 +795,7 @@ def write_resolved_reference_table_csvs(
         if not rows:
             continue
 
+        # rename column header only
         while len(rows[0]) <= col:
             rows[0].append("")
 
@@ -813,14 +814,13 @@ def write_resolved_reference_table_csvs(
 
             doi_values = m.get("doi") or []
 
-            # successful match
+            # replace ONLY if DOI exists
             if m.get("found") and doi_values:
                 rows[r][col] = "; ".join(doi_values)
                 replacements += 1
 
-            # nothing found -> clear cell
-            else:
-                rows[r][col] = ""
+            # otherwise KEEP ORIGINAL VALUE
+            # DO NOTHING
 
         csv_name = f"{Path(src).stem}_resolved.csv"
         csv_path = out_dir / csv_name

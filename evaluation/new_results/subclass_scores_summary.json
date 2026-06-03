@@ -1,0 +1,469 @@
+{
+  "scores_json": "D:\\Master\\MasterArbeit\\Issues\\tabulus\\src\\ocr_models\\runners\\helpers\\all_models_rms_precision_recall_f1_summary.json",
+  "classification_csv": "C:\\Users\\vruml\\OneDrive\\Рабочий стол\\Neuer Ordner (4)\\dataset\\table_summary.csv",
+  "matched_results": 15804,
+  "unmatched_results": 0,
+  "subclass_scores": {
+    "deepseek2_prediction": {
+      "Grid": {
+        "no": {
+          "count": 303,
+          "average_precision": 63.430371646031915,
+          "average_recall": 62.481362520299655,
+          "average_rms_f1": 60.91942362788668
+        },
+        "yes": {
+          "count": 205,
+          "average_precision": 66.44599388638525,
+          "average_recall": 69.53297861610687,
+          "average_rms_f1": 66.07666660110102
+        }
+      },
+      "Column hierarchy": {
+        "no": {
+          "count": 482,
+          "average_precision": 65.93948702621479,
+          "average_recall": 66.89908052644405,
+          "average_rms_f1": 64.5789140401171
+        },
+        "yes": {
+          "count": 26,
+          "average_precision": 40.692254185427586,
+          "average_recall": 36.182947931025915,
+          "average_rms_f1": 33.74097865918957
+        }
+      },
+      "Row hierarchy": {
+        "no": {
+          "count": 408,
+          "average_precision": 72.31336145527797,
+          "average_recall": 70.61757748413528,
+          "average_rms_f1": 69.62902628377317
+        },
+        "yes": {
+          "count": 100,
+          "average_precision": 33.36979881703237,
+          "average_recall": 43.74141846425512,
+          "average_rms_f1": 35.956592886959214
+        }
+      },
+      "Cell density": {
+        "simple": {
+          "count": 245,
+          "average_precision": 65.28943191855423,
+          "average_recall": 64.74470117060706,
+          "average_rms_f1": 62.972972479479736
+        },
+        "dense": {
+          "count": 263,
+          "average_precision": 64.04912751106791,
+          "average_recall": 65.86943601959686,
+          "average_rms_f1": 63.026326064649574
+        }
+      },
+      "size": {
+        "medium": {
+          "count": 238,
+          "average_precision": 64.03877995551044,
+          "average_recall": 64.01299268596497,
+          "average_rms_f1": 61.67192202393302
+        },
+        "large": {
+          "count": 99,
+          "average_precision": 53.49845200571362,
+          "average_recall": 55.10200961922089,
+          "average_rms_f1": 51.7059136248625
+        },
+        "small": {
+          "count": 171,
+          "average_precision": 71.94885951742405,
+          "average_recall": 73.0755687040361,
+          "average_rms_f1": 71.388883753906
+        }
+      },
+      "sections": {
+        "no": {
+          "count": 474,
+          "average_precision": 64.51490305656047,
+          "average_recall": 65.58684219065059,
+          "average_rms_f1": 63.12371024093391
+        },
+        "yes": {
+          "count": 34,
+          "average_precision": 66.49315607785243,
+          "average_recall": 61.70441945836251,
+          "average_rms_f1": 61.28421641978524
+        }
+      }
+    },
+    "paddle_vl_prediction": {
+      "Grid": {
+        "no": {
+          "count": 322,
+          "average_precision": 70.66065368848504,
+          "average_recall": 76.26180531096678,
+          "average_rms_f1": 72.3194335426652
+        },
+        "yes": {
+          "count": 212,
+          "average_precision": 75.76433940071186,
+          "average_recall": 84.70558932557418,
+          "average_rms_f1": 78.02505453477781
+        }
+      },
+      "Column hierarchy": {
+        "no": {
+          "count": 507,
+          "average_precision": 74.62092724410958,
+          "average_recall": 81.33102969250784,
+          "average_rms_f1": 76.47121459905907
+        },
+        "yes": {
+          "count": 27,
+          "average_precision": 36.3689010325757,
+          "average_recall": 47.37237752042789,
+          "average_rms_f1": 39.15790223659782
+        }
+      },
+      "Row hierarchy": {
+        "no": {
+          "count": 427,
+          "average_precision": 81.84839165753385,
+          "average_recall": 84.5842220087314,
+          "average_rms_f1": 82.69989579832277
+        },
+        "yes": {
+          "count": 107,
+          "average_precision": 36.12623554089856,
+          "average_recall": 59.779658405838525,
+          "average_rms_f1": 42.1991930488529
+        }
+      },
+      "Cell density": {
+        "simple": {
+          "count": 258,
+          "average_precision": 72.3096009147877,
+          "average_recall": 78.12347010779646,
+          "average_rms_f1": 73.85429410125828
+        },
+        "dense": {
+          "count": 276,
+          "average_precision": 73.03946885734737,
+          "average_recall": 81.00735854833891,
+          "average_rms_f1": 75.26725102893641
+        }
+      },
+      "size": {
+        "medium": {
+          "count": 253,
+          "average_precision": 71.68388527668054,
+          "average_recall": 79.08686993663994,
+          "average_rms_f1": 73.75085467431762
+        },
+        "large": {
+          "count": 103,
+          "average_precision": 69.46369194135683,
+          "average_recall": 80.38691972044298,
+          "average_rms_f1": 72.03692601168133
+        },
+        "small": {
+          "count": 178,
+          "average_precision": 75.97745615552344,
+          "average_recall": 79.91604169650279,
+          "average_rms_f1": 77.2438176983458
+        }
+      },
+      "sections": {
+        "no": {
+          "count": 500,
+          "average_precision": 72.28821209823518,
+          "average_recall": 79.30300071501404,
+          "average_rms_f1": 74.17585212969607
+        },
+        "yes": {
+          "count": 34,
+          "average_precision": 78.54895269192679,
+          "average_recall": 84.18782028370636,
+          "average_rms_f1": 80.5953852136191
+        }
+      }
+    },
+    "chandra_prediction": {
+      "Grid": {
+        "no": {
+          "count": 310,
+          "average_precision": 75.82322714990767,
+          "average_recall": 74.533583463672,
+          "average_rms_f1": 74.51618828482225
+        },
+        "yes": {
+          "count": 209,
+          "average_precision": 72.94204832014759,
+          "average_recall": 73.28820412021464,
+          "average_rms_f1": 72.60214607327768
+        }
+      },
+      "Column hierarchy": {
+        "no": {
+          "count": 493,
+          "average_precision": 77.88539548140322,
+          "average_recall": 76.94028737048706,
+          "average_rms_f1": 76.82983956639629
+        },
+        "yes": {
+          "count": 26,
+          "average_precision": 13.561097809632098,
+          "average_recall": 18.88784081588717,
+          "average_rms_f1": 15.259845822175444
+        }
+      },
+      "Row hierarchy": {
+        "no": {
+          "count": 414,
+          "average_precision": 82.12935920896847,
+          "average_recall": 81.51860880906636,
+          "average_rms_f1": 81.2156442759604
+        },
+        "yes": {
+          "count": 105,
+          "average_precision": 45.22413145589788,
+          "average_recall": 44.51372845628291,
+          "average_rms_f1": 44.291334927260216
+        }
+      },
+      "Cell density": {
+        "simple": {
+          "count": 255,
+          "average_precision": 74.1259108269488,
+          "average_recall": 73.814608169609,
+          "average_rms_f1": 73.2399583481452
+        },
+        "dense": {
+          "count": 264,
+          "average_precision": 75.1817471761753,
+          "average_recall": 74.24212292277609,
+          "average_rms_f1": 74.23362696527616
+        }
+      },
+      "size": {
+        "medium": {
+          "count": 246,
+          "average_precision": 73.2020052999494,
+          "average_recall": 72.55728169864602,
+          "average_rms_f1": 72.6633279251032
+        },
+        "large": {
+          "count": 105,
+          "average_precision": 71.48719324304841,
+          "average_recall": 72.69346256113519,
+          "average_rms_f1": 71.3867996563454
+        },
+        "small": {
+          "count": 168,
+          "average_precision": 78.78714238734874,
+          "average_recall": 77.02821826236348,
+          "average_rms_f1": 76.80401347689451
+        }
+      },
+      "sections": {
+        "no": {
+          "count": 486,
+          "average_precision": 75.18825185020137,
+          "average_recall": 74.62766403487221,
+          "average_rms_f1": 74.28207887066692
+        },
+        "yes": {
+          "count": 33,
+          "average_precision": 66.92721564195026,
+          "average_recall": 65.26063072470569,
+          "average_rms_f1": 65.8417141353276
+        }
+      }
+    },
+    "Kreuzberg_prediction": {
+      "Grid": {
+        "no": {
+          "count": 325,
+          "average_precision": 2.109528424861762,
+          "average_recall": 4.324404364511152,
+          "average_rms_f1": 2.626916537810855
+        },
+        "yes": {
+          "count": 212,
+          "average_precision": 0.9446738590040173,
+          "average_recall": 2.921911057278118,
+          "average_rms_f1": 1.2250904923231516
+        }
+      },
+      "Column hierarchy": {
+        "no": {
+          "count": 510,
+          "average_precision": 1.5866050671993543,
+          "average_recall": 3.789963773138147,
+          "average_rms_f1": 2.029005410898435
+        },
+        "yes": {
+          "count": 27,
+          "average_precision": 2.8407041450834623,
+          "average_recall": 3.4072236410604027,
+          "average_rms_f1": 2.9138629482531178
+        }
+      },
+      "Row hierarchy": {
+        "no": {
+          "count": 430,
+          "average_precision": 1.9455679825687846,
+          "average_recall": 4.0985422195555605,
+          "average_rms_f1": 2.413746059853379
+        },
+        "yes": {
+          "count": 107,
+          "average_precision": 0.4604987260219331,
+          "average_recall": 2.4533028803756514,
+          "average_rms_f1": 0.7061332095708697
+        }
+      },
+      "Cell density": {
+        "simple": {
+          "count": 261,
+          "average_precision": 2.3155822030507442,
+          "average_recall": 4.874729081369017,
+          "average_rms_f1": 2.878796218199319
+        },
+        "dense": {
+          "count": 276,
+          "average_precision": 1.0199298593937682,
+          "average_recall": 2.7267111317817836,
+          "average_rms_f1": 1.3119610369964267
+        }
+      },
+      "size": {
+        "medium": {
+          "count": 253,
+          "average_precision": 2.153883663321921,
+          "average_recall": 4.404970619505455,
+          "average_rms_f1": 2.6737953422692233
+        },
+        "large": {
+          "count": 106,
+          "average_precision": 1.323343203934704,
+          "average_recall": 4.192009767298292,
+          "average_rms_f1": 1.5782220520229446
+        },
+        "small": {
+          "count": 178,
+          "average_precision": 1.1273070210752785,
+          "average_recall": 2.618348092924644,
+          "average_rms_f1": 1.5151983149016313
+        }
+      },
+      "sections": {
+        "no": {
+          "count": 503,
+          "average_precision": 1.5940493781480098,
+          "average_recall": 3.6563122195301285,
+          "average_rms_f1": 1.999633265089197
+        },
+        "yes": {
+          "count": 34,
+          "average_precision": 2.4723752641316246,
+          "average_recall": 5.463279887806795,
+          "average_rms_f1": 3.1662213770932333
+        }
+      }
+    },
+    "NuExtract3_prediction": {
+      "Grid": {
+        "no": {
+          "count": 324,
+          "average_precision": 83.37848353584015,
+          "average_recall": 82.32404771464918,
+          "average_rms_f1": 82.54937956881905
+        },
+        "yes": {
+          "count": 212,
+          "average_precision": 82.02937839139247,
+          "average_recall": 82.6715566918186,
+          "average_rms_f1": 81.83535220902552
+        }
+      },
+      "Column hierarchy": {
+        "no": {
+          "count": 509,
+          "average_precision": 84.0001785736858,
+          "average_recall": 83.30238889140855,
+          "average_rms_f1": 83.31130921960577
+        },
+        "yes": {
+          "count": 27,
+          "average_precision": 61.06540705856804,
+          "average_recall": 66.60909379573789,
+          "average_rms_f1": 62.5791576233866
+        }
+      },
+      "Row hierarchy": {
+        "no": {
+          "count": 429,
+          "average_precision": 88.81779465810472,
+          "average_recall": 88.82301858658748,
+          "average_rms_f1": 88.46108577831622
+        },
+        "yes": {
+          "count": 107,
+          "average_precision": 58.89741099308864,
+          "average_recall": 56.955948640802326,
+          "average_rms_f1": 57.43259672629085
+        }
+      },
+      "Cell density": {
+        "simple": {
+          "count": 260,
+          "average_precision": 82.78529803776887,
+          "average_recall": 82.43544548044243,
+          "average_rms_f1": 82.28982130132582
+        },
+        "dense": {
+          "count": 276,
+          "average_precision": 82.90101229988227,
+          "average_recall": 82.48603497571321,
+          "average_rms_f1": 82.24543518212344
+        }
+      },
+      "size": {
+        "medium": {
+          "count": 253,
+          "average_precision": 82.27489217372387,
+          "average_recall": 81.84463631196964,
+          "average_rms_f1": 81.845977876197
+        },
+        "large": {
+          "count": 105,
+          "average_precision": 80.10945484499682,
+          "average_recall": 79.10286027369665,
+          "average_rms_f1": 78.46741619448908
+        },
+        "small": {
+          "count": 178,
+          "average_precision": 85.26863149387982,
+          "average_recall": 85.31948405924388,
+          "average_rms_f1": 85.10664351411006
+        }
+      },
+      "sections": {
+        "no": {
+          "count": 502,
+          "average_precision": 82.5784617684834,
+          "average_recall": 82.3056554328391,
+          "average_rms_f1": 82.04120017774616
+        },
+        "yes": {
+          "count": 34,
+          "average_precision": 86.77850225908081,
+          "average_recall": 84.76242502725418,
+          "average_rms_f1": 85.60032821712377
+        }
+      }
+    }
+  },
+  "unmatched_examples": []
+}

@@ -1,254 +1,244 @@
+<<<<<<< HEAD
 <p align="center">
   <img src="./assets/logo.png" alt="Tabulus logo" width="170"/>
 </p>
 
 # Scientific PDF Table Extraction Pipeline
+=======
+# Tabulus: Scientific PDF Table Extraction Pipeline
+>>>>>>> 52a7ee2 (Update README and documentation and NuExtract3 addition)
 
-A modular multi-stage pipeline for extracting scientific tables, detecting bibliography references, resolving DOI information, and generating structured machine-readable outputs from scientific PDF documents.
+![Pipeline](assets/img/pipeline.png)
 
----
+## Overview
 
-# Overview
+Tabulus is a modular multi-stage pipeline for extracting structured table data from scientific PDF documents.
 
-This project was developed as part of a Master's thesis focusing on:
+The system combines document analysis, OCR, bibliography extraction, reference matching, and DOI enrichment into a unified workflow that transforms scientific publications into machine-readable data suitable for further analysis, knowledge graph integration, and research evaluation.
 
-- scientific table extraction,
-- OCR benchmarking,
-- bibliography-aware table processing,
-- DOI enrichment,
-- structured scientific knowledge extraction.
-
-The pipeline combines multiple OCR and document-processing technologies into a unified workflow capable of processing complete scientific publications automatically.
+The project was developed as part of a Master's thesis investigating scientific table extraction, OCR benchmarking, bibliography-aware processing, and structured scholarly knowledge extraction.
 
 ---
 
-# Main Features
+## Features
 
-- Scientific PDF processing
-- Automated table detection and cropping
-- OCR-based table extraction
-- Reference-table detection
-- Bibliography extraction
-- DOI resolution using Crossref
-- Structured CSV generation
-- Interactive visualization UI
-- Docker-based microservice architecture
-- GPU-accelerated OCR processing
+### Scientific Table Extraction
+
+* Automated table detection from scientific PDFs
+* Table cropping and preprocessing
+* OCR-based table reconstruction
+* Structured CSV generation
+
+### Bibliography-Aware Processing
+
+* Automatic reference table detection
+* Bibliography extraction from full publications
+* Reference matching between tables and bibliography entries
+* DOI enrichment using Crossref
+
+### Research & Evaluation
+
+* OCR benchmarking framework
+* RMS-based table similarity evaluation
+* Precision, Recall, and F1-score analysis
+* Runtime benchmarking
+* Reproducible evaluation workflows
+
+### System Design
+
+* Modular microservice architecture
+* REST-based communication
+* Docker deployment
+* GPU-accelerated OCR support
+* Interactive web interface
 
 ---
 
-# Pipeline Workflow
+## Pipeline Workflow
 
 ```text
-PDF Upload
-    ↓
+Scientific PDF
+      ↓
 MinerU Table Detection
-    ↓
+      ↓
 Table Cropping
-    ↓
-PaddleOCR-VL Extraction
-    ↓
+      ↓
+OCR Extraction
+(PaddleOCR-VL, DeepSeek OCR, Chandra OCR, Kreuzberg OCR)
+      ↓
 Reference Table Detection
-    ↓
-GROBID Bibliography Extraction
-    ↓
+      ↓
+Bibliography Extraction (GROBID)
+      ↓
 Reference Matching
-    ↓
+      ↓
 Crossref DOI Resolution
-    ↓
-Resolved CSV Generation
+      ↓
+Enriched CSV Generation
+      ↓
+Interactive Visualization UI
 ```
 
 ---
 
-# Architecture
-
-The system consists of multiple independent services communicating through REST APIs.
+## Repository Structure
 
 ```text
-React UI
-    ↓
-FastAPI Backend
-    ├── MinerU Service
-    ├── PaddleOCR-VL Service
-    ├── GROBID
-    └── Kreuzberg OCR Fallback
-```
-
----
-
-# Project Structure
-
-```text
-project-root/
+tabulus/
 │
-├── backend/
-├── ui_input/
-├── mineru_service/
-├── paddle_service/
-├── grobid/
-├── kreuzberg_service/
+├── src/
+│   ├── Tabulus/
+│   ├── ocr_models/
+│   ├── evaluation/
+│   └── dataset/
 │
-├── dataset/
-├── evaluation/
-│
+├── assets/
 ├── docker-compose.yml
 └── README.md
 ```
 
 ---
 
-# Components
+## Main Components
 
-Each component contains its own dedicated README file with detailed implementation and setup documentation.
+| Component  | Purpose                                         |
+| ---------- | ----------------------------------------------- |
+| Tabulus    | Complete production pipeline                    |
+| OCR Models | OCR services and benchmarking components        |
+| Evaluation | Evaluation scripts, metrics, and visualizations |
+| Dataset    | Benchmark dataset and ground-truth annotations  |
 
-| Component | Description |
-|---|---|
-| `backend` | Main orchestration and API service |
-| `ui_input` | React frontend for pipeline interaction |
-| `mineru_service` | Table detection and cropping |
-| `paddle_service` | OCR and table extraction |
-| `grobid` | Bibliography extraction |
-| `kreuzberg_service` | OCR fallback extraction |
-| `dataset` | Evaluation dataset and benchmark results |
-| `evaluation` | Evaluation plots and benchmark visualizations |
+Detailed documentation for each component is available in the corresponding README files.
 
 ---
 
-# Technologies
+## OCR Technologies
 
-## Frontend
+The project evaluates and integrates multiple OCR and document understanding approaches:
 
-- React
-- TypeScript
-- Vite
-- CSS Modules
-
-## Backend
-
-- FastAPI
-- Python
-- SQLAlchemy
-
-## OCR & Extraction
-
-- MinerU
-- PaddleOCR-VL
-- GROBID
-- Kreuzberg OCR
-- DeepSeek OCR 2
-- Chandra OCR
-
-## Infrastructure
-
-- Docker
-- Docker Compose
-- GPU acceleration (CUDA)
+* MinerU
+* PaddleOCR-VL
+* DeepSeek OCR 2
+* Chandra OCR
+* Kreuzberg OCR
+* GROBID
 
 ---
 
-# Evaluation
+## Dataset
 
-The project includes a complete evaluation framework for benchmarking:
+The project includes a manually curated evaluation dataset containing:
 
-- table extraction quality,
-- OCR robustness,
-- bibliography extraction,
-- DOI matching,
-- runtime efficiency.
+* scientific publications,
+* annotated tables,
+* bibliography references,
+* OCR outputs,
+* DOI matching results,
+* evaluation metrics.
 
-Evaluation metrics include:
-
-- RMS-based table similarity,
-- precision,
-- recall,
-- F1-score,
-- runtime analysis.
-
----
-
-# Dataset
-
-The repository includes references to the evaluation dataset used during the thesis work.
-
-The dataset contains:
-
-- scientific PDFs,
-- ground truth tables,
-- OCR outputs,
-- bibliography extraction results,
-- evaluation metrics,
-- benchmark outputs.
-
-The complete dataset exceeds 700 MB and is provided separately.
+The complete dataset is distributed separately due to its size.
 
 See:
 
 ```text
-dataset/README.md
+src/dataset/README.md
 ```
 
-for detailed information.
+for details.
 
 ---
 
-# Evaluation Plots
+## Evaluation
+
+A comprehensive evaluation framework is included for analyzing:
+
+* table extraction quality,
+* OCR robustness,
+* bibliography extraction performance,
+* reference matching accuracy,
+* DOI enrichment quality,
+* runtime efficiency.
 
 Generated benchmark plots and visualizations are available in:
 
 ```text
-evaluation/plots/
+src/evaluation/
 ```
-
-These plots include:
-
-- OCR model comparisons,
-- RMS extraction scores,
-- runtime benchmarks,
-- bibliography extraction metrics.
 
 See:
 
 ```text
-evaluation/README.md
+src/evaluation/README.md
 ```
 
-for detailed information.
+for detailed documentation.
 
 ---
 
-# UI
+## Running the Pipeline
 
-The project contains an interactive web UI for:
+### Prerequisites
 
-- uploading PDFs,
-- visualizing cropped tables,
-- viewing OCR extraction results,
-- inspecting bibliography matches,
-- downloading resolved CSV outputs.
+* Docker Desktop
+* Docker Compose
+* Python 3.11+
+* NVIDIA GPU (optional)
+
+### Start All Services
+
+```bash
+docker compose up --build
+```
+
+This command starts:
+
+* Frontend UI
+* Backend API
+* MinerU Service
+* PaddleOCR-VL Service
+* GROBID Service
+* Kreuzberg OCR Service
+
+After startup, the web interface can be accessed through the browser.
 
 ---
 
-# Intended Use
+## Documentation
 
-This project is intended for:
+Additional documentation is available in:
 
-- scientific document processing,
-- OCR benchmarking,
-- research on table extraction,
-- bibliography-aware NLP pipelines,
-- structured scientific knowledge extraction.
+```text
+src/Tabulus/README.md
+src/ocr_models/README.md
+src/evaluation/README.md
+src/dataset/README.md
+```
+
+Each README contains detailed setup instructions, implementation details, API documentation, evaluation procedures, and usage examples.
 
 ---
 
-# Notes
+## Research Context
 
-This repository contains experimental research software developed for scientific evaluation and benchmarking purposes.
+This repository accompanies a Master's thesis focused on:
 
-The implementation prioritizes:
+* scientific table extraction,
+* OCR benchmarking,
+* bibliography-aware table processing,
+* DOI enrichment,
+* structured scientific knowledge extraction,
+* reproducible research workflows.
 
-- reproducibility,
-- modularity,
-- transparency of intermediate outputs,
-- evaluation support,
-- extensibility for future research.
+---
+
+## Citation
+
+If you use this repository in your research, please cite the associated Master's thesis.
+
+Citation information will be added after publication.
+
+---
+
+## License
+
+This project is provided for research and educational purposes.

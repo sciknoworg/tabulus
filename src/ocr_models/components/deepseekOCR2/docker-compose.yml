@@ -9,7 +9,7 @@ services:
     gpus: all
     volumes:
       - D:\Master\MasterArbeit\Issues\tabulus\outputs:/app/outputs
-      - hf_cache:/root/.cache/huggingface
+      - HF_cache:/root/.cache/huggingface
     environment:
       - HF_HOME=/root/.cache/huggingface
       - HF_HUB_DISABLE_TELEMETRY=1
@@ -17,4 +17,4 @@ services:
       # - HF_HUB_ENABLE_HF_TRANSFER=1
 
 volumes:
-  hf_cache:
+  HF_cache:

@@ -20,19 +20,26 @@ PRED_DIR_NAME = "NuExtract3_prediction"
 def levenshtein(a: str, b: str) -> int:
     if a == b:
         return 0
+
     if len(a) < len(b):
         a, b = b, a
 
     previous = list(range(len(b) + 1))
+
     for i, ca in enumerate(a, 1):
         current = [i]
+
         for j, cb in enumerate(b, 1):
-            current.append(min(
-                previous[j] + 1,
-                current[j - 1] + 1,
-                previous[j - 1] + (ca != cb),
-            ))
+            current.append(
+                min(
+                    previous[j] + 1,
+                    current[j - 1] + 1,
+                    previous[j - 1] + (ca != cb),
+                )
+            )
+
         previous = current
+
     return previous[-1]
 
 
@@ -42,10 +49,12 @@ def anls_metric(target: str, prediction: str, theta: float = 0.5) -> float:
 
     if not target and not prediction:
         return 1.0
+
     if not target or not prediction:
         return 0.0
 
     distance = levenshtein(target, prediction) / max(len(target), len(prediction))
+
     return 1.0 - distance if distance < theta else 0.0
 
 
@@ -61,6 +70,7 @@ def csv_to_deplot_text(path: Path) -> str:
 
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.reader(f)
+
         for row in reader:
             rows.append([normalize_cell(cell).lower() for cell in row])
 
@@ -77,7 +87,9 @@ def _to_float(text: str):
     try:
         if text.endswith("%"):
             return float(text.rstrip("%")) / 100.0
+
         return float(text)
+
     except ValueError:
         return None
 
@@ -85,7 +97,9 @@ def _to_float(text: str):
 def _get_relative_distance(target, prediction, theta=1.0):
     if not target:
         return int(not prediction)
+
     distance = min(abs((target - prediction) / target), 1)
+
     return distance if distance < theta else 1
 
 
@@ -111,13 +125,19 @@ class Table:
             raise ValueError(f"Header length {headers} must match {self.headers}.")
 
         distance = []
+
         for h2 in self.headers:
-            distance.append([1 - anls_metric(h1, h2, text_theta) for h1 in headers])
+            distance.append(
+                [1 - anls_metric(h1, h2, text_theta) for h1 in headers]
+            )
 
         cost_matrix = np.array(distance)
         row_ind, col_ind = optimize.linear_sum_assignment(cost_matrix)
+
         permutation = [idx for _, idx in sorted(zip(col_ind, row_ind))]
+
         score = (1 - cost_matrix)[permutation[1:], range(1, len(row_ind))].prod()
+
         return self.permuted(permutation), score
 
 
@@ -128,7 +148,7 @@ def _parse_table(text: str, transposed=False):
         return Table()
 
     if lines[0].startswith("title |"):
-        title = lines[0][len("title |"):].strip()
+        title = lines[0][len("title |") :].strip()
         offset = 1
     else:
         title = None
@@ -138,13 +158,18 @@ def _parse_table(text: str, transposed=False):
         return Table(title=title)
 
     rows = []
+
     for line in lines[offset:]:
         rows.append(tuple(v.strip() for v in line.split(" | ")))
 
     if transposed:
         rows = [tuple(row) for row in itertools.zip_longest(*rows, fillvalue="")]
 
-    return Table(title=title, headers=rows[0], rows=tuple(rows[1:]))
+    return Table(
+        title=title,
+        headers=rows[0],
+        rows=tuple(rows[1:]),
+    )
 
 
 def _get_table_datapoints(table: Table):
@@ -163,7 +188,12 @@ def _get_table_datapoints(table: Table):
     return datapoints
 
 
-def _get_datapoint_metric(target, prediction, text_theta=0.5, number_theta=0.1):
+def _get_datapoint_metric(
+    target,
+    prediction,
+    text_theta=0.5,
+    number_theta=0.1,
+):
     key_metric = anls_metric(target[0], prediction[0], text_theta)
 
     pred_float = _to_float(prediction[1])
@@ -191,22 +221,25 @@ def _table_datapoints_precision_recall_f1(
 
     if not target_datapoints and not prediction_datapoints:
         return 1, 1, 1
+
     if not target_datapoints:
         return 0, 1, 0
+
     if not prediction_datapoints:
         return 1, 0, 0
 
     distance = []
+
     for t, _ in target_datapoints:
-        distance.append([
-            1 - anls_metric(t, p, text_theta)
-            for p, _ in prediction_datapoints
-        ])
+        distance.append(
+            [1 - anls_metric(t, p, text_theta) for p, _ in prediction_datapoints]
+        )
 
     cost_matrix = np.array(distance)
     row_ind, col_ind = optimize.linear_sum_assignment(cost_matrix)
 
     score = 0
+
     for r, c in zip(row_ind, col_ind):
         score += _get_datapoint_metric(
             target_datapoints[r],
@@ -225,11 +258,12 @@ def _table_datapoints_precision_recall_f1(
     return precision, recall, f1
 
 
-def table_datapoints_precision_recall(target: str, prediction: str):
+def rms_f1(target: str, prediction: str) -> float:
     all_metrics = []
 
     for transposed in [True, False]:
         pred_table = _parse_table(prediction, transposed=transposed)
+
         all_metrics.append(
             _table_datapoints_precision_recall_f1(
                 _parse_table(target),
@@ -237,20 +271,16 @@ def table_datapoints_precision_recall(target: str, prediction: str):
             )
         )
 
-    p, r, f1 = max(all_metrics, key=lambda x: x[-1])
+    _, _, f1 = max(all_metrics, key=lambda x: x[-1])
 
-    return {
-        "table_datapoints_precision": 100.0 * p,
-        "table_datapoints_recall": 100.0 * r,
-        "table_datapoints_f1": 100.0 * f1,
-    }
+    return 100.0 * f1
 
 
 def evaluate_pair(gold_csv: Path, pred_csv: Path):
     target_text = csv_to_deplot_text(gold_csv)
     prediction_text = csv_to_deplot_text(pred_csv)
 
-    scores = table_datapoints_precision_recall(
+    f1 = rms_f1(
         target=target_text,
         prediction=prediction_text,
     )
@@ -259,31 +289,44 @@ def evaluate_pair(gold_csv: Path, pred_csv: Path):
         "ground_truth_csv": str(gold_csv),
         "prediction_csv": str(pred_csv),
         "prediction_model": PRED_DIR_NAME,
-        "precision": scores["table_datapoints_precision"],
-        "recall": scores["table_datapoints_recall"],
-        "f1": scores["table_datapoints_f1"],
+        "rms_f1": f1,
     }
 
 
 def write_json(path: Path, obj: Any):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    path.write_text(
+        json.dumps(obj, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
 
 
 def find_gold_dirs(dataset_root: Path):
     return sorted(
-        p for p in dataset_root.rglob(GOLD_DIR_NAME)
-        if p.is_dir() and p.parent.name == "Ref_Tables"
+        path
+        for path in dataset_root.rglob(GOLD_DIR_NAME)
+        if path.is_dir() and path.parent.name == "Ref_Tables"
     )
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset-root", required=True)
+    parser = argparse.ArgumentParser(
+        description="Evaluate only RMS F1 for NuExtract3 predictions."
+    )
+
+    parser.add_argument(
+        "--dataset-root",
+        required=True,
+        help="Path to dataset root.",
+    )
+
     parser.add_argument(
         "--summary-out",
-        default="nuextract3_rms_summary.json",
+        default="nuextract3_rms_f1_summary.json",
+        help="Output summary JSON.",
     )
+
     args = parser.parse_args()
 
     dataset_root = Path(args.dataset_root).resolve()
@@ -321,34 +364,40 @@ def main():
                 result = evaluate_pair(gold_csv, pred_csv)
                 results.append(result)
 
-                out_json = output_dir / f"{gold_csv.stem}_nuextract3_evaluation.json"
+                out_json = output_dir / f"{gold_csv.stem}_nuextract3_rms_f1.json"
                 write_json(out_json, result)
 
                 print(
-                    f"{gold_csv.name}: "
-                    f"P={result['precision']:.4f}, "
-                    f"R={result['recall']:.4f}, "
-                    f"F1={result['f1']:.4f}",
+                    f"{gold_csv.name}: RMS F1={result['rms_f1']:.4f}",
                     flush=True,
                 )
 
             except Exception as e:
-                failed.append({
-                    "ground_truth_csv": str(gold_csv),
-                    "prediction_csv": str(pred_csv),
-                    "error": str(e),
-                })
+                failed.append(
+                    {
+                        "ground_truth_csv": str(gold_csv),
+                        "prediction_csv": str(pred_csv),
+                        "error": str(e),
+                    }
+                )
+
                 print(f"Failed: {gold_csv.name} -> {e}", flush=True)
 
     n = len(results)
 
+    average_rms_f1 = (
+        sum(float(r["rms_f1"]) for r in results) / n
+        if n
+        else 0.0
+    )
+
     summary = {
+        "dataset_root": str(dataset_root),
+        "model": PRED_DIR_NAME,
         "successful_evaluations": n,
         "failed_evaluations": len(failed),
         "missing_files_or_folders": len(missing),
-        "average_precision": sum(r["precision"] for r in results) / n if n else 0,
-        "average_recall": sum(r["recall"] for r in results) / n if n else 0,
-        "average_f1": sum(r["f1"] for r in results) / n if n else 0,
+        "average_rms_f1": average_rms_f1,
         "results": results,
         "failed": failed,
         "missing": missing,
@@ -356,14 +405,12 @@ def main():
 
     write_json(summary_out, summary)
 
-    print("\nFinished.")
-    print(f"Successful: {n}")
-    print(f"Failed: {len(failed)}")
-    print(f"Missing: {len(missing)}")
-    print(f"Average precision: {summary['average_precision']:.4f}")
-    print(f"Average recall: {summary['average_recall']:.4f}")
-    print(f"Average F1: {summary['average_f1']:.4f}")
-    print(f"Summary written to: {summary_out}")
+    print("\nFinished.", flush=True)
+    print(f"Successful evaluations: {n}", flush=True)
+    print(f"Failed evaluations: {len(failed)}", flush=True)
+    print(f"Missing files/folders: {len(missing)}", flush=True)
+    print(f"Average RMS F1: {average_rms_f1:.4f}", flush=True)
+    print(f"Summary written to: {summary_out}", flush=True)
 
 
 if __name__ == "__main__":
