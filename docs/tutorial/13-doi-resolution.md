@@ -1,4 +1,4 @@
-# Step 13: DOI Resolution
+# Step 9: DOI Resolution
 
 ## Goal
 

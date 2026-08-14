@@ -1,4 +1,6 @@
-# Step 6: Table Detection
+:orphan:
+
+# PDF Profiling Internal: Table Detection
 
 ## Goal
 

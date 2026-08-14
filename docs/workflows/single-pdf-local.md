@@ -3,11 +3,7 @@
 This workflow is the development target for running one paper without Docker.
 
 ```powershell
-python -m tabulus_pipeline.ingest_pdf --pdf C:\papers\P51.pdf --runs-root C:\runs
-python -m tabulus_pipeline.profile_pdf --run C:\runs\P51
-python -m tabulus_pipeline.render_pages --run C:\runs\P51
-python -m tabulus_pipeline.detect_layout --run C:\runs\P51 --adapter mineru
-python -m tabulus_pipeline.crop_tables --run C:\runs\P51
+python -m tabulus_pipeline.profile_pdf --pdf C:\papers\P51.pdf --runs-root C:\runs --adapter mineru
 python -m tabulus_pipeline.ocr_tables --run C:\runs\P51 --adapter paddleocr_vl
 python -m tabulus_pipeline.classify_reference_tables --run C:\runs\P51
 python -m tabulus_pipeline.extract_bibliography --run C:\runs\P51 --adapter grobid

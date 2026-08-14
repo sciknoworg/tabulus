@@ -1,4 +1,6 @@
-# Step 5: Reference Section Detection
+:orphan:
+
+# PDF Profiling Internal: Reference Section Detection
 
 ## Goal
 

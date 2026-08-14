@@ -1,4 +1,4 @@
-# Step 10: Reference-Table Classification
+# Step 6: Reference-Table Classification
 
 ## Goal
 

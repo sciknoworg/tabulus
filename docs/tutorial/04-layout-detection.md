@@ -1,8 +1,19 @@
-# Step 4: Document Layout Detection
+:orphan:
+
+# PDF Profiling Internal: Document Layout Detection
 
 ## Goal
 
 Detect high-level document elements such as headings, paragraphs, figures, captions, and tables.
+
+In the first clean workflow, this work belongs to the combined **Page Layout And Table Crop Extraction** module. That module performs:
+
+- page/layout analysis
+- table detection
+- table bounding-box detection
+- table crop export
+- caption and footnote capture
+- structured JSON export
 
 ## Input
 
@@ -33,6 +44,19 @@ Rendered page images and/or the original PDF.
 ## Default Implementation
 
 The current pipeline gets layout information from MinerU's `content_list.json`.
+
+The current standalone adapter call is:
+
+```python
+from pathlib import Path
+
+from app.table_extraction_benchmark.runners.mineru_tables_png_runner import run
+
+run(
+    pdf_path=Path("/data/runs/P51/input/paper.pdf"),
+    out_dir=Path("/data/runs/P51"),
+)
+```
 
 ## Alternative Adapters
 

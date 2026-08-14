@@ -9,13 +9,7 @@ The documentation is organized around processing components, not around specific
 :caption: Tutorial
 
 tutorial/00-overview
-tutorial/01-pdf-ingestion
-tutorial/02-document-profiling
-tutorial/03-page-rendering
-tutorial/04-layout-detection
-tutorial/05-reference-section-detection
-tutorial/06-table-detection
-tutorial/07-table-cropping
+tutorial/01-pdf-profiling
 tutorial/08-table-ocr
 tutorial/09-table-normalization
 tutorial/10-reference-table-classification
@@ -31,7 +25,7 @@ tutorial/15-run-report
 :caption: Components
 
 modules/overview
-modules/pdf-ingestors
+modules/pdf-profilers
 modules/pdf-readers
 modules/page-renderers
 modules/layout-detectors
@@ -57,7 +51,7 @@ workflows/debugging-failed-step
 :caption: Data Contracts
 
 data-contracts/run-directory
-data-contracts/document-profile-json
+data-contracts/pdf-profile-json
 data-contracts/tables-index-json
 data-contracts/ocr-tables-json
 data-contracts/bibliography-json

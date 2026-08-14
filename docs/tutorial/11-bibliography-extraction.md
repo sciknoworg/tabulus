@@ -1,4 +1,4 @@
-# Step 11: Bibliography Extraction
+# Step 7: Bibliography Extraction
 
 ## Goal
 

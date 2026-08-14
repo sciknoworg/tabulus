@@ -1,4 +1,4 @@
-# Step 12: Reference Matching
+# Step 8: Reference Matching
 
 ## Goal
 

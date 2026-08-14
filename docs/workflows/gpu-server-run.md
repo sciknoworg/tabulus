@@ -22,7 +22,7 @@ P52,/data/papers/P52.pdf
 Then run:
 
 ```bash
-python -m tabulus_pipeline.ingest_manifest --manifest /data/papers.csv --runs-root /data/runs
+python -m tabulus_pipeline.profile_manifest --manifest /data/papers.csv --runs-root /data/runs --adapter mineru
 ```
 
 Each later module should process either one run or all runs with a selected status.

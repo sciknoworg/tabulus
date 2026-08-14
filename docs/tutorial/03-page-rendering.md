@@ -1,4 +1,6 @@
-# Step 3: Page Rendering
+:orphan:
+
+# PDF Profiling Internal: Page Rendering
 
 ## Goal
 
@@ -6,7 +8,7 @@ Convert PDF pages into page images for downstream layout detection and OCR compo
 
 ## Input
 
-`input/paper.pdf` plus `metadata/document_profile.json`.
+`input/paper.pdf` plus `metadata/pdf_profile.json`.
 
 ## Output
 

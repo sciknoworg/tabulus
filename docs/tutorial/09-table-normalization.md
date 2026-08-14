@@ -1,4 +1,4 @@
-# Step 9: Table Normalization
+# Step 5: Table Normalization
 
 ## Goal
 

@@ -8,6 +8,7 @@ runs/
     input/
       paper.pdf
     metadata/
+      pdf_profile.json
     pages/
     layout/
     tables/

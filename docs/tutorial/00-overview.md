@@ -6,7 +6,7 @@ Each step should be implemented as a standalone processing component with a smal
 
 ## First Clean Workflow
 
-This is the first practical workflow to stabilize: read one scientific PDF, detect and crop tables with MinerU, then reconstruct each table with PaddleOCR-VL.
+This is the first practical workflow to stabilize: profile one scientific PDF with a plug-and-play document analysis adapter, currently MinerU, then reconstruct each table with PaddleOCR-VL.
 
 ```text
 Scientific PDF
@@ -14,7 +14,8 @@ Scientific PDF
       v
 
 +----------------------+
-| MinerU 3.4.5         |
+| Module 1             |
+| PDF Profiling        |
 |                      |
 | - page/layout        |
 |   analysis           |
@@ -25,8 +26,12 @@ Scientific PDF
 | - captions/footnotes |
 | - structured JSON    |
 +----------------------+
+| Default adapter:     |
+| MinerU 3.4.5         |
++----------------------+
       |
       | table images
+      | structured JSON
       v
 
 +----------------------+
@@ -47,23 +52,50 @@ Scientific PDF
 saved outputs
 ```
 
+The first module is intentionally named for the processing work, not the library. MinerU is the first adapter for this module, but another PDF layout or table extraction tool should be able to produce the same outputs later.
+
+The red output between the two modules is the important contract: table images plus structured metadata. In the current code, Tabulus does not crop the PDF from the bounding box itself. MinerU already generates the table crop image; Tabulus reads MinerU's `content_list.json`, filters entries with `type == "table"`, resolves each table's `img_path`, and copies that image into the run output.
+
+Minimal standalone call using the current MinerU runner:
+
+```python
+from pathlib import Path
+
+from app.table_extraction_benchmark.runners.mineru_tables_png_runner import run
+
+pdf_path = Path("/data/runs/P51/input/paper.pdf")
+run_dir = Path("/data/runs/P51")
+
+run(pdf_path, run_dir)
+```
+
+This adapter writes table crops and structured metadata that later modules consume.
+
+## Comparison To Evaluate
+
+The clean workflow should compare two table extraction paths scientifically:
+
+```text
+MinerU table_body
+
+versus
+
+MinerU crop -> PaddleOCR-VL reconstruction
+```
+
+Modern MinerU may be good enough for some tables. The second model should not be assumed necessary until table quality, structure preservation, and runtime are measured.
+
 ## Ordered Steps
 
-1. PDF ingestion
-2. Document profiling
-3. Page rendering
-4. Document layout detection
-5. Reference section detection
-6. Table detection
-7. Table cropping
-8. Table OCR and structure extraction
-9. Table normalization
-10. Reference-table classification
-11. Bibliography extraction
-12. Reference matching
-13. DOI resolution
-14. Resolved CSV export
-15. Run report and QA bundle
+1. PDF profiling
+2. Table OCR and structure extraction
+3. Table normalization
+4. Reference-table classification
+5. Bibliography extraction
+6. Reference matching
+7. DOI resolution
+8. Resolved CSV export
+9. Run report and QA bundle
 
 ## Component Rule
 
@@ -76,8 +108,7 @@ Every step should be able to run in two modes:
 
 | Pipeline step | Current implementation area | Notes |
 | --- | --- | --- |
-| PDF ingestion | `src/Tabulus/backend/app/main.py` | Currently tied to FastAPI upload. Needs a local file-folder adapter. |
-| Table detection and cropping | `src/Tabulus/mineru_service` | Uses MinerU and writes table PNGs plus `tables_index.json`. |
+| PDF profiling | `src/Tabulus/mineru_service` | Uses MinerU to do page/layout analysis, table detection, crop image export, captions/footnotes, and structured JSON. |
 | Table OCR | `src/Tabulus/paddleocr_service` | Uses PaddleOCR-VL and parses HTML or Markdown tables. |
 | Reference-table classification | `src/Tabulus/backend/app/main.py` | Regex-based header and citation detection. |
 | Bibliography extraction | `src/Tabulus/backend/app/reference_matching` | GROBID primary, Kreuzberg fallback. |
