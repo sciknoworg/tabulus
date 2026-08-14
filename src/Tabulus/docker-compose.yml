@@ -29,7 +29,7 @@ services:
       MINERU_API_URL: http://mineru_service:8001
       PADDLEOCR_API_URL: http://paddleocr_service:8000
       GROBID_URL: http://grobid:8070
-      KREUZBERG_API_URL: http://kreuzberg:8010/extract
+      KREUZBERG_API_URL: http://kreuzberg:8000/extract
       CROSSREF_MAILTO: ""
     volumes:
       - backend_data:/app/data
@@ -78,13 +78,10 @@ services:
     restart: unless-stopped
 
   kreuzberg:
-    build:
-      context: ./kreuzberg_service
-      dockerfile: Dockerfile
+    image: ghcr.io/kreuzberg-dev/kreuzberg-full:latest
     container_name: kreuzberg
-    image: kreuzberg-api:latest
     ports:
-      - "8010:8010"
+      - "8010:8000"
     restart: unless-stopped
 
 volumes:
