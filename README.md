@@ -3,6 +3,16 @@
 </p>
 
 # 📚 Tabulus: Scientific PDF Table Extraction Pipeline
+
+<p align="center">
+  <a href="https://tabulus.readthedocs.io/en/latest/">
+    <img src="https://readthedocs.org/projects/tabulus/badge/?version=latest" alt="Documentation Status"/>
+  </a>
+  <a href="https://doi.org/10.5281/zenodo.20741284">
+    <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20741284.svg" alt="Tabulus Bench DOI"/>
+  </a>
+</p>
+
 ![Pipeline](assets/img/pipeline.png)
 
 ## 🔍 Overview
