@@ -6,7 +6,7 @@ The detected reference column should be renamed to `DOI`. When DOI values are fo
 
 Example:
 
-```csv
+```text
 DOI,Value
 10.1234/example,A
 ```

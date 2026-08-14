@@ -13,7 +13,7 @@ The GPU server workflow should run the same modules as the local workflow, but w
 
 Use a manifest when processing many papers:
 
-```csv
+```text
 paper_id,pdf_path
 P51,/data/papers/P51.pdf
 P52,/data/papers/P52.pdf

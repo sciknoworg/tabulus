@@ -52,6 +52,10 @@ build/
 dist/
 *.egg-info/
 
+# Documentation build artifacts
+docs/_build/
+.docs-venv/
+
 # =========================
 # Environment variables
 # =========================

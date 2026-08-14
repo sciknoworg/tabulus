@@ -20,7 +20,7 @@ html_logo = "_static/tabulus-logo.png"
 html_static_path = ["_static"]
 
 html_theme_options = {
-    "repository_url": "https://github.com/",
+    "repository_url": "https://github.com/sciknoworg/tabulus",
     "use_repository_button": False,
     "use_issues_button": False,
     "use_edit_page_button": False,
