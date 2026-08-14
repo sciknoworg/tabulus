@@ -20,6 +20,21 @@ See `data-contracts/ocr-tables-json.md`.
 
 The current implementation sends table PNGs to PaddleOCR-VL and parses HTML or Markdown tables from the model output.
 
+In the first clean workflow, the expected adapter stack is:
+
+```text
+table crop PNGs
+      |
+      v
+PaddleOCR-VL 1.6 / PaddleOCR 3.7.0
+      |
+      v
+Markdown or structured table output
+      |
+      v
+tables/ocr_tables.json
+```
+
 ## Alternative Adapters
 
 - PaddleOCR-VL

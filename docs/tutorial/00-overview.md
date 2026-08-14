@@ -4,6 +4,49 @@ The pipeline begins with one input scientific PDF paper and ends with resolved C
 
 Each step should be implemented as a standalone processing component with a small, explicit contract. Libraries such as MinerU, PaddleOCR-VL, GROBID, Kreuzberg, Crossref, or future alternatives should be adapters behind these component boundaries.
 
+## First Clean Workflow
+
+This is the first practical workflow to stabilize: read one scientific PDF, detect and crop tables with MinerU, then reconstruct each table with PaddleOCR-VL.
+
+```text
+Scientific PDF
+      |
+      v
+
++----------------------+
+| MinerU 3.4.5         |
+|                      |
+| - page/layout        |
+|   analysis           |
+| - detect tables      |
+| - determine table    |
+|   bbox               |
+| - save table crops   |
+| - captions/footnotes |
+| - structured JSON    |
++----------------------+
+      |
+      | table images
+      v
+
++----------------------+
+| PaddleOCR-VL 1.6     |
+| PaddleOCR 3.7.0      |
+|                      |
+| - read each table    |
+| - recognize cells    |
+| - understand         |
+|   structure          |
+| - reconstruct table  |
+| - Markdown/structured|
+|   output             |
++----------------------+
+      |
+      v
+
+saved outputs
+```
+
 ## Ordered Steps
 
 1. PDF ingestion
