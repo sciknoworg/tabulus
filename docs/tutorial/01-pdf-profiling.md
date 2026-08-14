@@ -29,6 +29,8 @@ That script handles MinerU outputs. It finds MinerU's `content_list.json`, selec
 
 Important detail: Tabulus currently does **not** crop the PDF itself from the `bbox`. MinerU has already generated the crop image.
 
+See `data-contracts/mineru-output-files.md` for the full set of MinerU files and how Tabulus uses them.
+
 The script also preserves fields such as:
 
 - `bbox`
@@ -65,6 +67,22 @@ runs/
     mineru_stderr.log
     notes.md
 ```
+
+MinerU also creates an adapter-owned output directory under `mineru_out/`. A typical MinerU document directory contains:
+
+```text
+<document-name>/
+  images/
+  <document-name>_content_list.json
+  <document-name>_content_list_v2.json
+  <document-name>_layout.pdf
+  <document-name>_middle.json
+  <document-name>_model.json
+  <document-name>_origin.pdf
+  <document-name>.md
+```
+
+For the current workflow, the key file is `<document-name>_content_list.json`. It is the source used to identify table entries and locate each MinerU-generated table image through `img_path`.
 
 ## Module Contract
 
@@ -144,6 +162,9 @@ The step succeeds when:
 - Each indexed table image exists.
 - Each table has a table id and page number.
 - Bounding boxes, captions, and footnotes are preserved when the adapter provides them.
+- The MinerU output directory is retained for debugging and traceability.
+- `<document-name>_layout.pdf` can be inspected when layout detection looks suspicious.
+- `table_body` is available when MinerU produced its own table reconstruction.
 - The status is `profiled`.
 - A later step can read each table image path.
 
@@ -154,6 +175,8 @@ The step succeeds when:
 | File not found | Wrong path or manifest entry | Validate paths before processing. |
 | MinerU output missing | MinerU failed or did not write `content_list.json` | Inspect `mineru_stderr.log` and `notes.md`. |
 | No table images | MinerU found no table entries or `img_path` resolution failed | Inspect `content_list.json` and `mineru_img_path` values. |
+| Incorrect table crop | MinerU detected the wrong region or reading order | Inspect `<document-name>_layout.pdf` and compare the copied image with its `content_list.json` entry. |
+| Weak structured table | MinerU `table_body` is incomplete or malformed | Compare `table_body` against PaddleOCR-VL reconstruction before deciding which output to trust. |
 | Missing bbox or caption | Adapter did not provide optional metadata | Preserve `null` and continue. |
 
 ## Next Step

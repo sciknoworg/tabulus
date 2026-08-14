@@ -58,6 +58,7 @@ workflows/debugging-failed-step
 :caption: Data Contracts
 
 data-contracts/run-directory
+data-contracts/mineru-output-files
 data-contracts/pdf-profile-json
 data-contracts/tables-index-json
 data-contracts/ocr-tables-json

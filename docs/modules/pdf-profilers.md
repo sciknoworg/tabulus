@@ -36,6 +36,21 @@ It handles MinerU outputs by reading `content_list.json`, filtering table entrie
 
 It does not crop the PDF from bounding boxes itself. MinerU has already generated the crop image.
 
+## MinerU Source Outputs
+
+Keep the complete MinerU output directory for traceability and debugging. The files most relevant to Tabulus are:
+
+| File | Role |
+| --- | --- |
+| `<document-name>_content_list.json` | Primary source for table entries, `img_path`, `bbox`, captions, footnotes, and `table_body`. |
+| `<document-name>_layout.pdf` | Visual debugging file for detected regions, bounding boxes, and reading order. |
+| `<document-name>_middle.json` | Lower-level parsing detail for investigating layout failures. |
+| `<document-name>_model.json` | Rawer model inference output for advanced debugging. |
+| `<document-name>.md` | Quick human-readable reconstruction of the parsed document. |
+| `images/` | MinerU-generated images, including table images referenced by `img_path`. |
+
+The current stable downstream interface should remain `content_list.json` plus the referenced table images. `content_list_v2.json` is a candidate future interface once the current workflow is stable.
+
 ## Adapter Ideas
 
 - MinerU
