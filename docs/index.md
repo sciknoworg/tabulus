@@ -6,6 +6,13 @@ The documentation is organized around processing components, not around specific
 
 ```{toctree}
 :maxdepth: 2
+:caption: Installation And Setup
+
+installation/gpu-server
+```
+
+```{toctree}
+:maxdepth: 2
 :caption: Tutorial
 
 tutorial/00-overview

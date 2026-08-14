@@ -2,6 +2,8 @@
 
 The GPU server workflow should run the same modules as the local workflow, but with GPU-backed adapters for layout detection and table OCR.
 
+Before running this workflow, complete the GPU server setup in `installation/gpu-server`.
+
 ## Assumptions
 
 - Python environment is managed directly on the server.
