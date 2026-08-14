@@ -6,10 +6,10 @@
 
 <p align="center">
   <a href="https://tabulus.readthedocs.io/en/latest/">
-    <img src="https://readthedocs.org/projects/tabulus/badge/?version=latest" alt="Documentation Status"/>
+    <img src="https://img.shields.io/readthedocs/tabulus/latest?label=Read%20the%20Docs&logo=readthedocs" alt="Read the Docs"/>
   </a>
   <a href="https://doi.org/10.5281/zenodo.20741284">
-    <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20741284.svg" alt="Tabulus Bench DOI"/>
+    <img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20741284-blue.svg" alt="Tabulus Bench DOI"/>
   </a>
 </p>
 
