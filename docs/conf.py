@@ -1,5 +1,3 @@
-from pathlib import Path
-
 project = "Tabulus"
 author = "Tabulus contributors"
 
@@ -18,7 +16,7 @@ source_suffix = {
 
 html_theme = "sphinx_book_theme"
 html_title = "Tabulus Documentation"
-html_logo = str(Path(__file__).resolve().parent.parent / "assets" / "logo.png")
+html_logo = "_static/tabulus-logo.png"
 html_static_path = ["_static"]
 
 html_theme_options = {

@@ -6,7 +6,13 @@ Use the Tabulus logo from the repository as the canonical logo asset:
 assets/logo.png
 ```
 
-The Sphinx documentation configuration points to this file directly through `html_logo`.
+The Sphinx documentation serves a copy from:
+
+```text
+docs/_static/tabulus-logo.png
+```
+
+That copy should only be refreshed from `assets/logo.png`.
 
 ## Usage Rule
 
@@ -14,7 +20,7 @@ Do not create alternate logos for documentation pages, generated diagrams, packa
 
 ## Current Logo
 
-```{image} ../../assets/logo.png
+```{image} ../_static/tabulus-logo.png
 :alt: Tabulus logo
 :width: 240px
 ```
