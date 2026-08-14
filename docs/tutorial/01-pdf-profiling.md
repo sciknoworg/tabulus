@@ -154,6 +154,37 @@ The first useful development target is:
 Given a folder of papers, run PDF profiling for each PDF and emit table images plus structured JSON for each paper.
 ```
 
+## Handoff To Table OCR
+
+The next processing step is to create a clean table-crop collection for PaddleOCR-VL.
+
+```text
+PDF
+  |
+  v
+MinerU
+  |
+  v
+content_list.json
+  |
+  v
+select entries where type == "table"
+  |
+  v
+resolve each table img_path
+  |
+  v
+copy table images into the Tabulus table-crop collection
+  |
+  v
+write tables_index.json
+  |
+  v
+PaddleOCR-VL
+```
+
+The handoff stage should preserve enough provenance to trace every table image back to MinerU: page number, bounding box, `mineru_img_path`, caption, footnote, and `table_body` when available.
+
 ## Verification
 
 The step succeeds when:

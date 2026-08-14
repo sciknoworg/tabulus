@@ -130,3 +130,55 @@ Keep the full MinerU directory so that:
 - `table_body` can be compared against PaddleOCR-VL output
 - low-level parsing problems can be investigated using `<document-name>_middle.json`
 - every downstream table image can be traced back to its MinerU table entry
+
+## Profiling Notes
+
+When timing MinerU on a GPU server, distinguish first-run setup cost from steady-state document processing cost.
+
+The first invocation may include:
+
+- model checkpoint download
+- vLLM engine initialization and model loading
+- Torch compilation and CUDA graph capture
+- OCR and layout model downloads
+- cache warm-up
+
+Do not treat that full first-run wall-clock time as the steady-state runtime for later documents. For a controlled benchmark, process the same document a second time after model files and compilation caches are already present.
+
+Record at least:
+
+- MinerU version
+- backend
+- effort setting
+- document page count
+- GPU model
+- number of visible GPUs
+- model-loading and warm-up time
+- layout-analysis time
+- OCR-detection time
+- OCR-recognition time
+- total wall-clock time
+- peak GPU memory if available
+- number of detected tables
+
+Example profiling record from a 53-page GPU run:
+
+```text
+Document: 53 pages
+Backend: hybrid-engine
+Effort: high
+GPU: 1 x NVIDIA L40S
+VLM engine: vLLM async engine
+VLM model: MinerU2.5-Pro-2605-1.2B
+VLM model memory at load: ~2.16 GiB
+Available KV-cache memory: ~18.66 GiB
+Hybrid batch ratio selected automatically: 16
+
+Layout prediction:   ~15 s for 53 pages
+Two-step extraction: ~20 s for 53 pages
+OCR detection:       ~17 s for 1760 regions
+Page processing:     ~7 s for 53 pages
+OCR recognition:     <1 s for 95 recognition items
+```
+
+These timings are useful as an orientation point only. They should be reported with hardware, backend, document size, cache state, and model version.

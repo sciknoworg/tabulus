@@ -24,6 +24,8 @@ PaddleOCR-VL is more than ordinary OCR. Its current architecture performs layout
 
 In Tabulus, MinerU has already isolated the table image during PDF profiling. PaddleOCR-VL therefore receives a cleaner input than it would receive from a full page.
 
+The expected handoff from PDF profiling is a table-crop collection with image paths plus provenance: page number, bounding box, caption, footnote, original MinerU `img_path`, and MinerU `table_body` when available.
+
 In the first clean workflow, the expected adapter stack is:
 
 ```text
@@ -60,6 +62,13 @@ MinerU crop -> PaddleOCR-VL reconstruction
 ```
 
 Modern MinerU may be sufficient for some table classes. The second model should remain a measured choice, not an assumption.
+
+For each table, keep both outputs during evaluation:
+
+- MinerU `table_body`
+- PaddleOCR-VL reconstruction from the MinerU-generated crop image
+
+The pipeline can later decide whether to use the lighter MinerU output directly for some table classes.
 
 ## Verification
 

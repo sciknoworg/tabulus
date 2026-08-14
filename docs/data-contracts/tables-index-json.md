@@ -2,6 +2,8 @@
 
 `tables/tables_index.json` records detected and cropped table images.
 
+In GPU-server scratch runs, the same handoff may appear as `work/table_crops/table_index.json`. The important contract is the table-crop collection: one metadata record per table image, with enough provenance to trace it back to the PDF profiling adapter.
+
 ```json
 {
   "tables_found": 2,
@@ -17,8 +19,55 @@
       "bbox": null,
       "table_caption": null,
       "table_footnote": null,
+      "mineru_img_path": "images/example_table.png",
+      "mineru_table_body": "<table>...</table>",
       "source": "mineru"
     }
   ]
 }
 ```
+
+## Required Information
+
+Each table record should provide:
+
+- the image path to pass to the table OCR module
+- page provenance
+- bounding-box provenance when available
+- caption and footnote context when available
+- adapter source information
+- MinerU's own `table_body` when available, so it can be compared with PaddleOCR-VL reconstruction
+
+## MinerU Handoff
+
+The current clean MinerU handoff is:
+
+```text
+<document-name>_content_list.json
+  |
+  v
+select entries where type == "table"
+  |
+  v
+resolve each table img_path under MinerU images/
+  |
+  v
+copy only those table images into the Tabulus table-crop collection
+  |
+  v
+write tables_index.json
+```
+
+Tabulus does not need to crop the PDF again from `bbox`. The `bbox` should be preserved for traceability and visual QA, but the image passed to table OCR is the MinerU-generated image referenced by `img_path`.
+
+A scratch handoff directory for GPU experiments may look like:
+
+```text
+work/table_crops/
+  table_index.json
+  images/
+    page_019_table_001.jpg
+    page_020_table_002.jpg
+```
+
+This layout is intentionally independent of the web UI and backend service. It is useful for GPU-server execution, profiling, debugging, and reproducible comparison of MinerU and PaddleOCR-VL outputs.
