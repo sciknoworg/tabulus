@@ -1,14 +1,15 @@
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 
 from tabulus import __version__
 from tabulus.mineru.backends import (
-    DEFAULT_BACKEND,
     HYBRID_BACKEND,
     PIPELINE_BACKEND,
     resolve_backend,
 )
+from tabulus.mineru.runner import run_mineru
 
 
 def prompt_for_backend() -> str:
@@ -38,9 +39,7 @@ def select_backend(requested_backend: str | None = None) -> str:
     """
     Select and validate the profiling backend.
 
-    If no backend is supplied, prompt interactively.
-
-    If hybrid-engine is requested but the required GPU is unavailable,
+    If hybrid-engine is requested but the GPU requirements are not met,
     explain the reason and fall back to pipeline.
     """
 
@@ -75,7 +74,7 @@ def select_backend(requested_backend: str | None = None) -> str:
     return resolved
 
 
-def main() -> None:
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="tabulus",
         description="Scientific PDF table extraction and enrichment pipeline.",
@@ -87,7 +86,86 @@ def main() -> None:
         version=f"%(prog)s {__version__}",
     )
 
-    parser.parse_args()
+    subparsers = parser.add_subparsers(
+        dest="command",
+    )
+
+    profile = subparsers.add_parser(
+        "profile",
+        help="Profile a scientific PDF using MinerU.",
+    )
+
+    profile.add_argument(
+        "--pdf",
+        required=True,
+        type=Path,
+        help="Input PDF file.",
+    )
+
+    profile.add_argument(
+        "--out",
+        required=True,
+        type=Path,
+        help="Output directory.",
+    )
+
+    profile.add_argument(
+        "--backend",
+        choices=[
+            PIPELINE_BACKEND,
+            HYBRID_BACKEND,
+        ],
+        default=None,
+        help=(
+            "MinerU backend. If omitted, Tabulus prompts interactively. "
+            "pipeline is CPU-compatible; hybrid-engine requires a suitable GPU."
+        ),
+    )
+
+    profile.add_argument(
+        "--method",
+        choices=["auto", "txt", "ocr"],
+        default="auto",
+        help="MinerU parsing method.",
+    )
+
+    profile.add_argument(
+        "--effort",
+        choices=["medium", "high"],
+        default="high",
+        help="Processing effort for hybrid-engine.",
+    )
+
+    return parser
+
+
+def main() -> None:
+    parser = build_parser()
+    args = parser.parse_args()
+
+    if args.command == "profile":
+        backend = select_backend(args.backend)
+
+        print()
+        print("PDF profiling configuration:")
+        print(f"  PDF: {args.pdf}")
+        print(f"  Output: {args.out}")
+        print(f"  Backend: {backend}")
+        print(f"  Method: {args.method}")
+
+        run_mineru(
+            pdf_path=args.pdf,
+            output_dir=args.out,
+            requested_backend=backend,
+            effort=args.effort,
+            method=args.method,
+        )
+
+        print()
+        print(f"MinerU profiling completed: {args.out}")
+        return
+
+    parser.print_help()
 
 
 if __name__ == "__main__":
