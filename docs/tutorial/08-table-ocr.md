@@ -6,7 +6,7 @@ Turn table crop images into structured rows and columns.
 
 ## Input
 
-`tables/tables_index.json` and table crop PNGs.
+`tables_index.json` and table crop images from the table-crop handoff directory.
 
 ## Output
 
@@ -31,7 +31,7 @@ The expected handoff from PDF profiling is a table-crop collection with image pa
 In the first clean workflow, the expected adapter stack is:
 
 ```text
-table crop PNGs
+table crop images
       |
       v
 PaddleOCR-VL 1.6 / PaddleOCR 3.7.0

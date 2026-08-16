@@ -8,34 +8,41 @@ Tabulus is a modular pipeline for digitizing scientific PDF papers into structur
 
 The project is being reorganized around standalone processing components rather than around specific OCR or extraction libraries. Each component should be runnable on its own, exchange data through a documented contract, and plug into the end-to-end pipeline once the individual step is stable.
 
-The current validated library module focuses on typed access to MinerU outputs. MinerU is run externally on a GPU server, and the Tabulus library reads the resulting structured output to expose table regions, image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values.
+The current validated library module focuses on MinerU-backed PDF profiling. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values.
 
 ## How To Use This Documentation
 
-Start with the GPU and library setup pages if you are preparing an environment. Then follow the tutorial in order, beginning with PDF profiling.
+Start with the installation page that matches your machine. Windows and CPU-only users can use MinerU's `pipeline` backend. GPU-server users can use MinerU's `hybrid-engine` backend when a suitable CUDA GPU is visible. Library contributors can use the core Python setup for GPU-independent unit tests.
 
 For the current implementation, the most important distinction is:
 
-- **Already validated:** MinerU 3.4.5 execution on GPU and typed table-region discovery with `tabulus.mineru`.
-- **Next stages:** table-crop export, `tables_index.json` generation, PaddleOCR-VL execution, reference processing, and full end-to-end commands.
+- **Already validated:** cross-platform MinerU execution through `tabulus profile`, CPU-compatible Windows profiling with MinerU `pipeline`, GPU-server profiling with MinerU `hybrid-engine`, typed table-region discovery with `tabulus.mineru`, and `tables_index.json` table-crop export.
+- **Next stages:** PaddleOCR-VL execution, reference processing, run reporting, and full end-to-end commands.
 
 ## Where To Start
 
 ::::{grid} 1 1 2 2
 :gutter: 2
 
-:::{grid-item-card} Set Up The Environment
+:::{grid-item-card} CPU / Windows Setup
+:link: installation/windows-cpu
+:link-type: doc
+
+Use Python 3.12, a standard venv, CPU-only PyTorch, and MinerU `pipeline`.
+:::
+
+:::{grid-item-card} GPU Server Setup
 :link: installation/gpu-server
 :link-type: doc
 
-Prepare the GPU-server workflow, separate Conda environments, and MinerU installation.
+Prepare the Linux GPU-server workflow, separate Conda environments, and MinerU `hybrid-engine`.
 :::
 
 :::{grid-item-card} Install The Python Library
 :link: installation/python-library
 :link-type: doc
 
-Install Tabulus as a Python library and run GPU-independent unit tests.
+Install Tabulus for core library development and run GPU-independent unit tests.
 :::
 
 :::{grid-item-card} Run MinerU On GPU
@@ -58,20 +65,22 @@ Read the modular pipeline overview and the ordered processing steps.
 
 The current library can:
 
+- launch MinerU through `tabulus profile`
 - locate MinerU `*_content_list.json` files
 - parse document elements
 - select table regions
 - resolve MinerU-generated table images
 - convert zero-based MinerU page indices into document page numbers
 - retain provenance and expose typed `TableRegion` objects
+- export table images plus `tables_index.json` through `tabulus export-table-crops`
 
-The current library does not yet launch MinerU, export table crops into the final handoff directory, run PaddleOCR-VL, run bibliography/reference matching, or produce final CSV outputs.
+The current library does not yet run PaddleOCR-VL, run bibliography/reference matching, produce run reports, or write final CSV outputs.
 
 ## Documentation Map
 
 The sidebar contains the full documentation. The main sections are:
 
-- **Installation And Setup:** GPU server and Python library setup.
+- **Installation And Setup:** Windows CPU, GPU server, and Python library setup.
 - **Tutorial:** the intended modular workflow, one processing step at a time.
 - **Components:** adapter boundaries and responsibilities.
 - **Workflows:** headless local/GPU execution shapes.
@@ -83,6 +92,7 @@ The sidebar contains the full documentation. The main sections are:
 :maxdepth: 2
 :caption: Installation And Setup
 
+installation/windows-cpu
 installation/gpu-server
 installation/python-library
 ```

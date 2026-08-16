@@ -1,8 +1,8 @@
 # GPU Server Installation
 
-Tabulus can be prepared for execution on an NVIDIA GPU server without Docker.
+Tabulus can be prepared for accelerated execution on an NVIDIA GPU server without Docker.
 
-This setup is intended for the modular workflow where the web UI is not required. Intermediate outputs are written to folders so each processing stage can be inspected independently.
+This setup is for the GPU workflow using MinerU's `hybrid-engine` backend. A GPU is not required for all Tabulus use: Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
 ## Tested Environment
 
@@ -17,7 +17,7 @@ The verified setup uses:
 - separate Conda environments for MinerU and PaddleOCR
 - no Docker runtime
 
-Do not use the repository-level `requirements.txt` for this GPU installation. It contains environment-specific and legacy dependencies and is not suitable as the primary HPC installation method.
+Do not rely on the repository-level `requirements.txt` to install MinerU GPU dependencies. The root requirements are the lightweight Tabulus library development contract; MinerU and other heavy adapter stacks should be installed in their own environments.
 
 ## Verify The GPU
 
@@ -189,6 +189,12 @@ Activate it:
 conda activate tabulus-mineru
 ```
 
+Install Tabulus in editable mode from the repository checkout:
+
+```bash
+python -m pip install -e .
+```
+
 Verify the Python executable:
 
 ```bash
@@ -243,6 +249,19 @@ In the tested environment this resolved to one visible NVIDIA L40S GPU.
 
 For the exact tested MinerU document-processing command, see `workflows/mineru-gpu-execution`.
 
+The Tabulus CLI command for this GPU path is:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus profile \
+  --pdf "$WORK/input/Puurunen - February 2005.pdf" \
+  --out "$WORK/mineru/puurunen_2005" \
+  --backend hybrid-engine \
+  --effort high \
+  --method auto
+```
+
+If `hybrid-engine` is requested but the GPU requirements are not satisfied, Tabulus reports the reason and falls back to the CPU-compatible `pipeline` backend.
+
 ## PaddleOCR Environment
 
 Create PaddleOCR in a separate environment. The exact installation command should be validated on the GPU server before this page is marked complete.
@@ -264,3 +283,4 @@ The PaddleOCR dependency stack should be installed and tested independently from
 - The web UI can be omitted.
 - Intermediate outputs should be stored under `work/` and inspected directly.
 - Use one GPU during initial testing with `CUDA_VISIBLE_DEVICES=0`.
+- CPU-only profiling is documented separately in `installation/windows-cpu`.

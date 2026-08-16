@@ -68,7 +68,7 @@ tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
 print(len(tables), refs_start_page)
 ```
 
-This library call consumes existing MinerU output. It does not yet launch MinerU, export PNGs, write `tables_index.json`, or run PaddleOCR-VL.
+This library call consumes existing MinerU output. The CLI can also launch MinerU with `tabulus profile` and export the table-crop handoff with `tabulus export-table-crops`. PaddleOCR-VL is not yet implemented in the new library.
 
 ## Comparison To Evaluate
 
@@ -107,11 +107,11 @@ Every step should be able to run in two modes:
 
 | Pipeline step | Current implementation area | Notes |
 | --- | --- | --- |
-| PDF profiling | `src/tabulus`, `tabulus.mineru` | Current new-library module reads existing MinerU outputs, discovers table regions, resolves image paths, preserves provenance, and returns typed `TableRegion` objects. |
-| MinerU execution | External CLI | Tested separately with MinerU 3.4.5 on GPU; not yet launched by the Tabulus library. |
-| Table-crop export | Not yet implemented in new library | Should copy or convert discovered table images and write `tables_index.json`. |
-| Table OCR | Legacy service exists in `src/Tabulus/paddleocr_service`; new library stage not yet implemented | Target adapter is PaddleOCR-VL. |
-| Reference processing | Legacy backend code exists in `src/Tabulus/backend/app/reference_matching`; new library stage not yet implemented | Target adapters include GROBID, Kreuzberg, and Crossref. |
+| PDF profiling | `src/tabulus`, `tabulus.mineru` | Current new-library module can launch MinerU, read existing MinerU outputs, discover table regions, resolve image paths, preserve provenance, and return typed `TableRegion` objects. |
+| MinerU execution | `tabulus profile` | Tested with MinerU 3.4.5 on GPU externally; Windows unit tests cover CPU-compatible command construction and fallback behavior without requiring MinerU or torch. |
+| Table-crop export | `tabulus export-table-crops` | Copies discovered table images, preserves source extensions, and writes `tables_index.json`. |
+| Table OCR | Legacy service exists in `src/legacy_tabulus/paddleocr_service`; new library stage not yet implemented | Target adapter is PaddleOCR-VL. |
+| Reference processing | Legacy backend code exists in `src/legacy_tabulus/backend/app/reference_matching`; new library stage not yet implemented | Target adapters include GROBID, Kreuzberg, and Crossref. |
 
 ## Tutorial Template
 

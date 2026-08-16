@@ -15,9 +15,10 @@ Detected tables and page images, or detector-provided table images.
 ## Output
 
 ```text
-tables/crops/
-  page_003_table_001.png
-tables/tables_index.json
+work/table_crops/
+  tables_index.json
+  images/
+    page_003_table_001.png
 ```
 
 ## Module Contract
@@ -26,14 +27,21 @@ See `data-contracts/tables-index-json.md`.
 
 ## Default Implementation
 
-The current MinerU runner copies table images referenced by MinerU `content_list.json` into `images/tables/`.
+The current implementation copies table images referenced by MinerU `content_list.json` into the normalized table-crop handoff directory.
 
 The expected module output is:
 
 ```text
-tables/crops/
-  page_003_table_001.png
-tables/tables_index.json
+work/table_crops/
+  tables_index.json
+  images/
+    page_003_table_001.png
+```
+
+Run it with:
+
+```bash
+tabulus export-table-crops --mineru-root work/mineru/puurunen_2005 --out work/table_crops
 ```
 
 ## Verification

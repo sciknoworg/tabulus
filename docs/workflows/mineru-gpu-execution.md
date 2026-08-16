@@ -1,8 +1,8 @@
 # MinerU GPU Execution
 
-This page records the tested MinerU command sequence for producing document outputs that the new Tabulus library can inspect.
+This page records the tested GPU MinerU command sequence for producing document outputs that the new Tabulus library can inspect.
 
-It does not describe the full Tabulus pipeline. At this stage, Tabulus consumes existing MinerU outputs; it does not launch MinerU itself.
+It does not describe the full Tabulus pipeline. Tabulus also supports CPU-compatible profiling with MinerU `pipeline`; see `installation/windows-cpu` for the Windows path. This page focuses on the Linux GPU-server `hybrid-engine` workflow.
 
 ## Environment
 
@@ -108,6 +108,19 @@ Option meaning:
 | `-f false` | Disable formula processing for this workflow. |
 | `--image-analysis false` | Disable additional image and chart analysis. |
 
+The equivalent Tabulus entry point is:
+
+```bash
+tabulus profile \
+  --pdf "$HOME/tabulus/work/input/Puurunen - February 2005.pdf" \
+  --out "$HOME/tabulus/work/mineru/puurunen_2005" \
+  --backend hybrid-engine \
+  --effort high \
+  --method auto
+```
+
+If this command is run in an environment without a suitable CUDA GPU, Tabulus reports the reason and falls back to `pipeline`.
+
 ## First Run Versus Subsequent Runs
 
 The first MinerU invocation can be substantially slower because it may:
@@ -181,18 +194,17 @@ MinerU structured output
  v
 new tabulus library --------+
  |
+ +-- launch MinerU with tabulus profile
  +-- locate content_list.json
  +-- parse document elements
  +-- select table regions
  +-- resolve image crops
  +-- retain provenance
  +-- expose typed TableRegion objects
+ +-- export images/tables_index.json
 
 
                     NOT YET IMPLEMENTED
-                           |
-                           v
-                  crop export / PNG
                            |
                            v
                      PaddleOCR-VL
@@ -204,11 +216,8 @@ new tabulus library --------+
                     final pipeline
 ```
 
-The new library currently provides typed access to existing MinerU outputs. These stages are not yet implemented in the new library:
+The new library currently provides MinerU process launching, typed access to existing MinerU outputs, and table-crop export. These stages are not yet implemented in the new library:
 
-- MinerU process launching
-- table JPG to PNG export
-- `tables_index.json` generation
 - PaddleOCR-VL execution
 - GROBID, Kreuzberg, or Crossref integration
 - full Tabulus process command

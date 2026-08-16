@@ -2,7 +2,7 @@
 
 This folder contains the OCR model services and runner scripts used during the evaluation phase of the project.
 
-The final Tabulus pipeline is located in `src/Tabulus/` and contains a dedicated README describing the complete pipeline workflow.
+The legacy Tabulus pipeline is located in `src/legacy_tabulus/` and contains a dedicated README describing the historical workflow.
 
 ---
 
@@ -295,9 +295,9 @@ The result is created remotely on the KISSKI system.
 ## Notes
 
 * The OCR components are evaluation and benchmarking components.
-* They are not part of the final Tabulus pipeline.
-* The final pipeline is located in `src/Tabulus/`.
-* `src/Tabulus/README.md` describes the complete production workflow.
+* They are not part of the new installable Tabulus library.
+* The legacy pipeline is located in `src/legacy_tabulus/`.
+* `src/legacy_tabulus/README.md` describes the historical workflow.
 * Large datasets and generated outputs should not be committed to the repository.
 
 Recommended ignored folders:

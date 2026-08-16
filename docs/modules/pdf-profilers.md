@@ -2,7 +2,7 @@
 
 PDF profilers analyze scientific PDFs or existing document-analysis outputs and expose table regions plus provenance.
 
-In the clean Tabulus workflow, PDF profiling is the first major digitization module. It is not a separate upload step and not only a metadata check. At the current library stage, the implemented profiling code consumes MinerU outputs that were produced by a separate MinerU CLI run.
+In the clean Tabulus workflow, PDF profiling is the first major digitization module. It is not a separate upload step and not only a metadata check. At the current library stage, the implemented profiling code can launch MinerU and can also consume MinerU outputs that were produced by a separate MinerU CLI run.
 
 ## Target Responsibility
 
@@ -18,10 +18,13 @@ In the clean Tabulus workflow, PDF profiling is the first major digitization mod
 
 ## Current Implemented Scope
 
-The new installable library currently implements typed access to existing MinerU outputs through `tabulus.mineru`.
+The new installable library currently implements MinerU-backed PDF profiling through `tabulus profile` and typed access to existing MinerU outputs through `tabulus.mineru`.
 
 It:
 
+- selects a `pipeline` or `hybrid-engine` MinerU backend
+- launches MinerU through `tabulus profile`
+- checks GPU suitability for `hybrid-engine` and falls back to `pipeline` when needed
 - recursively finds `*_content_list.json`
 - loads the structured content representation
 - selects entries where `type == "table"`
@@ -30,6 +33,7 @@ It:
 - preserves `bbox`, captions, footnotes, and `table_body`
 - optionally marks regions after a detected bibliography heading
 - returns typed `TableRegion` objects
+- exports a normalized `tables_index.json` and copied table images through `tabulus export-table-crops`
 
 This code is covered by unit tests and does not require GPU execution.
 
@@ -52,11 +56,18 @@ from tabulus.mineru import discover_tables
 tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
 ```
 
-This reads MinerU outputs and returns typed table regions. It does not launch MinerU, copy images, convert JPG to PNG, or write `tables_index.json`.
+This reads MinerU outputs and returns typed table regions. Use the CLI commands below to launch MinerU and export the table-crop handoff. Image export preserves the source extension rather than converting every crop to PNG.
+
+For CLI execution:
+
+```bash
+tabulus profile --pdf paper.pdf --out work/mineru/paper --backend pipeline
+tabulus export-table-crops --mineru-root work/mineru/paper --out work/table_crops
+```
 
 It does not crop the PDF from bounding boxes itself. MinerU has already generated the crop image.
 
-The legacy repository still contains older service and benchmark runners that copy table images and write table-index files. Treat those as previous implementation areas until the new library grows equivalent commands.
+The legacy repository still contains older service and benchmark runners. Treat those as previous implementation areas; the new library now owns the basic MinerU table-crop export contract.
 
 ## MinerU Source Outputs
 
@@ -77,9 +88,6 @@ The current stable downstream interface should remain `content_list.json` plus t
 
 The new library does not yet implement:
 
-- MinerU process launching
-- table JPG to PNG export
-- `tables_index.json` generation
 - PaddleOCR-VL execution
 - reference processing
 - a full end-to-end process command

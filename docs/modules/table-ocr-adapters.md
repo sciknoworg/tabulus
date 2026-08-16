@@ -10,7 +10,7 @@ Table OCR adapters convert table crop images into structured rows.
 
 ## Current Adapter
 
-PaddleOCR-VL is currently used in `src/Tabulus/paddleocr_service`.
+PaddleOCR-VL is currently used in the legacy `src/legacy_tabulus/paddleocr_service` area.
 
 ## Other Experiment Adapters
 

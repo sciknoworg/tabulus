@@ -2,15 +2,14 @@
 
 The new Tabulus code is organized as an installable Python library with a standard `src/tabulus` package layout.
 
-Use this setup for library development and unit tests that do not require GPU execution.
+Use this setup for core library development and unit tests that do not require GPU execution. For a validated Windows CPU-only MinerU installation, use `installation/windows-cpu`. For GPU-accelerated MinerU profiling, use `installation/gpu-server`.
 
 ## Development Install
 
 From the repository root:
 
 ```bash
-python -m pip install --upgrade pip
-python -m pip install -e .
+python -m pip install -r requirements.txt
 ```
 
 After installation, verify the MinerU output reader can be imported:
@@ -25,7 +24,7 @@ PY
 
 ## Unit Tests
 
-The first implemented module is designed to be testable without GPU access because it reads existing MinerU output files from disk.
+The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, and table-crop export.
 
 Run the tests with:
 
@@ -52,4 +51,26 @@ from tabulus.mineru import discover_tables
 tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
 ```
 
-This call expects MinerU to have already produced its document output directory.
+This call inspects a MinerU document output directory. To create that output through Tabulus, use `tabulus profile` in an environment where MinerU is installed.
+
+## Current CLI Commands
+
+After installation, these commands should be available:
+
+```bash
+tabulus --version
+tabulus profile --help
+tabulus export-table-crops --help
+```
+
+`tabulus profile` can launch MinerU when MinerU is installed in the active environment. The default `pipeline` backend is CPU-compatible; `hybrid-engine` is selected only when requested and a suitable CUDA GPU is visible.
+
+If `hybrid-engine` is requested but the GPU requirements are not satisfied, Tabulus reports the reason and falls back to `pipeline`.
+
+`tabulus export-table-crops` consumes an existing MinerU output directory and writes:
+
+```text
+work/table_crops/
+  tables_index.json
+  images/
+```

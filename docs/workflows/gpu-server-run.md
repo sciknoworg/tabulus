@@ -1,6 +1,6 @@
 # GPU Server Run
 
-The GPU server workflow should run the same modules as the local workflow, but with GPU-backed adapters for layout detection and table OCR.
+The GPU server workflow runs the same file-contract-oriented modules as the CPU workflow, but uses GPU-backed adapters where they are validated. For MinerU profiling, this means requesting `hybrid-engine` instead of the CPU-compatible `pipeline` backend.
 
 Before running this workflow, complete the GPU server setup in `installation/gpu-server`. For the exact tested MinerU command sequence, see `workflows/mineru-gpu-execution`.
 
@@ -27,18 +27,11 @@ Future full-pipeline shape:
 python -m tabulus_pipeline.profile_manifest --manifest /data/papers.csv --runs-root /data/runs --adapter mineru
 ```
 
-This command is not yet implemented in the new library. The currently validated library step starts from existing MinerU output:
+This full-manifest command is not yet implemented in the new library. The currently validated single-document commands are:
 
 ```bash
-python - <<'PY'
-from pathlib import Path
-from tabulus.mineru import discover_tables
-
-tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
-
-print("Tables:", len(tables))
-print("References start:", refs_start_page)
-PY
+tabulus profile --pdf /data/papers/P51.pdf --out /data/runs/P51/mineru --backend hybrid-engine
+tabulus export-table-crops --mineru-root /data/runs/P51/mineru --out /data/runs/P51/table_crops
 ```
 
 Each later module should process either one run or all runs with a selected status once those commands exist.
@@ -78,7 +71,7 @@ table images resolved from img_path
   |
   v
 work/table_crops/
-  table_index.json
+  tables_index.json
   images/
 ```
 

@@ -17,7 +17,7 @@ The module performs:
 
 The plug-and-play part is the profiling adapter. The first adapter is MinerU.
 
-Important current boundary: MinerU execution is currently external. The new Tabulus library begins after MinerU has already produced its output directory.
+Important current boundary: Tabulus can launch MinerU through `tabulus profile`, but the typed table discovery and crop-export steps remain file-contract based. They consume the MinerU output directory after MinerU has produced it.
 
 ## Tool Choice
 
@@ -43,6 +43,13 @@ The library preserves fields such as:
 - `table_footnote`
 - `mineru_img_path`
 - `table_body`
+
+The current validated CLI entry points are:
+
+```powershell
+tabulus profile --pdf paper.pdf --out work/mineru/paper --backend pipeline
+tabulus export-table-crops --mineru-root work/mineru/paper --out work/table_crops
+```
 
 ## Input
 
@@ -177,7 +184,22 @@ PaddleOCR-VL
 
 The handoff stage should preserve enough provenance to trace every table image back to MinerU: page number, bounding box, `mineru_img_path`, caption, footnote, and `table_body` when available.
 
-This handoff is not yet implemented in the new library. The current library stops at typed table-region discovery.
+This handoff is implemented by:
+
+```powershell
+tabulus export-table-crops --mineru-root work/mineru/puurunen_2005 --out work/table_crops
+```
+
+The export writes:
+
+```text
+work/table_crops/
+  tables_index.json
+  images/
+    page_006_table_001.jpg
+```
+
+The exporter preserves the original MinerU image extension instead of converting every crop to PNG. That keeps the library lightweight and avoids adding image-conversion dependencies before the PaddleOCR-VL adapter is implemented.
 
 ## Verification
 
@@ -205,4 +227,4 @@ The step succeeds when:
 
 ## Next Step
 
-After typed PDF profiling, implement the table-crop export stage that writes a stable `tables_index.json` and prepares images for PaddleOCR-VL.
+After typed PDF profiling and table-crop export, implement the PaddleOCR-VL adapter that consumes `tables_index.json`.
