@@ -19,3 +19,8 @@ include = ["tabulus*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+]
