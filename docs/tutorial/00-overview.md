@@ -6,7 +6,7 @@ Each step should be implemented as a standalone processing component with a smal
 
 ## First Clean Workflow
 
-This is the first practical workflow to stabilize: profile one scientific PDF with a plug-and-play document analysis adapter, currently MinerU, then reconstruct each table with PaddleOCR-VL.
+This is the first practical workflow to stabilize: run MinerU as the first document-analysis adapter, inspect its outputs with the new Tabulus library, then later reconstruct each table with PaddleOCR-VL.
 
 ```text
 Scientific PDF
@@ -54,22 +54,21 @@ saved outputs
 
 The first module is intentionally named for the processing work, not the library. MinerU is the first adapter for this module, but another PDF layout or table extraction tool should be able to produce the same outputs later.
 
-The red output between the two modules is the important contract: table images plus structured metadata. In the current code, Tabulus does not crop the PDF from the bounding box itself. MinerU already generates the table crop image; Tabulus reads MinerU's `content_list.json`, filters entries with `type == "table"`, resolves each table's `img_path`, and copies that image into the run output.
+The red output between the two modules is the important contract: table images plus structured metadata. In the current validated library code, Tabulus does not crop the PDF from the bounding box itself. MinerU already generates the table crop image; Tabulus reads MinerU's `content_list.json`, filters entries with `type == "table"`, resolves each table's `img_path`, and exposes typed table-region objects.
 
-Minimal standalone call using the current MinerU runner:
+Minimal standalone call using the current library:
 
 ```python
 from pathlib import Path
 
-from app.table_extraction_benchmark.runners.mineru_tables_png_runner import run
+from tabulus.mineru import discover_tables
 
-pdf_path = Path("/data/runs/P51/input/paper.pdf")
-run_dir = Path("/data/runs/P51")
+tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
 
-run(pdf_path, run_dir)
+print(len(tables), refs_start_page)
 ```
 
-This adapter writes table crops and structured metadata that later modules consume.
+This library call consumes existing MinerU output. It does not yet launch MinerU, export PNGs, write `tables_index.json`, or run PaddleOCR-VL.
 
 ## Comparison To Evaluate
 
@@ -108,12 +107,11 @@ Every step should be able to run in two modes:
 
 | Pipeline step | Current implementation area | Notes |
 | --- | --- | --- |
-| PDF profiling | `src/Tabulus/mineru_service` | Uses MinerU to do page/layout analysis, table detection, crop image export, captions/footnotes, and structured JSON. |
-| Table OCR | `src/Tabulus/paddleocr_service` | Uses PaddleOCR-VL and parses HTML or Markdown tables. |
-| Reference-table classification | `src/Tabulus/backend/app/main.py` | Regex-based header and citation detection. |
-| Bibliography extraction | `src/Tabulus/backend/app/reference_matching` | GROBID primary, Kreuzberg fallback. |
-| Reference matching | `src/Tabulus/backend/app/reference_matching/grobid_reference_matching.py` | Numeric, DOI, author-year, author-only, text matching. |
-| CSV export | `src/Tabulus/backend/app/reference_matching/grobid_reference_matching.py` | Writes resolved reference tables. |
+| PDF profiling | `src/tabulus`, `tabulus.mineru` | Current new-library module reads existing MinerU outputs, discovers table regions, resolves image paths, preserves provenance, and returns typed `TableRegion` objects. |
+| MinerU execution | External CLI | Tested separately with MinerU 3.4.5 on GPU; not yet launched by the Tabulus library. |
+| Table-crop export | Not yet implemented in new library | Should copy or convert discovered table images and write `tables_index.json`. |
+| Table OCR | Legacy service exists in `src/Tabulus/paddleocr_service`; new library stage not yet implemented | Target adapter is PaddleOCR-VL. |
+| Reference processing | Legacy backend code exists in `src/Tabulus/backend/app/reference_matching`; new library stage not yet implemented | Target adapters include GROBID, Kreuzberg, and Crossref. |
 
 ## Tutorial Template
 

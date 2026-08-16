@@ -18,11 +18,13 @@ See `data-contracts/ocr-tables-json.md`.
 
 ## Default Implementation
 
-The current implementation sends table PNGs to PaddleOCR-VL and parses HTML or Markdown tables from the model output.
+This step is not yet implemented in the new Tabulus library.
+
+The legacy service code contains PaddleOCR-VL integration work, but the new modular pipeline should treat this as a later adapter stage after PDF profiling and table-crop export are stable.
 
 PaddleOCR-VL is more than ordinary OCR. Its current architecture performs layout analysis followed by vision-language-model recognition. The layout stage detects elements such as tables, crops them, determines reading order, and the VLM converts the elements into structured recognition results.
 
-In Tabulus, MinerU has already isolated the table image during PDF profiling. PaddleOCR-VL therefore receives a cleaner input than it would receive from a full page.
+In the intended Tabulus workflow, MinerU has already isolated the table image during PDF profiling. PaddleOCR-VL therefore receives a cleaner input than it would receive from a full page.
 
 The expected handoff from PDF profiling is a table-crop collection with image paths plus provenance: page number, bounding box, caption, footnote, original MinerU `img_path`, and MinerU `table_body` when available.
 

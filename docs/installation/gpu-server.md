@@ -217,7 +217,31 @@ Then verify:
 mineru --version
 ```
 
-At the time this page was prepared, environment creation and GPU compatibility tests had been verified. Continue validating the MinerU installation and inference steps before marking the full pipeline as fully tested.
+The tested version was:
+
+```text
+MinerU 3.4.5
+```
+
+Verify CUDA access from the MinerU environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+
+print("PyTorch:", torch.__version__)
+print("CUDA runtime:", torch.version.cuda)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+In the tested environment this resolved to one visible NVIDIA L40S GPU.
+
+For the exact tested MinerU document-processing command, see `workflows/mineru-gpu-execution`.
 
 ## PaddleOCR Environment
 

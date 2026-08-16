@@ -2,7 +2,7 @@
 
 The GPU server workflow should run the same modules as the local workflow, but with GPU-backed adapters for layout detection and table OCR.
 
-Before running this workflow, complete the GPU server setup in `installation/gpu-server`.
+Before running this workflow, complete the GPU server setup in `installation/gpu-server`. For the exact tested MinerU command sequence, see `workflows/mineru-gpu-execution`.
 
 ## Assumptions
 
@@ -21,13 +21,27 @@ P51,/data/papers/P51.pdf
 P52,/data/papers/P52.pdf
 ```
 
-Then run:
+Future full-pipeline shape:
 
 ```bash
 python -m tabulus_pipeline.profile_manifest --manifest /data/papers.csv --runs-root /data/runs --adapter mineru
 ```
 
-Each later module should process either one run or all runs with a selected status.
+This command is not yet implemented in the new library. The currently validated library step starts from existing MinerU output:
+
+```bash
+python - <<'PY'
+from pathlib import Path
+from tabulus.mineru import discover_tables
+
+tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
+
+print("Tables:", len(tables))
+print("References start:", refs_start_page)
+PY
+```
+
+Each later module should process either one run or all runs with a selected status once those commands exist.
 
 ## Profiling MinerU Runs
 

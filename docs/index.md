@@ -9,6 +9,7 @@ The documentation is organized around processing components, not around specific
 :caption: Installation And Setup
 
 installation/gpu-server
+installation/python-library
 ```
 
 ```{toctree}
@@ -49,6 +50,7 @@ modules/doi-resolvers
 
 workflows/single-pdf-local
 workflows/gpu-server-run
+workflows/mineru-gpu-execution
 workflows/end-to-end-run
 workflows/debugging-failed-step
 ```
