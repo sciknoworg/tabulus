@@ -4,6 +4,8 @@ This page records the Windows CPU-only MinerU profiling setup that has been vali
 
 Use this path when you want to run `tabulus profile` on Windows without Docker, Conda, or an NVIDIA GPU. The CPU-compatible MinerU backend is `pipeline`.
 
+The command examples on this page use Windows Command Prompt (`cmd.exe`) unless PowerShell is shown explicitly.
+
 ## Validated Environment
 
 The validated setup was:
@@ -25,15 +27,41 @@ PyTorch 2.10.0+cpu
 CUDA available: False
 ```
 
+## Clean Reinstall / Start From Scratch
+
+This section is optional. A first-time installation does not need it.
+
+If you are resetting a local development checkout, run these commands from Windows Command Prompt in the repository root:
+
+```bat
+deactivate
+rmdir /s /q .venv
+rmdir /s /q .pytest_cache
+rmdir /s /q src\tabulus.egg-info
+for /d /r %d in (__pycache__) do @if exist "%d" rmdir /s /q "%d"
+```
+
+`deactivate` is only needed if a virtual environment is active. "Directory not found" messages for cleanup targets are harmless.
+
+These commands remove local Python and development artifacts only. They do not delete source code or previously generated `tabulus-output` profiling results.
+
 ## Create The Environment
 
 From the repository root, create the virtual environment explicitly with Python 3.12:
 
-```powershell
+```bat
 py -3.12 -m venv .venv
 ```
 
-If the `py` launcher is ambiguous or points to the wrong interpreter, use the absolute Python 3.12 executable instead:
+If the `py` launcher is ambiguous or points to the wrong interpreter, use the absolute Python 3.12 executable instead.
+
+Command Prompt:
+
+```bat
+"C:\Path\To\Python312\python.exe" -m venv .venv
+```
+
+PowerShell:
 
 ```powershell
 & "C:\Path\To\Python312\python.exe" -m venv .venv
@@ -41,13 +69,13 @@ If the `py` launcher is ambiguous or points to the wrong interpreter, use the ab
 
 Activate the environment:
 
-```powershell
-.\.venv\Scripts\activate
+```bat
+.venv\Scripts\activate
 ```
 
 Verify Python:
 
-```powershell
+```bat
 python --version
 ```
 
@@ -55,25 +83,27 @@ python --version
 
 Upgrade pip:
 
-```powershell
+```bat
 python -m pip install --upgrade pip
 ```
 
-Install Tabulus from the local checkout:
+For normal library use, install Tabulus from the local checkout:
 
-```powershell
+```bat
 python -m pip install -e .
 ```
 
-If you also intend to run the test suite, install the development extra instead:
+For development and testing, install the development extra instead:
 
-```powershell
+```bat
 python -m pip install -e ".[dev]"
 ```
 
+You do not need to run `python -m pip install -e .` first if you use `python -m pip install -e ".[dev]"`.
+
 Verify the CLI:
 
-```powershell
+```bat
 tabulus --version
 ```
 
@@ -81,7 +111,7 @@ tabulus --version
 
 Install the validated CPU-only PyTorch pins:
 
-```powershell
+```bat
 python -m pip install "torch==2.10.0+cpu" "torchvision==0.25.0+cpu" --extra-index-url https://download.pytorch.org/whl/cpu
 ```
 
@@ -89,7 +119,7 @@ python -m pip install "torch==2.10.0+cpu" "torchvision==0.25.0+cpu" --extra-inde
 
 Install MinerU 3.4.5 with the CPU-compatible pipeline extra while retaining the CPU PyTorch pins:
 
-```powershell
+```bat
 python -m pip install six "mineru[pipeline]==3.4.5" "torch==2.10.0+cpu" "torchvision==0.25.0+cpu" --extra-index-url https://download.pytorch.org/whl/cpu
 ```
 
@@ -99,7 +129,7 @@ python -m pip install six "mineru[pipeline]==3.4.5" "torch==2.10.0+cpu" "torchvi
 
 Check the versions and CUDA state:
 
-```powershell
+```bat
 python --version
 mineru --version
 python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
@@ -114,11 +144,37 @@ MinerU 3.4.5
 False
 ```
 
+## Complete Command Prompt Sequence
+
+From a clean checkout, the complete validated Windows CPU setup and profiling sequence is:
+
+```bat
+"C:\Path\To\Python312\python.exe" -m venv .venv
+.venv\Scripts\activate
+
+python --version
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+tabulus --version
+
+python -m pip install "torch==2.10.0+cpu" "torchvision==0.25.0+cpu" --extra-index-url https://download.pytorch.org/whl/cpu
+
+python -m pip install six "mineru[pipeline]==3.4.5" "torch==2.10.0+cpu" "torchvision==0.25.0+cpu" --extra-index-url https://download.pytorch.org/whl/cpu
+
+python --version
+mineru --version
+python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
+
+python -m pytest -v
+
+tabulus profile --pdf "C:\path\to\paper.pdf" --backend pipeline
+```
+
 ## Run CPU Profiling
 
 Run MinerU through the Tabulus CLI with the CPU-compatible backend:
 
-```powershell
+```bat
 tabulus profile --pdf "C:\path\to\paper.pdf" --backend pipeline
 ```
 
@@ -182,7 +238,7 @@ Do not flatten or rename MinerU-native output files. Tabulus discovers the neste
 
 Use `--out` only when you want to override the profiler output root. It is not the final directory for one document. For example:
 
-```powershell
+```bat
 tabulus profile --pdf "C:\papers\paper.pdf" --out "D:\results\mineru\pipeline" --backend pipeline
 ```
 
@@ -216,8 +272,8 @@ MinerU 3.4.5
 
 The Windows test suite was run with:
 
-```powershell
-python -m pytest
+```bat
+python -m pytest -v
 ```
 
 and passed in this environment:
@@ -232,13 +288,13 @@ with pytest 9.1.1.
 
 After MinerU writes its output directory, the library can discover table regions:
 
-```powershell
+```bat
 python -c "from pathlib import Path; from tabulus.mineru import discover_tables; tables, refs = discover_tables(Path('C:/path/to/ald-papers/tabulus-output/mineru/pipeline/Puurunen - February 2005/auto')); print(len(tables)); print(refs)"
 ```
 
 To prepare the table-crop handoff for later OCR work:
 
-```powershell
+```bat
 tabulus export-table-crops --mineru-root "C:\path\to\ald-papers\tabulus-output\mineru\pipeline\Puurunen - February 2005\auto" --out "work\table_crops"
 ```
 
