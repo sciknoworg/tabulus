@@ -73,3 +73,6 @@ pytest_cache/
 /dots.ocr/
 /data/
 /ppStructV3/
+
+# Local runtime outputs
+work/
