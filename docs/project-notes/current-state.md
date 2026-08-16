@@ -87,19 +87,8 @@ The current Windows test suite passes:
 - GROBID, Kreuzberg, or Crossref integration
 - full Tabulus process command
 
-## Legacy Code Areas
+## Documentation Boundary
 
-The repository still contains legacy and research-oriented code:
+The documentation should describe the installable `tabulus` library and validated module behavior. Development notes, temporary refactor paths, and removable source folders should not be presented as user-facing setup guidance.
 
-- `src/legacy_tabulus`: older production-oriented pipeline and services
-- `src/ocr_models`: OCR services, model experiments, and benchmark runners
-- `evaluation`: evaluation scripts, plots, and result summaries
-
-The documentation should keep the new library boundary separate from these legacy service and benchmark areas.
-
-## Known Documentation Drift
-
-- Some READMEs mention `tabulus/pipeline`, but the current legacy tree is `src/legacy_tabulus`.
-- Some READMEs mention `paddle_service`, but the actual legacy folder is `paddleocr_service`.
-- Docker instructions are stale for Windows machines without NVIDIA GPUs.
-- Legacy service requirements remain separate from the minimal root development install contract.
+Docker instructions remain out of scope for the current Windows CPU workflow.

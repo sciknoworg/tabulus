@@ -110,8 +110,8 @@ Every step should be able to run in two modes:
 | PDF profiling | `src/tabulus`, `tabulus.mineru` | Current new-library module can launch MinerU, read existing MinerU outputs, discover table regions, resolve image paths, preserve provenance, and return typed `TableRegion` objects. |
 | MinerU execution | `tabulus profile` | Tested with MinerU 3.4.5 on Windows CPU using `pipeline` and on a GPU server using `hybrid-engine`; Windows unit tests cover command construction, default output paths, and fallback behavior. |
 | Table-crop export | `tabulus export-table-crops` | Copies discovered table images, preserves source extensions, and writes `tables_index.json`. |
-| Table OCR | Legacy service exists in `src/legacy_tabulus/paddleocr_service`; new library stage not yet implemented | Target adapter is PaddleOCR-VL. |
-| Reference processing | Legacy backend code exists in `src/legacy_tabulus/backend/app/reference_matching`; new library stage not yet implemented | Target adapters include GROBID, Kreuzberg, and Crossref. |
+| Table OCR | Not yet implemented in the new library | Target adapter is PaddleOCR-VL. |
+| Reference processing | Not yet implemented in the new library | Target adapters include GROBID, Kreuzberg, and Crossref. |
 
 ## Tutorial Template
 

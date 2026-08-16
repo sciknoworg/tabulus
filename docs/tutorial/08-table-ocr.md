@@ -18,9 +18,7 @@ See `data-contracts/ocr-tables-json.md`.
 
 ## Default Implementation
 
-This step is not yet implemented in the new Tabulus library.
-
-The legacy service code contains PaddleOCR-VL integration work, but the new modular pipeline should treat this as a later adapter stage after PDF profiling and table-crop export are stable.
+This step is not yet implemented in the new Tabulus library. The new modular pipeline should treat it as a later adapter stage after PDF profiling and table-crop export are stable.
 
 PaddleOCR-VL is more than ordinary OCR. Its current architecture performs layout analysis followed by vision-language-model recognition. The layout stage detects elements such as tables, crops them, determines reading order, and the VLM converts the elements into structured recognition results.
 

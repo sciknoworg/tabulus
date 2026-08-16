@@ -25,18 +25,6 @@ PyTorch 2.10.0+cpu
 CUDA available: False
 ```
 
-## Windows Case-Sensitivity Fix
-
-The repository previously contained both `src/Tabulus/` and `src/tabulus/`. On Windows, case-insensitive filesystems can collapse those names into the same physical path, which prevented normal imports of the new `tabulus` package.
-
-The legacy implementation has been renamed to:
-
-```text
-src/legacy_tabulus/
-```
-
-Do not reintroduce a top-level package or directory whose name differs from `src/tabulus/` only by case.
-
 ## Create The Environment
 
 From the repository root, create the virtual environment explicitly with Python 3.12:
