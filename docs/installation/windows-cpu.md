@@ -214,7 +214,13 @@ CUDA available: False
 MinerU 3.4.5
 ```
 
-The Windows test suite also passed in this environment:
+The Windows test suite was run with:
+
+```powershell
+python -m pytest
+```
+
+and passed in this environment:
 
 ```text
 21 passed
