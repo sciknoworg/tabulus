@@ -17,6 +17,7 @@ source_suffix = {
 html_theme = "sphinx_book_theme"
 html_title = "Tabulus Documentation"
 html_logo = "_static/tabulus-logo.png"
+html_favicon = "_static/tabulus-logo.png"
 html_static_path = ["_static"]
 
 html_theme_options = {
