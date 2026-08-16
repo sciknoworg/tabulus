@@ -122,43 +122,74 @@ Run MinerU through the Tabulus CLI with the CPU-compatible backend:
 tabulus profile --pdf "C:\path\to\paper.pdf" --backend pipeline
 ```
 
-`tabulus profile` writes MinerU stdout, stderr, and Tabulus run metadata logs into the profiling output directory.
+`tabulus profile` writes MinerU stdout, stderr, and Tabulus run metadata logs into the profiling output tree.
 
 If `--out` is omitted, Tabulus writes to:
 
 ```text
-<PDF directory>\tabulus-output\<PDF stem>\profiling\<profiler>\<backend>\
+<PDF directory>\tabulus-output\<profiler>\<backend>\
 ```
 
 For MinerU pipeline profiling, that means:
 
 ```text
-<PDF directory>\tabulus-output\<PDF stem>\profiling\mineru\pipeline\
+<PDF directory>\tabulus-output\mineru\pipeline\
 ```
 
 `mineru` is the profiler. `pipeline` and `hybrid-engine` are MinerU backends.
 
-MinerU keeps its own native output hierarchy underneath that profiling directory. For example, a PDF named `Puurunen - February 2005.pdf` can produce:
+The `tabulus-output\mineru\pipeline\` directory is the profiler/backend output root passed to MinerU. MinerU then keeps its own native document and method hierarchy underneath that root:
 
 ```text
-Puurunen - February 2005\
+<PDF directory>\
   tabulus-output\
-    Puurunen - February 2005\
-      profiling\
-        mineru\
-          pipeline\
-            Puurunen - February 2005\
-              auto\
-                Puurunen - February 2005_content_list.json
-                images\
+    mineru\
+      pipeline\
+        <PDF stem>\
+          <method>\
 ```
+
+For the validated Puurunen run:
+
+```text
+ald-papers\
+  tabulus-output\
+    mineru\
+      pipeline\
+        Puurunen - February 2005\
+          auto\
+            images\
+            Puurunen - February 2005_content_list.json
+            Puurunen - February 2005_content_list_v2.json
+            Puurunen - February 2005_layout.pdf
+            Puurunen - February 2005_middle.json
+            Puurunen - February 2005_model.json
+            mineru_stdout.log
+            mineru_stderr.log
+            tabulus_run.txt
+```
+
+The levels are:
+
+- `mineru`: profiler
+- `pipeline`: backend
+- `Puurunen - February 2005`: document
+- `auto`: MinerU parsing method
+
+`auto` is meaningful MinerU configuration, not a generic Tabulus directory. It corresponds to `--method auto`; alternative method directories can be `txt` or `ocr`.
 
 Do not flatten or rename MinerU-native output files. Tabulus discovers the nested `*_content_list.json` and referenced images from that output tree.
 
-Use `--out` only when you want to override the default output location:
+Use `--out` only when you want to override the profiler output root. It is not the final directory for one document. For example:
 
 ```powershell
-tabulus profile --pdf "C:\path\to\paper.pdf" --out "C:\path\to\custom-output" --backend pipeline
+tabulus profile --pdf "C:\papers\paper.pdf" --out "D:\results\mineru\pipeline" --backend pipeline
+```
+
+causes MinerU to create approximately:
+
+```text
+D:\results\mineru\pipeline\paper\auto\
 ```
 
 If you omit `--backend`, Tabulus opens an interactive backend selector:
@@ -170,7 +201,7 @@ If you omit `--backend`, Tabulus opens an interactive backend selector:
 
 Choose `pipeline` for CPU-only Windows runs. `hybrid-engine` requires a suitable CUDA GPU.
 
-If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to `pipeline`. Common fallback reasons include PyTorch not being installed, CUDA not being available, no visible CUDA GPU, insufficient GPU architecture, or insufficient VRAM. When Tabulus generates the output directory automatically, it uses the resolved backend name, so a fallback run writes under `profiling\mineru\pipeline\`.
+If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to `pipeline`. Common fallback reasons include PyTorch not being installed, CUDA not being available, no visible CUDA GPU, insufficient GPU architecture, or insufficient VRAM. When Tabulus generates the output directory automatically, it uses the resolved backend name, so a fallback run writes under `tabulus-output\mineru\pipeline\`.
 
 ## Validated Windows Run
 
@@ -196,13 +227,13 @@ with pytest 9.1.1.
 After MinerU writes its output directory, the library can discover table regions:
 
 ```powershell
-python -c "from pathlib import Path; from tabulus.mineru import discover_tables; tables, refs = discover_tables(Path('C:/path/to/profiling/mineru/pipeline')); print(len(tables)); print(refs)"
+python -c "from pathlib import Path; from tabulus.mineru import discover_tables; tables, refs = discover_tables(Path('C:/path/to/ald-papers/tabulus-output/mineru/pipeline/Puurunen - February 2005/auto')); print(len(tables)); print(refs)"
 ```
 
 To prepare the table-crop handoff for later OCR work:
 
 ```powershell
-tabulus export-table-crops --mineru-root "<output-dir>" --out "work\table_crops"
+tabulus export-table-crops --mineru-root "C:\path\to\ald-papers\tabulus-output\mineru\pipeline\Puurunen - February 2005\auto" --out "work\table_crops"
 ```
 
 This writes:
