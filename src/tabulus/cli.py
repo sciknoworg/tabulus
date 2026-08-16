@@ -3,6 +3,76 @@ from __future__ import annotations
 import argparse
 
 from tabulus import __version__
+from tabulus.mineru.backends import (
+    DEFAULT_BACKEND,
+    HYBRID_BACKEND,
+    PIPELINE_BACKEND,
+    resolve_backend,
+)
+
+
+def prompt_for_backend() -> str:
+    """Prompt the user to choose a MinerU profiling backend."""
+
+    print("Select PDF profiling backend:")
+    print()
+    print("  1. pipeline       CPU-compatible [default]")
+    print("  2. hybrid-engine  GPU-accelerated")
+    print()
+
+    choice = input("Backend [1]: ").strip().lower()
+
+    if choice in {"", "1", "pipeline"}:
+        return PIPELINE_BACKEND
+
+    if choice in {"2", "hybrid-engine", "hybrid"}:
+        return HYBRID_BACKEND
+
+    raise ValueError(
+        f"Invalid backend selection: {choice!r}. "
+        "Choose 1/pipeline or 2/hybrid-engine."
+    )
+
+
+def select_backend(requested_backend: str | None = None) -> str:
+    """
+    Select and validate the profiling backend.
+
+    If no backend is supplied, prompt interactively.
+
+    If hybrid-engine is requested but the required GPU is unavailable,
+    explain the reason and fall back to pipeline.
+    """
+
+    requested = requested_backend or prompt_for_backend()
+
+    resolved, capability = resolve_backend(requested)
+
+    if requested == HYBRID_BACKEND and resolved == PIPELINE_BACKEND:
+        reason = (
+            capability.reason
+            if capability is not None
+            else "GPU requirements were not met."
+        )
+
+        print()
+        print("hybrid-engine is unavailable:")
+        print(f"  {reason}")
+        print()
+        print("Falling back to pipeline.")
+
+    elif requested == HYBRID_BACKEND and capability is not None:
+        print()
+        print("GPU backend available:")
+        print(f"  Device: {capability.device_name}")
+        print(f"  VRAM: {capability.vram_gb:.1f} GB")
+        print(
+            "  Compute capability: "
+            f"{capability.compute_capability[0]}."
+            f"{capability.compute_capability[1]}"
+        )
+
+    return resolved
 
 
 def main() -> None:
@@ -10,11 +80,13 @@ def main() -> None:
         prog="tabulus",
         description="Scientific PDF table extraction and enrichment pipeline.",
     )
+
     parser.add_argument(
         "--version",
         action="version",
         version=f"%(prog)s {__version__}",
     )
+
     parser.parse_args()
 
 
