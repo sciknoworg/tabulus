@@ -76,3 +76,5 @@ pytest_cache/
 
 # Local runtime outputs
 work/
+.conda/
+.pytest_cache/
