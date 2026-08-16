@@ -113,13 +113,18 @@ The equivalent Tabulus entry point is:
 ```bash
 tabulus profile \
   --pdf "$HOME/tabulus/work/input/Puurunen - February 2005.pdf" \
-  --out "$HOME/tabulus/work/mineru/puurunen_2005" \
   --backend hybrid-engine \
   --effort high \
   --method auto
 ```
 
-If this command is run in an environment without a suitable CUDA GPU, Tabulus reports the reason and falls back to `pipeline`.
+If `--out` is omitted, Tabulus writes to:
+
+```text
+<PDF directory>/tabulus-output/<PDF stem>/profiling/mineru/<resolved-backend>/
+```
+
+Use `--out` when a GPU server should write to a particular shared work or runs directory. If this command is run in an environment without a suitable CUDA GPU, Tabulus reports the reason and falls back to `pipeline`; with automatic output, that fallback writes under `profiling/mineru/pipeline/`.
 
 ## First Run Versus Subsequent Runs
 

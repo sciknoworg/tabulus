@@ -16,7 +16,7 @@ Start with the installation page that matches your machine. Windows and CPU-only
 
 For the current implementation, the most important distinction is:
 
-- **Already validated:** cross-platform MinerU execution through `tabulus profile`, CPU-compatible Windows profiling with MinerU `pipeline`, GPU-server profiling with MinerU `hybrid-engine`, typed table-region discovery with `tabulus.mineru`, and `tables_index.json` table-crop export.
+- **Already validated:** cross-platform MinerU execution through `tabulus profile`, a real 53-page Windows CPU profiling run with MinerU `pipeline`, GPU-server profiling with MinerU `hybrid-engine`, typed table-region discovery with `tabulus.mineru`, and `tables_index.json` table-crop export.
 - **Next stages:** PaddleOCR-VL execution, reference processing, run reporting, and full end-to-end commands.
 
 ## Where To Start
@@ -66,6 +66,8 @@ Read the modular pipeline overview and the ordered processing steps.
 The current library can:
 
 - launch MinerU through `tabulus profile`
+- write profiling output to `<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/` when `--out` is omitted
+- distinguish the profiler (`mineru`) from MinerU backends (`pipeline` and `hybrid-engine`)
 - locate MinerU `*_content_list.json` files
 - parse document elements
 - select table regions

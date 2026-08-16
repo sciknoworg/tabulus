@@ -25,6 +25,7 @@ It:
 - selects a `pipeline` or `hybrid-engine` MinerU backend
 - launches MinerU through `tabulus profile`
 - checks GPU suitability for `hybrid-engine` and falls back to `pipeline` when needed
+- writes automatic profiling output under `<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/` when `--out` is omitted
 - recursively finds `*_content_list.json`
 - loads the structured content representation
 - selects entries where `type == "table"`
@@ -61,8 +62,8 @@ This reads MinerU outputs and returns typed table regions. Use the CLI commands 
 For CLI execution:
 
 ```bash
-tabulus profile --pdf paper.pdf --out work/mineru/paper --backend pipeline
-tabulus export-table-crops --mineru-root work/mineru/paper --out work/table_crops
+tabulus profile --pdf paper.pdf --backend pipeline
+tabulus export-table-crops --mineru-root tabulus-output/paper/profiling/mineru/pipeline --out work/table_crops
 ```
 
 It does not crop the PDF from bounding boxes itself. MinerU has already generated the crop image.

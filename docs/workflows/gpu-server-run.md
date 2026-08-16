@@ -34,6 +34,14 @@ tabulus profile --pdf /data/papers/P51.pdf --out /data/runs/P51/mineru --backend
 tabulus export-table-crops --mineru-root /data/runs/P51/mineru --out /data/runs/P51/table_crops
 ```
 
+`--out` is shown here because GPU runs often use a shared runs directory. If omitted, Tabulus uses the same default convention as the CPU workflow:
+
+```text
+<PDF directory>/tabulus-output/<PDF stem>/profiling/mineru/<resolved-backend>/
+```
+
+When `hybrid-engine` is requested but unavailable, the resolved backend is `pipeline`, and the automatic directory uses `pipeline`.
+
 Each later module should process either one run or all runs with a selected status once those commands exist.
 
 ## Profiling MinerU Runs

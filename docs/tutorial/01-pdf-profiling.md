@@ -47,21 +47,31 @@ The library preserves fields such as:
 The current validated CLI entry points are:
 
 ```powershell
-tabulus profile --pdf paper.pdf --out work/mineru/paper --backend pipeline
-tabulus export-table-crops --mineru-root work/mineru/paper --out work/table_crops
+tabulus profile --pdf "C:\path\to\paper.pdf" --backend pipeline
+tabulus export-table-crops --mineru-root "C:\path\to\tabulus-output\paper\profiling\mineru\pipeline" --out work\table_crops
 ```
+
+`mineru` is currently the only profiler. `pipeline` and `hybrid-engine` are MinerU backends. If `--out` is omitted, Tabulus writes to:
+
+```text
+<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/
+```
+
+`--out` remains available as an explicit override. If `hybrid-engine` is requested but Tabulus falls back to `pipeline`, the automatic output path uses the resolved backend name, `pipeline`.
 
 ## Input
 
-An existing MinerU output directory produced from one PDF file.
+One scientific PDF file for `tabulus profile`, or an existing MinerU output directory for `discover_tables`.
 
 Example:
 
 ```text
-work/mineru/puurunen_2005/
-  ...
-  <document-name>_content_list.json
-  images/
+Puurunen - February 2005/
+  tabulus-output/
+    Puurunen - February 2005/
+      profiling/
+        mineru/
+          pipeline/
 ```
 
 ## Output
@@ -72,18 +82,19 @@ A list of typed table-region objects and an optional detected reference-section 
 tables, refs_start_page = discover_tables(root)
 ```
 
-MinerU also creates an adapter-owned output directory under `mineru_out/`. A typical MinerU document directory contains:
+MinerU also creates an adapter-owned native output hierarchy inside the profiling directory. Tabulus does not flatten or rename these files. A typical MinerU document directory contains:
 
 ```text
 <document-name>/
-  images/
-  <document-name>_content_list.json
-  <document-name>_content_list_v2.json
-  <document-name>_layout.pdf
-  <document-name>_middle.json
-  <document-name>_model.json
-  <document-name>_origin.pdf
-  <document-name>.md
+  <method>/
+    images/
+    <document-name>_content_list.json
+    <document-name>_content_list_v2.json
+    <document-name>_layout.pdf
+    <document-name>_middle.json
+    <document-name>_model.json
+    <document-name>_origin.pdf
+    <document-name>.md
 ```
 
 For the current workflow, the key file is `<document-name>_content_list.json`. It is the source used to identify table entries and locate each MinerU-generated table image through `img_path`.
@@ -150,7 +161,7 @@ All adapters should produce the same table-image and structured-metadata contrac
 The first validated development target is:
 
 ```text
-Given an existing MinerU output directory, discover table regions and expose typed metadata without requiring GPU execution.
+Run MinerU through tabulus profile, then discover table regions and expose typed metadata without requiring GPU execution.
 ```
 
 ## Handoff To Table OCR
@@ -205,6 +216,7 @@ The exporter preserves the original MinerU image extension instead of converting
 
 The step succeeds when:
 
+- `tabulus profile --pdf ... --backend pipeline` completes on Windows CPU.
 - `discover_tables(root)` returns table-region objects.
 - Each table image path resolves to an existing MinerU-generated image.
 - Each table has a table id and document page number.
@@ -212,7 +224,7 @@ The step succeeds when:
 - The MinerU output directory is retained for debugging and traceability.
 - `<document-name>_layout.pdf` can be inspected when layout detection looks suspicious.
 - `table_body` is available when MinerU produced its own table reconstruction.
-- Unit tests pass without requiring GPU execution.
+- Unit tests pass without requiring GPU execution. The current validated Windows suite reports `21 passed`.
 
 ## Common Failure Modes
 

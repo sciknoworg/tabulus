@@ -9,7 +9,9 @@ The first implemented library module provides MinerU-backed PDF profiling utilit
 The current `tabulus.mineru` module:
 
 - selects a CPU-compatible or GPU-backed MinerU backend
+- distinguishes the profiler (`mineru`) from MinerU backends (`pipeline` and `hybrid-engine`)
 - constructs and runs non-interactive MinerU commands
+- writes default profiling output under `<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/` when `--out` is omitted
 - writes MinerU stdout, stderr, and run metadata logs
 - recursively locates MinerU `*_content_list.json` files
 - loads MinerU's structured content representation
@@ -38,6 +40,7 @@ The current tests verify:
 - reference-section detection
 - missing-output error handling
 - backend selection and MinerU command construction
+- default profiling output path generation
 - mocked MinerU execution logging
 - table-crop export and missing-source-image errors
 
@@ -45,7 +48,7 @@ The current tests verify:
 
 MinerU 3.4.5 has been tested through two paths:
 
-- Windows 11 CPU-only setup with Python 3.12, CPU-only PyTorch 2.10.0+cpu, and MinerU `pipeline`
+- Windows CPU-only setup with Python 3.12.10, CPU-only PyTorch 2.10.0+cpu, CUDA unavailable, and MinerU 3.4.5 `pipeline`
 - Linux GPU-server setup with Python 3.12, a dedicated Conda environment, and MinerU `hybrid-engine`
 
 The tested GPU workflow is:
@@ -68,7 +71,15 @@ typed TableRegion objects
 
 For the tested 53-page Puurunen 2005 GPU run, the library found 23 tables. Detected table regions began on page 6 and ended on page 22.
 
-On Windows, the validated CPU-only state was Python 3.12.x, MinerU 3.4.5, PyTorch 2.10.0+cpu, and `torch.cuda.is_available()` returning `False`.
+On Windows, MinerU 3.4.5 `pipeline` completed a real 53-page PDF profiling run with Python 3.12.10, PyTorch 2.10.0+cpu, and `torch.cuda.is_available()` returning `False`.
+
+MinerU 3.4.5 required the additional `six` package in that Windows pipeline installation because bundled MinerU OCR code imports `six`, but `six` was not installed automatically by the `mineru[pipeline]` dependency set. Treat this as a MinerU 3.4.5 compatibility workaround, not a Tabulus dependency or a claim about later MinerU releases.
+
+The current Windows test suite passes:
+
+```text
+21 passed
+```
 
 ## Not Yet Implemented In The New Library
 

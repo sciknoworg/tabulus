@@ -9,7 +9,7 @@ Use this path when you want to run `tabulus profile` on Windows without Docker, 
 The validated setup was:
 
 - Windows 11
-- Python 3.12
+- Python 3.12.10
 - standard Python virtual environment
 - Tabulus installed from the local repository
 - MinerU 3.4.5 with the `pipeline` extra
@@ -19,7 +19,7 @@ The validated setup was:
 Expected verification state:
 
 ```text
-Python 3.12.x
+Python 3.12.10
 MinerU 3.4.5
 PyTorch 2.10.0+cpu
 CUDA available: False
@@ -77,6 +77,12 @@ Install Tabulus from the local checkout:
 python -m pip install -e .
 ```
 
+If you also intend to run the test suite, install the development extra instead:
+
+```powershell
+python -m pip install -e ".[dev]"
+```
+
 Verify the CLI:
 
 ```powershell
@@ -114,7 +120,7 @@ python -c "import torch; print(torch.__version__); print(torch.cuda.is_available
 The expected state is:
 
 ```text
-Python 3.12.x
+Python 3.12.10
 MinerU 3.4.5
 2.10.0+cpu
 False
@@ -125,10 +131,47 @@ False
 Run MinerU through the Tabulus CLI with the CPU-compatible backend:
 
 ```powershell
-tabulus profile --pdf "<paper.pdf>" --out "<output-dir>" --backend pipeline
+tabulus profile --pdf "C:\path\to\paper.pdf" --backend pipeline
 ```
 
-`tabulus profile` writes MinerU stdout, stderr, and Tabulus run metadata logs into the output directory.
+`tabulus profile` writes MinerU stdout, stderr, and Tabulus run metadata logs into the profiling output directory.
+
+If `--out` is omitted, Tabulus writes to:
+
+```text
+<PDF directory>\tabulus-output\<PDF stem>\profiling\<profiler>\<backend>\
+```
+
+For MinerU pipeline profiling, that means:
+
+```text
+<PDF directory>\tabulus-output\<PDF stem>\profiling\mineru\pipeline\
+```
+
+`mineru` is the profiler. `pipeline` and `hybrid-engine` are MinerU backends.
+
+MinerU keeps its own native output hierarchy underneath that profiling directory. For example, a PDF named `Puurunen - February 2005.pdf` can produce:
+
+```text
+Puurunen - February 2005\
+  tabulus-output\
+    Puurunen - February 2005\
+      profiling\
+        mineru\
+          pipeline\
+            Puurunen - February 2005\
+              auto\
+                Puurunen - February 2005_content_list.json
+                images\
+```
+
+Do not flatten or rename MinerU-native output files. Tabulus discovers the nested `*_content_list.json` and referenced images from that output tree.
+
+Use `--out` only when you want to override the default output location:
+
+```powershell
+tabulus profile --pdf "C:\path\to\paper.pdf" --out "C:\path\to\custom-output" --backend pipeline
+```
 
 If you omit `--backend`, Tabulus opens an interactive backend selector:
 
@@ -139,14 +182,33 @@ If you omit `--backend`, Tabulus opens an interactive backend selector:
 
 Choose `pipeline` for CPU-only Windows runs. `hybrid-engine` requires a suitable CUDA GPU.
 
-If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to `pipeline`. Common fallback reasons include PyTorch not being installed, CUDA not being available, no visible CUDA GPU, insufficient GPU architecture, or insufficient VRAM.
+If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to `pipeline`. Common fallback reasons include PyTorch not being installed, CUDA not being available, no visible CUDA GPU, insufficient GPU architecture, or insufficient VRAM. When Tabulus generates the output directory automatically, it uses the resolved backend name, so a fallback run writes under `profiling\mineru\pipeline\`.
+
+## Validated Windows Run
+
+MinerU 3.4.5 `pipeline` completed a real 53-page PDF profiling run on Windows CPU with:
+
+```text
+Python 3.12.10
+PyTorch 2.10.0+cpu
+CUDA available: False
+MinerU 3.4.5
+```
+
+The Windows test suite also passed in this environment:
+
+```text
+21 passed
+```
+
+with pytest 9.1.1.
 
 ## Inspect Tables After Profiling
 
 After MinerU writes its output directory, the library can discover table regions:
 
 ```powershell
-python -c "from pathlib import Path; from tabulus.mineru import discover_tables; tables, refs = discover_tables(Path('<output-dir>')); print(len(tables)); print(refs)"
+python -c "from pathlib import Path; from tabulus.mineru import discover_tables; tables, refs = discover_tables(Path('C:/path/to/profiling/mineru/pipeline')); print(len(tables)); print(refs)"
 ```
 
 To prepare the table-crop handoff for later OCR work:

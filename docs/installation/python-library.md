@@ -9,7 +9,13 @@ Use this setup for core library development and unit tests that do not require G
 From the repository root:
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install -e .
+```
+
+If you intend to run the test suite, install the development extra:
+
+```bash
+python -m pip install -e ".[dev]"
 ```
 
 After installation, verify the MinerU output reader can be imported:
@@ -30,6 +36,12 @@ Run the tests with:
 
 ```bash
 python -m pytest
+```
+
+The current Windows validation used Python 3.12.10 and pytest 9.1.1:
+
+```text
+21 passed
 ```
 
 The current tests cover:
@@ -66,6 +78,16 @@ tabulus export-table-crops --help
 `tabulus profile` can launch MinerU when MinerU is installed in the active environment. The default `pipeline` backend is CPU-compatible; `hybrid-engine` is selected only when requested and a suitable CUDA GPU is visible.
 
 If `hybrid-engine` is requested but the GPU requirements are not satisfied, Tabulus reports the reason and falls back to `pipeline`.
+
+The profiling CLI separates the profiler from its backend. `mineru` is currently the only profiler; `pipeline` and `hybrid-engine` are MinerU backends.
+
+When `--out` is omitted, Tabulus writes profiling output beside the PDF:
+
+```text
+<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/
+```
+
+`--out` remains available as an explicit override. If `hybrid-engine` falls back to `pipeline`, the automatic directory uses the resolved backend, `pipeline`.
 
 `tabulus export-table-crops` consumes an existing MinerU output directory and writes:
 
