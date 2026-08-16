@@ -1,4 +1,6 @@
-# Tabulus: Scientific PDF Table Extraction Pipeline
+# Tabulus
+
+**Scientific PDF Table Extraction Pipeline**
 
 ## About Tabulus
 
