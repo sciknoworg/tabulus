@@ -301,6 +301,8 @@ Run the test suite with:
 python -m pytest -v
 ```
 
+Linux validation after the MinerU native-run-directory runner fix collected 22 tests and all 22 passed. That run included the regression test `test_run_mineru_returns_native_hybrid_run_dir`, which verifies that Tabulus returns the native `hybrid_auto/` directory for the validated hybrid run and does not create an artificial `auto/` directory.
+
 This requires Tabulus to have been installed with:
 
 ```bash
@@ -332,7 +334,7 @@ $PAPERS/
             └── ...
 ```
 
-This directory is the profiler/backend output root passed to MinerU. MinerU then creates its native document and method hierarchy underneath that root. Do not flatten or rename MinerU-native output files.
+This directory is the profiler/backend output root passed to MinerU. MinerU then creates its native document/run hierarchy underneath that root. Do not flatten or rename MinerU-native output files.
 
 If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to the CPU-compatible `pipeline` backend. In that case, the automatic output root uses the resolved backend:
 
@@ -357,6 +359,43 @@ Inspect the generated MinerU-native hierarchy after the run:
 find "$PAPERS/tabulus-output/mineru/hybrid-engine" -maxdepth 4 -type f | sort
 ```
 
-The exact MinerU-native document and method subdirectory produced by `hybrid-engine` should be confirmed from the fresh GPU run before being documented as a fixed layout.
+For the validated MinerU 3.4.5 Linux GPU run on NVIDIA L40S with:
+
+```text
+--backend hybrid-engine
+--method auto
+--effort high
+```
+
+MinerU generated the native run directory `hybrid_auto`:
+
+```text
+$PAPERS/
+├── <document>.pdf
+└── tabulus-output/
+    └── mineru/
+        └── hybrid-engine/
+            └── <document>/
+                └── hybrid_auto/
+                    ├── images/
+                    ├── <document>_content_list.json
+                    ├── <document>_content_list_v2.json
+                    ├── <document>_layout.pdf
+                    ├── <document>_middle.json
+                    ├── <document>_model.json
+                    ├── <document>_origin.pdf
+                    ├── <document>.md
+                    ├── mineru_stdout.log
+                    ├── mineru_stderr.log
+                    └── tabulus_run.txt
+```
+
+`hybrid_auto` is MinerU's native directory name for the validated `hybrid-engine` + `auto` run. It is not a Tabulus-created directory and should not be treated as a guarantee for future MinerU versions.
+
+A successful CLI run should report the discovered native run directory, for example:
+
+```text
+PDF profiling completed: .../<document>/hybrid_auto
+```
 
 CPU-only profiling is documented separately in `installation/windows-cpu`.

@@ -85,18 +85,19 @@ These settings are controlled by Tabulus in `src/tabulus/mineru/runner.py` and a
 
 ## MinerU Output
 
-A representative MinerU-native output directory looks like:
+A representative MinerU-native output tree looks like:
 
 ```text
 <document>/
-├── images/
-├── <document>_content_list.json
-├── <document>_content_list_v2.json
-├── <document>_layout.pdf
-├── <document>_middle.json
-├── <document>_model.json
-├── <document>_origin.pdf
-└── <document>.md
+└── <MinerU-native run directory>/
+    ├── images/
+    ├── <document>_content_list.json
+    ├── <document>_content_list_v2.json
+    ├── <document>_layout.pdf
+    ├── <document>_middle.json
+    ├── <document>_model.json
+    ├── <document>_origin.pdf
+    └── <document>.md
 ```
 
 `images/`
@@ -134,7 +135,53 @@ When `--out` is omitted, Tabulus chooses the profiler/backend output root:
 └── tabulus-output/
     └── mineru/
         └── <resolved-backend>/
-            └── MinerU-native document/method hierarchy
+            └── <document>/
+                └── <MinerU-native run directory>/
+                    ├── ...
 ```
 
-Tabulus chooses the profiler/backend root. MinerU creates its native document and method hierarchy beneath it. Do not flatten or rename MinerU-native files.
+Tabulus owns only the profiling output root:
+
+```text
+<PDF parent>/tabulus-output/<profiler>/<resolved-backend>/
+```
+
+MinerU controls the document/run hierarchy below that root. Tabulus must not construct, flatten, rename, or assume the native run directory solely from `--method`; the native run-directory name is MinerU-owned behavior and can differ by backend, mode, and MinerU version.
+
+After successful MinerU execution, Tabulus discovers the actual MinerU-native run directory from the generated `*_content_list.json`. Downstream table discovery also locates `*_content_list.json` recursively, so downstream consumers should target the actual MinerU-native run directory rather than hard-coding a directory name.
+
+On success, Tabulus writes diagnostic logs beside the successful MinerU output inside the discovered native run directory:
+
+```text
+mineru_stdout.log
+mineru_stderr.log
+tabulus_run.txt
+```
+
+If MinerU fails before a native run directory can be identified, diagnostics may be written at the document level instead.
+
+Validated examples:
+
+Windows CPU, MinerU 3.4.5, `pipeline` + `auto`:
+
+```text
+tabulus-output/
+└── mineru/
+    └── pipeline/
+        └── <document>/
+            └── auto/
+                └── ...
+```
+
+Linux GPU, MinerU 3.4.5, `hybrid-engine` + `auto` + `high`:
+
+```text
+tabulus-output/
+└── mineru/
+    └── hybrid-engine/
+        └── <document>/
+            └── hybrid_auto/
+                └── ...
+```
+
+`hybrid_auto` is MinerU's native directory name for the validated `hybrid-engine` + `auto` run. It is not a Tabulus-created directory and should not be treated as a guarantee for future MinerU versions.

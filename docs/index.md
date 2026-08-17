@@ -66,7 +66,7 @@ Read the modular pipeline overview and the ordered processing steps.
 The current library can:
 
 - launch MinerU through `tabulus profile`
-- write profiling output to `<PDF directory>/tabulus-output/<profiler>/<resolved-backend>/` when `--out` is omitted, with MinerU's native document/method hierarchy underneath
+- write profiling output to `<PDF directory>/tabulus-output/<profiler>/<resolved-backend>/` when `--out` is omitted, with MinerU's native document/run hierarchy underneath
 - distinguish the profiler (`mineru`) from MinerU backends (`pipeline` and `hybrid-engine`)
 - locate MinerU `*_content_list.json` files
 - parse document elements

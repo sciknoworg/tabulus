@@ -196,7 +196,7 @@ For MinerU pipeline profiling, that means:
 
 `mineru` is the profiler. `pipeline` and `hybrid-engine` are MinerU backends.
 
-The `tabulus-output\mineru\pipeline\` directory is the profiler/backend output root passed to MinerU. MinerU then keeps its own native document and method hierarchy underneath that root:
+The `tabulus-output\mineru\pipeline\` directory is the profiler/backend output root passed to MinerU. MinerU then keeps its own native document/run hierarchy underneath that root:
 
 ```text
 <PDF directory>\
@@ -204,10 +204,10 @@ The `tabulus-output\mineru\pipeline\` directory is the profiler/backend output r
     mineru\
       pipeline\
         <PDF stem>\
-          <method>\
+          <MinerU-native run directory>\
 ```
 
-For the validated Puurunen run:
+For the validated MinerU 3.4.5 Windows CPU run with `pipeline` + `auto`, MinerU produced the native run directory `auto`:
 
 ```text
 ald-papers\
@@ -232,9 +232,9 @@ The levels are:
 - `mineru`: profiler
 - `pipeline`: backend
 - `Puurunen - February 2005`: document
-- `auto`: MinerU parsing method
+- `auto`: MinerU-native run directory observed for this validated `pipeline` + `auto` run
 
-`auto` is meaningful MinerU configuration, not a generic Tabulus directory. It corresponds to `--method auto`; alternative method directories can be `txt` or `ocr`.
+`auto` is meaningful MinerU output behavior, not a generic Tabulus directory. Native run-directory naming belongs to MinerU and can differ by backend; the validated `hybrid-engine` + `auto` GPU workflow produced `hybrid_auto`.
 
 Do not flatten or rename MinerU-native output files. Tabulus discovers the nested `*_content_list.json` and referenced images from that output tree.
 

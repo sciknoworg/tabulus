@@ -1,22 +1,30 @@
 # MinerU Output Files
 
-MinerU writes a document-specific output directory after profiling a PDF. Tabulus treats this directory as adapter-owned source output: keep it intact, then copy the stable downstream artifacts into the Tabulus run contract.
+MinerU writes a document-specific wrapper directory after profiling a PDF, then places the actual run artifacts under a MinerU-native run directory inside that wrapper. Tabulus treats this output as adapter-owned source output: keep it intact, then copy the stable downstream artifacts into the Tabulus run contract.
 
 For the Tabulus-facing overview of MinerU itself and the MinerU options exposed through `tabulus profile`, see {doc}`../external-tools/mineru`.
 
-A typical MinerU output directory looks like:
+A typical MinerU output tree looks like:
 
 ```text
 <document-name>/
-  images/
-  <document-name>_content_list.json
-  <document-name>_content_list_v2.json
-  <document-name>_layout.pdf
-  <document-name>_middle.json
-  <document-name>_model.json
-  <document-name>_origin.pdf
-  <document-name>.md
+└── <MinerU-native run directory>/
+    ├── images/
+    ├── <document-name>_content_list.json
+    ├── <document-name>_content_list_v2.json
+    ├── <document-name>_layout.pdf
+    ├── <document-name>_middle.json
+    ├── <document-name>_model.json
+    ├── <document-name>_origin.pdf
+    ├── <document-name>.md
+    ├── mineru_stdout.log
+    ├── mineru_stderr.log
+    └── tabulus_run.txt
 ```
+
+The JSON, PDF, Markdown, and `images/` entries are MinerU artifacts. The `mineru_stdout.log`, `mineru_stderr.log`, and `tabulus_run.txt` files are Tabulus diagnostic metadata written beside the successful MinerU output.
+
+Downstream Tabulus code locates `*_content_list.json` recursively, so consumers should not hard-code a native run-directory name such as `auto` or `hybrid_auto`.
 
 ## Files
 
