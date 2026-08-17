@@ -165,9 +165,77 @@ paddleocr/
 
 ## Use Separate Conda Environments
 
-MinerU and PaddleOCR should be kept in separate Conda environments because both install substantial machine-learning dependency stacks.
+MinerU and PaddleOCR should be kept in separate Conda environments because they are independent processing components with substantial machine-learning dependency stacks.
 
 Do not install all dependencies into a general `tabulus` environment.
+
+At a high level, the dependency shape looks like this:
+
+```text
+Tabulus
+├── MinerU
+│   ├── PyTorch
+│   ├── CUDA-related dependencies
+│   ├── transformers
+│   ├── vLLM / other MinerU dependencies
+│   └── ...
+│
+└── PaddleOCR
+    ├── PaddlePaddle
+    ├── PaddleOCR
+    ├── its CUDA-related dependencies
+    └── ...
+```
+
+MinerU is primarily built around the PyTorch ecosystem, while PaddleOCR is built around PaddlePaddle. Both bring their own GPU/CUDA-related packages and many transitive dependencies. Installing both stacks into a single Python environment creates unnecessary dependency-resolution and upgrade risk.
+
+Tabulus therefore uses separate environments:
+
+```text
+tabulus-mineru
+    Tabulus + MinerU + PyTorch
+
+tabulus-paddleocr
+    Tabulus + PaddleOCR + PaddlePaddle
+```
+
+This separation provides practical benefits:
+
+- MinerU and PaddleOCR dependencies can be pinned or upgraded independently.
+- Changes to PaddlePaddle cannot destabilize the PyTorch/MinerU environment, and vice versa.
+- GPU/CUDA compatibility can be diagnosed separately for each component.
+- A broken environment for one stage does not make the other stage unusable.
+- Each processing stage becomes more reproducible because its dependency stack is isolated.
+
+Installing Tabulus with `python -m pip install -e .` in both Conda environments does not create two independent copies of the Tabulus source code. Editable installation means both environments reference the same repository checkout while providing different external dependency stacks:
+
+```text
+                   same Tabulus source checkout
+                             |
+                 +-----------+-----------+
+                 |                       |
+                 v                       v
+         tabulus-mineru          tabulus-paddleocr
+         Python 3.12             Python 3.12
+         PyTorch                 PaddlePaddle
+         MinerU                  PaddleOCR
+```
+
+These environments correspond to pipeline stages, not separate versions of the Tabulus application.
+
+PaddleOCR does not need to be installed to run the MinerU profiling stage. The MinerU environment is independently usable for:
+
+```text
+PDF
+ ↓
+Tabulus
+ ↓
+MinerU
+ ↓
+profiling output
+```
+
+PaddleOCR and the `tabulus-paddleocr` environment are only needed later when the table-OCR stage is run.
 
 ## MinerU Environment
 
@@ -272,6 +340,7 @@ Target shape:
 conda create -n tabulus-paddleocr python=3.12 -y
 conda activate tabulus-paddleocr
 python -m pip install --upgrade pip
+python -m pip install -e .
 ```
 
 The PaddleOCR dependency stack should be installed and tested independently from MinerU.
