@@ -84,6 +84,7 @@ def test_discover_tables(tmp_path):
     assert first.mineru_table_body == (
         "<table><tr><td>A</td></tr></table>"
     )
+    assert first.mineru_img_path == "images/table1.jpg"
     assert first.in_references is False
     assert first.source_image_path.name == "table1.jpg"
 

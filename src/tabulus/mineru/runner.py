@@ -124,10 +124,6 @@ def run_mineru(
         image_analysis=False,
     )
 
-    stdout_log = output_dir / "mineru_stdout.log"
-    stderr_log = output_dir / "mineru_stderr.log"
-    run_log = output_dir / "tabulus_run.txt"
-
     started = time.perf_counter()
 
     process = subprocess.run(
@@ -143,10 +139,26 @@ def run_mineru(
 
     elapsed = time.perf_counter() - started
 
+    run_dir = (
+        output_dir
+        / pdf_path.stem
+        / method
+    )
+
+    run_dir.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    stdout_log = run_dir / "mineru_stdout.log"
+    stderr_log = run_dir / "mineru_stderr.log"
+    run_log = run_dir / "tabulus_run.txt"
+
     stdout_log.write_text(
         process.stdout or "",
         encoding="utf-8",
     )
+
     stderr_log.write_text(
         process.stderr or "",
         encoding="utf-8",
@@ -175,4 +187,4 @@ def run_mineru(
             f"See {stderr_log}."
         )
 
-    return output_dir
+    return run_dir

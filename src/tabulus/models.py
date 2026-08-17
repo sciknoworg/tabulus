@@ -13,6 +13,7 @@ class TableRegion:
     page_nr: int | None
     image_path: Path
     source_image_path: Path
+    mineru_img_path: str | None = None
     bbox: list[float] | None = None
     caption: list[str] = field(default_factory=list)
     footnote: list[str] = field(default_factory=list)

@@ -199,17 +199,46 @@ python -m pip install --upgrade pip
 
 ## 5. Install Tabulus
 
-Install Tabulus in editable mode from the repository checkout:
+For normal library use, install Tabulus in editable mode from the repository checkout:
 
 ```bash
 python -m pip install -e .
 ```
 
-Verify the Python executable:
+For development and testing, install the development extra instead:
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+The `dev` extra installs development/test dependencies, including `pytest`. `pytest` is not installed by the normal `python -m pip install -e .` installation.
+
+You do not need to run `python -m pip install -e .` first if you use `python -m pip install -e ".[dev]"`.
+
+The distinction is:
+
+```text
+Normal use
+    |
+    +-- python -m pip install -e .
+    |
+    +-- run Tabulus
+
+Development / validation
+    |
+    +-- python -m pip install -e ".[dev]"
+    |
+    +-- python -m pytest -v
+    |
+    +-- run Tabulus
+```
+
+Verify the Python executable and CLI:
 
 ```bash
 python --version
 which python
+tabulus --version
 ```
 
 Expected path shape:
@@ -225,6 +254,8 @@ Install MinerU in the `tabulus-mineru` environment:
 ```bash
 python -m pip install "mineru[all]==3.4.5"
 ```
+
+For the MinerU options and output artifacts used by Tabulus, see {doc}`../external-tools/mineru`.
 
 Then verify:
 
@@ -260,7 +291,25 @@ This verifies that PyTorch inside the `tabulus-mineru` Conda environment can acc
 
 In the tested environment this resolved to one visible NVIDIA L40S GPU when `CUDA_VISIBLE_DEVICES=0` was set.
 
-## 8. Run GPU Profiling
+## 8. Run The Tabulus Test Suite
+
+This section applies when validating a development checkout, modifying Tabulus source code, or preparing changes for commit. Running the tests is not required merely to use an already validated Tabulus installation.
+
+Run the test suite with:
+
+```bash
+python -m pytest -v
+```
+
+This requires Tabulus to have been installed with:
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+If you already selected the development/testing installation in Section 5, no additional install command is needed.
+
+## 9. Run GPU Profiling
 
 Run MinerU through the Tabulus CLI with the GPU backend:
 
@@ -294,7 +343,7 @@ $PAPERS/
         └── pipeline/
 ```
 
-## 9. Inspect Profiling Output
+## 10. Inspect Profiling Output
 
 For the example command above, the automatic GPU output root is:
 

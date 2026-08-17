@@ -2,6 +2,8 @@
 
 MinerU writes a document-specific output directory after profiling a PDF. Tabulus treats this directory as adapter-owned source output: keep it intact, then copy the stable downstream artifacts into the Tabulus run contract.
 
+For the Tabulus-facing overview of MinerU itself and the MinerU options exposed through `tabulus profile`, see {doc}`../external-tools/mineru`.
+
 A typical MinerU output directory looks like:
 
 ```text

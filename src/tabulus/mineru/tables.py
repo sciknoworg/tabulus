@@ -194,6 +194,7 @@ def discover_tables(
                 page_nr=page_nr,
                 image_path=source_image,
                 source_image_path=source_image,
+                mineru_img_path=img_path,
                 bbox=item.get("bbox"),
                 caption=item.get("table_caption") or [],
                 footnote=item.get("table_footnote") or [],

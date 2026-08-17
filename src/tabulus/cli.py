@@ -10,7 +10,10 @@ from tabulus.mineru.backends import (
     resolve_backend,
 )
 from tabulus.mineru.runner import run_mineru
+from tabulus.table_crops import export_mineru_table_crops
 
+DEFAULT_PROFILER = "mineru"
+SUPPORTED_PROFILERS = (DEFAULT_PROFILER,)
 
 def prompt_for_backend() -> str:
     """Prompt the user to choose a MinerU profiling backend."""
@@ -73,6 +76,22 @@ def select_backend(requested_backend: str | None = None) -> str:
 
     return resolved
 
+def default_profile_output_root(
+    pdf_path: Path,
+    *,
+    profiler: str,
+    backend: str,
+) -> Path:
+    """Return the default output root for a profiling backend."""
+
+    pdf_path = Path(pdf_path).resolve()
+
+    return (
+        pdf_path.parent
+        / "tabulus-output"
+        / profiler
+        / backend
+    )
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -92,7 +111,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     profile = subparsers.add_parser(
         "profile",
-        help="Profile a scientific PDF using MinerU.",
+        help="Profile a scientific PDF.",
     )
 
     profile.add_argument(
@@ -104,9 +123,19 @@ def build_parser() -> argparse.ArgumentParser:
 
     profile.add_argument(
         "--out",
-        required=True,
         type=Path,
-        help="Output directory.",
+        default=None,
+        help=(
+            "Profiling output root. If omitted, Tabulus writes to "
+            "<PDF directory>/tabulus-output/<profiler>/<backend>/."
+        ),
+    )
+
+    profile.add_argument(
+        "--profiler",
+        choices=SUPPORTED_PROFILERS,
+        default=DEFAULT_PROFILER,
+        help="PDF profiling tool. Currently supported: mineru.",
     )
 
     profile.add_argument(
@@ -136,6 +165,25 @@ def build_parser() -> argparse.ArgumentParser:
         help="Processing effort for hybrid-engine.",
     )
 
+    export_table_crops = subparsers.add_parser(
+        "export-table-crops",
+        help="Export MinerU table crops into a normalized handoff directory.",
+    )
+
+    export_table_crops.add_argument(
+        "--mineru-root",
+        required=True,
+        type=Path,
+        help="Existing MinerU output directory.",
+    )
+
+    export_table_crops.add_argument(
+        "--out",
+        required=True,
+        type=Path,
+        help="Table-crop handoff output directory.",
+    )
+
     return parser
 
 
@@ -146,23 +194,52 @@ def main() -> None:
     if args.command == "profile":
         backend = select_backend(args.backend)
 
-        print()
-        print("PDF profiling configuration:")
-        print(f"  PDF: {args.pdf}")
-        print(f"  Output: {args.out}")
-        print(f"  Backend: {backend}")
-        print(f"  Method: {args.method}")
-
-        run_mineru(
-            pdf_path=args.pdf,
-            output_dir=args.out,
-            requested_backend=backend,
-            effort=args.effort,
-            method=args.method,
+        output_root = (
+            args.out
+            if args.out is not None
+            else default_profile_output_root(
+                args.pdf,
+                profiler=args.profiler,
+                backend=backend,
+            )
         )
 
         print()
-        print(f"MinerU profiling completed: {args.out}")
+        print("PDF profiling configuration:")
+        print(f"  PDF: {args.pdf}")
+        print(f"  Profiler: {args.profiler}")
+        print(f"  Backend: {backend}")
+        print(f"  Method: {args.method}")
+        print(f"  Output root: {output_root}")
+
+        if args.profiler == "mineru":
+            run_dir = run_mineru(
+                pdf_path=args.pdf,
+                output_dir=output_root,
+                requested_backend=backend,
+                effort=args.effort,
+                method=args.method,
+            )
+        else:
+            raise ValueError(
+                f"Unsupported profiler: {args.profiler}"
+            )
+
+        print()
+        print(f"PDF profiling completed: {run_dir}")
+        return
+
+    if args.command == "export-table-crops":
+        result = export_mineru_table_crops(
+            mineru_output_dir=args.mineru_root,
+            output_dir=args.out,
+        )
+
+        print()
+        print("Table-crop export completed:")
+        print(f"  Tables found: {result.tables_found}")
+        print(f"  Crops saved: {result.crops_saved}")
+        print(f"  Index: {result.index_path}")
         return
 
     parser.print_help()

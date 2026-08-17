@@ -35,7 +35,7 @@ Use Python 3.12, a standard venv, CPU-only PyTorch, and MinerU `pipeline`.
 :link: installation/gpu-server
 :link-type: doc
 
-Prepare the Linux GPU-server workflow, separate Conda environments, and MinerU `hybrid-engine`.
+Request Slurm GPU resources, install the `tabulus-mineru` environment, and run MinerU `hybrid-engine`.
 :::
 
 :::{grid-item-card} Install The Python Library
@@ -66,7 +66,7 @@ Read the modular pipeline overview and the ordered processing steps.
 The current library can:
 
 - launch MinerU through `tabulus profile`
-- write profiling output to `<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/` when `--out` is omitted
+- write profiling output to `<PDF directory>/tabulus-output/<profiler>/<resolved-backend>/` when `--out` is omitted, with MinerU's native document/method hierarchy underneath
 - distinguish the profiler (`mineru`) from MinerU backends (`pipeline` and `hybrid-engine`)
 - locate MinerU `*_content_list.json` files
 - parse document elements
@@ -86,6 +86,7 @@ The sidebar contains the full documentation. The main sections are:
 - **Tutorial:** the intended modular workflow, one processing step at a time.
 - **Components:** adapter boundaries and responsibilities.
 - **Workflows:** headless local/GPU execution shapes.
+- **External Tools:** third-party tools as used by Tabulus.
 - **Data Contracts:** the file formats exchanged between modules.
 - **Evaluation:** how to compare extraction and matching quality.
 
@@ -143,6 +144,14 @@ workflows/gpu-server-run
 workflows/mineru-gpu-execution
 workflows/end-to-end-run
 workflows/debugging-failed-step
+```
+
+```{toctree}
+:hidden:
+:maxdepth: 2
+:caption: External Tools
+
+external-tools/mineru
 ```
 
 ```{toctree}

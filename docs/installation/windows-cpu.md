@@ -125,6 +125,8 @@ python -m pip install six "mineru[pipeline]==3.4.5" "torch==2.10.0+cpu" "torchvi
 
 `six` is included here as a compatibility workaround for the tested MinerU 3.4.5 Windows CPU setup. MinerU 3.4.5's bundled OCR implementation imports `six`, but that package is not declared in its `pipeline` dependency set. This is not a Tabulus dependency, and it should not be generalized to later MinerU releases unless those versions are verified.
 
+For the MinerU options and output artifacts used by Tabulus, see {doc}`../external-tools/mineru`.
+
 ## Verify The Installation
 
 Check the versions and CUDA state:
@@ -271,6 +273,8 @@ MinerU 3.4.5
 ```
 
 The Windows test suite was run with:
+
+`pytest` is provided by the Tabulus `dev` extra. If Tabulus was installed only with `python -m pip install -e .`, install `python -m pip install -e ".[dev]"` before running the test suite.
 
 ```bat
 python -m pytest -v
