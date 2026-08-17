@@ -12,8 +12,6 @@ from tabulus.mineru.backends import (
     resolve_backend,
 )
 
-from tabulus.mineru.tables import find_content_list
-
 
 def find_mineru_executable() -> str:
     """Return the MinerU executable available in the current environment."""
