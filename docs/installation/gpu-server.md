@@ -1,25 +1,48 @@
 # GPU Server Installation
 
-Tabulus can be prepared for accelerated execution on an NVIDIA GPU server without Docker.
+This page documents the supported Tabulus + MinerU GPU installation and profiling workflow using MinerU's `hybrid-engine` backend.
 
-This setup is for the GPU workflow using MinerU's `hybrid-engine` backend. A GPU is not required for all Tabulus use: Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
+A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
-## Tested Environment
+The GPU workflow is:
+
+```text
+NVIDIA GPU
+     |
+     v
+Create tabulus-mineru Conda environment
+     |
+     v
+Install Tabulus
+     |
+     v
+Install MinerU 3.4.5
+     |
+     v
+Verify PyTorch CUDA access
+     |
+     v
+tabulus profile --backend hybrid-engine
+     |
+     v
+MinerU profiling output
+```
+
+Do not rely on the repository-level `requirements.txt` to install MinerU GPU dependencies. The root requirements are the lightweight Tabulus library development contract; MinerU should be installed in its own environment.
+
+## 1. Tested Environment
 
 The verified setup uses:
 
 - Linux GPU server
 - NVIDIA L40S GPUs
 - NVIDIA driver 595.71.05
-- Apptainer 1.4.5
 - Conda or Miniconda
 - Python 3.12
-- separate Conda environments for MinerU and PaddleOCR
-- no Docker runtime
+- Tabulus installed from the repository checkout
+- MinerU 3.4.5
 
-Do not rely on the repository-level `requirements.txt` to install MinerU GPU dependencies. The root requirements are the lightweight Tabulus library development contract; MinerU and other heavy adapter stacks should be installed in their own environments.
-
-## Verify The GPU
+## 2. Verify The NVIDIA GPU
 
 Confirm that NVIDIA GPUs are available:
 
@@ -35,65 +58,7 @@ For initial testing, restrict execution to one GPU:
 export CUDA_VISIBLE_DEVICES=0
 ```
 
-## Verify Apptainer
-
-Docker may not be installed on HPC systems. Tabulus was tested with Apptainer, which can execute Docker/OCI images.
-
-Check the installation:
-
-```bash
-apptainer --version
-```
-
-The tested version is:
-
-```text
-apptainer version 1.4.5-3.el9
-```
-
-The `singularity` command may also point to Apptainer:
-
-```bash
-singularity --version
-```
-
-## Test NVIDIA GPU Passthrough
-
-Before installing Tabulus dependencies, verify that a container can access the NVIDIA GPU:
-
-```bash
-apptainer exec --nv \
-  docker://nvidia/cuda:12.6.3-base-ubuntu22.04 \
-  nvidia-smi
-```
-
-The first execution downloads the OCI image and converts it to a SIF image.
-
-Successful execution should show the GPUs from inside the container.
-
-## Test PaddlePaddle GPU Compatibility
-
-Tabulus uses PaddleOCR for table recognition. Before installing PaddleOCR, verify GPU compatibility with the PaddlePaddle GPU image:
-
-```bash
-CUDA_VISIBLE_DEVICES=0 apptainer exec --nv \
-  docker://paddlepaddle/paddle:3.3.0-gpu-cuda11.8-cudnn8.9 \
-  python3 -c "import paddle; print('Paddle:', paddle.__version__); print('CUDA:', paddle.device.is_compiled_with_cuda()); print('GPUs:', paddle.device.cuda.device_count()); paddle.utils.run_check()"
-```
-
-The tested output was equivalent to:
-
-```text
-Paddle: 3.3.0
-CUDA: True
-GPUs: 1
-PaddlePaddle works well on 1 GPU.
-PaddlePaddle is installed successfully!
-```
-
-It is normal for the container runtime to use CUDA 11.8 while the host NVIDIA driver reports support for a newer CUDA version. The newer driver is backward compatible with the CUDA runtime packaged in the container.
-
-## Create Working Directories
+## 3. Clone / Enter The Tabulus Repository
 
 Clone Tabulus and enter the repository:
 
@@ -109,135 +74,15 @@ export TABULUS_ROOT="$HOME/tabulus"
 export WORK="$TABULUS_ROOT/work"
 ```
 
-Create directories for the processing stages:
+Create an input directory for PDFs:
 
 ```bash
 mkdir -p "$WORK/input"
-mkdir -p "$WORK/mineru"
-mkdir -p "$WORK/table_crops/images"
-mkdir -p "$WORK/paddleocr"
 ```
 
-Verify the layout:
+Place the PDF to profile under `$WORK/input`.
 
-```bash
-find "$WORK" -maxdepth 2 -type d
-```
-
-Expected structure:
-
-```text
-work/
-├── input/
-├── mineru/
-├── table_crops/
-│   └── images/
-└── paddleocr/
-```
-
-## Intended Data Flow
-
-```text
-PDF
- │
- ▼
-MinerU
- │
- ├── document/layout analysis
- ├── table detection
- ├── table bounding boxes
- ├── table crops
- └── structured MinerU output
- │
- ▼
-table_crops/
- │
- ▼
-PaddleOCR-VL
- │
- ├── table content recognition
- ├── row/column structure recognition
- └── structured table reconstruction
- │
- ▼
-paddleocr/
-```
-
-## Use Separate Conda Environments
-
-MinerU and PaddleOCR should be kept in separate Conda environments because they are independent processing components with substantial machine-learning dependency stacks.
-
-Do not install all dependencies into a general `tabulus` environment.
-
-At a high level, the dependency shape looks like this:
-
-```text
-Tabulus
-├── MinerU
-│   ├── PyTorch
-│   ├── CUDA-related dependencies
-│   ├── transformers
-│   ├── vLLM / other MinerU dependencies
-│   └── ...
-│
-└── PaddleOCR
-    ├── PaddlePaddle
-    ├── PaddleOCR
-    ├── its CUDA-related dependencies
-    └── ...
-```
-
-MinerU is primarily built around the PyTorch ecosystem, while PaddleOCR is built around PaddlePaddle. Both bring their own GPU/CUDA-related packages and many transitive dependencies. Installing both stacks into a single Python environment creates unnecessary dependency-resolution and upgrade risk.
-
-Tabulus therefore uses separate environments:
-
-```text
-tabulus-mineru
-    Tabulus + MinerU + PyTorch
-
-tabulus-paddleocr
-    Tabulus + PaddleOCR + PaddlePaddle
-```
-
-This separation provides practical benefits:
-
-- MinerU and PaddleOCR dependencies can be pinned or upgraded independently.
-- Changes to PaddlePaddle cannot destabilize the PyTorch/MinerU environment, and vice versa.
-- GPU/CUDA compatibility can be diagnosed separately for each component.
-- A broken environment for one stage does not make the other stage unusable.
-- Each processing stage becomes more reproducible because its dependency stack is isolated.
-
-Installing Tabulus with `python -m pip install -e .` in both Conda environments does not create two independent copies of the Tabulus source code. Editable installation means both environments reference the same repository checkout while providing different external dependency stacks:
-
-```text
-                   same Tabulus source checkout
-                             |
-                 +-----------+-----------+
-                 |                       |
-                 v                       v
-         tabulus-mineru          tabulus-paddleocr
-         Python 3.12             Python 3.12
-         PyTorch                 PaddlePaddle
-         MinerU                  PaddleOCR
-```
-
-These environments correspond to pipeline stages, not separate versions of the Tabulus application.
-
-PaddleOCR does not need to be installed to run the MinerU profiling stage. The MinerU environment is independently usable for:
-
-```text
-PDF
- ↓
-Tabulus
- ↓
-MinerU
- ↓
-profiling output
-```
-
-PaddleOCR and the `tabulus-paddleocr` environment are only needed later when the table-OCR stage is run.
-
-## MinerU Environment
+## 4. Create The tabulus-mineru Conda Environment
 
 Deactivate the current environment if necessary:
 
@@ -257,6 +102,14 @@ Activate it:
 conda activate tabulus-mineru
 ```
 
+Upgrade pip:
+
+```bash
+python -m pip install --upgrade pip
+```
+
+## 5. Install Tabulus
+
 Install Tabulus in editable mode from the repository checkout:
 
 ```bash
@@ -270,18 +123,17 @@ python --version
 which python
 ```
 
-Expected path:
+Expected path shape:
 
 ```text
 ~/miniconda3/envs/tabulus-mineru/bin/python
 ```
 
-## MinerU Installation
+## 6. Install MinerU
 
-Install MinerU in the MinerU environment:
+Install MinerU in the `tabulus-mineru` environment:
 
 ```bash
-python -m pip install --upgrade pip
 python -m pip install "mineru[all]==3.4.5"
 ```
 
@@ -297,7 +149,9 @@ The tested version was:
 MinerU 3.4.5
 ```
 
-Verify CUDA access from the MinerU environment:
+## 7. Verify PyTorch CUDA Access
+
+Verify CUDA access from the same Conda environment that will execute MinerU:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python - <<'PY'
@@ -313,43 +167,56 @@ if torch.cuda.is_available():
 PY
 ```
 
-In the tested environment this resolved to one visible NVIDIA L40S GPU.
+This verifies that PyTorch inside the `tabulus-mineru` Conda environment can access the NVIDIA GPU, which is the relevant GPU check for MinerU.
 
-For the exact tested MinerU document-processing command, see `workflows/mineru-gpu-execution`.
+In the tested environment this resolved to one visible NVIDIA L40S GPU when `CUDA_VISIBLE_DEVICES=0` was set.
 
-The Tabulus CLI command for this GPU path is:
+## 8. Run GPU Profiling
+
+Run MinerU through the Tabulus CLI with the GPU backend:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 tabulus profile \
   --pdf "$WORK/input/Puurunen - February 2005.pdf" \
-  --out "$WORK/mineru/puurunen_2005" \
   --backend hybrid-engine \
   --effort high \
   --method auto
 ```
 
-If `hybrid-engine` is requested but the GPU requirements are not satisfied, Tabulus reports the reason and falls back to the CPU-compatible `pipeline` backend.
+Do not pass `--out` unless you intentionally want to override the output root. When `--out` is omitted, Tabulus uses its current automatic profiling output convention:
 
-## PaddleOCR Environment
-
-Create PaddleOCR in a separate environment. The exact installation command should be validated on the GPU server before this page is marked complete.
-
-Target shape:
-
-```bash
-conda create -n tabulus-paddleocr python=3.12 -y
-conda activate tabulus-paddleocr
-python -m pip install --upgrade pip
-python -m pip install -e .
+```text
+<PDF directory>/
+└── tabulus-output/
+    └── mineru/
+        └── hybrid-engine/
 ```
 
-The PaddleOCR dependency stack should be installed and tested independently from MinerU.
+This directory is the profiler/backend output root passed to MinerU. MinerU then creates its native document and method hierarchy underneath that root. Do not flatten or rename MinerU-native output files.
 
-## Notes
+If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to the CPU-compatible `pipeline` backend. In that case, the automatic output root uses the resolved backend:
 
-- Docker is not required for this workflow.
-- On HPC systems where Docker is unavailable, Apptainer can execute OCI/Docker images directly.
-- The web UI can be omitted.
-- Intermediate outputs should be stored under `work/` and inspected directly.
-- Use one GPU during initial testing with `CUDA_VISIBLE_DEVICES=0`.
-- CPU-only profiling is documented separately in `installation/windows-cpu`.
+```text
+<PDF directory>/
+└── tabulus-output/
+    └── mineru/
+        └── pipeline/
+```
+
+## 9. Inspect Profiling Output
+
+For the example command above, the automatic GPU output root is:
+
+```text
+$WORK/input/tabulus-output/mineru/hybrid-engine/
+```
+
+Inspect the generated MinerU-native hierarchy after the run:
+
+```bash
+find "$WORK/input/tabulus-output/mineru/hybrid-engine" -maxdepth 4 -type f | sort
+```
+
+The exact MinerU-native document and method subdirectory produced by `hybrid-engine` should be confirmed from the fresh GPU run before being documented as a fixed layout.
+
+CPU-only profiling is documented separately in `installation/windows-cpu`.
