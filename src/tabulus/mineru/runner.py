@@ -12,6 +12,8 @@ from tabulus.mineru.backends import (
     resolve_backend,
 )
 
+from tabulus.mineru.tables import find_content_list
+
 
 def find_mineru_executable() -> str:
     """Return the MinerU executable available in the current environment."""
@@ -124,6 +126,17 @@ def run_mineru(
         image_analysis=False,
     )
 
+    document_dir = output_dir / pdf_path.stem
+
+    before_content_lists = (
+        {
+            path.resolve(): path.stat().st_mtime_ns
+            for path in document_dir.rglob("*_content_list.json")
+        }
+        if document_dir.exists()
+        else {}
+    )
+
     started = time.perf_counter()
 
     process = subprocess.run(
@@ -139,11 +152,34 @@ def run_mineru(
 
     elapsed = time.perf_counter() - started
 
-    run_dir = (
-        output_dir
-        / pdf_path.stem
-        / method
-    )
+    if process.returncode == 0:
+        after_content_lists = list(
+            document_dir.rglob("*_content_list.json")
+        )
+
+        changed_content_lists = [
+            path
+            for path in after_content_lists
+            if (
+                path.resolve() not in before_content_lists
+                or path.stat().st_mtime_ns
+                != before_content_lists[path.resolve()]
+            )
+        ]
+
+        if len(changed_content_lists) == 1:
+            run_dir = changed_content_lists[0].parent
+        elif len(after_content_lists) == 1:
+            run_dir = after_content_lists[0].parent
+        else:
+            raise RuntimeError(
+                "Could not uniquely determine the MinerU-native "
+                f"run directory under {document_dir}."
+            )
+    else:
+        # MinerU may fail before creating its native output directory.
+        # Store diagnostics at the document level in that case.
+        run_dir = document_dir
 
     run_dir.mkdir(
         parents=True,
