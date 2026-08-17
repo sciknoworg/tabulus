@@ -75,30 +75,48 @@ GPU / CPU / RAM available to the job
 For the interactive workflow used during Tabulus testing, request an interactive allocation:
 
 ```bash
-srun --partition=p_12G \
+srun --partition=p_48G \
+  --nodelist=gpu-l40s-02 \
   --gres=gpu:1 \
   --cpus-per-task=8 \
   --mem=32G \
-  --time=02:00:00 \
+  --time=12:00:00 \
   --pty bash
 ```
 
 The options mean:
 
-- `--partition=p_12G`: Slurm partition to submit to.
+- `--partition=p_48G`: Slurm partition to submit to.
+- `--nodelist=gpu-l40s-02`: request the specific `gpu-l40s-02` node for this validated workflow.
 - `--gres=gpu:1`: request one GPU.
 - `--cpus-per-task=8`: request eight CPU cores.
 - `--mem=32G`: request 32 GB host/system RAM.
-- `--time=02:00:00`: maximum allocation time of two hours.
+- `--time=12:00:00`: maximum allocation time of 12 hours.
 - `--pty bash`: start an interactive shell on the allocated node.
 
 `--mem=32G` requests system RAM, not GPU memory. The GPU has its own VRAM; requesting a GPU with `--gres=gpu:1` gives the job access to an allocated GPU.
+
+`--nodelist=gpu-l40s-02` is not inherently required by Slurm, but it is currently used in the documented validation command to guarantee that the job runs on an L40S node.
+
+This has a trade-off:
+
+- With `--nodelist=gpu-l40s-02`, the run is reproducible on that exact node.
+- If `gpu-l40s-02` is busy, the job may wait even if another suitable L40S node is available.
+- Using only `--partition=p_48G --gres=gpu:1` does not guarantee an L40S on this cluster because the partition contains multiple GPU types.
+
+A better long-term command would request any L40S using a model-specific GRES or Slurm feature/constraint, if the cluster exposes one. For example, the final command might use something conceptually like `--gres=gpu:l40s:1` or `--constraint=l40s`, but do not treat either form as valid until the cluster configuration has been verified.
 
 After the interactive allocation starts, verify that you are on the allocated compute node and that the assigned GPU is visible:
 
 ```bash
 hostname
 nvidia-smi
+```
+
+Optionally inspect available nodes, partitions, GPU resources, memory, and node state:
+
+```bash
+sinfo -N -o "%N %P %G %m %t"
 ```
 
 For initial testing, restrict software execution to one GPU:
