@@ -7,31 +7,37 @@ A GPU is not required for all Tabulus use. Windows and CPU-only machines can use
 The GPU workflow begins with a Slurm allocation and then runs the Tabulus + MinerU software stack inside that allocation:
 
 ```text
-Connect to server
+SSH to server
      |
      v
-Login node
+login node
      |
      v
-Request Slurm resources
+request Slurm resources
      |
      v
-Allocated compute node
+allocated compute node
+     |
+     +-- hostname
+     +-- nvidia-smi
      |
      v
-Verify GPU with nvidia-smi
+cd $TABULUS_ROOT
      |
      v
-Activate tabulus-mineru
+create/activate tabulus-mineru
      |
      v
-Verify PyTorch CUDA
+install Tabulus + MinerU
      |
      v
-Run Tabulus / MinerU
+verify PyTorch CUDA access
      |
      v
-MinerU profiling output
+tabulus profile --pdf "$PAPERS/..."
+     |
+     v
+$PAPERS/tabulus-output/mineru/hybrid-engine/...
 ```
 
 ## 1. Tested Environment
@@ -95,27 +101,17 @@ hostname
 nvidia-smi
 ```
 
-This is an interactive allocation. Batch execution is a separate Slurm mode using `sbatch`; it should be documented separately if a validated Tabulus batch workflow is added.
-
-Keep Slurm resource allocation separate from environment installation. Slurm controls where and how the computation runs; Conda controls which Python software and dependencies run inside that allocation.
-
-## 3. Verify The NVIDIA GPU
-
-Confirm that NVIDIA GPUs are available:
-
-```bash
-nvidia-smi
-```
-
-On the tested system, four NVIDIA L40S GPUs with approximately 46 GB VRAM each are available.
-
-For initial testing, restrict execution to one GPU:
+For initial testing, restrict software execution to one GPU:
 
 ```bash
 export CUDA_VISIBLE_DEVICES=0
 ```
 
-## 4. Clone / Enter The Tabulus Repository
+This is an interactive allocation. Batch execution is a separate Slurm mode using `sbatch`; it should be documented separately if a validated Tabulus batch workflow is added.
+
+Keep Slurm resource allocation separate from environment installation. Slurm controls where and how the computation runs; Conda controls which Python software and dependencies run inside that allocation.
+
+## 3. Clone / Enter The Tabulus Repository
 
 Clone Tabulus and enter the repository:
 
@@ -124,22 +120,40 @@ git clone https://github.com/sciknoworg/tabulus.git
 cd tabulus
 ```
 
-Define the working directory:
+Keep the source repository and the PDF collection separate. The intended layout is:
+
+```text
+$HOME/
+├── tabulus/
+│   ├── src/
+│   ├── docs/
+│   ├── tests/
+│   └── ...
+│
+└── <papers-folder>/
+    ├── Puurunen - February 2005.pdf
+    └── tabulus-output/
+        └── mineru/
+            └── hybrid-engine/
+```
+
+Define the source and data locations separately:
 
 ```bash
 export TABULUS_ROOT="$HOME/tabulus"
-export WORK="$TABULUS_ROOT/work"
+export PAPERS="$HOME/<papers-folder>"
 ```
 
-Create an input directory for PDFs:
+Verify that the PDF collection is available:
 
 ```bash
-mkdir -p "$WORK/input"
+cd "$TABULUS_ROOT"
+ls "$PAPERS"
 ```
 
-Place the PDF to profile under `$WORK/input`.
+In this workflow, source code lives under `$TABULUS_ROOT`. Input PDFs and generated profiling output live under `$PAPERS`.
 
-## 5. Create The tabulus-mineru Conda Environment
+## 4. Create The tabulus-mineru Conda Environment
 
 Deactivate the current environment if necessary:
 
@@ -165,7 +179,7 @@ Upgrade pip:
 python -m pip install --upgrade pip
 ```
 
-## 6. Install Tabulus
+## 5. Install Tabulus
 
 Install Tabulus in editable mode from the repository checkout:
 
@@ -186,7 +200,7 @@ Expected path shape:
 ~/miniconda3/envs/tabulus-mineru/bin/python
 ```
 
-## 7. Install MinerU
+## 6. Install MinerU
 
 Install MinerU in the `tabulus-mineru` environment:
 
@@ -206,7 +220,7 @@ The tested version was:
 MinerU 3.4.5
 ```
 
-## 8. Verify PyTorch CUDA Access
+## 7. Verify PyTorch CUDA Access
 
 Verify CUDA access from the same Conda environment that will execute MinerU:
 
@@ -228,25 +242,27 @@ This verifies that PyTorch inside the `tabulus-mineru` Conda environment can acc
 
 In the tested environment this resolved to one visible NVIDIA L40S GPU when `CUDA_VISIBLE_DEVICES=0` was set.
 
-## 9. Run GPU Profiling
+## 8. Run GPU Profiling
 
 Run MinerU through the Tabulus CLI with the GPU backend:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 tabulus profile \
-  --pdf "$WORK/input/Puurunen - February 2005.pdf" \
+  --pdf "$PAPERS/Puurunen - February 2005.pdf" \
   --backend hybrid-engine \
   --effort high \
   --method auto
 ```
 
-Do not pass `--out` unless you intentionally want to override the output root. When `--out` is omitted, Tabulus uses its current automatic profiling output convention:
+Do not pass `--out` unless you intentionally want to override the output root. When `--out` is omitted, Tabulus places the automatic output relative to the PDF's parent directory:
 
 ```text
-<PDF directory>/
+$PAPERS/
+├── Puurunen - February 2005.pdf
 └── tabulus-output/
     └── mineru/
         └── hybrid-engine/
+            └── ...
 ```
 
 This directory is the profiler/backend output root passed to MinerU. MinerU then creates its native document and method hierarchy underneath that root. Do not flatten or rename MinerU-native output files.
@@ -254,24 +270,24 @@ This directory is the profiler/backend output root passed to MinerU. MinerU then
 If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to the CPU-compatible `pipeline` backend. In that case, the automatic output root uses the resolved backend:
 
 ```text
-<PDF directory>/
+$PAPERS/
 └── tabulus-output/
     └── mineru/
         └── pipeline/
 ```
 
-## 10. Inspect Profiling Output
+## 9. Inspect Profiling Output
 
 For the example command above, the automatic GPU output root is:
 
 ```text
-$WORK/input/tabulus-output/mineru/hybrid-engine/
+$PAPERS/tabulus-output/mineru/hybrid-engine/
 ```
 
 Inspect the generated MinerU-native hierarchy after the run:
 
 ```bash
-find "$WORK/input/tabulus-output/mineru/hybrid-engine" -maxdepth 4 -type f | sort
+find "$PAPERS/tabulus-output/mineru/hybrid-engine" -maxdepth 4 -type f | sort
 ```
 
 The exact MinerU-native document and method subdirectory produced by `hybrid-engine` should be confirmed from the fresh GPU run before being documented as a fixed layout.
