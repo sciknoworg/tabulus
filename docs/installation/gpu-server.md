@@ -34,8 +34,6 @@ Run Tabulus / MinerU
 MinerU profiling output
 ```
 
-Do not rely on the repository-level `requirements.txt` to install MinerU GPU dependencies. The root requirements are the lightweight Tabulus library development contract; MinerU should be installed in its own environment.
-
 ## 1. Tested Environment
 
 The verified setup uses:
