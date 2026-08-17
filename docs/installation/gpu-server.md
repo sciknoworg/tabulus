@@ -4,25 +4,31 @@ This page documents the supported Tabulus + MinerU GPU installation and profilin
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
-The GPU workflow is:
+The GPU workflow begins with a Slurm allocation and then runs the Tabulus + MinerU software stack inside that allocation:
 
 ```text
-NVIDIA GPU
+Connect to server
      |
      v
-Create tabulus-mineru Conda environment
+Login node
      |
      v
-Install Tabulus
+Request Slurm resources
      |
      v
-Install MinerU 3.4.5
+Allocated compute node
      |
      v
-Verify PyTorch CUDA access
+Verify GPU with nvidia-smi
      |
      v
-tabulus profile --backend hybrid-engine
+Activate tabulus-mineru
+     |
+     v
+Verify PyTorch CUDA
+     |
+     v
+Run Tabulus / MinerU
      |
      v
 MinerU profiling output
@@ -42,7 +48,60 @@ The verified setup uses:
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
 
-## 2. Verify The NVIDIA GPU
+## 2. Request GPU Compute Resources
+
+Connecting to the GPU server over SSH usually places you on a login node. Logging into the server does not by itself allocate a GPU, CPU cores, or RAM for computation. Resource allocation is handled separately by the Slurm scheduler.
+
+The distinction is:
+
+```text
+SSH connection to GPU server
+         |
+         v
+login node
+         |
+         | request resources from Slurm
+         v
+allocated compute node
+         |
+         v
+GPU / CPU / RAM available to the job
+```
+
+For the interactive workflow used during Tabulus testing, request an interactive allocation:
+
+```bash
+srun --partition=p_12G \
+  --gres=gpu:1 \
+  --cpus-per-task=8 \
+  --mem=32G \
+  --time=02:00:00 \
+  --pty bash
+```
+
+The options mean:
+
+- `--partition=p_12G`: Slurm partition to submit to.
+- `--gres=gpu:1`: request one GPU.
+- `--cpus-per-task=8`: request eight CPU cores.
+- `--mem=32G`: request 32 GB host/system RAM.
+- `--time=02:00:00`: maximum allocation time of two hours.
+- `--pty bash`: start an interactive shell on the allocated node.
+
+`--mem=32G` requests system RAM, not GPU memory. The GPU has its own VRAM; requesting a GPU with `--gres=gpu:1` gives the job access to an allocated GPU.
+
+After the interactive allocation starts, verify that you are on the allocated compute node and that the assigned GPU is visible:
+
+```bash
+hostname
+nvidia-smi
+```
+
+This is an interactive allocation. Batch execution is a separate Slurm mode using `sbatch`; it should be documented separately if a validated Tabulus batch workflow is added.
+
+Keep Slurm resource allocation separate from environment installation. Slurm controls where and how the computation runs; Conda controls which Python software and dependencies run inside that allocation.
+
+## 3. Verify The NVIDIA GPU
 
 Confirm that NVIDIA GPUs are available:
 
@@ -58,7 +117,7 @@ For initial testing, restrict execution to one GPU:
 export CUDA_VISIBLE_DEVICES=0
 ```
 
-## 3. Clone / Enter The Tabulus Repository
+## 4. Clone / Enter The Tabulus Repository
 
 Clone Tabulus and enter the repository:
 
@@ -82,7 +141,7 @@ mkdir -p "$WORK/input"
 
 Place the PDF to profile under `$WORK/input`.
 
-## 4. Create The tabulus-mineru Conda Environment
+## 5. Create The tabulus-mineru Conda Environment
 
 Deactivate the current environment if necessary:
 
@@ -108,7 +167,7 @@ Upgrade pip:
 python -m pip install --upgrade pip
 ```
 
-## 5. Install Tabulus
+## 6. Install Tabulus
 
 Install Tabulus in editable mode from the repository checkout:
 
@@ -129,7 +188,7 @@ Expected path shape:
 ~/miniconda3/envs/tabulus-mineru/bin/python
 ```
 
-## 6. Install MinerU
+## 7. Install MinerU
 
 Install MinerU in the `tabulus-mineru` environment:
 
@@ -149,7 +208,7 @@ The tested version was:
 MinerU 3.4.5
 ```
 
-## 7. Verify PyTorch CUDA Access
+## 8. Verify PyTorch CUDA Access
 
 Verify CUDA access from the same Conda environment that will execute MinerU:
 
@@ -171,7 +230,7 @@ This verifies that PyTorch inside the `tabulus-mineru` Conda environment can acc
 
 In the tested environment this resolved to one visible NVIDIA L40S GPU when `CUDA_VISIBLE_DEVICES=0` was set.
 
-## 8. Run GPU Profiling
+## 9. Run GPU Profiling
 
 Run MinerU through the Tabulus CLI with the GPU backend:
 
@@ -203,7 +262,7 @@ If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus 
         └── pipeline/
 ```
 
-## 9. Inspect Profiling Output
+## 10. Inspect Profiling Output
 
 For the example command above, the automatic GPU output root is:
 
