@@ -4,6 +4,12 @@ The pipeline begins with one input scientific PDF paper and ends with resolved C
 
 Each step should be implemented as a standalone processing component with a small, explicit contract. Libraries such as MinerU, PaddleOCR-VL, GROBID, Kreuzberg, Crossref, or future alternatives should be adapters behind these component boundaries.
 
+```{figure} ../_static/pipeline.png
+:alt: Tabulus pipeline workflow
+:width: 720px
+:align: center
+```
+
 ## First Clean Workflow
 
 This is the first practical workflow to stabilize: run MinerU as the first document-analysis adapter, inspect its outputs with the new Tabulus library, then later reconstruct each table with PaddleOCR-VL.
