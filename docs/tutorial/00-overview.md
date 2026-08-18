@@ -12,7 +12,7 @@ Each step should be implemented as a standalone processing component with a smal
 
 ## First Clean Workflow
 
-This is the first practical workflow to stabilize: run MinerU as the first document-analysis adapter, inspect its outputs with the new Tabulus library, then later reconstruct each table with PaddleOCR-VL.
+This is the first practical workflow to stabilize: run MinerU as the first document-analysis adapter, inspect its outputs with the new Tabulus library, then reconstruct each table through the Table OCR and Structure Extraction component, with PaddleOCR-VL as the first/default adapter.
 
 ```text
 Scientific PDF
@@ -58,9 +58,9 @@ Scientific PDF
 saved outputs
 ```
 
-The first module is intentionally named for the processing work, not the library. MinerU is the first adapter for this module, but another PDF layout or table extraction tool should be able to produce the same outputs later.
+The first module is intentionally named for the processing work, not only the library. In the current clean Tabulus workflow, MinerU is the selected/canonical table-localization and crop-generation stage because prior experimental evaluation found it to be the strongest and most efficient choice for that role. This is a Tabulus design decision for the current pipeline, not a universal claim that MinerU is always superior for every dataset.
 
-The red output between the two modules is the important contract: table images plus structured metadata. In the current validated library code, Tabulus does not crop the PDF from the bounding box itself. MinerU already generates the table crop image; Tabulus reads MinerU's `content_list.json`, filters entries with `type == "table"`, resolves each table's `img_path`, and exposes typed table-region objects.
+The red output between the two modules is the important contract: canonical MinerU table crops plus structured metadata. In the current validated library code, Tabulus does not crop the PDF from the bounding box itself. MinerU already generates the table crop image; Tabulus reads MinerU's `content_list.json`, filters entries with `type == "table"`, resolves each table's `img_path`, and exposes typed table-region objects.
 
 Minimal standalone call using the current library:
 
@@ -76,9 +76,11 @@ print(len(tables), refs_start_page)
 
 This library call consumes existing MinerU output. The CLI can also launch MinerU with `tabulus profile` and export the table-crop handoff with `tabulus export-table-crops`. PaddleOCR-VL is not yet implemented in the new library.
 
+The component is Table OCR and Structure Extraction. PaddleOCR-VL is the first/default table-reconstruction adapter for that component, not a permanent hard-coded dependency. Other compatible adapters can consume the same normalized table-crop handoff if they preserve the table identifier, MinerU provenance, and structured output contract.
+
 ## Comparison To Evaluate
 
-The clean workflow should compare two table extraction paths scientifically:
+The first clean workflow should compare two table extraction paths scientifically:
 
 ```text
 MinerU table_body
@@ -89,6 +91,43 @@ MinerU crop -> PaddleOCR-VL reconstruction
 ```
 
 Modern MinerU may be good enough for some tables. The second model should not be assumed necessary until table quality, structure preservation, and runtime are measured.
+
+The broader experimental design treats table reconstruction as a plug-and-play adapter comparison. MinerU provides both the canonical table crop through `img_path` and its own structured `table_body`. The same MinerU-generated crop can be sent independently to PaddleOCR-VL, DeepSeek OCR, Chandra, Kreuzberg, or NuExtract3, while MinerU `table_body` remains a parallel native reconstruction candidate. Those adapters should not independently process the original PDF to locate or crop tables in this comparison; fixing the crop input controls the table-detection variable.
+
+```text
+Scientific PDF
+      |
+      v
+    MinerU
+      |
+      +-- table localization
+      +-- table crop generation
+      +-- MinerU table_body
+              |
+              +-------------------------------+
+              |                               |
+       canonical table crop             table_body
+              |                               |
+   +----------+----------+----------+---------+---------+
+   |          |          |          |         |         |
+   v          v          v          v         v         v
+PaddleOCR  DeepSeek   Chandra   Kreuzberg  NuExtract3 MinerU
+   VL                                             table_body
+   |          |          |          |         |         |
+   v          v          v          v         v         v
+table reconstruction candidates / structured tables
+              |
+              v
+     normalize representations
+              |
+              v
+       compare predictions
+              |
+              v
+       ground-truth CSV
+```
+
+All six outputs may use different adapter-native output formats, so Tabulus should normalize them into a common table representation before comparison against the same ground-truth CSV. The evaluation should determine whether an external table-reconstruction adapter improves over MinerU's own `table_body`, and which adapter offers the best quality/runtime tradeoff for different table classes.
 
 ## Ordered Steps
 
