@@ -18,6 +18,19 @@ def test_default_profile_output_root(tmp_path):
         / "pipeline"
     )
 
+def test_default_table_crops_output_root(tmp_path):
+    pdf = tmp_path / "Puurunen - February 2005.pdf"
+
+    output = cli.default_table_crops_output_root(pdf)
+
+    assert output == (
+        tmp_path
+        / "tabulus-output"
+        / "table-crops"
+        / "Puurunen - February 2005"
+    )
+
+
 def test_profile_parser_allows_default_output():
     parser = cli.build_parser()
 
@@ -33,6 +46,8 @@ def test_profile_parser_allows_default_output():
 
     assert args.out is None
     assert args.profiler == "mineru"
+    assert args.export_table_crops is True
+    assert args.table_crops_out is None
 
 def test_profile_parser_accepts_pipeline():
     parser = cli.build_parser()
@@ -57,6 +72,23 @@ def test_profile_parser_accepts_pipeline():
     assert args.effort == "high"
 
 
+def test_profile_parser_can_disable_table_crop_export():
+    parser = cli.build_parser()
+
+    args = parser.parse_args(
+        [
+            "profile",
+            "--pdf",
+            "paper.pdf",
+            "--backend",
+            "pipeline",
+            "--no-export-table-crops",
+        ]
+    )
+
+    assert args.export_table_crops is False
+
+
 def test_profile_main_calls_mineru_runner(monkeypatch):
     calls = {}
 
@@ -71,6 +103,8 @@ def test_profile_main_calls_mineru_runner(monkeypatch):
             "output",
             "--backend",
             "pipeline",
+            "--table-crops-out",
+            "table-crops",
         ],
     )
 
@@ -79,6 +113,8 @@ def test_profile_main_calls_mineru_runner(monkeypatch):
         "select_backend",
         lambda requested: "pipeline",
     )
+
+    run_dir = Path("output/paper/auto")
 
     def fake_run_mineru(
         pdf_path,
@@ -93,11 +129,31 @@ def test_profile_main_calls_mineru_runner(monkeypatch):
         calls["backend"] = requested_backend
         calls["effort"] = effort
         calls["method"] = method
+        return run_dir
+
+    class FakeResult:
+        tables_found = 2
+        crops_saved = 2
+        index_path = Path("table-crops/tables_index.json")
+
+    def fake_export_mineru_table_crops(
+        *,
+        mineru_output_dir,
+        output_dir,
+    ):
+        calls["mineru_output_dir"] = mineru_output_dir
+        calls["table_crops_output_dir"] = output_dir
+        return FakeResult()
 
     monkeypatch.setattr(
         cli,
         "run_mineru",
         fake_run_mineru,
+    )
+    monkeypatch.setattr(
+        cli,
+        "export_mineru_table_crops",
+        fake_export_mineru_table_crops,
     )
 
     cli.main()
@@ -107,6 +163,53 @@ def test_profile_main_calls_mineru_runner(monkeypatch):
     assert calls["backend"] == "pipeline"
     assert calls["effort"] == "high"
     assert calls["method"] == "auto"
+    assert calls["mineru_output_dir"] == run_dir
+    assert calls["table_crops_output_dir"] == Path("table-crops")
+
+
+def test_profile_main_can_skip_table_crop_export(monkeypatch):
+    calls = {"export_called": False}
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "tabulus",
+            "profile",
+            "--pdf",
+            "paper.pdf",
+            "--out",
+            "output",
+            "--backend",
+            "pipeline",
+            "--no-export-table-crops",
+        ],
+    )
+
+    monkeypatch.setattr(
+        cli,
+        "select_backend",
+        lambda requested: "pipeline",
+    )
+
+    monkeypatch.setattr(
+        cli,
+        "run_mineru",
+        lambda *args, **kwargs: Path("output/paper/auto"),
+    )
+
+    def fake_export_mineru_table_crops(**kwargs):
+        calls["export_called"] = True
+        raise AssertionError("Table crop export should have been skipped.")
+
+    monkeypatch.setattr(
+        cli,
+        "export_mineru_table_crops",
+        fake_export_mineru_table_crops,
+    )
+
+    cli.main()
+
+    assert calls["export_called"] is False
 
 
 def test_export_table_crops_parser_accepts_mineru_root():

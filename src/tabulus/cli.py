@@ -93,6 +93,19 @@ def default_profile_output_root(
         / backend
     )
 
+def default_table_crops_output_root(pdf_path: Path) -> Path:
+    """Return the default normalized table-crop handoff directory."""
+
+    pdf_path = Path(pdf_path).resolve()
+
+    return (
+        pdf_path.parent
+        / "tabulus-output"
+        / "table-crops"
+        / pdf_path.stem
+    )
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="tabulus",
@@ -165,6 +178,28 @@ def build_parser() -> argparse.ArgumentParser:
         help="Processing effort for hybrid-engine.",
     )
 
+    profile.add_argument(
+        "--table-crops-out",
+        type=Path,
+        default=None,
+        help=(
+            "Normalized table-crop handoff directory. If omitted, Tabulus "
+            "writes to <PDF directory>/tabulus-output/table-crops/<PDF stem>/."
+        ),
+    )
+
+    profile.add_argument(
+        "--no-export-table-crops",
+        dest="export_table_crops",
+        action="store_false",
+        help=(
+            "Skip automatic export of MinerU-detected tables into the "
+            "normalized Tabulus table-crop handoff."
+        ),
+    )
+
+    profile.set_defaults(export_table_crops=True)
+
     export_table_crops = subparsers.add_parser(
         "export-table-crops",
         help="Export MinerU table crops into a normalized handoff directory.",
@@ -204,6 +239,12 @@ def main() -> None:
             )
         )
 
+        table_crops_output = (
+            args.table_crops_out
+            if args.table_crops_out is not None
+            else default_table_crops_output_root(args.pdf)
+        )
+
         print()
         print("PDF profiling configuration:")
         print(f"  PDF: {args.pdf}")
@@ -211,6 +252,12 @@ def main() -> None:
         print(f"  Backend: {backend}")
         print(f"  Method: {args.method}")
         print(f"  Output root: {output_root}")
+        print(
+            "  Export table crops: "
+            f"{'yes' if args.export_table_crops else 'no'}"
+        )
+        if args.export_table_crops:
+            print(f"  Table-crops output: {table_crops_output}")
 
         if args.profiler == "mineru":
             run_dir = run_mineru(
@@ -227,6 +274,19 @@ def main() -> None:
 
         print()
         print(f"PDF profiling completed: {run_dir}")
+
+        if args.export_table_crops:
+            crop_result = export_mineru_table_crops(
+                mineru_output_dir=run_dir,
+                output_dir=table_crops_output,
+            )
+
+            print()
+            print("Canonical table-crop export completed:")
+            print(f"  Tables found: {crop_result.tables_found}")
+            print(f"  Crops saved: {crop_result.crops_saved}")
+            print(f"  Index: {crop_result.index_path}")
+
         return
 
     if args.command == "export-table-crops":
