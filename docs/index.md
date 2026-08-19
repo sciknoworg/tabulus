@@ -8,7 +8,7 @@ Tabulus is a modular pipeline for digitizing scientific PDF papers into structur
 
 The project is being reorganized around standalone processing components rather than around specific OCR or extraction libraries. Each component should be runnable on its own, exchange data through a documented contract, and plug into the end-to-end pipeline once the individual step is stable.
 
-The current validated library module focuses on MinerU-backed PDF profiling. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values.
+The current validated library module focuses on MinerU-backed PDF profiling and the first table-reconstruction adapter. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values. The table OCR layer now provides an extensible adapter contract with PaddleOCR-VL as the first implemented adapter.
 
 ## How To Use This Documentation
 
@@ -16,8 +16,8 @@ Start with the installation page that matches your machine. Windows and CPU-only
 
 For the current implementation, the most important distinction is:
 
-- **Already validated:** cross-platform MinerU execution through `tabulus profile`, a real 53-page Windows CPU profiling run with MinerU `pipeline`, GPU-server profiling with MinerU `hybrid-engine`, typed table-region discovery with `tabulus.mineru`, and `tables_index.json` table-crop export.
-- **Next stages:** PaddleOCR-VL execution, reference processing, run reporting, and full end-to-end commands.
+- **Already validated:** cross-platform MinerU execution through `tabulus profile`, a real 53-page Windows CPU profiling run with MinerU `pipeline`, GPU-server profiling with MinerU `hybrid-engine`, automatic export of 23 canonical table crops for the Puurunen PDF, typed table-region discovery with `tabulus.mineru`, PaddleOCR-VL CPU and GPU inference on MinerU table crops, and legacy-compatible HTML/Markdown table parsing.
+- **Next stages:** OCR batch execution across all crops, reference processing, run reporting, and full end-to-end commands.
 
 ## Where To Start
 
@@ -74,9 +74,14 @@ The current library can:
 - resolve MinerU-generated table images
 - convert zero-based MinerU page indices into document page numbers
 - retain provenance and expose typed `TableRegion` objects
-- export table images plus `tables_index.json` through `tabulus export-table-crops`
+- export table images plus `tables_index.json` automatically through `tabulus profile`
+- regenerate the same normalized crop handoff from existing MinerU output through `tabulus export-table-crops`
+- load table OCR adapters lazily so core Tabulus imports do not require PaddleOCR or PaddlePaddle
+- run the PaddleOCR-VL adapter on already-isolated MinerU table crops
+- preserve PaddleOCR native JSON and Markdown result views
+- parse native table renderings into a legacy-compatible rectangular row representation
 
-The current library does not yet run PaddleOCR-VL, run bibliography/reference matching, produce run reports, or write final CSV outputs.
+The current library does not yet provide an OCR batch CLI, run bibliography/reference matching, produce run reports, resolve references, or write final CSV outputs. PaddleOCR-VL GPU execution has been validated for a single canonical MinerU crop, not as an all-crops batch workflow.
 
 ## Documentation Map
 

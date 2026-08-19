@@ -25,7 +25,7 @@ It:
 - selects a `pipeline` or `hybrid-engine` MinerU backend
 - launches MinerU through `tabulus profile`
 - checks GPU suitability for `hybrid-engine` and falls back to `pipeline` when needed
-- writes automatic profiling output under `<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/` when `--out` is omitted
+- writes automatic profiling output under `<PDF directory>/tabulus-output/<profiler>/<backend>/` when `--out` is omitted
 - recursively finds `*_content_list.json`
 - loads the structured content representation
 - selects entries where `type == "table"`
@@ -34,7 +34,8 @@ It:
 - preserves `bbox`, captions, footnotes, and `table_body`
 - optionally marks regions after a detected bibliography heading
 - returns typed `TableRegion` objects
-- exports a normalized `tables_index.json` and copied table images through `tabulus export-table-crops`
+- exports a normalized `tables_index.json` and copied table images automatically through `tabulus profile`
+- regenerates the normalized table-crop handoff from existing MinerU output through `tabulus export-table-crops`
 
 This code is covered by unit tests and does not require GPU execution.
 
@@ -57,16 +58,25 @@ from tabulus.mineru import discover_tables
 tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
 ```
 
-This reads MinerU outputs and returns typed table regions. Use the CLI commands below to launch MinerU and export the table-crop handoff. Image export preserves the source extension rather than converting every crop to PNG.
+This reads MinerU outputs and returns typed table regions. Use the CLI command below to launch MinerU and export the table-crop handoff. Image export preserves the source extension rather than converting every crop to PNG.
 
 For CLI execution:
 
 ```bash
 tabulus profile --pdf paper.pdf --backend pipeline
-tabulus export-table-crops --mineru-root tabulus-output/paper/profiling/mineru/pipeline --out work/table_crops
 ```
 
 It does not crop the PDF from bounding boxes itself. MinerU has already generated the crop image.
+
+The default normalized crop handoff is:
+
+```text
+<PDF directory>/tabulus-output/table-crops/<PDF stem>/
+  tables_index.json
+  images/
+```
+
+Use `tabulus export-table-crops` when an existing MinerU output should be reused without rerunning MinerU.
 
 The legacy repository still contains older service and benchmark runners. Treat those as previous implementation areas; the new library now owns the basic MinerU table-crop export contract.
 
@@ -89,7 +99,7 @@ The current stable downstream interface should remain `content_list.json` plus t
 
 The new library does not yet implement:
 
-- PaddleOCR-VL execution
+- OCR batch CLI
 - reference processing
 - a full end-to-end process command
 

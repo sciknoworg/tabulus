@@ -12,7 +12,7 @@ The input is intentionally image-based. Table-reconstruction adapters consume ca
 
 ## Output
 
-`tables/ocr_tables.json`.
+Adapter-neutral table OCR results. A later batch stage can write these to `tables/ocr_tables.json`.
 
 ## Module Contract
 
@@ -20,7 +20,7 @@ See `data-contracts/ocr-tables-json.md`.
 
 ## Default Implementation
 
-This step is not yet implemented in the new Tabulus library. The new modular pipeline should treat it as a later adapter stage after PDF profiling and table-crop export are stable.
+The new Tabulus library now includes the adapter contract, lazy registry, PaddleOCR-VL adapter, and legacy-compatible parser layer under `src/tabulus/table_ocr/`. It does not yet provide an OCR batch CLI or full end-to-end pipeline command.
 
 The component is model-independent: a Table OCR and Structure Extraction adapter consumes the normalized Tabulus table-crop handoff and returns a structured table result. PaddleOCR-VL is the first/default adapter being implemented for this contract, but another table-reconstruction adapter can be substituted later if it accepts the same handoff and preserves the same MinerU provenance.
 
@@ -69,6 +69,113 @@ tables/ocr_tables.json
 ```
 
 The diagram above shows the first adapter implementation, not a restriction of the component contract.
+
+## PaddleOCR-VL Configuration
+
+Use precise Paddle naming:
+
+- PaddleOCR 3.x is the overall PaddleOCR toolkit generation.
+- PaddleOCR 3.7.0 is the package version used in the validated Windows CPU run.
+- PaddleOCR-VL 1.6 / `PaddleOCR-VL-1.6-0.9B` is the document VLM used by Tabulus.
+
+Tabulus initializes the first adapter as:
+
+```python
+PaddleOCRVL(
+    pipeline_version="v1.6",
+    device="cpu",
+    engine="paddle",
+    use_layout_detection=False,
+)
+```
+
+`device` is configurable. The validated CPU configuration used `device="cpu"`; the validated Linux GPU configuration used `device="gpu:0"`.
+
+For each canonical MinerU table crop, prediction uses:
+
+```python
+pipeline.predict(
+    str(image_path),
+    use_layout_detection=False,
+    prompt_label="table",
+)
+```
+
+MinerU has already localized and cropped the table, so `use_layout_detection=False` avoids rerunning a layout detector. `prompt_label="table"` tells PaddleOCR-VL that the crop is already a table. The adapter preserves PaddleOCR's native public JSON and Markdown result views as two serializations of the same inference result, not as independent predictions.
+
+OCR and ML dependencies are optional and lazily loaded. Importing core Tabulus does not require PaddleOCR or PaddlePaddle; install those dependencies only in the hardware/model-specific environment that will run the adapter.
+
+## Legacy-Compatible Parsing
+
+The legacy Paddle `/ocr/images` table parsing behavior has been restored as a reusable parser layer.
+
+The current preference order is:
+
+1. Read PaddleOCR's native Markdown/HTML textual representation.
+2. If one or more HTML `<table>...</table>` elements are present, parse them as HTML tables, preserve cell strings, normalize whitespace, pad shorter rows to make the row matrix rectangular, and mark the parsed source as `"html"`.
+3. Only if no HTML table is found, fall back to GitHub-style pipe-table Markdown parsing and mark the parsed source as `"markdown"`.
+
+The generic parsed representation contains:
+
+- `rows`
+- `n_rows`
+- `n_cols`
+- `source`
+
+This is not final scientific normalization. It restores the legacy rectangular row representation; semantic fill-down, section-row interpretation, formula rewriting, and reference resolution remain later stages.
+
+## Validated Windows CPU Inference
+
+A real PaddleOCR-VL CPU inference was validated on Windows 11 with:
+
+- Python 3.12.10
+- PaddlePaddle 3.2.1
+- PaddleOCR 3.7.0
+- PaddleOCR-VL 1.6 / `PaddleOCR-VL-1.6-0.9B`
+- device: CPU
+- engine: Paddle
+- layout detection disabled
+- table prompt enabled
+
+The source table was the MinerU-generated crop `page_006_table_001.jpg` from `Puurunen - February 2005`. Paddle reported image dimensions of 1431 x 1923, inference status `ok`, one result object, one parsed table, parsed source `"html"`, and reconstructed dimensions of 58 rows x 6 columns.
+
+The reconstructed header was:
+
+```text
+$ Z^{a} $ | Material | Reactant A | Reactant B | Substrate $ ^{b} $ | Refs.
+```
+
+Preserved scientific strings included `$ B_{2}O_{3} $`, `$ B_{x}P_{y}O_{z} $`, and `$ Al_{2}O_{3} $`.
+
+The first CPU inference was very slow. Treat that as a performance observation only; CPU is validated for correctness but should not be assumed to be the recommended production mode.
+
+## Validated Linux GPU Inference
+
+A real PaddleOCR-VL GPU inference was validated on an NVIDIA L40S in a separate Conda environment from MinerU. The validated stack was:
+
+- Python 3.12
+- PaddlePaddle-GPU 3.2.1
+- PaddleOCR 3.7.0
+- PaddleOCR-VL 1.6
+- device: `gpu:0`
+- engine: Paddle
+- layout detection disabled
+- table prompt enabled
+
+The validated input was again the canonical MinerU crop `page_006_table_001.jpg` from `Puurunen - February 2005`. PaddleOCR-VL was applied only to that crop, not to the original PDF. The run succeeded and produced one parsed HTML table with 58 rows x 6 columns.
+
+A repeatability check using the same loaded adapter and the same crop produced:
+
+```text
+first cached-model pass: 44.58 s
+warm second pass:       25.24 s
+parsed table shape:     58 x 6 both times
+parsed cell differences: 0
+```
+
+The first-ever GPU run took 91.97 s because it also included model download and setup. Treat these timings as observations from this validation, not as formal benchmarks.
+
+The Windows CPU crop and Linux GPU crop were not byte-identical: the observed image dimensions were 1431 x 1923 on Windows CPU and 1432 x 1923 on Linux GPU. Do not make strong CPU-vs-GPU accuracy claims from differences between those outputs.
 
 ## Alternative Adapters
 

@@ -11,16 +11,20 @@ tabulus profile --pdf "C:\papers\P51.pdf" --backend pipeline
 When `--out` is omitted, Tabulus writes to:
 
 ```text
-C:\papers\tabulus-output\P51\profiling\mineru\pipeline\
+C:\papers\tabulus-output\mineru\pipeline\
 ```
 
 Use `--out` only when an explicit output directory is needed. MinerU keeps its native output hierarchy below the profiling directory.
 
-The current implemented table-crop handoff command is:
+After successful profiling, Tabulus automatically exports canonical MinerU table crops to:
 
-```powershell
-tabulus export-table-crops --mineru-root "C:\papers\tabulus-output\P51\profiling\mineru\pipeline" --out "C:\papers\tabulus-output\P51\table_crops"
+```text
+C:\papers\tabulus-output\table-crops\P51\
+  tables_index.json
+  images\
 ```
+
+Use `tabulus export-table-crops` only when regenerating the normalized handoff from an existing MinerU output without rerunning MinerU.
 
 The future end-to-end shape is:
 
@@ -34,4 +38,4 @@ python -m tabulus_pipeline.export_csv --run C:\runs\P51
 python -m tabulus_pipeline.report_run --run C:\runs\P51
 ```
 
-These `tabulus_pipeline.*` commands are aspirational module boundaries. PaddleOCR-VL execution, bibliography extraction, reference matching, DOI resolution, CSV export, and full run reporting are not yet implemented in the new library.
+These `tabulus_pipeline.*` commands are aspirational module boundaries. The new library has a PaddleOCR-VL table-reconstruction adapter, but an OCR batch CLI, bibliography extraction, reference matching, DOI resolution, CSV export, and full run reporting are not yet implemented.

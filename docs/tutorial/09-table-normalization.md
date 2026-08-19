@@ -30,7 +30,16 @@ Clean OCR table rows while preserving the raw OCR result for debugging.
 
 ## Default Implementation
 
-This is not yet cleanly separated in the code. Some normalization happens inside the PaddleOCR service while parsing HTML or Markdown.
+Full scientific table normalization is not yet implemented as a standalone stage.
+
+The current `tabulus.table_ocr.parsing` layer restores the legacy Paddle-compatible row parser. It reads adapter-native Markdown/HTML text, prefers HTML `<table>...</table>` elements when present, falls back to GitHub-style pipe-table Markdown only when no HTML table is found, and returns a rectangular row representation with:
+
+- `rows`
+- `n_rows`
+- `n_cols`
+- `source`
+
+This parser is a reconstruction/parsing checkpoint, not final normalization. It does not semantically fill down cells, interpret section rows, rewrite formulas, merge continued tables, resolve references, or decide which reconstruction candidate is scientifically correct.
 
 ## Verification
 

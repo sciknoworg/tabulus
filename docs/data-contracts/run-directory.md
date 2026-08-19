@@ -29,10 +29,10 @@ The current implemented `tabulus profile` command uses a simpler profiling-outpu
 ```text
 <PDF directory>/
   tabulus-output/
-    <PDF stem>/
-      profiling/
-        <profiler>/
-          <backend>/
+    <profiler>/
+      <resolved-backend>/
+    table-crops/
+      <PDF stem>/
 ```
 
 For the current MinerU CPU path:
@@ -40,10 +40,10 @@ For the current MinerU CPU path:
 ```text
 <PDF directory>/
   tabulus-output/
-    <PDF stem>/
-      profiling/
-        mineru/
-          pipeline/
+    mineru/
+      pipeline/
+    table-crops/
+      <PDF stem>/
 ```
 
 `mineru` is the profiler. `pipeline` and `hybrid-engine` are MinerU backends.
@@ -51,27 +51,35 @@ For the current MinerU CPU path:
 If `hybrid-engine` is requested but Tabulus falls back to `pipeline`, the automatic output directory uses the resolved backend name:
 
 ```text
-profiling/mineru/pipeline/
+tabulus-output/mineru/pipeline/
 ```
 
-`--out` remains available for explicit override.
+`--out` remains available for explicit profiling-root override. `--table-crops-out` separately overrides the normalized table-crop handoff directory, and `--no-export-table-crops` disables automatic crop export.
 
-MinerU retains its own native output hierarchy under the profiling directory, typically:
+MinerU retains its own native output hierarchy under the profiler/backend root, typically:
 
 ```text
-profiling/
+tabulus-output/
   mineru/
-    pipeline/
-      <PDF stem>/
-        <method>/
+    <resolved-backend>/
+      <document>/
+        <MinerU-native run directory>/
           images/
-          <PDF stem>_content_list.json
-          <PDF stem>_content_list_v2.json
-          <PDF stem>_layout.pdf
-          <PDF stem>_middle.json
-          <PDF stem>_model.json
-          <PDF stem>_origin.pdf
-          <PDF stem>.md
+          <document>_content_list.json
+          <document>_content_list_v2.json
+          <document>_layout.pdf
+          <document>_middle.json
+          <document>_model.json
+          <document>_origin.pdf
+          <document>.md
 ```
 
-Do not flatten or rename MinerU-native output files. The current Tabulus reader recursively finds `*_content_list.json` and resolves table images from MinerU's `img_path` values.
+Do not flatten or rename MinerU-native output files. The current Tabulus reader recursively finds `*_content_list.json` and resolves table images from MinerU's `img_path` values. The normalized table-crop handoff copies those canonical MinerU crops into:
+
+```text
+tabulus-output/
+  table-crops/
+    <PDF stem>/
+      tables_index.json
+      images/
+```

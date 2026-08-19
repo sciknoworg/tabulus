@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported Tabulus + MinerU GPU installation and profiling workflow using MinerU's `hybrid-engine` backend.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL table reconstruction is validated separately in a PaddleOCR environment so the PyTorch/MinerU stack and PaddlePaddle/PaddleOCR stack do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -51,6 +51,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
+- separate Conda environments for MinerU and PaddleOCR-VL
 
 ## 2. Request GPU Compute Resources
 
@@ -303,6 +304,8 @@ python -m pytest -v
 
 Linux validation after the MinerU native-run-directory runner fix collected 22 tests and all 22 passed. That run included the regression test `test_run_mineru_returns_native_hybrid_run_dir`, which verifies that Tabulus returns the native `hybrid_auto/` directory for the validated hybrid run and does not create an artificial `auto/` directory.
 
+At commit `b052c31768abc15db4f96a984522be1239ca2611`, after the table OCR adapter checkpoint, the full test suite reported 42 passed. That test run does not include Linux GPU integration validation for PaddleOCR-VL.
+
 This requires Tabulus to have been installed with:
 
 ```bash
@@ -335,6 +338,21 @@ $PAPERS/
 ```
 
 This directory is the profiler/backend output root passed to MinerU. MinerU then creates its native document/run hierarchy underneath that root. Do not flatten or rename MinerU-native output files.
+
+After successful profiling, Tabulus also exports canonical MinerU table crops automatically by default to:
+
+```text
+$PAPERS/
+└── tabulus-output/
+    └── table-crops/
+        └── <document>/
+            ├── tables_index.json
+            └── images/
+```
+
+Use `--table-crops-out PATH` to override the normalized handoff directory, or `--no-export-table-crops` to skip automatic crop export.
+
+The validated Linux GPU run regenerated the Puurunen PDF outputs with MinerU `hybrid-engine` and automatically exported 23 canonical table crops.
 
 If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to the CPU-compatible `pipeline` backend. In that case, the automatic output root uses the resolved backend:
 
@@ -399,3 +417,71 @@ PDF profiling completed: .../<document>/hybrid_auto
 ```
 
 CPU-only profiling is documented separately in `installation/windows-cpu`.
+
+## 11. Validate PaddleOCR-VL On A Canonical Crop
+
+Run PaddleOCR-VL in a separate Conda environment from MinerU. The separation is intentional:
+
+```text
+tabulus-mineru
+  Tabulus + MinerU + PyTorch
+
+tabulus-paddleocr
+  Tabulus + PaddleOCR + PaddlePaddle
+```
+
+Both environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
+
+The validated PaddleOCR-VL GPU stack was:
+
+- Python 3.12
+- PaddlePaddle-GPU 3.2.1
+- PaddleOCR 3.7.0
+- PaddleOCR-VL 1.6
+- NVIDIA L40S
+- `device="gpu:0"`
+- `engine="paddle"`
+
+PaddleOCR-VL is applied only to the canonical MinerU table crops:
+
+```text
+$PAPERS/
+└── tabulus-output/
+    └── table-crops/
+        └── <document>/
+            ├── tables_index.json
+            └── images/
+                └── page_006_table_001.jpg
+```
+
+The validated adapter configuration disables layout detection and enables the table prompt:
+
+```python
+PaddleOCRVL(
+    pipeline_version="v1.6",
+    device="gpu:0",
+    engine="paddle",
+    use_layout_detection=False,
+)
+
+pipeline.predict(
+    str(image_path),
+    use_layout_detection=False,
+    prompt_label="table",
+)
+```
+
+For `page_006_table_001.jpg`, the GPU run succeeded and produced one parsed HTML table with 58 rows x 6 columns.
+
+Repeatability observations using the same loaded adapter and the same crop:
+
+```text
+first cached-model pass: 44.58 s
+warm second pass:       25.24 s
+parsed table shape:     58 x 6 both times
+parsed cell differences: 0
+```
+
+The first-ever GPU run took 91.97 s because it also included model download and setup. Treat these timings as validation observations, not formal benchmarks.
+
+The Windows CPU and Linux GPU crops were not byte-identical. The observed crop dimensions were 1431 x 1923 on Windows CPU and 1432 x 1923 on Linux GPU, so do not draw strong CPU-vs-GPU accuracy conclusions from output differences alone.

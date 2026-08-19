@@ -41,7 +41,28 @@ Adapter-native outputs may differ. A table-reconstruction adapter may produce HT
 
 ## Current Adapter
 
-The new library does not yet implement a table OCR adapter. PaddleOCR-VL is the first/default adapter to be implemented in the clean library.
+The clean library now implements the adapter boundary and the first PaddleOCR-VL adapter in `src/tabulus/table_ocr/`.
+
+Key modules:
+
+- `base.py`
+- `registry.py`
+- `paddleocr_vl.py`
+- `parsing.py`
+
+The main abstractions are:
+
+- `TableOCRInput`: one normalized table crop plus table id and provenance.
+- `TableOCRResult`: adapter-neutral result for one crop, including status, native outputs, device, versions, and error text when needed.
+- `TableOCRCapabilities`: static CPU/GPU support metadata.
+- `TableOCRAdapter`: protocol implemented by reconstruction adapters.
+- adapter registry: lists adapters and lazy-loads implementation classes.
+
+PaddleOCR-VL is the first/default adapter implemented in the clean library. It runs on already-isolated MinerU table crops with PaddleOCR layout detection disabled and the table prompt enabled.
+
+PaddleOCR-VL has been validated on CPU and on an NVIDIA L40S GPU for a single canonical MinerU crop. The validated GPU configuration used PaddlePaddle-GPU 3.2.1, PaddleOCR 3.7.0, PaddleOCR-VL 1.6, `device="gpu:0"`, and `engine="paddle"`. Batch OCR over all exported crops is not implemented yet.
+
+OCR and ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR or PaddlePaddle. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
 
 ## Other Experiment Adapters
 

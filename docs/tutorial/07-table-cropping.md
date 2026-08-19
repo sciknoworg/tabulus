@@ -29,16 +29,16 @@ See `data-contracts/tables-index-json.md`.
 
 The current implementation copies table images referenced by MinerU `content_list.json` into the normalized table-crop handoff directory.
 
-The expected module output is:
+`tabulus profile` now writes this handoff automatically by default after a successful MinerU run:
 
 ```text
-work/table_crops/
+<PDF directory>/tabulus-output/table-crops/<PDF stem>/
   tables_index.json
   images/
     page_003_table_001.png
 ```
 
-Run it with:
+Use the standalone command when regenerating the handoff from an existing MinerU output without rerunning MinerU:
 
 ```bash
 tabulus export-table-crops --mineru-root work/mineru/puurunen_2005 --out work/table_crops

@@ -15,6 +15,8 @@ tabulus profile --pdf "<paper.pdf>" --backend pipeline
 tabulus profile --pdf "<paper.pdf>" --backend hybrid-engine
 ```
 
+After a successful MinerU run, `tabulus profile` exports canonical MinerU table crops into the normalized Tabulus table-crop handoff by default. Use `--table-crops-out PATH` to override that handoff directory, or `--no-export-table-crops` to keep only the MinerU-native profiling output.
+
 ### Backend
 
 `--backend pipeline`
@@ -159,6 +161,21 @@ tabulus_run.txt
 ```
 
 If MinerU fails before a native run directory can be identified, diagnostics may be written at the document level instead.
+
+## Canonical Table Crops
+
+MinerU is the canonical table-localization and crop-generation stage in the current clean Tabulus workflow. The normalized crop handoff is separate from MinerU's native output:
+
+```text
+<PDF parent>/
+└── tabulus-output/
+    └── table-crops/
+        └── <document>/
+            ├── tables_index.json
+            └── images/
+```
+
+The standalone `tabulus export-table-crops` command remains useful when an expensive MinerU run should be reused, when the normalized handoff should be regenerated without rerunning MinerU, or when native MinerU output should remain untouched by Tabulus-specific downstream artifacts.
 
 Validated examples:
 

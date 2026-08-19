@@ -60,26 +60,27 @@ CUDA_VISIBLE_DEVICES=0
 
 Do not hard-code the GPU selection inside Tabulus. Keeping GPU assignment external makes the same workflow compatible with GPU servers and schedulers such as Slurm.
 
-## Prepare Work Directories
+## Prepare Input Location
 
-The current headless workflow uses:
+Keep the Tabulus repository and paper collection separate:
 
 ```text
-work/
-  input/
-  mineru/
-  table_crops/
-  paddleocr/
+$HOME/
+  tabulus/
+  <papers-folder>/
+    Puurunen - February 2005.pdf
 ```
 
-Create the first required directories:
+Set the locations:
 
 ```bash
-mkdir -p work/input
-mkdir -p work/mineru
+export TABULUS_ROOT="$HOME/tabulus"
+export PAPERS="$HOME/<papers-folder>"
+cd "$TABULUS_ROOT"
+ls "$PAPERS"
 ```
 
-Place the PDF under `work/input/`.
+Input PDFs and generated profiling output live under `$PAPERS`.
 
 ## Run MinerU
 
@@ -87,8 +88,8 @@ The configuration successfully tested for scientific PDF table processing was:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 mineru \
-  -p "$HOME/tabulus/work/input/Puurunen - February 2005.pdf" \
-  -o "$HOME/tabulus/work/mineru/puurunen_2005" \
+  -p "$PAPERS/Puurunen - February 2005.pdf" \
+  -o "$PAPERS/tabulus-output/mineru/hybrid-engine" \
   -b hybrid-engine \
   --effort high \
   -m auto \
@@ -112,7 +113,7 @@ The equivalent Tabulus entry point is:
 
 ```bash
 tabulus profile \
-  --pdf "$HOME/tabulus/work/input/Puurunen - February 2005.pdf" \
+  --pdf "$PAPERS/Puurunen - February 2005.pdf" \
   --backend hybrid-engine \
   --effort high \
   --method auto
@@ -121,10 +122,18 @@ tabulus profile \
 If `--out` is omitted, Tabulus writes to:
 
 ```text
-<PDF directory>/tabulus-output/<PDF stem>/profiling/mineru/<resolved-backend>/
+<PDF directory>/tabulus-output/mineru/<resolved-backend>/
 ```
 
-Use `--out` when a GPU server should write to a particular shared work or runs directory. If this command is run in an environment without a suitable CUDA GPU, Tabulus reports the reason and falls back to `pipeline`; with automatic output, that fallback writes under `profiling/mineru/pipeline/`.
+After successful profiling, Tabulus also exports canonical MinerU table crops to:
+
+```text
+<PDF directory>/tabulus-output/table-crops/<PDF stem>/
+  tables_index.json
+  images/
+```
+
+Use `--out` when a GPU server should intentionally write the profiling root to a particular shared work or runs directory. Use `--table-crops-out` to override the normalized crop handoff directory, or `--no-export-table-crops` to disable automatic crop export. If this command is run in an environment without a suitable CUDA GPU, Tabulus reports the reason and falls back to `pipeline`; with automatic output, that fallback writes under `tabulus-output/mineru/pipeline/`.
 
 ## First Run Versus Subsequent Runs
 
@@ -143,7 +152,7 @@ For the tested 53-page PDF, MinerU downloaded its VLM and supporting OCR/layout 
 After completion, inspect the output tree:
 
 ```bash
-find "$HOME/tabulus/work/mineru/puurunen_2005" \
+find "$PAPERS/tabulus-output/mineru/hybrid-engine" \
   -maxdepth 5 -type f | sort
 ```
 
@@ -158,7 +167,7 @@ python - <<'PY'
 from pathlib import Path
 from tabulus.mineru import discover_tables
 
-root = Path.home() / "tabulus/work/mineru/puurunen_2005"
+root = Path.home() / "<papers-folder>/tabulus-output/mineru/hybrid-engine"
 
 tables, refs_start_page = discover_tables(root)
 
@@ -206,13 +215,15 @@ new tabulus library --------+
  +-- resolve image crops
  +-- retain provenance
  +-- expose typed TableRegion objects
- +-- export images/tables_index.json
+ +-- export canonical images/tables_index.json automatically
+ +-- provide PaddleOCR-VL crop adapter
+ +-- validate PaddleOCR-VL GPU inference on one crop
 
 
                     NOT YET IMPLEMENTED
                            |
                            v
-                     PaddleOCR-VL
+                  OCR batch command
                            |
                            v
                   reference processing
@@ -221,8 +232,8 @@ new tabulus library --------+
                     final pipeline
 ```
 
-The new library currently provides MinerU process launching, typed access to existing MinerU outputs, and table-crop export. These stages are not yet implemented in the new library:
+The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, and the first PaddleOCR-VL table-reconstruction adapter for MinerU crops. These stages are not yet implemented in the new library:
 
-- PaddleOCR-VL execution
+- OCR batch CLI
 - GROBID, Kreuzberg, or Crossref integration
 - full Tabulus process command

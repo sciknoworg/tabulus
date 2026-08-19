@@ -74,7 +74,7 @@ tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
 print(len(tables), refs_start_page)
 ```
 
-This library call consumes existing MinerU output. The CLI can also launch MinerU with `tabulus profile` and export the table-crop handoff with `tabulus export-table-crops`. PaddleOCR-VL is not yet implemented in the new library.
+This library call consumes existing MinerU output. The CLI can also launch MinerU with `tabulus profile` and now exports the canonical table-crop handoff automatically by default. The standalone `tabulus export-table-crops` command remains useful when an expensive MinerU run should be reused without touching the native MinerU output. PaddleOCR-VL is now the first implemented table-reconstruction adapter in the new library.
 
 The component is Table OCR and Structure Extraction. PaddleOCR-VL is the first/default table-reconstruction adapter for that component, not a permanent hard-coded dependency. Other compatible adapters can consume the same normalized table-crop handoff if they preserve the table identifier, MinerU provenance, and structured output contract.
 
@@ -154,8 +154,8 @@ Every step should be able to run in two modes:
 | --- | --- | --- |
 | PDF profiling | `src/tabulus`, `tabulus.mineru` | Current new-library module can launch MinerU, read existing MinerU outputs, discover table regions, resolve image paths, preserve provenance, and return typed `TableRegion` objects. |
 | MinerU execution | `tabulus profile` | Tested with MinerU 3.4.5 on Windows CPU using `pipeline` and on a GPU server using `hybrid-engine`; Windows unit tests cover command construction, default output paths, and fallback behavior. |
-| Table-crop export | `tabulus export-table-crops` | Copies discovered table images, preserves source extensions, and writes `tables_index.json`. |
-| Table OCR | Not yet implemented in the new library | Target adapter is PaddleOCR-VL. |
+| Table-crop export | `tabulus profile`, `tabulus export-table-crops` | `tabulus profile` exports canonical MinerU table crops automatically by default. The standalone command regenerates the normalized handoff from existing MinerU output without rerunning MinerU. |
+| Table OCR | `src/tabulus/table_ocr` | Adapter contract and lazy registry are implemented. PaddleOCR-VL is the first adapter; Windows CPU inference has been validated on a MinerU crop. |
 | Reference processing | Not yet implemented in the new library | Target adapters include GROBID, Kreuzberg, and Crossref. |
 
 ## Tutorial Template

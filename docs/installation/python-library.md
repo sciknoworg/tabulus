@@ -30,7 +30,7 @@ PY
 
 ## Unit Tests
 
-The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, and table-crop export.
+The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, automatic table-crop export, standalone table-crop export, the table OCR adapter registry, PaddleOCR-VL adapter behavior, and legacy-compatible table parsing.
 
 Run the tests with:
 
@@ -38,10 +38,10 @@ Run the tests with:
 python -m pytest
 ```
 
-The current Windows validation used Python 3.12.10 and pytest 9.1.1:
+At commit `b052c31768abc15db4f96a984522be1239ca2611`, the full test suite reported:
 
 ```text
-21 passed
+42 passed
 ```
 
 The current tests cover:
@@ -51,6 +51,10 @@ The current tests cover:
 - page and provenance handling
 - reference-section detection
 - missing-output error handling
+- profile-driven automatic table-crop export
+- table OCR registry lazy loading
+- PaddleOCR-VL adapter behavior with mocked dependencies
+- HTML-first, Markdown-fallback table parsing
 
 ## Current Import Boundary
 
@@ -84,15 +88,27 @@ The profiling CLI separates the profiler from its backend. `mineru` is currently
 When `--out` is omitted, Tabulus writes profiling output beside the PDF:
 
 ```text
-<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/
+<PDF directory>/tabulus-output/<profiler>/<backend>/
 ```
 
 `--out` remains available as an explicit override. If `hybrid-engine` falls back to `pipeline`, the automatic directory uses the resolved backend, `pipeline`.
 
-`tabulus export-table-crops` consumes an existing MinerU output directory and writes:
+After a successful profiling run, `tabulus profile` exports canonical MinerU table crops automatically by default:
+
+```text
+<PDF directory>/tabulus-output/table-crops/<PDF stem>/
+  tables_index.json
+  images/
+```
+
+Use `--table-crops-out PATH` to override that handoff directory, or `--no-export-table-crops` to skip automatic crop export.
+
+`tabulus export-table-crops` remains useful for regenerating the normalized handoff from an existing MinerU output directory without rerunning MinerU:
 
 ```text
 work/table_crops/
   tables_index.json
   images/
 ```
+
+The table OCR adapter package is available as `tabulus.table_ocr`. PaddleOCR-VL is the first implemented adapter, but PaddleOCR and PaddlePaddle are optional dependencies loaded only when that adapter is instantiated.

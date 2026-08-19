@@ -11,7 +11,7 @@ The current `tabulus.mineru` module:
 - selects a CPU-compatible or GPU-backed MinerU backend
 - distinguishes the profiler (`mineru`) from MinerU backends (`pipeline` and `hybrid-engine`)
 - constructs and runs non-interactive MinerU commands
-- writes default profiling output under `<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/` when `--out` is omitted
+- writes default profiling output under `<PDF directory>/tabulus-output/<profiler>/<backend>/` when `--out` is omitted
 - writes MinerU stdout, stderr, and run metadata logs
 - recursively locates MinerU `*_content_list.json` files
 - loads MinerU's structured content representation
@@ -21,6 +21,7 @@ The current `tabulus.mineru` module:
 - preserves bounding boxes, captions, footnotes, and `table_body`
 - optionally marks table regions that occur after a detected bibliography heading
 - exposes typed `TableRegion` objects
+- exports canonical MinerU table crops automatically by default after a successful `tabulus profile` run
 
 The current `tabulus export-table-crops` command:
 
@@ -29,6 +30,17 @@ The current `tabulus export-table-crops` command:
 - preserves the source image extension
 - writes a normalized `tables_index.json`
 - keeps MinerU provenance, including original `img_path`, source image path, page number, bounding box, captions, footnotes, `table_body`, and reference-section status
+
+The current `tabulus.table_ocr` package:
+
+- defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
+- provides an adapter registry with lazy loading
+- implements the first PaddleOCR-VL adapter for MinerU-generated table crops
+- initializes PaddleOCR-VL with layout detection disabled
+- predicts with `prompt_label="table"`
+- preserves PaddleOCR native JSON and Markdown result views
+- restores the legacy HTML-first, Markdown-fallback row parser
+- records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
 
 The behavior is covered by unit tests that do not require GPU execution.
 
@@ -43,10 +55,14 @@ The current tests verify:
 - default profiling output path generation
 - mocked MinerU execution logging
 - table-crop export and missing-source-image errors
+- profile-driven automatic table-crop export
+- table OCR registry lazy loading
+- PaddleOCR-VL adapter configuration and result preservation
+- legacy-compatible HTML/Markdown table parsing
 
 ## Validated Execution
 
-MinerU 3.4.5 has been tested through two paths:
+MinerU 3.4.5 has been tested through two profiling paths:
 
 - Windows CPU-only setup with Python 3.12.10, CPU-only PyTorch 2.10.0+cpu, CUDA unavailable, and MinerU 3.4.5 `pipeline`
 - Linux GPU-server setup with Python 3.12, a dedicated Conda environment, and MinerU `hybrid-engine`
@@ -75,16 +91,67 @@ On Windows, MinerU 3.4.5 `pipeline` completed a real 53-page PDF profiling run w
 
 MinerU 3.4.5 required the additional `six` package in that Windows pipeline installation because bundled MinerU OCR code imports `six`, but `six` was not installed automatically by the `mineru[pipeline]` dependency set. Treat this as a MinerU 3.4.5 compatibility workaround, not a Tabulus dependency or a claim about later MinerU releases.
 
-The current Windows test suite passes:
+PaddleOCR-VL CPU inference has been validated on a real MinerU-generated crop from `Puurunen - February 2005`:
 
 ```text
-21 passed
+PaddlePaddle 3.2.1
+PaddleOCR 3.7.0
+PaddleOCR-VL 1.6 / PaddleOCR-VL-1.6-0.9B
+device: CPU
+engine: Paddle
+layout detection: disabled
+prompt label: table
 ```
+
+The validated crop was `page_006_table_001.jpg`; Paddle reported image dimensions 1431 x 1923, status `ok`, one result object, one parsed HTML table, and a 58 x 6 rectangular row representation. The first CPU inference was very slow, so treat this as a correctness validation and performance observation, not a production recommendation.
+
+PaddleOCR-VL GPU inference has also been validated on a real MinerU-generated crop in a separate Conda environment from MinerU:
+
+```text
+Python 3.12
+PaddlePaddle-GPU 3.2.1
+PaddleOCR 3.7.0
+PaddleOCR-VL 1.6
+NVIDIA L40S
+device: gpu:0
+engine: Paddle
+layout detection: disabled
+prompt label: table
+```
+
+The Linux GPU MinerU run regenerated the Puurunen PDF outputs with `hybrid-engine` and automatically exported 23 canonical table crops. PaddleOCR-VL was applied only to the MinerU crop `page_006_table_001.jpg`, not to the original PDF. The GPU run succeeded with one parsed HTML table and a 58 x 6 rectangular row representation.
+
+Repeatability observations using the same loaded adapter and crop:
+
+```text
+first cached-model pass: 44.58 s
+warm second pass:       25.24 s
+parsed table shape:     58 x 6 both times
+parsed cell differences: 0
+```
+
+The first-ever GPU run took 91.97 s because it included model download and setup. These timings are validation observations, not formal benchmarks. The Windows CPU and Linux GPU crops were not byte-identical, with observed dimensions of 1431 x 1923 and 1432 x 1923 respectively, so the documentation should not make strong CPU-vs-GPU accuracy claims from their output differences.
+
+At commit `b052c31768abc15db4f96a984522be1239ca2611`, the full test suite reported:
+
+```text
+42 passed
+```
+
+The table OCR parsing tests reported:
+
+```text
+6 passed
+```
+
+These tests do not include Linux GPU integration validation for PaddleOCR-VL.
 
 ## Not Yet Implemented In The New Library
 
-- PaddleOCR-VL execution
+- OCR batch CLI
 - GROBID, Kreuzberg, or Crossref integration
+- continued-table merging
+- final scientific table normalization and reference resolution
 - full Tabulus process command
 
 ## Documentation Boundary

@@ -182,6 +182,8 @@ tabulus profile --pdf "C:\path\to\paper.pdf" --backend pipeline
 
 `tabulus profile` writes MinerU stdout, stderr, and Tabulus run metadata logs into the profiling output tree.
 
+After a successful MinerU run, `tabulus profile` also exports canonical MinerU table crops into a normalized Tabulus handoff by default.
+
 If `--out` is omitted, Tabulus writes to:
 
 ```text
@@ -237,6 +239,16 @@ The levels are:
 `auto` is meaningful MinerU output behavior, not a generic Tabulus directory. Native run-directory naming belongs to MinerU and can differ by backend; the validated `hybrid-engine` + `auto` GPU workflow produced `hybrid_auto`.
 
 Do not flatten or rename MinerU-native output files. Tabulus discovers the nested `*_content_list.json` and referenced images from that output tree.
+
+The default normalized table-crop handoff is separate from the native MinerU output:
+
+```text
+<PDF directory>\tabulus-output\table-crops\<PDF stem>\
+  tables_index.json
+  images\
+```
+
+Use `--table-crops-out PATH` to override that handoff directory, or `--no-export-table-crops` to skip automatic crop export.
 
 Use `--out` only when you want to override the profiler output root. It is not the final directory for one document. For example:
 
@@ -296,7 +308,7 @@ After MinerU writes its output directory, the library can discover table regions
 python -c "from pathlib import Path; from tabulus.mineru import discover_tables; tables, refs = discover_tables(Path('C:/path/to/ald-papers/tabulus-output/mineru/pipeline/Puurunen - February 2005/auto')); print(len(tables)); print(refs)"
 ```
 
-To prepare the table-crop handoff for later OCR work:
+`tabulus profile` prepares the table-crop handoff automatically by default. To regenerate that handoff from an existing MinerU run without rerunning MinerU:
 
 ```bat
 tabulus export-table-crops --mineru-root "C:\path\to\ald-papers\tabulus-output\mineru\pipeline\Puurunen - February 2005\auto" --out "work\table_crops"
@@ -310,4 +322,4 @@ work\table_crops\
   images\
 ```
 
-PaddleOCR-VL, reference matching, DOI resolution, and full end-to-end processing are not yet implemented in the new library.
+PaddleOCR-VL is now available as the first Table OCR and Structure Extraction adapter for canonical MinerU table crops. Reference matching, DOI resolution, continued-table merging, OCR batch CLI execution, and full end-to-end processing are not yet implemented in the new library.

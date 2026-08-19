@@ -1,6 +1,6 @@
 # MinerU Output Files
 
-MinerU writes a document-specific wrapper directory after profiling a PDF, then places the actual run artifacts under a MinerU-native run directory inside that wrapper. Tabulus treats this output as adapter-owned source output: keep it intact, then copy the stable downstream artifacts into the Tabulus run contract.
+MinerU writes a document-specific wrapper directory after profiling a PDF, then places the actual run artifacts under a MinerU-native run directory inside that wrapper. Tabulus treats this output as adapter-owned source output: keep it intact, then copy canonical table crops into the normalized Tabulus table-crop handoff.
 
 For the Tabulus-facing overview of MinerU itself and the MinerU options exposed through `tabulus profile`, see {doc}`../external-tools/mineru`.
 
@@ -76,7 +76,7 @@ Relevant fields:
 | `bbox` | Detected table bounding box | Preserve for traceability and QA. |
 | `table_caption` | Detected table caption text | Preserve for matching and QA. |
 | `table_footnote` | Detected table footnote text | Preserve for matching and QA. |
-| `table_body` | MinerU's structured table reconstruction, often HTML | Compare against PaddleOCR-VL reconstruction. |
+| `table_body` | MinerU's structured table reconstruction, often HTML | Compare against table-reconstruction adapter output. |
 
 ### `<document-name>_content_list_v2.json`
 
@@ -128,16 +128,16 @@ select entries where type == "table"
 read img_path for each table
   |
   v
-copy MinerU table images into the Tabulus run output
+copy MinerU table images into the normalized table-crop handoff
   |
   v
-run PaddleOCR-VL on the table images
+run a Table OCR and Structure Extraction adapter on those crops
 ```
 
 Keep the full MinerU directory so that:
 
 - table detection can be inspected in `<document-name>_layout.pdf`
-- `table_body` can be compared against PaddleOCR-VL output
+- `table_body` can be compared against table-reconstruction adapter output
 - low-level parsing problems can be investigated using `<document-name>_middle.json`
 - every downstream table image can be traced back to its MinerU table entry
 

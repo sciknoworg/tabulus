@@ -19,6 +19,8 @@ The plug-and-play part is the profiling adapter. The first adapter is MinerU.
 
 Important current boundary: Tabulus can launch MinerU through `tabulus profile`, but the typed table discovery and crop-export steps remain file-contract based. They consume the MinerU output directory after MinerU has produced it.
 
+After a successful MinerU run, `tabulus profile` exports the normalized canonical table-crop handoff automatically unless `--no-export-table-crops` is passed.
+
 ## Tool Choice
 
 The current validated library entry point is:
@@ -48,16 +50,23 @@ The current validated CLI entry points are:
 
 ```powershell
 tabulus profile --pdf "C:\path\to\paper.pdf" --backend pipeline
-tabulus export-table-crops --mineru-root "C:\path\to\tabulus-output\paper\profiling\mineru\pipeline" --out work\table_crops
 ```
 
 `mineru` is currently the only profiler. `pipeline` and `hybrid-engine` are MinerU backends. If `--out` is omitted, Tabulus writes to:
 
 ```text
-<PDF directory>/tabulus-output/<PDF stem>/profiling/<profiler>/<backend>/
+<PDF directory>/tabulus-output/<profiler>/<backend>/
 ```
 
-`--out` remains available as an explicit override. If `hybrid-engine` is requested but Tabulus falls back to `pipeline`, the automatic output path uses the resolved backend name, `pipeline`.
+`--out` remains available as an explicit override for the profiling output root. If `hybrid-engine` is requested but Tabulus falls back to `pipeline`, the automatic output path uses the resolved backend name, `pipeline`.
+
+By default, the same `tabulus profile` run also writes the normalized crop handoff to:
+
+```text
+<PDF directory>/tabulus-output/table-crops/<PDF stem>/
+```
+
+Use `--table-crops-out PATH` to override that handoff directory, or `--no-export-table-crops` to skip the automatic export.
 
 ## Input
 
@@ -68,21 +77,21 @@ Example:
 ```text
 Puurunen - February 2005/
   tabulus-output/
-    Puurunen - February 2005/
-      profiling/
-        mineru/
-          pipeline/
+    mineru/
+      pipeline/
+    table-crops/
+      Puurunen - February 2005/
 ```
 
 ## Output
 
-A list of typed table-region objects and an optional detected reference-section start page.
+A list of typed table-region objects, an optional detected reference-section start page, and by default a normalized table-crop handoff directory.
 
 ```python
 tables, refs_start_page = discover_tables(root)
 ```
 
-MinerU also creates an adapter-owned native output hierarchy inside the profiling directory. Tabulus does not flatten or rename these files. A typical MinerU document directory contains:
+MinerU also creates an adapter-owned native output hierarchy under the profiling output root. Tabulus does not flatten or rename these files. A typical MinerU document directory contains:
 
 ```text
 <document-name>/
@@ -98,6 +107,15 @@ MinerU also creates an adapter-owned native output hierarchy inside the profilin
 ```
 
 For the current workflow, the key file is `<document-name>_content_list.json`. It is the source used to identify table entries and locate each MinerU-generated table image through `img_path`.
+
+The normalized table-crop handoff contains:
+
+```text
+tabulus-output/table-crops/<PDF stem>/
+  tables_index.json
+  images/
+    page_006_table_001.jpg
+```
 
 ## Module Contract
 
@@ -166,7 +184,7 @@ Run MinerU through tabulus profile, then discover table regions and expose typed
 
 ## Handoff To Table OCR
 
-The next processing step is to create a clean table-crop collection for PaddleOCR-VL.
+The next processing step is to use the canonical MinerU table-crop collection for table reconstruction. `tabulus profile` creates this collection automatically by default:
 
 ```text
 PDF
@@ -190,12 +208,12 @@ copy or convert table images into the Tabulus table-crop collection
 write tables_index.json
   |
   v
-PaddleOCR-VL
+Table OCR and Structure Extraction adapter
 ```
 
-The handoff stage should preserve enough provenance to trace every table image back to MinerU: page number, bounding box, `mineru_img_path`, caption, footnote, and `table_body` when available.
+The handoff stage preserves enough provenance to trace every table image back to MinerU: page number, bounding box, `mineru_img_path`, caption, footnote, and `table_body` when available.
 
-This handoff is implemented by:
+The standalone export command remains useful when an expensive MinerU run should be reused, when the normalized Tabulus handoff should be regenerated without rerunning MinerU, or when native MinerU output should remain untouched by Tabulus-specific downstream artifacts:
 
 ```powershell
 tabulus export-table-crops --mineru-root work/mineru/puurunen_2005 --out work/table_crops
@@ -210,7 +228,7 @@ work/table_crops/
     page_006_table_001.jpg
 ```
 
-The exporter preserves the original MinerU image extension instead of converting every crop to PNG. That keeps the library lightweight and avoids adding image-conversion dependencies before the PaddleOCR-VL adapter is implemented.
+The exporter preserves the original MinerU image extension instead of converting every crop to PNG. That keeps the library lightweight and avoids adding image-conversion dependencies before table OCR adapters run.
 
 ## Verification
 
@@ -218,6 +236,7 @@ The step succeeds when:
 
 - `tabulus profile --pdf ... --backend pipeline` completes on Windows CPU.
 - `discover_tables(root)` returns table-region objects.
+- the default `tabulus-output/table-crops/<PDF stem>/tables_index.json` handoff is written unless crop export is disabled.
 - Each table image path resolves to an existing MinerU-generated image.
 - Each table has a table id and document page number.
 - Bounding boxes, captions, and footnotes are preserved when the adapter provides them.
@@ -239,4 +258,4 @@ The step succeeds when:
 
 ## Next Step
 
-After typed PDF profiling and table-crop export, implement the PaddleOCR-VL adapter that consumes `tables_index.json`.
+After typed PDF profiling and table-crop export, run a Table OCR and Structure Extraction adapter such as PaddleOCR-VL on the canonical MinerU table crops.
