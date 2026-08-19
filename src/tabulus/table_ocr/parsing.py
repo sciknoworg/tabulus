@@ -67,16 +67,39 @@ def extract_html_tables(text: str) -> list[str]:
     return re.findall(r"(?is)<table\b.*?</table>", text)
 
 
+@dataclass(frozen=True)
+class _HTMLCell:
+    text: str
+    rowspan: int = 1
+    colspan: int = 1
+
+
+def _parse_span(value: str | None) -> int:
+    """Return a positive HTML span, defaulting invalid values to one."""
+
+    if value is None:
+        return 1
+
+    try:
+        span = int(value)
+    except (TypeError, ValueError):
+        return 1
+
+    return max(span, 1)
+
+
 class _SimpleTableHTMLParser(HTMLParser):
-    """Legacy-compatible HTML table parser."""
+    """HTML table parser that preserves row/column span metadata."""
 
     def __init__(self) -> None:
         super().__init__()
         self.in_tr = False
         self.in_td = False
         self.current_cell: list[str] = []
-        self.current_row: list[str] = []
-        self.rows: list[list[str]] = []
+        self.current_row: list[_HTMLCell] = []
+        self.rows: list[list[_HTMLCell]] = []
+        self.current_rowspan = 1
+        self.current_colspan = 1
 
     def handle_starttag(
         self,
@@ -91,6 +114,12 @@ class _SimpleTableHTMLParser(HTMLParser):
         elif tag in ("td", "th") and self.in_tr:
             self.in_td = True
             self.current_cell = []
+            attributes = {
+                name.lower(): value
+                for name, value in attrs
+            }
+            self.current_rowspan = _parse_span(attributes.get("rowspan"))
+            self.current_colspan = _parse_span(attributes.get("colspan"))
 
     def handle_endtag(self, tag: str) -> None:
         tag = tag.lower()
@@ -99,8 +128,16 @@ class _SimpleTableHTMLParser(HTMLParser):
             self.in_td = False
             cell_text = "".join(self.current_cell).strip()
             cell_text = re.sub(r"\s+", " ", cell_text)
-            self.current_row.append(cell_text)
+            self.current_row.append(
+                _HTMLCell(
+                    text=cell_text,
+                    rowspan=self.current_rowspan,
+                    colspan=self.current_colspan,
+                )
+            )
             self.current_cell = []
+            self.current_rowspan = 1
+            self.current_colspan = 1
         elif tag == "tr" and self.in_tr:
             self.in_tr = False
             if self.current_row:
@@ -120,12 +157,72 @@ def _rectangularize(rows: list[list[str]]) -> list[list[str]]:
     ]
 
 
+def _expand_html_spans(rows: list[list[_HTMLCell]]) -> list[list[str]]:
+    """
+    Expand HTML row/column spans into a rectangular CSV-style grid.
+
+    A merged cell keeps its value only at the upper-left grid position.
+    Every other position covered by its rowspan/colspan becomes an empty
+    placeholder. Rowspans that extend past the supplied HTML are clipped.
+    """
+
+    if not rows:
+        return []
+
+    grid: list[list[str | None]] = [[] for _ in rows]
+
+    def ensure_width(row_index: int, width: int) -> None:
+        if len(grid[row_index]) < width:
+            grid[row_index].extend([None] * (width - len(grid[row_index])))
+
+    for row_index, source_row in enumerate(rows):
+        column_index = 0
+
+        for cell in source_row:
+            row_stop = min(len(rows), row_index + cell.rowspan)
+
+            while True:
+                required_width = column_index + cell.colspan
+
+                for target_row in range(row_index, row_stop):
+                    ensure_width(target_row, required_width)
+
+                is_free = all(
+                    grid[target_row][target_column] is None
+                    for target_row in range(row_index, row_stop)
+                    for target_column in range(column_index, required_width)
+                )
+
+                if is_free:
+                    break
+
+                column_index += 1
+
+            for target_row in range(row_index, row_stop):
+                for target_column in range(
+                    column_index,
+                    column_index + cell.colspan,
+                ):
+                    grid[target_row][target_column] = ""
+
+            grid[row_index][column_index] = cell.text
+            column_index += cell.colspan
+
+    return _rectangularize(
+        [
+            [value if value is not None else "" for value in row]
+            for row in grid
+        ]
+    )
+
+
 def html_table_to_rows(html: str) -> list[list[str]]:
     """Convert one HTML table into the legacy Tabulus row representation."""
 
     parser = _SimpleTableHTMLParser()
     parser.feed(html)
-    return _rectangularize(parser.rows)
+    parser.close()
+    return _expand_html_spans(parser.rows)
 
 
 def extract_markdown_tables(text: str) -> list[str]:
