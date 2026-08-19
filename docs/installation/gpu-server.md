@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL table reconstruction is validated separately in a PaddleOCR environment so the PyTorch/MinerU stack and PaddlePaddle/PaddleOCR stack do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL and Chandra OCR 2 table reconstruction are validated separately in adapter-specific environments so the MinerU, PaddlePaddle/PaddleOCR, and Chandra/PyTorch/Transformers stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -40,7 +40,7 @@ tabulus profile --pdf "$PAPERS/..."
 $PAPERS/tabulus-output/mineru/hybrid-engine/...
      |
      v
-tabulus reconstruct-tables --crops "$PAPERS/tabulus-output/table-crops/..."
+tabulus reconstruct-tables --crops "$PAPERS/tabulus-output/table-crops/..." --adapter <adapter>
      |
      v
 prediction CSV files and batch_summary.json
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU and PaddleOCR-VL
+- separate Conda environments for MinerU, PaddleOCR-VL, and Chandra OCR 2
 
 ## 2. Request GPU Compute Resources
 
@@ -426,17 +426,23 @@ CPU-only profiling is documented separately in `installation/windows-cpu`.
 
 ## 11. Run Batch Table Reconstruction
 
-Run PaddleOCR-VL in a separate Conda environment from MinerU. The separation is intentional:
+Run table reconstruction in the environment that matches the selected adapter.
+The separation is intentional:
 
 ```text
 tabulus-mineru
   Tabulus + MinerU + PyTorch
 
-tabulus-paddleocr
+tabulus-paddleocr-gpu
   Tabulus + PaddleOCR + PaddlePaddle
+
+tabulus-chandra-gpu
+  Tabulus + Chandra OCR + PyTorch/Transformers
 ```
 
-Both environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
+These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
+
+### PaddleOCR-VL GPU Environment
 
 The validated PaddleOCR-VL GPU stack was:
 
@@ -519,3 +525,98 @@ $PAPERS/
 `native/` preserves the full adapter result and provenance. `parsed/` preserves the rectangular parsed table representation. `predictions/` contains pre-reference-resolution CSV files. `batch_summary.json` records counts, per-table status, runtime, artifact paths, and errors.
 
 This command reconstructs physical MinerU crops independently. It does not merge continued tables, classify reference tables, extract bibliographies, match references, resolve DOI values, or write final resolved CSV files.
+
+### Chandra OCR 2 GPU Environment
+
+Chandra OCR 2 runs in its own environment because it uses a PyTorch and
+Transformers stack rather than PaddlePaddle. The validated Chandra environment
+was:
+
+- environment name: `tabulus-chandra-gpu`
+- Python 3.12.13
+- `chandra-ocr[hf]` 0.2.0
+- PyTorch 2.13.0+cu130
+- Transformers 5.15.1
+- NVIDIA L40S
+- CUDA available
+- Tabulus installed editable with development dependencies during validation
+
+Create and activate the environment:
+
+```bash
+conda create -n tabulus-chandra-gpu python=3.12.13 -y
+conda activate tabulus-chandra-gpu
+```
+
+Install Tabulus and Chandra:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+python -m pip install "chandra-ocr[hf]==0.2.0"
+```
+
+Verify the runtime from inside the environment:
+
+```bash
+python --version
+python -m pip show chandra-ocr torch transformers
+python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+The validated run resolved `--device gpu:0` to PyTorch `cuda:0`.
+
+Chandra consumes the canonical MinerU crop handoff. It should not be run
+against the original PDFs for this reconstruction comparison:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter chandra \
+  --device gpu:0
+```
+
+The batch layer loads one Chandra model instance and reuses it across the
+complete batch. For each paper crop root, output is written beside other
+adapters under:
+
+```text
+<crop-root>/
+  reconstructions/
+    chandra/
+      native/
+      parsed/
+      predictions/
+      batch_summary.json
+```
+
+`native/` preserves the generated raw HTML plus Chandra metadata such as token
+count and generation error status. `parsed/`, `predictions/`, and
+`batch_summary.json` follow the same Tabulus reconstruction output contract as
+PaddleOCR-VL.
+
+Hugging Face authentication is optional for public model access, but
+authenticated access avoids unauthenticated Hub warnings and rate limits. Set
+the token as an environment variable when needed:
+
+```bash
+export HF_TOKEN="<your-hugging-face-token>"
+```
+
+Never hard-code an actual token in documentation, scripts, or committed files.
+
+Current Transformers releases may emit warnings mentioning `min_frames`,
+`max_frames`, or `processor_kwargs`. These warnings were non-fatal in the
+validated Chandra runs and should not be treated as Tabulus errors by
+themselves.
