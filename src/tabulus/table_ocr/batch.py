@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -19,6 +20,30 @@ from tabulus.table_ocr.output import (
 
 
 BATCH_SUMMARY_NAME = "batch_summary.json"
+
+_OWNED_ARTIFACT_NAMES = (
+    "native",
+    "parsed",
+    "predictions",
+    BATCH_SUMMARY_NAME,
+)
+
+
+def _clear_owned_reconstruction_artifacts(output_dir: Path) -> None:
+    """Remove only Tabulus-owned artifacts from a previous batch run."""
+
+    if output_dir.exists() and not output_dir.is_dir():
+        raise NotADirectoryError(
+            f"Table reconstruction output is not a directory: {output_dir}"
+        )
+
+    for name in _OWNED_ARTIFACT_NAMES:
+        path = output_dir / name
+
+        if path.is_symlink() or path.is_file():
+            path.unlink()
+        elif path.is_dir():
+            shutil.rmtree(path)
 
 
 @dataclass(frozen=True)
@@ -158,10 +183,11 @@ def run_table_ocr_batch(
 
     crop_root = Path(crop_root)
     output_dir = Path(output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
 
     tables = load_table_ocr_inputs(crop_root)
     capabilities = adapter.capabilities
+    _clear_owned_reconstruction_artifacts(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     items: list[TableOCRBatchItem] = []
     batch_start = time.perf_counter()

@@ -221,7 +221,6 @@ def test_duplicate_table_ids_are_rejected_before_inference(
 
     assert adapter.calls == []
 
-
 def test_adapter_cannot_change_table_identity(
     tmp_path: Path,
 ) -> None:
@@ -245,3 +244,120 @@ def test_adapter_cannot_change_table_identity(
             output_dir=tmp_path / "out",
             adapter=adapter,
         )
+
+
+def test_batch_rerun_clears_only_owned_artifacts(
+    tmp_path: Path,
+) -> None:
+    crop_root = tmp_path / "crops"
+    output_dir = tmp_path / "reconstructions/fake"
+    write_crop_index(crop_root, [1])
+
+    for directory_name in ("native", "parsed", "predictions"):
+        directory = output_dir / directory_name
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / "stale-artifact.txt").write_text(
+            "stale",
+            encoding="utf-8",
+        )
+
+    stale_prediction = (
+        output_dir / "predictions/page_001_table_001.csv"
+    )
+    stale_prediction.write_text(
+        "stale prediction",
+        encoding="utf-8",
+    )
+
+    (output_dir / "batch_summary.json").write_text(
+        '{"stale": true}',
+        encoding="utf-8",
+    )
+
+    preserved_file = output_dir / "keep-me.txt"
+    preserved_file.write_text(
+        "user-owned",
+        encoding="utf-8",
+    )
+
+    other_adapter = output_dir.parent / "other-adapter"
+    other_adapter.mkdir(parents=True)
+
+    preserved_other_adapter = other_adapter / "keep-me.txt"
+    preserved_other_adapter.write_text(
+        "other",
+        encoding="utf-8",
+    )
+
+    result = run_table_ocr_batch(
+        crop_root=crop_root,
+        output_dir=output_dir,
+        adapter=FakeBatchAdapter(error_table_id=1),
+    )
+
+    assert result.tables_error == 1
+    assert not stale_prediction.exists()
+
+    assert not (
+        output_dir / "native/stale-artifact.txt"
+    ).exists()
+
+    assert not (
+        output_dir / "parsed/stale-artifact.txt"
+    ).exists()
+
+    assert not (
+        output_dir / "predictions/stale-artifact.txt"
+    ).exists()
+
+    assert (
+        preserved_file.read_text(encoding="utf-8")
+        == "user-owned"
+    )
+
+    assert (
+        preserved_other_adapter.read_text(encoding="utf-8")
+        == "other"
+    )
+
+    summary = json.loads(
+        (output_dir / "batch_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    assert summary["tables_error"] == 1
+    assert summary["prediction_csvs"] == 0
+
+
+def test_invalid_crop_index_does_not_clear_previous_output(
+    tmp_path: Path,
+) -> None:
+    crop_root = tmp_path / "crops"
+    output_dir = tmp_path / "reconstructions/fake"
+    write_crop_index(crop_root, [1, 1])
+
+    previous_result = output_dir / "native/previous.json"
+    previous_result.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    previous_result.write_text(
+        "previous",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate table_id",
+    ):
+        run_table_ocr_batch(
+            crop_root=crop_root,
+            output_dir=output_dir,
+            adapter=FakeBatchAdapter(),
+        )
+
+    assert (
+        previous_result.read_text(encoding="utf-8")
+        == "previous"
+    )
