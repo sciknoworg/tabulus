@@ -179,7 +179,7 @@ The Tabulus `table_id` is an internal physical-table identifier derived from the
 
 ## Reconstruction Reruns
 
-The intended default rerun contract is that a new reconstruction run for a selected adapter starts from a clean set of Tabulus-owned reconstruction artifacts for that adapter:
+A new reconstruction run for a selected adapter starts from a clean set of Tabulus-owned reconstruction artifacts for that adapter:
 
 ```text
 <crop-root>/reconstructions/<adapter>/
@@ -189,15 +189,20 @@ The intended default rerun contract is that a new reconstruction run for a selec
   batch_summary.json
 ```
 
-That cleanup must not remove:
+That cleanup removes and refreshes only:
+
+- `native/`
+- `parsed/`
+- `predictions/`
+- `batch_summary.json`
+
+It does not remove:
 
 - `tables_index.json`
 - `images/`
 - MinerU-native profiling outputs
 - reconstruction outputs belonging to other adapters
 
-For safety, cleanup should apply only to Tabulus-owned reconstruction artifacts inside the selected adapter output. It should not blindly delete arbitrary contents of a user-supplied `--out` directory.
-
-Current implementation note: cleanup of stale adapter artifacts is not implemented yet. The current batch writer creates the adapter output directory and overwrites same-named native, parsed, prediction, and summary files, but it does not remove stale files left from an earlier run if the table set or filenames change.
+For safety, cleanup applies only to Tabulus-owned reconstruction artifacts inside the selected adapter output. It does not blindly delete arbitrary contents of a user-supplied `--out` directory.
 
 This reconstruction output is still upstream of reference classification, bibliography extraction, reference matching, DOI resolution, continued-table merging, and final resolved CSV export.
