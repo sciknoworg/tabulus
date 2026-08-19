@@ -47,10 +47,15 @@ Later benchmarking can evaluate six candidate table reconstructions against the 
 - MinerU crop -> PaddleOCR-VL
 - MinerU crop -> DeepSeek OCR
 - MinerU crop -> Chandra
-- MinerU crop -> Kreuzberg
+- MinerU crop -> Xberg
 - MinerU crop -> NuExtract3
 
 MinerU `table_body` is produced during PDF profiling. The other table-reconstruction adapters consume the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
+
+Xberg is the successor/rebrand of Kreuzberg. It may combine OCR with its own
+layout and table-structure machinery on the already-cropped table image. That
+still fits the reconstruction-candidate comparison because the canonical
+physical crop remains fixed.
 
 ```text
 same detected table
@@ -61,7 +66,7 @@ same detected table
               +-- PaddleOCR-VL
               +-- DeepSeek OCR
               +-- Chandra
-              +-- Kreuzberg
+              +-- Xberg
               +-- NuExtract3
 ```
 
