@@ -17,6 +17,13 @@ class TableOCRAdapterSpec:
 
 
 _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
+    "chandra": TableOCRAdapterSpec(
+        name="chandra",
+        display_name="Chandra OCR 2",
+        entrypoint="tabulus.table_ocr.chandra:ChandraAdapter",
+        cpu_supported=True,
+        gpu_supported=True,
+    ),
     "paddleocr-vl": TableOCRAdapterSpec(
         name="paddleocr-vl",
         display_name="PaddleOCR-VL",
