@@ -10,6 +10,10 @@ from tabulus.mineru.backends import (
     resolve_backend,
 )
 from tabulus.mineru.runner import run_mineru
+from tabulus.reference_tables import (
+    REFERENCE_TABLE_CLASSIFICATION_NAME,
+    classify_reconstruction_tables,
+)
 from tabulus.table_crops import export_mineru_table_crops
 from tabulus.table_ocr import (
     create_table_ocr_adapter,
@@ -119,6 +123,17 @@ def default_table_reconstruction_output_root(
     """Return the default reconstruction output directory for one adapter."""
 
     return Path(crop_root) / "reconstructions" / adapter_name
+
+
+def default_reference_table_classification_output(
+    reconstruction_dir: Path,
+) -> Path:
+    """Return the default reference-table classification manifest path."""
+
+    return (
+        Path(reconstruction_dir)
+        / REFERENCE_TABLE_CLASSIFICATION_NAME
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -274,6 +289,32 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
 
+    classify_reference_tables = subparsers.add_parser(
+        "classify-reference-tables",
+        help="Classify reconstructed tables for reference-like content.",
+    )
+
+    classify_reference_tables.add_argument(
+        "--reconstruction",
+        required=True,
+        type=Path,
+        help=(
+            "Adapter reconstruction directory containing "
+            "batch_summary.json and parsed/."
+        ),
+    )
+
+    classify_reference_tables.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help=(
+            "Classification manifest path. If omitted, Tabulus writes "
+            "reference_table_classification.json inside the reconstruction "
+            "directory."
+        ),
+    )
+
     return parser
 
 
@@ -399,6 +440,35 @@ def main() -> None:
         print(f"  Tables error: {result.tables_error}")
         print(f"  Prediction CSVs: {result.prediction_csvs}")
         print(f"  Summary: {result.summary_path}")
+        return
+
+    if args.command == "classify-reference-tables":
+        output_path = (
+            args.out
+            if args.out is not None
+            else default_reference_table_classification_output(
+                args.reconstruction
+            )
+        )
+
+        print()
+        print("Reference-table classification configuration:")
+        print(f"  Reconstruction: {args.reconstruction}")
+        print(f"  Output: {output_path}")
+
+        result = classify_reconstruction_tables(
+            args.reconstruction,
+            output_path=output_path,
+        )
+
+        print()
+        print("Reference-table classification completed:")
+        print(f"  Tables considered: {result.tables_considered}")
+        print(
+            "  Reference tables found: "
+            f"{result.reference_tables_found}"
+        )
+        print(f"  Manifest: {result.output_path}")
         return
 
     parser.print_help()

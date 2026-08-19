@@ -26,6 +26,7 @@ _OWNED_ARTIFACT_NAMES = (
     "parsed",
     "predictions",
     BATCH_SUMMARY_NAME,
+    "reference_table_classification.json",
 )
 
 
