@@ -15,5 +15,8 @@ Failures should be debugged at the component boundary.
 If table OCR fails, do not rerun PDF ingestion or page rendering. Rerun only:
 
 ```bash
-python -m tabulus_pipeline.ocr_tables --run /data/runs/P51 --adapter paddleocr_vl
+tabulus reconstruct-tables \
+  --crops /data/papers/tabulus-output/table-crops/P51 \
+  --adapter paddleocr-vl \
+  --device gpu:0
 ```

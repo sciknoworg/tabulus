@@ -30,7 +30,7 @@ PY
 
 ## Unit Tests
 
-The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, automatic table-crop export, standalone table-crop export, the table OCR adapter registry, PaddleOCR-VL adapter behavior, and legacy-compatible table parsing.
+The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, automatic table-crop export, standalone table-crop export, the table OCR adapter registry, PaddleOCR-VL adapter behavior, legacy-compatible table parsing, batch table reconstruction, and table reconstruction output writing.
 
 Run the tests with:
 
@@ -38,10 +38,10 @@ Run the tests with:
 python -m pytest
 ```
 
-At commit `b052c31768abc15db4f96a984522be1239ca2611`, the full test suite reported:
+After the batch table-reconstruction CLI checkpoint, the full test suite reported:
 
 ```text
-42 passed
+55 passed
 ```
 
 The current tests cover:
@@ -55,6 +55,8 @@ The current tests cover:
 - table OCR registry lazy loading
 - PaddleOCR-VL adapter behavior with mocked dependencies
 - HTML-first, Markdown-fallback table parsing
+- batch reconstruction input loading and output dispatch
+- native, parsed, prediction CSV, and batch-summary artifact writing
 
 ## Current Import Boundary
 
@@ -77,6 +79,7 @@ After installation, these commands should be available:
 tabulus --version
 tabulus profile --help
 tabulus export-table-crops --help
+tabulus reconstruct-tables --help
 ```
 
 `tabulus profile` can launch MinerU when MinerU is installed in the active environment. The default `pipeline` backend is CPU-compatible; `hybrid-engine` is selected only when requested and a suitable CUDA GPU is visible.
@@ -112,3 +115,24 @@ work/table_crops/
 ```
 
 The table OCR adapter package is available as `tabulus.table_ocr`. PaddleOCR-VL is the first implemented adapter, but PaddleOCR and PaddlePaddle are optional dependencies loaded only when that adapter is instantiated.
+
+`tabulus reconstruct-tables` runs one registered table-reconstruction adapter across every crop in a canonical `tables_index.json` handoff:
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter paddleocr-vl \
+  --device gpu:0
+```
+
+If `--out` is omitted, the command writes to:
+
+```text
+<crop-root>/reconstructions/<adapter>/
+  native/
+  parsed/
+  predictions/
+  batch_summary.json
+```
+
+This command writes prediction CSV files before reference resolution. It does not run bibliography matching, DOI enrichment, final resolved CSV export, or the complete end-to-end pipeline.

@@ -1,6 +1,6 @@
 # GPU Server Run
 
-The GPU server workflow runs the same file-contract-oriented modules as the CPU workflow, but uses GPU-backed adapters where they are validated. For MinerU profiling, this means requesting `hybrid-engine` instead of the CPU-compatible `pipeline` backend. For table reconstruction, PaddleOCR-VL has been validated on a single canonical MinerU crop in a separate PaddleOCR Conda environment.
+The GPU server workflow runs the same file-contract-oriented modules as the CPU workflow, but uses GPU-backed adapters where they are validated. For MinerU profiling, this means requesting `hybrid-engine` instead of the CPU-compatible `pipeline` backend. For table reconstruction, `tabulus reconstruct-tables` can run PaddleOCR-VL over the canonical MinerU crop handoff in a separate PaddleOCR Conda environment.
 
 Before running this workflow, complete the GPU server setup in `installation/gpu-server`. For the exact tested MinerU command sequence, see `workflows/mineru-gpu-execution`.
 
@@ -21,16 +21,21 @@ P51,/data/papers/P51.pdf
 P52,/data/papers/P52.pdf
 ```
 
-Future full-pipeline shape:
+Future full-pipeline manifest shape:
 
 ```bash
-python -m tabulus_pipeline.profile_manifest --manifest /data/papers.csv --runs-root /data/runs --adapter mineru
+tabulus run --manifest /data/papers.csv --runs-root /data/runs
 ```
 
 This full-manifest command is not yet implemented in the new library. The currently validated single-document commands are:
 
 ```bash
 tabulus profile --pdf /data/papers/P51.pdf --backend hybrid-engine
+
+tabulus reconstruct-tables \
+  --crops /data/papers/tabulus-output/table-crops/P51 \
+  --adapter paddleocr-vl \
+  --device gpu:0
 ```
 
 If `--out` is omitted, Tabulus uses the same default convention as the CPU workflow:
@@ -49,7 +54,7 @@ After successful profiling, Tabulus automatically exports canonical MinerU table
 <PDF directory>/tabulus-output/table-crops/<PDF stem>/
 ```
 
-Each later module should process either one run or all runs with a selected status once those commands exist.
+Each later reference-processing module should process either one run or all runs with a selected status once those commands exist.
 
 ## Profiling MinerU Runs
 
@@ -92,4 +97,18 @@ tabulus-output/table-crops/<PDF stem>/
 
 This directory should preserve `page_idx`, `bbox`, captions, footnotes, `mineru_img_path`, and MinerU `table_body` when available. PaddleOCR-VL or another table-reconstruction adapter should receive the copied MinerU table image, not a full PDF page.
 
-The validated PaddleOCR-VL GPU check used `page_006_table_001.jpg`, `device="gpu:0"`, `engine="paddle"`, layout detection disabled, and `prompt_label="table"`. It produced one parsed HTML table with 58 rows x 6 columns. Batch OCR over all exported crops is not implemented yet.
+The validated PaddleOCR-VL GPU check used `page_006_table_001.jpg`, `device="gpu:0"`, `engine="paddle"`, layout detection disabled, and `prompt_label="table"`. It produced one parsed HTML table with 58 rows x 6 columns.
+
+For batch reconstruction, the command writes:
+
+```text
+tabulus-output/table-crops/<PDF stem>/
+  reconstructions/
+    paddleocr-vl/
+      native/
+      parsed/
+      predictions/
+      batch_summary.json
+```
+
+These prediction CSV files remain pre-reference-resolution artifacts.

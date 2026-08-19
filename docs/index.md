@@ -8,9 +8,9 @@ Tabulus is a modular pipeline for digitizing scientific PDF papers into structur
 
 The project is being reorganized around standalone processing components rather than around specific OCR or extraction libraries. Each component should be runnable on its own, exchange data through a documented contract, and plug into the end-to-end pipeline once the individual step is stable.
 
-The current validated library module focuses on MinerU-backed PDF profiling and the first table-reconstruction adapter. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values. The table OCR layer now provides an extensible adapter contract with PaddleOCR-VL as the first implemented adapter.
+The current validated library module focuses on MinerU-backed PDF profiling and batch table reconstruction from canonical MinerU crops. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values. The table OCR layer provides an extensible adapter contract with PaddleOCR-VL as the first implemented adapter, plus `tabulus reconstruct-tables` for adapter-neutral batch reconstruction.
 
-The target full pipeline keeps several output layers distinct: external-tool native artifacts, normalized table-reconstruction artifacts used for evaluation, prediction CSV files, bibliography/reference-resolution artifacts, and final resolved CSV files. The current implementation has validated the MinerU and first PaddleOCR-VL pieces; the later bibliography, matching, DOI, and resolved-CSV stages remain planned for the rebuilt library.
+The target full pipeline keeps several output layers distinct: external-tool native artifacts, parsed table-reconstruction artifacts used for evaluation, prediction CSV files, bibliography/reference-resolution artifacts, and final resolved CSV files. The current implementation has validated the MinerU and first PaddleOCR-VL reconstruction pieces; the later bibliography, matching, DOI, and resolved-CSV stages remain planned for the rebuilt library.
 
 ## How To Use This Documentation
 
@@ -18,8 +18,8 @@ Start with the installation page that matches your machine. Windows and CPU-only
 
 For the current implementation, the most important distinction is:
 
-- **Already validated:** cross-platform MinerU execution through `tabulus profile`, a real 53-page Windows CPU profiling run with MinerU `pipeline`, GPU-server profiling with MinerU `hybrid-engine`, automatic export of 23 canonical table crops for the Puurunen PDF, typed table-region discovery with `tabulus.mineru`, PaddleOCR-VL CPU and GPU inference on MinerU table crops, and legacy-compatible HTML/Markdown table parsing.
-- **Next stages:** OCR batch execution across all crops, reference processing, run reporting, and full end-to-end commands.
+- **Already validated:** cross-platform MinerU execution through `tabulus profile`, a real 53-page Windows CPU profiling run with MinerU `pipeline`, GPU-server profiling with MinerU `hybrid-engine`, automatic export of 23 canonical table crops for the Puurunen PDF, typed table-region discovery with `tabulus.mineru`, PaddleOCR-VL CPU and GPU inference on MinerU table crops, `tabulus reconstruct-tables --help`, batch reconstruction dispatch, and legacy-compatible HTML/Markdown table parsing.
+- **Next stages:** reference processing, run reporting, and full end-to-end commands.
 
 ## Where To Start
 
@@ -82,8 +82,10 @@ The current library can:
 - run the PaddleOCR-VL adapter on already-isolated MinerU table crops
 - preserve PaddleOCR native JSON and Markdown result views
 - parse native table renderings into a legacy-compatible rectangular row representation
+- reconstruct all canonical crops from a `tables_index.json` handoff through `tabulus reconstruct-tables`
+- write per-adapter `native/`, `parsed/`, `predictions/`, and `batch_summary.json` reconstruction outputs
 
-The current library does not yet provide an OCR batch CLI, run bibliography/reference matching, produce run reports, resolve references, or write final CSV outputs. PaddleOCR-VL GPU execution has been validated for a single canonical MinerU crop, not as an all-crops batch workflow.
+The current library does not yet run bibliography/reference matching, produce run reports, resolve references, write final resolved CSV outputs, or provide a complete `tabulus run` command. PaddleOCR-VL remains the first implemented reconstruction adapter; it has not been scientifically proven best for every table class.
 
 ## Documentation Map
 

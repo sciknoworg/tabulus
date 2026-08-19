@@ -322,4 +322,20 @@ work\table_crops\
   images\
 ```
 
-PaddleOCR-VL is now available as the first Table OCR and Structure Extraction adapter for canonical MinerU table crops. Reference matching, DOI resolution, continued-table merging, OCR batch CLI execution, and full end-to-end processing are not yet implemented in the new library.
+PaddleOCR-VL is now available as the first Table OCR and Structure Extraction adapter for canonical MinerU table crops. If the PaddleOCR dependencies are installed in the active environment, the batch table-reconstruction CLI can process the crop handoff:
+
+```bat
+tabulus reconstruct-tables --crops "C:\path\to\ald-papers\tabulus-output\table-crops\Puurunen - February 2005" --adapter paddleocr-vl --device cpu
+```
+
+The command writes adapter outputs under:
+
+```text
+<crop-root>\reconstructions\paddleocr-vl\
+  native\
+  parsed\
+  predictions\
+  batch_summary.json
+```
+
+Reference matching, DOI resolution, continued-table merging, final resolved CSV export, and full end-to-end processing are not yet implemented in the new library.

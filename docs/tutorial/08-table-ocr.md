@@ -12,7 +12,7 @@ The input is intentionally image-based. Table-reconstruction adapters consume ca
 
 ## Output
 
-Adapter-neutral table OCR results. A later batch stage can write these to `tables/ocr_tables.json`.
+Adapter-neutral table OCR results. The implemented batch command writes per-adapter `native/`, `parsed/`, `predictions/`, and `batch_summary.json` artifacts under the crop handoff directory unless `--out` is provided.
 
 This output is an intermediate reconstruction checkpoint, not the final CSV:
 
@@ -35,7 +35,7 @@ See `data-contracts/ocr-tables-json.md`.
 
 ## Default Implementation
 
-The new Tabulus library now includes the adapter contract, lazy registry, PaddleOCR-VL adapter, and legacy-compatible parser layer under `src/tabulus/table_ocr/`. It does not yet provide an OCR batch CLI or full end-to-end pipeline command.
+The new Tabulus library now includes the adapter contract, lazy registry, PaddleOCR-VL adapter, legacy-compatible parser layer, batch reconstruction layer, and output writer under `src/tabulus/table_ocr/`. It provides a batch CLI for table reconstruction, but it does not yet provide a full end-to-end pipeline command.
 
 The component is model-independent: a Table OCR and Structure Extraction adapter consumes the normalized Tabulus table-crop handoff and returns a structured table result. PaddleOCR-VL is the first/default adapter being implemented for this contract, but another table-reconstruction adapter can be substituted later if it accepts the same handoff and preserves the same MinerU provenance.
 
@@ -84,6 +84,35 @@ tables/ocr_tables.json
 ```
 
 The diagram above shows the first adapter implementation, not a restriction of the component contract.
+
+## Batch CLI
+
+Run batch reconstruction from a canonical MinerU table-crop handoff:
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter paddleocr-vl \
+  --device gpu:0
+```
+
+If `--out` is omitted, the default output is:
+
+```text
+<crop-root>/
+  reconstructions/
+    paddleocr-vl/
+      native/
+      parsed/
+      predictions/
+      batch_summary.json
+```
+
+`native/` preserves the full adapter-neutral result and adapter provenance. `parsed/` preserves the rectangular parsed table representation and metadata. `predictions/` contains pre-reference-resolution CSV files for downstream processing and table-reconstruction evaluation. `batch_summary.json` records batch-level counts plus per-table status, runtime, artifact paths, and errors.
+
+The batch layer reads `tables_index.json`, preserves the existing `table_id` values and crop order, and processes every physical MinerU crop independently. It reuses one adapter instance for the complete batch so heavyweight models can be initialized once. A table-level OCR error is preserved as an error result and later crops continue. Duplicate table IDs and adapters that change table identity are rejected.
+
+This command performs no reference-table classification, bibliography extraction, reference matching, DOI resolution, final resolved CSV generation, or continued-table merging.
 
 ## PaddleOCR-VL Configuration
 

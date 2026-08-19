@@ -36,11 +36,24 @@ The current `tabulus.table_ocr` package:
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
 - implements the first PaddleOCR-VL adapter for MinerU-generated table crops
+- provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
+- provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
 - predicts with `prompt_label="table"`
 - preserves PaddleOCR native JSON and Markdown result views
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
+
+The current `tabulus reconstruct-tables` command:
+
+- reads a canonical `tables_index.json` handoff
+- preserves existing `table_id` values and crop order
+- reuses one adapter instance across the complete crop batch
+- processes every physical MinerU crop independently
+- writes `native/`, `parsed/`, `predictions/`, and `batch_summary.json`
+- preserves table-level errors and continues with later crops
+- rejects duplicate table IDs and adapters that change table identity
+- does not perform reference classification, bibliography extraction, reference matching, DOI resolution, final resolved CSV export, or continued-table merging
 
 The behavior is covered by unit tests that do not require GPU execution.
 
@@ -59,6 +72,8 @@ The current tests verify:
 - table OCR registry lazy loading
 - PaddleOCR-VL adapter configuration and result preservation
 - legacy-compatible HTML/Markdown table parsing
+- batch table-reconstruction input loading and error handling
+- native, parsed, prediction CSV, and batch-summary output writing
 
 ## Validated Execution
 
@@ -132,10 +147,10 @@ parsed cell differences: 0
 
 The first-ever GPU run took 91.97 s because it included model download and setup. These timings are validation observations, not formal benchmarks. The Windows CPU and Linux GPU crops were not byte-identical, with observed dimensions of 1431 x 1923 and 1432 x 1923 respectively, so the documentation should not make strong CPU-vs-GPU accuracy claims from their output differences.
 
-At commit `b052c31768abc15db4f96a984522be1239ca2611`, the full test suite reported:
+After the batch table-reconstruction CLI checkpoint, the full test suite reported:
 
 ```text
-42 passed
+55 passed
 ```
 
 The table OCR parsing tests reported:
@@ -148,11 +163,10 @@ These tests do not include Linux GPU integration validation for PaddleOCR-VL.
 
 ## Not Yet Implemented In The New Library
 
-- OCR batch CLI
 - GROBID, Kreuzberg, or Crossref integration
 - continued-table merging
 - final scientific table normalization and reference resolution
-- full Tabulus process command
+- full `tabulus run` process command
 
 ## Documentation Boundary
 

@@ -99,9 +99,8 @@ The current stable downstream interface should remain `content_list.json` plus t
 
 The new library does not yet implement:
 
-- OCR batch CLI
 - reference processing
-- a full end-to-end process command
+- a full `tabulus run` process command
 
 ## Adapter Ideas
 

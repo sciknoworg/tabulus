@@ -38,6 +38,12 @@ tabulus profile --pdf "$PAPERS/..."
      |
      v
 $PAPERS/tabulus-output/mineru/hybrid-engine/...
+     |
+     v
+tabulus reconstruct-tables --crops "$PAPERS/tabulus-output/table-crops/..."
+     |
+     v
+prediction CSV files and batch_summary.json
 ```
 
 ## 1. Tested Environment
@@ -304,7 +310,7 @@ python -m pytest -v
 
 Linux validation after the MinerU native-run-directory runner fix collected 22 tests and all 22 passed. That run included the regression test `test_run_mineru_returns_native_hybrid_run_dir`, which verifies that Tabulus returns the native `hybrid_auto/` directory for the validated hybrid run and does not create an artificial `auto/` directory.
 
-At commit `b052c31768abc15db4f96a984522be1239ca2611`, after the table OCR adapter checkpoint, the full test suite reported 42 passed. That test run does not include Linux GPU integration validation for PaddleOCR-VL.
+After the batch table-reconstruction CLI checkpoint, the full test suite reported 55 passed. That automated test run uses mocks for heavyweight OCR dependencies and does not replace Linux GPU integration validation for PaddleOCR-VL.
 
 This requires Tabulus to have been installed with:
 
@@ -418,7 +424,7 @@ PDF profiling completed: .../<document>/hybrid_auto
 
 CPU-only profiling is documented separately in `installation/windows-cpu`.
 
-## 11. Validate PaddleOCR-VL On A Canonical Crop
+## 11. Run Batch Table Reconstruction
 
 Run PaddleOCR-VL in a separate Conda environment from MinerU. The separation is intentional:
 
@@ -485,3 +491,31 @@ parsed cell differences: 0
 The first-ever GPU run took 91.97 s because it also included model download and setup. Treat these timings as validation observations, not formal benchmarks.
 
 The Windows CPU and Linux GPU crops were not byte-identical. The observed crop dimensions were 1431 x 1923 on Windows CPU and 1432 x 1923 on Linux GPU, so do not draw strong CPU-vs-GPU accuracy conclusions from output differences alone.
+
+The implemented batch CLI reuses one adapter instance across every crop in the handoff:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops "$PAPERS/tabulus-output/table-crops/<document>" \
+  --adapter paddleocr-vl \
+  --device gpu:0
+```
+
+If `--out` is omitted, the command writes:
+
+```text
+$PAPERS/
+└── tabulus-output/
+    └── table-crops/
+        └── <document>/
+            └── reconstructions/
+                └── paddleocr-vl/
+                    ├── native/
+                    ├── parsed/
+                    ├── predictions/
+                    └── batch_summary.json
+```
+
+`native/` preserves the full adapter result and provenance. `parsed/` preserves the rectangular parsed table representation. `predictions/` contains pre-reference-resolution CSV files. `batch_summary.json` records counts, per-table status, runtime, artifact paths, and errors.
+
+This command reconstructs physical MinerU crops independently. It does not merge continued tables, classify reference tables, extract bibliographies, match references, resolve DOI values, or write final resolved CSV files.

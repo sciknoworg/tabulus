@@ -218,12 +218,10 @@ new tabulus library --------+
  +-- export canonical images/tables_index.json automatically
  +-- provide PaddleOCR-VL crop adapter
  +-- validate PaddleOCR-VL GPU inference on one crop
+ +-- reconstruct all crops with tabulus reconstruct-tables
 
 
                     NOT YET IMPLEMENTED
-                           |
-                           v
-                  OCR batch command
                            |
                            v
                   reference processing
@@ -232,8 +230,7 @@ new tabulus library --------+
                     final pipeline
 ```
 
-The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, and the first PaddleOCR-VL table-reconstruction adapter for MinerU crops. These stages are not yet implemented in the new library:
+The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, the first PaddleOCR-VL table-reconstruction adapter for MinerU crops, and the `tabulus reconstruct-tables` batch CLI. These stages are not yet implemented in the new library:
 
-- OCR batch CLI
 - GROBID, Kreuzberg, or Crossref integration
 - full Tabulus process command

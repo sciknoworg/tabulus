@@ -1,6 +1,6 @@
 # ocr_tables.json
 
-`tables/ocr_tables.json` records structured table OCR results. The current library exposes adapter-neutral `TableOCRResult` objects; a later batch stage can materialize them in this file shape.
+`tables/ocr_tables.json` describes the adapter-neutral structured table OCR result shape. The current library exposes `TableOCRResult` objects and the implemented batch command persists the same boundary as per-table JSON files under `reconstructions/<adapter>/native/` and `reconstructions/<adapter>/parsed/`.
 
 This is an intermediate reconstruction checkpoint:
 
@@ -59,5 +59,17 @@ prediction CSV
 `parsed_tables` contains the legacy-compatible rectangular row representation recovered from the native Markdown/HTML text. The parser prefers HTML tables and falls back to GitHub-style pipe tables only when no HTML table is present.
 
 `status` should explicitly record `"ok"`, `"empty"`, or `"error"`. A table OCR adapter should never silently drop an input crop.
+
+The implemented batch output is:
+
+```text
+reconstructions/<adapter>/
+  native/
+  parsed/
+  predictions/
+  batch_summary.json
+```
+
+The batch layer preserves `table_id` values and crop order from `tables_index.json`. A table-level OCR error is persisted as an error result and does not abort later crops.
 
 This contract records table reconstruction output. It is not final scientific normalization, continued-table merging, formula rewriting, reference resolution, or the final user-facing CSV. Prediction CSV export and resolved CSV export are separate downstream contracts.

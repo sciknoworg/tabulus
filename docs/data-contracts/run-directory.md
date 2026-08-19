@@ -19,8 +19,9 @@ runs/
       reconstructions/
         <adapter>/
           native/
-          normalized/
+          parsed/
           predictions/
+          batch_summary.json
     references/
       bibliography.json
       reference_matches.json
@@ -36,7 +37,7 @@ Downstream modules should consume normalized Tabulus outputs, such as `metadata/
 The important artifact layers are:
 
 - native/intermediate pipeline artifacts from external tools, such as MinerU output files or PaddleOCR native result views
-- normalized reconstruction artifacts used by Tabulus components
+- parsed and normalized reconstruction artifacts used by Tabulus components
 - prediction CSV files used for table-reconstruction evaluation
 - bibliography and reference-matching artifacts used for DOI enrichment
 - resolved CSV files produced after reference matching and DOI resolution
@@ -102,3 +103,33 @@ tabulus-output/
       tables_index.json
       images/
 ```
+
+## Current Table-Reconstruction Output Convention
+
+The implemented `tabulus reconstruct-tables` command consumes the table-crop handoff root:
+
+```text
+tabulus-output/
+  table-crops/
+    <PDF stem>/
+      tables_index.json
+      images/
+```
+
+If `--out` is omitted, Tabulus writes one reconstruction tree for the selected adapter under that crop root:
+
+```text
+tabulus-output/
+  table-crops/
+    <PDF stem>/
+      reconstructions/
+        <adapter>/
+          native/
+          parsed/
+          predictions/
+          batch_summary.json
+```
+
+`native/` stores the full adapter-neutral OCR result and provenance for each crop. `parsed/` stores the rectangular parsed table representation and metadata. `predictions/` stores pre-reference-resolution CSV files when exactly one table was parsed from an `ok` result. `batch_summary.json` stores batch counts, per-table status, runtime, artifact paths, and errors.
+
+This reconstruction output is still upstream of reference classification, bibliography extraction, reference matching, DOI resolution, continued-table merging, and final resolved CSV export.
