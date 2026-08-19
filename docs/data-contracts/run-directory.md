@@ -116,12 +116,31 @@ tabulus-output/
       images/
 ```
 
-If `--out` is omitted, Tabulus writes one reconstruction tree for the selected adapter under that crop root:
+For:
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter paddleocr-vl \
+  --device gpu:0
+```
+
+if `--out` is omitted, Tabulus writes one reconstruction tree for the selected adapter under that crop root:
+
+```text
+<crop-root>/reconstructions/<adapter>/
+```
+
+The currently registered adapter directory is `paddleocr-vl`. The same namespace design allows other adapters to have separate directories later, if they are implemented behind the same reconstruction contract.
 
 ```text
 tabulus-output/
   table-crops/
     <PDF stem>/
+      tables_index.json
+      images/
+        page_<page>_table_<id>.<ext>
+        ...
       reconstructions/
         <adapter>/
           native/
@@ -130,6 +149,55 @@ tabulus-output/
           batch_summary.json
 ```
 
-`native/` stores the full adapter-neutral OCR result and provenance for each crop. `parsed/` stores the rectangular parsed table representation and metadata. `predictions/` stores pre-reference-resolution CSV files when exactly one table was parsed from an `ok` result. `batch_summary.json` stores batch counts, per-table status, runtime, artifact paths, and errors.
+`tables_index.json`
+: The canonical manifest of physical tables produced from MinerU table discovery and crop export. It links each table crop to `table_id`, page number, crop image path, bounding box, caption, footnote, MinerU provenance, and MinerU `table_body` when available. This is the authoritative handoff between MinerU table localization and table reconstruction.
+
+`images/`
+: The canonical MinerU-generated table crops. Reconstruction adapters should consume these same images rather than re-detecting or re-cropping tables from the source PDF.
+
+`reconstructions/<adapter>/`
+: The reconstruction namespace for one adapter. Each adapter gets its own output directory so multiple reconstruction approaches can process the same canonical MinerU crops without overwriting each other.
+
+`native/`
+: Adapter-native output and provenance for each crop. This layer supports reproducibility, debugging, preservation of original model/tool results, and investigation of failed or unusual parses. Downstream Tabulus stages should not need to depend directly on adapter-specific native formats.
+
+`parsed/`
+: Tabulus's common structured table representation. This bridges adapter-specific output and downstream Tabulus processing. It contains the parsed rectangular table plus metadata such as table identity, adapter/model/device, status, parsed table count, rows, row/column dimensions, parse source such as HTML or Markdown, warnings, and the prediction CSV path when one was written.
+
+`predictions/`
+: Pre-reference-resolution reconstructed table CSV files. These are suitable for reconstruction-quality evaluation against ground-truth CSVs and are the reconstructed cell values used by downstream Tabulus stages. Prediction CSVs must not later be overwritten with DOI-enriched or reference-resolved values; final DOI-enriched tables belong in a separate downstream artifact location.
+
+`batch_summary.json`
+: The manifest for one reconstruction batch. Users and programs should start here after a batch run. It records batch-level fields such as adapter, input crop root, output directory, tables requested, tables OK, tables empty, tables error, prediction CSV count, total elapsed time, and summary path. It also records per-table fields such as `table_id`, source crop path, status, elapsed time, parsed table count, native result path, parsed result path, prediction CSV path, and error text.
+
+Filename stems such as `page_006_table_001.csv` describe the physical crop:
+
+- page 6
+- Tabulus physical `table_id` 1
+
+The Tabulus `table_id` is an internal physical-table identifier derived from the MinerU discovery sequence. It is not necessarily the table number printed in the scientific article. Each physical MinerU crop remains independent through reconstruction; continued-table merging is not currently performed at this stage.
+
+## Reconstruction Reruns
+
+The intended default rerun contract is that a new reconstruction run for a selected adapter starts from a clean set of Tabulus-owned reconstruction artifacts for that adapter:
+
+```text
+<crop-root>/reconstructions/<adapter>/
+  native/
+  parsed/
+  predictions/
+  batch_summary.json
+```
+
+That cleanup must not remove:
+
+- `tables_index.json`
+- `images/`
+- MinerU-native profiling outputs
+- reconstruction outputs belonging to other adapters
+
+For safety, cleanup should apply only to Tabulus-owned reconstruction artifacts inside the selected adapter output. It should not blindly delete arbitrary contents of a user-supplied `--out` directory.
+
+Current implementation note: cleanup of stale adapter artifacts is not implemented yet. The current batch writer creates the adapter output directory and overwrites same-named native, parsed, prediction, and summary files, but it does not remove stale files left from an earlier run if the table set or filenames change.
 
 This reconstruction output is still upstream of reference classification, bibliography extraction, reference matching, DOI resolution, continued-table merging, and final resolved CSV export.

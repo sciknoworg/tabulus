@@ -72,4 +72,8 @@ reconstructions/<adapter>/
 
 The batch layer preserves `table_id` values and crop order from `tables_index.json`. A table-level OCR error is persisted as an error result and does not abort later crops.
 
+`parsed/` is Tabulus's common structured table representation. The per-table parsed JSON records table identity, adapter name/version, model version, device, source crop, status, parsed table count, parsed rows, row/column dimensions, parse source such as HTML or Markdown, warnings, and the prediction CSV path when one is written. This layer is the bridge between adapter-specific native output and downstream Tabulus processing.
+
+For the full default reconstruction directory contract and rerun behavior, see {doc}`run-directory`.
+
 This contract records table reconstruction output. It is not final scientific normalization, continued-table merging, formula rewriting, reference resolution, or the final user-facing CSV. Prediction CSV export and resolved CSV export are separate downstream contracts.

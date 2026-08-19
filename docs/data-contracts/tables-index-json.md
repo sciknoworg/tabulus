@@ -1,6 +1,6 @@
 # tables_index.json
 
-`tables_index.json` records detected and copied table images in a table-crop handoff directory.
+`tables_index.json` records detected and copied table images in a table-crop handoff directory. It is the canonical manifest of physical tables passed from MinerU table localization/cropping to table reconstruction.
 
 This file is generated automatically by `tabulus profile` after a successful MinerU run unless `--no-export-table-crops` is passed. It can also be regenerated from an existing MinerU output directory with `tabulus export-table-crops`.
 
@@ -36,12 +36,15 @@ The stable file name is `tables_index.json`. Earlier scratch runs sometimes used
 
 Each table record should provide:
 
+- stable `table_id`
 - the image path to pass to the table OCR module
 - page provenance
 - bounding-box provenance when available
 - caption and footnote context when available
 - adapter source information
 - MinerU's own `table_body` when available, so it can be compared with table-reconstruction adapter output
+
+Downstream reconstruction commands should treat `tables_index.json` as the authoritative crop order and identity source. They should preserve the existing `table_id` values rather than renumbering physical crops.
 
 ## MinerU Handoff
 

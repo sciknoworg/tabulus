@@ -90,6 +90,8 @@ The default output for one adapter is:
 
 The command reads `tables_index.json`, preserves table IDs and crop order, processes each physical MinerU crop independently, and reuses one adapter instance for the full batch. Failed tables are written as explicit error results and do not prevent later crops from running. The command rejects duplicate table IDs and adapter results that change table identity.
 
+For the full default output contract, filename semantics, and current rerun behavior, see {doc}`../data-contracts/run-directory`.
+
 Prediction CSV files are pre-reference-resolution artifacts. This command does not classify reference tables, extract bibliographies, match references, resolve DOI values, write final resolved CSV files, or merge continued tables.
 
 OCR and ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR or PaddlePaddle. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.

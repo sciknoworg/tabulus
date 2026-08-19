@@ -112,6 +112,8 @@ If `--out` is omitted, the default output is:
 
 The batch layer reads `tables_index.json`, preserves the existing `table_id` values and crop order, and processes every physical MinerU crop independently. It reuses one adapter instance for the complete batch so heavyweight models can be initialized once. A table-level OCR error is preserved as an error result and later crops continue. Duplicate table IDs and adapters that change table identity are rejected.
 
+For the full default output contract, filename semantics, and current rerun behavior, see {doc}`../data-contracts/run-directory`.
+
 This command performs no reference-table classification, bibliography extraction, reference matching, DOI resolution, final resolved CSV generation, or continued-table merging.
 
 ## PaddleOCR-VL Configuration
