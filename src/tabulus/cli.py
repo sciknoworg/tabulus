@@ -10,6 +10,9 @@ from tabulus.mineru.backends import (
     resolve_backend,
 )
 from tabulus.mineru.runner import run_mineru
+from tabulus.crop_inputs import resolve_crop_inputs
+from tabulus.pdf_inputs import resolve_pdf_inputs
+from tabulus.reconstruction_inputs import resolve_reconstruction_inputs
 from tabulus.reference_tables import (
     REFERENCE_TABLE_CLASSIFICATION_NAME,
     classify_reconstruction_tables,
@@ -157,11 +160,32 @@ def build_parser() -> argparse.ArgumentParser:
         help="Profile a scientific PDF.",
     )
 
-    profile.add_argument(
+    profile_input = profile.add_mutually_exclusive_group(required=True)
+
+    profile_input.add_argument(
         "--pdf",
-        required=True,
         type=Path,
-        help="Input PDF file.",
+        help="Process one PDF file.",
+    )
+
+    profile_input.add_argument(
+        "--folder",
+        type=Path,
+        help=(
+            "Process all PDF files directly inside this folder. "
+            "Discovery is non-recursive and sorted by filename."
+        ),
+    )
+
+    profile_input.add_argument(
+        "--pdf-list",
+        dest="pdf_list",
+        type=Path,
+        help=(
+            "Process PDF paths listed in a UTF-8 text file, one path per "
+            "line. Blank lines and lines beginning with # are ignored; "
+            "relative paths are resolved relative to the list file."
+        ),
     )
 
     profile.add_argument(
@@ -213,8 +237,10 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=None,
         help=(
-            "Normalized table-crop handoff directory. If omitted, Tabulus "
-            "writes to <PDF directory>/tabulus-output/table-crops/<PDF stem>/."
+            "Normalized table-crop handoff directory. For one PDF this is "
+            "the exact output directory. For multiple PDFs it is treated as "
+            "a parent directory and each paper writes to <out>/<PDF stem>/. "
+            "If omitted, Tabulus uses the default per-paper output."
         ),
     )
 
@@ -259,11 +285,36 @@ def build_parser() -> argparse.ArgumentParser:
         help="Reconstruct all canonical table crops through one OCR adapter.",
     )
 
-    reconstruct_tables.add_argument(
-        "--crops",
+    reconstruct_input = reconstruct_tables.add_mutually_exclusive_group(
         required=True,
+    )
+
+    reconstruct_input.add_argument(
+        "--crops",
         type=Path,
-        help="Canonical table-crop directory containing tables_index.json.",
+        help="Process one canonical table-crop directory.",
+    )
+
+    reconstruct_input.add_argument(
+        "--crops-folder",
+        dest="crops_folder",
+        type=Path,
+        help=(
+            "Process all immediate child directories containing "
+            "tables_index.json, sorted by directory name."
+        ),
+    )
+
+    reconstruct_input.add_argument(
+        "--crops-list",
+        dest="crops_list",
+        type=Path,
+        help=(
+            "Process canonical table-crop directories listed in a UTF-8 "
+            "text file, one path per line. Blank lines and lines beginning "
+            "with # are ignored; relative paths are resolved relative to "
+            "the list file."
+        ),
     )
 
     reconstruct_tables.add_argument(
@@ -284,7 +335,10 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=None,
         help=(
-            "Reconstruction output directory. If omitted, Tabulus writes to "
+            "Reconstruction output directory. For one crop root this is the "
+            "exact output directory. For multiple crop roots it is treated "
+            "as a parent and Tabulus writes to "
+            "<out>/<crop-root-name>/<adapter>/. If omitted, each paper uses "
             "<crops>/reconstructions/<adapter>/."
         ),
     )
@@ -294,13 +348,50 @@ def build_parser() -> argparse.ArgumentParser:
         help="Classify reconstructed tables for reference-like content.",
     )
 
-    classify_reference_tables.add_argument(
+    classify_input = (
+        classify_reference_tables.add_mutually_exclusive_group(
+            required=True,
+        )
+    )
+
+    classify_input.add_argument(
         "--reconstruction",
-        required=True,
         type=Path,
         help=(
             "Adapter reconstruction directory containing "
             "batch_summary.json and parsed/."
+        ),
+    )
+
+    classify_input.add_argument(
+        "--crops-folder",
+        dest="crops_folder",
+        type=Path,
+        help=(
+            "Process reconstructions for all canonical crop roots directly "
+            "inside this folder, using --adapter to select the "
+            "reconstruction directory."
+        ),
+    )
+
+    classify_input.add_argument(
+        "--reconstruction-list",
+        dest="reconstruction_list",
+        type=Path,
+        help=(
+            "Process reconstruction directories listed in a UTF-8 text "
+            "file, one path per line. Blank lines and lines beginning with "
+            "# are ignored; relative paths are resolved relative to the "
+            "list file."
+        ),
+    )
+
+    classify_reference_tables.add_argument(
+        "--adapter",
+        choices=adapter_names,
+        default="paddleocr-vl",
+        help=(
+            "Reconstruction adapter to select when --crops-folder is used."
         ),
     )
 
@@ -318,70 +409,115 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _profile_one_pdf(
+    args: argparse.Namespace,
+    *,
+    pdf_path: Path,
+    backend: str,
+    batch_size: int,
+) -> None:
+    output_root = (
+        args.out
+        if args.out is not None
+        else default_profile_output_root(
+            pdf_path,
+            profiler=args.profiler,
+            backend=backend,
+        )
+    )
+
+    if args.table_crops_out is None:
+        table_crops_output = default_table_crops_output_root(pdf_path)
+    elif batch_size == 1:
+        table_crops_output = args.table_crops_out
+    else:
+        table_crops_output = (
+            Path(args.table_crops_out) / pdf_path.stem
+        )
+
+    print()
+    print("PDF profiling configuration:")
+    print(f"  PDF: {pdf_path}")
+    print(f"  Profiler: {args.profiler}")
+    print(f"  Backend: {backend}")
+    print(f"  Method: {args.method}")
+    print(f"  Output root: {output_root}")
+    print(
+        "  Export table crops: "
+        f"{'yes' if args.export_table_crops else 'no'}"
+    )
+    if args.export_table_crops:
+        print(f"  Table-crops output: {table_crops_output}")
+
+    if args.profiler == "mineru":
+        run_dir = run_mineru(
+            pdf_path=pdf_path,
+            output_dir=output_root,
+            requested_backend=backend,
+            effort=args.effort,
+            method=args.method,
+        )
+    else:
+        raise ValueError(
+            f"Unsupported profiler: {args.profiler}"
+        )
+
+    print()
+    print(f"PDF profiling completed: {run_dir}")
+
+    if args.export_table_crops:
+        crop_result = export_mineru_table_crops(
+            mineru_output_dir=run_dir,
+            output_dir=table_crops_output,
+        )
+
+        print()
+        print("Canonical table-crop export completed:")
+        print(f"  Tables found: {crop_result.tables_found}")
+        print(f"  Crops saved: {crop_result.crops_saved}")
+        print(f"  Index: {crop_result.index_path}")
+
+
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
 
     if args.command == "profile":
         backend = select_backend(args.backend)
-
-        output_root = (
-            args.out
-            if args.out is not None
-            else default_profile_output_root(
-                args.pdf,
-                profiler=args.profiler,
-                backend=backend,
-            )
-        )
-
-        table_crops_output = (
-            args.table_crops_out
-            if args.table_crops_out is not None
-            else default_table_crops_output_root(args.pdf)
+        pdf_paths = resolve_pdf_inputs(
+            pdf=args.pdf,
+            folder=args.folder,
+            pdf_list=args.pdf_list,
         )
 
         print()
-        print("PDF profiling configuration:")
-        print(f"  PDF: {args.pdf}")
-        print(f"  Profiler: {args.profiler}")
-        print(f"  Backend: {backend}")
-        print(f"  Method: {args.method}")
-        print(f"  Output root: {output_root}")
-        print(
-            "  Export table crops: "
-            f"{'yes' if args.export_table_crops else 'no'}"
-        )
-        if args.export_table_crops:
-            print(f"  Table-crops output: {table_crops_output}")
+        print("PDF input selection:")
+        print(f"  PDFs detected: {len(pdf_paths)}")
+        for index, pdf_path in enumerate(pdf_paths, start=1):
+            print(f"  {index}. {pdf_path}")
 
-        if args.profiler == "mineru":
-            run_dir = run_mineru(
-                pdf_path=args.pdf,
-                output_dir=output_root,
-                requested_backend=backend,
-                effort=args.effort,
-                method=args.method,
-            )
-        else:
-            raise ValueError(
-                f"Unsupported profiler: {args.profiler}"
-            )
-
-        print()
-        print(f"PDF profiling completed: {run_dir}")
-
-        if args.export_table_crops:
-            crop_result = export_mineru_table_crops(
-                mineru_output_dir=run_dir,
-                output_dir=table_crops_output,
-            )
-
+        for index, pdf_path in enumerate(pdf_paths, start=1):
             print()
-            print("Canonical table-crop export completed:")
-            print(f"  Tables found: {crop_result.tables_found}")
-            print(f"  Crops saved: {crop_result.crops_saved}")
-            print(f"  Index: {crop_result.index_path}")
+            print(
+                "============================================================"
+            )
+            print(
+                f"Processing PDF {index}/{len(pdf_paths)}: "
+                f"{pdf_path.name}"
+            )
+            print(
+                "============================================================"
+            )
+            _profile_one_pdf(
+                args,
+                pdf_path=pdf_path,
+                backend=backend,
+                batch_size=len(pdf_paths),
+            )
+
+        print()
+        print("PDF profiling batch completed:")
+        print(f"  Papers processed: {len(pdf_paths)}")
 
         return
 
@@ -399,13 +535,10 @@ def main() -> None:
         return
 
     if args.command == "reconstruct-tables":
-        output_dir = (
-            args.out
-            if args.out is not None
-            else default_table_reconstruction_output_root(
-                args.crops,
-                adapter_name=args.adapter,
-            )
+        crop_roots = resolve_crop_inputs(
+            crops=args.crops,
+            crops_folder=args.crops_folder,
+            crops_list=args.crops_list,
         )
 
         adapter = create_table_ocr_adapter(
@@ -420,55 +553,162 @@ def main() -> None:
             )
 
         print()
-        print("Table reconstruction configuration:")
-        print(f"  Crops: {args.crops}")
-        print(f"  Adapter: {args.adapter}")
-        print(f"  Device: {args.device}")
-        print(f"  Output: {output_dir}")
+        print("Table reconstruction input selection:")
+        print(f"  Papers detected: {len(crop_roots)}")
+        for index, crop_root in enumerate(crop_roots, start=1):
+            print(f"  {index}. {crop_root}")
 
-        result = run_table_ocr_batch(
-            crop_root=args.crops,
-            output_dir=output_dir,
-            adapter=adapter,
-        )
+        totals = {
+            "tables_requested": 0,
+            "tables_ok": 0,
+            "tables_empty": 0,
+            "tables_error": 0,
+            "prediction_csvs": 0,
+        }
+
+        for index, crop_root in enumerate(crop_roots, start=1):
+            if args.out is None:
+                output_dir = default_table_reconstruction_output_root(
+                    crop_root,
+                    adapter_name=args.adapter,
+                )
+            elif len(crop_roots) == 1:
+                output_dir = args.out
+            else:
+                output_dir = (
+                    Path(args.out)
+                    / crop_root.name
+                    / args.adapter
+                )
+
+            print()
+            print(
+                "============================================================"
+            )
+            print(
+                f"Reconstructing paper {index}/{len(crop_roots)}: "
+                f"{crop_root.name}"
+            )
+            print(
+                "============================================================"
+            )
+            print()
+            print("Table reconstruction configuration:")
+            print(f"  Crops: {crop_root}")
+            print(f"  Adapter: {args.adapter}")
+            print(f"  Device: {args.device}")
+            print(f"  Output: {output_dir}")
+
+            result = run_table_ocr_batch(
+                crop_root=crop_root,
+                output_dir=output_dir,
+                adapter=adapter,
+            )
+
+            print()
+            print("Table reconstruction completed:")
+            print(f"  Tables requested: {result.tables_requested}")
+            print(f"  Tables ok: {result.tables_ok}")
+            print(f"  Tables empty: {result.tables_empty}")
+            print(f"  Tables error: {result.tables_error}")
+            print(f"  Prediction CSVs: {result.prediction_csvs}")
+            print(f"  Summary: {result.summary_path}")
+
+            for key in totals:
+                totals[key] += getattr(result, key)
 
         print()
-        print("Table reconstruction completed:")
-        print(f"  Tables requested: {result.tables_requested}")
-        print(f"  Tables ok: {result.tables_ok}")
-        print(f"  Tables empty: {result.tables_empty}")
-        print(f"  Tables error: {result.tables_error}")
-        print(f"  Prediction CSVs: {result.prediction_csvs}")
-        print(f"  Summary: {result.summary_path}")
+        print("Table reconstruction batch completed:")
+        print(f"  Papers processed: {len(crop_roots)}")
+        print(f"  Adapter: {args.adapter}")
+        print(f"  Device: {args.device}")
+        print(f"  Tables requested: {totals['tables_requested']}")
+        print(f"  Tables ok: {totals['tables_ok']}")
+        print(f"  Tables empty: {totals['tables_empty']}")
+        print(f"  Tables error: {totals['tables_error']}")
+        print(f"  Prediction CSVs: {totals['prediction_csvs']}")
         return
 
     if args.command == "classify-reference-tables":
-        output_path = (
-            args.out
-            if args.out is not None
-            else default_reference_table_classification_output(
-                args.reconstruction
+        reconstruction_dirs = resolve_reconstruction_inputs(
+            reconstruction=args.reconstruction,
+            crops_folder=args.crops_folder,
+            reconstruction_list=args.reconstruction_list,
+            adapter_name=args.adapter,
+        )
+
+        if args.out is not None and len(reconstruction_dirs) != 1:
+            raise ValueError(
+                "--out can only be used when exactly one reconstruction "
+                "directory is selected. Multi-paper classification writes "
+                "the default manifest inside each reconstruction directory."
             )
-        )
 
         print()
-        print("Reference-table classification configuration:")
-        print(f"  Reconstruction: {args.reconstruction}")
-        print(f"  Output: {output_path}")
+        print("Reference-table classification input selection:")
+        print(f"  Reconstructions detected: {len(reconstruction_dirs)}")
+        for index, reconstruction_dir in enumerate(
+            reconstruction_dirs,
+            start=1,
+        ):
+            print(f"  {index}. {reconstruction_dir}")
 
-        result = classify_reconstruction_tables(
-            args.reconstruction,
-            output_path=output_path,
-        )
+        total_tables = 0
+        total_reference_tables = 0
+
+        for index, reconstruction_dir in enumerate(
+            reconstruction_dirs,
+            start=1,
+        ):
+            output_path = (
+                args.out
+                if args.out is not None
+                else default_reference_table_classification_output(
+                    reconstruction_dir
+                )
+            )
+
+            print()
+            print("============================================================")
+            print(
+                "Classifying reconstruction "
+                f"{index}/{len(reconstruction_dirs)}: "
+                f"{reconstruction_dir}"
+            )
+            print("============================================================")
+            print()
+            print("Reference-table classification configuration:")
+            print(f"  Reconstruction: {reconstruction_dir}")
+            print(f"  Output: {output_path}")
+
+            result = classify_reconstruction_tables(
+                reconstruction_dir,
+                output_path=output_path,
+            )
+
+            print()
+            print("Reference-table classification completed:")
+            print(f"  Tables considered: {result.tables_considered}")
+            print(
+                "  Reference tables found: "
+                f"{result.reference_tables_found}"
+            )
+            print(f"  Manifest: {result.output_path}")
+
+            total_tables += result.tables_considered
+            total_reference_tables += result.reference_tables_found
 
         print()
-        print("Reference-table classification completed:")
-        print(f"  Tables considered: {result.tables_considered}")
+        print("Reference-table classification batch completed:")
         print(
-            "  Reference tables found: "
-            f"{result.reference_tables_found}"
+            f"  Reconstructions processed: {len(reconstruction_dirs)}"
         )
-        print(f"  Manifest: {result.output_path}")
+        print(f"  Tables considered: {total_tables}")
+        print(f"  Reference tables found: {total_reference_tables}")
+        print(
+            "  Non-reference tables: "
+            f"{total_tables - total_reference_tables}"
+        )
         return
 
     parser.print_help()
