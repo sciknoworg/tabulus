@@ -14,7 +14,9 @@ Reference matches enriched with DOI values.
 
 ## Default Implementation
 
-The current matcher first uses DOI values parsed from bibliography text. If enabled, it queries Crossref for missing DOI values.
+This stage is retained in the legacy thesis workflow but is not yet implemented in the rebuilt `src/tabulus` library.
+
+The target resolver first uses DOI values parsed from bibliography text. If enabled, it can query Crossref for missing DOI values. DOI enrichment happens after table reconstruction and reference matching; it should not overwrite the prediction CSV artifact used for table-quality evaluation.
 
 ## Verification
 

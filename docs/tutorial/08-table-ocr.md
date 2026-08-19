@@ -14,6 +14,21 @@ The input is intentionally image-based. Table-reconstruction adapters consume ca
 
 Adapter-neutral table OCR results. A later batch stage can write these to `tables/ocr_tables.json`.
 
+This output is an intermediate reconstruction checkpoint, not the final CSV:
+
+```text
+adapter-native result
+      |
+      v
+parsed rows / structured OCR
+      |
+      v
+normalized reconstruction
+      |
+      v
+prediction CSV
+```
+
 ## Module Contract
 
 See `data-contracts/ocr-tables-json.md`.
@@ -122,7 +137,7 @@ The generic parsed representation contains:
 - `n_cols`
 - `source`
 
-This is not final scientific normalization. It restores the legacy rectangular row representation; semantic fill-down, section-row interpretation, formula rewriting, and reference resolution remain later stages.
+This is not final scientific normalization. It restores the legacy rectangular row representation; semantic fill-down, section-row interpretation, formula rewriting, prediction CSV export, and reference resolution remain later stages.
 
 ## Validated Windows CPU Inference
 

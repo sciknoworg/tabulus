@@ -18,7 +18,9 @@ See `data-contracts/bibliography-json.md`.
 
 ## Default Implementation
 
-The current pipeline uses GROBID first. If GROBID fails, it can call Kreuzberg for OCR text and then apply bibliography regex patterns.
+This stage is retained in the legacy thesis workflow but is not yet implemented in the rebuilt `src/tabulus` library.
+
+The target workflow uses GROBID first. If GROBID fails or returns unusable bibliography entries, a Kreuzberg OCR fallback can extract raw reference-section text and apply bibliography regex patterns. The resulting bibliography artifact should be evaluated independently from table reconstruction quality.
 
 ## Alternative Adapters
 

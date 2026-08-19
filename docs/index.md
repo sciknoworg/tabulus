@@ -10,6 +10,8 @@ The project is being reorganized around standalone processing components rather 
 
 The current validated library module focuses on MinerU-backed PDF profiling and the first table-reconstruction adapter. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values. The table OCR layer now provides an extensible adapter contract with PaddleOCR-VL as the first implemented adapter.
 
+The target full pipeline keeps several output layers distinct: external-tool native artifacts, normalized table-reconstruction artifacts used for evaluation, prediction CSV files, bibliography/reference-resolution artifacts, and final resolved CSV files. The current implementation has validated the MinerU and first PaddleOCR-VL pieces; the later bibliography, matching, DOI, and resolved-CSV stages remain planned for the rebuilt library.
+
 ## How To Use This Documentation
 
 Start with the installation page that matches your machine. Windows and CPU-only users can use MinerU's `pipeline` backend. GPU-server users can use MinerU's `hybrid-engine` backend when a suitable CUDA GPU is visible. Library contributors can use the core Python setup for GPU-independent unit tests.
@@ -92,7 +94,7 @@ The sidebar contains the full documentation. The main sections are:
 - **Components:** adapter boundaries and responsibilities.
 - **Workflows:** headless local/GPU execution shapes.
 - **External Tools:** third-party tools as used by Tabulus.
-- **Data Contracts:** the file formats exchanged between modules.
+- **Data Contracts:** the file formats and artifact layers exchanged between modules.
 - **Evaluation:** how to compare extraction and matching quality.
 
 ```{toctree}
@@ -169,6 +171,7 @@ data-contracts/mineru-output-files
 data-contracts/pdf-profile-json
 data-contracts/tables-index-json
 data-contracts/ocr-tables-json
+data-contracts/table-prediction-csv
 data-contracts/bibliography-json
 data-contracts/reference-matches-json
 data-contracts/resolved-csv

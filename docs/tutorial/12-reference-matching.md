@@ -6,7 +6,7 @@ Match table reference cells to bibliography entries.
 
 ## Input
 
-Reference-like tables and `references/bibliography.json`.
+Reference-like normalized tables or prediction CSV content, plus `references/bibliography.json`.
 
 ## Output
 
@@ -18,7 +18,9 @@ See `data-contracts/reference-matches-json.md`.
 
 ## Default Implementation
 
-The current matcher supports numeric references, DOI references, author-year references, author-only fallback, and normalized text containment.
+This stage is retained in the legacy thesis workflow but is not yet implemented in the rebuilt `src/tabulus` library.
+
+The target matcher supports numeric references, DOI references, author-year references, author-only fallback, and normalized text containment. It should produce row-level match metadata without mutating the prediction CSV used for table-reconstruction evaluation.
 
 ## Verification
 

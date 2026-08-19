@@ -6,7 +6,7 @@ Decide whether an extracted table contains citations or reference identifiers.
 
 ## Input
 
-Normalized OCR tables.
+Normalized table reconstructions or prediction CSV content.
 
 ## Output
 
@@ -28,7 +28,9 @@ Normalized OCR tables.
 
 ## Default Implementation
 
-The current backend uses regex-based header and citation detection.
+This stage is retained in the legacy thesis workflow but is not yet implemented in the rebuilt `src/tabulus` library.
+
+The target classifier should use evidence such as reference-like headers, bracketed numeric citations, DOI strings, author-year citations, or similar patterns to decide whether a table should enter the reference-resolution branch. It should not change the table prediction CSV used for reconstruction evaluation.
 
 ## Verification
 

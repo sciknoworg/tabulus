@@ -1,8 +1,23 @@
 # Table Extraction Quality
 
-Table extraction quality evaluates whether detected and OCR-extracted tables match ground truth tables.
+Table extraction quality evaluates whether reconstructed tables match ground truth tables.
 
-Current metrics include RMS-based similarity, normal accuracy, F1 score, and runtime depending on the evaluation script.
+Current evaluation scripts compare a prediction CSV against a ground-truth CSV. Metrics include RMS-based DePlot-style table similarity, normal accuracy, F1 score, and runtime depending on the script.
+
+```text
+normalized reconstruction
+        |
+        v
+prediction CSV
+        |
+        v
+RMS / DePlot evaluation
+        |
+        v
+ground-truth CSV
+```
+
+The DOI-enriched resolved CSV is not used for OCR/table reconstruction quality because enrichment intentionally changes reference-cell values.
 
 ## First Comparison
 
@@ -44,7 +59,7 @@ same detected table
               +-- NuExtract3
 ```
 
-Because the adapter-native output formats may differ, Tabulus should normalize every candidate into a common table representation before scoring against the ground-truth CSV.
+Because the adapter-native output formats may differ, Tabulus should normalize every candidate into a common table representation and export a prediction CSV before scoring against the ground-truth CSV.
 
 This comparison should not assume a winner. It should measure whether an external adapter improves over MinerU's own `table_body`, and which adapter offers the best quality/runtime tradeoff for different table classes. Using the same MinerU crop controls the table-detection and cropping variable, so the evaluation is primarily about table reconstruction quality.
 
@@ -62,3 +77,5 @@ For reproducible comparisons, record:
 - first-run or warmed-cache status
 - total wall-clock time per stage
 - peak GPU memory if available
+
+Structural subclass evaluation should group results by table category or difficulty class when curated labels are available. That makes it possible to see whether an adapter helps only on specific table structures rather than only reporting one aggregate score.

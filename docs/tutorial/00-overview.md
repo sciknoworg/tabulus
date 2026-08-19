@@ -100,34 +100,51 @@ Scientific PDF
       v
     MinerU
       |
-      +-- table localization
-      +-- table crop generation
+      +-- native MinerU artifacts
+      +-- canonical table crop
       +-- MinerU table_body
-              |
-              +-------------------------------+
-              |                               |
-       canonical table crop             table_body
-              |                               |
-   +----------+----------+----------+---------+---------+
-   |          |          |          |         |         |
-   v          v          v          v         v         v
-PaddleOCR  DeepSeek   Chandra   Kreuzberg  NuExtract3 MinerU
-   VL                                             table_body
-   |          |          |          |         |         |
-   v          v          v          v         v         v
-table reconstruction candidates / structured tables
-              |
+              |                       |
+              |                       v
+              |              MinerU reconstruction
+              |                       candidate
               v
-     normalize representations
-              |
-              v
-       compare predictions
-              |
-              v
-       ground-truth CSV
+   +----------+----------+----------+----------+----------+
+   |          |          |          |          |          |
+   v          v          v          v          v          v
+PaddleOCR  DeepSeek   Chandra   Kreuzberg  NuExtract3
+   VL        OCR
+   |          |          |          |          |
+   v          v          v          v          v
+adapter-native table reconstruction outputs
+   |          |          |          |          |
+   +----------+----------+----------+----------+-----+
+                                                       |
+                                                       v
+                   table reconstruction candidates, including
+                   MinerU table_body as the sixth candidate
+                                                       |
+                                                       v
+                         normalized table reconstruction
+                                                       |
+                                                       v
+                              prediction CSV
+                                                       |
+                                  +--------------------+--------------------+
+                                  |                                         |
+                                  v                                         v
+                         ground-truth CSV                         reference pipeline
+                         table evaluation                         classification,
+                                                                  bibliography,
+                                                                  matching, DOI
+                                                                  resolution
+                                                                            |
+                                                                            v
+                                                                  resolved CSV files
 ```
 
-All six outputs may use different adapter-native output formats, so Tabulus should normalize them into a common table representation before comparison against the same ground-truth CSV. The evaluation should determine whether an external table-reconstruction adapter improves over MinerU's own `table_body`, and which adapter offers the best quality/runtime tradeoff for different table classes.
+All six outputs may use different adapter-native output formats, so Tabulus should normalize them into a common table representation before exporting a prediction CSV and comparing it against the same ground-truth CSV. The prediction CSV is the table-reconstruction artifact used for evaluation. It must remain separate from the later resolved CSV, where reference cells may be replaced with DOI values.
+
+The static pipeline image at the top of this page gives the high-level thesis workflow. The text schematic above is the current artifact-level reference for the table-reconstruction comparison and evaluation boundary.
 
 ## Ordered Steps
 

@@ -2,6 +2,21 @@
 
 `tables/ocr_tables.json` records structured table OCR results. The current library exposes adapter-neutral `TableOCRResult` objects; a later batch stage can materialize them in this file shape.
 
+This is an intermediate reconstruction checkpoint:
+
+```text
+adapter-native output
+        |
+        v
+structured OCR / parsed rows
+        |
+        v
+normalized reconstruction
+        |
+        v
+prediction CSV
+```
+
 ```json
 {
   "success": true,
@@ -45,4 +60,4 @@
 
 `status` should explicitly record `"ok"`, `"empty"`, or `"error"`. A table OCR adapter should never silently drop an input crop.
 
-This contract records table reconstruction output. It is not final scientific normalization, continued-table merging, formula rewriting, or reference resolution.
+This contract records table reconstruction output. It is not final scientific normalization, continued-table merging, formula rewriting, reference resolution, or the final user-facing CSV. Prediction CSV export and resolved CSV export are separate downstream contracts.
