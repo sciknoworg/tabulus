@@ -39,6 +39,19 @@ The current `tabulus.table_ocr.parsing` layer restores the legacy Paddle-compati
 - `n_cols`
 - `source`
 
+For HTML tables, `rowspan` and `colspan` are expanded into the common
+rectangular row matrix. The original merged-cell value is retained only at the
+upper-left grid position; other grid positions covered by the span become
+empty-string placeholders. This preserves column alignment for CSV-style
+reconstruction, but it is structural expansion only, not semantic fill-down.
+
+Invalid or non-positive span values fall back safely to a span of one. Rowspans
+that extend past the available HTML rows are clipped rather than creating
+synthetic rows. Markdown fallback behavior is unchanged.
+
+This behavior is adapter-neutral and is useful for any reconstruction model
+that emits HTML tables, not only a single OCR backend.
+
 This parser is a reconstruction/parsing checkpoint, not final normalization. It does not semantically fill down cells, interpret section rows, rewrite formulas, merge continued tables, resolve references, or decide which reconstruction candidate is scientifically correct.
 
 The future normalized representation should support:

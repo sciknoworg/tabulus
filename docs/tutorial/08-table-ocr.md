@@ -37,7 +37,7 @@ See `data-contracts/ocr-tables-json.md`.
 
 The new Tabulus library now includes the adapter contract, lazy registry, PaddleOCR-VL adapter, legacy-compatible parser layer, batch reconstruction layer, and output writer under `src/tabulus/table_ocr/`. It provides a batch CLI for table reconstruction, but it does not yet provide a full end-to-end pipeline command.
 
-The component is model-independent: a Table OCR and Structure Extraction adapter consumes the normalized Tabulus table-crop handoff and returns a structured table result. PaddleOCR-VL is the first/default adapter being implemented for this contract, but another table-reconstruction adapter can be substituted later if it accepts the same handoff and preserves the same MinerU provenance.
+The component is model-independent: a Table OCR and Structure Extraction adapter consumes the normalized Tabulus table-crop handoff and returns a structured table result. PaddleOCR-VL is the only currently registered reconstruction adapter, but another table-reconstruction adapter can be substituted later if it accepts the same handoff and preserves the same MinerU provenance.
 
 PaddleOCR-VL is more than ordinary OCR. Its current architecture performs layout analysis followed by vision-language-model recognition. The layout stage detects elements such as tables, crops them, determines reading order, and the VLM converts the elements into structured recognition results.
 
@@ -158,7 +158,7 @@ The legacy Paddle `/ocr/images` table parsing behavior has been restored as a re
 The current preference order is:
 
 1. Read PaddleOCR's native Markdown/HTML textual representation.
-2. If one or more HTML `<table>...</table>` elements are present, parse them as HTML tables, preserve cell strings, normalize whitespace, pad shorter rows to make the row matrix rectangular, and mark the parsed source as `"html"`.
+2. If one or more HTML `<table>...</table>` elements are present, parse them as HTML tables, preserve cell strings, expand `rowspan` and `colspan` into a rectangular matrix, pad shorter rows, and mark the parsed source as `"html"`.
 3. Only if no HTML table is found, fall back to GitHub-style pipe-table Markdown parsing and mark the parsed source as `"markdown"`.
 
 The generic parsed representation contains:
@@ -223,11 +223,65 @@ The first-ever GPU run took 91.97 s because it also included model download and 
 
 The Windows CPU crop and Linux GPU crop were not byte-identical: the observed image dimensions were 1431 x 1923 on Windows CPU and 1432 x 1923 on Linux GPU. Do not make strong CPU-vs-GPU accuracy claims from differences between those outputs.
 
+## Direct Chandra OCR 2 Validation
+
+Chandra OCR 2 has been validated as a direct feasibility and compatibility
+test against the same canonical MinerU table crop used for the PaddleOCR-VL
+validation. Chandra consumed the already-isolated crop image; it did not
+redetect tables or recrop the original PDF.
+
+This was not a Tabulus adapter run. The tested path used Chandra's
+Hugging Face/in-process API directly, not the Chandra CLI or a vLLM server.
+Chandra is not yet registered in `src/tabulus/table_ocr/`, so this command does
+not exist yet:
+
+```bash
+tabulus reconstruct-tables --adapter chandra
+```
+
+The validated direct run used:
+
+- Chandra package: `chandra-ocr` 0.2.0
+- model: `datalab-to/chandra-ocr-2`
+- Python 3.12.13
+- PyTorch 2.13.0+cu130
+- Transformers 5.15.1
+- GPU: NVIDIA L40S
+- prompt: `prompt_type="ocr"`
+
+The model loaded successfully on `cuda:0`. First model load/download took
+111.40 s, inference took 134.79 s, and the run generated 3838 tokens. Peak
+allocated inference GPU memory was 9.35 GiB. `result.error` was `False`.
+
+The output contained one structured HTML table. After parsing through the
+Tabulus common HTML parser, the table had 65 rows x 6 columns. Chandra emitted
+meaningful HTML `rowspan` attributes, which exposed a limitation in the common
+parser; that parser limitation has been fixed separately.
+
+The intended architecture remains:
+
+```text
+canonical MinerU crop
+      |
+      v
+reconstruction adapter
+      |
+      v
+common parsed representation
+      |
+      v
+prediction CSV
+```
+
+Do not treat this single-table validation as evidence that PaddleOCR-VL or
+Chandra is more accurate. PaddleOCR-VL remains the only currently implemented
+Tabulus reconstruction adapter.
+
 ## Alternative Adapters
 
-- PaddleOCR-VL -- first/default implementation target
+- PaddleOCR-VL -- currently implemented Tabulus reconstruction adapter
 - DeepSeek OCR
-- Chandra
+- Chandra -- directly validated through its in-process API, not yet integrated as a Tabulus adapter
 - Kreuzberg
 - NuExtract3
 
