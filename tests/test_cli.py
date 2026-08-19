@@ -31,6 +31,21 @@ def test_default_table_crops_output_root(tmp_path):
     )
 
 
+def test_default_table_reconstruction_output_root(tmp_path):
+    crops = tmp_path / "table-crops" / "paper"
+
+    output = cli.default_table_reconstruction_output_root(
+        crops,
+        adapter_name="paddleocr-vl",
+    )
+
+    assert output == (
+        crops
+        / "reconstructions"
+        / "paddleocr-vl"
+    )
+
+
 def test_profile_parser_allows_default_output():
     parser = cli.build_parser()
 
@@ -269,3 +284,95 @@ def test_export_table_crops_main_calls_exporter(monkeypatch):
 
     assert calls["mineru_output_dir"] == Path("work/mineru/puurunen_2005")
     assert calls["output_dir"] == Path("work/table_crops")
+
+
+def test_reconstruct_tables_parser_uses_default_adapter_and_output():
+    parser = cli.build_parser()
+
+    args = parser.parse_args(
+        [
+            "reconstruct-tables",
+            "--crops",
+            "work/table-crops/paper",
+            "--device",
+            "gpu:0",
+        ]
+    )
+
+    assert args.command == "reconstruct-tables"
+    assert args.crops == Path("work/table-crops/paper")
+    assert args.adapter == "paddleocr-vl"
+    assert args.device == "gpu:0"
+    assert args.out is None
+
+
+def test_reconstruct_tables_main_dispatches_to_batch_layer(monkeypatch):
+    calls = {}
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "tabulus",
+            "reconstruct-tables",
+            "--crops",
+            "work/table-crops/paper",
+            "--adapter",
+            "paddleocr-vl",
+            "--device",
+            "gpu:0",
+        ],
+    )
+
+    class FakeCapabilities:
+        def supports_device(self, device):
+            calls["supports_device"] = device
+            return True
+
+    class FakeAdapter:
+        capabilities = FakeCapabilities()
+
+    fake_adapter = FakeAdapter()
+
+    def fake_create_adapter(name, **kwargs):
+        calls["adapter_name"] = name
+        calls["adapter_kwargs"] = kwargs
+        return fake_adapter
+
+    class FakeBatchResult:
+        tables_requested = 23
+        tables_ok = 23
+        tables_empty = 0
+        tables_error = 0
+        prediction_csvs = 23
+        summary_path = Path(
+            "work/table-crops/paper/reconstructions/"
+            "paddleocr-vl/batch_summary.json"
+        )
+
+    def fake_run_batch(*, crop_root, output_dir, adapter):
+        calls["crop_root"] = crop_root
+        calls["output_dir"] = output_dir
+        calls["adapter"] = adapter
+        return FakeBatchResult()
+
+    monkeypatch.setattr(
+        cli,
+        "create_table_ocr_adapter",
+        fake_create_adapter,
+    )
+    monkeypatch.setattr(
+        cli,
+        "run_table_ocr_batch",
+        fake_run_batch,
+    )
+
+    cli.main()
+
+    assert calls["adapter_name"] == "paddleocr-vl"
+    assert calls["adapter_kwargs"] == {"device": "gpu:0"}
+    assert calls["supports_device"] == "gpu:0"
+    assert calls["crop_root"] == Path("work/table-crops/paper")
+    assert calls["output_dir"] == Path(
+        "work/table-crops/paper/reconstructions/paddleocr-vl"
+    )
+    assert calls["adapter"] is fake_adapter

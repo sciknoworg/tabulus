@@ -11,6 +11,11 @@ from tabulus.mineru.backends import (
 )
 from tabulus.mineru.runner import run_mineru
 from tabulus.table_crops import export_mineru_table_crops
+from tabulus.table_ocr import (
+    create_table_ocr_adapter,
+    list_table_ocr_adapters,
+    run_table_ocr_batch,
+)
 
 DEFAULT_PROFILER = "mineru"
 SUPPORTED_PROFILERS = (DEFAULT_PROFILER,)
@@ -104,6 +109,16 @@ def default_table_crops_output_root(pdf_path: Path) -> Path:
         / "table-crops"
         / pdf_path.stem
     )
+
+
+def default_table_reconstruction_output_root(
+    crop_root: Path,
+    *,
+    adapter_name: str,
+) -> Path:
+    """Return the default reconstruction output directory for one adapter."""
+
+    return Path(crop_root) / "reconstructions" / adapter_name
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -219,6 +234,46 @@ def build_parser() -> argparse.ArgumentParser:
         help="Table-crop handoff output directory.",
     )
 
+    adapter_names = tuple(
+        spec.name
+        for spec in list_table_ocr_adapters()
+    )
+
+    reconstruct_tables = subparsers.add_parser(
+        "reconstruct-tables",
+        help="Reconstruct all canonical table crops through one OCR adapter.",
+    )
+
+    reconstruct_tables.add_argument(
+        "--crops",
+        required=True,
+        type=Path,
+        help="Canonical table-crop directory containing tables_index.json.",
+    )
+
+    reconstruct_tables.add_argument(
+        "--adapter",
+        choices=adapter_names,
+        default="paddleocr-vl",
+        help="Table reconstruction adapter.",
+    )
+
+    reconstruct_tables.add_argument(
+        "--device",
+        default="cpu",
+        help="Execution device passed to the adapter, for example cpu or gpu:0.",
+    )
+
+    reconstruct_tables.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help=(
+            "Reconstruction output directory. If omitted, Tabulus writes to "
+            "<crops>/reconstructions/<adapter>/."
+        ),
+    )
+
     return parser
 
 
@@ -300,6 +355,50 @@ def main() -> None:
         print(f"  Tables found: {result.tables_found}")
         print(f"  Crops saved: {result.crops_saved}")
         print(f"  Index: {result.index_path}")
+        return
+
+    if args.command == "reconstruct-tables":
+        output_dir = (
+            args.out
+            if args.out is not None
+            else default_table_reconstruction_output_root(
+                args.crops,
+                adapter_name=args.adapter,
+            )
+        )
+
+        adapter = create_table_ocr_adapter(
+            args.adapter,
+            device=args.device,
+        )
+
+        if not adapter.capabilities.supports_device(args.device):
+            raise ValueError(
+                f"Adapter {args.adapter!r} does not support device "
+                f"{args.device!r}."
+            )
+
+        print()
+        print("Table reconstruction configuration:")
+        print(f"  Crops: {args.crops}")
+        print(f"  Adapter: {args.adapter}")
+        print(f"  Device: {args.device}")
+        print(f"  Output: {output_dir}")
+
+        result = run_table_ocr_batch(
+            crop_root=args.crops,
+            output_dir=output_dir,
+            adapter=adapter,
+        )
+
+        print()
+        print("Table reconstruction completed:")
+        print(f"  Tables requested: {result.tables_requested}")
+        print(f"  Tables ok: {result.tables_ok}")
+        print(f"  Tables empty: {result.tables_empty}")
+        print(f"  Tables error: {result.tables_error}")
+        print(f"  Prediction CSVs: {result.prediction_csvs}")
+        print(f"  Summary: {result.summary_path}")
         return
 
     parser.print_help()
