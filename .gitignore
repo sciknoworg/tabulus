@@ -79,3 +79,4 @@ work/
 .conda/
 .pytest_cache/
 .venv-*/
+*.patch

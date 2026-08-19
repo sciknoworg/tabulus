@@ -6,6 +6,11 @@ from tabulus.table_ocr.base import (
     TableOCRResult,
     TableOCRStatus,
 )
+from tabulus.table_ocr.output import (
+    TableOCRArtifactPaths,
+    parse_result_tables,
+    write_table_ocr_artifacts,
+)
 from tabulus.table_ocr.registry import (
     TableOCRAdapterSpec,
     create_table_ocr_adapter,
@@ -15,6 +20,7 @@ from tabulus.table_ocr.registry import (
 
 __all__ = [
     "TableOCRAdapter",
+    "TableOCRArtifactPaths",
     "TableOCRAdapterSpec",
     "TableOCRCapabilities",
     "TableOCRDependencyError",
@@ -24,4 +30,6 @@ __all__ = [
     "create_table_ocr_adapter",
     "get_table_ocr_adapter_class",
     "list_table_ocr_adapters",
+    "parse_result_tables",
+    "write_table_ocr_artifacts",
 ]
