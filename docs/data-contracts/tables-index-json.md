@@ -2,6 +2,9 @@
 
 `tables_index.json` records detected and copied table images in a table-crop handoff directory. It is the canonical manifest of physical tables passed from MinerU table localization/cropping to table reconstruction.
 
+For the full filesystem contract around native MinerU output, canonical crop
+handoffs, reconstruction artifacts, and rerun behavior, see {doc}`run-directory`.
+
 This file is generated automatically by `tabulus profile` after a successful MinerU run unless `--no-export-table-crops` is passed. It can also be regenerated from an existing MinerU output directory with `tabulus export-table-crops`.
 
 The stable file name is `tables_index.json`. Earlier scratch runs sometimes used `table_index.json`; new code and docs should use the plural name.
@@ -44,7 +47,7 @@ Each table record should provide:
 - adapter source information
 - MinerU's own `table_body` when available, so it can be compared with table-reconstruction adapter output
 
-Downstream reconstruction commands should treat `tables_index.json` as the authoritative crop order and identity source. They should preserve the existing `table_id` values rather than renumbering physical crops.
+Downstream reconstruction commands should treat `tables_index.json` as the authoritative crop order and identity source. They should preserve the existing `table_id` values rather than renumbering physical crops. These IDs identify physical detected tables in the document; they are not necessarily the printed table numbers in the paper.
 
 ## MinerU Handoff
 
@@ -67,6 +70,11 @@ write tables_index.json
 ```
 
 Tabulus does not need to crop the PDF again from `bbox`. The `bbox` should be preserved for traceability and visual QA, but the image passed to table OCR is the MinerU-generated image referenced by `img_path`.
+
+`mineru_table_body` is MinerU's own candidate reconstruction for the detected
+table. It is separate from the canonical crop image consumed by PaddleOCR-VL or
+another reconstruction adapter, and it should not be described as adapter OCR
+output.
 
 Each record represents one physical MinerU table crop. Current Tabulus does not merge multi-page or continued table segments; logical table continuity remains a future concern.
 

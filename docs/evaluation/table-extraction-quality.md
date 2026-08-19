@@ -2,7 +2,9 @@
 
 Table extraction quality evaluates whether reconstructed tables match ground truth tables.
 
-Current evaluation scripts compare a prediction CSV against a ground-truth CSV. Metrics include RMS-based DePlot-style table similarity, normal accuracy, F1 score, and runtime depending on the script.
+Current evaluation scripts compare a reconstruction prediction CSV against a
+ground-truth CSV. Metrics include RMS-based DePlot-style table similarity,
+normal accuracy, F1 score, and runtime depending on the script.
 
 ```text
 normalized reconstruction
@@ -18,6 +20,10 @@ ground-truth CSV
 ```
 
 The DOI-enriched resolved CSV is not used for OCR/table reconstruction quality because enrichment intentionally changes reference-cell values.
+
+Reference-table classification is a separate downstream task. Its quality
+should be evaluated against classification labels when such labels are
+available; do not mix classification accuracy with reconstruction quality.
 
 ## First Comparison
 
