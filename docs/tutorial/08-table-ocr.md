@@ -146,6 +146,33 @@ For the full default output contract, filename semantics, and current rerun beha
 
 This command performs no reference-table classification, bibliography extraction, reference matching, DOI resolution, final resolved CSV generation, or continued-table merging.
 
+## Practical Runtime Guidance
+
+Approximate document-level processing times for the currently implemented
+adapters are:
+
+| Adapter | Hardware used in validation | Approximate processing time |
+| --- | --- | --- |
+| PaddleOCR-VL | NVIDIA L40S GPU | ~10-20 minutes per document |
+| Chandra OCR 2 | NVIDIA L40S GPU | ~30-45 minutes per document |
+
+These are rough engineering estimates, not benchmark results. Runtime varies
+significantly with the number, size, and complexity of table crops in a
+document. Model initialization, caching, hardware, and serving configuration
+also affect runtime, so these values should be read only as approximate
+order-of-magnitude guidance.
+
+For PaddleOCR-VL, the estimate is derived from observed GPU crop-processing
+times with the canonical MinerU table crop used directly and layout detection
+disabled. It is not a formal document-level benchmark.
+
+For Chandra OCR 2, the estimate applies to the in-process Hugging Face backend
+used by Tabulus. Alternative serving configurations such as vLLM have not yet
+been evaluated and may have different throughput.
+
+Runtime observations do not imply anything about reconstruction accuracy or
+which adapter is preferable.
+
 ## PaddleOCR-VL Configuration
 
 Use precise Paddle naming:
