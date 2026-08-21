@@ -102,7 +102,6 @@ Other experiment adapters already represented in the repository include:
 
 - DeepSeek OCR
 - Chandra
-- Kreuzberg
 - NuExtract3
 
 These belong behind the same Table OCR and Structure Extraction contract. They are alternative table-reconstruction adapters, not stages that run after PaddleOCR-VL.

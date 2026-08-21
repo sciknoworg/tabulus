@@ -355,82 +355,11 @@ separately.
 Do not treat this single-table validation as evidence that PaddleOCR-VL or
 Chandra is more accurate.
 
-## Xberg Direct Validation
-
-Xberg is the successor/rebrand of Kreuzberg. It has been directly validated as
-a table-reconstruction candidate, but it is not yet registered as a Tabulus
-`table_ocr` adapter. Do not select Xberg through `tabulus reconstruct-tables`
-until an adapter has been implemented.
-
-The direct validation used:
-
-- Python 3.12.13
-- `xberg` 1.0.14
-- Tesseract 5.5.2
-- canonical MinerU table crop input
-- Xberg OCR backend: Tesseract
-- Xberg layout detection enabled
-- layout model: RT-DETR v2
-- table structure model: TATR
-- CPU execution
-- cache disabled for the measured TATR run
-
-The tested path was:
-
-```text
-canonical MinerU crop
-      |
-      v
-Xberg
-      |
-      +-- Tesseract OCR
-      |
-      +-- RT-DETR layout detection
-      |
-      v
-TATR table structure recognition
-      |
-      v
-Xberg Table.cells / Table.markdown
-```
-
-Xberg consumed the existing canonical MinerU crop and did not redetect or crop
-tables from the original PDF for the Tabulus comparison.
-
-For `Puurunen - February 2005 / page_006_table_001.jpg`, the Tesseract-only
-Xberg run produced:
-
-```text
-results: 1
-errors: 0
-structured tables: 0
-OCR content length: 1380
-wall time: approximately 2.8 s
-```
-
-With layout detection plus TATR enabled, the same crop produced:
-
-```text
-results: 1
-errors: 0
-layout regions: 1
-detected region class: table
-table-region confidence: 0.9471566081047058
-structured tables: 1
-reconstructed shape: 39 rows x 6 columns
-wall time: approximately 11.1 s
-```
-
-The structured result demonstrates feasibility, not accuracy superiority. The
-OCR output contains noticeable chemistry transcription errors, so quality must
-be measured against the reconstruction gold standard before drawing conclusions.
-
 ## Alternative Adapters
 
 - PaddleOCR-VL -- implemented
 - Chandra -- implemented
 - DeepSeek OCR -- future
-- Xberg -- future
 - NuExtract3 -- future
 
 These are alternative table-reconstruction adapters, not sequential pipeline stages.
@@ -464,8 +393,6 @@ versus
 MinerU crop -> DeepSeek OCR
 versus
 MinerU crop -> Chandra
-versus
-MinerU crop -> Xberg
 versus
 MinerU crop -> NuExtract3
 ```

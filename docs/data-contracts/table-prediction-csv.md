@@ -20,7 +20,6 @@ Prediction CSV files may come from different reconstruction candidates:
 - MinerU crop -> PaddleOCR-VL
 - MinerU crop -> DeepSeek OCR
 - MinerU crop -> Chandra
-- MinerU crop -> Kreuzberg
 - MinerU crop -> NuExtract3
 
 All candidates should be exported through the same normalized CSV shape before scoring. Adapter-native JSON, Markdown, HTML, or OCR text should be preserved separately for provenance and debugging.

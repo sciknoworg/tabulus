@@ -64,7 +64,7 @@ MinerU Table Detection
 Table Cropping
       ↓
 OCR Extraction
-(PaddleOCR-VL, DeepSeek OCR, Chandra OCR, Kreuzberg OCR, NuExtract3)
+(PaddleOCR-VL, DeepSeek OCR, Chandra OCR, NuExtract3)
       ↓
 Reference Table Detection
       ↓
@@ -154,7 +154,6 @@ The project evaluates and integrates multiple OCR and document understanding app
 * PaddleOCR-VL
 * DeepSeek OCR 2
 * Chandra OCR
-* Kreuzberg OCR
 * NuExtract3
 * GROBID
 

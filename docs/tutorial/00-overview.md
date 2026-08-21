@@ -2,7 +2,7 @@
 
 The pipeline begins with one input scientific PDF paper and ends with resolved CSV files whose table reference cells are linked to DOI values where possible.
 
-Each step should be implemented as a standalone processing component with a small, explicit contract. Libraries such as MinerU, PaddleOCR-VL, GROBID, Kreuzberg, Crossref, or future alternatives should be adapters behind these component boundaries.
+Each step should be implemented as a standalone processing component with a small, explicit contract. Libraries such as MinerU, PaddleOCR-VL, GROBID, Crossref, or future alternatives should be adapters behind these component boundaries.
 
 ```{figure} ../_static/pipeline.png
 :alt: Tabulus pipeline workflow
@@ -118,7 +118,7 @@ MinerU crop -> PaddleOCR-VL reconstruction
 
 Modern MinerU may be good enough for some tables. The second model should not be assumed necessary until table quality, structure preservation, and runtime are measured.
 
-The broader experimental design treats table reconstruction as a plug-and-play adapter comparison. MinerU provides both the canonical table crop through `img_path` and its own structured `table_body`. The same MinerU-generated crop can be sent independently to PaddleOCR-VL, DeepSeek OCR, Chandra, Kreuzberg, or NuExtract3, while MinerU `table_body` remains a parallel native reconstruction candidate. Those adapters should not independently process the original PDF to locate or crop tables in this comparison; fixing the crop input controls the table-detection variable.
+The broader experimental design treats table reconstruction as a plug-and-play adapter comparison. MinerU provides both the canonical table crop through `img_path` and its own structured `table_body`. The same MinerU-generated crop can be sent independently to PaddleOCR-VL, DeepSeek OCR, Chandra, or NuExtract3, while MinerU `table_body` remains a parallel native reconstruction candidate. Those adapters should not independently process the original PDF to locate or crop tables in this comparison; fixing the crop input controls the table-detection variable.
 
 ```text
 Scientific PDF
@@ -134,20 +134,19 @@ Scientific PDF
               |              MinerU reconstruction
               |                       candidate
               v
-   +----------+----------+----------+----------+----------+
-   |          |          |          |          |          |
-   v          v          v          v          v          v
-PaddleOCR  DeepSeek   Chandra   Kreuzberg  NuExtract3
-   VL        OCR
-   |          |          |          |          |
-   v          v          v          v          v
+   +--------------+--------------+----------+----------+
+   |              |              |          |
+   v              v              v          v
+PaddleOCR-VL   DeepSeek OCR   Chandra   NuExtract3
+   |              |              |          |
+   v              v              v          v
 adapter-native table reconstruction outputs
-   |          |          |          |          |
-   +----------+----------+----------+----------+-----+
+   |              |              |          |
+   +--------------+--------------+----------+-----+
                                                        |
                                                        v
                    table reconstruction candidates, including
-                   MinerU table_body as the sixth candidate
+                   MinerU table_body as another candidate
                                                        |
                                                        v
                          normalized table reconstruction
@@ -168,7 +167,7 @@ adapter-native table reconstruction outputs
                                                                   resolved CSV files
 ```
 
-All six outputs may use different adapter-native output formats, so Tabulus should normalize them into a common table representation before exporting a prediction CSV and comparing it against the same ground-truth CSV. The prediction CSV is the table-reconstruction artifact used for evaluation. It must remain separate from the later resolved CSV, where reference cells may be replaced with DOI values.
+All candidate outputs may use different adapter-native output formats, so Tabulus should normalize them into a common table representation before exporting a prediction CSV and comparing it against the same ground-truth CSV. The prediction CSV is the table-reconstruction artifact used for evaluation. It must remain separate from the later resolved CSV, where reference cells may be replaced with DOI values.
 
 The static pipeline image at the top of this page gives the high-level thesis workflow. The text schematic above is the current artifact-level reference for the table-reconstruction comparison and evaluation boundary.
 
