@@ -31,13 +31,6 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=True,
         gpu_supported=True,
     ),
-    "xberg-tatr": TableOCRAdapterSpec(
-        name="xberg-tatr",
-        display_name="Xberg/TATR (Tesseract OCR)",
-        entrypoint="tabulus.table_ocr.xberg_tatr:XbergTATRAdapter",
-        cpu_supported=True,
-        gpu_supported=False,
-    ),
 }
 
 
