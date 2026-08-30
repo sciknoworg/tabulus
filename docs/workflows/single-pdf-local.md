@@ -26,7 +26,7 @@ C:\papers\tabulus-output\table-crops\P51\
 
 Use `tabulus export-table-crops` only when regenerating the normalized handoff from an existing MinerU output without rerunning MinerU.
 
-The current implemented local table-reconstruction command is:
+The current implemented local table-reconstruction command runs one selected registered adapter. For example:
 
 ```powershell
 tabulus reconstruct-tables `
@@ -58,4 +58,4 @@ The future complete command should remain under the same installed `tabulus` ent
 tabulus run --pdf C:\papers\P51.pdf --runs-root C:\runs
 ```
 
-`tabulus run` is not implemented yet. The new library has a PaddleOCR-VL table-reconstruction adapter and the `tabulus reconstruct-tables` batch CLI, but bibliography extraction, reference matching, DOI resolution, final resolved CSV export, and full run reporting are not yet implemented.
+`tabulus run` is not implemented yet. The new library has registered table-reconstruction adapters and the `tabulus reconstruct-tables` batch CLI, but bibliography extraction, reference matching, DOI resolution, final resolved CSV export, and full run reporting are not yet implemented.

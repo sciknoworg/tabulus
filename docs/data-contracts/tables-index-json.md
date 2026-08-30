@@ -72,9 +72,8 @@ write tables_index.json
 Tabulus does not need to crop the PDF again from `bbox`. The `bbox` should be preserved for traceability and visual QA, but the image passed to table OCR is the MinerU-generated image referenced by `img_path`.
 
 `mineru_table_body` is MinerU's own candidate reconstruction for the detected
-table. It is separate from the canonical crop image consumed by PaddleOCR-VL or
-another reconstruction adapter, and it should not be described as adapter OCR
-output.
+table. It is separate from the canonical crop image consumed by crop-consuming
+reconstruction adapters, and it should not be described as adapter OCR output.
 
 Each record represents one physical MinerU table crop. Current Tabulus does not merge multi-page or continued table segments; logical table continuity remains a future concern.
 

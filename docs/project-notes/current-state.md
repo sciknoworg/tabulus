@@ -35,12 +35,14 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements the first PaddleOCR-VL adapter for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, and NuExtract3 adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
 - predicts with `prompt_label="table"`
 - preserves PaddleOCR native JSON and Markdown result views
+- invokes Chandra OCR 2 through the Hugging Face/in-process path with `prompt_type="ocr"`
+- invokes NuExtract3 through Hugging Face Transformers in Markdown mode with deterministic generation
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
 
@@ -71,6 +73,8 @@ The current tests verify:
 - profile-driven automatic table-crop export
 - table OCR registry lazy loading
 - PaddleOCR-VL adapter configuration and result preservation
+- Chandra OCR 2 adapter configuration and result preservation
+- NuExtract3 adapter configuration, GPU-only device handling, and runtime reuse
 - legacy-compatible HTML/Markdown table parsing
 - batch table-reconstruction input loading and error handling
 - native, parsed, prediction CSV, and batch-summary output writing
@@ -147,10 +151,14 @@ parsed cell differences: 0
 
 The first-ever GPU run took 91.97 s because it included model download and setup. These timings are validation observations, not formal benchmarks. The Windows CPU and Linux GPU crops were not byte-identical, with observed dimensions of 1431 x 1923 and 1432 x 1923 respectively, so the documentation should not make strong CPU-vs-GPU accuracy claims from their output differences.
 
-After the batch table-reconstruction CLI checkpoint, the full test suite reported:
+Chandra OCR 2 has been integrated as a registered reconstruction adapter using the Hugging Face/in-process API for `datalab-to/chandra-ocr-2`. A real CLI smoke test on an NVIDIA L40S with `--adapter chandra --device gpu:0` completed with one `ok` result, one structured HTML table, one prediction CSV, and no Chandra generation error.
+
+NuExtract3 has been integrated as a registered GPU-only reconstruction adapter using Hugging Face Transformers for `numind/NuExtract3`. A real NVIDIA L40S CLI smoke test with `--adapter nuextract3 --device gpu:0` completed with one table requested, one `ok` result, zero errors, and one prediction CSV.
+
+After the NuExtract3 integration, the complete unit test suite reported:
 
 ```text
-55 passed
+128 passed
 ```
 
 The table OCR parsing tests reported:
@@ -159,11 +167,12 @@ The table OCR parsing tests reported:
 6 passed
 ```
 
-These tests do not include Linux GPU integration validation for PaddleOCR-VL.
+Heavyweight ML integration validations are separate from the mocked unit test suite and should not be treated as scientific accuracy benchmarks.
 
 ## Not Yet Implemented In The New Library
 
 - GROBID, Kreuzberg, or Crossref integration
+- DeepSeek OCR adapter
 - continued-table merging
 - final scientific table normalization and reference resolution
 - full `tabulus run` process command

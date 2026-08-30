@@ -41,15 +41,15 @@ This comparison determines whether PaddleOCR-VL improves table reconstruction en
 
 ## Extended Adapter Comparison
 
-Later benchmarking can evaluate five candidate table reconstructions against the same ground-truth table:
+Benchmarking can evaluate implemented and future candidate table reconstructions against the same ground-truth table:
 
 - MinerU `table_body`
 - MinerU crop -> PaddleOCR-VL
-- MinerU crop -> DeepSeek OCR
 - MinerU crop -> Chandra
 - MinerU crop -> NuExtract3
+- MinerU crop -> DeepSeek OCR (future)
 
-MinerU `table_body` is produced during PDF profiling. The other table-reconstruction adapters consume the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
+MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, and NuExtract3 are current crop-consuming Tabulus reconstruction adapters. DeepSeek OCR remains future work. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
 
 ```text
 same detected table
@@ -58,9 +58,9 @@ same detected table
         |
         +-- MinerU crop
               +-- PaddleOCR-VL
-              +-- DeepSeek OCR
               +-- Chandra
               +-- NuExtract3
+              +-- DeepSeek OCR (future)
 ```
 
 Because the adapter-native output formats may differ, Tabulus should normalize every candidate into a common table representation and export a prediction CSV before scoring against the ground-truth CSV.
@@ -76,7 +76,7 @@ For reproducible comparisons, record:
 - document page count
 - number of detected tables
 - MinerU version, backend, and effort setting
-- PaddleOCR-VL and PaddleOCR versions
+- reconstruction adapter name and model/runtime versions
 - GPU model and number of visible GPUs
 - first-run or warmed-cache status
 - total wall-clock time per stage

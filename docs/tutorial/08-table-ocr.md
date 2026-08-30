@@ -35,9 +35,9 @@ See `data-contracts/ocr-tables-json.md`.
 
 ## Default Implementation
 
-The new Tabulus library now includes the adapter contract, lazy registry, PaddleOCR-VL adapter, Chandra OCR 2 adapter, legacy-compatible parser layer, batch reconstruction layer, and output writer under `src/tabulus/table_ocr/`. It provides a batch CLI for table reconstruction, but it does not yet provide a full end-to-end pipeline command.
+The new Tabulus library now includes the adapter contract, lazy registry, PaddleOCR-VL adapter, Chandra OCR 2 adapter, NuExtract3 adapter, legacy-compatible parser layer, batch reconstruction layer, and output writer under `src/tabulus/table_ocr/`. It provides a batch CLI for table reconstruction, but it does not yet provide a full end-to-end pipeline command.
 
-The component is model-independent: a Table OCR and Structure Extraction adapter consumes the normalized Tabulus table-crop handoff and returns a structured table result. The currently registered reconstruction adapters are `paddleocr-vl` and `chandra`; another table-reconstruction adapter can be substituted later if it accepts the same handoff and preserves the same MinerU provenance.
+The component is model-independent: a Table OCR and Structure Extraction adapter consumes the normalized Tabulus table-crop handoff and returns a structured table result. The currently registered crop-consuming reconstruction adapters are `paddleocr-vl`, `chandra`, and `nuextract3`; another table-reconstruction adapter can be substituted later if it accepts the same handoff and preserves the same MinerU provenance.
 
 PaddleOCR-VL is more than ordinary OCR. Its current architecture performs layout analysis followed by vision-language-model recognition. The layout stage detects elements such as tables, crops them, determines reading order, and the VLM converts the elements into structured recognition results.
 
@@ -74,7 +74,7 @@ In the first clean workflow, the adapter stack is:
 table crop images
       |
       v
-PaddleOCR-VL or Chandra OCR 2
+PaddleOCR-VL, Chandra OCR 2, or NuExtract3
       |
       v
 HTML, Markdown, or structured table output
@@ -105,12 +105,21 @@ tabulus reconstruct-tables \
   --device gpu:0
 ```
 
+NuExtract3 also uses the same CLI contract:
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter nuextract3 \
+  --device gpu:0
+```
+
 For multiple papers, pass the parent table-crops directory:
 
 ```bash
 tabulus reconstruct-tables \
   --crops-folder "/path/to/tabulus-output/table-crops" \
-  --adapter chandra \
+  --adapter nuextract3 \
   --device gpu:0
 ```
 
@@ -132,6 +141,18 @@ For Chandra, that adapter directory is:
 <crop-root>/
   reconstructions/
     chandra/
+      native/
+      parsed/
+      predictions/
+      batch_summary.json
+```
+
+For NuExtract3, that adapter directory is:
+
+```text
+<crop-root>/
+  reconstructions/
+    nuextract3/
       native/
       parsed/
       predictions/
@@ -169,6 +190,9 @@ disabled. It is not a formal document-level benchmark.
 For Chandra OCR 2, the estimate applies to the in-process Hugging Face backend
 used by Tabulus. Alternative serving configurations such as vLLM have not yet
 been evaluated and may have different throughput.
+
+NuExtract3 has a validated one-crop NVIDIA L40S integration smoke test, but no
+document-level runtime estimate is documented yet.
 
 Runtime observations do not imply anything about reconstruction accuracy or
 which adapter is preferable.
@@ -355,33 +379,89 @@ separately.
 Do not treat this single-table validation as evidence that PaddleOCR-VL or
 Chandra is more accurate.
 
+## NuExtract3 Configuration
+
+NuExtract3 is implemented as a Tabulus table-reconstruction adapter under
+`src/tabulus/table_ocr/nuextract3.py`. It uses the Hugging Face Transformers
+in-process backend for `numind/NuExtract3`; Tabulus does not require a vLLM
+HTTP service for this adapter path.
+
+The implemented NuExtract3 path is:
+
+```text
+canonical MinerU crop
+      |
+      v
+NuExtract3
+      |
+      v
+native Markdown with HTML table markup
+      |
+      v
+Tabulus common HTML/Markdown parser
+      |
+      v
+parsed rectangular representation
+      |
+      v
+prediction CSV
+```
+
+NuExtract3 consumes canonical MinerU table crops directly. It does not
+redetect tables or recrop the original PDF. The adapter runs in
+document-to-Markdown mode with `mode="markdown"`, `enable_thinking=False`, and
+deterministic generation with `do_sample=False`.
+
+The processor and model are loaded lazily and reused across crops. In the
+validated Tabulus configuration, NuExtract3 is GPU-only: `--device gpu:0` maps
+to PyTorch `cuda:0`, while CPU devices are rejected.
+
+NuExtract3's native Markdown output contains HTML table markup. Tabulus
+preserves the generated content and model/generation metadata through the
+common `TableOCRResult` artifact infrastructure, then passes the same output
+through the shared HTML/Markdown table parser. There is no NuExtract-specific
+parser.
+
+A real NVIDIA L40S integration smoke test through:
+
+```bash
+tabulus reconstruct-tables --adapter nuextract3 --device gpu:0
+```
+
+completed successfully with one table requested, one `ok` result, zero errors,
+and one prediction CSV. After the NuExtract3 integration, the complete unit
+test suite passed with 128 tests.
+
+This validation demonstrates adapter integration correctness only. It does not
+make accuracy, quality, or model-superiority claims.
+
 ## Alternative Adapters
 
 - PaddleOCR-VL -- implemented
 - Chandra -- implemented
+- NuExtract3 -- implemented
 - DeepSeek OCR -- future
-- NuExtract3 -- future
 
 These are alternative table-reconstruction adapters, not sequential pipeline stages.
 
 ## Evaluation Question
 
-The initial validation should preserve the first clean comparison against MinerU's own structured table output:
+The reconstruction benchmark should preserve a clean comparison against MinerU's own structured table output:
 
 ```text
 MinerU table_body
 
 versus
 
-MinerU crop -> PaddleOCR-VL reconstruction
+MinerU crop -> PaddleOCR-VL / Chandra / NuExtract3 reconstruction
 ```
 
-Modern MinerU may be sufficient for some table classes. The second model should remain a measured choice, not an assumption.
+Modern MinerU may be sufficient for some table classes. A crop-consuming model should remain a measured choice, not an assumption.
 
 For each table, keep both outputs during evaluation:
 
 - MinerU `table_body`
-- PaddleOCR-VL reconstruction from the MinerU-generated crop image
+- reconstruction output from the selected crop-consuming adapter
 
 The extended adapter benchmark is the more general version of the same question:
 
@@ -390,11 +470,11 @@ MinerU table_body
 versus
 MinerU crop -> PaddleOCR-VL
 versus
-MinerU crop -> DeepSeek OCR
-versus
 MinerU crop -> Chandra
 versus
 MinerU crop -> NuExtract3
+versus
+MinerU crop -> DeepSeek OCR (future)
 ```
 
 The pipeline can later decide whether to use the lighter MinerU output directly for some table classes or route crops through one of the implemented or future table-reconstruction adapters.

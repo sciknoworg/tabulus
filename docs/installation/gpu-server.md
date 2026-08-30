@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL and Chandra OCR 2 table reconstruction are validated separately in adapter-specific environments so the MinerU, PaddlePaddle/PaddleOCR, and Chandra/PyTorch/Transformers stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, and NuExtract3 table reconstruction are validated separately in adapter-specific environments so the MinerU, PaddlePaddle/PaddleOCR, and PyTorch/Transformers stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, and Chandra OCR 2
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, and NuExtract3
 
 ## 2. Request GPU Compute Resources
 
@@ -310,7 +310,7 @@ python -m pytest -v
 
 Linux validation after the MinerU native-run-directory runner fix collected 22 tests and all 22 passed. That run included the regression test `test_run_mineru_returns_native_hybrid_run_dir`, which verifies that Tabulus returns the native `hybrid_auto/` directory for the validated hybrid run and does not create an artificial `auto/` directory.
 
-After the batch table-reconstruction CLI checkpoint, the full test suite reported 55 passed. That automated test run uses mocks for heavyweight OCR dependencies and does not replace Linux GPU integration validation for PaddleOCR-VL.
+After the NuExtract3 integration, the complete unit test suite reported 128 passed. That automated test run uses mocks for heavyweight OCR dependencies and does not replace Linux GPU integration validation for the reconstruction adapters.
 
 This requires Tabulus to have been installed with:
 
@@ -438,6 +438,9 @@ tabulus-paddleocr-gpu
 
 tabulus-chandra-gpu
   Tabulus + Chandra OCR + PyTorch/Transformers
+
+tabulus-nuextract3-gpu
+  Tabulus + NuExtract3 + PyTorch/Transformers/Accelerate
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -620,3 +623,41 @@ Current Transformers releases may emit warnings mentioning `min_frames`,
 `max_frames`, or `processor_kwargs`. These warnings were non-fatal in the
 validated Chandra runs and should not be treated as Tabulus errors by
 themselves.
+
+### NuExtract3 GPU Environment
+
+NuExtract3 runs in its own GPU-capable environment because it uses a PyTorch,
+Transformers, Accelerate, and Pillow stack. It consumes the same canonical
+MinerU crop handoff as the other reconstruction adapters and should not be run
+against the original PDFs for this reconstruction comparison.
+
+The implemented NuExtract3 adapter is GPU-only in the validated Tabulus
+configuration and is registered as `nuextract3`.
+
+Run reconstruction with:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter nuextract3 \
+  --device gpu:0
+```
+
+For each paper crop root, output is written beside other adapters under:
+
+```text
+<crop-root>/
+  reconstructions/
+    nuextract3/
+      native/
+      parsed/
+      predictions/
+      batch_summary.json
+```
+
+NuExtract3 is invoked through Hugging Face Transformers in-process with
+`mode="markdown"`, `enable_thinking=False`, and deterministic generation.
+Tabulus does not require a vLLM HTTP service for this adapter path.
+
+For the NuExtract3 settings and output artifacts used by Tabulus, see
+{doc}`../external-tools/nuextract3`.

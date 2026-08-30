@@ -12,7 +12,7 @@ Each step should be implemented as a standalone processing component with a smal
 
 ## First Clean Workflow
 
-This is the first practical workflow to stabilize: run MinerU as the first document-analysis adapter, inspect its outputs with the new Tabulus library, then reconstruct each table through the Table OCR and Structure Extraction component, with PaddleOCR-VL as the first/default adapter.
+This is the first practical workflow to stabilize: run MinerU as the first document-analysis adapter, inspect its outputs with the new Tabulus library, then reconstruct each table through the Table OCR and Structure Extraction component. The current registered crop-consuming adapters are PaddleOCR-VL, Chandra OCR 2, and NuExtract3.
 
 ```text
 Scientific PDF
@@ -74,9 +74,9 @@ tables, refs_start_page = discover_tables(Path("work/mineru/puurunen_2005"))
 print(len(tables), refs_start_page)
 ```
 
-This library call consumes existing MinerU output. The CLI can also launch MinerU with `tabulus profile` and now exports the canonical table-crop handoff automatically by default. The standalone `tabulus export-table-crops` command remains useful when an expensive MinerU run should be reused without touching the native MinerU output. PaddleOCR-VL is now the first implemented table-reconstruction adapter in the new library, and `tabulus reconstruct-tables` runs one selected reconstruction adapter across every crop in a handoff.
+This library call consumes existing MinerU output. The CLI can also launch MinerU with `tabulus profile` and now exports the canonical table-crop handoff automatically by default. The standalone `tabulus export-table-crops` command remains useful when an expensive MinerU run should be reused without touching the native MinerU output. The rebuilt library currently registers PaddleOCR-VL, Chandra OCR 2, and NuExtract3 as crop-consuming table-reconstruction adapters, and `tabulus reconstruct-tables` runs one selected reconstruction adapter across every crop in a handoff.
 
-The component is Table OCR and Structure Extraction. PaddleOCR-VL is the first/default table-reconstruction adapter for that component, not a permanent hard-coded dependency. Other compatible adapters can consume the same normalized table-crop handoff if they preserve the table identifier, MinerU provenance, and structured output contract.
+The component is Table OCR and Structure Extraction. PaddleOCR-VL remains the default adapter for the CLI, but it is not a hard-coded dependency. Other compatible adapters consume the same normalized table-crop handoff if they preserve the table identifier, MinerU provenance, and structured output contract.
 
 The current CLI exposes stable processing stages as subcommands while keeping scientific processing logic in reusable library modules:
 
@@ -113,12 +113,12 @@ MinerU table_body
 
 versus
 
-MinerU crop -> PaddleOCR-VL reconstruction
+MinerU crop -> PaddleOCR-VL / Chandra / NuExtract3 reconstruction
 ```
 
-Modern MinerU may be good enough for some tables. The second model should not be assumed necessary until table quality, structure preservation, and runtime are measured.
+Modern MinerU may be good enough for some tables. A crop-consuming model should not be assumed necessary until table quality, structure preservation, and runtime are measured.
 
-The broader experimental design treats table reconstruction as a plug-and-play adapter comparison. MinerU provides both the canonical table crop through `img_path` and its own structured `table_body`. The same MinerU-generated crop can be sent independently to PaddleOCR-VL, DeepSeek OCR, Chandra, or NuExtract3, while MinerU `table_body` remains a parallel native reconstruction candidate. Those adapters should not independently process the original PDF to locate or crop tables in this comparison; fixing the crop input controls the table-detection variable.
+The broader experimental design treats table reconstruction as a plug-and-play adapter comparison. MinerU provides both the canonical table crop through `img_path` and its own structured `table_body`. The same MinerU-generated crop can be sent independently to PaddleOCR-VL, Chandra OCR 2, NuExtract3, or future adapters such as DeepSeek OCR, while MinerU `table_body` remains a parallel native reconstruction candidate. Those adapters should not independently process the original PDF to locate or crop tables in this comparison; fixing the crop input controls the table-detection variable.
 
 ```text
 Scientific PDF
@@ -137,7 +137,7 @@ Scientific PDF
    +--------------+--------------+----------+----------+
    |              |              |          |
    v              v              v          v
-PaddleOCR-VL   DeepSeek OCR   Chandra   NuExtract3
+PaddleOCR-VL   Chandra   NuExtract3   DeepSeek OCR (future)
    |              |              |          |
    v              v              v          v
 adapter-native table reconstruction outputs
@@ -197,7 +197,7 @@ Every step should be able to run in two modes:
 | PDF profiling | `src/tabulus`, `tabulus.mineru` | Current new-library module can launch MinerU, read existing MinerU outputs, discover table regions, resolve image paths, preserve provenance, and return typed `TableRegion` objects. |
 | MinerU execution | `tabulus profile` | Tested with MinerU 3.4.5 on Windows CPU using `pipeline` and on a GPU server using `hybrid-engine`; Windows unit tests cover command construction, default output paths, and fallback behavior. |
 | Table-crop export | `tabulus profile`, `tabulus export-table-crops` | `tabulus profile` exports canonical MinerU table crops automatically by default. The standalone command regenerates the normalized handoff from existing MinerU output without rerunning MinerU. |
-| Table OCR | `src/tabulus/table_ocr`, `tabulus reconstruct-tables` | Adapter contract, lazy registry, batch reconstruction layer, output writer, and PaddleOCR-VL adapter are implemented. The batch command preserves table IDs and crop order, writes native/parsed/prediction artifacts, and records table-level errors without aborting later crops. |
+| Table OCR | `src/tabulus/table_ocr`, `tabulus reconstruct-tables` | Adapter contract, lazy registry, batch reconstruction layer, output writer, and PaddleOCR-VL, Chandra OCR 2, and NuExtract3 adapters are implemented. The batch command preserves table IDs and crop order, writes native/parsed/prediction artifacts, and records table-level errors without aborting later crops. |
 | Reference processing | Not yet implemented in the new library | Target adapters include GROBID, Kreuzberg, and Crossref. |
 
 ## Tutorial Template

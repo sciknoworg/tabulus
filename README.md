@@ -64,7 +64,7 @@ MinerU Table Detection
 Table Cropping
       ↓
 OCR Extraction
-(PaddleOCR-VL, DeepSeek OCR, Chandra OCR, NuExtract3)
+(implemented: PaddleOCR-VL, Chandra OCR, NuExtract3; future: DeepSeek OCR)
       ↓
 Reference Table Detection
       ↓
@@ -148,14 +148,14 @@ Detailed documentation for each component is available in the corresponding READ
 ---
 
 ## 🤖 OCR Technologies
-The project evaluates and integrates multiple OCR and document understanding approaches:
+The rebuilt Tabulus library currently integrates several OCR and document understanding approaches, with additional candidates retained for evaluation:
 
 * MinerU
 * PaddleOCR-VL
-* DeepSeek OCR 2
 * Chandra OCR
 * NuExtract3
-* GROBID
+* DeepSeek OCR 2 (future candidate)
+* GROBID (legacy/reference-processing context)
 
 ---
 

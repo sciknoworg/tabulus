@@ -253,9 +253,9 @@ The step succeeds when:
 | MinerU output missing | MinerU failed or did not write `content_list.json` | Inspect `mineru_stderr.log` and `notes.md`. |
 | No table regions | MinerU found no table entries or `img_path` resolution failed | Inspect `content_list.json` and `mineru_img_path` values. |
 | Incorrect table crop | MinerU detected the wrong region or reading order | Inspect `<document-name>_layout.pdf` and compare the copied image with its `content_list.json` entry. |
-| Weak structured table | MinerU `table_body` is incomplete or malformed | Compare `table_body` against PaddleOCR-VL reconstruction before deciding which output to trust. |
+| Weak structured table | MinerU `table_body` is incomplete or malformed | Compare `table_body` against crop-consuming adapter reconstruction before deciding which output to trust. |
 | Missing bbox or caption | Adapter did not provide optional metadata | Preserve `null` and continue. |
 
 ## Next Step
 
-After typed PDF profiling and table-crop export, run a Table OCR and Structure Extraction adapter such as PaddleOCR-VL on the canonical MinerU table crops.
+After typed PDF profiling and table-crop export, run a Table OCR and Structure Extraction adapter on the canonical MinerU table crops.

@@ -54,7 +54,7 @@ prediction CSV
 
 ## Concepts
 
-`native_json` and `native_markdown` preserve the adapter's public result representations for provenance and debugging. For PaddleOCR-VL these are two serializations or views of the same Paddle inference result, not two independent predictions.
+`native_json` and `native_markdown` preserve the adapter's public result representations for provenance and debugging. For PaddleOCR-VL these are two serializations or views of the same Paddle inference result, not two independent predictions. Chandra OCR 2 preserves generated HTML and generation metadata; NuExtract3 preserves generated Markdown/HTML content and model/generation metadata.
 
 `parsed_tables` contains the legacy-compatible rectangular row representation recovered from the native Markdown/HTML text. The parser prefers HTML tables and falls back to GitHub-style pipe tables only when no HTML table is present.
 

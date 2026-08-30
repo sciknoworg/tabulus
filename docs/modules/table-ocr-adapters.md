@@ -39,9 +39,9 @@ The adapter should focus on cell text, rows, columns, table structure, and adapt
 
 Adapter-native outputs may differ. A table-reconstruction adapter may produce HTML, Markdown, CSV-like structures, JSON, or model-specific structured output. Downstream Tabulus code should normalize those outputs into the same common table representation before evaluation or export.
 
-## Current Adapter
+## Current Adapters
 
-The clean library now implements the adapter boundary and the first PaddleOCR-VL adapter in `src/tabulus/table_ocr/`.
+The clean library implements the adapter boundary and the current registered reconstruction adapters in `src/tabulus/table_ocr/`.
 
 Key modules:
 
@@ -50,6 +50,8 @@ Key modules:
 - `output.py`
 - `registry.py`
 - `paddleocr_vl.py`
+- `chandra.py`
+- `nuextract3.py`
 - `parsing.py`
 
 The main abstractions are:
@@ -61,9 +63,21 @@ The main abstractions are:
 - adapter registry: lists adapters and lazy-loads implementation classes.
 - `run_table_ocr_batch`: loads `tables_index.json`, reuses one adapter instance, and writes reconstruction artifacts.
 
-PaddleOCR-VL is the first/default adapter implemented in the clean library. It runs on already-isolated MinerU table crops with PaddleOCR layout detection disabled and the table prompt enabled.
+The current registered crop-consuming reconstruction adapters are:
 
-PaddleOCR-VL has been validated on CPU and on an NVIDIA L40S GPU for a single canonical MinerU crop. The validated GPU configuration used PaddlePaddle-GPU 3.2.1, PaddleOCR 3.7.0, PaddleOCR-VL 1.6, `device="gpu:0"`, and `engine="paddle"`.
+- `paddleocr-vl`: PaddleOCR-VL reconstruction on already-isolated MinerU table crops with PaddleOCR layout detection disabled and the table prompt enabled.
+- `chandra`: Chandra OCR 2 reconstruction through the Hugging Face/in-process API with `prompt_type="ocr"`.
+- `nuextract3`: NuExtract3 reconstruction through Hugging Face Transformers in document-to-Markdown mode.
+
+PaddleOCR-VL and Chandra report CPU and GPU support in the registry. NuExtract3 is registered as GPU-only in the validated Tabulus configuration.
+
+MinerU `table_body` is also a reconstruction candidate, but it is produced during PDF profiling rather than by a crop-consuming `tabulus.table_ocr` adapter.
+
+For the external tools as used by Tabulus, see:
+
+- {doc}`../external-tools/paddleocr-vl`
+- {doc}`../external-tools/chandra`
+- {doc}`../external-tools/nuextract3`
 
 ## Batch Reconstruction CLI
 
@@ -94,16 +108,10 @@ For the full default output contract, filename semantics, and current rerun beha
 
 Prediction CSV files are pre-reference-resolution artifacts. This command does not classify reference tables, extract bibliographies, match references, resolve DOI values, write final resolved CSV files, or merge continued tables.
 
-OCR and ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR or PaddlePaddle. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
+OCR and ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
 
-## Other Experiment Adapters
+## Other Candidate Adapters
 
-Other experiment adapters already represented in the repository include:
+Other reconstruction candidates can be added behind the same Table OCR and Structure Extraction contract. DeepSeek OCR remains future work in the rebuilt installable library.
 
-- DeepSeek OCR
-- Chandra
-- NuExtract3
-
-These belong behind the same Table OCR and Structure Extraction contract. They are alternative table-reconstruction adapters, not stages that run after PaddleOCR-VL.
-
-MinerU `table_body` is slightly different: it is produced during PDF profiling rather than by consuming the normalized table-crop handoff. It should still satisfy the same downstream comparison and normalization concept as another candidate table reconstruction.
+These candidates are alternatives, not sequential stages that run after another reconstruction adapter.

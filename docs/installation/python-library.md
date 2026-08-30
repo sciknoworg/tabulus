@@ -30,7 +30,7 @@ PY
 
 ## Unit Tests
 
-The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, automatic table-crop export, standalone table-crop export, the table OCR adapter registry, PaddleOCR-VL adapter behavior, legacy-compatible table parsing, batch table reconstruction, and table reconstruction output writing.
+The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, automatic table-crop export, standalone table-crop export, the table OCR adapter registry, PaddleOCR-VL, Chandra OCR 2, and NuExtract3 adapter behavior, legacy-compatible table parsing, batch table reconstruction, and table reconstruction output writing.
 
 Run the tests with:
 
@@ -38,10 +38,10 @@ Run the tests with:
 python -m pytest
 ```
 
-After the batch table-reconstruction CLI checkpoint, the full test suite reported:
+After the NuExtract3 integration, the full test suite reported:
 
 ```text
-55 passed
+128 passed
 ```
 
 The current tests cover:
@@ -53,7 +53,7 @@ The current tests cover:
 - missing-output error handling
 - profile-driven automatic table-crop export
 - table OCR registry lazy loading
-- PaddleOCR-VL adapter behavior with mocked dependencies
+- PaddleOCR-VL, Chandra OCR 2, and NuExtract3 adapter behavior with mocked dependencies
 - HTML-first, Markdown-fallback table parsing
 - batch reconstruction input loading and output dispatch
 - native, parsed, prediction CSV, and batch-summary artifact writing
@@ -114,7 +114,7 @@ work/table_crops/
   images/
 ```
 
-The table OCR adapter package is available as `tabulus.table_ocr`. PaddleOCR-VL is the first implemented adapter, but PaddleOCR and PaddlePaddle are optional dependencies loaded only when that adapter is instantiated.
+The table OCR adapter package is available as `tabulus.table_ocr`. The registered crop-consuming reconstruction adapters are `paddleocr-vl`, `chandra`, and `nuextract3`. Their OCR and ML dependencies are optional and loaded only when the selected adapter is instantiated.
 
 `tabulus reconstruct-tables` runs one registered table-reconstruction adapter across every crop in a canonical `tables_index.json` handoff:
 
