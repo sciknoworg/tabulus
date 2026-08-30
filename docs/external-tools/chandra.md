@@ -2,9 +2,14 @@
 
 Chandra OCR 2 is an external OCR model used by Tabulus for table reconstruction from canonical MinerU table crops.
 
-Tabulus exposes Chandra through the current table-reconstruction adapter contract only. For the generic adapter architecture and output contract, see {doc}`../modules/table-ocr-adapters`.
+## Official Resources
+
+- Chandra OCR project repository: [akanugan/chandra-ocr](https://github.com/akanugan/chandra-ocr)
+- Exact model used by Tabulus: [datalab-to/chandra-ocr-2](https://huggingface.co/datalab-to/chandra-ocr-2)
 
 ## Role In Tabulus
+
+Tabulus exposes Chandra through the current table-reconstruction adapter contract only. For the generic adapter architecture and output contract, see {doc}`../modules/table-ocr-adapters`.
 
 Chandra is registered as:
 

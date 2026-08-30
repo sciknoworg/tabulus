@@ -2,9 +2,14 @@
 
 PaddleOCR-VL is an external document vision-language model used by Tabulus for table reconstruction from canonical MinerU table crops.
 
-Tabulus exposes PaddleOCR-VL only through the current table-reconstruction adapter contract. For the generic adapter architecture and output contract, see {doc}`../modules/table-ocr-adapters`.
+## Official Resources
+
+- PaddleOCR project repository: [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
+- Exact model used by the documented Tabulus configuration: [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6)
 
 ## Role In Tabulus
+
+Tabulus exposes PaddleOCR-VL only through the current table-reconstruction adapter contract. For the generic adapter architecture and output contract, see {doc}`../modules/table-ocr-adapters`.
 
 PaddleOCR-VL is registered as:
 
