@@ -31,6 +31,13 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=True,
         gpu_supported=True,
     ),
+    "nuextract3": TableOCRAdapterSpec(
+        name="nuextract3",
+        display_name="NuExtract3",
+        entrypoint="tabulus.table_ocr.nuextract3:NuExtract3Adapter",
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
 }
 
 
