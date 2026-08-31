@@ -219,18 +219,26 @@ new tabulus library --------+
  +-- provide registered crop-consuming table-reconstruction adapters
  +-- validate adapter GPU inference on canonical crops
  +-- reconstruct all crops with tabulus reconstruct-tables
+ +-- classify reconstructed tables with tabulus classify-reference-tables
 
 
-                    NOT YET IMPLEMENTED
+                    PLANNED DOWNSTREAM
                            |
                            v
-                  reference processing
+             bibliography extraction / reference matching
                            |
                            v
-                    final pipeline
+                  DOI resolution / resolved CSV
+                           |
+                           v
+              run report / complete tabulus run
 ```
 
-The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B table-reconstruction adapters for MinerU crops, and the `tabulus reconstruct-tables` batch CLI. These stages are not yet implemented in the new library:
+The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B table-reconstruction adapters for MinerU crops, the `tabulus reconstruct-tables` batch CLI, and `tabulus classify-reference-tables`. These stages are not yet implemented in the new library:
 
-- GROBID, Kreuzberg, or Crossref integration
-- full Tabulus process command
+- bibliography extraction
+- reference matching
+- Crossref DOI resolution
+- resolved CSV export
+- run report / QA bundle
+- full `tabulus run` orchestration

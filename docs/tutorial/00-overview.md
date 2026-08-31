@@ -46,21 +46,24 @@ Scientific PDF
       v
 MinerU / PDF Profiling
       |
-      +--> MinerU table_body --------------------+
-      |                                         |
-      +--> canonical table crop                 |
-                |                               |
-                +--> PaddleOCR-VL               |
-                +--> Chandra OCR 2              |
-                +--> NuExtract3                 |
-                +--> Tesseract + Table Transformer
-                +--> RapidOCR + Docling TableFormer
-                +--> Granite Vision 4.1 4B
-                        |                       |
-                        v                       |
-                 shared structural parsing      |
-                        |                       |
-                        +-----------------------+
+      +--> MinerU table_body -----------------------------+
+      |                                                   |
+      +--> canonical table crop                           |
+                |                                         |
+                +--> PaddleOCR-VL                         |
+                +--> Chandra OCR 2                        |
+                +--> NuExtract3                           |
+                +--> Tesseract + Table Transformer        |
+                +--> RapidOCR + Docling TableFormer       |
+                +--> Granite Vision 4.1 4B                |
+                |                                         |
+                v                                         |
+      adapter-native reconstruction evidence              |
+                |                                         |
+                v                                         |
+      shared structural parsing / normalization           |
+                |                                         |
+                +-----------------------------------------+
                                   |
                                   v
                         reconstruction candidates

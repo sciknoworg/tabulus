@@ -54,7 +54,7 @@ After successful profiling, Tabulus automatically exports canonical MinerU table
 <PDF directory>/tabulus-output/table-crops/<PDF stem>/
 ```
 
-Each later reference-processing module should process either one run or all runs with a selected status once those commands exist.
+The current rebuilt library implements reference-table classification after reconstruction with `tabulus classify-reference-tables`. Bibliography extraction, reference matching, DOI resolution, and resolved CSV export remain planned downstream stages.
 
 ## Profiling MinerU Runs
 

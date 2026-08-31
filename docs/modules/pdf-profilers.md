@@ -99,7 +99,10 @@ The current stable downstream interface should remain `content_list.json` plus t
 
 The new library does not yet implement:
 
-- reference processing
+- bibliography extraction
+- reference matching
+- DOI resolution
+- resolved CSV export
 - a full `tabulus run` process command
 
 ## Adapter Ideas

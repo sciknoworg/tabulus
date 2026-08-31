@@ -13,8 +13,6 @@
   </a>
 </p>
 
-![Pipeline](assets/img/pipeline.png)
-
 ## 🔍 Overview
 Tabulus is a modular multi-stage pipeline for extracting structured table data from scientific PDF documents.
 
@@ -34,10 +32,10 @@ The project was developed as part of a Master's thesis investigating scientific 
 * Structured CSV generation
 
 ### 🔗 Bibliography-Aware Processing
-* Automatic reference table detection
-* Bibliography extraction from full publications
-* Reference matching between tables and bibliography entries
-* DOI enrichment using Crossref
+* Reference-table classification for reconstructed tables
+* Preserved separation between reconstruction predictions and reference routing
+* Planned bibliography extraction from full publications
+* Planned reference matching and DOI enrichment
 
 ### 📊 Research & Evaluation
 * OCR benchmarking framework
@@ -47,37 +45,45 @@ The project was developed as part of a Master's thesis investigating scientific 
 * Reproducible evaluation workflows
 
 ### 🏗️ System Design
-* Modular microservice architecture
-* REST-based communication
-* Docker deployment
-* GPU-accelerated OCR support
-* Interactive web interface
+* Modular CLI and library architecture
+* Explicit filesystem contracts between stages
+* Separate ML environments for heavyweight adapters
+* CPU and GPU reconstruction-adapter support
+* Legacy service implementation retained separately from the rebuilt library
 
 ---
 
 ## ⚙️ Pipeline Workflow
 ```text
 Scientific PDF
-      ↓
-MinerU Table Detection
-      ↓
-Table Cropping
-      ↓
-OCR Extraction
-(implemented: PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer; future: DeepSeek OCR)
-      ↓
-Reference Table Detection
-      ↓
-Bibliography Extraction
-(GROBID / Kreuzberg + Regex)
-      ↓
-Reference Matching
-      ↓
-Crossref DOI Resolution
-      ↓
-Enriched CSV Generation
-      ↓
-Interactive Visualization UI
+      |
+      v
+tabulus profile / MinerU
+      |
+      +--> MinerU table_body
+      |
+      +--> canonical MinerU table crops
+                |
+                +--> PaddleOCR-VL
+                +--> Chandra OCR 2
+                +--> NuExtract3
+                +--> Tesseract + Table Transformer
+                +--> RapidOCR + Docling TableFormer
+                +--> Granite Vision 4.1 4B
+                |
+                v
+      tabulus reconstruct-tables
+                |
+                v
+          prediction CSVs
+                |
+                v
+      tabulus classify-reference-tables
+                |
+                v
+      planned: bibliography extraction,
+      reference matching, DOI resolution,
+      resolved CSV export, and run reporting
 ```
 
 ---
@@ -103,32 +109,31 @@ tabulus/
 │   ├── scripts/
 │   └── README.md
 │
+├── docs/
+│   └── ...
+│
 ├── src/
-│   ├── ocr_models/
-│   │   ├── components/
-│   │   │   ├── deepseekOCR2/
-│   │   │   ├── Kreuzberg/
-│   │   │   ├── mineru_service/
-│   │   │   ├── NuExtract3/
-│   │   │   └── paddleOCR_VL/
-│   │   ├── KISSKI/
-│   │   │   ├── Chandra/
-│   │   │   └── NuExtract3/
-│   │   ├── runners/
-│   │   └── README.md
+│   ├── tabulus/
+│   │   ├── mineru/
+│   │   ├── reference_tables/
+│   │   ├── table_ocr/
+│   │   └── cli.py
 │   │
-│   └── Tabulus/
-│       ├── backend/
-│       ├── kreuzberg_service/
-│       ├── mineru_service/
-│       ├── paddleocr_service/
-│       ├── ui_input/
-│       ├── docker-compose.yml
-│       └── README.md
+│   ├── legacy_tabulus/
+│   │   └── ...
+│   │
+│   ├── ocr_models/
+│   │   └── ...
+│   │
+│   └── README.md
+│
+├── tests/
+│   └── ...
 │
 ├── .gitignore
 ├── LICENSE
 ├── README.md
+├── pyproject.toml
 └── requirements.txt
 ```
 
@@ -137,8 +142,11 @@ tabulus/
 ## 🧩 Main Components
 | Component        | Purpose                                                    |
 | ---------------- | ---------------------------------------------------------- |
-| `src/Tabulus`    | Complete production pipeline                               |
-| `src/ocr_models` | OCR services, runners, and benchmarking components         |
+| `src/tabulus`    | Current installable Tabulus library and CLI                |
+| `src/legacy_tabulus` | Retained legacy thesis implementation                  |
+| `src/ocr_models` | Historical OCR services, runners, and benchmarking components |
+| `docs`           | ReadTheDocs documentation                                  |
+| `tests`          | Current library test suite                                 |
 | `evaluation`     | Evaluation scripts, metrics, and visualizations            |
 | `dataset`        | Benchmark dataset documentation and ground-truth structure |
 | `assets`         | Images and visual resources used in the documentation      |
@@ -155,6 +163,8 @@ The rebuilt Tabulus library currently integrates several OCR and document unders
 * Chandra OCR
 * NuExtract3
 * Tesseract + Table Transformer
+* RapidOCR + Docling TableFormer
+* Granite Vision 4.1 4B
 * DeepSeek OCR 2 (future candidate)
 * GROBID (legacy/reference-processing context)
 
@@ -208,35 +218,30 @@ for detailed documentation.
 
 ---
 
-## 🚀 Running the Pipeline
-### 📋 Prerequisites
-* Docker Desktop
-* Docker Compose
-* Python 3.11+
-* NVIDIA GPU with CUDA support, recommended for OCR models
-
-### ▶️ Start All Services
-Navigate to the final pipeline folder:
+## 🚀 Running the Current Rebuilt Workflow
+Install the current library from the repository checkout:
 
 ```bash
-cd src/Tabulus
+python -m pip install -e ".[dev]"
 ```
 
-Start the services:
+The currently implemented stages are exposed as CLI commands:
 
 ```bash
-docker compose up --build
+tabulus profile --pdf /path/to/paper.pdf --backend pipeline
+
+tabulus reconstruct-tables \
+  --crops /path/to/tabulus-output/table-crops/<paper> \
+  --adapter paddleocr-vl \
+  --device gpu:0
+
+tabulus classify-reference-tables \
+  --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/paddleocr-vl
 ```
 
-This command starts:
-
-* Frontend UI
-* Backend API
-* MinerU Service
-* PaddleOCR-VL Service
-* Kreuzberg OCR Service
-
-After startup, the web interface can be accessed through the browser.
+See the ReadTheDocs installation pages for Windows CPU setup, GPU-server setup,
+and adapter-specific environments. The legacy Docker/service workflow is not
+the current rebuilt-library entry point.
 
 ---
 
@@ -244,10 +249,10 @@ After startup, the web interface can be accessed through the browser.
 Additional documentation is available in:
 
 ```text
-src/Tabulus/README.md
-src/ocr_models/README.md
-evaluation/README.md
-dataset/README.md
+https://tabulus.readthedocs.io/
+docs/
+evaluation/
+dataset/
 ```
 
 Each README contains detailed setup instructions, implementation details, API documentation, evaluation procedures, and usage examples.
