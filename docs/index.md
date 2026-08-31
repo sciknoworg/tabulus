@@ -8,9 +8,9 @@ Tabulus is a modular pipeline for digitizing scientific PDF papers into structur
 
 The project is being reorganized around standalone processing components rather than around specific OCR or extraction libraries. Each component should be runnable on its own, exchange data through a documented contract, and plug into the end-to-end pipeline once the individual step is stable.
 
-The current validated library module focuses on MinerU-backed PDF profiling and batch table reconstruction from canonical MinerU crops. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values. The table reconstruction layer provides an extensible adapter contract with registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2 adapters, plus `tabulus reconstruct-tables` for adapter-neutral batch reconstruction.
+The current validated library module focuses on MinerU-backed PDF profiling and batch table reconstruction from canonical MinerU crops. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values. The table reconstruction layer provides an extensible adapter contract with registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2 adapters, plus `tabulus reconstruct-tables` for adapter-neutral batch reconstruction.
 
-The target full pipeline keeps several output layers distinct: external-tool native artifacts, parsed table-reconstruction artifacts used for evaluation, prediction CSV files, bibliography/reference-resolution artifacts, and final resolved CSV files. The current implementation has validated MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2 integration pieces; the later bibliography, matching, DOI, and resolved-CSV stages remain planned for the rebuilt library.
+The target full pipeline keeps several output layers distinct: external-tool native artifacts, parsed table-reconstruction artifacts used for evaluation, prediction CSV files, bibliography/reference-resolution artifacts, and final resolved CSV files. The current implementation has validated MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2 integration pieces; the later bibliography, matching, DOI, and resolved-CSV stages remain planned for the rebuilt library.
 
 ## How To Use This Documentation
 
@@ -18,7 +18,7 @@ Start with the installation page that matches your machine. Windows and CPU-only
 
 For the current implementation, the most important distinction is:
 
-- **Already validated:** cross-platform MinerU execution through `tabulus profile`, typed table-region discovery with `tabulus.mineru`, automatic export of canonical table crops, PaddleOCR-VL CPU/GPU inference on MinerU table crops, Chandra OCR 2 GPU reconstruction, NuExtract3 GPU reconstruction, Tesseract + Table Transformer reconstruction, RapidOCR + Docling TableFormer reconstruction, Granite Vision 4.1 4B reconstruction, TRivia-3B reconstruction, GLM-OCR reconstruction, Dolphin-v2 reconstruction, `tabulus reconstruct-tables`, batch reconstruction dispatch, legacy-compatible HTML/Markdown table parsing, deterministic OTSL-to-HTML normalization, and `tabulus classify-reference-tables`.
+- **Already validated:** cross-platform MinerU execution through `tabulus profile`, typed table-region discovery with `tabulus.mineru`, automatic export of canonical table crops, PaddleOCR-VL CPU/GPU inference on MinerU table crops, Chandra OCR 2 GPU reconstruction, NuExtract3 GPU reconstruction, Tesseract + Table Transformer reconstruction, RapidOCR + Docling TableFormer reconstruction, Granite Vision 4.1 4B reconstruction, TRivia-3B reconstruction, GLM-OCR reconstruction, Dolphin-v2 reconstruction, DeepSeek-OCR-2 reconstruction, `tabulus reconstruct-tables`, batch reconstruction dispatch, legacy-compatible HTML/Markdown table parsing, deterministic OTSL-to-HTML normalization, and `tabulus classify-reference-tables`.
 - **Planned stages:** bibliography extraction, reference matching, DOI resolution, resolved CSV export, run reporting, and full end-to-end commands.
 
 ## Where To Start
@@ -79,8 +79,8 @@ The current library can:
 - export table images plus `tables_index.json` automatically through `tabulus profile`
 - regenerate the same normalized crop handoff from existing MinerU output through `tabulus export-table-crops`
 - load table reconstruction adapters lazily so core Tabulus imports do not require heavyweight adapter dependencies
-- run registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2 adapters on already-isolated MinerU table crops
-- preserve adapter-native evidence such as PaddleOCR result views, Chandra generated HTML, NuExtract3 generated Markdown, Tesseract OCR tokens, TATR structure output, RapidOCR/Docling native structure evidence, Granite model/OTSL evidence, TRivia raw OTSL evidence, GLM-OCR raw/clean HTML evidence, and Dolphin-v2 model HTML/provenance evidence
+- run registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2 adapters on already-isolated MinerU table crops
+- preserve adapter-native evidence such as PaddleOCR result views, Chandra generated HTML, NuExtract3 generated Markdown, Tesseract OCR tokens, TATR structure output, RapidOCR/Docling native structure evidence, Granite model/OTSL evidence, TRivia raw OTSL evidence, GLM-OCR raw/clean HTML evidence, Dolphin-v2 model HTML/provenance evidence, and DeepSeek-OCR-2 grounding/model-output evidence
 - parse native table renderings into a legacy-compatible rectangular row representation, including deterministic OTSL-to-HTML normalization where needed
 - reconstruct all canonical crops from a `tables_index.json` handoff through `tabulus reconstruct-tables`
 - write per-adapter `native/`, `parsed/`, `predictions/`, and `batch_summary.json` reconstruction outputs
@@ -171,6 +171,7 @@ external-tools/granite-vision
 external-tools/trivia
 external-tools/glm-ocr
 external-tools/dolphin-v2
+external-tools/deepseek-ocr-2
 ```
 
 ```{toctree}

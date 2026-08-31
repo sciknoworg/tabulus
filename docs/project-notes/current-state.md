@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2 adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2 adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -54,6 +54,8 @@ The current `tabulus.table_ocr` package:
 - preserves GLM-OCR model/revision metadata, raw generated HTML, clean parser-facing HTML, resolved dtype and device metadata, and generation provenance
 - invokes Dolphin-v2 directly on canonical crops through Hugging Face Transformers using the `ByteDance/Dolphin-v2` checkpoint and Qwen2.5-VL model class
 - preserves Dolphin-v2 model/revision metadata, backbone/model-class metadata, raw generated HTML, clean parser-facing HTML, deterministic generation settings, image-preprocessing provenance, and token counts
+- invokes DeepSeek-OCR-2 directly on canonical crops through its model-specific `infer(...)` method with custom Transformers code from the pinned Hugging Face model revision
+- preserves DeepSeek-OCR-2 model/revision metadata, grounding/model output, dynamic-resolution settings, parser-input policy, structured-table counts, dependency/runtime versions, and recropping flags
 - normalizes supported OTSL structural tokens into HTML before shared parsing without semantic cell correction or heuristic reconstruction repair
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
@@ -102,6 +104,7 @@ The current tests verify:
 - TRivia registry metadata, GPU-only device handling, runtime reuse, native OTSL preservation, OTSL normalization, and empty-result handling
 - GLM-OCR registry metadata, GPU-only device handling, runtime reuse, raw/clean HTML preservation, shared-parser dispatch, and empty-result handling
 - Dolphin-v2 registry metadata, GPU-only device handling, runtime reuse, Dolphin resize preprocessing, deterministic generation metadata, raw/clean HTML preservation, shared-parser dispatch, and empty-result handling
+- DeepSeek-OCR-2 registry metadata, GPU-only device handling, exact dependency-version checks, runtime reuse, unchanged model-output parser dispatch, dynamic-resolution metadata, Markdown fallback, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
 - shared OTSL-to-HTML normalization for `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`
 - batch table-reconstruction input loading and error handling
@@ -253,10 +256,96 @@ reference tables and 18 non-reference tables. These are operational
 engineering observations for one selected slice, not a benchmark size,
 accuracy metric, or model-superiority claim.
 
+DeepSeek-OCR-2 has been integrated as a registered GPU-only reconstruction
+adapter using `deepseek-ai/DeepSeek-OCR-2` at revision
+`aaa02f3811945a91062062994c5c4a3f4c0af2b0`. The resolved model class in the
+validated configuration is `DeepseekOCR2ForCausalLM`. The adapter uses custom
+Transformers model code from the pinned Hugging Face model revision with
+`trust_remote_code=True`, `use_safetensors=True`, FlashAttention 2,
+`bfloat16`, and the model-specific `infer(...)` path. It explicitly validates
+`transformers==4.46.3`, `tokenizers==0.20.3`, and `flash-attn==2.7.3`.
+
+DeepSeek-OCR-2 receives canonical MinerU crops directly. The adapter records
+`input_policy=canonical_mineru_crop`, `layout_redetection=False`,
+`recropping=False`, and `external_recropping=False`. Its `crop_mode=True`
+setting is model-internal dynamic-resolution tiling/resizing of the already
+supplied canonical crop, not external table redetection or recropping.
+
+The exact prompt is:
+
+```text
+<image>
+<|grounding|>Convert the document to markdown.
+```
+
+Validated inference settings include `base_size=1024`, `image_size=768`,
+`crop_mode=True`, `save_results=False`, and `eval_mode=True`. The underlying
+validated eval-mode generation path uses `max_new_tokens=8192`,
+`do_sample=False`, `temperature=0.0`, `no_repeat_ngram_size=35`, and
+`use_cache=True`. Sampling is disabled, so `temperature=0.0` should not be
+interpreted as stochastic temperature-based sampling.
+
+DeepSeek-OCR-2 can emit grounding metadata followed by structured table
+markup. Tabulus preserves the returned model output unchanged and records
+`normalization=none` and `parser_input=model_infer_output_unchanged`. The
+validated smoke-test output contained surrounding DeepSeek grounding metadata
+plus one HTML table, and the shared parser extracted a 60 x 5 table without
+DeepSeek-specific preprocessing.
+
+A reproducibility check reconstructed the same canonical Miikkulainen table
+crop twice independently with the validated direct inference configuration.
+Both runs produced identical model output with SHA-256
+`a429813fd6c6d0d839697ce10bca0ff7e63547de55ce48f9e210b15ee6ee803a`, 4205
+characters, 1404 decoded output tokens, and one 60 x 5 parsed table. The real
+CLI smoke test reproduced one requested table, one `ok` result, zero empty
+results, zero errors, and one prediction CSV.
+
+The implementation validation completed with 11 focused DeepSeek-OCR-2 tests,
+206 complete Tabulus tests, and a clean `git diff --check`.
+
+On the existing three-paper ALD engineering reconstruction slice, DeepSeek-OCR-2
+processed 83 canonical table crops in 30m 28.890s:
+
+```text
+Cremers - 2019:               14 requested, 14 ok, 0 empty, 0 error, 14 prediction CSVs
+Miikkulainen 2013:            46 requested, 44 ok, 2 empty, 0 error, 44 prediction CSVs
+Puurunen - February 2005:     23 requested, 21 ok, 2 empty, 0 error, 21 prediction CSVs
+Total:                        83 requested, 79 ok, 4 empty, 0 error, 79 prediction CSVs
+```
+
+The four empty cases were inspected:
+
+```text
+Miikkulainen 2013:            page_024_table_018, page_024_table_019
+Puurunen - February 2005:     page_019_table_014, page_019_table_015
+```
+
+They were not runtime errors or shared-parser errors. All had
+`parser_error=None` and `structured_tables_detected=0`. The model-native
+outputs contained image grounding, a subtitle plus image grounding, or
+individually grounded text/equation-like elements, but no structured table
+representation. Tabulus therefore correctly retained them as `status="empty"`
+and did not write prediction CSVs.
+
+Downstream reference-table classification over this engineering run reported:
+
+```text
+Cremers - 2019:               14 considered, 8 reference tables
+Miikkulainen 2013:            46 considered, 41 reference tables
+Puurunen - February 2005:     23 considered, 13 reference tables
+Total:                        83 considered, 62 reference tables, 21 non-reference tables
+```
+
+These are downstream operational classification results, not reconstruction
+accuracy. They do not imply that all 83 crops produced prediction CSVs:
+reconstruction produced 79 prediction CSVs and four model-native empty
+results. The reconstruction and classification counts are engineering
+observations for one selected slice, not gold-standard precision, recall, F1,
+or evidence that DeepSeek-OCR-2 is better or worse than another adapter.
+
 ## Not Yet Implemented In The New Library
 
 - GROBID, Kreuzberg, or Crossref integration
-- DeepSeek OCR adapter
 - continued-table merging
 - standalone scientific table normalization command
 - bibliography extraction, reference matching, DOI resolution, and resolved CSV export

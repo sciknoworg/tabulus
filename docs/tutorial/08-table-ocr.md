@@ -67,7 +67,7 @@ The currently registered crop-consuming reconstruction adapters are:
 | `trivia` | Implemented | {doc}`../external-tools/trivia` |
 | `glm-ocr` | Implemented | {doc}`../external-tools/glm-ocr` |
 | `dolphin-v2` | Implemented | {doc}`../external-tools/dolphin-v2` |
-| DeepSeek OCR | Future | Not registered in the rebuilt library |
+| `deepseek-ocr-2` | Implemented | {doc}`../external-tools/deepseek-ocr-2` |
 
 For the adapter interface and batch architecture, see
 {doc}`../modules/table-ocr-adapters`.
@@ -169,6 +169,13 @@ tabulus reconstruct-tables \
 tabulus reconstruct-tables \
   --crops "/path/to/tabulus-output/table-crops/<paper>" \
   --adapter dolphin-v2 \
+  --device gpu:0
+```
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter deepseek-ocr-2 \
   --device gpu:0
 ```
 
@@ -288,13 +295,42 @@ resolution. If Dolphin-v2 reaches its 4096-token generation ceiling before a
 complete HTML table is produced, Tabulus preserves the native evidence, marks
 the result empty, and does not write a prediction CSV.
 
+DeepSeek-OCR-2 is a GPU-only vision-language-model reconstruction route. It
+receives the canonical MinerU crop directly and calls DeepSeek-OCR-2's
+model-specific `infer(...)` method. DeepSeek can return grounding metadata
+with structured HTML or Markdown table content; Tabulus passes that model
+output unchanged to the shared parser:
+
+```text
+canonical MinerU crop
+      |
+      v
+DeepSeek-OCR-2
+      |
+      v
+grounding metadata plus structured table output
+      |
+      v
+shared Tabulus HTML/Markdown parser
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+The DeepSeek parameter `crop_mode=True` refers to model-internal dynamic
+resolution and tiling of the already supplied canonical image. It does not mean
+that Tabulus externally redetects, expands, or recrops the table. This adapter
+does not semantically interpret grounding coordinates, correct cell contents,
+repair table structure, merge continued tables, or perform reference
+resolution.
+
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:
 
 ```bash
 tabulus reconstruct-tables \
   --crops-folder "/path/to/tabulus-output/table-crops" \
-  --adapter tesseract-tatr \
+  --adapter deepseek-ocr-2 \
   --device gpu:0
 ```
 

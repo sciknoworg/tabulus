@@ -47,9 +47,9 @@ by default:
 `native/`
 : Adapter-native reconstruction evidence and provenance. For PaddleOCR-VL,
   Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling
-  TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2
-  this preserves the native representation returned or derived from the
-  selected adapter.
+  TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and
+  DeepSeek-OCR-2 this preserves the native representation returned or derived
+  from the selected adapter.
 
 `parsed/`
 : Tabulus's common structured table representation derived from adapter-native
@@ -98,7 +98,8 @@ or Conda environment, PaddleOCR-VL can run in another, Chandra OCR 2 can run
 in another, NuExtract3 can run in another, Tesseract + Table Transformer can
 run in another, RapidOCR + Docling TableFormer can run in another, Granite
 Vision can run in another, TRivia-3B can run in another, GLM-OCR can run in
-another, and Dolphin-v2 can run in another. The stable
+another, Dolphin-v2 can run in another, and DeepSeek-OCR-2 can run in another.
+The stable
 contracts between stages are persisted files
 such as `tables_index.json`, canonical crop images, reconstruction manifests,
 and reconstruction artifacts.
@@ -241,7 +242,7 @@ If `--out` is omitted, each paper uses:
 The currently registered crop-consuming adapter directories are
 `paddleocr-vl`, `chandra`, `nuextract3`, `tesseract-tatr`,
 `rapidocr-tableformer`, `granite-vision-table`, `trivia`, `glm-ocr`, and
-`dolphin-v2`. Future adapters should follow the same structure when
+`dolphin-v2`, and `deepseek-ocr-2`. Future adapters should follow the same structure when
 implemented:
 
 ```text

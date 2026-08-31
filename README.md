@@ -73,6 +73,7 @@ tabulus profile / MinerU
                 +--> TRivia-3B
                 +--> GLM-OCR
                 +--> Dolphin-v2
+                +--> DeepSeek-OCR-2
                 |
                 v
       tabulus reconstruct-tables
@@ -171,7 +172,7 @@ The rebuilt Tabulus library currently integrates several OCR and document unders
 * TRivia-3B
 * GLM-OCR
 * Dolphin-v2
-* DeepSeek OCR 2 (future candidate)
+* DeepSeek-OCR-2
 * GROBID (legacy/reference-processing context)
 
 ---
