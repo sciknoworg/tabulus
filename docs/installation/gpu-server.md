@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2 table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2
 
 ## 2. Request GPU Compute Resources
 
@@ -453,6 +453,12 @@ tabulus-granite-vision
 
 tabulus-trivia-gpu
   Tabulus + TRivia-3B + PyTorch/Transformers/Accelerate
+
+tabulus-glm-ocr-gpu
+  Tabulus + GLM-OCR + PyTorch/Transformers/Accelerate
+
+tabulus-dolphin-v2-gpu
+  Tabulus + Dolphin-v2 + PyTorch/Transformers/Accelerate/qwen-vl-utils
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -853,3 +859,127 @@ token counts, raw OTSL, image dimensions, and Tabulus OTSL normalization
 provenance under the standard `native/` layer before shared parsing. For the
 full integration details and output boundaries, see
 {doc}`../external-tools/trivia`.
+
+### GLM-OCR GPU Environment
+
+GLM-OCR is a GPU-only reconstruction adapter in the current Tabulus
+configuration. It consumes the same canonical MinerU crop handoff as the other
+adapters and sends each crop directly to `zai-org/GLM-OCR`; Tabulus does not
+invoke the GLM-OCR SDK document pipeline, PP-DocLayout-V3, vLLM, SGLang,
+Docker, a hosted API, original-PDF redetection, or candidate-specific
+recropping.
+
+Create and activate a dedicated environment:
+
+```bash
+conda create -n tabulus-glm-ocr-gpu python=3.12 -y
+conda activate tabulus-glm-ocr-gpu
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated GLM-OCR runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install "transformers==5.16.1" accelerate pillow
+```
+
+Install a CUDA-capable PyTorch build appropriate for the GPU server before
+running the adapter, then verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter glm-ocr \
+  --device gpu:0
+```
+
+The adapter preserves GLM-OCR model/revision metadata, raw generated HTML,
+clean parser-facing HTML with model special tokens removed, resolved dtype and
+device metadata, image dimensions, and generation provenance under the
+standard `native/` layer before shared HTML parsing. For the full integration
+details and output boundaries, see {doc}`../external-tools/glm-ocr`.
+
+### Dolphin-v2 GPU Environment
+
+Dolphin-v2 is a GPU-only reconstruction adapter in the current Tabulus
+configuration. It consumes the same canonical MinerU crop handoff as the other
+adapters and sends each crop directly to the `ByteDance/Dolphin-v2` checkpoint.
+The checkpoint uses a Qwen2.5-VL backbone, but Tabulus is not substituting a
+generic Qwen checkpoint for Dolphin-v2.
+
+Create and activate a dedicated environment:
+
+```bash
+conda create -n tabulus-dolphin-v2-gpu python=3.12 -y
+conda activate tabulus-dolphin-v2-gpu
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated Dolphin-v2 runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install \
+  "torch==2.6.0" \
+  "torchvision==0.21.0" \
+  "transformers==4.51.0" \
+  "accelerate==1.4.0" \
+  "qwen-vl-utils==0.0.14"
+```
+
+The adapter requires a CUDA-capable environment in the current Tabulus
+configuration. The versions above describe the validated software environment;
+do not treat them as claims about all future Dolphin-v2 or Transformers
+releases.
+
+Verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter dolphin-v2 \
+  --device gpu:0
+```
+
+`CUDA_VISIBLE_DEVICES` can remap physical GPU numbering. For example, a
+physical GPU selected by the scheduler may appear to the process as `cuda:0`.
+
+The adapter preserves Dolphin-v2 model/revision metadata, backbone and model
+class, raw generated HTML, clean parser-facing HTML with model special tokens
+removed, deterministic generation settings, source and resized image
+dimensions, token counts, and image-preprocessing provenance under the
+standard `native/` layer before shared HTML parsing. For the full integration
+details and output boundaries, see {doc}`../external-tools/dolphin-v2`.

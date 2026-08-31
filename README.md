@@ -71,6 +71,8 @@ tabulus profile / MinerU
                 +--> RapidOCR + Docling TableFormer
                 +--> Granite Vision 4.1 4B
                 +--> TRivia-3B
+                +--> GLM-OCR
+                +--> Dolphin-v2
                 |
                 v
       tabulus reconstruct-tables
@@ -167,6 +169,8 @@ The rebuilt Tabulus library currently integrates several OCR and document unders
 * RapidOCR + Docling TableFormer
 * Granite Vision 4.1 4B
 * TRivia-3B
+* GLM-OCR
+* Dolphin-v2
 * DeepSeek OCR 2 (future candidate)
 * GROBID (legacy/reference-processing context)
 

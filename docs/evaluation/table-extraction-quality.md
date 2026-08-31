@@ -51,9 +51,11 @@ Benchmarking can evaluate implemented and future candidate table reconstructions
 - MinerU crop -> RapidOCR + Docling TableFormer
 - MinerU crop -> Granite Vision 4.1 4B
 - MinerU crop -> TRivia-3B
+- MinerU crop -> GLM-OCR
+- MinerU crop -> Dolphin-v2
 - MinerU crop -> DeepSeek OCR (future)
 
-MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B are current crop-consuming Tabulus reconstruction adapters. DeepSeek OCR remains future work. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
+MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2 are current crop-consuming Tabulus reconstruction adapters. DeepSeek OCR remains future work. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
 
 ```text
 same detected table
@@ -68,6 +70,8 @@ same detected table
               +-- RapidOCR + Docling TableFormer
               +-- Granite Vision 4.1 4B
               +-- TRivia-3B
+              +-- GLM-OCR
+              +-- Dolphin-v2
               +-- DeepSeek OCR (future)
 ```
 

@@ -57,6 +57,8 @@ MinerU / PDF Profiling
                 +--> RapidOCR + Docling TableFormer       |
                 +--> Granite Vision 4.1 4B                |
                 +--> TRivia-3B                            |
+                +--> GLM-OCR                              |
+                +--> Dolphin-v2                           |
                 |                                         |
                 v                                         |
       adapter-native reconstruction evidence              |
@@ -87,7 +89,7 @@ MinerU / PDF Profiling
 
 MinerU is the current PDF profiler. It performs document/layout processing, table localization, and native table extraction. Tabulus reads MinerU output, exports the canonical table-crop handoff, and retains MinerU `table_body` as a native reconstruction candidate.
 
-The crop-consuming reconstruction adapters currently registered in the rebuilt library are PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B. Each adapter receives the same canonical MinerU crop; adapters must not independently locate or recrop tables from the source PDF for the reconstruction comparison.
+The crop-consuming reconstruction adapters currently registered in the rebuilt library are PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2. Each adapter receives the same canonical MinerU crop; adapters must not independently locate or recrop tables from the source PDF for the reconstruction comparison.
 
 During reconstruction, adapter-native output is preserved under `native/`, then parsed through the shared Tabulus table parser into `parsed/`. A prediction CSV is written under `predictions/` only when exactly one usable parsed table is available for the physical crop.
 
@@ -101,7 +103,7 @@ Implemented in the rebuilt library:
 - automatic canonical table-crop export
 - standalone crop export through `tabulus export-table-crops`
 - table reconstruction through `tabulus reconstruct-tables`
-- registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B reconstruction adapters
+- registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2 reconstruction adapters
 - shared HTML/Markdown structural parsing and deterministic OTSL-to-HTML normalization during reconstruction
 - reference-table classification through `tabulus classify-reference-tables`
 
@@ -130,3 +132,5 @@ Planned for the rebuilt library:
 - {doc}`../external-tools/docling`
 - {doc}`../external-tools/granite-vision`
 - {doc}`../external-tools/trivia`
+- {doc}`../external-tools/glm-ocr`
+- {doc}`../external-tools/dolphin-v2`

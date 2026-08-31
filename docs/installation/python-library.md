@@ -30,7 +30,7 @@ PY
 
 ## Unit Tests
 
-The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, automatic table-crop export, standalone table-crop export, the table reconstruction adapter registry, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision, and TRivia adapter behavior, legacy-compatible table parsing, OTSL normalization, batch table reconstruction, and table reconstruction output writing.
+The implemented library is designed so most unit tests do not require GPU access. Tests cover MinerU output discovery, backend selection, command construction, mocked MinerU execution, automatic table-crop export, standalone table-crop export, the table reconstruction adapter registry, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision, TRivia, GLM-OCR, and Dolphin-v2 adapter behavior, legacy-compatible table parsing, OTSL normalization, batch table reconstruction, and table reconstruction output writing.
 
 Run the tests with:
 
@@ -47,7 +47,7 @@ The current tests cover:
 - missing-output error handling
 - profile-driven automatic table-crop export
 - table reconstruction registry lazy loading
-- PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision, and TRivia adapter behavior with mocked dependencies
+- PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision, TRivia, GLM-OCR, and Dolphin-v2 adapter behavior with mocked dependencies
 - HTML-first, Markdown-fallback table parsing and deterministic OTSL-to-HTML normalization
 - batch reconstruction input loading and output dispatch
 - native, parsed, prediction CSV, and batch-summary artifact writing
@@ -108,9 +108,9 @@ work/table_crops/
   images/
 ```
 
-The table reconstruction adapter package is available as `tabulus.table_ocr`. The registered crop-consuming reconstruction adapters are `paddleocr-vl`, `chandra`, `nuextract3`, `tesseract-tatr`, `rapidocr-tableformer`, `granite-vision-table`, and `trivia`. Their ML dependencies are optional and loaded only when the selected adapter is instantiated.
+The table reconstruction adapter package is available as `tabulus.table_ocr`. The registered crop-consuming reconstruction adapters are `paddleocr-vl`, `chandra`, `nuextract3`, `tesseract-tatr`, `rapidocr-tableformer`, `granite-vision-table`, `trivia`, `glm-ocr`, and `dolphin-v2`. Their ML dependencies are optional and loaded only when the selected adapter is instantiated.
 
-`tabulus reconstruct-tables` runs one registered table-reconstruction adapter across every crop in a canonical `tables_index.json` handoff. Registered crop-consuming adapters include `paddleocr-vl`, `chandra`, `nuextract3`, `tesseract-tatr`, `rapidocr-tableformer`, `granite-vision-table`, and `trivia`:
+`tabulus reconstruct-tables` runs one registered table-reconstruction adapter across every crop in a canonical `tables_index.json` handoff. Registered crop-consuming adapters include `paddleocr-vl`, `chandra`, `nuextract3`, `tesseract-tatr`, `rapidocr-tableformer`, `granite-vision-table`, `trivia`, `glm-ocr`, and `dolphin-v2`:
 
 ```bash
 tabulus reconstruct-tables \

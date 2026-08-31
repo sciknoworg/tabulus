@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, and Dolphin-v2 adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -50,6 +50,10 @@ The current `tabulus.table_ocr` package:
 - preserves Granite model/revision metadata, raw generated output, OTSL sequence, structured cells, table dimensions, image dimensions, and generation provenance
 - invokes TRivia-3B directly on canonical crops through Hugging Face Transformers with deterministic generation
 - preserves TRivia model/revision metadata, generation settings, token counts, raw OTSL, image dimensions, and Tabulus OTSL-normalization provenance
+- invokes GLM-OCR directly on canonical crops through Hugging Face Transformers using `AutoProcessor` and `AutoModelForImageTextToText`
+- preserves GLM-OCR model/revision metadata, raw generated HTML, clean parser-facing HTML, resolved dtype and device metadata, and generation provenance
+- invokes Dolphin-v2 directly on canonical crops through Hugging Face Transformers using the `ByteDance/Dolphin-v2` checkpoint and Qwen2.5-VL model class
+- preserves Dolphin-v2 model/revision metadata, backbone/model-class metadata, raw generated HTML, clean parser-facing HTML, deterministic generation settings, image-preprocessing provenance, and token counts
 - normalizes supported OTSL structural tokens into HTML before shared parsing without semantic cell correction or heuristic reconstruction repair
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
@@ -96,6 +100,8 @@ The current tests verify:
 - Tesseract + Table Transformer registry metadata, device handling, runtime reuse, native evidence preservation, TSV parsing, HTML generation, and empty-result handling
 - Granite Vision registry metadata, GPU-only device handling, OTSL generation/parsing, native evidence preservation, and empty-result handling
 - TRivia registry metadata, GPU-only device handling, runtime reuse, native OTSL preservation, OTSL normalization, and empty-result handling
+- GLM-OCR registry metadata, GPU-only device handling, runtime reuse, raw/clean HTML preservation, shared-parser dispatch, and empty-result handling
+- Dolphin-v2 registry metadata, GPU-only device handling, runtime reuse, Dolphin resize preprocessing, deterministic generation metadata, raw/clean HTML preservation, shared-parser dispatch, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
 - shared OTSL-to-HTML normalization for `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`
 - batch table-reconstruction input loading and error handling
@@ -203,6 +209,49 @@ TRivia receives canonical MinerU crops directly and produces native OTSL,
 which Tabulus preserves before deterministic OTSL-to-HTML normalization and
 shared HTML parsing. This confirms integration behavior only and does not
 establish reconstruction accuracy or model superiority.
+
+GLM-OCR has been integrated as a registered GPU-only reconstruction adapter
+using Hugging Face Transformers for `zai-org/GLM-OCR` at revision
+`ca5d8b3e287e52589e37c28385d9655ee4372f9d`. The validated configuration uses
+Transformers 5.16.1, `AutoProcessor`, `AutoModelForImageTextToText`,
+`torch_dtype="auto"` resolving to BF16 in the validated run, the prompt
+`Table Recognition:`, and `max_new_tokens=8192`. GLM-OCR receives canonical
+MinerU crops directly and produces native HTML; Tabulus preserves the raw
+generated output, removes model special tokens only for the clean
+parser-facing representation, and passes that HTML through the existing shared
+HTML parser. This confirms integration behavior only and does not establish
+reconstruction accuracy or model superiority.
+
+Dolphin-v2 has been integrated as a registered GPU-only reconstruction adapter
+using the `ByteDance/Dolphin-v2` checkpoint at revision
+`c37c62768c644bb594da4283149c627765aa80f3`. The checkpoint uses a Qwen2.5-VL
+backbone and the Transformers class `Qwen2_5_VLForConditionalGeneration`; the
+adapter does not substitute a generic Qwen checkpoint. The validated
+configuration used Python 3.12, PyTorch 2.6.0, torchvision 0.21.0,
+Transformers 4.51.0, Accelerate 1.4.0, and `qwen-vl-utils` 0.0.14.
+Dolphin-v2 receives canonical MinerU crops directly, applies RGB conversion
+and deterministic Dolphin `resize_img`-style preprocessing, and generates
+native HTML with `do_sample=False`, `temperature=None`, and
+`max_new_tokens=4096`. Tabulus preserves raw and clean HTML plus model,
+generation, image-preprocessing, token-count, and device provenance before
+shared HTML parsing.
+
+A deterministic reproducibility check reconstructed the same canonical crop
+twice independently. Both runs produced identical clean model output with
+SHA-256 `74e76fe66108ec3e1f20b2b0d9d27e47fe3e2699ff656b9aad9b1e3ac9bb8711`,
+2317 generated tokens, `do_sample=False`, `temperature=None`, and one detected
+HTML table. The implementation passed 11 focused Dolphin-v2 adapter tests and
+the complete Tabulus test suite with 195 tests.
+
+On one selected ALD-paper engineering reconstruction slice containing 83
+canonical table crops, Dolphin-v2 produced 82 successful reconstructions, one
+empty reconstruction, zero runtime errors, and 82 prediction CSVs in
+approximately 45 minutes 10 seconds. The empty result was a large table where
+generation reached the 4096-token ceiling before completing a closing HTML
+table. Downstream reference-table classification over that run reported 65
+reference tables and 18 non-reference tables. These are operational
+engineering observations for one selected slice, not a benchmark size,
+accuracy metric, or model-superiority claim.
 
 ## Not Yet Implemented In The New Library
 

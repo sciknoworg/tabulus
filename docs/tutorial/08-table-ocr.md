@@ -65,6 +65,8 @@ The currently registered crop-consuming reconstruction adapters are:
 | `rapidocr-tableformer` | Implemented | {doc}`../external-tools/docling` |
 | `granite-vision-table` | Implemented | {doc}`../external-tools/granite-vision` |
 | `trivia` | Implemented | {doc}`../external-tools/trivia` |
+| `glm-ocr` | Implemented | {doc}`../external-tools/glm-ocr` |
+| `dolphin-v2` | Implemented | {doc}`../external-tools/dolphin-v2` |
 | DeepSeek OCR | Future | Not registered in the rebuilt library |
 
 For the adapter interface and batch architecture, see
@@ -156,6 +158,20 @@ tabulus reconstruct-tables \
   --device gpu:0
 ```
 
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter glm-ocr \
+  --device gpu:0
+```
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter dolphin-v2 \
+  --device gpu:0
+```
+
 Granite Vision is an end-to-end vision-language-model reconstruction route,
 not a conventional OCR adapter. The canonical MinerU crop is sent directly
 to Granite Vision 4.1 4B, which generates OTSL from the `<tables_otsl>` prompt.
@@ -209,6 +225,68 @@ shared Tabulus parser/output contract
 This normalization handles OTSL structure only. It does not semantically
 correct cell contents, repair the model's table intent, merge continued tables,
 or perform reference-resolution heuristics.
+
+GLM-OCR is a GPU-only vision-language-model reconstruction route. It receives
+the canonical MinerU crop directly and generates native HTML table output.
+Tabulus preserves the raw generated output, removes model special tokens only
+for the clean representation used for parsing, and passes the clean HTML to the
+shared span-aware HTML parser:
+
+```text
+canonical MinerU crop
+      |
+      v
+GLM-OCR
+      |
+      v
+native HTML
+      |
+      v
+shared Tabulus HTML parser
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+This adapter does not use the GLM-OCR SDK document pipeline, PP-DocLayout-V3,
+layout redetection, candidate-specific recropping, or semantic repair of
+model-generated HTML.
+
+Dolphin-v2 is a GPU-only vision-language-model reconstruction route. Tabulus
+uses the `ByteDance/Dolphin-v2` checkpoint, whose underlying backbone
+architecture is Qwen2.5-VL, rather than substituting a generic Qwen checkpoint.
+It receives the canonical MinerU crop directly, applies deterministic
+Dolphin-style image preprocessing, and generates native HTML table markup:
+
+```text
+canonical MinerU crop
+      |
+      v
+Dolphin-v2
+      |
+      v
+native HTML
+      |
+      v
+shared Tabulus HTML parser
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+The image preprocessing is RGB conversion plus Dolphin's official
+`resize_img`-style resizing with maximum side 1600 pixels and minimum side 28
+pixels. This is model-input preparation, not table redetection or recropping.
+Dolphin-v2 uses deterministic generation in Tabulus (`do_sample=False`,
+`temperature=None`) so repeated reconstruction of the same crop with the same
+model revision is reproducible for benchmarking.
+
+This adapter does not run page-level layout detection, choose a different crop
+from the source PDF, perform margin cropping, semantically repair incomplete
+HTML, correct cell contents, merge continued tables, or perform reference
+resolution. If Dolphin-v2 reaches its 4096-token generation ceiling before a
+complete HTML table is produced, Tabulus preserves the native evidence, marks
+the result empty, and does not write a prediction CSV.
 
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:
