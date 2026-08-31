@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -48,6 +48,9 @@ The current `tabulus.table_ocr` package:
 - preserves RapidOCR/Docling native OTSL and table-structure evidence before shared parsing
 - invokes Granite Vision 4.1 4B directly on canonical crops with the `<tables_otsl>` prompt and Docling OTSL parsing
 - preserves Granite model/revision metadata, raw generated output, OTSL sequence, structured cells, table dimensions, image dimensions, and generation provenance
+- invokes TRivia-3B directly on canonical crops through Hugging Face Transformers with deterministic generation
+- preserves TRivia model/revision metadata, generation settings, token counts, raw OTSL, image dimensions, and Tabulus OTSL-normalization provenance
+- normalizes supported OTSL structural tokens into HTML before shared parsing without semantic cell correction or heuristic reconstruction repair
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
 
@@ -92,7 +95,9 @@ The current tests verify:
 - NuExtract3 adapter configuration, GPU-only device handling, and runtime reuse
 - Tesseract + Table Transformer registry metadata, device handling, runtime reuse, native evidence preservation, TSV parsing, HTML generation, and empty-result handling
 - Granite Vision registry metadata, GPU-only device handling, OTSL generation/parsing, native evidence preservation, and empty-result handling
+- TRivia registry metadata, GPU-only device handling, runtime reuse, native OTSL preservation, OTSL normalization, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
+- shared OTSL-to-HTML normalization for `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`
 - batch table-reconstruction input loading and error handling
 - native, parsed, prediction CSV, and batch-summary output writing
 - reference-table classification heuristics and manifest writing
@@ -188,6 +193,16 @@ configuration uses `ibm-granite/granite-vision-4.1-4b` at revision
 `dd48e97503de471803850df70843cf9eb5da8712`, Docling 2.123.1, Transformers
 4.57.3, bfloat16, and SDPA. This confirms integration behavior only and does
 not establish reconstruction accuracy or model superiority.
+
+TRivia-3B has been integrated as a registered GPU-only reconstruction adapter
+using Hugging Face Transformers for `opendatalab/TRivia-3B` at revision
+`fcf890f3869afaa9fc768a14e72ab1ff46bfc813`. The validated configuration uses
+Transformers 5.16.1, `AutoProcessor`, `AutoModelForMultimodalLM`, bfloat16,
+`do_sample=False`, `max_new_tokens=8192`, and `repetition_penalty=1.05`.
+TRivia receives canonical MinerU crops directly and produces native OTSL,
+which Tabulus preserves before deterministic OTSL-to-HTML normalization and
+shared HTML parsing. This confirms integration behavior only and does not
+establish reconstruction accuracy or model superiority.
 
 ## Not Yet Implemented In The New Library
 

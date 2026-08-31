@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, and TRivia-3B
 
 ## 2. Request GPU Compute Resources
 
@@ -450,6 +450,9 @@ dedicated RapidOCR + Docling TableFormer environment
 
 tabulus-granite-vision
   Tabulus + Granite Vision 4.1 4B + Docling + Transformers
+
+tabulus-trivia-gpu
+  Tabulus + TRivia-3B + PyTorch/Transformers/Accelerate
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -795,3 +798,58 @@ sequence, structured cells and dimensions, image dimensions, and device and
 version metadata under the standard `native/` layer before shared parsing.
 For the full integration details and output boundaries, see
 {doc}`../external-tools/granite-vision`.
+
+### TRivia-3B GPU Environment
+
+TRivia-3B is a GPU-only reconstruction adapter in the current Tabulus
+configuration. It consumes the same canonical MinerU crop handoff as the other
+adapters and sends each crop directly to `opendatalab/TRivia-3B`; there is no
+Docker service, vLLM service, `qwen-vl-utils` requirement, original-PDF
+redetection, or candidate-specific recropping.
+
+Create and activate a dedicated environment:
+
+```bash
+conda create -n tabulus-trivia-gpu python=3.12 -y
+conda activate tabulus-trivia-gpu
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated TRivia runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install "transformers==5.16.1" accelerate pillow
+```
+
+Install a CUDA-capable PyTorch build appropriate for the GPU server before
+running the adapter, then verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter trivia \
+  --device gpu:0
+```
+
+The adapter preserves TRivia model/revision metadata, generation settings,
+token counts, raw OTSL, image dimensions, and Tabulus OTSL normalization
+provenance under the standard `native/` layer before shared parsing. For the
+full integration details and output boundaries, see
+{doc}`../external-tools/trivia`.

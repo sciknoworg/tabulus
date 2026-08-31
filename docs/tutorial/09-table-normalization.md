@@ -34,6 +34,13 @@ Invalid or non-positive span values fall back safely to a span of one. Rowspans 
 
 This behavior is adapter-neutral and is useful for any reconstruction model that emits HTML tables.
 
+The parser also provides deterministic OTSL-to-HTML normalization for adapters
+that emit OTSL before the shared HTML parser runs. The supported OTSL
+structural tokens are `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`.
+Generated rows are rectangularized to the width of the widest OTSL row. This
+preserves the model's generated structure for CSV-style output; it is not
+semantic cell-content correction, column-count guessing, or heuristic repair.
+
 ## Future Scientific Normalization
 
 Future scientific table normalization should remain separate from raw reconstruction output. It may add stable row/cell identifiers, semantic cleanup, formula handling, section-row interpretation, candidate selection, or other domain-specific logic after reconstruction evidence has already been preserved.

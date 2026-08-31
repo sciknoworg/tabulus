@@ -58,6 +58,7 @@ Key modules:
 - `tatr_postprocess.py`
 - `rapidocr_tableformer.py`
 - `granite_vision_table.py`
+- `trivia.py`
 - `parsing.py`
 
 The main abstractions are:
@@ -77,8 +78,9 @@ The current registered crop-consuming reconstruction adapters are exactly:
 - `tesseract-tatr`: Tesseract OCR word recognition plus Microsoft Table Transformer structure recognition, fused deterministically into an HTML table.
 - `rapidocr-tableformer`: RapidOCR with ONNX Runtime for OCR and word boxes, combined with Docling TableFormer V1 structure recognition on the complete canonical crop.
 - `granite-vision-table`: Granite Vision 4.1 4B receives the complete canonical crop directly, generates `<tables_otsl>`, and uses Docling's Granite OTSL parser for structure and cell reconstruction.
+- `trivia`: TRivia-3B receives the complete canonical crop directly, generates native OTSL, and uses Tabulus-owned deterministic OTSL-to-HTML normalization before the shared parser.
 
-PaddleOCR-VL, Chandra, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer report CPU and GPU support in the registry. RapidOCR itself runs on CPU while its TableFormer component uses the requested device. NuExtract3 and Granite Vision 4.1 4B are registered as GPU-only in the validated Tabulus configuration.
+PaddleOCR-VL, Chandra, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer report CPU and GPU support in the registry. RapidOCR itself runs on CPU while its TableFormer component uses the requested device. NuExtract3, Granite Vision 4.1 4B, and TRivia-3B are registered as GPU-only in the validated Tabulus configuration.
 
 MinerU `table_body` is also a reconstruction candidate, but it is produced during PDF profiling rather than by a crop-consuming `tabulus.table_ocr` adapter.
 
@@ -90,6 +92,7 @@ For the external tools as used by Tabulus, see:
 - {doc}`../external-tools/tesseract-tatr`
 - {doc}`../external-tools/docling`
 - {doc}`../external-tools/granite-vision`
+- {doc}`../external-tools/trivia`
 
 ## Batch Orchestration
 
@@ -137,7 +140,7 @@ For the full default output contract, filename semantics, and current rerun beha
 
 Prediction CSV files are pre-reference-resolution artifacts. Reconstruction does not classify reference tables, extract bibliographies, match references, resolve DOI values, write final resolved CSV files, or merge continued tables.
 
-ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, Tesseract, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
+ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, Tesseract, TRivia, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
 
 ## Other Candidate Adapters
 

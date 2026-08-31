@@ -64,6 +64,7 @@ The currently registered crop-consuming reconstruction adapters are:
 | `tesseract-tatr` | Implemented | {doc}`../external-tools/tesseract-tatr` |
 | `rapidocr-tableformer` | Implemented | {doc}`../external-tools/docling` |
 | `granite-vision-table` | Implemented | {doc}`../external-tools/granite-vision` |
+| `trivia` | Implemented | {doc}`../external-tools/trivia` |
 | DeepSeek OCR | Future | Not registered in the rebuilt library |
 
 For the adapter interface and batch architecture, see
@@ -148,6 +149,13 @@ tabulus reconstruct-tables \
   --device gpu:0
 ```
 
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter trivia \
+  --device gpu:0
+```
+
 Granite Vision is an end-to-end vision-language-model reconstruction route,
 not a conventional OCR adapter. The canonical MinerU crop is sent directly
 to Granite Vision 4.1 4B, which generates OTSL from the `<tables_otsl>` prompt.
@@ -176,6 +184,31 @@ shared Tabulus parser/output contract
 This adapter does not run Docling PDF conversion or page-layout/table
 detection, and it does not redetect or recrop the original PDF. Each physical
 MinerU crop remains independent.
+
+TRivia-3B is also an end-to-end vision-language-model reconstruction route.
+It receives the canonical MinerU crop directly, generates native OTSL, and
+uses Tabulus-owned deterministic OTSL-to-HTML normalization before the shared
+HTML table parser:
+
+```text
+canonical MinerU crop
+      |
+      v
+TRivia-3B
+      |
+      v
+native OTSL
+      |
+      v
+Tabulus OTSL-to-HTML normalization
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+This normalization handles OTSL structure only. It does not semantically
+correct cell contents, repair the model's table intent, merge continued tables,
+or perform reference-resolution heuristics.
 
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:
