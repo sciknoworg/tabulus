@@ -31,6 +31,15 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=True,
         gpu_supported=True,
     ),
+    "granite-vision-table": TableOCRAdapterSpec(
+        name="granite-vision-table",
+        display_name="Granite Vision 4.1 4B",
+        entrypoint=(
+            "tabulus.table_ocr.granite_vision_table:GraniteVisionTableAdapter"
+        ),
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "nuextract3": TableOCRAdapterSpec(
         name="nuextract3",
         display_name="NuExtract3",
