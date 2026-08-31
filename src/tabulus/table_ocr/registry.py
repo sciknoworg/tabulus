@@ -56,6 +56,13 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=True,
         gpu_supported=True,
     ),
+    "trivia": TableOCRAdapterSpec(
+        name="trivia",
+        display_name="TRivia-3B",
+        entrypoint="tabulus.table_ocr.trivia:TRiviaAdapter",
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "tesseract-tatr": TableOCRAdapterSpec(
         name="tesseract-tatr",
         display_name="Tesseract + Table Transformer",

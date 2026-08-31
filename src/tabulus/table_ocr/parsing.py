@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import html
 import json
 import re
 from dataclasses import dataclass
@@ -223,6 +224,152 @@ def html_table_to_rows(html: str) -> list[list[str]]:
     parser.feed(html)
     parser.close()
     return _expand_html_spans(parser.rows)
+
+
+_OTSL_CELL_TOKENS = {
+    "<fcel>",
+    "<ecel>",
+    "<lcel>",
+    "<ucel>",
+    "<xcel>",
+}
+
+_OTSL_TOKEN_PATTERN = re.compile(
+    r"(<nl>|<fcel>|<ecel>|<lcel>|<ucel>|<xcel>)"
+)
+
+
+def otsl_table_to_html(text: str) -> str:
+    """
+    Convert one OTSL table into deterministic HTML.
+
+    Supported structural tokens are ``fcel``, ``ecel``, ``lcel``,
+    ``ucel``, ``xcel``, and ``nl``.
+
+    Cell text is preserved apart from HTML escaping. No semantic correction
+    or content repair is performed. Short rows are padded with empty cells to
+    the width of the widest OTSL row.
+    """
+
+    if not isinstance(text, str) or not text.strip():
+        return ""
+
+    parts = [
+        part
+        for part in _OTSL_TOKEN_PATTERN.split(text)
+        if part
+    ]
+
+    rows: list[list[tuple[str, str]]] = []
+    current_row: list[tuple[str, str]] = []
+    index = 0
+
+    while index < len(parts):
+        part = parts[index]
+
+        if part == "<nl>":
+            if current_row:
+                rows.append(current_row)
+                current_row = []
+            index += 1
+            continue
+
+        if part in _OTSL_CELL_TOKENS:
+            cell_text = ""
+
+            if (
+                part == "<fcel>"
+                and index + 1 < len(parts)
+                and parts[index + 1] not in _OTSL_CELL_TOKENS
+                and parts[index + 1] != "<nl>"
+            ):
+                cell_text = parts[index + 1]
+                index += 1
+
+            current_row.append((part, cell_text))
+
+        index += 1
+
+    if current_row:
+        rows.append(current_row)
+
+    if not rows:
+        return ""
+
+    num_cols = max(len(row) for row in rows)
+    if num_cols == 0:
+        return ""
+
+    rows = [
+        row + [("<ecel>", "")] * (num_cols - len(row))
+        for row in rows
+    ]
+
+    def horizontal_span(row_index: int, col_index: int) -> int:
+        span = 1
+        next_col = col_index + 1
+
+        while (
+            next_col < num_cols
+            and rows[row_index][next_col][0] in ("<lcel>", "<xcel>")
+        ):
+            span += 1
+            next_col += 1
+
+        return span
+
+    def vertical_span(row_index: int, col_index: int) -> int:
+        span = 1
+        next_row = row_index + 1
+
+        while (
+            next_row < len(rows)
+            and rows[next_row][col_index][0] in ("<ucel>", "<xcel>")
+        ):
+            span += 1
+            next_row += 1
+
+        return span
+
+    output = ["<table>"]
+
+    for row_index, row in enumerate(rows):
+        output.append("<tr>")
+
+        for col_index, (token, cell_text) in enumerate(row):
+            if token in ("<lcel>", "<ucel>", "<xcel>"):
+                continue
+
+            if token not in ("<fcel>", "<ecel>"):
+                continue
+
+            rowspan = vertical_span(row_index, col_index)
+            colspan = horizontal_span(row_index, col_index)
+
+            attributes: list[str] = []
+
+            if rowspan > 1:
+                attributes.append(f'rowspan="{rowspan}"')
+
+            if colspan > 1:
+                attributes.append(f'colspan="{colspan}"')
+
+            attribute_text = (
+                " " + " ".join(attributes)
+                if attributes
+                else ""
+            )
+
+            escaped = html.escape(cell_text.strip(), quote=False)
+
+            output.append(
+                f"<td{attribute_text}>{escaped}</td>"
+            )
+
+        output.append("</tr>")
+
+    output.append("</table>")
+    return "".join(output)
 
 
 def extract_markdown_tables(text: str) -> list[str]:
