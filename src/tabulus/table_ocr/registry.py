@@ -24,6 +24,15 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=True,
         gpu_supported=True,
     ),
+    "deepseek-ocr-2": TableOCRAdapterSpec(
+        name="deepseek-ocr-2",
+        display_name="DeepSeek-OCR-2",
+        entrypoint=(
+            "tabulus.table_ocr.deepseek_ocr_2:DeepSeekOCR2Adapter"
+        ),
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "dolphin-v2": TableOCRAdapterSpec(
         name="dolphin-v2",
         display_name="Dolphin-v2",
