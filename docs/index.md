@@ -18,8 +18,8 @@ Start with the installation page that matches your machine. Windows and CPU-only
 
 For the current implementation, the most important distinction is:
 
-- **Already validated:** cross-platform MinerU execution through `tabulus profile`, a real 53-page Windows CPU profiling run with MinerU `pipeline`, GPU-server profiling with MinerU `hybrid-engine`, typed table-region discovery with `tabulus.mineru`, automatic export of canonical table crops, PaddleOCR-VL CPU/GPU inference on MinerU table crops, Chandra OCR 2 GPU reconstruction, NuExtract3 GPU reconstruction, `tabulus reconstruct-tables --help`, batch reconstruction dispatch, and legacy-compatible HTML/Markdown table parsing.
-- **Next stages:** reference processing, run reporting, and full end-to-end commands.
+- **Already validated:** cross-platform MinerU execution through `tabulus profile`, typed table-region discovery with `tabulus.mineru`, automatic export of canonical table crops, PaddleOCR-VL CPU/GPU inference on MinerU table crops, Chandra OCR 2 GPU reconstruction, NuExtract3 GPU reconstruction, `tabulus reconstruct-tables`, batch reconstruction dispatch, legacy-compatible HTML/Markdown table parsing, and `tabulus classify-reference-tables`.
+- **Planned stages:** bibliography extraction, reference matching, DOI resolution, resolved CSV export, run reporting, and full end-to-end commands.
 
 ## Where To Start
 
@@ -84,8 +84,10 @@ The current library can:
 - parse native table renderings into a legacy-compatible rectangular row representation
 - reconstruct all canonical crops from a `tables_index.json` handoff through `tabulus reconstruct-tables`
 - write per-adapter `native/`, `parsed/`, `predictions/`, and `batch_summary.json` reconstruction outputs
+- classify reconstructed tables for reference-like content through `tabulus classify-reference-tables`
+- write `reference_table_classification.json` without overwriting reconstruction predictions
 
-The current library does not yet run bibliography/reference matching, produce run reports, resolve references, write final resolved CSV outputs, or provide a complete `tabulus run` command. The implemented reconstruction adapters have not been scientifically ranked against each other; raw prediction CSVs remain pre-reference-resolution artifacts.
+The current library does not yet run bibliography extraction, reference matching, produce run reports, resolve DOI values, write final resolved CSV outputs, or provide a complete `tabulus run` command. The implemented reconstruction adapters have not been scientifically ranked against each other; raw prediction CSVs remain pre-reference-resolution artifacts.
 
 ## Documentation Map
 
@@ -117,7 +119,6 @@ installation/python-library
 tutorial/00-overview
 tutorial/01-pdf-profiling
 tutorial/08-table-ocr
-tutorial/09-table-normalization
 tutorial/10-reference-table-classification
 tutorial/11-bibliography-extraction
 tutorial/12-reference-matching

@@ -1,4 +1,4 @@
-# Step 7: Bibliography Extraction
+# Planned Stage: Bibliography Extraction
 
 ## Goal
 

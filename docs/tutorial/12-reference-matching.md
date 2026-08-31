@@ -1,4 +1,4 @@
-# Step 8: Reference Matching
+# Planned Stage: Reference Matching
 
 ## Goal
 

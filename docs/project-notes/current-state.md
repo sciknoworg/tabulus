@@ -57,6 +57,16 @@ The current `tabulus reconstruct-tables` command:
 - rejects duplicate table IDs and adapters that change table identity
 - does not perform reference classification, bibliography extraction, reference matching, DOI resolution, final resolved CSV export, or continued-table merging
 
+The current `tabulus.reference_tables` package and `tabulus classify-reference-tables` command:
+
+- classify reconstruction outputs for reference-like scientific table content
+- consume `batch_summary.json` and the common parsed reconstruction artifacts
+- write `reference_table_classification.json` beside the reconstruction artifacts by default
+- preserve `native/`, `parsed/`, `predictions/`, and `batch_summary.json`
+- retain independent classification decisions separately from continuation-inherited decisions
+- record matched header evidence, matched citation evidence, classification source, continuation provenance, and reason text
+- do not perform bibliography extraction, reference matching, DOI resolution, final resolved CSV export, or continued-table merging
+
 The behavior is covered by unit tests that do not require GPU execution.
 
 The current tests verify:
@@ -78,6 +88,8 @@ The current tests verify:
 - legacy-compatible HTML/Markdown table parsing
 - batch table-reconstruction input loading and error handling
 - native, parsed, prediction CSV, and batch-summary output writing
+- reference-table classification heuristics and manifest writing
+- continued-table classification inheritance without file merging
 
 ## Validated Execution
 
@@ -155,16 +167,12 @@ Chandra OCR 2 has been integrated as a registered reconstruction adapter using t
 
 NuExtract3 has been integrated as a registered GPU-only reconstruction adapter using Hugging Face Transformers for `numind/NuExtract3`. A real NVIDIA L40S CLI smoke test with `--adapter nuextract3 --device gpu:0` completed with one table requested, one `ok` result, zero errors, and one prediction CSV.
 
+NuExtract3 has also completed an 83-crop engineering validation. All 83 adapter runs returned status `ok`, and 82 prediction CSVs were written. The one missing prediction CSV came from a case where NuExtract3 emitted two parseable HTML tables from one canonical crop, so Tabulus correctly preserved the native and parsed evidence without arbitrarily choosing or merging one table.
+
 After the NuExtract3 integration, the complete unit test suite reported:
 
 ```text
 128 passed
-```
-
-The table OCR parsing tests reported:
-
-```text
-6 passed
 ```
 
 Heavyweight ML integration validations are separate from the mocked unit test suite and should not be treated as scientific accuracy benchmarks.
@@ -174,7 +182,8 @@ Heavyweight ML integration validations are separate from the mocked unit test su
 - GROBID, Kreuzberg, or Crossref integration
 - DeepSeek OCR adapter
 - continued-table merging
-- final scientific table normalization and reference resolution
+- standalone scientific table normalization command
+- bibliography extraction, reference matching, DOI resolution, and resolved CSV export
 - full `tabulus run` process command
 
 ## Documentation Boundary

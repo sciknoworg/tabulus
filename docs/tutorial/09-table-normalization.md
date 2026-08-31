@@ -1,70 +1,41 @@
-# Step 5: Table Normalization
+:orphan:
 
-## Goal
+# Concept: Scientific Table Normalization
 
-Clean OCR table rows while preserving the raw OCR result for debugging.
+This page describes a future scientific-normalization layer. It is retained for old links and design context, but it is not part of the current visible runnable tutorial sequence.
 
-## Input
+The rebuilt library does not currently expose a standalone table-normalization command. Current structural parsing happens inside {doc}`08-table-ocr`:
 
-`tables/ocr_tables.json`.
-
-## Output
-
-`tables/normalized_tables.json` and, in the target evaluation workflow, table prediction CSV files.
-
-## Module Contract
-
-```json
-{
-  "tables": [
-    {
-      "table_id": 1,
-      "source_file": "page_003_table_001.png",
-      "rows": [["Header", "Value"], ["A", "B"]],
-      "normalization_warnings": []
-    }
-  ],
-  "status": "tables_normalized"
-}
+```text
+adapter-native output
+      |
+      v
+shared HTML/Markdown parsing
+      |
+      v
+rectangular parsed representation
+      |
+      v
+prediction CSV
 ```
 
-## Default Implementation
+## Current Implemented Parsing
 
-Full scientific table normalization is not yet implemented as a standalone stage.
-
-The current `tabulus.table_ocr.parsing` layer restores the legacy Paddle-compatible row parser. It reads adapter-native Markdown/HTML text, prefers HTML `<table>...</table>` elements when present, falls back to GitHub-style pipe-table Markdown only when no HTML table is found, and returns a rectangular row representation with:
+The current `tabulus.table_ocr.parsing` layer reads adapter-native Markdown/HTML text, prefers HTML `<table>...</table>` elements when present, falls back to GitHub-style pipe-table Markdown only when no HTML table is found, and returns a rectangular row representation with:
 
 - `rows`
 - `n_rows`
 - `n_cols`
 - `source`
 
-For HTML tables, `rowspan` and `colspan` are expanded into the common
-rectangular row matrix. The original merged-cell value is retained only at the
-upper-left grid position; other grid positions covered by the span become
-empty-string placeholders. This preserves column alignment for CSV-style
-reconstruction, but it is structural expansion only, not semantic fill-down.
+For HTML tables, `rowspan` and `colspan` are expanded into the common rectangular row matrix. The original merged-cell value is retained only at the upper-left grid position; other grid positions covered by the span become empty-string placeholders. This preserves column alignment for CSV-style reconstruction, but it is structural expansion only, not semantic fill-down.
 
-Invalid or non-positive span values fall back safely to a span of one. Rowspans
-that extend past the available HTML rows are clipped rather than creating
-synthetic rows. Markdown fallback behavior is unchanged.
+Invalid or non-positive span values fall back safely to a span of one. Rowspans that extend past the available HTML rows are clipped rather than creating synthetic rows. Markdown fallback behavior is unchanged.
 
-This behavior is adapter-neutral and is useful for any reconstruction model
-that emits HTML tables, not only a single OCR backend.
+This behavior is adapter-neutral and is useful for any reconstruction model that emits HTML tables.
 
-This parser is a reconstruction/parsing checkpoint, not final normalization. It does not semantically fill down cells, interpret section rows, rewrite formulas, merge continued tables, resolve references, or decide which reconstruction candidate is scientifically correct.
+## Future Scientific Normalization
 
-The future normalized representation should support:
-
-- stable table, row, and cell identifiers
-- rectangular rows suitable for CSV export
-- provenance back to the adapter-native output and MinerU crop
-- exporting a prediction CSV for evaluation
-- comparing reconstruction candidates across adapters
-- scoring against ground-truth CSV files
+Future scientific table normalization should remain separate from raw reconstruction output. It may add stable row/cell identifiers, semantic cleanup, formula handling, section-row interpretation, candidate selection, or other domain-specific logic after reconstruction evidence has already been preserved.
 
 The prediction CSV remains the reconstruction-quality artifact. Later reference matching and DOI enrichment should produce separate resolved CSV files without overwriting it.
-
-## Verification
-
-The step succeeds when rows are rectangular enough for later column detection and CSV export.

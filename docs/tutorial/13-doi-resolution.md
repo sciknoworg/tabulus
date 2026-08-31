@@ -1,4 +1,4 @@
-# Step 9: DOI Resolution
+# Planned Stage: DOI Resolution
 
 ## Goal
 

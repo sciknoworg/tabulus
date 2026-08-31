@@ -1,4 +1,4 @@
-# Step 10: Resolved CSV Export
+# Planned Stage: Resolved CSV Export
 
 ## Goal
 

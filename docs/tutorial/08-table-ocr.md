@@ -1,4 +1,4 @@
-# Step 4: Table OCR And Structure Extraction
+# Step 2: Table Reconstruction
 
 ## Goal
 
@@ -14,7 +14,7 @@ The input is intentionally image-based. Table-reconstruction adapters consume ca
 
 Adapter-neutral table OCR results. The implemented batch command writes per-adapter `native/`, `parsed/`, `predictions/`, and `batch_summary.json` artifacts under the crop handoff directory unless `--out` is provided.
 
-This output is an intermediate reconstruction checkpoint, not the final CSV:
+This output is an intermediate reconstruction checkpoint, not the final resolved CSV:
 
 ```text
 adapter-native result
@@ -23,7 +23,7 @@ adapter-native result
 parsed rows / structured OCR
       |
       v
-normalized reconstruction
+shared structural parsing / normalization
       |
       v
 prediction CSV
@@ -31,7 +31,7 @@ prediction CSV
 
 ## Module Contract
 
-See `data-contracts/ocr-tables-json.md`.
+See {doc}`../data-contracts/ocr-tables-json` and {doc}`../data-contracts/run-directory`.
 
 ## Default Implementation
 
@@ -68,7 +68,7 @@ each OCR adapter independently detects and crops tables
 
 The adapter stage should focus on extracting or reconstructing cell text, rows, columns, table structure, and adapter-native structured output while preserving the table ID and MinerU provenance supplied by the normalized handoff.
 
-In the first clean workflow, the adapter stack is:
+The adapter stack is:
 
 ```text
 table crop images
@@ -80,7 +80,7 @@ PaddleOCR-VL, Chandra OCR 2, or NuExtract3
 HTML, Markdown, or structured table output
       |
       v
-tables/ocr_tables.json
+native / parsed / prediction CSV artifacts
 ```
 
 The diagram above shows the common adapter contract, not a restriction to one model family.
@@ -431,6 +431,12 @@ tabulus reconstruct-tables --adapter nuextract3 --device gpu:0
 completed successfully with one table requested, one `ok` result, zero errors,
 and one prediction CSV. After the NuExtract3 integration, the complete unit
 test suite passed with 128 tests.
+
+NuExtract3 also completed an 83-crop engineering validation with 83/83 adapter
+runs returning status `ok` and 82 prediction CSVs written. The one missing
+prediction was a structurally ambiguous case where NuExtract3 emitted two
+parseable HTML tables from one canonical crop, so Tabulus preserved the native
+and parsed evidence without arbitrarily choosing or merging one table.
 
 This validation demonstrates adapter integration correctness only. It does not
 make accuracy, quality, or model-superiority claims.

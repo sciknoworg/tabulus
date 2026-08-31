@@ -106,6 +106,8 @@ tabulus reconstruct-tables --adapter nuextract3 --device gpu:0
 
 completed successfully with one table requested, one `ok` result, zero errors, and one prediction CSV.
 
+NuExtract3 also completed the current 83-crop engineering validation: 83/83 adapter runs returned status `ok`, and 82 prediction CSVs were written. The one missing prediction CSV came from a crop where NuExtract3 emitted two parseable HTML tables; Tabulus correctly preserved the native and parsed evidence without arbitrarily choosing or merging one table.
+
 After the NuExtract3 integration, the complete unit test suite passed with 128 tests.
 
 This validation demonstrates adapter integration correctness only. It does not make accuracy, quality, or model-superiority claims.

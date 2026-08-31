@@ -1,20 +1,33 @@
-# Step 6: Reference-Table Classification
+# Step 3: Reference-Table Classification
 
 ## Goal
 
-Decide whether an extracted table contains citations or reference identifiers.
+Decide which reconstructed physical tables contain reference-like scientific citation content and should later enter the reference-resolution branch.
+
+This stage is implemented in the rebuilt library as:
+
+```bash
+tabulus classify-reference-tables
+```
 
 ## Input
 
-In the rebuilt pipeline, this stage should be downstream of table
-reconstruction. The intended inputs are the common parsed representation under
-`reconstructions/<adapter>/parsed/` and the reconstruction batch manifest
-`reconstructions/<adapter>/batch_summary.json`.
+Reference-table classification consumes reconstruction artifacts from one adapter:
+
+```text
+<crop-root>/
+  reconstructions/
+    <adapter>/
+      parsed/
+      predictions/
+      batch_summary.json
+```
+
+The classifier reads the common parsed table representation and the reconstruction batch manifest. It does not read the original PDF, rerun OCR, or modify prediction CSVs.
 
 ## Output
 
-When rebuilt, the stage should write a classification manifest beside the
-reconstruction artifacts:
+By default, the command writes:
 
 ```text
 <crop-root>/
@@ -23,37 +36,77 @@ reconstruction artifacts:
       reference_table_classification.json
 ```
 
-It should not overwrite `native/`, `parsed/`, `predictions/`, or
-`batch_summary.json`.
+The manifest records a routing/classification decision for each physical table considered. It does not overwrite:
 
-## Module Contract
+- `native/`
+- `parsed/`
+- `predictions/`
+- `batch_summary.json`
 
-```json
-{
-  "table_id": 1,
-  "is_reference_table": true,
-  "has_tag_match": true,
-  "has_citation_match": true,
-  "matched_header_cells": ["References"],
-  "matched_citation_cells": ["[1]", "Smith et al. 2020"],
-  "reason": "Header-like reference tags and citation-like cell content found."
-}
+A non-reference classification means only that the table should not proceed down the future reference-resolution branch. It does not mean the reconstruction is invalid.
+
+## CLI
+
+Classify one reconstruction directory:
+
+```bash
+tabulus classify-reference-tables \
+  --reconstruction "/path/to/table-crops/<paper>/reconstructions/<adapter>"
 ```
 
-## Default Implementation
+Classify all immediate crop roots beneath a table-crops parent for one adapter:
 
-This stage is retained in the legacy thesis workflow but is not yet implemented in the rebuilt `src/tabulus` library.
+```bash
+tabulus classify-reference-tables \
+  --crops-folder "/path/to/tabulus-output/table-crops" \
+  --adapter paddleocr-vl
+```
 
-The target classifier should use evidence such as reference-like headers, bracketed numeric citations, DOI strings, author-year citations, or similar patterns to decide whether a table should enter the reference-resolution branch. It should not change the table prediction CSV used for reconstruction evaluation.
+Classify reconstruction directories listed in a UTF-8 text file:
 
-A non-reference classification should mean only that the table does not proceed
-down the reference-resolution branch. It should not mean the reconstruction is
-invalid, and it should not cause `predictions/*.csv` files to be deleted.
+```bash
+tabulus classify-reference-tables \
+  --reconstruction-list "/path/to/reconstructions.txt"
+```
 
-Continued-table handling should remain a layer on top of independent physical
-table classification. Current reconstruction keeps continued table segments as
-separate physical table IDs and does not merge their files.
+For multi-paper classification, the default manifest is written inside each selected reconstruction directory. `--out` is only valid when exactly one reconstruction directory is selected.
 
-## Verification
+## Classification Model
 
-The step succeeds when every OCR table has an explicit classification decision and evidence.
+Every physical table is classified independently first. The classifier uses the common parsed rows produced during reconstruction, preserves the legacy reference-bearing table heuristics, and records matched evidence.
+
+The manifest includes fields such as:
+
+- `is_reference_table`
+- `independent_is_reference_table`
+- `classification_source`
+- `continued_from_table_id`
+- `continuation_caption`
+- `matched_header_cells`
+- `matched_citation_cells`
+- `reason`
+
+Current heuristics include reference-like headers, citation-like cell content, DOI-like strings, author-year patterns, and conservative bare numeric references when those numbers occur inside explicitly reference-like columns such as `Refs.`, `References`, or `Citations`.
+
+## Continued Tables
+
+Continued-table handling is a separate layer on top of independent classification:
+
+```text
+physical table
+  -> independent reference classification
+  -> continuation relationship resolution
+  -> final reference-table decision
+```
+
+An explicitly identified continuation may inherit a positive reference-table classification from its preceding logical table. The manifest preserves whether the final decision came from independent table evidence or continuation inheritance.
+
+This does not merge files. Continued tables remain separate physical entities through MinerU detection, canonical crops, reconstruction, parsed artifacts, prediction CSVs, and classification.
+
+## Boundary
+
+This stage performs reference-table routing only. It does not extract bibliographies, match references, resolve DOI values, write resolved CSVs, merge continued tables, or run the complete end-to-end pipeline.
+
+## Next Step
+
+The next rebuilt stages are planned bibliography extraction, reference matching, DOI resolution, and resolved CSV export.
