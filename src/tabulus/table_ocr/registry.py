@@ -40,6 +40,13 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "glm-ocr": TableOCRAdapterSpec(
+        name="glm-ocr",
+        display_name="GLM-OCR",
+        entrypoint="tabulus.table_ocr.glm_ocr:GLMOCRAdapter",
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "nuextract3": TableOCRAdapterSpec(
         name="nuextract3",
         display_name="NuExtract3",
