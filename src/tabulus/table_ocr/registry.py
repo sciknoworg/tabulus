@@ -38,6 +38,15 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "rapidocr-tableformer": TableOCRAdapterSpec(
+        name="rapidocr-tableformer",
+        display_name="RapidOCR + Docling TableFormer",
+        entrypoint=(
+            "tabulus.table_ocr.rapidocr_tableformer:RapidOCRTableFormerAdapter"
+        ),
+        cpu_supported=True,
+        gpu_supported=True,
+    ),
     "tesseract-tatr": TableOCRAdapterSpec(
         name="tesseract-tatr",
         display_name="Tesseract + Table Transformer",
