@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, and NuExtract3 adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -43,6 +43,9 @@ The current `tabulus.table_ocr` package:
 - preserves PaddleOCR native JSON and Markdown result views
 - invokes Chandra OCR 2 through the Hugging Face/in-process path with `prompt_type="ocr"`
 - invokes NuExtract3 through Hugging Face Transformers in Markdown mode with deterministic generation
+- invokes Tesseract for OCR word tokens and Microsoft Table Transformer for structure recognition, then fuses tokens and structure deterministically
+- invokes RapidOCR with ONNX Runtime for CPU OCR and word boxes, then uses Docling TableFormer V1 in accurate mode with cell matching on the requested device
+- preserves RapidOCR/Docling native OTSL and table-structure evidence before shared parsing
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
 
@@ -81,10 +84,11 @@ The current tests verify:
 - mocked MinerU execution logging
 - table-crop export and missing-source-image errors
 - profile-driven automatic table-crop export
-- table OCR registry lazy loading
+- table reconstruction registry lazy loading
 - PaddleOCR-VL adapter configuration and result preservation
 - Chandra OCR 2 adapter configuration and result preservation
 - NuExtract3 adapter configuration, GPU-only device handling, and runtime reuse
+- Tesseract + Table Transformer registry metadata, device handling, runtime reuse, native evidence preservation, TSV parsing, HTML generation, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
 - batch table-reconstruction input loading and error handling
 - native, parsed, prediction CSV, and batch-summary output writing
@@ -167,13 +171,11 @@ Chandra OCR 2 has been integrated as a registered reconstruction adapter using t
 
 NuExtract3 has been integrated as a registered GPU-only reconstruction adapter using Hugging Face Transformers for `numind/NuExtract3`. A real NVIDIA L40S CLI smoke test with `--adapter nuextract3 --device gpu:0` completed with one table requested, one `ok` result, zero errors, and one prediction CSV.
 
-NuExtract3 has also completed an 83-crop engineering validation. All 83 adapter runs returned status `ok`, and 82 prediction CSVs were written. The one missing prediction CSV came from a case where NuExtract3 emitted two parseable HTML tables from one canonical crop, so Tabulus correctly preserved the native and parsed evidence without arbitrarily choosing or merging one table.
+NuExtract3 has also completed one selected three-document engineering-validation slice containing 83 canonical table crops. The count is test-specific: it is not a fixed benchmark size, a standard Tabulus evaluation dataset, or a model capability claim. All 83 adapter runs returned status `ok`, and 82 prediction CSVs were written. The one missing prediction CSV came from a case where NuExtract3 itself emitted two sibling parseable HTML tables from one canonical crop, so Tabulus correctly preserved the native and parsed evidence without arbitrarily choosing or merging one table.
 
-After the NuExtract3 integration, the complete unit test suite reported:
+Tesseract + Table Transformer has been integrated as a registered reconstruction adapter using Tesseract OCR word tokens plus `microsoft/table-transformer-structure-recognition-v1.1-all`. It consumes canonical MinerU crops directly, applies the official-style max-dimension-1000 TATR preprocessing with ImageNet normalization, and uses deterministic token/structure fusion to produce HTML for the shared Tabulus parser.
 
-```text
-128 passed
-```
+A real Tabulus CLI validation on an NVIDIA L40S setup completed on one scientific crop and on the same selected three-document engineering-validation slice used during development. That slice contained 83 canonical crops; all 83 adapter runs returned status `ok`, all 83 wrote prediction CSVs, and the observed total runtime was approximately 165.78 s. This count and timing describe one selected engineering-validation slice only, not a benchmark size, accuracy result, or model-superiority claim.
 
 Heavyweight ML integration validations are separate from the mocked unit test suite and should not be treated as scientific accuracy benchmarks.
 

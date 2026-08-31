@@ -322,7 +322,7 @@ work\table_crops\
   images\
 ```
 
-Table OCR and Structure Extraction adapters operate on canonical MinerU table crops. If the PaddleOCR dependencies are installed in the active environment, the batch table-reconstruction CLI can process the crop handoff with PaddleOCR-VL:
+Table reconstruction adapters operate on canonical MinerU table crops. If the PaddleOCR dependencies are installed in the active environment, the batch table-reconstruction CLI can process the crop handoff with PaddleOCR-VL:
 
 ```bat
 tabulus reconstruct-tables --crops "C:\path\to\ald-papers\tabulus-output\table-crops\Puurunen - February 2005" --adapter paddleocr-vl --device cpu

@@ -1,6 +1,6 @@
 # ocr_tables.json
 
-`tables/ocr_tables.json` describes the adapter-neutral structured table OCR result shape. The current library exposes `TableOCRResult` objects and the implemented batch command persists the same boundary as per-table JSON files under `reconstructions/<adapter>/native/` and `reconstructions/<adapter>/parsed/`.
+`tables/ocr_tables.json` describes the adapter-neutral structured table reconstruction result shape. The current library exposes `TableOCRResult` objects and the implemented batch command persists the same boundary as per-table JSON files under `reconstructions/<adapter>/native/` and `reconstructions/<adapter>/parsed/`.
 
 This is an intermediate reconstruction checkpoint:
 
@@ -8,7 +8,7 @@ This is an intermediate reconstruction checkpoint:
 adapter-native output
         |
         v
-structured OCR / parsed rows
+structured table evidence
         |
         v
 normalized reconstruction
@@ -54,11 +54,11 @@ prediction CSV
 
 ## Concepts
 
-`native_json` and `native_markdown` preserve the adapter's public result representations for provenance and debugging. For PaddleOCR-VL these are two serializations or views of the same Paddle inference result, not two independent predictions. Chandra OCR 2 preserves generated HTML and generation metadata; NuExtract3 preserves generated Markdown/HTML content and model/generation metadata.
+`native_json` and `native_markdown` preserve the adapter's public result representations for provenance and debugging. For PaddleOCR-VL these are two serializations or views of the same Paddle inference result, not two independent predictions. Chandra OCR 2 preserves generated HTML and generation metadata; NuExtract3 preserves generated Markdown/HTML content and model/generation metadata. Tesseract + Table Transformer preserves OCR word tokens, word bounding boxes, TATR structure objects, fused cells, and generated HTML.
 
 `parsed_tables` contains the legacy-compatible rectangular row representation recovered from the native Markdown/HTML text. The parser prefers HTML tables and falls back to GitHub-style pipe tables only when no HTML table is present.
 
-`status` should explicitly record `"ok"`, `"empty"`, or `"error"`. A table OCR adapter should never silently drop an input crop.
+`status` should explicitly record `"ok"`, `"empty"`, or `"error"`. A table reconstruction adapter should never silently drop an input crop.
 
 The implemented batch output is:
 
@@ -70,7 +70,7 @@ reconstructions/<adapter>/
   batch_summary.json
 ```
 
-The batch layer preserves `table_id` values and crop order from `tables_index.json`. A table-level OCR error is persisted as an error result and does not abort later crops.
+The batch layer preserves `table_id` values and crop order from `tables_index.json`. A table-level adapter error is persisted as an error result and does not abort later crops.
 
 `parsed/` is Tabulus's common structured table representation. The per-table parsed JSON records table identity, adapter name/version, model version, device, source crop, status, parsed table count, parsed rows, row/column dimensions, parse source such as HTML or Markdown, warnings, and the prediction CSV path when one is written. This layer is the bridge between adapter-specific native output and downstream Tabulus processing.
 

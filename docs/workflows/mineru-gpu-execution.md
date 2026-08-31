@@ -230,7 +230,7 @@ new tabulus library --------+
                     final pipeline
 ```
 
-The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, registered PaddleOCR-VL, Chandra OCR 2, and NuExtract3 table-reconstruction adapters for MinerU crops, and the `tabulus reconstruct-tables` batch CLI. These stages are not yet implemented in the new library:
+The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, and Tesseract + Table Transformer table-reconstruction adapters for MinerU crops, and the `tabulus reconstruct-tables` batch CLI. These stages are not yet implemented in the new library:
 
 - GROBID, Kreuzberg, or Crossref integration
 - full Tabulus process command

@@ -1,6 +1,6 @@
 # GPU Server Run
 
-The GPU server workflow runs the same file-contract-oriented modules as the CPU workflow, but uses GPU-backed adapters where they are validated. For MinerU profiling, this means requesting `hybrid-engine` instead of the CPU-compatible `pipeline` backend. For table reconstruction, `tabulus reconstruct-tables` can run a registered crop-consuming adapter such as PaddleOCR-VL, Chandra OCR 2, or NuExtract3 over the canonical MinerU crop handoff in the appropriate adapter environment.
+The GPU server workflow runs the same file-contract-oriented modules as the CPU workflow, but uses GPU-backed adapters where they are validated. For MinerU profiling, this means requesting `hybrid-engine` instead of the CPU-compatible `pipeline` backend. For table reconstruction, `tabulus reconstruct-tables` can run a registered crop-consuming adapter such as PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, or RapidOCR + Docling TableFormer over the canonical MinerU crop handoff in the appropriate adapter environment.
 
 Before running this workflow, complete the GPU server setup in `installation/gpu-server`. For the exact tested MinerU command sequence, see `workflows/mineru-gpu-execution`.
 
@@ -78,7 +78,7 @@ For a controlled benchmark, run the same document once to warm the environment a
 
 ## Table-Crop Handoff
 
-The GPU workflow should materialize a clean intermediate table-crop collection before invoking a Table OCR and Structure Extraction adapter:
+The GPU workflow should materialize a clean intermediate table-crop collection before invoking a table reconstruction adapter:
 
 ```text
 MinerU content_list.json
@@ -96,8 +96,6 @@ tabulus-output/table-crops/<PDF stem>/
 ```
 
 This directory should preserve `page_idx`, `bbox`, captions, footnotes, `mineru_img_path`, and MinerU `table_body` when available. A crop-consuming table-reconstruction adapter should receive the copied MinerU table image, not a full PDF page.
-
-The validated PaddleOCR-VL GPU check used `page_006_table_001.jpg`, `device="gpu:0"`, `engine="paddle"`, layout detection disabled, and `prompt_label="table"`. It produced one parsed HTML table with 58 rows x 6 columns.
 
 For batch reconstruction, the command writes one adapter-specific tree:
 

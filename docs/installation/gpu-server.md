@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, and NuExtract3 table reconstruction are validated separately in adapter-specific environments so the MinerU, PaddlePaddle/PaddleOCR, and PyTorch/Transformers stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, and NuExtract3
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer
 
 ## 2. Request GPU Compute Resources
 
@@ -310,7 +310,7 @@ python -m pytest -v
 
 Linux validation after the MinerU native-run-directory runner fix collected 22 tests and all 22 passed. That run included the regression test `test_run_mineru_returns_native_hybrid_run_dir`, which verifies that Tabulus returns the native `hybrid_auto/` directory for the validated hybrid run and does not create an artificial `auto/` directory.
 
-After the NuExtract3 integration, the complete unit test suite reported 128 passed. That automated test run uses mocks for heavyweight OCR dependencies and does not replace Linux GPU integration validation for the reconstruction adapters.
+The automated test suite uses mocks for heavyweight reconstruction dependencies and does not replace Linux GPU integration validation for the reconstruction adapters.
 
 This requires Tabulus to have been installed with:
 
@@ -441,6 +441,12 @@ tabulus-chandra-gpu
 
 tabulus-nuextract3-gpu
   Tabulus + NuExtract3 + PyTorch/Transformers/Accelerate
+
+tabulus-tesseract-tatr-gpu
+  Tabulus + Tesseract + Table Transformer + PyTorch/Transformers
+
+dedicated RapidOCR + Docling TableFormer environment
+  Tabulus + RapidOCR + ONNX Runtime + Docling TableFormer
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -661,3 +667,69 @@ Tabulus does not require a vLLM HTTP service for this adapter path.
 
 For the NuExtract3 settings and output artifacts used by Tabulus, see
 {doc}`../external-tools/nuextract3`.
+
+### Tesseract + Table Transformer GPU Environment
+
+Tesseract + Table Transformer runs in its own environment because it combines
+the external Tesseract executable with a PyTorch/Transformers Table Transformer
+model stack. It consumes the same canonical MinerU crop handoff as the other
+reconstruction adapters and should not be run against the original PDFs for
+this reconstruction comparison.
+
+The implemented adapter is registered as `tesseract-tatr`.
+
+Run reconstruction with:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter tesseract-tatr \
+  --device gpu:0
+```
+
+For each paper crop root, output is written beside other adapters under:
+
+```text
+<crop-root>/
+  reconstructions/
+    tesseract-tatr/
+      native/
+      parsed/
+      predictions/
+      batch_summary.json
+```
+
+Tesseract performs OCR/text recognition and word bounding-box extraction.
+Microsoft Table Transformer performs table-structure recognition using the
+`microsoft/table-transformer-structure-recognition-v1.1-all` model. Tabulus
+then fuses tokens and structure deterministically and passes the generated HTML
+through the shared parser.
+
+For the Tesseract + Table Transformer settings and output artifacts used by
+Tabulus, see {doc}`../external-tools/tesseract-tatr`.
+
+### RapidOCR + Docling TableFormer Environment
+
+RapidOCR + Docling TableFormer consumes the same canonical MinerU crop handoff
+as the other reconstruction adapters. RapidOCR with ONNX Runtime performs OCR
+and word-bounding-box extraction on the crop using the CPU. Docling's
+TableFormer V1 then performs table-structure recognition on the complete crop
+using the requested CPU or GPU device.
+
+Run reconstruction with:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter rapidocr-tableformer \
+  --device gpu:0
+```
+
+Tabulus uses Docling's bare-crop TableFormer path. It does not run Docling PDF
+or page-layout detection, redetect or recrop tables, semantically correct cell
+content, or merge continued tables. Raw OTSL and the final Docling table
+structure are preserved as native adapter evidence before the common Tabulus
+parser produces the shared representation and prediction CSVs.
+
+For the RapidOCR + Docling TableFormer integration details and limitations, see
+{doc}`../external-tools/docling`.

@@ -4,7 +4,7 @@ Chandra OCR 2 is an external OCR model used by Tabulus for table reconstruction 
 
 ## Official Resources
 
-- Chandra OCR project repository: [akanugan/chandra-ocr](https://github.com/akanugan/chandra-ocr)
+- Chandra OCR project repository: [datalab-to/chandra](https://github.com/datalab-to/chandra)
 - Exact model used by Tabulus: [datalab-to/chandra-ocr-2](https://huggingface.co/datalab-to/chandra-ocr-2)
 
 ## Role In Tabulus

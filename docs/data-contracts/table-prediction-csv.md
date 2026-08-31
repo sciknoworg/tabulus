@@ -20,6 +20,7 @@ Prediction CSV files may come from implemented and future reconstruction candida
 - MinerU crop -> PaddleOCR-VL
 - MinerU crop -> Chandra
 - MinerU crop -> NuExtract3
+- MinerU crop -> Tesseract + Table Transformer
 - MinerU crop -> DeepSeek OCR (future)
 
 All candidates should be exported through the same normalized CSV shape before scoring. Adapter-native JSON, Markdown, HTML, or OCR text should be preserved separately for provenance and debugging.
@@ -33,7 +34,7 @@ The implemented `tabulus reconstruct-tables` command writes prediction CSV files
       predictions/
 ```
 
-A prediction CSV is written only when the table OCR result has status `ok` and exactly one parsed table is available for that crop. If the adapter returns an error, no table, or multiple parsed tables from one canonical crop, Tabulus preserves the native and parsed artifacts plus a warning or error instead of choosing an arbitrary CSV.
+A prediction CSV is written only when the table reconstruction result has status `ok` and exactly one parsed table is available for that crop. If the adapter returns an error, no table, or multiple parsed tables from one canonical crop, Tabulus preserves the native and parsed artifacts plus a warning or error instead of choosing an arbitrary CSV.
 
 Filename stems preserve the physical crop identity. For example:
 

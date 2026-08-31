@@ -40,7 +40,7 @@ The stable file name is `tables_index.json`. Earlier scratch runs sometimes used
 Each table record should provide:
 
 - stable `table_id`
-- the image path to pass to the table OCR module
+- the image path to pass to the table reconstruction module
 - page provenance
 - bounding-box provenance when available
 - caption and footnote context when available
@@ -69,7 +69,7 @@ copy only those table images into the Tabulus table-crop collection
 write tables_index.json
 ```
 
-Tabulus does not need to crop the PDF again from `bbox`. The `bbox` should be preserved for traceability and visual QA, but the image passed to table OCR is the MinerU-generated image referenced by `img_path`.
+Tabulus does not need to crop the PDF again from `bbox`. The `bbox` should be preserved for traceability and visual QA, but the image passed to table reconstruction is the MinerU-generated image referenced by `img_path`.
 
 `mineru_table_body` is MinerU's own candidate reconstruction for the detected
 table. It is separate from the canonical crop image consumed by crop-consuming

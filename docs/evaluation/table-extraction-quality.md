@@ -47,9 +47,10 @@ Benchmarking can evaluate implemented and future candidate table reconstructions
 - MinerU crop -> PaddleOCR-VL
 - MinerU crop -> Chandra
 - MinerU crop -> NuExtract3
+- MinerU crop -> Tesseract + Table Transformer
 - MinerU crop -> DeepSeek OCR (future)
 
-MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, and NuExtract3 are current crop-consuming Tabulus reconstruction adapters. DeepSeek OCR remains future work. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
+MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, NuExtract3, and Tesseract + Table Transformer are current crop-consuming Tabulus reconstruction adapters. DeepSeek OCR remains future work. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
 
 ```text
 same detected table
@@ -60,6 +61,7 @@ same detected table
               +-- PaddleOCR-VL
               +-- Chandra
               +-- NuExtract3
+              +-- Tesseract + Table Transformer
               +-- DeepSeek OCR (future)
 ```
 

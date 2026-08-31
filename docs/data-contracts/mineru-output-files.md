@@ -131,7 +131,7 @@ read img_path for each table
 copy MinerU table images into the normalized table-crop handoff
   |
   v
-run a Table OCR and Structure Extraction adapter on those crops
+run a table reconstruction adapter on those crops
 ```
 
 Keep the full MinerU directory so that:

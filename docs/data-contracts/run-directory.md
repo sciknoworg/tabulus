@@ -46,8 +46,8 @@ by default:
 
 `native/`
 : Adapter-native reconstruction evidence and provenance. For PaddleOCR-VL,
-  Chandra OCR 2, and NuExtract3 this preserves the native representation
-  returned or derived from the selected adapter.
+  Chandra OCR 2, NuExtract3, and Tesseract + Table Transformer this preserves
+  the native representation returned or derived from the selected adapter.
 
 `parsed/`
 : Tabulus's common structured table representation derived from adapter-native
@@ -93,9 +93,10 @@ the reconstruction stage.
 
 This separation also decouples ML environments. MinerU can run in one Python
 or Conda environment, PaddleOCR-VL can run in another, Chandra OCR 2 can run
-in another, and NuExtract3 can run in another. The stable contracts between
-stages are persisted files such as `tables_index.json`, canonical crop images,
-reconstruction manifests, and reconstruction artifacts.
+in another, NuExtract3 can run in another, and Tesseract + Table Transformer
+can run in another. The stable contracts between stages are persisted files
+such as `tables_index.json`, canonical crop images, reconstruction manifests,
+and reconstruction artifacts.
 
 ## Current Profiling Output Convention
 
@@ -233,8 +234,8 @@ If `--out` is omitted, each paper uses:
 ```
 
 The currently registered crop-consuming adapter directories are
-`paddleocr-vl`, `chandra`, and `nuextract3`. Future adapters should follow the
-same structure when implemented:
+`paddleocr-vl`, `chandra`, `nuextract3`, and `tesseract-tatr`. Future adapters
+should follow the same structure when implemented:
 
 ```text
 reconstructions/

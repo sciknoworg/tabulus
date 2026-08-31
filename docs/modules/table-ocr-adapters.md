@@ -1,8 +1,10 @@
-# Table OCR Adapters
+# Table Reconstruction Adapters
 
-Table OCR and Structure Extraction adapters convert normalized table crop images into structured tables.
+Table reconstruction adapters convert normalized table crop images into structured tables.
 
-In the current clean Tabulus workflow, MinerU is the canonical table-localization and crop-generation stage. Prior experimental work selected MinerU for this role because it was the strongest and most efficient option for locating scientific tables and producing useful crop images. The table OCR adapter layer is extensible, but its contract starts from the MinerU-generated crop rather than the original PDF.
+The package path is still `tabulus.table_ocr` because that is the current code API, but the adapter layer is broader than conventional OCR. An adapter may use OCR, a document vision-language model, or another reconstruction architecture as long as it accepts the same canonical MinerU crop input and returns the common result contract.
+
+In the rebuilt Tabulus workflow, MinerU is the canonical table-localization and crop-generation stage. The reconstruction adapter contract starts from the MinerU-generated crop rather than the original PDF.
 
 ## Responsibility
 
@@ -32,16 +34,16 @@ not:
 original PDF
        |
        v
-each OCR adapter independently detects and crops tables
+each reconstruction adapter independently detects and crops tables
 ```
 
 The adapter should focus on cell text, rows, columns, table structure, and adapter-native structured output while preserving the table ID and MinerU provenance supplied by the normalized Tabulus handoff.
 
-Adapter-native outputs may differ. A table-reconstruction adapter may produce HTML, Markdown, CSV-like structures, JSON, or model-specific structured output. Downstream Tabulus code should normalize those outputs into the same common table representation before evaluation or export.
+Adapter-native outputs may differ. A table-reconstruction adapter may produce HTML, Markdown, CSV-like structures, JSON, or model-specific structured output. Downstream Tabulus code normalizes those outputs into the same common table representation before evaluation or later processing.
 
 ## Current Adapters
 
-The clean library implements the adapter boundary and the current registered reconstruction adapters in `src/tabulus/table_ocr/`.
+The rebuilt library implements the adapter boundary and the current registered reconstruction adapters in `src/tabulus/table_ocr/`.
 
 Key modules:
 
@@ -52,6 +54,9 @@ Key modules:
 - `paddleocr_vl.py`
 - `chandra.py`
 - `nuextract3.py`
+- `tesseract_tatr.py`
+- `tatr_postprocess.py`
+- `rapidocr_tableformer.py`
 - `parsing.py`
 
 The main abstractions are:
@@ -63,13 +68,15 @@ The main abstractions are:
 - adapter registry: lists adapters and lazy-loads implementation classes.
 - `run_table_ocr_batch`: loads `tables_index.json`, reuses one adapter instance, and writes reconstruction artifacts.
 
-The current registered crop-consuming reconstruction adapters are:
+The current registered crop-consuming reconstruction adapters are exactly:
 
 - `paddleocr-vl`: PaddleOCR-VL reconstruction on already-isolated MinerU table crops with PaddleOCR layout detection disabled and the table prompt enabled.
 - `chandra`: Chandra OCR 2 reconstruction through the Hugging Face/in-process API with `prompt_type="ocr"`.
 - `nuextract3`: NuExtract3 reconstruction through Hugging Face Transformers in document-to-Markdown mode.
+- `tesseract-tatr`: Tesseract OCR word recognition plus Microsoft Table Transformer structure recognition, fused deterministically into an HTML table.
+- `rapidocr-tableformer`: RapidOCR with ONNX Runtime for OCR and word boxes, combined with Docling TableFormer V1 structure recognition on the complete canonical crop.
 
-PaddleOCR-VL and Chandra report CPU and GPU support in the registry. NuExtract3 is registered as GPU-only in the validated Tabulus configuration.
+PaddleOCR-VL, Chandra, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer report CPU and GPU support in the registry. RapidOCR itself runs on CPU while its TableFormer component uses the requested device. NuExtract3 is registered as GPU-only in the validated Tabulus configuration.
 
 MinerU `table_body` is also a reconstruction candidate, but it is produced during PDF profiling rather than by a crop-consuming `tabulus.table_ocr` adapter.
 
@@ -78,10 +85,12 @@ For the external tools as used by Tabulus, see:
 - {doc}`../external-tools/paddleocr-vl`
 - {doc}`../external-tools/chandra`
 - {doc}`../external-tools/nuextract3`
+- {doc}`../external-tools/tesseract-tatr`
+- {doc}`../external-tools/docling`
 
-## Batch Reconstruction CLI
+## Batch Orchestration
 
-The installed `tabulus` entry point exposes table reconstruction as a subcommand:
+The installed `tabulus` entry point exposes the batch layer through:
 
 ```bash
 tabulus reconstruct-tables \
@@ -102,16 +111,33 @@ The default output for one adapter is:
       batch_summary.json
 ```
 
-The command reads `tables_index.json`, preserves table IDs and crop order, processes each physical MinerU crop independently, and reuses one adapter instance for the full batch. Failed tables are written as explicit error results and do not prevent later crops from running. The command rejects duplicate table IDs and adapter results that change table identity.
+The batch layer reads `tables_index.json`, preserves table IDs and crop order, processes each physical MinerU crop independently, and reuses one adapter instance for the full batch. Failed tables are written as explicit error results and do not prevent later crops from running. Duplicate table IDs and adapter results that change table identity are rejected.
+
+For multiple crop roots, the CLI processes papers sequentially and keeps output isolated by paper. Adapter instances are still created once per command invocation and reused across the selected batch.
+
+## Artifact Separation
+
+Every adapter writes the same Tabulus-owned reconstruction layers:
+
+```text
+native/
+parsed/
+predictions/
+batch_summary.json
+```
+
+`native/` preserves adapter-native evidence. `parsed/` preserves the common structured representation produced by the shared parser. `predictions/` contains raw reconstruction CSVs before reference resolution. `batch_summary.json` is the reconstruction batch manifest.
+
+A prediction CSV is written only when the adapter result status is `ok` and exactly one structured table was parsed from the canonical crop. Empty results and multiple-table ambiguity preserve native and parsed evidence without writing a CSV.
 
 For the full default output contract, filename semantics, and current rerun behavior, see {doc}`../data-contracts/run-directory`.
 
-Prediction CSV files are pre-reference-resolution artifacts. This command does not classify reference tables, extract bibliographies, match references, resolve DOI values, write final resolved CSV files, or merge continued tables.
+Prediction CSV files are pre-reference-resolution artifacts. Reconstruction does not classify reference tables, extract bibliographies, match references, resolve DOI values, write final resolved CSV files, or merge continued tables.
 
-OCR and ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
+ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, Tesseract, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
 
 ## Other Candidate Adapters
 
-Other reconstruction candidates can be added behind the same Table OCR and Structure Extraction contract. DeepSeek OCR remains future work in the rebuilt installable library.
+Other reconstruction candidates can be added behind the same reconstruction contract. DeepSeek OCR remains future work in the rebuilt installable library.
 
 These candidates are alternatives, not sequential stages that run after another reconstruction adapter.

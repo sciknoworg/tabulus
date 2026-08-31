@@ -12,7 +12,7 @@ Failures should be debugged at the component boundary.
 
 ## Example
 
-If table OCR fails, do not rerun PDF ingestion or page rendering. Rerun only:
+If table reconstruction fails, do not rerun PDF profiling. Rerun only:
 
 ```bash
 tabulus reconstruct-tables \
