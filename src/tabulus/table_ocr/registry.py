@@ -24,6 +24,13 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=True,
         gpu_supported=True,
     ),
+    "dolphin-v2": TableOCRAdapterSpec(
+        name="dolphin-v2",
+        display_name="Dolphin-v2",
+        entrypoint="tabulus.table_ocr.dolphin_v2:DolphinV2Adapter",
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "paddleocr-vl": TableOCRAdapterSpec(
         name="paddleocr-vl",
         display_name="PaddleOCR-VL",
