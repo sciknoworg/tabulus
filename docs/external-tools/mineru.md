@@ -177,7 +177,7 @@ MinerU is the canonical table-localization and crop-generation stage in the curr
 
 The standalone `tabulus export-table-crops` command remains useful when an expensive MinerU run should be reused, when the normalized handoff should be regenerated without rerunning MinerU, or when native MinerU output should remain untouched by Tabulus-specific downstream artifacts.
 
-MinerU `table_body` is retained as a native reconstruction candidate produced during profiling. The crop-consuming reconstruction adapters, such as PaddleOCR-VL, Chandra OCR 2, NuExtract3, and Tesseract + Table Transformer, operate later on the canonical crop images rather than on the original PDF.
+MinerU `table_body` is retained as a native reconstruction candidate produced during profiling. The crop-consuming reconstruction adapters, such as PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B, operate later on the canonical crop images rather than on the original PDF.
 
 For those crop-consuming integrations, see:
 
@@ -185,6 +185,8 @@ For those crop-consuming integrations, see:
 - {doc}`chandra`
 - {doc}`nuextract3`
 - {doc}`tesseract-tatr`
+- {doc}`docling`
+- {doc}`granite-vision`
 
 Validated examples:
 

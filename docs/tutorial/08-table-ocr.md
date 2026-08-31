@@ -63,6 +63,7 @@ The currently registered crop-consuming reconstruction adapters are:
 | `nuextract3` | Implemented | {doc}`../external-tools/nuextract3` |
 | `tesseract-tatr` | Implemented | {doc}`../external-tools/tesseract-tatr` |
 | `rapidocr-tableformer` | Implemented | {doc}`../external-tools/docling` |
+| `granite-vision-table` | Implemented | {doc}`../external-tools/granite-vision` |
 | DeepSeek OCR | Future | Not registered in the rebuilt library |
 
 For the adapter interface and batch architecture, see
@@ -139,6 +140,42 @@ tabulus reconstruct-tables \
   --adapter rapidocr-tableformer \
   --device gpu:0
 ```
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter granite-vision-table \
+  --device gpu:0
+```
+
+Granite Vision is an end-to-end vision-language-model reconstruction route,
+not a conventional OCR adapter. The canonical MinerU crop is sent directly
+to Granite Vision 4.1 4B, which generates OTSL from the `<tables_otsl>` prompt.
+Docling parses that OTSL into structured cells, which Tabulus renders through
+the shared reconstruction parser and output contract:
+
+```text
+canonical MinerU crop
+      |
+      v
+Granite Vision 4.1 4B
+      |
+      v
+<tables_otsl> generation
+      |
+      v
+Docling OTSL parsing
+      |
+      v
+structured cells
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+This adapter does not run Docling PDF conversion or page-layout/table
+detection, and it does not redetect or recrop the original PDF. Each physical
+MinerU crop remains independent.
 
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:

@@ -6,6 +6,10 @@ for the current reconstruction workflow; readers who need Docling's broader
 PDF conversion and layout capabilities should consult the official project
 documentation.
 
+Docling functionality is also used by the separate Granite Vision adapter to
+parse Granite-generated OTSL. See {doc}`granite-vision` for that integration;
+it is distinct from `rapidocr-tableformer`.
+
 ## Official Resources
 
 - [Docling project repository](https://github.com/docling-project/docling)

@@ -57,6 +57,7 @@ Key modules:
 - `tesseract_tatr.py`
 - `tatr_postprocess.py`
 - `rapidocr_tableformer.py`
+- `granite_vision_table.py`
 - `parsing.py`
 
 The main abstractions are:
@@ -75,8 +76,9 @@ The current registered crop-consuming reconstruction adapters are exactly:
 - `nuextract3`: NuExtract3 reconstruction through Hugging Face Transformers in document-to-Markdown mode.
 - `tesseract-tatr`: Tesseract OCR word recognition plus Microsoft Table Transformer structure recognition, fused deterministically into an HTML table.
 - `rapidocr-tableformer`: RapidOCR with ONNX Runtime for OCR and word boxes, combined with Docling TableFormer V1 structure recognition on the complete canonical crop.
+- `granite-vision-table`: Granite Vision 4.1 4B receives the complete canonical crop directly, generates `<tables_otsl>`, and uses Docling's Granite OTSL parser for structure and cell reconstruction.
 
-PaddleOCR-VL, Chandra, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer report CPU and GPU support in the registry. RapidOCR itself runs on CPU while its TableFormer component uses the requested device. NuExtract3 is registered as GPU-only in the validated Tabulus configuration.
+PaddleOCR-VL, Chandra, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer report CPU and GPU support in the registry. RapidOCR itself runs on CPU while its TableFormer component uses the requested device. NuExtract3 and Granite Vision 4.1 4B are registered as GPU-only in the validated Tabulus configuration.
 
 MinerU `table_body` is also a reconstruction candidate, but it is produced during PDF profiling rather than by a crop-consuming `tabulus.table_ocr` adapter.
 
@@ -87,6 +89,7 @@ For the external tools as used by Tabulus, see:
 - {doc}`../external-tools/nuextract3`
 - {doc}`../external-tools/tesseract-tatr`
 - {doc}`../external-tools/docling`
+- {doc}`../external-tools/granite-vision`
 
 ## Batch Orchestration
 

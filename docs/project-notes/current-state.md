@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -46,6 +46,8 @@ The current `tabulus.table_ocr` package:
 - invokes Tesseract for OCR word tokens and Microsoft Table Transformer for structure recognition, then fuses tokens and structure deterministically
 - invokes RapidOCR with ONNX Runtime for CPU OCR and word boxes, then uses Docling TableFormer V1 in accurate mode with cell matching on the requested device
 - preserves RapidOCR/Docling native OTSL and table-structure evidence before shared parsing
+- invokes Granite Vision 4.1 4B directly on canonical crops with the `<tables_otsl>` prompt and Docling OTSL parsing
+- preserves Granite model/revision metadata, raw generated output, OTSL sequence, structured cells, table dimensions, image dimensions, and generation provenance
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
 
@@ -89,6 +91,7 @@ The current tests verify:
 - Chandra OCR 2 adapter configuration and result preservation
 - NuExtract3 adapter configuration, GPU-only device handling, and runtime reuse
 - Tesseract + Table Transformer registry metadata, device handling, runtime reuse, native evidence preservation, TSV parsing, HTML generation, and empty-result handling
+- Granite Vision registry metadata, GPU-only device handling, OTSL generation/parsing, native evidence preservation, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
 - batch table-reconstruction input loading and error handling
 - native, parsed, prediction CSV, and batch-summary output writing
@@ -178,6 +181,13 @@ Tesseract + Table Transformer has been integrated as a registered reconstruction
 A real Tabulus CLI validation on an NVIDIA L40S setup completed on one scientific crop and on the same selected three-document engineering-validation slice used during development. That slice contained 83 canonical crops; all 83 adapter runs returned status `ok`, all 83 wrote prediction CSVs, and the observed total runtime was approximately 165.78 s. This count and timing describe one selected engineering-validation slice only, not a benchmark size, accuracy result, or model-superiority claim.
 
 Heavyweight ML integration validations are separate from the mocked unit test suite and should not be treated as scientific accuracy benchmarks.
+
+Granite Vision 4.1 4B has completed focused adapter tests, full-suite
+validation, and real GPU CLI integration validation. The validated
+configuration uses `ibm-granite/granite-vision-4.1-4b` at revision
+`dd48e97503de471803850df70843cf9eb5da8712`, Docling 2.123.1, Transformers
+4.57.3, bfloat16, and SDPA. This confirms integration behavior only and does
+not establish reconstruction accuracy or model superiority.
 
 ## Not Yet Implemented In The New Library
 

@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, and Granite Vision 4.1 4B
 
 ## 2. Request GPU Compute Resources
 
@@ -447,6 +447,9 @@ tabulus-tesseract-tatr-gpu
 
 dedicated RapidOCR + Docling TableFormer environment
   Tabulus + RapidOCR + ONNX Runtime + Docling TableFormer
+
+tabulus-granite-vision
+  Tabulus + Granite Vision 4.1 4B + Docling + Transformers
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -733,3 +736,62 @@ parser produces the shared representation and prediction CSVs.
 
 For the RapidOCR + Docling TableFormer integration details and limitations, see
 {doc}`../external-tools/docling`.
+
+### Granite Vision 4.1 4B GPU Environment
+
+Granite Vision is a GPU-only reconstruction adapter in the validated Tabulus
+configuration. It consumes the same canonical MinerU crop handoff as the other
+adapters. The model receives the complete crop directly and generates OTSL
+containing both table structure and cell text; there is no separate OCR engine
+or Docling PDF/layout/table-detection step in this adapter.
+
+Create and activate a dedicated environment:
+
+```bash
+conda create -n tabulus-granite-vision python=3.12 -y
+conda activate tabulus-granite-vision
+cd "$TABULUS_ROOT"
+```
+
+Install the validated Tabulus and model dependencies:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install "docling[vlm]==2.123.1"
+python -m pip install --upgrade --force-reinstall \
+  "transformers==4.57.3"
+```
+
+Transformers 4.57.3 is pinned here because the validated Granite integration
+required it. A newer Transformers 5.x resolution in the initial environment
+was not compatible with this model's generation path; this is a validated
+configuration constraint, not a universal statement about future releases.
+
+Before running the adapter, check CUDA visibility from this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter granite-vision-table \
+  --device gpu:0
+```
+
+The adapter preserves the Granite model revision, raw generated output, OTSL
+sequence, structured cells and dimensions, image dimensions, and device and
+version metadata under the standard `native/` layer before shared parsing.
+For the full integration details and output boundaries, see
+{doc}`../external-tools/granite-vision`.

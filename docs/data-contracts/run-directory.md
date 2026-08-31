@@ -46,7 +46,8 @@ by default:
 
 `native/`
 : Adapter-native reconstruction evidence and provenance. For PaddleOCR-VL,
-  Chandra OCR 2, NuExtract3, and Tesseract + Table Transformer this preserves
+  Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling
+  TableFormer, and Granite Vision 4.1 4B this preserves
   the native representation returned or derived from the selected adapter.
 
 `parsed/`
@@ -93,8 +94,9 @@ the reconstruction stage.
 
 This separation also decouples ML environments. MinerU can run in one Python
 or Conda environment, PaddleOCR-VL can run in another, Chandra OCR 2 can run
-in another, NuExtract3 can run in another, and Tesseract + Table Transformer
-can run in another. The stable contracts between stages are persisted files
+in another, NuExtract3 can run in another, Tesseract + Table Transformer can
+run in another, RapidOCR + Docling TableFormer can run in another, and Granite
+Vision can run in another. The stable contracts between stages are persisted files
 such as `tables_index.json`, canonical crop images, reconstruction manifests,
 and reconstruction artifacts.
 
@@ -234,7 +236,8 @@ If `--out` is omitted, each paper uses:
 ```
 
 The currently registered crop-consuming adapter directories are
-`paddleocr-vl`, `chandra`, `nuextract3`, and `tesseract-tatr`. Future adapters
+`paddleocr-vl`, `chandra`, `nuextract3`, `tesseract-tatr`,
+`rapidocr-tableformer`, and `granite-vision-table`. Future adapters
 should follow the same structure when implemented:
 
 ```text
