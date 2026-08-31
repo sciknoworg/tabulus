@@ -31,11 +31,29 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=True,
         gpu_supported=True,
     ),
+    "granite-vision-table": TableOCRAdapterSpec(
+        name="granite-vision-table",
+        display_name="Granite Vision 4.1 4B",
+        entrypoint=(
+            "tabulus.table_ocr.granite_vision_table:GraniteVisionTableAdapter"
+        ),
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "nuextract3": TableOCRAdapterSpec(
         name="nuextract3",
         display_name="NuExtract3",
         entrypoint="tabulus.table_ocr.nuextract3:NuExtract3Adapter",
         cpu_supported=False,
+        gpu_supported=True,
+    ),
+    "rapidocr-tableformer": TableOCRAdapterSpec(
+        name="rapidocr-tableformer",
+        display_name="RapidOCR + Docling TableFormer",
+        entrypoint=(
+            "tabulus.table_ocr.rapidocr_tableformer:RapidOCRTableFormerAdapter"
+        ),
+        cpu_supported=True,
         gpu_supported=True,
     ),
     "tesseract-tatr": TableOCRAdapterSpec(
