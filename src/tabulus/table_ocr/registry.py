@@ -38,6 +38,13 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "tesseract-tatr": TableOCRAdapterSpec(
+        name="tesseract-tatr",
+        display_name="Tesseract + Table Transformer",
+        entrypoint="tabulus.table_ocr.tesseract_tatr:TesseractTATRAdapter",
+        cpu_supported=True,
+        gpu_supported=True,
+    ),
 }
 
 
