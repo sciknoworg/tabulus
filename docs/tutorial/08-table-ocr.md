@@ -69,6 +69,7 @@ The currently registered crop-consuming reconstruction adapters are:
 | `dolphin-v2` | Implemented | {doc}`../external-tools/dolphin-v2` |
 | `deepseek-ocr-2` | Implemented | {doc}`../external-tools/deepseek-ocr-2` |
 | `nanonets-ocr-s` | Implemented | {doc}`../external-tools/nanonets-ocr-s` |
+| `monkeyocrv2-b-parsing` | Implemented | {doc}`../external-tools/monkeyocrv2-b-parsing` |
 
 For the adapter interface and batch architecture, see
 {doc}`../modules/table-ocr-adapters`.
@@ -184,6 +185,13 @@ tabulus reconstruct-tables \
 tabulus reconstruct-tables \
   --crops "/path/to/tabulus-output/table-crops/<paper>" \
   --adapter nanonets-ocr-s \
+  --device gpu:0
+```
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter monkeyocrv2-b-parsing \
   --device gpu:0
 ```
 
@@ -359,6 +367,33 @@ for the clean parser-facing representation, and passes the clean HTML through
 the existing shared parser. There is no Nanonets-specific table parser,
 semantic cell repair, external redetection, external recropping,
 continued-table merging, or reference resolution during reconstruction.
+
+MonkeyOCRv2-B-Parsing is a GPU-only direct table-recognition route. It receives
+the canonical MinerU crop directly and prompts `zenosai/MonkeyOCRv2-B-Parsing`
+to produce native OTSL:
+
+```text
+canonical MinerU crop
+      |
+      v
+MonkeyOCRv2-B-Parsing
+      |
+      v
+native OTSL
+      |
+      v
+Tabulus OTSL-to-HTML normalization
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+This adapter uses MonkeyOCRv2's direct table-recognition task, not the full
+document-layout pipeline. Tabulus preserves the raw model generation, removes
+special tokens only for the parser-facing representation, converts OTSL through
+the existing deterministic OTSL-to-HTML normalization, and then uses the shared
+HTML parser. It does not run external redetection, external recropping,
+semantic repair, continued-table merging, or reference resolution.
 
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:

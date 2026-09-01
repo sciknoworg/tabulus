@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, and MonkeyOCRv2-B-Parsing adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -58,6 +58,8 @@ The current `tabulus.table_ocr` package:
 - preserves DeepSeek-OCR-2 model/revision metadata, grounding/model output, dynamic-resolution settings, parser-input policy, structured-table counts, dependency/runtime versions, and recropping flags
 - invokes Nanonets-OCR-s directly on canonical crops through Hugging Face Transformers using `AutoProcessor` and `AutoModelForImageTextToText`
 - preserves Nanonets-OCR-s model/revision metadata, Qwen2.5-VL backbone and model class, processor settings, raw generated HTML, clean parser-facing HTML, dependency/runtime versions, and canonical-crop provenance
+- invokes MonkeyOCRv2-B-Parsing directly on canonical crops through Hugging Face Transformers using direct single-task table recognition
+- preserves MonkeyOCRv2-B-Parsing model/revision metadata, direct table-recognition settings, raw generated OTSL, special-token cleanup provenance, deterministic OTSL-to-HTML normalization provenance, and canonical-crop provenance
 - normalizes supported OTSL structural tokens into HTML before shared parsing without semantic cell correction or heuristic reconstruction repair
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
@@ -108,6 +110,7 @@ The current tests verify:
 - Dolphin-v2 registry metadata, GPU-only device handling, runtime reuse, Dolphin resize preprocessing, deterministic generation metadata, raw/clean HTML preservation, shared-parser dispatch, and empty-result handling
 - DeepSeek-OCR-2 registry metadata, GPU-only device handling, exact dependency-version checks, runtime reuse, unchanged model-output parser dispatch, dynamic-resolution metadata, Markdown fallback, and empty-result handling
 - Nanonets-OCR-s registry metadata, GPU-only device handling, deterministic generation settings, raw/clean HTML preservation, shared-parser dispatch, processor configuration, and empty-result handling
+- MonkeyOCRv2-B-Parsing registry metadata, GPU-only device handling, deterministic generation settings, direct table-recognition configuration, raw OTSL preservation, and OTSL-to-HTML parser dispatch
 - legacy-compatible HTML/Markdown table parsing
 - shared OTSL-to-HTML normalization for `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`
 - batch table-reconstruction input loading and error handling
@@ -393,6 +396,27 @@ accuracy, classification accuracy, precision, recall, F1, runtime guarantees,
 or evidence that Nanonets-OCR-s is better or worse than another adapter.
 Accuracy requires comparison against the appropriate gold-standard
 annotations in the evaluation stage.
+
+MonkeyOCRv2-B-Parsing has been integrated as a registered GPU-only
+reconstruction adapter using `zenosai/MonkeyOCRv2-B-Parsing` at revision
+`2419139b7bcd3fda2689b2a83167172afba91c8b`. The validated configuration uses
+Python 3.11, Transformers 4.57.1, Accelerate 1.11.0, timm 1.0.27, einops
+0.8.1, PyTorch 2.6.0+cu124, torchvision 0.21.0+cu124, bfloat16, direct
+Transformers inference, `AutoProcessor` with `use_fast=False`, explicit SDPA
+attention, and GPU execution.
+
+MonkeyOCRv2-B-Parsing receives canonical MinerU crops directly and uses
+MonkeyOCRv2's direct single-task table-recognition prompt rather than the full
+document-layout pipeline. FlashAttention, vLLM, and DFlash are not required by
+the documented adapter path. The adapter preserves raw generated OTSL, removes
+special tokens only for the parser-facing representation, converts OTSL through
+the existing deterministic `otsl_table_to_html` function, and then uses the
+shared table parser. It does not perform external redetection, external
+recropping, semantic repair, reference resolution, or continued-table merging.
+
+The full multi-paper MonkeyOCRv2-B-Parsing engineering run had not yet been
+finalized when this note was written, so no aggregate batch counts or runtime
+are recorded here.
 
 ## Not Yet Implemented In The New Library
 

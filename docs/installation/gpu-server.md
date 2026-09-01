@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, and MonkeyOCRv2-B-Parsing table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, and MonkeyOCRv2-B-Parsing
 
 ## 2. Request GPU Compute Resources
 
@@ -465,6 +465,9 @@ tabulus-deepseek-ocr-2-gpu
 
 tabulus-nanonets-ocr-s
   Tabulus + Nanonets-OCR-s + PyTorch/Transformers/FlashAttention
+
+tabulus-monkeyocrv2-b-parsing
+  Tabulus + MonkeyOCRv2-B-Parsing + PyTorch/Transformers
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -1126,3 +1129,73 @@ processor settings, generation settings, dependency versions, and
 canonical-crop provenance under the standard `native/` layer before shared
 HTML parsing. For the full integration details and output boundaries, see
 {doc}`../external-tools/nanonets-ocr-s`.
+
+### MonkeyOCRv2-B-Parsing GPU Environment
+
+MonkeyOCRv2-B-Parsing is a GPU-only reconstruction adapter in the validated
+Tabulus configuration. It consumes the same canonical MinerU crop handoff as
+the other adapters and sends each crop directly to
+`zenosai/MonkeyOCRv2-B-Parsing` for direct single-task table recognition.
+Tabulus does not use MonkeyOCRv2's full document-layout pipeline for this
+adapter.
+
+Create and activate a dedicated Python 3.11 environment:
+
+```bash
+conda create -n tabulus-monkeyocrv2-b-parsing python=3.11 -y
+conda activate tabulus-monkeyocrv2-b-parsing
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated MonkeyOCR runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install \
+  "torch==2.6.0" \
+  "torchvision==0.21.0" \
+  "transformers==4.57.1" \
+  "accelerate==1.11.0" \
+  "timm==1.0.27" \
+  "einops==0.8.1" \
+  "Pillow"
+```
+
+The validated runtime used PyTorch 2.6.0+cu124, torchvision 0.21.0+cu124,
+Transformers 4.57.1, Accelerate 1.11.0, timm 1.0.27, einops 0.8.1, Pillow,
+bfloat16, `AutoProcessor` with `use_fast=False`, `AutoModelForCausalLM` with
+`trust_remote_code=True`, and explicit SDPA attention.
+FlashAttention is not required for this adapter, and the implemented path does
+not use vLLM or DFlash.
+
+Verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter monkeyocrv2-b-parsing \
+  --device gpu:0
+```
+
+The adapter preserves raw model OTSL, special-token cleanup provenance, direct
+table-recognition settings, model/revision metadata, deterministic generation
+settings, and canonical-crop provenance under the standard `native/` layer.
+Tabulus converts OTSL through the existing deterministic OTSL-to-HTML
+normalization before shared HTML parsing. For the full integration details and
+output boundaries, see {doc}`../external-tools/monkeyocrv2-b-parsing`.

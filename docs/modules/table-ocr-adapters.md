@@ -63,6 +63,7 @@ Key modules:
 - `dolphin_v2.py`
 - `deepseek_ocr_2.py`
 - `nanonets_ocr_s.py`
+- `monkeyocrv2_b_parsing.py`
 - `parsing.py`
 
 The main abstractions are:
@@ -87,8 +88,9 @@ The current registered crop-consuming reconstruction adapters are exactly:
 - `dolphin-v2`: Dolphin-v2 receives the complete canonical crop directly, applies deterministic model-input resizing, generates native HTML with the `ByteDance/Dolphin-v2` checkpoint, and passes clean generated HTML through the shared span-aware parser without Dolphin-specific semantic repair.
 - `deepseek-ocr-2`: DeepSeek-OCR-2 receives the complete canonical crop directly, uses model-internal dynamic-resolution tiling, and passes the model-specific `infer(...)` output unchanged through the shared HTML/Markdown parser.
 - `nanonets-ocr-s`: Nanonets-OCR-s receives the complete canonical crop directly, generates native structured HTML with the `nanonets/Nanonets-OCR-s` checkpoint, and passes clean generated HTML through the shared span-aware parser without Nanonets-specific semantic repair.
+- `monkeyocrv2-b-parsing`: MonkeyOCRv2-B-Parsing receives the complete canonical crop directly, uses direct single-task table recognition to generate native OTSL, and passes deterministic OTSL-to-HTML output through the shared parser without semantic repair.
 
-PaddleOCR-VL, Chandra, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer report CPU and GPU support in the registry. RapidOCR itself runs on CPU while its TableFormer component uses the requested device. NuExtract3, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s are registered as GPU-only in the validated Tabulus configuration.
+PaddleOCR-VL, Chandra, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer report CPU and GPU support in the registry. RapidOCR itself runs on CPU while its TableFormer component uses the requested device. NuExtract3, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, and MonkeyOCRv2-B-Parsing are registered as GPU-only in the validated Tabulus configuration.
 
 MinerU `table_body` is also a reconstruction candidate, but it is produced during PDF profiling rather than by a crop-consuming `tabulus.table_ocr` adapter.
 
@@ -105,6 +107,7 @@ For the external tools as used by Tabulus, see:
 - {doc}`../external-tools/dolphin-v2`
 - {doc}`../external-tools/deepseek-ocr-2`
 - {doc}`../external-tools/nanonets-ocr-s`
+- {doc}`../external-tools/monkeyocrv2-b-parsing`
 
 ## Batch Orchestration
 
@@ -152,7 +155,7 @@ For the full default output contract, filename semantics, and current rerun beha
 
 Prediction CSV files are pre-reference-resolution artifacts. Reconstruction does not classify reference tables, extract bibliographies, match references, resolve DOI values, write final resolved CSV files, or merge continued tables.
 
-ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, Tesseract, TRivia, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
+ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, Tesseract, TRivia, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
 
 ## Other Candidate Adapters
 
