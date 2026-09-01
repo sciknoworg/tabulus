@@ -63,6 +63,15 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "nanonets-ocr-s": TableOCRAdapterSpec(
+        name="nanonets-ocr-s",
+        display_name="Nanonets-OCR-s",
+        entrypoint=(
+            "tabulus.table_ocr.nanonets_ocr_s:NanonetsOCRSAdapter"
+        ),
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "nuextract3": TableOCRAdapterSpec(
         name="nuextract3",
         display_name="NuExtract3",
