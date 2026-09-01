@@ -63,32 +63,6 @@ Read the modular pipeline overview and the ordered processing steps.
 
 ::::
 
-## Current Status
-
-The current library can:
-
-- launch MinerU through `tabulus profile`
-- write profiling output to `<PDF directory>/tabulus-output/<profiler>/<resolved-backend>/` when `--out` is omitted, with MinerU's native document/run hierarchy underneath
-- distinguish the profiler (`mineru`) from MinerU backends (`pipeline` and `hybrid-engine`)
-- locate MinerU `*_content_list.json` files
-- parse document elements
-- select table regions
-- resolve MinerU-generated table images
-- convert zero-based MinerU page indices into document page numbers
-- retain provenance and expose typed `TableRegion` objects
-- export table images plus `tables_index.json` automatically through `tabulus profile`
-- regenerate the same normalized crop handoff from existing MinerU output through `tabulus export-table-crops`
-- load table reconstruction adapters lazily so core Tabulus imports do not require heavyweight adapter dependencies
-- run registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2 adapters on already-isolated MinerU table crops
-- preserve adapter-native evidence such as PaddleOCR result views, Chandra generated HTML, NuExtract3 generated Markdown, Tesseract OCR tokens, TATR structure output, RapidOCR/Docling native structure evidence, Granite model/OTSL evidence, TRivia raw OTSL evidence, GLM-OCR raw/clean HTML evidence, Dolphin-v2 model HTML/provenance evidence, DeepSeek-OCR-2 grounding/model-output evidence, Nanonets-OCR-s raw/clean HTML evidence, MonkeyOCRv2-B-Parsing raw OTSL evidence, and Nemotron grounded semantic object evidence
-- parse native table renderings into a legacy-compatible rectangular row representation, including deterministic OTSL-to-HTML normalization where needed
-- reconstruct all canonical crops from a `tables_index.json` handoff through `tabulus reconstruct-tables`
-- write per-adapter `native/`, `parsed/`, `predictions/`, and `batch_summary.json` reconstruction outputs
-- classify reconstructed tables for reference-like content through `tabulus classify-reference-tables`
-- write `reference_table_classification.json` without overwriting reconstruction predictions
-
-The current library does not yet run bibliography extraction, reference matching, produce run reports, resolve DOI values, write final resolved CSV outputs, or provide a complete `tabulus run` command. The implemented reconstruction adapters have not been scientifically ranked against each other; raw prediction CSVs remain pre-reference-resolution artifacts.
-
 ## Documentation Map
 
 The sidebar contains the full documentation. The main sections are:
