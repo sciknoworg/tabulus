@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, and MonkeyOCRv2-B-Parsing table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2 table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, and MonkeyOCRv2-B-Parsing
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2
 
 ## 2. Request GPU Compute Resources
 
@@ -468,6 +468,9 @@ tabulus-nanonets-ocr-s
 
 tabulus-monkeyocrv2-b-parsing
   Tabulus + MonkeyOCRv2-B-Parsing + PyTorch/Transformers
+
+tabulus-nemotron-parse-v1-2
+  Tabulus + NVIDIA Nemotron Parse v1.2 + PyTorch/Transformers
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -1199,3 +1202,85 @@ settings, and canonical-crop provenance under the standard `native/` layer.
 Tabulus converts OTSL through the existing deterministic OTSL-to-HTML
 normalization before shared HTML parsing. For the full integration details and
 output boundaries, see {doc}`../external-tools/monkeyocrv2-b-parsing`.
+
+### NVIDIA Nemotron Parse v1.2 GPU Environment
+
+NVIDIA Nemotron Parse v1.2 is a GPU-only reconstruction adapter in the
+validated Tabulus configuration. It consumes the same canonical MinerU crop
+handoff as the other adapters and sends each crop directly to
+`nvidia/NVIDIA-Nemotron-Parse-v1.2`. There is no separate OCR engine, Docling
+PDF conversion, page-layout detection, table redetection, or candidate-specific
+recropping in this adapter.
+
+Create and activate a dedicated Python 3.12 environment:
+
+```bash
+conda create -n tabulus-nemotron-parse-v1-2 python=3.12 -y
+conda activate tabulus-nemotron-parse-v1-2
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated Nemotron runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install \
+  "torch==2.6.0" \
+  "torchvision==0.21.0" \
+  "transformers==5.6.1" \
+  "accelerate==1.12.0" \
+  "albumentations==2.0.8" \
+  "timm==1.0.22" \
+  "einops==0.8.2" \
+  "open-clip-torch==3.3.0" \
+  "opencv-python-headless==5.0.0.93" \
+  "beautifulsoup4==4.15.0" \
+  "Pillow" \
+  "huggingface_hub" \
+  "safetensors"
+```
+
+The validated runtime used PyTorch 2.6.0+cu124, torchvision 0.21.0+cu124,
+Transformers 5.6.1, Accelerate 1.12.0, albumentations 2.0.8, timm 1.0.22,
+einops 0.8.2, open-clip-torch 3.3.0, opencv-python-headless 5.0.0.93,
+beautifulsoup4 4.15.0, bfloat16, and SDPA attention.
+
+Prepare or cache the pinned Hugging Face model snapshot before inference. The
+adapter loads Nemotron helper files such as `hf_logits_processor.py`,
+`postprocessing.py`, and `latex2html.py` from the pinned model revision with
+local-files-only behavior; it does not silently fetch those helper files during
+reconstruction. The loaded C-RADIO implementation is checked at runtime against
+the expected pinned revision.
+
+Verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter nemotron-parse-v1-2 \
+  --device gpu:0
+```
+
+The adapter preserves the Nemotron model and revision, C-RADIO dependency and
+revision, raw generated objects, generated bounding boxes, Table-class
+LaTeX/tabular content, NVIDIA-postprocessed HTML, generation settings, helper
+provenance, runtime package versions, and canonical-crop provenance under the
+standard `native/` layer. Generated bounding boxes are provenance only and are
+not used to recrop the image. For the full integration details and output
+boundaries, see {doc}`../external-tools/nemotron-parse-v1-2`.

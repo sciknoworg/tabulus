@@ -70,6 +70,7 @@ The currently registered crop-consuming reconstruction adapters are:
 | `deepseek-ocr-2` | Implemented | {doc}`../external-tools/deepseek-ocr-2` |
 | `nanonets-ocr-s` | Implemented | {doc}`../external-tools/nanonets-ocr-s` |
 | `monkeyocrv2-b-parsing` | Implemented | {doc}`../external-tools/monkeyocrv2-b-parsing` |
+| `nemotron-parse-v1-2` | Implemented | {doc}`../external-tools/nemotron-parse-v1-2` |
 
 For the adapter interface and batch architecture, see
 {doc}`../modules/table-ocr-adapters`.
@@ -192,6 +193,13 @@ tabulus reconstruct-tables \
 tabulus reconstruct-tables \
   --crops "/path/to/tabulus-output/table-crops/<paper>" \
   --adapter monkeyocrv2-b-parsing \
+  --device gpu:0
+```
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter nemotron-parse-v1-2 \
   --device gpu:0
 ```
 
@@ -394,6 +402,38 @@ special tokens only for the parser-facing representation, converts OTSL through
 the existing deterministic OTSL-to-HTML normalization, and then uses the shared
 HTML parser. It does not run external redetection, external recropping,
 semantic repair, continued-table merging, or reference resolution.
+
+NVIDIA Nemotron Parse v1.2 is a GPU-only document vision-language-model
+reconstruction route. It receives the canonical MinerU crop directly and
+generates grounded semantic objects. Table-class object content is represented
+natively as LaTeX/tabular content, then converted to HTML through NVIDIA's
+pinned table postprocessing before the shared Tabulus parser runs:
+
+```text
+canonical MinerU crop
+      |
+      v
+NVIDIA Nemotron Parse v1.2
+      |
+      v
+grounded semantic objects
+      |
+      v
+Table-class LaTeX/tabular content
+      |
+      v
+pinned NVIDIA table postprocessing to HTML
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+Generated bounding boxes are retained as provenance only; Tabulus does not use
+them to recrop the image. If multiple Table objects or multiple structured
+tables are returned, Tabulus preserves the evidence and does not arbitrarily
+choose or merge one. The adapter does not run external layout redetection,
+external table redetection, external recropping, semantic repair,
+continued-table merging, or reference resolution.
 
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:

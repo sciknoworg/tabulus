@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, and MonkeyOCRv2-B-Parsing adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2 adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -60,6 +60,8 @@ The current `tabulus.table_ocr` package:
 - preserves Nanonets-OCR-s model/revision metadata, Qwen2.5-VL backbone and model class, processor settings, raw generated HTML, clean parser-facing HTML, dependency/runtime versions, and canonical-crop provenance
 - invokes MonkeyOCRv2-B-Parsing directly on canonical crops through Hugging Face Transformers using direct single-task table recognition
 - preserves MonkeyOCRv2-B-Parsing model/revision metadata, direct table-recognition settings, raw generated OTSL, special-token cleanup provenance, deterministic OTSL-to-HTML normalization provenance, and canonical-crop provenance
+- invokes NVIDIA Nemotron Parse v1.2 directly on canonical crops through Hugging Face Transformers with GPU-only validated registry support
+- preserves Nemotron model/revision metadata, C-RADIO dependency revision metadata, grounded semantic objects, generated bounding boxes as provenance, Table-class LaTeX/tabular content, NVIDIA-postprocessed HTML, generation settings, helper provenance, runtime package versions, and canonical-crop provenance
 - normalizes supported OTSL structural tokens into HTML before shared parsing without semantic cell correction or heuristic reconstruction repair
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
@@ -111,6 +113,7 @@ The current tests verify:
 - DeepSeek-OCR-2 registry metadata, GPU-only device handling, exact dependency-version checks, runtime reuse, unchanged model-output parser dispatch, dynamic-resolution metadata, Markdown fallback, and empty-result handling
 - Nanonets-OCR-s registry metadata, GPU-only device handling, deterministic generation settings, raw/clean HTML preservation, shared-parser dispatch, processor configuration, and empty-result handling
 - MonkeyOCRv2-B-Parsing registry metadata, GPU-only device handling, deterministic generation settings, direct table-recognition configuration, raw OTSL preservation, and OTSL-to-HTML parser dispatch
+- NVIDIA Nemotron Parse v1.2 registry metadata, GPU-only device handling, local pinned helper loading, C-RADIO revision verification, NVIDIA generation processors, grounded object preservation, Table-class HTML postprocessing, shared-parser dispatch, multiple-table preservation, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
 - shared OTSL-to-HTML normalization for `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`
 - batch table-reconstruction input loading and error handling
@@ -417,6 +420,27 @@ recropping, semantic repair, reference resolution, or continued-table merging.
 The full multi-paper MonkeyOCRv2-B-Parsing engineering run had not yet been
 finalized when this note was written, so no aggregate batch counts or runtime
 are recorded here.
+
+NVIDIA Nemotron Parse v1.2 has been integrated as a registered GPU-only
+reconstruction adapter using `nvidia/NVIDIA-Nemotron-Parse-v1.2` at revision
+`2bd0189bffd6cdded6280d9f22a4077b25a504e3`. The adapter uses direct Hugging
+Face Transformers inference, bfloat16, SDPA attention, model image canvas
+`[2048, 1664]`, and the prompt
+`</s><s><predict_bbox><predict_classes><output_markdown><predict_no_text_in_pic>`.
+
+The adapter verifies the transitive `nvidia/C-RADIOv2-H` implementation
+against revision `0d8f4c18c877166eda07ddae1386bcad256b7a6a`. Nemotron helper
+files are loaded from the pinned Hugging Face model revision with local-file
+behavior rather than silently fetched during inference.
+
+NVIDIA Nemotron Parse v1.2 receives canonical MinerU crops directly. It
+generates grounded semantic objects whose Table-class content is represented
+natively as LaTeX/tabular. Tabulus preserves the generated objects and bounding
+boxes as provenance, converts Table-class output to HTML through NVIDIA's
+deterministic table postprocessing, and passes the resulting HTML through the
+shared parser. Generated bounding boxes are not used for recropping. The
+adapter does not perform external layout redetection, table redetection,
+semantic repair, reference resolution, or continued-table merging.
 
 ## Not Yet Implemented In The New Library
 
