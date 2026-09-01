@@ -72,6 +72,16 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "monkeyocrv2-b-parsing": TableOCRAdapterSpec(
+        name="monkeyocrv2-b-parsing",
+        display_name="MonkeyOCRv2-B-Parsing",
+        entrypoint=(
+            "tabulus.table_ocr.monkeyocrv2_b_parsing:"
+            "MonkeyOCRv2BParsingAdapter"
+        ),
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "nuextract3": TableOCRAdapterSpec(
         name="nuextract3",
         display_name="NuExtract3",
