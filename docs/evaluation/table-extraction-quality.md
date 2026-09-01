@@ -54,8 +54,9 @@ Benchmarking can evaluate implemented and future candidate table reconstructions
 - MinerU crop -> GLM-OCR
 - MinerU crop -> Dolphin-v2
 - MinerU crop -> DeepSeek-OCR-2
+- MinerU crop -> Nanonets-OCR-s
 
-MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2 are current crop-consuming Tabulus reconstruction adapters. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
+MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s are current crop-consuming Tabulus reconstruction adapters. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
 
 ```text
 same detected table
@@ -73,6 +74,7 @@ same detected table
               +-- GLM-OCR
               +-- Dolphin-v2
               +-- DeepSeek-OCR-2
+              +-- Nanonets-OCR-s
 ```
 
 Because the adapter-native output formats may differ, Tabulus should normalize every candidate into a common table representation and export a prediction CSV before scoring against the ground-truth CSV.

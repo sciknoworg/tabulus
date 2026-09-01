@@ -234,7 +234,7 @@ new tabulus library --------+
               run report / complete tabulus run
 ```
 
-The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2 table-reconstruction adapters for MinerU crops, the `tabulus reconstruct-tables` batch CLI, and `tabulus classify-reference-tables`. These stages are not yet implemented in the new library:
+The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s table-reconstruction adapters for MinerU crops, the `tabulus reconstruct-tables` batch CLI, and `tabulus classify-reference-tables`. These stages are not yet implemented in the new library:
 
 - bibliography extraction
 - reference matching

@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2 adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -56,6 +56,8 @@ The current `tabulus.table_ocr` package:
 - preserves Dolphin-v2 model/revision metadata, backbone/model-class metadata, raw generated HTML, clean parser-facing HTML, deterministic generation settings, image-preprocessing provenance, and token counts
 - invokes DeepSeek-OCR-2 directly on canonical crops through its model-specific `infer(...)` method with custom Transformers code from the pinned Hugging Face model revision
 - preserves DeepSeek-OCR-2 model/revision metadata, grounding/model output, dynamic-resolution settings, parser-input policy, structured-table counts, dependency/runtime versions, and recropping flags
+- invokes Nanonets-OCR-s directly on canonical crops through Hugging Face Transformers using `AutoProcessor` and `AutoModelForImageTextToText`
+- preserves Nanonets-OCR-s model/revision metadata, Qwen2.5-VL backbone and model class, processor settings, raw generated HTML, clean parser-facing HTML, dependency/runtime versions, and canonical-crop provenance
 - normalizes supported OTSL structural tokens into HTML before shared parsing without semantic cell correction or heuristic reconstruction repair
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
@@ -105,6 +107,7 @@ The current tests verify:
 - GLM-OCR registry metadata, GPU-only device handling, runtime reuse, raw/clean HTML preservation, shared-parser dispatch, and empty-result handling
 - Dolphin-v2 registry metadata, GPU-only device handling, runtime reuse, Dolphin resize preprocessing, deterministic generation metadata, raw/clean HTML preservation, shared-parser dispatch, and empty-result handling
 - DeepSeek-OCR-2 registry metadata, GPU-only device handling, exact dependency-version checks, runtime reuse, unchanged model-output parser dispatch, dynamic-resolution metadata, Markdown fallback, and empty-result handling
+- Nanonets-OCR-s registry metadata, GPU-only device handling, deterministic generation settings, raw/clean HTML preservation, shared-parser dispatch, processor configuration, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
 - shared OTSL-to-HTML normalization for `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`
 - batch table-reconstruction input loading and error handling
@@ -342,6 +345,54 @@ reconstruction produced 79 prediction CSVs and four model-native empty
 results. The reconstruction and classification counts are engineering
 observations for one selected slice, not gold-standard precision, recall, F1,
 or evidence that DeepSeek-OCR-2 is better or worse than another adapter.
+
+Nanonets-OCR-s has been integrated as a registered GPU-only reconstruction
+adapter using `nanonets/Nanonets-OCR-s` at revision
+`3baad182cc87c65a1861f0c30357d3467e978172`. The checkpoint uses a Qwen2.5-VL
+backbone and the runtime Transformers class
+`Qwen2_5_VLForConditionalGeneration`; the adapter does not substitute a
+generic Qwen checkpoint for Nanonets-OCR-s.
+
+The validated configuration used the `tabulus-nanonets-ocr-s` environment,
+Transformers 4.52.4, tokenizers 0.21.4, FlashAttention 2.7.3, PyTorch
+2.6.0+cu124, bfloat16, `flash_attention_2`, `AutoProcessor` with
+`use_fast=False`, and `AutoModelForImageTextToText` on an NVIDIA L40S.
+Nanonets-OCR-s receives canonical MinerU crops directly, converts the supplied
+crop to RGB, and relies on model-internal image preprocessing rather than
+external redetection or recropping.
+
+Nanonets-OCR-s produced native structured HTML in the validated table test.
+Tabulus preserves the raw decoded generation, removes model special tokens
+only for the clean parser-facing representation, and passes the clean HTML to
+the shared `parse_table_text` parser without Nanonets-specific semantic or
+structural normalization. The validated output included rich HTML table
+constructs such as `thead`, `tbody`, `th`, `td`, `rowspan`, `sup`, `sub`, and
+`br`.
+
+Direct model validation confirmed that the frozen configuration can reproduce
+identical clean output across independent runs. A real end-to-end Tabulus CLI
+reconstruction was also validated. The implementation validation reported 10
+focused Nanonets adapter tests, 216 complete Tabulus tests, and a clean
+`git diff --check`.
+
+On the existing three-paper ALD engineering reconstruction slice, Nanonets-OCR-s
+processed 83 canonical table crops in 97m48.535s:
+
+```text
+Total: 83 requested, 76 ok, 7 empty, 0 error, 75 prediction CSVs
+```
+
+Downstream reference-table classification over this engineering run reported:
+
+```text
+Total: 83 considered, 59 reference tables, 24 non-reference tables
+```
+
+These are aggregate engineering observations only. They are not reconstruction
+accuracy, classification accuracy, precision, recall, F1, runtime guarantees,
+or evidence that Nanonets-OCR-s is better or worse than another adapter.
+Accuracy requires comparison against the appropriate gold-standard
+annotations in the evaluation stage.
 
 ## Not Yet Implemented In The New Library
 

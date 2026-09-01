@@ -74,6 +74,7 @@ tabulus profile / MinerU
                 +--> GLM-OCR
                 +--> Dolphin-v2
                 +--> DeepSeek-OCR-2
+                +--> Nanonets-OCR-s
                 |
                 v
       tabulus reconstruct-tables
@@ -173,6 +174,7 @@ The rebuilt Tabulus library currently integrates several OCR and document unders
 * GLM-OCR
 * Dolphin-v2
 * DeepSeek-OCR-2
+* Nanonets-OCR-s
 * GROBID (legacy/reference-processing context)
 
 ---

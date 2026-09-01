@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2 table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, and DeepSeek-OCR-2
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, and Nanonets-OCR-s
 
 ## 2. Request GPU Compute Resources
 
@@ -462,6 +462,9 @@ tabulus-dolphin-v2-gpu
 
 tabulus-deepseek-ocr-2-gpu
   Tabulus + DeepSeek-OCR-2 + PyTorch/Transformers/FlashAttention
+
+tabulus-nanonets-ocr-s
+  Tabulus + Nanonets-OCR-s + PyTorch/Transformers/FlashAttention
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -1052,3 +1055,74 @@ The adapter records `input_policy=canonical_mineru_crop`,
 model-internal dynamic-resolution tiling of the already supplied crop, not
 external table redetection or recropping. For the full integration details and
 output boundaries, see {doc}`../external-tools/deepseek-ocr-2`.
+
+### Nanonets-OCR-s GPU Environment
+
+Nanonets-OCR-s is a GPU-only reconstruction adapter in the current Tabulus
+configuration. It consumes the same canonical MinerU crop handoff as the other
+adapters and sends each crop directly to the `nanonets/Nanonets-OCR-s`
+checkpoint. The checkpoint uses a Qwen2.5-VL backbone, but Tabulus treats
+Nanonets-OCR-s as the reconstruction adapter identity rather than substituting
+a generic Qwen checkpoint.
+
+Create and activate a dedicated environment:
+
+```bash
+conda create -n tabulus-nanonets-ocr-s python=3.12 -y
+conda activate tabulus-nanonets-ocr-s
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated Nanonets runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install \
+  "torch==2.6.0" \
+  torchvision \
+  "transformers==4.52.4" \
+  "tokenizers==0.21.4" \
+  "flash-attn==2.7.3" \
+  pillow accelerate
+```
+
+The validated runtime used PyTorch 2.6.0+cu124, Transformers 4.52.4,
+tokenizers 0.21.4, FlashAttention 2.7.3, bfloat16, `flash_attention_2`,
+`AutoProcessor` with `use_fast=False`, and
+`AutoModelForImageTextToText` on an NVIDIA L40S. Treat this as the validated
+environment, not as a reconstruction-accuracy claim. The adapter explicitly
+validates the Transformers, tokenizers, and FlashAttention versions; the other
+packages shown are runtime imports but are not all version-pinned by the
+adapter itself.
+
+Verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter nanonets-ocr-s \
+  --device gpu:0
+```
+
+The adapter preserves raw decoded HTML, clean parser-facing HTML with model
+special tokens removed, Qwen2.5-VL backbone and model-class metadata,
+processor settings, generation settings, dependency versions, and
+canonical-crop provenance under the standard `native/` layer before shared
+HTML parsing. For the full integration details and output boundaries, see
+{doc}`../external-tools/nanonets-ocr-s`.

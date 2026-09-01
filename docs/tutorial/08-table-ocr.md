@@ -68,6 +68,7 @@ The currently registered crop-consuming reconstruction adapters are:
 | `glm-ocr` | Implemented | {doc}`../external-tools/glm-ocr` |
 | `dolphin-v2` | Implemented | {doc}`../external-tools/dolphin-v2` |
 | `deepseek-ocr-2` | Implemented | {doc}`../external-tools/deepseek-ocr-2` |
+| `nanonets-ocr-s` | Implemented | {doc}`../external-tools/nanonets-ocr-s` |
 
 For the adapter interface and batch architecture, see
 {doc}`../modules/table-ocr-adapters`.
@@ -176,6 +177,13 @@ tabulus reconstruct-tables \
 tabulus reconstruct-tables \
   --crops "/path/to/tabulus-output/table-crops/<paper>" \
   --adapter deepseek-ocr-2 \
+  --device gpu:0
+```
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter nanonets-ocr-s \
   --device gpu:0
 ```
 
@@ -323,6 +331,34 @@ that Tabulus externally redetects, expands, or recrops the table. This adapter
 does not semantically interpret grounding coordinates, correct cell contents,
 repair table structure, merge continued tables, or perform reference
 resolution.
+
+Nanonets-OCR-s is a GPU-only vision-language-model reconstruction route. It
+uses the `nanonets/Nanonets-OCR-s` checkpoint, whose underlying backbone
+architecture is Qwen2.5-VL, rather than treating Qwen2.5-VL as the adapter
+identity. Nanonets receives the canonical MinerU crop directly and produces
+native structured HTML:
+
+```text
+canonical MinerU crop
+      |
+      v
+Nanonets-OCR-s
+      |
+      v
+native structured HTML
+      |
+      v
+shared Tabulus HTML parser
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+Tabulus preserves the raw decoded generation, removes model special tokens only
+for the clean parser-facing representation, and passes the clean HTML through
+the existing shared parser. There is no Nanonets-specific table parser,
+semantic cell repair, external redetection, external recropping,
+continued-table merging, or reference resolution during reconstruction.
 
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:

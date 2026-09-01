@@ -27,6 +27,7 @@ Prediction CSV files may come from implemented and future reconstruction candida
 - MinerU crop -> GLM-OCR
 - MinerU crop -> Dolphin-v2
 - MinerU crop -> DeepSeek-OCR-2
+- MinerU crop -> Nanonets-OCR-s
 
 All candidates should be exported through the same normalized CSV shape before scoring. Adapter-native JSON, Markdown, HTML, or OCR text should be preserved separately for provenance and debugging.
 
