@@ -82,6 +82,16 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "nemotron-parse-v1-2": TableOCRAdapterSpec(
+        name="nemotron-parse-v1-2",
+        display_name="NVIDIA Nemotron Parse v1.2",
+        entrypoint=(
+            "tabulus.table_ocr.nemotron_parse_v1_2:"
+            "NemotronParseV12Adapter"
+        ),
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "nuextract3": TableOCRAdapterSpec(
         name="nuextract3",
         display_name="NuExtract3",
