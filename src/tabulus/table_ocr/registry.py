@@ -40,6 +40,13 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "dots-mocr": TableOCRAdapterSpec(
+        name="dots-mocr",
+        display_name="dots.mocr",
+        entrypoint="tabulus.table_ocr.dots_mocr:DotsMOCRAdapter",
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "paddleocr-vl": TableOCRAdapterSpec(
         name="paddleocr-vl",
         display_name="PaddleOCR-VL",
