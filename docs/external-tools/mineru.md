@@ -1,73 +1,63 @@
 # MinerU
 
-MinerU is an external PDF parsing/profiling tool used by Tabulus.
+MinerU is the external PDF profiling tool used by the current Tabulus Step 1
+workflow. Tabulus invokes MinerU, discovers its structured output, and exports
+the canonical table-crop handoff used by Stage 2 reconstruction.
 
-Tabulus deliberately exposes only the MinerU functionality required by the current PDF-profiling workflow. Tabulus currently supports MinerU's `pipeline` and `hybrid-engine` backends, tested with MinerU 3.4.5.
+For the guided profiling workflow and CLI examples, see
+{doc}`../tutorial/01-pdf-profiling`.
 
-Users who need MinerU features outside the Tabulus profiling workflow should consult the official [MinerU documentation](https://opendatalab.github.io/MinerU/) and [MinerU project repository](https://github.com/opendatalab/MinerU).
+## Official Resources
 
-## MinerU Options Used By Tabulus
+- [MinerU documentation](https://opendatalab.github.io/MinerU/)
+- [MinerU project repository](https://github.com/opendatalab/MinerU)
 
-Tabulus invokes MinerU through `tabulus profile`.
+## Role In Tabulus
+
+Tabulus currently supports MinerU as the only PDF profiler:
 
 ```bash
-tabulus profile --pdf "<paper.pdf>" --backend pipeline
-tabulus profile --pdf "<paper.pdf>" --backend hybrid-engine
+tabulus profile --profiler mineru ...
 ```
 
-After a successful MinerU run, `tabulus profile` exports canonical MinerU table crops into the normalized Tabulus table-crop handoff by default. Use `--table-crops-out PATH` to override that handoff directory, or `--no-export-table-crops` to keep only the MinerU-native profiling output.
+MinerU performs document/layout processing, table localization, and native
+table extraction. Tabulus then:
 
-### Backend
+- locates MinerU `*_content_list.json` files
+- resolves MinerU table image paths
+- normalizes page numbers, bounding boxes, captions, footnotes, and provenance
+- retains MinerU `table_body` as a native reconstruction candidate
+- exports canonical table crops and `tables_index.json`
 
-`--backend pipeline`
-: CPU-compatible MinerU backend used by the validated Windows/CPU workflow.
-
-`--backend hybrid-engine`
-: GPU-backed MinerU workflow used by the validated Linux GPU workflow. Tabulus checks GPU suitability before execution and can fall back to `pipeline` if the requirements are not satisfied.
-
-### Method
-
-`--method` selects the MinerU parsing mode exposed through the Tabulus CLI:
+The stable handoff for later Tabulus stages is:
 
 ```text
-             --method auto
-                   |
-         MinerU examines document
-              +----+----+
-              |         |
-              v         v
-        text extraction  OCR
-
---method txt  --> force text extraction
---method ocr  --> force OCR
+tabulus-output/
+  table-crops/
+    <paper>/
+      tables_index.json
+      images/
 ```
 
-`auto`
-: Let MinerU determine whether native PDF text extraction or OCR should be used.
+Stage 2 reconstruction adapters should consume this handoff rather than the
+complete MinerU-native directory.
 
-`txt`
-: Force native PDF text extraction.
+## MinerU Options Exposed By Tabulus
 
-`ocr`
-: Force OCR.
+`tabulus profile` exposes a small MinerU-specific surface:
 
-These are MinerU parsing modes, not Tabulus-specific OCR implementations.
+| Tabulus option | MinerU meaning |
+| --- | --- |
+| `--backend pipeline` | CPU-compatible MinerU backend. |
+| `--backend hybrid-engine` | GPU-backed MinerU backend. |
+| `--method auto` | Let MinerU choose text extraction or OCR handling. |
+| `--method txt` | Ask MinerU to use native PDF text extraction. |
+| `--method ocr` | Ask MinerU to use OCR. |
+| `--effort medium` / `--effort high` | Processing effort for `hybrid-engine`. |
 
-### Effort
-
-`--effort medium`
-`--effort high`
-: Processing effort for MinerU `hybrid-engine`.
-
-`effort` controls the hybrid parsing effort / accuracy-versus-processing trade-off. Tabulus currently defaults to:
-
-```bash
---effort high
-```
-
-Tabulus passes `--effort` only when the resolved MinerU backend is `hybrid-engine`.
-
-## Fixed MinerU Settings
+If `hybrid-engine` is requested but GPU requirements are not satisfied,
+Tabulus reports the reason and falls back to `pipeline`. Automatic output
+paths use the resolved backend name.
 
 Tabulus currently fixes these MinerU settings internally:
 
@@ -77,82 +67,82 @@ formula=False
 image_analysis=False
 ```
 
-This means:
+They are not currently exposed as Tabulus CLI flags.
 
-- table extraction is enabled
-- formula extraction is disabled
-- image analysis is disabled
-
-These settings are controlled by Tabulus in `src/tabulus/mineru/runner.py` and are not currently exposed as Tabulus CLI arguments.
-
-## MinerU Output
-
-A representative MinerU-native output tree looks like:
-
-```text
-<document>/
-└── <MinerU-native run directory>/
-    ├── images/
-    ├── <document>_content_list.json
-    ├── <document>_content_list_v2.json
-    ├── <document>_layout.pdf
-    ├── <document>_middle.json
-    ├── <document>_model.json
-    ├── <document>_origin.pdf
-    └── <document>.md
-```
-
-`images/`
-: MinerU-generated image assets, including table images referenced by structured output.
-
-`<document>.md`
-: Human-readable reconstructed Markdown representation.
-
-`<document>_content_list.json`
-: Flat structured content list currently used by the Tabulus table-discovery workflow. This is the most important MinerU output for the current Tabulus implementation.
-
-`<document>_content_list_v2.json`
-: Newer structured representation produced by MinerU.
-
-`<document>_layout.pdf`
-: Layout/debugging PDF useful for visually inspecting detected regions.
-
-`<document>_middle.json`
-: Detailed intermediate parsing representation useful for debugging.
-
-`<document>_model.json`
-: Lower-level/model inference output primarily useful for debugging.
-
-`<document>_origin.pdf`
-: MinerU's copy of the original PDF.
-
-For details about how Tabulus consumes MinerU outputs downstream, see {doc}`../data-contracts/mineru-output-files`.
-
-## Output Location In Tabulus
-
-When `--out` is omitted, Tabulus chooses the profiler/backend output root:
-
-```text
-<PDF parent>/
-└── tabulus-output/
-    └── mineru/
-        └── <resolved-backend>/
-            └── <document>/
-                └── <MinerU-native run directory>/
-                    ├── ...
-```
+## Native Output
 
 Tabulus owns only the profiling output root:
 
 ```text
-<PDF parent>/tabulus-output/<profiler>/<resolved-backend>/
+<PDF parent>/tabulus-output/mineru/<resolved-backend>/
 ```
 
-MinerU controls the document/run hierarchy below that root. Tabulus must not construct, flatten, rename, or assume the native run directory solely from `--method`; the native run-directory name is MinerU-owned behavior and can differ by backend, mode, and MinerU version.
+MinerU owns the document/run hierarchy beneath that root:
 
-After successful MinerU execution, Tabulus discovers the actual MinerU-native run directory from the generated `*_content_list.json`. Downstream table discovery also locates `*_content_list.json` recursively, so downstream consumers should target the actual MinerU-native run directory rather than hard-coding a directory name.
+```text
+tabulus-output/
+  mineru/
+    <resolved-backend>/
+      <paper>/
+        <MinerU-native run directory>/
+          images/
+          <paper>_content_list.json
+          <paper>_content_list_v2.json
+          <paper>_layout.pdf
+          <paper>_middle.json
+          <paper>_model.json
+          <paper>_origin.pdf
+          <paper>.md
+```
 
-On success, Tabulus writes diagnostic logs beside the successful MinerU output inside the discovered native run directory:
+`images/`
+: MinerU-generated image assets, including table images referenced by
+  structured output.
+
+`<paper>_content_list.json`
+: Flat structured content list currently used by the Tabulus table-discovery
+  workflow.
+
+`<paper>_content_list_v2.json`
+: Newer structured representation produced by MinerU.
+
+`<paper>_layout.pdf`
+: Layout/debugging PDF useful for visually inspecting detected regions.
+
+`<paper>_middle.json`
+: Detailed intermediate parsing representation useful for debugging.
+
+`<paper>_model.json`
+: Lower-level/model inference output primarily useful for debugging.
+
+`<paper>_origin.pdf`
+: MinerU's copy of the original PDF.
+
+`<paper>.md`
+: MinerU's human-readable reconstructed Markdown representation.
+
+For the detailed file contract, see
+{doc}`../data-contracts/mineru-output-files`.
+
+## Native Run Directory Discovery
+
+After successful MinerU execution, Tabulus discovers the actual
+`<MinerU-native run directory>` from the generated `*_content_list.json`.
+Tabulus must not construct, flatten, rename, or assume that native run
+directory solely from `--method`.
+
+Validated MinerU 3.4.5 examples:
+
+```text
+pipeline/<paper>/auto/
+hybrid-engine/<paper>/hybrid_auto/
+```
+
+These are observed MinerU-owned directory names from tested configurations,
+not universal Tabulus naming rules.
+
+On success, Tabulus writes diagnostic files beside the discovered MinerU
+output:
 
 ```text
 mineru_stdout.log
@@ -160,55 +150,12 @@ mineru_stderr.log
 tabulus_run.txt
 ```
 
-If MinerU fails before a native run directory can be identified, diagnostics may be written at the document level instead.
+If MinerU fails before a native run directory can be identified, diagnostics
+may be written at the document level instead.
 
-## Canonical Table Crops
+## Boundary
 
-MinerU is the canonical table-localization and crop-generation stage in the current clean Tabulus workflow. The normalized crop handoff is separate from MinerU's native output:
-
-```text
-<PDF parent>/
-└── tabulus-output/
-    └── table-crops/
-        └── <document>/
-            ├── tables_index.json
-            └── images/
-```
-
-The standalone `tabulus export-table-crops` command remains useful when an expensive MinerU run should be reused, when the normalized handoff should be regenerated without rerunning MinerU, or when native MinerU output should remain untouched by Tabulus-specific downstream artifacts.
-
-MinerU `table_body` is retained as a native reconstruction candidate produced
-during profiling. Crop-consuming reconstruction adapters operate later on the
-canonical crop images rather than on the original PDF. For the current adapter
-list, see {doc}`../tutorial/08-table-ocr`.
-
-For those crop-consuming integrations, see:
-
-- {doc}`../tutorial/08-table-ocr`
-- {doc}`../modules/table-ocr-adapters`
-
-Validated examples:
-
-Windows CPU, MinerU 3.4.5, `pipeline` + `auto`:
-
-```text
-tabulus-output/
-└── mineru/
-    └── pipeline/
-        └── <document>/
-            └── auto/
-                └── ...
-```
-
-Linux GPU, MinerU 3.4.5, `hybrid-engine` + `auto` + `high`:
-
-```text
-tabulus-output/
-└── mineru/
-    └── hybrid-engine/
-        └── <document>/
-            └── hybrid_auto/
-                └── ...
-```
-
-`hybrid_auto` is MinerU's native directory name for the validated `hybrid-engine` + `auto` run. It is not a Tabulus-created directory and should not be treated as a guarantee for future MinerU versions.
+MinerU is the profiling and canonical crop-generation stage in the current
+workflow. It is separate from crop-consuming Stage 2 reconstruction adapters,
+reference-table classification, bibliography extraction, reference matching,
+DOI resolution, and final resolved CSV export.
