@@ -67,6 +67,7 @@ Key modules:
 - `nemotron_parse_v1_2.py`
 - `hunyuanocr_1_5.py`
 - `dots_mocr.py`
+- `internvl3_5_8b.py`
 - `parsing.py`
 
 The main abstractions are:
@@ -80,43 +81,34 @@ The main abstractions are:
 
 The current registered crop-consuming reconstruction adapters are exactly:
 
-- `paddleocr-vl`: PaddleOCR-VL reconstruction on already-isolated MinerU table crops with PaddleOCR layout detection disabled and the table prompt enabled.
-- `chandra`: Chandra OCR 2 reconstruction through the Hugging Face/in-process API with `prompt_type="ocr"`.
-- `nuextract3`: NuExtract3 reconstruction through Hugging Face Transformers in document-to-Markdown mode.
-- `tesseract-tatr`: Tesseract OCR word recognition plus Microsoft Table Transformer structure recognition, fused deterministically into an HTML table.
-- `rapidocr-tableformer`: RapidOCR with ONNX Runtime for OCR and word boxes, combined with Docling TableFormer V1 structure recognition on the complete canonical crop.
-- `granite-vision-table`: Granite Vision 4.1 4B receives the complete canonical crop directly, generates `<tables_otsl>`, and uses Docling's Granite OTSL parser for structure and cell reconstruction.
-- `trivia`: TRivia-3B receives the complete canonical crop directly, generates native OTSL, and uses Tabulus-owned deterministic OTSL-to-HTML normalization before the shared parser.
-- `glm-ocr`: GLM-OCR receives the complete canonical crop directly, generates native HTML, and passes clean generated HTML through the shared span-aware parser without GLM-specific structural normalization.
-- `dolphin-v2`: Dolphin-v2 receives the complete canonical crop directly, applies deterministic model-input resizing, generates native HTML with the `ByteDance/Dolphin-v2` checkpoint, and passes clean generated HTML through the shared span-aware parser without Dolphin-specific semantic repair.
-- `deepseek-ocr-2`: DeepSeek-OCR-2 receives the complete canonical crop directly, uses model-internal dynamic-resolution tiling, and passes the model-specific `infer(...)` output unchanged through the shared HTML/Markdown parser.
-- `nanonets-ocr-s`: Nanonets-OCR-s receives the complete canonical crop directly, generates native structured HTML with the `nanonets/Nanonets-OCR-s` checkpoint, and passes clean generated HTML through the shared span-aware parser without Nanonets-specific semantic repair.
-- `monkeyocrv2-b-parsing`: MonkeyOCRv2-B-Parsing receives the complete canonical crop directly, uses direct single-task table recognition to generate native OTSL, and passes deterministic OTSL-to-HTML output through the shared parser without semantic repair.
-- `nemotron-parse-v1-2`: NVIDIA Nemotron Parse v1.2 receives the complete canonical crop directly, generates grounded semantic objects with Table-class LaTeX/tabular content, and passes NVIDIA-postprocessed HTML through the shared parser without using generated bounding boxes for recropping.
-- `hunyuanocr-1-5`: HunyuanOCR-1.5 receives the complete canonical crop directly, uses the official table task to generate native HTML, preserves HunyuanOCR repetition safeguards as inference controls, and passes clean HTML through the shared parser without HunyuanOCR-specific semantic repair.
-- `dots-mocr`: dots.mocr receives the complete canonical crop directly, uses its active layout prompt to generate JSON layout output with model-emitted Table objects, preserves their bounding boxes as provenance only, and passes their HTML through the shared parser without JSON repair or semantic repair.
+| Adapter | Display name | Device support | Native route |
+| --- | --- | --- | --- |
+| `paddleocr-vl` | PaddleOCR-VL | CPU, GPU | Paddle table prediction |
+| `chandra` | Chandra OCR 2 | CPU, GPU | HTML generation |
+| `tesseract-tatr` | Tesseract + Table Transformer | CPU, GPU | OCR words + TATR structure |
+| `rapidocr-tableformer` | RapidOCR + Docling TableFormer | CPU, GPU | RapidOCR words + Docling structure |
+| `nuextract3` | NuExtract3 | GPU | Markdown/HTML generation |
+| `granite-vision-table` | Granite Vision 4.1 4B | GPU | OTSL parsed through Docling |
+| `trivia` | TRivia-3B | GPU | OTSL normalized by Tabulus |
+| `glm-ocr` | GLM-OCR | GPU | HTML generation |
+| `dolphin-v2` | Dolphin-v2 | GPU | HTML generation |
+| `deepseek-ocr-2` | DeepSeek-OCR-2 | GPU | Grounded output plus HTML/Markdown |
+| `nanonets-ocr-s` | Nanonets-OCR-s | GPU | HTML generation |
+| `monkeyocrv2-b-parsing` | MonkeyOCRv2-B-Parsing | GPU | OTSL normalized by Tabulus |
+| `nemotron-parse-v1-2` | NVIDIA Nemotron Parse v1.2 | GPU | Grounded objects and table postprocessing |
+| `hunyuanocr-1-5` | HunyuanOCR-1.5 | GPU | HTML generation |
+| `dots-mocr` | dots.mocr | GPU | JSON layout with table HTML |
+| `internvl3-5-8b` | InternVL3.5-8B | GPU | HTML generation |
 
-PaddleOCR-VL, Chandra, Tesseract + Table Transformer, and RapidOCR + Docling TableFormer report CPU and GPU support in the registry. RapidOCR itself runs on CPU while its TableFormer component uses the requested device. NuExtract3, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr are registered as GPU-only in the validated Tabulus configuration.
+RapidOCR itself runs on CPU while its TableFormer component uses the requested
+device. GPU-only means the current Tabulus registry marks the adapter as
+requiring GPU execution; it is not a claim about every possible upstream model
+deployment.
 
 MinerU `table_body` is also a reconstruction candidate, but it is produced during PDF profiling rather than by a crop-consuming `tabulus.table_ocr` adapter.
 
-For the external tools as used by Tabulus, see:
-
-- {doc}`../external-tools/paddleocr-vl`
-- {doc}`../external-tools/chandra`
-- {doc}`../external-tools/nuextract3`
-- {doc}`../external-tools/tesseract-tatr`
-- {doc}`../external-tools/docling`
-- {doc}`../external-tools/granite-vision`
-- {doc}`../external-tools/trivia`
-- {doc}`../external-tools/glm-ocr`
-- {doc}`../external-tools/dolphin-v2`
-- {doc}`../external-tools/deepseek-ocr-2`
-- {doc}`../external-tools/nanonets-ocr-s`
-- {doc}`../external-tools/monkeyocrv2-b-parsing`
-- {doc}`../external-tools/nemotron-parse-v1-2`
-- {doc}`../external-tools/hunyuanocr-1-5`
-- {doc}`../external-tools/dots-mocr`
+For adapter-specific model revisions, prompts, runtime requirements, and
+upstream links, see the External Tools section in the sidebar.
 
 ## Batch Orchestration
 
@@ -164,7 +156,7 @@ For the full default output contract, filename semantics, and current rerun beha
 
 Prediction CSV files are pre-reference-resolution artifacts. Reconstruction does not classify reference tables, extract bibliographies, match references, resolve DOI values, write final resolved CSV files, or merge continued tables.
 
-ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, Tesseract, TRivia, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, dots.mocr, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
+ML dependencies are optional and lazily loaded. Importing core Tabulus or listing registered adapters does not require PaddleOCR, PaddlePaddle, Chandra, Tesseract, TRivia, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, dots.mocr, InternVL3.5-8B, PyTorch, Transformers, or other heavyweight adapter runtimes. Hardware/model-specific environments can therefore remain separate from the lightweight core Tabulus environment.
 
 ## Other Candidate Adapters
 

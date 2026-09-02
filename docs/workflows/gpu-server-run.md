@@ -1,6 +1,10 @@
 # GPU Server Run
 
-The GPU server workflow runs the same file-contract-oriented modules as the CPU workflow, but uses GPU-backed adapters where they are validated. For MinerU profiling, this means requesting `hybrid-engine` instead of the CPU-compatible `pipeline` backend. For table reconstruction, `tabulus reconstruct-tables` can run a registered crop-consuming adapter such as PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, or dots.mocr over the canonical MinerU crop handoff in the appropriate adapter environment.
+The GPU server workflow runs the same file-contract-oriented modules as the
+CPU workflow, but uses GPU-backed profiling and reconstruction environments.
+For MinerU profiling, request the `hybrid-engine` backend. For table
+reconstruction, run one registered adapter over the canonical MinerU crop
+handoff in that adapter's environment.
 
 Before running this workflow, complete the GPU server setup in `installation/gpu-server`. For the exact tested MinerU command sequence, see `workflows/mineru-gpu-execution`.
 

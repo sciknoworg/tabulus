@@ -212,18 +212,18 @@ The `tabulus-output\mineru\pipeline\` directory is the profiler/backend output r
 For the validated MinerU 3.4.5 Windows CPU run with `pipeline` + `auto`, MinerU produced the native run directory `auto`:
 
 ```text
-ald-papers\
+<papers-folder>\
   tabulus-output\
     mineru\
       pipeline\
-        Puurunen - February 2005\
+        <document>\
           auto\
             images\
-            Puurunen - February 2005_content_list.json
-            Puurunen - February 2005_content_list_v2.json
-            Puurunen - February 2005_layout.pdf
-            Puurunen - February 2005_middle.json
-            Puurunen - February 2005_model.json
+            <document>_content_list.json
+            <document>_content_list_v2.json
+            <document>_layout.pdf
+            <document>_middle.json
+            <document>_model.json
             mineru_stdout.log
             mineru_stderr.log
             tabulus_run.txt
@@ -233,7 +233,7 @@ The levels are:
 
 - `mineru`: profiler
 - `pipeline`: backend
-- `Puurunen - February 2005`: document
+- `<document>`: document directory
 - `auto`: MinerU-native run directory observed for this validated `pipeline` + `auto` run
 
 `auto` is meaningful MinerU output behavior, not a generic Tabulus directory. Native run-directory naming belongs to MinerU and can differ by backend; the validated `hybrid-engine` + `auto` GPU workflow produced `hybrid_auto`.
@@ -305,13 +305,13 @@ with pytest 9.1.1.
 After MinerU writes its output directory, the library can discover table regions:
 
 ```bat
-python -c "from pathlib import Path; from tabulus.mineru import discover_tables; tables, refs = discover_tables(Path('C:/path/to/ald-papers/tabulus-output/mineru/pipeline/Puurunen - February 2005/auto')); print(len(tables)); print(refs)"
+python -c "from pathlib import Path; from tabulus.mineru import discover_tables; tables, refs = discover_tables(Path('C:/path/to/papers/tabulus-output/mineru/pipeline/<document>/auto')); print(len(tables)); print(refs)"
 ```
 
 `tabulus profile` prepares the table-crop handoff automatically by default. To regenerate that handoff from an existing MinerU run without rerunning MinerU:
 
 ```bat
-tabulus export-table-crops --mineru-root "C:\path\to\ald-papers\tabulus-output\mineru\pipeline\Puurunen - February 2005\auto" --out "work\table_crops"
+tabulus export-table-crops --mineru-root "C:\path\to\papers\tabulus-output\mineru\pipeline\<document>\auto" --out "work\table_crops"
 ```
 
 This writes:
@@ -325,7 +325,7 @@ work\table_crops\
 Table reconstruction adapters operate on canonical MinerU table crops. If the PaddleOCR dependencies are installed in the active environment, the batch table-reconstruction CLI can process the crop handoff with PaddleOCR-VL:
 
 ```bat
-tabulus reconstruct-tables --crops "C:\path\to\ald-papers\tabulus-output\table-crops\Puurunen - February 2005" --adapter paddleocr-vl --device cpu
+tabulus reconstruct-tables --crops "C:\path\to\papers\tabulus-output\table-crops\<document>" --adapter paddleocr-vl --device cpu
 ```
 
 The command writes adapter outputs under:

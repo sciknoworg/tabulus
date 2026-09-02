@@ -1,6 +1,10 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for
+Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and
+MinerU's `hybrid-engine` backend. Stage 2 reconstruction adapters are installed
+in separate adapter-specific environments so heavyweight model stacks do not
+destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +61,8 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr
+- separate Conda environments for MinerU and the selected Stage 2
+  reconstruction adapter
 
 ## 2. Request GPU Compute Resources
 
@@ -156,7 +161,7 @@ $HOME/
 │   └── ...
 │
 └── <papers-folder>/
-    ├── Puurunen - February 2005.pdf
+    ├── <document>.pdf
     └── tabulus-output/
         └── mineru/
             └── hybrid-engine/
@@ -326,7 +331,7 @@ Run MinerU through the Tabulus CLI with the GPU backend:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 tabulus profile \
-  --pdf "$PAPERS/Puurunen - February 2005.pdf" \
+  --pdf "$PAPERS/<document>.pdf" \
   --backend hybrid-engine \
   --effort high \
   --method auto
@@ -336,7 +341,7 @@ Do not pass `--out` unless you intentionally want to override the output root. W
 
 ```text
 $PAPERS/
-├── Puurunen - February 2005.pdf
+├── <document>.pdf
 └── tabulus-output/
     └── mineru/
         └── hybrid-engine/
@@ -358,7 +363,8 @@ $PAPERS/
 
 Use `--table-crops-out PATH` to override the normalized handoff directory, or `--no-export-table-crops` to skip automatic crop export.
 
-The validated Linux GPU run regenerated the Puurunen PDF outputs with MinerU `hybrid-engine` and automatically exported 23 canonical table crops.
+The validated Linux GPU run regenerated MinerU `hybrid-engine` outputs and
+automatically exported canonical table crops.
 
 If `hybrid-engine` is requested but GPU requirements are not satisfied, Tabulus reports the reason and falls back to the CPU-compatible `pipeline` backend. In that case, the automatic output root uses the resolved backend:
 
@@ -433,53 +439,14 @@ The separation is intentional:
 tabulus-mineru
   Tabulus + MinerU + PyTorch
 
-tabulus-paddleocr-gpu
-  Tabulus + PaddleOCR + PaddlePaddle
-
-tabulus-chandra-gpu
-  Tabulus + Chandra OCR + PyTorch/Transformers
-
-tabulus-nuextract3-gpu
-  Tabulus + NuExtract3 + PyTorch/Transformers/Accelerate
-
-tabulus-tesseract-tatr-gpu
-  Tabulus + Tesseract + Table Transformer + PyTorch/Transformers
-
-dedicated RapidOCR + Docling TableFormer environment
-  Tabulus + RapidOCR + ONNX Runtime + Docling TableFormer
-
-tabulus-granite-vision
-  Tabulus + Granite Vision 4.1 4B + Docling + Transformers
-
-tabulus-trivia-gpu
-  Tabulus + TRivia-3B + PyTorch/Transformers/Accelerate
-
-tabulus-glm-ocr-gpu
-  Tabulus + GLM-OCR + PyTorch/Transformers/Accelerate
-
-tabulus-dolphin-v2-gpu
-  Tabulus + Dolphin-v2 + PyTorch/Transformers/Accelerate/qwen-vl-utils
-
-tabulus-deepseek-ocr-2-gpu
-  Tabulus + DeepSeek-OCR-2 + PyTorch/Transformers/FlashAttention
-
-tabulus-nanonets-ocr-s
-  Tabulus + Nanonets-OCR-s + PyTorch/Transformers/FlashAttention
-
-tabulus-monkeyocrv2-b-parsing
-  Tabulus + MonkeyOCRv2-B-Parsing + PyTorch/Transformers
-
-tabulus-nemotron-parse-v1-2
-  Tabulus + NVIDIA Nemotron Parse v1.2 + PyTorch/Transformers
-
-tabulus-hunyuanocr-1-5
-  Tabulus + HunyuanOCR-1.5 + PyTorch/Transformers/Accelerate
-
-tabulus-dots-mocr
-  Tabulus + dots.mocr + PyTorch/Transformers/FlashAttention
+tabulus-<adapter>
+  Tabulus + one reconstruction adapter stack
 ```
 
-These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
+These environments can install Tabulus from the same repository checkout in
+editable mode. They are pipeline-stage environments, not separate versions of
+the Tabulus source code. Use the adapter-specific subsections below only for
+the adapter you plan to run.
 
 ### PaddleOCR-VL GPU Environment
 
@@ -502,7 +469,7 @@ $PAPERS/
         └── <document>/
             ├── tables_index.json
             └── images/
-                └── page_006_table_001.jpg
+                └── page_<page>_table_<table-id>.jpg
 ```
 
 The validated adapter configuration disables layout detection and enables the table prompt:
@@ -522,20 +489,9 @@ pipeline.predict(
 )
 ```
 
-For `page_006_table_001.jpg`, the GPU run succeeded and produced one parsed HTML table with 58 rows x 6 columns.
-
-Repeatability observations using the same loaded adapter and the same crop:
-
-```text
-first cached-model pass: 44.58 s
-warm second pass:       25.24 s
-parsed table shape:     58 x 6 both times
-parsed cell differences: 0
-```
-
-The first-ever GPU run took 91.97 s because it also included model download and setup. Treat these timings as validation observations, not formal benchmarks.
-
-The Windows CPU and Linux GPU crops were not byte-identical. The observed crop dimensions were 1431 x 1923 on Windows CPU and 1432 x 1923 on Linux GPU, so do not draw strong CPU-vs-GPU accuracy conclusions from output differences alone.
+Treat one-crop timings and warm-cache behavior as engineering observations,
+not formal benchmarks. Runtime varies with crop count, crop dimensions,
+hardware, cache state, and adapter configuration.
 
 The implemented batch CLI reuses one adapter instance across every crop in the handoff:
 
@@ -1427,3 +1383,77 @@ HTML, table bounding boxes as provenance only, dependency versions, and
 canonical-crop provenance under the standard `native/` layer before shared
 HTML parsing. For the full integration details and output boundaries, see
 {doc}`../external-tools/dots-mocr`.
+
+### InternVL3.5-8B GPU Environment
+
+InternVL3.5-8B is a GPU-only reconstruction adapter in the validated Tabulus
+configuration. It is a general-purpose multimodal vision-language model, not a
+dedicated OCR engine. The adapter consumes the same canonical MinerU crop
+handoff as the other adapters and sends each crop directly to
+`OpenGVLab/InternVL3_5-8B-HF` with a Tabulus-defined HTML-table prompt. There
+is no external layout detection, table redetection, bbox-based recropping,
+semantic repair, reference resolution, or continued-table merging in this
+adapter.
+
+Create and activate a dedicated Python 3.12 environment:
+
+```bash
+conda create -n tabulus-internvl3-5-8b python=3.12 -y
+conda activate tabulus-internvl3-5-8b
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated InternVL runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install \
+  "torch==2.7.0+cu128" \
+  "torchvision==0.22.0+cu128" \
+  "transformers==4.55.0" \
+  "accelerate==1.14.0" \
+  "Pillow"
+```
+
+The validated runtime used Python 3.12.14, PyTorch 2.7.0+cu128, torchvision
+0.22.0+cu128, Transformers 4.55.0, Accelerate 1.14.0, BF16 model weights and
+floating-point image tensors, SDPA attention, `InternVLProcessor`,
+`GotOcr2ImageProcessorFast`, and `Qwen2TokenizerFast`. FlashAttention is not
+required by this adapter configuration.
+
+The adapter loads the pinned model and processor with `local_files_only=True`,
+so the `OpenGVLab/InternVL3_5-8B-HF` snapshot at revision
+`741a7d03020411e666c6109218ab71e08151ef86` must already be present in the
+local Hugging Face cache before reconstruction starts. The adapter does not
+download the model at runtime.
+
+Verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter internvl3-5-8b \
+  --device gpu:0
+```
+
+The adapter preserves native HTML output, model and processor metadata,
+generation settings, token-ceiling status, image tensor provenance, dependency
+versions, local-cache loading policy, and canonical-crop provenance under the
+standard `native/` layer before shared HTML parsing. For the full integration
+details and output boundaries, see {doc}`../external-tools/internvl3-5-8b`.

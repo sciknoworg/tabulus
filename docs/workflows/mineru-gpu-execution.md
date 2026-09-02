@@ -68,7 +68,7 @@ Keep the Tabulus repository and paper collection separate:
 $HOME/
   tabulus/
   <papers-folder>/
-    Puurunen - February 2005.pdf
+    <document>.pdf
 ```
 
 Set the locations:
@@ -88,7 +88,7 @@ The configuration successfully tested for scientific PDF table processing was:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 mineru \
-  -p "$PAPERS/Puurunen - February 2005.pdf" \
+  -p "$PAPERS/<document>.pdf" \
   -o "$PAPERS/tabulus-output/mineru/hybrid-engine" \
   -b hybrid-engine \
   --effort high \
@@ -113,7 +113,7 @@ The equivalent Tabulus entry point is:
 
 ```bash
 tabulus profile \
-  --pdf "$PAPERS/Puurunen - February 2005.pdf" \
+  --pdf "$PAPERS/<document>.pdf" \
   --backend hybrid-engine \
   --effort high \
   --method auto
@@ -234,7 +234,13 @@ new tabulus library --------+
               run report / complete tabulus run
 ```
 
-The new library currently provides MinerU process launching, typed access to existing MinerU outputs, automatic table-crop export, registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr table-reconstruction adapters for MinerU crops, the `tabulus reconstruct-tables` batch CLI, and `tabulus classify-reference-tables`. These stages are not yet implemented in the new library:
+The new library currently provides MinerU process launching, typed access to
+existing MinerU outputs, automatic table-crop export, registered Stage 2
+table-reconstruction adapters for MinerU crops, the
+`tabulus reconstruct-tables` batch CLI, and
+`tabulus classify-reference-tables`. See {doc}`../tutorial/08-table-ocr` for
+the current adapter list. These stages are not yet implemented in the new
+library:
 
 - bibliography extraction
 - reference matching

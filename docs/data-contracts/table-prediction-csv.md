@@ -14,24 +14,9 @@ prediction CSV
 RMS / DePlot evaluation against ground-truth CSV
 ```
 
-Prediction CSV files may come from implemented and future reconstruction candidates:
-
-- MinerU `table_body`
-- MinerU crop -> PaddleOCR-VL
-- MinerU crop -> Chandra
-- MinerU crop -> NuExtract3
-- MinerU crop -> Tesseract + Table Transformer
-- MinerU crop -> RapidOCR + Docling TableFormer
-- MinerU crop -> Granite Vision 4.1 4B
-- MinerU crop -> TRivia-3B
-- MinerU crop -> GLM-OCR
-- MinerU crop -> Dolphin-v2
-- MinerU crop -> DeepSeek-OCR-2
-- MinerU crop -> Nanonets-OCR-s
-- MinerU crop -> MonkeyOCRv2-B-Parsing
-- MinerU crop -> NVIDIA Nemotron Parse v1.2
-- MinerU crop -> HunyuanOCR-1.5
-- MinerU crop -> dots.mocr
+Prediction CSV files may come from MinerU `table_body` or from any registered
+crop-consuming reconstruction adapter. The current adapter list is maintained
+in {doc}`../tutorial/08-table-ocr`.
 
 All candidates should be exported through the same normalized CSV shape before scoring. Adapter-native JSON, Markdown, HTML, or OCR text should be preserved separately for provenance and debugging.
 

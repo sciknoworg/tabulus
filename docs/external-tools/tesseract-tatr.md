@@ -131,26 +131,9 @@ HTML/Markdown parser. There is no reference-resolution logic in this adapter.
 ## Validated Configuration
 
 The adapter has been validated through the real `tabulus reconstruct-tables`
-CLI on one scientific canonical crop and on one selected three-document
-engineering-validation slice used during development.
-
-For that selected slice:
-
-```text
-canonical crops: 83
-status ok:       83
-prediction CSVs: 83
-empty:           0
-errors:          0
-runtime:         approximately 165.78 s
-hardware:        NVIDIA L40S setup
-```
-
-The 83-crop count is specific to that selected engineering-validation slice. It
-is not a benchmark size, software property, or accuracy result. Runtime and
-prediction yield are operational observations only and do not show that this
-adapter is more accurate than PaddleOCR-VL, Chandra OCR 2, NuExtract3, or any
-future adapter.
+CLI on canonical MinerU crops and through automated adapter tests. Runtime and
+prediction yield are operational observations only; they do not show that this
+adapter is more accurate than another reconstruction adapter.
 
 Scientific comparison must use gold-standard evaluation.
 

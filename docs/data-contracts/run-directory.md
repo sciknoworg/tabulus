@@ -45,12 +45,8 @@ by default:
   share result files.
 
 `native/`
-: Adapter-native reconstruction evidence and provenance. For PaddleOCR-VL,
-  Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling
-  TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2,
-  DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron
-  Parse v1.2, HunyuanOCR-1.5, and dots.mocr, this preserves the native
-  representation returned or derived from the selected adapter.
+: Adapter-native reconstruction evidence and provenance. The exact native
+  representation depends on the selected adapter.
 
 `parsed/`
 : Tabulus's common structured table representation derived from adapter-native
@@ -94,14 +90,11 @@ Later stages may consume selected or reference-containing tables, but
 reconstruction artifacts remain preserved for each physical table processed by
 the reconstruction stage.
 
-This separation also decouples ML environments. MinerU, PaddleOCR-VL,
-Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling
-TableFormer, Granite Vision, TRivia-3B, GLM-OCR, Dolphin-v2,
-DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron
-Parse v1.2, HunyuanOCR-1.5, and dots.mocr can run in separate Python or
-Conda environments. The stable contracts between stages are persisted files
-such as `tables_index.json`, canonical crop images, reconstruction manifests,
-and reconstruction artifacts.
+This separation also decouples ML environments. MinerU and individual
+reconstruction adapters can run in separate Python or Conda environments. The
+stable contracts between stages are persisted files such as
+`tables_index.json`, canonical crop images, reconstruction manifests, and
+reconstruction artifacts.
 
 ## Current Profiling Output Convention
 
@@ -238,13 +231,9 @@ If `--out` is omitted, each paper uses:
     <adapter>/
 ```
 
-The currently registered crop-consuming adapter directories are
-`paddleocr-vl`, `chandra`, `nuextract3`, `tesseract-tatr`,
-`rapidocr-tableformer`, `granite-vision-table`, `trivia`, `glm-ocr`,
-`dolphin-v2`, `deepseek-ocr-2`, `nanonets-ocr-s`,
-`monkeyocrv2-b-parsing`, `nemotron-parse-v1-2`, `hunyuanocr-1-5`, and
-`dots-mocr`. Future adapters should follow the same structure when
-implemented:
+The adapter directory name is the selected adapter identifier, for example
+`paddleocr-vl`, `chandra`, or `internvl3-5-8b`. Future adapters should follow
+the same structure when implemented:
 
 ```text
 reconstructions/

@@ -14,9 +14,13 @@
 </p>
 
 ## 🔍 Overview
-Tabulus is a modular multi-stage pipeline for extracting structured table data from scientific PDF documents.
+Tabulus is a modular multi-stage pipeline for extracting structured table data
+from scientific PDF documents.
 
-The system combines document analysis, OCR, bibliography extraction, reference matching, and DOI enrichment into a unified workflow that transforms scientific publications into machine-readable data suitable for further analysis, knowledge graph integration, and research evaluation.
+The current rebuilt library supports PDF profiling, canonical table-crop
+export, table reconstruction, and reference-table classification. Later
+bibliography extraction, reference matching, DOI enrichment, resolved CSV
+export, and full run orchestration remain planned for the rebuilt workflow.
 
 The project was developed as part of a Master's thesis investigating scientific table extraction, OCR benchmarking, bibliography-aware processing, and structured scholarly knowledge extraction.
 
@@ -28,8 +32,8 @@ The project was developed as part of a Master's thesis investigating scientific 
 
 * Automated table detection from scientific PDFs
 * Table cropping and preprocessing
-* OCR-based table reconstruction
-* Structured CSV generation
+* Adapter-based table reconstruction from fixed canonical crops
+* Raw prediction CSV generation before reference resolution
 
 ### 🔗 Bibliography-Aware Processing
 * Reference-table classification for reconstructed tables
@@ -64,21 +68,7 @@ tabulus profile / MinerU
       |
       +--> canonical MinerU table crops
                 |
-                +--> PaddleOCR-VL
-                +--> Chandra OCR 2
-                +--> NuExtract3
-                +--> Tesseract + Table Transformer
-                +--> RapidOCR + Docling TableFormer
-                +--> Granite Vision 4.1 4B
-                +--> TRivia-3B
-                +--> GLM-OCR
-                +--> Dolphin-v2
-                +--> DeepSeek-OCR-2
-                +--> Nanonets-OCR-s
-                +--> MonkeyOCRv2-B-Parsing
-                +--> NVIDIA Nemotron Parse v1.2
-                +--> HunyuanOCR-1.5
-                +--> dots.mocr
+                +--> one registered reconstruction adapter
                 |
                 v
       tabulus reconstruct-tables
@@ -164,26 +154,18 @@ Detailed documentation for each component is available in the corresponding READ
 
 ---
 
-## 🤖 OCR Technologies
-The rebuilt Tabulus library currently integrates several OCR and document understanding approaches, with additional candidates retained for evaluation:
+## 🤖 External Tools And Models
+The rebuilt Tabulus library currently uses MinerU for PDF profiling and a
+registry of Stage 2 reconstruction adapters for canonical MinerU crops. The
+complete supported-adapter table is maintained in the ReadTheDocs page:
 
-* MinerU
-* PaddleOCR-VL
-* Chandra OCR
-* NuExtract3
-* Tesseract + Table Transformer
-* RapidOCR + Docling TableFormer
-* Granite Vision 4.1 4B
-* TRivia-3B
-* GLM-OCR
-* Dolphin-v2
-* DeepSeek-OCR-2
-* Nanonets-OCR-s
-* MonkeyOCRv2-B-Parsing
-* NVIDIA Nemotron Parse v1.2
-* HunyuanOCR-1.5
-* dots.mocr
-* GROBID (legacy/reference-processing context)
+```text
+docs/tutorial/08-table-ocr.md
+```
+
+GROBID and Kreuzberg remain relevant only in retained historical or
+reference-processing material; they are not current Stage 2 reconstruction
+adapters in the rebuilt library.
 
 ---
 
@@ -242,18 +224,37 @@ Install the current library from the repository checkout:
 python -m pip install -e ".[dev]"
 ```
 
-The currently implemented stages are exposed as CLI commands:
+The currently implemented stages are exposed as CLI commands. For one PDF:
 
 ```bash
 tabulus profile --pdf /path/to/paper.pdf --backend pipeline
 
 tabulus reconstruct-tables \
   --crops /path/to/tabulus-output/table-crops/<paper> \
-  --adapter paddleocr-vl \
+  --adapter <adapter> \
   --device gpu:0
 
 tabulus classify-reference-tables \
-  --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/paddleocr-vl
+  --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/<adapter>
+```
+
+For several PDFs in one folder:
+
+```bash
+tabulus profile \
+  --folder /path/to/papers \
+  --backend hybrid-engine \
+  --method auto \
+  --effort high
+
+tabulus reconstruct-tables \
+  --crops-folder /path/to/papers/tabulus-output/table-crops \
+  --adapter <adapter> \
+  --device gpu:0
+
+tabulus classify-reference-tables \
+  --crops-folder /path/to/papers/tabulus-output/table-crops \
+  --adapter <adapter>
 ```
 
 See the ReadTheDocs installation pages for Windows CPU setup, GPU-server setup,

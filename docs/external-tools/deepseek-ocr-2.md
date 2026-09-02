@@ -197,34 +197,15 @@ collapsing results into one CSV.
 
 ## Validation Notes
 
-A reproducibility check reconstructed the same canonical crop twice with the
-validated direct inference configuration. Both runs produced identical model
-output with SHA-256
-`a429813fd6c6d0d839697ce10bca0ff7e63547de55ce48f9e210b15ee6ee803a`, 4205
-characters, 1404 decoded output tokens, and one parsed 60 x 5 table.
+A real Tabulus CLI smoke test, reproducibility checks, focused adapter tests,
+and full-suite validation have completed for this adapter. Some model-native
+empty outputs have also been observed when DeepSeek-OCR-2 returned grounding
+or text-like content without a structured table representation; Tabulus
+retained those as `status="empty"` and did not write prediction CSVs.
 
-A real Tabulus CLI smoke test reproduced one requested table, one `ok` result,
-zero empty results, zero errors, one prediction CSV, and a 60 x 5 parsed table.
-The implementation validation completed with 11 focused DeepSeek-OCR-2 tests
-and 206 complete Tabulus tests. These are engineering validation results, not
-reconstruction accuracy measurements.
-
-One selected three-paper engineering reconstruction slice contained 83
-canonical table crops. DeepSeek-OCR-2 produced 79 successful reconstructions,
-four empty reconstructions, zero runtime errors, and 79 prediction CSVs in
-30m 28.890s. The empty outputs contained model-native grounding or text-like
-content but no structured table representation; they were not runtime errors
-or shared-parser errors. Tabulus correctly retained them as `status="empty"`
-and did not write prediction CSVs.
-
-Downstream reference-table classification over that run reported 62 reference
-tables and 21 non-reference tables. These are downstream operational
-classification results, not reconstruction accuracy. They also do not imply
-that all 83 crops produced prediction CSVs.
-
-These counts describe one engineering slice only. They are not a benchmark
-size, precision, recall, F1, or evidence that DeepSeek-OCR-2 is better or
-worse than another reconstruction backend.
+These observations describe integration behavior only. They are not
+reconstruction accuracy, precision, recall, F1, or evidence that
+DeepSeek-OCR-2 is better or worse than another reconstruction backend.
 
 ## Limitations
 

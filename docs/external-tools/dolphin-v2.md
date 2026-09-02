@@ -158,28 +158,10 @@ rather than semantically repairing them inside Tabulus.
 
 ## Validation Notes
 
-A deterministic reproducibility check reconstructed the same canonical crop
-twice independently. Both runs produced identical clean model output with
-SHA-256 `74e76fe66108ec3e1f20b2b0d9d27e47fe3e2699ff656b9aad9b1e3ac9bb8711`,
-2317 generated tokens, `do_sample=False`, `temperature=None`, and one detected
-HTML table.
-
-The implementation passed 11 focused Dolphin-v2 adapter tests and the complete
-Tabulus test suite with 195 tests. These are engineering validation results,
-not reconstruction accuracy measurements.
-
-One selected engineering reconstruction slice contained 83 canonical table
-crops. Dolphin-v2 produced 82 successful reconstructions, one empty
-reconstruction, zero runtime errors, and 82 prediction CSVs in approximately
-45 minutes 10 seconds. The empty result was a large table where generation
-reached the 4096-token ceiling before completing the closing HTML table.
-Downstream reference-table classification over that run reported 65 reference
-tables and 18 non-reference tables.
-
-Those counts are operational engineering observations for one selected slice.
-They are not a benchmark size, model capability claim, reconstruction
-accuracy, precision, recall, F1, or evidence that Dolphin-v2 is better or
-worse than another adapter.
+The implementation has passed focused adapter tests, full-suite validation,
+deterministic reproducibility checks, and real CLI reconstruction checks.
+These are engineering validation results, not reconstruction accuracy
+measurements or model-ranking evidence.
 
 ## Limitations
 

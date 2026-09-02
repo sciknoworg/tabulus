@@ -177,25 +177,15 @@ MinerU is the canonical table-localization and crop-generation stage in the curr
 
 The standalone `tabulus export-table-crops` command remains useful when an expensive MinerU run should be reused, when the normalized handoff should be regenerated without rerunning MinerU, or when native MinerU output should remain untouched by Tabulus-specific downstream artifacts.
 
-MinerU `table_body` is retained as a native reconstruction candidate produced during profiling. The crop-consuming reconstruction adapters, such as PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr, operate later on the canonical crop images rather than on the original PDF.
+MinerU `table_body` is retained as a native reconstruction candidate produced
+during profiling. Crop-consuming reconstruction adapters operate later on the
+canonical crop images rather than on the original PDF. For the current adapter
+list, see {doc}`../tutorial/08-table-ocr`.
 
 For those crop-consuming integrations, see:
 
-- {doc}`paddleocr-vl`
-- {doc}`chandra`
-- {doc}`nuextract3`
-- {doc}`tesseract-tatr`
-- {doc}`docling`
-- {doc}`granite-vision`
-- {doc}`trivia`
-- {doc}`glm-ocr`
-- {doc}`dolphin-v2`
-- {doc}`deepseek-ocr-2`
-- {doc}`nanonets-ocr-s`
-- {doc}`monkeyocrv2-b-parsing`
-- {doc}`nemotron-parse-v1-2`
-- {doc}`hunyuanocr-1-5`
-- {doc}`dots-mocr`
+- {doc}`../tutorial/08-table-ocr`
+- {doc}`../modules/table-ocr-adapters`
 
 Validated examples:
 
