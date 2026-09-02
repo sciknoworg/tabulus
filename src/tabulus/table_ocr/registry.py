@@ -80,6 +80,15 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "internvl3-5-8b": TableOCRAdapterSpec(
+        name="internvl3-5-8b",
+        display_name="InternVL3.5-8B",
+        entrypoint=(
+            "tabulus.table_ocr.internvl3_5_8b:InternVL35_8BAdapter"
+        ),
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "nanonets-ocr-s": TableOCRAdapterSpec(
         name="nanonets-ocr-s",
         display_name="Nanonets-OCR-s",
