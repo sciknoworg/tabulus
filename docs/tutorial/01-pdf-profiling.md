@@ -1,11 +1,14 @@
 # Step 1: PDF Profiling
 
 PDF profiling is the first runnable Tabulus stage. It takes one or more PDF
-files, runs the current profiler, discovers physical table regions, and writes
-the canonical table-crop handoff used by Stage 2 reconstruction.
+files, runs a PDF profiler, discovers physical table regions inside each PDF,
+and exports those detected tables as canonical crop images for Stage 2
+reconstruction.
 
-The current profiler is MinerU. That means `tabulus profile` is the Tabulus
-command, while `--backend`, `--method`, and `--effort` select MinerU behavior.
+The profiling interface is designed so different profiling tools can be used
+behind the same Tabulus handoff. The current implemented profiler is MinerU.
+That means `tabulus profile` is the Tabulus command, while `--backend`,
+`--method`, and `--effort` select MinerU-specific behavior.
 
 ## What This Stage Creates
 
@@ -34,7 +37,8 @@ By default, one profiled paper produces two output areas beside the source PDF:
 
 `tabulus-output/table-crops/<paper>/`
 : The stable Tabulus handoff for Stage 2. This contains `tables_index.json`
-  and copied canonical table crop images.
+  and copied canonical table crop images extracted from the table regions
+  discovered by the profiler.
 
 Later table reconstruction should use `table-crops/<paper>/`, not the full
 MinerU-native directory.
