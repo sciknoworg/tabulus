@@ -63,6 +63,16 @@ _ADAPTERS: dict[str, TableOCRAdapterSpec] = {
         cpu_supported=False,
         gpu_supported=True,
     ),
+    "hunyuanocr-1-5": TableOCRAdapterSpec(
+        name="hunyuanocr-1-5",
+        display_name="HunyuanOCR-1.5",
+        entrypoint=(
+            "tabulus.table_ocr.hunyuanocr_1_5:"
+            "HunyuanOCR15Adapter"
+        ),
+        cpu_supported=False,
+        gpu_supported=True,
+    ),
     "nanonets-ocr-s": TableOCRAdapterSpec(
         name="nanonets-ocr-s",
         display_name="Nanonets-OCR-s",
