@@ -71,6 +71,7 @@ The currently registered crop-consuming reconstruction adapters are:
 | `nanonets-ocr-s` | Implemented | {doc}`../external-tools/nanonets-ocr-s` |
 | `monkeyocrv2-b-parsing` | Implemented | {doc}`../external-tools/monkeyocrv2-b-parsing` |
 | `nemotron-parse-v1-2` | Implemented | {doc}`../external-tools/nemotron-parse-v1-2` |
+| `hunyuanocr-1-5` | Implemented | {doc}`../external-tools/hunyuanocr-1-5` |
 
 For the adapter interface and batch architecture, see
 {doc}`../modules/table-ocr-adapters`.
@@ -200,6 +201,13 @@ tabulus reconstruct-tables \
 tabulus reconstruct-tables \
   --crops "/path/to/tabulus-output/table-crops/<paper>" \
   --adapter nemotron-parse-v1-2 \
+  --device gpu:0
+```
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter hunyuanocr-1-5 \
   --device gpu:0
 ```
 
@@ -434,6 +442,35 @@ tables are returned, Tabulus preserves the evidence and does not arbitrarily
 choose or merge one. The adapter does not run external layout redetection,
 external table redetection, external recropping, semantic repair,
 continued-table merging, or reference resolution.
+
+HunyuanOCR-1.5 is a GPU-only document vision-language-model reconstruction
+route. It receives the canonical MinerU crop directly and uses the official
+HunyuanOCR table task to generate native HTML, which is then passed to the
+shared Tabulus HTML parser:
+
+```text
+canonical MinerU crop
+      |
+      v
+HunyuanOCR-1.5 official table task
+      |
+      v
+native generated HTML
+      |
+      v
+official HunyuanOCR repetition safeguards
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+The repetition controls are inference safeguards, not semantic table repair.
+Tabulus preserves raw, decoded, and clean parser-facing outputs as native
+provenance. If multiple HTML tables or structured tables are returned, Tabulus
+preserves them and does not arbitrarily select, collapse, concatenate, or merge
+one. The adapter does not run external layout redetection, external table
+redetection, external recropping, semantic repair, continued-table merging, or
+reference resolution.
 
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:

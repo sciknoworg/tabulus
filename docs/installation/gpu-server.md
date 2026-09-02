@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2 table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5 table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5
 
 ## 2. Request GPU Compute Resources
 
@@ -471,6 +471,9 @@ tabulus-monkeyocrv2-b-parsing
 
 tabulus-nemotron-parse-v1-2
   Tabulus + NVIDIA Nemotron Parse v1.2 + PyTorch/Transformers
+
+tabulus-hunyuanocr-1-5
+  Tabulus + HunyuanOCR-1.5 + PyTorch/Transformers/Accelerate
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -1284,3 +1287,70 @@ provenance, runtime package versions, and canonical-crop provenance under the
 standard `native/` layer. Generated bounding boxes are provenance only and are
 not used to recrop the image. For the full integration details and output
 boundaries, see {doc}`../external-tools/nemotron-parse-v1-2`.
+
+### HunyuanOCR-1.5 GPU Environment
+
+HunyuanOCR-1.5 is a GPU-only reconstruction adapter in the validated Tabulus
+configuration. It consumes the same canonical MinerU crop handoff as the other
+adapters and sends each crop directly to `tencent/HunyuanOCR` for the official
+table task. There is no external layout redetection, table redetection,
+candidate-specific recropping, semantic repair, or continued-table merging in
+this adapter. The implemented path uses direct Transformers inference rather
+than vLLM, DFlash, Docker, or another model-serving process.
+
+Create and activate a dedicated Python 3.12 environment:
+
+```bash
+conda create -n tabulus-hunyuanocr-1-5 python=3.12 -y
+conda activate tabulus-hunyuanocr-1-5
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated HunyuanOCR runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install \
+  "torch==2.11.0+cu130" \
+  "torchvision==0.26.0+cu130" \
+  "transformers==5.13.0" \
+  "accelerate==1.14.0" \
+  "Pillow"
+```
+
+The validated runtime used PyTorch 2.11.0+cu130, torchvision 0.26.0+cu130,
+Transformers 5.13.0, Accelerate 1.14.0, bfloat16, `AutoProcessor` with
+`use_fast=False`, the `HunYuanVLForConditionalGeneration` model class, model
+type `hunyuan_vl`, and eager attention.
+
+Verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter hunyuanocr-1-5 \
+  --device gpu:0
+```
+
+The adapter preserves raw model output with special tokens, decoded output with
+special tokens removed, clean parser-facing HTML after the official repeated
+suffix cleanup, repetition-safeguard metadata, model and revision metadata,
+dependency versions, and canonical-crop provenance under the standard
+`native/` layer before shared HTML parsing. For the full integration details
+and output boundaries, see {doc}`../external-tools/hunyuanocr-1-5`.

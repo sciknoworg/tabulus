@@ -8,9 +8,9 @@ Tabulus is a modular pipeline for digitizing scientific PDF papers into structur
 
 The project is being reorganized around standalone processing components rather than around specific OCR or extraction libraries. Each component should be runnable on its own, exchange data through a documented contract, and plug into the end-to-end pipeline once the individual step is stable.
 
-The current validated library module focuses on MinerU-backed PDF profiling and batch table reconstruction from canonical MinerU crops. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values. The table reconstruction layer provides an extensible adapter contract with registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2 adapters, plus `tabulus reconstruct-tables` for adapter-neutral batch reconstruction.
+The current validated library module focuses on MinerU-backed PDF profiling and batch table reconstruction from canonical MinerU crops. Tabulus can launch MinerU through the `tabulus profile` command, read the resulting structured output, expose typed table regions, and export a normalized table-crop handoff with image paths, page numbers, bounding boxes, captions, footnotes, and MinerU `table_body` values. The table reconstruction layer provides an extensible adapter contract with registered PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5 adapters, plus `tabulus reconstruct-tables` for adapter-neutral batch reconstruction.
 
-The target full pipeline keeps several output layers distinct: external-tool native artifacts, parsed table-reconstruction artifacts used for evaluation, prediction CSV files, bibliography/reference-resolution artifacts, and final resolved CSV files. The current implementation has validated MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2 integration pieces; the later bibliography, matching, DOI, and resolved-CSV stages remain planned for the rebuilt library.
+The target full pipeline keeps several output layers distinct: external-tool native artifacts, parsed table-reconstruction artifacts used for evaluation, prediction CSV files, bibliography/reference-resolution artifacts, and final resolved CSV files. The current implementation has validated MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5 integration pieces; the later bibliography, matching, DOI, and resolved-CSV stages remain planned for the rebuilt library.
 
 ## How To Use This Documentation
 
@@ -18,7 +18,7 @@ Start with the installation page that matches your machine. Windows and CPU-only
 
 For the current implementation, the most important distinction is:
 
-- **Already validated:** cross-platform MinerU execution through `tabulus profile`, typed table-region discovery with `tabulus.mineru`, automatic export of canonical table crops, PaddleOCR-VL CPU/GPU inference on MinerU table crops, Chandra OCR 2 GPU reconstruction, NuExtract3 GPU reconstruction, Tesseract + Table Transformer reconstruction, RapidOCR + Docling TableFormer reconstruction, Granite Vision 4.1 4B reconstruction, TRivia-3B reconstruction, GLM-OCR reconstruction, Dolphin-v2 reconstruction, DeepSeek-OCR-2 reconstruction, Nanonets-OCR-s reconstruction, MonkeyOCRv2-B-Parsing reconstruction, NVIDIA Nemotron Parse v1.2 reconstruction, `tabulus reconstruct-tables`, batch reconstruction dispatch, legacy-compatible HTML/Markdown table parsing, deterministic OTSL-to-HTML normalization, and `tabulus classify-reference-tables`.
+- **Already validated:** cross-platform MinerU execution through `tabulus profile`, typed table-region discovery with `tabulus.mineru`, automatic export of canonical table crops, PaddleOCR-VL CPU/GPU inference on MinerU table crops, Chandra OCR 2 GPU reconstruction, NuExtract3 GPU reconstruction, Tesseract + Table Transformer reconstruction, RapidOCR + Docling TableFormer reconstruction, Granite Vision 4.1 4B reconstruction, TRivia-3B reconstruction, GLM-OCR reconstruction, Dolphin-v2 reconstruction, DeepSeek-OCR-2 reconstruction, Nanonets-OCR-s reconstruction, MonkeyOCRv2-B-Parsing reconstruction, NVIDIA Nemotron Parse v1.2 reconstruction, HunyuanOCR-1.5 reconstruction, `tabulus reconstruct-tables`, batch reconstruction dispatch, legacy-compatible HTML/Markdown table parsing, deterministic OTSL-to-HTML normalization, and `tabulus classify-reference-tables`.
 - **Planned stages:** bibliography extraction, reference matching, DOI resolution, resolved CSV export, run reporting, and full end-to-end commands.
 
 ## Where To Start
@@ -149,6 +149,7 @@ external-tools/deepseek-ocr-2
 external-tools/nanonets-ocr-s
 external-tools/monkeyocrv2-b-parsing
 external-tools/nemotron-parse-v1-2
+external-tools/hunyuanocr-1-5
 ```
 
 ```{toctree}

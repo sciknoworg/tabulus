@@ -77,6 +77,7 @@ tabulus profile / MinerU
                 +--> Nanonets-OCR-s
                 +--> MonkeyOCRv2-B-Parsing
                 +--> NVIDIA Nemotron Parse v1.2
+                +--> HunyuanOCR-1.5
                 |
                 v
       tabulus reconstruct-tables
@@ -179,6 +180,7 @@ The rebuilt Tabulus library currently integrates several OCR and document unders
 * Nanonets-OCR-s
 * MonkeyOCRv2-B-Parsing
 * NVIDIA Nemotron Parse v1.2
+* HunyuanOCR-1.5
 * GROBID (legacy/reference-processing context)
 
 ---

@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, and NVIDIA Nemotron Parse v1.2 adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5 adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -62,6 +62,8 @@ The current `tabulus.table_ocr` package:
 - preserves MonkeyOCRv2-B-Parsing model/revision metadata, direct table-recognition settings, raw generated OTSL, special-token cleanup provenance, deterministic OTSL-to-HTML normalization provenance, and canonical-crop provenance
 - invokes NVIDIA Nemotron Parse v1.2 directly on canonical crops through Hugging Face Transformers with GPU-only validated registry support
 - preserves Nemotron model/revision metadata, C-RADIO dependency revision metadata, grounded semantic objects, generated bounding boxes as provenance, Table-class LaTeX/tabular content, NVIDIA-postprocessed HTML, generation settings, helper provenance, runtime package versions, and canonical-crop provenance
+- invokes HunyuanOCR-1.5 directly on canonical crops through Hugging Face Transformers with GPU-only validated registry support
+- preserves HunyuanOCR-1.5 model/revision metadata, model class/type, official table-task prompt, raw/decoded/clean HTML outputs, official repetition-safeguard metadata, dependency/runtime versions, and canonical-crop provenance
 - normalizes supported OTSL structural tokens into HTML before shared parsing without semantic cell correction or heuristic reconstruction repair
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
@@ -114,6 +116,7 @@ The current tests verify:
 - Nanonets-OCR-s registry metadata, GPU-only device handling, deterministic generation settings, raw/clean HTML preservation, shared-parser dispatch, processor configuration, and empty-result handling
 - MonkeyOCRv2-B-Parsing registry metadata, GPU-only device handling, deterministic generation settings, direct table-recognition configuration, raw OTSL preservation, and OTSL-to-HTML parser dispatch
 - NVIDIA Nemotron Parse v1.2 registry metadata, GPU-only device handling, local pinned helper loading, C-RADIO revision verification, NVIDIA generation processors, grounded object preservation, Table-class HTML postprocessing, shared-parser dispatch, multiple-table preservation, and empty-result handling
+- HunyuanOCR-1.5 registry metadata, GPU-only device handling, exact dependency-version checks, runtime reuse, official table-task prompt, raw/decoded/clean HTML preservation, official repetition safeguards, shared-parser dispatch, multiple-table preservation, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
 - shared OTSL-to-HTML normalization for `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`
 - batch table-reconstruction input loading and error handling
@@ -441,6 +444,22 @@ deterministic table postprocessing, and passes the resulting HTML through the
 shared parser. Generated bounding boxes are not used for recropping. The
 adapter does not perform external layout redetection, table redetection,
 semantic repair, reference resolution, or continued-table merging.
+
+HunyuanOCR-1.5 has been integrated as a registered GPU-only reconstruction
+adapter using `tencent/HunyuanOCR` at revision
+`47644ecc4fc854efa4f505155158831f36773ee4`. The validated configuration uses
+Python 3.12, Transformers 5.13.0, Accelerate 1.14.0, PyTorch 2.11.0+cu130,
+torchvision 0.26.0+cu130, bfloat16, eager attention,
+`HunYuanVLForConditionalGeneration`, and model type `hunyuan_vl`.
+
+HunyuanOCR-1.5 receives canonical MinerU crops directly and uses the official
+table prompt `把图中的表格解析为HTML。`. Tabulus preserves raw output with special
+tokens, decoded output with special tokens removed, and clean parser-facing
+HTML after the official repeated-suffix cleanup. Tail-repetition stopping and
+final repeated-suffix cleanup are recorded as inference safeguards, not
+semantic table repair. The clean HTML is passed through the shared parser, and
+multiple HTML tables are preserved without arbitrary selection, collapse,
+concatenation, or merging.
 
 ## Not Yet Implemented In The New Library
 
