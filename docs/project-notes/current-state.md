@@ -35,7 +35,7 @@ The current `tabulus.table_ocr` package:
 
 - defines `TableOCRInput`, `TableOCRResult`, `TableOCRCapabilities`, and the `TableOCRAdapter` protocol
 - provides an adapter registry with lazy loading
-- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5 adapters for MinerU-generated table crops
+- implements PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr adapters for MinerU-generated table crops
 - provides `tabulus.table_ocr.batch` for adapter-neutral batch reconstruction
 - provides `tabulus.table_ocr.output` for native, parsed, and prediction artifact writing
 - initializes PaddleOCR-VL with layout detection disabled
@@ -64,6 +64,8 @@ The current `tabulus.table_ocr` package:
 - preserves Nemotron model/revision metadata, C-RADIO dependency revision metadata, grounded semantic objects, generated bounding boxes as provenance, Table-class LaTeX/tabular content, NVIDIA-postprocessed HTML, generation settings, helper provenance, runtime package versions, and canonical-crop provenance
 - invokes HunyuanOCR-1.5 directly on canonical crops through Hugging Face Transformers with GPU-only validated registry support
 - preserves HunyuanOCR-1.5 model/revision metadata, model class/type, official table-task prompt, raw/decoded/clean HTML outputs, official repetition-safeguard metadata, dependency/runtime versions, and canonical-crop provenance
+- invokes dots.mocr directly on canonical crops through Hugging Face Transformers with GPU-only validated registry support
+- preserves dots.mocr model/revision metadata, resolved remote-code classes, active layout prompt, raw and clean JSON layout output, Table-category objects, table bounding boxes as provenance only, model-emitted HTML, dependency/runtime versions, and canonical-crop provenance
 - normalizes supported OTSL structural tokens into HTML before shared parsing without semantic cell correction or heuristic reconstruction repair
 - restores the legacy HTML-first, Markdown-fallback row parser
 - records explicit `ok`, `empty`, or `error` statuses instead of silently dropping tables
@@ -117,6 +119,7 @@ The current tests verify:
 - MonkeyOCRv2-B-Parsing registry metadata, GPU-only device handling, deterministic generation settings, direct table-recognition configuration, raw OTSL preservation, and OTSL-to-HTML parser dispatch
 - NVIDIA Nemotron Parse v1.2 registry metadata, GPU-only device handling, local pinned helper loading, C-RADIO revision verification, NVIDIA generation processors, grounded object preservation, Table-class HTML postprocessing, shared-parser dispatch, multiple-table preservation, and empty-result handling
 - HunyuanOCR-1.5 registry metadata, GPU-only device handling, exact dependency-version checks, runtime reuse, official table-task prompt, raw/decoded/clean HTML preservation, official repetition safeguards, shared-parser dispatch, multiple-table preservation, and empty-result handling
+- dots.mocr registry metadata, GPU-only device handling, exact dependency-version checks, runtime reuse, remote-code class verification, active layout prompt, JSON layout traversal, Table-category filtering, bounding-box provenance policy, shared-parser dispatch, multiple-table preservation, invalid-JSON handling, and empty-result handling
 - legacy-compatible HTML/Markdown table parsing
 - shared OTSL-to-HTML normalization for `fcel`, `ecel`, `lcel`, `ucel`, `xcel`, and `nl`
 - batch table-reconstruction input loading and error handling
@@ -460,6 +463,22 @@ final repeated-suffix cleanup are recorded as inference safeguards, not
 semantic table repair. The clean HTML is passed through the shared parser, and
 multiple HTML tables are preserved without arbitrary selection, collapse,
 concatenation, or merging.
+
+dots.mocr has been integrated as a registered GPU-only reconstruction adapter
+using `dots-studio/dots.mocr` at revision
+`e539fbb52280393adc081b289ec597430a0f9031`. The validated configuration uses
+Python 3.12, Transformers 4.57.6, Accelerate 1.14.0, PyTorch 2.7.0+cu128,
+torchvision 0.22.0+cu128, qwen-vl-utils 0.0.14, FlashAttention 2.8.0.post2,
+bfloat16, and `flash_attention_2`.
+
+dots.mocr receives canonical MinerU crops directly and uses the active
+`prompt_layout_all_en` prompt to generate model-native JSON layout output.
+Tabulus selects model-emitted objects whose category is `Table`, preserves
+their HTML and bounding boxes as native evidence, and passes the HTML through
+the shared parser. The bounding boxes are provenance only and are not used for
+recropping. The adapter performs no JSON repair, semantic repair, external
+layout redetection, external table redetection, external recropping, reference
+resolution, or continued-table merging.
 
 ## Not Yet Implemented In The New Library
 

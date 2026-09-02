@@ -58,8 +58,9 @@ Benchmarking can evaluate implemented and future candidate table reconstructions
 - MinerU crop -> MonkeyOCRv2-B-Parsing
 - MinerU crop -> NVIDIA Nemotron Parse v1.2
 - MinerU crop -> HunyuanOCR-1.5
+- MinerU crop -> dots.mocr
 
-MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5 are current crop-consuming Tabulus reconstruction adapters. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
+MinerU `table_body` is produced during PDF profiling. PaddleOCR-VL, Chandra, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr are current crop-consuming Tabulus reconstruction adapters. The crop-consuming adapters use the same MinerU-generated table crop through the normalized table-crop handoff. They should not independently process the original PDF to detect tables, set bounding boxes, or create competing crops for this comparison.
 
 ```text
 same detected table
@@ -81,6 +82,7 @@ same detected table
               +-- MonkeyOCRv2-B-Parsing
               +-- NVIDIA Nemotron Parse v1.2
               +-- HunyuanOCR-1.5
+              +-- dots.mocr
 ```
 
 Because the adapter-native output formats may differ, Tabulus should normalize every candidate into a common table representation and export a prediction CSV before scoring against the ground-truth CSV.

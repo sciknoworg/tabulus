@@ -1,6 +1,6 @@
 # GPU Server Installation
 
-This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5 table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
+This page documents the supported GPU installation and validation workflow for Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and MinerU's `hybrid-engine` backend. PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr table reconstruction are validated separately in adapter-specific environments so their heavyweight dependency stacks do not destabilize each other.
 
 A GPU is not required for all Tabulus use. Windows and CPU-only machines can use the `pipeline` backend documented in `installation/windows-cpu`.
 
@@ -57,7 +57,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, and HunyuanOCR-1.5
+- separate Conda environments for MinerU, PaddleOCR-VL, Chandra OCR 2, NuExtract3, Tesseract + Table Transformer, RapidOCR + Docling TableFormer, Granite Vision 4.1 4B, TRivia-3B, GLM-OCR, Dolphin-v2, DeepSeek-OCR-2, Nanonets-OCR-s, MonkeyOCRv2-B-Parsing, NVIDIA Nemotron Parse v1.2, HunyuanOCR-1.5, and dots.mocr
 
 ## 2. Request GPU Compute Resources
 
@@ -474,6 +474,9 @@ tabulus-nemotron-parse-v1-2
 
 tabulus-hunyuanocr-1-5
   Tabulus + HunyuanOCR-1.5 + PyTorch/Transformers/Accelerate
+
+tabulus-dots-mocr
+  Tabulus + dots.mocr + PyTorch/Transformers/FlashAttention
 ```
 
 These environments can install Tabulus from the same repository checkout in editable mode. They are pipeline-stage environments, not separate versions of the Tabulus source code.
@@ -1354,3 +1357,73 @@ suffix cleanup, repetition-safeguard metadata, model and revision metadata,
 dependency versions, and canonical-crop provenance under the standard
 `native/` layer before shared HTML parsing. For the full integration details
 and output boundaries, see {doc}`../external-tools/hunyuanocr-1-5`.
+
+### dots.mocr GPU Environment
+
+dots.mocr is a GPU-only reconstruction adapter in the validated Tabulus
+configuration. It consumes the same canonical MinerU crop handoff as the other
+adapters and sends each crop directly to `dots-studio/dots.mocr` through the
+active `prompt_layout_all_en` layout prompt. There is no external layout
+redetection, table redetection, candidate-specific recropping, JSON repair,
+semantic repair, or continued-table merging in this adapter. The implemented
+path uses direct Transformers inference rather than a vLLM server.
+
+Create and activate a dedicated Python 3.12 environment:
+
+```bash
+conda create -n tabulus-dots-mocr python=3.12 -y
+conda activate tabulus-dots-mocr
+cd "$TABULUS_ROOT"
+```
+
+Install Tabulus and the validated dots.mocr runtime pieces:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pip install \
+  "torch==2.7.0+cu128" \
+  "torchvision==0.22.0+cu128" \
+  "transformers==4.57.6" \
+  "accelerate==1.14.0" \
+  "qwen-vl-utils==0.0.14" \
+  "flash-attn==2.8.0.post2" \
+  "Pillow"
+```
+
+The validated runtime used PyTorch 2.7.0+cu128, torchvision 0.22.0+cu128,
+Transformers 4.57.6, Accelerate 1.14.0, qwen-vl-utils 0.0.14,
+FlashAttention 2.8.0.post2, bfloat16, `flash_attention_2`,
+`DotsOCRForCausalLM`, `DotsOCRConfig`, `DotsVLProcessor`,
+`Qwen2VLImageProcessorFast`, and `Qwen2TokenizerFast`.
+
+Verify CUDA visibility from inside this environment:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python - <<'PY'
+import torch
+import transformers
+
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("Visible GPUs:", torch.cuda.device_count())
+print("Transformers:", transformers.__version__)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+PY
+```
+
+Run reconstruction against the canonical MinerU crops:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 tabulus reconstruct-tables \
+  --crops-folder "$PAPERS/tabulus-output/table-crops" \
+  --adapter dots-mocr \
+  --device gpu:0
+```
+
+The adapter preserves raw model output, clean JSON layout output with special
+tokens removed, parsed native layout JSON, model-emitted Table objects, Table
+HTML, table bounding boxes as provenance only, dependency versions, and
+canonical-crop provenance under the standard `native/` layer before shared
+HTML parsing. For the full integration details and output boundaries, see
+{doc}`../external-tools/dots-mocr`.

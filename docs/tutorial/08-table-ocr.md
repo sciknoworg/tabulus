@@ -72,6 +72,7 @@ The currently registered crop-consuming reconstruction adapters are:
 | `monkeyocrv2-b-parsing` | Implemented | {doc}`../external-tools/monkeyocrv2-b-parsing` |
 | `nemotron-parse-v1-2` | Implemented | {doc}`../external-tools/nemotron-parse-v1-2` |
 | `hunyuanocr-1-5` | Implemented | {doc}`../external-tools/hunyuanocr-1-5` |
+| `dots-mocr` | Implemented | {doc}`../external-tools/dots-mocr` |
 
 For the adapter interface and batch architecture, see
 {doc}`../modules/table-ocr-adapters`.
@@ -208,6 +209,13 @@ tabulus reconstruct-tables \
 tabulus reconstruct-tables \
   --crops "/path/to/tabulus-output/table-crops/<paper>" \
   --adapter hunyuanocr-1-5 \
+  --device gpu:0
+```
+
+```bash
+tabulus reconstruct-tables \
+  --crops "/path/to/tabulus-output/table-crops/<paper>" \
+  --adapter dots-mocr \
   --device gpu:0
 ```
 
@@ -471,6 +479,38 @@ preserves them and does not arbitrarily select, collapse, concatenate, or merge
 one. The adapter does not run external layout redetection, external table
 redetection, external recropping, semantic repair, continued-table merging, or
 reference resolution.
+
+dots.mocr is a GPU-only document vision-language-model reconstruction route.
+It receives the canonical MinerU crop directly and uses the active dots.mocr
+layout prompt to produce model-native JSON layout output. Tabulus selects
+model-emitted objects whose category is `Table`, preserves their HTML, and
+passes that HTML to the shared parser:
+
+```text
+canonical MinerU crop
+      |
+      v
+dots.mocr active layout prompt
+      |
+      v
+model-native JSON layout output
+      |
+      v
+category == "Table" objects
+      |
+      v
+model-emitted HTML
+      |
+      v
+shared Tabulus parser/output contract
+```
+
+dots.mocr can emit bounding boxes as part of its model-native layout output.
+Tabulus keeps those boxes as provenance only and does not use them to recrop
+the canonical image. The adapter performs no JSON repair, semantic repair,
+continued-table merging, or reference resolution. If multiple Table objects or
+structured tables are returned from one crop, Tabulus preserves the evidence
+and does not arbitrarily select, concatenate, collapse, or merge one.
 
 For multiple papers, process every immediate child directory that contains a
 `tables_index.json` file:
