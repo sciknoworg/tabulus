@@ -78,7 +78,7 @@ Each OCR component can be started separately from its own folder.
 Used to detect and crop tables from PDF files.
 
 ```bash
-cd src/ocr_models/components/mineru_service
+cd legacy/ocr_models/components/mineru_service
 docker compose up --build
 ```
 
@@ -91,7 +91,7 @@ The MinerU service is used by several runners to create table PNG crops before a
 Used for table OCR and optional reference extraction.
 
 ```bash
-cd src/ocr_models/components/deepseekOCR2
+cd legacy/ocr_models/components/deepseekOCR2
 docker compose up --build
 ```
 
@@ -114,7 +114,7 @@ runner_mineru_deepseek_tables_and_refs.py
 Used for table OCR and reference extraction.
 
 ```bash
-cd src/ocr_models/components/paddleOCR_VL
+cd legacy/ocr_models/components/paddleOCR_VL
 docker compose up --build
 ```
 
@@ -138,7 +138,7 @@ runner_paddle_references.py
 Used for raw text extraction from PDFs and OCR extraction from table PNG images.
 
 ```bash
-cd src/ocr_models/components/Kreuzberg
+cd legacy/ocr_models/components/Kreuzberg
 docker compose up --build
 ```
 
@@ -162,7 +162,7 @@ runner_kreuzberg_table_png.py
 Run all runner scripts from:
 
 ```bash
-cd src/ocr_models
+cd legacy/ocr_models
 ```
 
 This is important because the imports are based on this working directory.

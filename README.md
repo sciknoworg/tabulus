@@ -143,7 +143,7 @@ tabulus/
 | ---------------- | ---------------------------------------------------------- |
 | `src/tabulus`    | Current installable Tabulus library and CLI                |
 | `src/legacy_tabulus` | Retained legacy thesis implementation                  |
-| `src/ocr_models` | Historical OCR services, runners, and benchmarking components |
+| `legacy/ocr_models` | Historical OCR services, runners, and benchmarking components |
 | `docs`           | ReadTheDocs documentation                                  |
 | `tests`          | Current library test suite                                 |
 | `evaluation`     | Evaluation scripts, metrics, and visualizations            |
