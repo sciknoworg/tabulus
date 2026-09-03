@@ -185,6 +185,7 @@ def main() -> int:
     total_start = time.perf_counter()
     metadata: dict[str, Any] = {
         "schema_version": 1,
+        "stage": "reconstruction",
         "run_id": run_id,
         "corpus": args.corpus,
         "adapter": args.adapter,

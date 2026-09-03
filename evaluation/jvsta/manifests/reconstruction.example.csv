@@ -1,0 +1,3 @@
+enabled,stage,corpus,backend,adapter,conda_env,partition,gres,nodelist,cpus,memory,time_limit,input_path,run_root,device,effort,method
+1,reconstruction,ald,,internvl3-5-8b,tabulus-internvl3-5-8b,p_48G,gpu:l40s:1,,8,32G,12:00:00,$HOME/jvsta-experiments/FROZEN-CROPS/ald,$HOME/jvsta-experiments,gpu:0,,
+1,reconstruction,asd,,internvl3-5-8b,tabulus-internvl3-5-8b,p_48G,gpu:l40s:1,,8,32G,12:00:00,$HOME/jvsta-experiments/FROZEN-CROPS/asd,$HOME/jvsta-experiments,gpu:0,,

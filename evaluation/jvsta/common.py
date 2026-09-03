@@ -561,21 +561,33 @@ def flatten_run_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
     gpu_models = "; ".join(
         sorted({str(gpu.get("name")) for gpu in gpu_inventory if gpu.get("name")})
     )
+    gpu_visible_indices = "; ".join(
+        str(gpu.get("index")) for gpu in gpu_inventory if gpu.get("index") is not None
+    )
+    gpu_uuids = "; ".join(
+        str(gpu.get("uuid")) for gpu in gpu_inventory if gpu.get("uuid")
+    )
     gpu_total_vram_mib = max(
         (float(gpu.get("memory_total_mib", 0.0) or 0.0) for gpu in gpu_inventory),
         default=None,
     )
     gpu_count = len(gpu_inventory)
     reconstruction_wall = timing.get("reconstruction_wall_seconds")
+    profiling_wall = timing.get("profiling_wall_seconds")
+    work_wall = reconstruction_wall if reconstruction_wall is not None else profiling_wall
     gpu_hours = (
-        float(reconstruction_wall) / 3600.0 * gpu_count
-        if isinstance(reconstruction_wall, (int, float)) and gpu_count
+        float(work_wall) / 3600.0 * gpu_count
+        if isinstance(work_wall, (int, float)) and gpu_count
         else 0.0
     )
+    profiling_input = metadata.get("input") or {}
+    canonical_crops = metadata.get("canonical_crops") or {}
 
     return {
         "run_id": metadata.get("run_id"),
+        "stage": metadata.get("stage", "reconstruction"),
         "corpus": metadata.get("corpus"),
+        "backend": metadata.get("backend"),
         "adapter": metadata.get("adapter"),
         "status": metadata.get("status"),
         "tabulus_commit": git.get("commit"),
@@ -584,7 +596,10 @@ def flatten_run_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
         "slurm_job_id": slurm.get("slurm_job_id"),
         "partition": slurm.get("slurm_job_partition"),
         "node": slurm.get("slurmd_nodename") or metadata.get("host", {}).get("hostname"),
+        "slurm_gpu_ids": slurm.get("slurm_job_gpus"),
         "cuda_visible_devices": slurm.get("cuda_visible_devices"),
+        "gpu_visible_indices": gpu_visible_indices,
+        "gpu_uuids": gpu_uuids,
         "gpu_models": gpu_models,
         "gpu_count": gpu_count,
         "gpu_total_vram_mib": gpu_total_vram_mib,
@@ -592,7 +607,14 @@ def flatten_run_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
         "max_host_rss_mib": resources.get("max_host_rss_mib"),
         "start_time_utc": timing.get("start_time_utc"),
         "end_time_utc": timing.get("end_time_utc"),
+        "profiling_wall_seconds": profiling_wall,
         "reconstruction_wall_seconds": reconstruction_wall,
+        "pdfs_requested": profiling_input.get("pdfs_requested"),
+        "pages_total_known": profiling_input.get("pages_total_known"),
+        "pages_complete": profiling_input.get("pages_complete"),
+        "canonical_crop_roots": canonical_crops.get("paper_crop_roots"),
+        "tables_detected": canonical_crops.get("tables_found"),
+        "canonical_crops_saved": canonical_crops.get("crops_saved"),
         "batch_elapsed_seconds": reconstruction.get("batch_elapsed_seconds"),
         "median_seconds_per_table": runtime_stats.get("median"),
         "iqr_seconds_per_table": runtime_stats.get("iqr"),

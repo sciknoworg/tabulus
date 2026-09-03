@@ -198,3 +198,38 @@ def test_flatten_run_metadata_contains_paper_metrics() -> None:
     assert row["failure_generation_ceiling"] == 3
     assert row["successful_reference_like"] == 67
     assert row["median_cells"] == 50
+
+
+def test_flatten_run_metadata_preserves_slurm_and_visible_gpu_identity() -> None:
+    metadata = {
+        "run_id": "r2",
+        "stage": "reconstruction",
+        "corpus": "ald",
+        "adapter": "internvl3-5-8b",
+        "status": "success",
+        "git": {"commit": "abc", "tracked_worktree_dirty": False},
+        "host": {"hostname": "gpu-l40s-01"},
+        "slurm": {
+            "slurm_job_id": "32718",
+            "slurm_job_partition": "p_48G",
+            "slurm_job_gpus": "2",
+            "cuda_visible_devices": "0",
+        },
+        "environment": {"conda_default_env": "env"},
+        "resources": {
+            "allocated_gpus": [
+                {
+                    "index": "0",
+                    "uuid": "GPU-d3de",
+                    "name": "NVIDIA L40S",
+                    "memory_total_mib": 46068,
+                }
+            ]
+        },
+        "timing": {"reconstruction_wall_seconds": 60},
+    }
+    row = flatten_run_metadata(metadata)
+    assert row["slurm_gpu_ids"] == "2"
+    assert row["cuda_visible_devices"] == "0"
+    assert row["gpu_visible_indices"] == "0"
+    assert row["gpu_uuids"] == "GPU-d3de"

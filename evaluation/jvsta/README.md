@@ -49,3 +49,39 @@ python -m evaluation.jvsta.summarize_experiments \
 ```
 
 The CSV contains coverage, parsing, runtime, resource, robustness, downstream, output-complexity, and reproducibility fields suitable for later paper tables and plots.
+
+## Profile PDF corpora under the same harness
+
+Publication profiling runs wrap the real `tabulus profile` CLI and write MinerU output plus canonical table crops into an isolated run directory:
+
+```bash
+python -m evaluation.jvsta.run_profiling_experiment \
+  --corpus ald \
+  --pdf-folder "$HOME/ald-papers" \
+  --backend hybrid-engine \
+  --run-root "$HOME/jvsta-experiments" \
+  --expected-commit <TABULUS_GIT_SHA>
+```
+
+Profiling metadata records PDF counts, page counts when `pdfinfo` is available, profiling wall time, host RSS, Slurm/GPU identity, tables detected, and canonical crops saved. `pipeline` runs do not sample GPU memory; `hybrid-engine` runs do.
+
+## Slurm matrix launcher
+
+`evaluation/jvsta/slurm/submit_matrix.py` renders `sbatch` commands from a CSV manifest. It is deliberately dry-run by default:
+
+```bash
+python -m evaluation.jvsta.slurm.submit_matrix \
+  --manifest evaluation/jvsta/manifests/profiling.example.csv
+```
+
+Review the rendered commands, then submit explicitly:
+
+```bash
+python -m evaluation.jvsta.slurm.submit_matrix \
+  --manifest evaluation/jvsta/manifests/profiling.example.csv \
+  --submit
+```
+
+The launcher pins every job to the current clean Tabulus commit unless `--expected-commit` is supplied. The bundled profiling example uses no GPU GRES for the CPU `pipeline` backend and `gpu:l40s:1` for `hybrid-engine`. The reconstruction example uses one L40S GPU per job and leaves the canonical crop paths as `FROZEN-CROPS` placeholders until a paper crop set is explicitly frozen.
+
+On the TIB cluster, Slurm may report a physical allocation such as `SLURM_JOB_GPUS=2` while exposing that isolated device to the process as `CUDA_VISIBLE_DEVICES=0`. Run metadata and summary CSVs preserve both identities plus the visible GPU UUID.

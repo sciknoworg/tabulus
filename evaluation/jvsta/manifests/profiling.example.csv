@@ -1,0 +1,5 @@
+enabled,stage,corpus,backend,adapter,conda_env,partition,gres,nodelist,cpus,memory,time_limit,input_path,run_root,device,effort,method
+1,profiling,ald,pipeline,,tabulus-mineru,p_48G,,gpu-l40s-01,8,32G,12:00:00,$HOME/ald-papers,$HOME/jvsta-experiments,,high,auto
+1,profiling,ald,hybrid-engine,,tabulus-mineru,p_48G,gpu:l40s:1,,8,32G,12:00:00,$HOME/ald-papers,$HOME/jvsta-experiments,,high,auto
+1,profiling,asd,pipeline,,tabulus-mineru,p_48G,,gpu-l40s-01,8,32G,12:00:00,$HOME/asd-papers,$HOME/jvsta-experiments,,high,auto
+1,profiling,asd,hybrid-engine,,tabulus-mineru,p_48G,gpu:l40s:1,,8,32G,12:00:00,$HOME/asd-papers,$HOME/jvsta-experiments,,high,auto
