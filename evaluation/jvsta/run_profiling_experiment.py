@@ -177,6 +177,7 @@ def main() -> int:
     slurm = slurm_metadata()
     inventory = query_gpu_inventory()
     gpu_backed = args.backend == "hybrid-engine"
+    export_canonical_crops = args.backend == "hybrid-engine"
     allocated_gpus = (
         select_allocated_gpus(
             inventory,
@@ -198,6 +199,7 @@ def main() -> int:
         "backend": args.backend,
         "method": args.method,
         "effort": args.effort,
+        "canonical_crop_export": export_canonical_crops,
         "status": "running",
         "git": git,
         "host": host_identity(),
@@ -243,9 +245,11 @@ def main() -> int:
         args.effort,
         "--out",
         str(profiler_root),
-        "--table-crops-out",
-        str(crops_root),
     ]
+    if export_canonical_crops:
+        command.extend(["--table-crops-out", str(crops_root)])
+    else:
+        command.append("--no-export-table-crops")
 
     try:
         result = _run_command(
@@ -256,16 +260,29 @@ def main() -> int:
             resource_path=resource_path,
         )
         metadata["commands"] = {"profiling": result}
-        metadata["canonical_crops"] = summarize_canonical_crops(crops_root)
-        expected_papers = int(input_summary["pdfs_requested"])
-        crop_roots = int(metadata["canonical_crops"]["paper_crop_roots"])
         command_ok = result["return_code"] == 0
-        metadata["status"] = "success" if command_ok and crop_roots == expected_papers else "failed"
-        if command_ok and crop_roots != expected_papers:
-            metadata["harness_error"] = (
-                f"Profiling returned success but produced {crop_roots} canonical crop roots "
-                f"for {expected_papers} PDFs."
-            )
+        if export_canonical_crops:
+            metadata["canonical_crops"] = {
+                "export_enabled": True,
+                **summarize_canonical_crops(crops_root),
+            }
+            expected_papers = int(input_summary["pdfs_requested"])
+            crop_roots = int(metadata["canonical_crops"]["paper_crop_roots"])
+            metadata["status"] = "success" if command_ok and crop_roots == expected_papers else "failed"
+            if command_ok and crop_roots != expected_papers:
+                metadata["harness_error"] = (
+                    f"Profiling returned success but produced {crop_roots} canonical crop roots "
+                    f"for {expected_papers} PDFs."
+                )
+        else:
+            metadata["canonical_crops"] = {
+                "export_enabled": False,
+                "paper_crop_roots": 0,
+                "tables_found": 0,
+                "crops_saved": 0,
+                "papers": [],
+            }
+            metadata["status"] = "success" if command_ok else "failed"
     except BaseException as error:
         metadata["status"] = "failed"
         metadata["harness_error"] = f"{type(error).__name__}: {error}"
@@ -290,6 +307,7 @@ def main() -> int:
     print(f"Run metadata: {metadata_path}")
     print(f"Run status: {metadata['status']}")
     print(f"PDFs requested: {input_summary['pdfs_requested']}")
+    print(f"Canonical crop export: {'enabled' if export_canonical_crops else 'disabled'}")
     crops = metadata.get("canonical_crops") or {}
     print(f"Canonical crop roots: {crops.get('paper_crop_roots')}")
     print(f"Tables found: {crops.get('tables_found')}")
