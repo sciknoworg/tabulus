@@ -51,6 +51,10 @@ def test_build_sbatch_command_for_l40s_reconstruction(tmp_path: Path) -> None:
     assert "--nodelist" not in command
     assert "evaluation.jvsta.run_experiment" in command
     assert "abc123" in command
+    wrapper = str(tmp_path / "evaluation" / "jvsta" / "slurm" / "run_job.sh")
+    wrapper_index = command.index(wrapper)
+    assert command[wrapper_index + 1] == str(tmp_path)
+    assert command[wrapper_index + 2] == "tabulus-internvl3-5-8b"
 
 
 def test_build_sbatch_command_for_cpu_pipeline_uses_no_gpu(tmp_path: Path) -> None:

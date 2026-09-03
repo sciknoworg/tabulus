@@ -143,6 +143,7 @@ def build_sbatch_command(
     command.extend(
         [
             str(repo_root / "evaluation" / "jvsta" / "slurm" / "run_job.sh"),
+            str(repo_root),
             conda_env,
             *payload,
         ]

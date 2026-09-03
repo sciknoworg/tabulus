@@ -1,15 +1,23 @@
 #!/bin/bash
 set -euo pipefail
 
-if [[ $# -lt 2 ]]; then
-  echo "Usage: run_job.sh <conda-env> <command> [args ...]" >&2
+if [[ $# -lt 3 ]]; then
+  echo "Usage: run_job.sh <repo-root> <conda-env> <command> [args ...]" >&2
   exit 2
 fi
 
-env_name="$1"
-shift
+repo_root="$1"
+env_name="$2"
+shift 2
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+if [[ ! -d "$repo_root" ]]; then
+  echo "Tabulus repository root does not exist: $repo_root" >&2
+  exit 2
+fi
+if [[ ! -f "$repo_root/evaluation/__init__.py" ]]; then
+  echo "Tabulus repository root does not contain evaluation package: $repo_root" >&2
+  exit 2
+fi
 cd "$repo_root"
 
 conda_bin="${CONDA_EXE:-}"
