@@ -148,6 +148,8 @@ def find_references_start_page(
 
 def discover_tables(
     mineru_output_dir: Path,
+    *,
+    skip_missing_img_path: bool = False,
 ) -> tuple[list[TableRegion], int | None]:
     """
     Discover table regions from an existing MinerU result.
@@ -179,6 +181,8 @@ def discover_tables(
         img_path = item.get("img_path")
 
         if not isinstance(img_path, str) or not img_path.strip():
+            if skip_missing_img_path:
+                continue
             raise ValueError(
                 f"Table {table_id} has no valid img_path"
             )

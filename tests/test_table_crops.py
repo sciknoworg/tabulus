@@ -120,3 +120,43 @@ def test_export_table_crops_raises_for_missing_source_image(tmp_path):
             tables=[table],
             output_dir=tmp_path / "table_crops",
         )
+
+
+def test_export_mineru_table_crops_records_unmaterializable_tables(tmp_path):
+    mineru_root = make_mineru_output(tmp_path)
+    content_list = next(mineru_root.rglob("*_content_list.json"))
+    content = json.loads(content_list.read_text(encoding="utf-8"))
+    content.insert(
+        1,
+        {
+            "type": "table",
+            "page_idx": 4,
+            "img_path": "",
+            "bbox": [1, 2, 3, 4],
+            "table_caption": [],
+            "table_footnote": [],
+        },
+    )
+    content_list.write_text(json.dumps(content), encoding="utf-8")
+
+    out_dir = tmp_path / "table_crops"
+    result = export_mineru_table_crops(
+        mineru_output_dir=mineru_root,
+        output_dir=out_dir,
+    )
+    data = json.loads(result.index_path.read_text(encoding="utf-8"))
+
+    assert result.tables_found == 3
+    assert result.crops_saved == 2
+    assert data["tables_found"] == 3
+    assert data["crops_saved"] == 2
+    assert data["unmaterializable_count"] == 1
+    assert data["unmaterializable_tables"] == [
+        {
+            "table_id": 2,
+            "page_nr": 5,
+            "bbox": [1, 2, 3, 4],
+            "reason": "missing_img_path",
+        }
+    ]
+    assert [table["table_id"] for table in data["tables"]] == [1, 3]

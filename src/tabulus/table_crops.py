@@ -6,7 +6,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from tabulus.mineru.tables import discover_tables, find_content_list
+from tabulus.mineru.tables import (
+    discover_tables,
+    find_content_list,
+    load_content_items,
+)
 from tabulus.models import TableRegion
 
 
@@ -126,16 +130,42 @@ def export_mineru_table_crops(
 ) -> TableCropExportResult:
     """Export table crops from an existing MinerU output directory."""
 
-    tables, refs_start_page = discover_tables(mineru_output_dir)
+    content_list = find_content_list(mineru_output_dir)
+    items = load_content_items(content_list)
+    table_items = [item for item in items if item.get("type") == "table"]
+    unmaterializable_tables: list[dict[str, Any]] = []
+
+    for table_id, item in enumerate(table_items, start=1):
+        img_path = item.get("img_path")
+        if isinstance(img_path, str) and img_path.strip():
+            continue
+        page_idx = item.get("page_idx")
+        unmaterializable_tables.append(
+            {
+                "table_id": table_id,
+                "page_nr": page_idx + 1 if isinstance(page_idx, int) else None,
+                "bbox": item.get("bbox"),
+                "reason": "missing_img_path",
+            }
+        )
+
+    tables, refs_start_page = discover_tables(
+        mineru_output_dir,
+        skip_missing_img_path=True,
+    )
     result = export_table_crops(
         tables=tables,
         output_dir=output_dir,
         refs_start_page=refs_start_page,
     )
 
+    result.tables_found = len(table_items)
+
     data = result.to_dict()
+    data["unmaterializable_count"] = len(unmaterializable_tables)
+    data["unmaterializable_tables"] = unmaterializable_tables
     data["mineru_output_dir"] = str(Path(mineru_output_dir))
-    data["mineru_content_list"] = str(find_content_list(mineru_output_dir))
+    data["mineru_content_list"] = str(content_list)
 
     result.index_path.write_text(
         json.dumps(
