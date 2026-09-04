@@ -106,3 +106,11 @@ locate or crop tables from the original PDF. It does not use a separate OCR
 engine, semantically correct cells, merge continued tables, apply reference-
 resolution heuristics, extract bibliographies, match references, resolve DOI
 values, or generate final resolved CSV files.
+
+Validation has also found an input-dependent robustness limitation: some table
+images can trigger pathological Granite Vision generation with very long
+per-table runtimes and extreme CPU/GPU memory consumption. The adapter works
+successfully on many tables, but the current implementation does not yet impose
+an explicit per-table timeout or conservative generation ceiling. A pathological
+input can therefore monopolize resources and prevent the remaining batch from
+being processed.
