@@ -4,6 +4,12 @@ import argparse
 from pathlib import Path
 
 from tabulus import __version__
+from tabulus.evaluation import (
+    DEFAULT_NUMBER_THRESHOLD,
+    DEFAULT_TEXT_THRESHOLD,
+    SUPPORTED_TABLE_RECONSTRUCTION_METRICS,
+    evaluate_table_reconstruction,
+)
 from tabulus.mineru.backends import (
     HYBRID_BACKEND,
     PIPELINE_BACKEND,
@@ -343,6 +349,54 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
 
+    evaluate_table_reconstruction_parser = subparsers.add_parser(
+        "evaluate-table-reconstruction",
+        help=(
+            "Evaluate one reconstructed table prediction against a "
+            "gold-standard CSV."
+        ),
+    )
+
+    evaluate_table_reconstruction_parser.add_argument(
+        "--gold",
+        required=True,
+        type=Path,
+        help="Gold-standard table CSV.",
+    )
+    evaluate_table_reconstruction_parser.add_argument(
+        "--prediction",
+        required=True,
+        type=Path,
+        help="Reconstructed table prediction CSV.",
+    )
+    evaluate_table_reconstruction_parser.add_argument(
+        "--metric",
+        choices=SUPPORTED_TABLE_RECONSTRUCTION_METRICS,
+        default="rms",
+        help="Table-reconstruction evaluation metric. Default: rms.",
+    )
+    evaluate_table_reconstruction_parser.add_argument(
+        "--text-threshold",
+        type=float,
+        default=DEFAULT_TEXT_THRESHOLD,
+        help="RMS text similarity threshold. Default: 0.5.",
+    )
+    evaluate_table_reconstruction_parser.add_argument(
+        "--number-threshold",
+        type=float,
+        default=DEFAULT_NUMBER_THRESHOLD,
+        help="RMS numeric relative-error threshold. Default: 0.1.",
+    )
+    evaluate_table_reconstruction_parser.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help=(
+            "Optional evaluation JSON output path. If omitted, no "
+            "evaluation artifact is written."
+        ),
+    )
+
     classify_reference_tables = subparsers.add_parser(
         "classify-reference-tables",
         help="Classify reconstructed tables for reference-like content.",
@@ -627,6 +681,36 @@ def main() -> None:
         print(f"  Tables empty: {totals['tables_empty']}")
         print(f"  Tables error: {totals['tables_error']}")
         print(f"  Prediction CSVs: {totals['prediction_csvs']}")
+        return
+
+    if args.command == "evaluate-table-reconstruction":
+        result = evaluate_table_reconstruction(
+            args.gold,
+            args.prediction,
+            metric=args.metric,
+            text_threshold=args.text_threshold,
+            number_threshold=args.number_threshold,
+        )
+
+        output_path = None
+        if args.out is not None:
+            output_path = result.write_json(args.out)
+
+        print()
+        print("Table reconstruction evaluation completed:")
+        print(f"  Gold: {result.gold_csv}")
+        print(f"  Prediction: {result.prediction_csv}")
+        print(
+            "  Metric: "
+            f"{result.metric_name} ({result.metric_short_name})"
+        )
+        print(f"  Score scale: {result.score_scale}")
+        print(f"  RMS precision: {result.precision:.6f}")
+        print(f"  RMS recall: {result.recall:.6f}")
+        print(f"  RMS F1: {result.f1:.6f}")
+        if output_path is not None:
+            print(f"  Evaluation JSON: {output_path}")
+
         return
 
     if args.command == "classify-reference-tables":
