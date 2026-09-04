@@ -6,7 +6,7 @@ installation page for your machine.
 
 ## Runnable Stages
 
-The rebuilt library currently exposes three main runnable stages:
+The rebuilt library currently exposes three main command-line stages:
 
 ```bash
 tabulus profile --pdf /path/to/paper.pdf --backend pipeline
@@ -20,10 +20,12 @@ tabulus classify-reference-tables \
   --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/paddleocr-vl
 ```
 
-The current implementation does not yet provide bibliography extraction,
+Bibliography extraction is implemented as a Python library API under
+`src/tabulus/bibliography/`. The current implementation does not yet provide
 reference matching, DOI resolution, resolved CSV export, run-report/QA bundle
 generation, continued-table merging, standalone scientific table
-normalization, or complete `tabulus run` orchestration.
+normalization, a bibliography-extraction CLI command, or complete `tabulus
+run` orchestration.
 
 ## Implemented
 
@@ -53,6 +55,12 @@ normalization, or complete `tabulus run` orchestration.
   reconstruction manifests and parsed artifacts, writes
   `reference_table_classification.json`, and keeps independent classifications
   separate from continuation-inherited decisions.
+
+`tabulus.bibliography`
+: GROBID-backed bibliography extraction for one original scientific PDF. It
+  posts the PDF to GROBID `processReferences`, preserves raw reference text,
+  extracts DOI strings only when already present, and writes
+  `references/bibliography.json`.
 
 ## Stage 2 Adapter Set
 
@@ -85,6 +93,8 @@ GPU model execution. It covers:
 - shared HTML/Markdown parsing and OTSL normalization
 - batch reconstruction input handling and artifact writing
 - reference-table classification heuristics and manifest writing
+- GROBID TEI bibliography parsing, HTTP request construction, and bibliography
+  artifact writing
 
 Real-model GPU validations are operational engineering checks. They confirm
 that adapters can load, run through the Tabulus CLI, and produce the expected
@@ -111,6 +121,17 @@ structured representation. `predictions/` contains raw reconstruction CSVs.
 `reference_table_classification.json` is a downstream routing/classification
 manifest and does not overwrite reconstruction predictions.
 
+Current bibliography extraction writes:
+
+```text
+<artifact-root>/
+  references/
+    bibliography.json
+```
+
+This artifact is produced from the original PDF, not from MinerU crops or
+prediction CSV files.
+
 For the full filesystem contract, see {doc}`../data-contracts/run-directory`.
 
 ## Not Yet Rebuilt
@@ -118,7 +139,6 @@ For the full filesystem contract, see {doc}`../data-contracts/run-directory`.
 The following remain planned or historical in the rebuilt library unless a
 future implementation changes this page:
 
-- bibliography extraction
 - reference matching
 - DOI resolution
 - final resolved CSV generation
@@ -126,7 +146,9 @@ future implementation changes this page:
 - full `tabulus run` orchestration
 - continued-table merging
 - standalone scientific table normalization command
-- GROBID, Kreuzberg, or Crossref integration in the rebuilt installable
+- bibliography-extraction CLI command
+- documented GROBID deployment workflow and corpus-scale validation
+- Kreuzberg fallback or Crossref integration in the rebuilt installable
   library
 
 Historical thesis code and older evaluation material may still mention some of

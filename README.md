@@ -18,9 +18,10 @@ Tabulus is a modular multi-stage pipeline for extracting structured table data
 from scientific PDF documents.
 
 The current rebuilt library supports PDF profiling, canonical table-crop
-export, table reconstruction, and reference-table classification. Later
-bibliography extraction, reference matching, DOI enrichment, resolved CSV
-export, and full run orchestration remain planned for the rebuilt workflow.
+export, table reconstruction, reference-table classification, and
+GROBID-backed bibliography extraction. Later reference matching, DOI
+enrichment, resolved CSV export, and full run orchestration remain planned for
+the rebuilt workflow.
 
 The project was developed as part of a Master's thesis investigating scientific table extraction, OCR benchmarking, bibliography-aware processing, and structured scholarly knowledge extraction.
 
@@ -38,7 +39,7 @@ The project was developed as part of a Master's thesis investigating scientific 
 ### 🔗 Bibliography-Aware Processing
 * Reference-table classification for reconstructed tables
 * Preserved separation between reconstruction predictions and reference routing
-* Planned bibliography extraction from full publications
+* GROBID bibliography extraction from full publications
 * Planned reference matching and DOI enrichment
 
 ### 📊 Research & Evaluation
@@ -76,7 +77,7 @@ Scientific PDF
       |                   v
       |             reference-table classification
       |
-      +--> planned GROBID bibliography extraction
+      +--> GROBID bibliography extraction
                 |
                 v
           references/bibliography.json
@@ -166,9 +167,9 @@ complete supported-adapter table is maintained in the ReadTheDocs page:
 docs/tutorial/08-table-ocr.md
 ```
 
-GROBID and Kreuzberg remain relevant only in retained historical or
-reference-processing material; they are not current Stage 2 reconstruction
-adapters in the rebuilt library.
+GROBID is used by the rebuilt bibliography-extraction branch. Kreuzberg
+remains relevant only in retained historical or fallback-planning material;
+neither GROBID nor Kreuzberg is a Stage 2 reconstruction adapter.
 
 ---
 
@@ -239,6 +240,21 @@ tabulus reconstruct-tables \
 
 tabulus classify-reference-tables \
   --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/<adapter>
+```
+
+Bibliography extraction currently uses the Python API and a running GROBID
+service:
+
+```python
+from pathlib import Path
+
+from tabulus.bibliography.pipeline import extract_bibliography_artifact
+
+extract_bibliography_artifact(
+    Path("INPUT.pdf"),
+    Path("OUTPUT_DIRECTORY"),
+    grobid_url="http://localhost:8070",
+)
 ```
 
 For several PDFs in one folder:

@@ -5,7 +5,7 @@ This workflow is the development target for running one paper without Docker.
 The current implemented local profiling command is:
 
 ```powershell
-tabulus profile --pdf "C:\papers\P51.pdf" --backend pipeline
+tabulus profile --pdf "C:\papers\INPUT.pdf" --backend pipeline
 ```
 
 When `--out` is omitted, Tabulus writes to:
@@ -19,7 +19,7 @@ Use `--out` only when an explicit output directory is needed. MinerU keeps its n
 After successful profiling, Tabulus automatically exports canonical MinerU table crops to:
 
 ```text
-C:\papers\tabulus-output\table-crops\P51\
+C:\papers\tabulus-output\table-crops\INPUT\
   tables_index.json
   images\
 ```
@@ -30,7 +30,7 @@ The current implemented local table-reconstruction command runs one selected reg
 
 ```powershell
 tabulus reconstruct-tables `
-  --crops "C:\papers\tabulus-output\table-crops\P51" `
+  --crops "C:\papers\tabulus-output\table-crops\INPUT" `
   --adapter paddleocr-vl `
   --device cpu
 ```
@@ -38,7 +38,7 @@ tabulus reconstruct-tables `
 If `--out` is omitted, Tabulus writes:
 
 ```text
-C:\papers\tabulus-output\table-crops\P51\reconstructions\paddleocr-vl\
+C:\papers\tabulus-output\table-crops\INPUT\reconstructions\paddleocr-vl\
   native\
   parsed\
   predictions\
@@ -48,14 +48,33 @@ C:\papers\tabulus-output\table-crops\P51\reconstructions\paddleocr-vl\
 The current standalone shape is:
 
 ```powershell
-tabulus profile --pdf C:\papers\P51.pdf --backend pipeline
-tabulus reconstruct-tables --crops C:\papers\tabulus-output\table-crops\P51 --adapter paddleocr-vl --device cpu
+tabulus profile --pdf C:\papers\INPUT.pdf --backend pipeline
+tabulus reconstruct-tables --crops C:\papers\tabulus-output\table-crops\INPUT --adapter paddleocr-vl --device cpu
+```
+
+Bibliography extraction is implemented through the Python API and requires a
+running GROBID HTTP service:
+
+```python
+from pathlib import Path
+
+from tabulus.bibliography.pipeline import extract_bibliography_artifact
+
+extract_bibliography_artifact(
+    Path("INPUT.pdf"),
+    Path("OUTPUT_DIRECTORY"),
+    grobid_url="http://localhost:8070",
+)
 ```
 
 The future complete command should remain under the same installed `tabulus` entry point:
 
 ```powershell
-tabulus run --pdf C:\papers\P51.pdf --runs-root C:\runs
+tabulus run --pdf C:\papers\INPUT.pdf --runs-root C:\runs
 ```
 
-`tabulus run` is not implemented yet. The new library has registered table-reconstruction adapters and the `tabulus reconstruct-tables` batch CLI, but bibliography extraction, reference matching, DOI resolution, final resolved CSV export, and full run reporting are not yet implemented.
+`tabulus run` is not implemented yet. The new library has registered
+table-reconstruction adapters, the `tabulus reconstruct-tables` batch CLI, and
+the GROBID-backed bibliography extraction library API. Reference matching, DOI
+resolution, final resolved CSV export, and full run reporting are not yet
+implemented.

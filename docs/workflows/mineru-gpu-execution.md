@@ -222,7 +222,7 @@ new tabulus library --------+
  +-- classify reconstructed tables with tabulus classify-reference-tables
 
 
-                    PLANNED DOWNSTREAM
+                    PARALLEL / DOWNSTREAM
                            |
                            v
 PDF ----------------> GROBID bibliography extraction
@@ -248,16 +248,18 @@ The new library currently provides MinerU process launching, typed access to
 existing MinerU outputs, automatic table-crop export, registered Stage 2
 table-reconstruction adapters for MinerU crops, the
 `tabulus reconstruct-tables` batch CLI, and
-`tabulus classify-reference-tables`. See {doc}`../tutorial/08-table-ocr` for
-the current adapter list. These stages are not yet implemented in the new
-library:
+`tabulus classify-reference-tables`, plus GROBID-backed bibliography
+extraction through `src/tabulus/bibliography/`. See
+{doc}`../tutorial/08-table-ocr` for the current adapter list. These stages are
+not yet implemented in the new library:
 
-- bibliography extraction
 - reference matching
 - Crossref DOI resolution
 - resolved CSV export
 - run report / QA bundle
 - full `tabulus run` orchestration
 
-The planned bibliography extraction branch starts from the original PDF. It
-does not consume MinerU table crops or reconstruction prediction CSVs.
+The bibliography extraction branch starts from the original PDF. It does not
+consume MinerU table crops or reconstruction prediction CSVs. Reference
+matching, DOI resolution, resolved CSV export, and full run orchestration
+remain planned downstream stages.

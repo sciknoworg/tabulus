@@ -10,6 +10,8 @@ DOI values may be recorded when they are already present in the extracted
 bibliography text. Crossref or other external DOI resolution belongs to a later
 stage.
 
+The current GROBID implementation writes:
+
 ```json
 {
   "bibliography_count": 1,
@@ -24,3 +26,24 @@ stage.
   ]
 }
 ```
+
+`bibliography_count`
+: Number of bibliography entries in the artifact.
+
+`bibliography_source`
+: Source extractor for the artifact. The implemented GROBID path writes
+  `grobid`.
+
+`entries[].index`
+: One-based bibliography position in the parsed GROBID TEI order.
+
+`entries[].raw`
+: Preserved raw reference text, preferring GROBID's raw-reference note when
+  available.
+
+`entries[].doi`
+: DOI found deterministically in the bibliography text, or an empty string.
+  This is not Crossref enrichment.
+
+`entries[].source`
+: Source extractor for the entry.

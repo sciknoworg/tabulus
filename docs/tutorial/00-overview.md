@@ -2,15 +2,19 @@
 
 Tabulus extracts structured table data from scientific PDFs while keeping each processing stage inspectable on disk. The rebuilt library is organized around standalone commands and file contracts rather than one monolithic runner.
 
-The current pipeline does not yet end in DOI-enriched final CSVs. It currently supports PDF profiling, canonical table-crop export, table reconstruction, and reference-table classification. The planned bibliography branch starts from the original PDF in parallel with table processing; reference matching, DOI resolution, resolved CSV export, run reports, and complete `tabulus run` orchestration remain planned for the rebuilt library.
+The current pipeline does not yet end in DOI-enriched final CSVs. It currently supports PDF profiling, canonical table-crop export, table reconstruction, reference-table classification, and GROBID-backed bibliography extraction. The bibliography branch starts from the original PDF in parallel with table processing; reference matching, DOI resolution, resolved CSV export, run reports, and complete `tabulus run` orchestration remain planned for the rebuilt library.
 
 ## Current Runnable Pipeline
 
-The user-facing runnable stages are:
+The current command-line stages are:
 
 1. **PDF Profiling:** `tabulus profile`
 2. **Table Reconstruction:** `tabulus reconstruct-tables`
 3. **Reference-Table Classification:** `tabulus classify-reference-tables`
+
+Stage 4 bibliography extraction is implemented as a Python library API under
+`src/tabulus/bibliography/`; a `tabulus` CLI subcommand for this stage is not
+yet exposed.
 
 The stage boundaries are persisted as files:
 
@@ -34,6 +38,11 @@ reconstructions/<adapter>/
         |
         v
 reference_table_classification.json
+
+PDF
+  |
+  v
+<artifact-root>/references/bibliography.json
 ```
 
 `predictions/*.csv` files are reconstruction outputs before reference resolution. They are not bibliography-enriched or DOI-resolved final CSVs.
@@ -71,7 +80,7 @@ Scientific PDF
       |                  v                                 v
       |          reconstruction evaluation      reference-table classification
       |
-      +--> GROBID bibliography extraction (planned)
+      +--> GROBID bibliography extraction
                 |
                 v
           references/bibliography.json
@@ -93,7 +102,7 @@ During reconstruction, adapter-native output is preserved under `native/`, then 
 
 Reference-table classification consumes reconstruction artifacts and writes `reference_table_classification.json` beside them. It does not overwrite raw reconstruction predictions.
 
-Bibliography extraction is a separate PDF-level branch. It should read the original scientific PDF and write normalized entries to `references/bibliography.json`; it should not consume canonical table crops or reconstruction prediction CSVs. The table and bibliography branches converge later at reference matching.
+Bibliography extraction is a separate PDF-level branch. It reads the original scientific PDF and writes normalized entries to `references/bibliography.json`; it does not consume canonical table crops or reconstruction prediction CSVs. The table and bibliography branches converge later at reference matching.
 
 ## Current Versus Planned
 
@@ -107,10 +116,10 @@ Implemented in the rebuilt library:
   {doc}`08-table-ocr`
 - shared HTML/Markdown structural parsing and deterministic OTSL-to-HTML normalization during reconstruction
 - reference-table classification through `tabulus classify-reference-tables`
+- GROBID-backed bibliography extraction through `src/tabulus/bibliography/`
 
 Planned for the rebuilt library:
 
-- bibliography extraction
 - reference matching
 - DOI resolution
 - resolved CSV export
@@ -122,6 +131,7 @@ Planned for the rebuilt library:
 - {doc}`01-pdf-profiling`
 - {doc}`08-table-ocr`
 - {doc}`10-reference-table-classification`
+- {doc}`11-bibliography-extraction`
 - {doc}`../modules/table-ocr-adapters`
 - {doc}`../data-contracts/run-directory`
 - {doc}`../external-tools/mineru`

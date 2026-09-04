@@ -8,13 +8,13 @@ Tabulus is a modular pipeline for digitizing scientific PDF papers into
 structured, reference-aware table data.
 
 The rebuilt library is organized around standalone commands and explicit
-filesystem contracts. The current runnable workflow covers PDF profiling,
-canonical table-crop export, table reconstruction, and reference-table
-classification. Later bibliography extraction, reference matching, DOI
-resolution, resolved CSV export, run reports, and complete `tabulus run`
-orchestration remain planned. Bibliography extraction is planned as a
-parallel PDF-level branch that produces `references/bibliography.json`, not as
-a consumer of MinerU table crops or reconstruction prediction CSVs.
+filesystem contracts. The current rebuilt library covers PDF profiling,
+canonical table-crop export, table reconstruction, reference-table
+classification, and GROBID-backed bibliography extraction. Later reference
+matching, DOI resolution, resolved CSV export, run reports, and complete
+`tabulus run` orchestration remain planned. Bibliography extraction is a
+parallel PDF-level branch that produces `references/bibliography.json`, not a
+consumer of MinerU table crops or reconstruction prediction CSVs.
 
 Start with the commands, then use the linked pages for setup and adapter
 details. For one PDF:

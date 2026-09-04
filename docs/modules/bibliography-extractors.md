@@ -15,13 +15,32 @@ reference-table classification output.
 - Write `references/bibliography.json`.
 - Leave reconstruction prediction CSVs untouched.
 
-## Planned Adapters
+## Implemented Adapter
 
-GROBID TEI extraction is the intended primary extractor.
+GROBID TEI extraction is implemented in `src/tabulus/bibliography/`.
 
-An OCR/regex fallback remains an optional planned recovery path. It should not
-be treated as part of table reconstruction.
+The current implementation:
+
+- sends the original PDF to a GROBID service over HTTP
+- calls GROBID `processReferences`
+- requests raw citations
+- disables GROBID citation consolidation
+- parses the returned TEI into normalized bibliography entries
+- writes `references/bibliography.json`
+
+The implemented modules are:
+
+- `models.py`
+- `grobid.py`
+- `grobid_client.py`
+- `output.py`
+- `pipeline.py`
 
 Bibliography extraction must not call Crossref or perform external DOI
 resolution. External DOI lookup belongs to the later DOI-resolution stage after
 reference matching.
+
+## Planned Fallback
+
+An OCR/regex fallback remains an optional planned recovery path. It should not
+be treated as part of table reconstruction.

@@ -21,8 +21,8 @@ Use a manifest when processing many papers:
 
 ```text
 paper_id,pdf_path
-P51,/data/papers/P51.pdf
-P52,/data/papers/P52.pdf
+paper-1,/data/papers/INPUT_1.pdf
+paper-2,/data/papers/INPUT_2.pdf
 ```
 
 Future full-pipeline manifest shape:
@@ -34,10 +34,10 @@ tabulus run --manifest /data/papers.csv --runs-root /data/runs
 This full-manifest command is not yet implemented in the new library. The currently validated single-document commands are:
 
 ```bash
-tabulus profile --pdf /data/papers/P51.pdf --backend hybrid-engine
+tabulus profile --pdf /data/papers/INPUT.pdf --backend hybrid-engine
 
 tabulus reconstruct-tables \
-  --crops /data/papers/tabulus-output/table-crops/P51 \
+  --crops /data/papers/tabulus-output/table-crops/INPUT \
   --adapter paddleocr-vl \
   --device gpu:0
 ```
@@ -58,7 +58,11 @@ After successful profiling, Tabulus automatically exports canonical MinerU table
 <PDF directory>/tabulus-output/table-crops/<PDF stem>/
 ```
 
-The current rebuilt library implements reference-table classification after reconstruction with `tabulus classify-reference-tables`. Bibliography extraction, reference matching, DOI resolution, and resolved CSV export remain planned downstream stages.
+The current rebuilt library implements reference-table classification after
+reconstruction with `tabulus classify-reference-tables`. It also implements
+GROBID-backed bibliography extraction as a Python library API that reads the
+original PDF and writes `references/bibliography.json`. Reference matching,
+DOI resolution, and resolved CSV export remain planned downstream stages.
 
 ## Profiling MinerU Runs
 

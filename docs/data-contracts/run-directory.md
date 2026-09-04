@@ -1,14 +1,15 @@
 # Run Directory
 
 This page is the authoritative filesystem contract for the current Tabulus
-profiling and table-reconstruction stages. Directories appear as their
-corresponding stages are run; a fresh paper directory will not contain every
-layer immediately.
+profiling, table-reconstruction, reference-table classification, and
+bibliography-extraction stages. Directories appear as their corresponding
+stages are run; a fresh paper directory will not contain every layer
+immediately.
 
 ## Current Output Hierarchy
 
-The current implemented commands write stage outputs next to the source PDFs
-by default:
+The current implemented table-processing commands write stage outputs next to
+the source PDFs by default:
 
 ```text
 <papers-directory>/
@@ -27,6 +28,9 @@ by default:
             parsed/
             predictions/
             batch_summary.json
+<artifact-root>/
+  references/
+    bibliography.json
 ```
 
 `mineru/`
@@ -60,6 +64,10 @@ by default:
 `batch_summary.json`
 : The reconstruction batch manifest for one paper and one adapter.
 
+`references/bibliography.json`
+: Normalized bibliography entries extracted from the original scientific PDF
+  by the PDF-level bibliography branch.
+
 ## Stage Dependencies
 
 The current rebuilt pipeline is staged around persisted filesystem handoffs:
@@ -67,22 +75,28 @@ The current rebuilt pipeline is staged around persisted filesystem handoffs:
 ```text
 PDF
   |
-  v
-native MinerU output
+  +--> native MinerU output
+  |     |
+  |     v
+  |   canonical table-crops/<paper>/
+  |     |-- tables_index.json
+  |     `-- images/
+  |           |
+  |           v
+  |   reconstructions/<adapter>/
+  |     |-- native/
+  |     |-- parsed/
+  |     |-- predictions/
+  |     `-- batch_summary.json
+  |           |
+  |           v
+  |   reference_table_classification.json
+  |
+  +--> references/bibliography.json
+
+reference_table_classification.json + bibliography.json
   |
   v
-canonical table-crops/<paper>/
-  |-- tables_index.json
-  `-- images/
-        |
-        v
-reconstructions/<adapter>/
-  |-- native/
-  |-- parsed/
-  |-- predictions/
-  `-- batch_summary.json
-        |
-        v
 later reference-processing stages
 ```
 
@@ -366,8 +380,9 @@ manifest. It does not overwrite `native/`, `parsed/`, `predictions/`, or
 does not proceed down the reference-resolution branch; it does not mean the
 reconstruction is invalid.
 
-The current rebuilt library does not yet implement bibliography extraction,
-reference matching, DOI resolution, final resolved CSV generation,
+The current rebuilt library implements bibliography extraction as a separate
+PDF-level branch that writes `references/bibliography.json`. It does not yet
+implement reference matching, DOI resolution, final resolved CSV generation,
 continued-table merging, or a single complete `tabulus run` orchestrator.
 
 For the future final DOI-enriched CSV contract, see {doc}`resolved-csv`.
