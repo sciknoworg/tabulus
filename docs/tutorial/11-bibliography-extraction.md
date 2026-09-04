@@ -2,33 +2,82 @@
 
 ## Goal
 
-Extract bibliography entries from the original PDF.
+Extract normalized bibliography entries from the original scientific PDF.
+
+This is a PDF-level branch. It runs in parallel with the table-processing
+branch and does not consume MinerU table crops, reconstructed prediction CSVs,
+or reference-table classification output.
+
+```text
+Original scientific PDF
+      |
+      +--> MinerU table detection
+      |         |
+      |         v
+      |   canonical table crops
+      |         |
+      |         v
+      |   table reconstruction adapters
+      |         |
+      |         v
+      |   structured table representations
+      |         |
+      |         v
+      |   reference-table classification
+      |
+      +--> GROBID bibliography extraction
+                |
+                v
+          references/bibliography.json
+
+reference-table classification + bibliography.json
+      |
+      v
+reference matching -> DOI resolution / enrichment -> resolved scientific table export
+```
 
 ## Input
 
-`input/paper.pdf` and `metadata/reference_section.json`.
+The input is the original scientific PDF.
 
 ## Output
 
-`references/bibliography.json`.
+The normalized handoff is:
 
-## Module Contract
+```text
+references/
+  bibliography.json
+```
 
-See `data-contracts/bibliography-json.md`.
+See {doc}`../data-contracts/bibliography-json`.
 
-## Default Implementation
+## Extractor Contract
 
-This stage is retained in the legacy thesis workflow but is not yet implemented in the rebuilt `src/tabulus` library.
+GROBID is the intended primary bibliography extractor. The bibliography branch
+should preserve raw bibliography strings, normalize entries into
+`references/bibliography.json`, and extract DOI values deterministically when a
+DOI is already present in the bibliography text.
 
-The target workflow uses GROBID first. If GROBID fails or returns unusable bibliography entries, a Kreuzberg OCR fallback can extract raw reference-section text and apply bibliography regex patterns. The resulting bibliography artifact should be evaluated independently from table reconstruction quality.
+Stage 4 must not call Crossref or perform external DOI resolution. Missing DOI
+values are handled later by the DOI-resolution branch after reference matching.
 
-## Alternative Adapters
+Fallback bibliography extraction is planned as an optional recovery path, not
+part of the table-reconstruction branch.
 
-- GROBID
-- Kreuzberg OCR plus regex
-- PaddleOCR reference pages
-- External metadata services
+## Boundary
 
-## Verification
+Bibliography extraction should leave raw reconstruction prediction CSVs
+untouched. The table-processing branch and bibliography branch converge only
+at reference matching:
 
-The step succeeds when bibliography entries are emitted in a normalized list with `index`, `raw`, `doi`, and `source`.
+```text
+classified reference-like table
+  +
+references/bibliography.json
+  |
+  v
+reference matching
+```
+
+Live GROBID service integration and corpus-scale validation are separate
+deployment and evaluation steps.

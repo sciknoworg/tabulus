@@ -109,4 +109,8 @@ This stage performs reference-table routing only. It does not extract bibliograp
 
 ## Next Step
 
-The next rebuilt stages are planned bibliography extraction, reference matching, DOI resolution, and resolved CSV export.
+The next rebuilt stages are planned bibliography extraction, reference
+matching, DOI resolution, and resolved CSV export. Bibliography extraction is
+a parallel PDF-level branch that should produce `references/bibliography.json`
+from the original PDF before converging with classified reference-like tables
+at reference matching.

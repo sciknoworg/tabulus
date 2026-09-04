@@ -61,28 +61,31 @@ The project was developed as part of a Master's thesis investigating scientific 
 ```text
 Scientific PDF
       |
+      +--> tabulus profile / MinerU
+      |         |
+      |         +--> MinerU table_body
+      |         |
+      |         +--> canonical MinerU table crops
+      |                   |
+      |                   v
+      |             reconstruction adapters
+      |                   |
+      |                   v
+      |             prediction CSVs
+      |                   |
+      |                   v
+      |             reference-table classification
+      |
+      +--> planned GROBID bibliography extraction
+                |
+                v
+          references/bibliography.json
+
+reference-table classification + bibliography.json
+      |
       v
-tabulus profile / MinerU
-      |
-      +--> MinerU table_body
-      |
-      +--> canonical MinerU table crops
-                |
-                +--> one registered reconstruction adapter
-                |
-                v
-      tabulus reconstruct-tables
-                |
-                v
-          prediction CSVs
-                |
-                v
-      tabulus classify-reference-tables
-                |
-                v
-      planned: bibliography extraction,
-      reference matching, DOI resolution,
-      resolved CSV export, and run reporting
+planned reference matching, DOI enrichment,
+resolved CSV export, and run reporting
 ```
 
 ---

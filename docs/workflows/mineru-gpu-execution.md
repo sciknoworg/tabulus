@@ -225,7 +225,17 @@ new tabulus library --------+
                     PLANNED DOWNSTREAM
                            |
                            v
-             bibliography extraction / reference matching
+PDF ----------------> GROBID bibliography extraction
+ |                         |
+ |                         v
+ |                 references/bibliography.json
+ |
+ +--> table branch continues through reference-table classification
+
+reference-table classification + bibliography.json
+                           |
+                           v
+                    reference matching
                            |
                            v
                   DOI resolution / resolved CSV
@@ -248,3 +258,6 @@ library:
 - resolved CSV export
 - run report / QA bundle
 - full `tabulus run` orchestration
+
+The planned bibliography extraction branch starts from the original PDF. It
+does not consume MinerU table crops or reconstruction prediction CSVs.

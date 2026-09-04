@@ -2,7 +2,7 @@
 
 Tabulus extracts structured table data from scientific PDFs while keeping each processing stage inspectable on disk. The rebuilt library is organized around standalone commands and file contracts rather than one monolithic runner.
 
-The current pipeline does not yet end in DOI-enriched final CSVs. It currently supports PDF profiling, canonical table-crop export, table reconstruction, and reference-table classification. Bibliography extraction, reference matching, DOI resolution, resolved CSV export, run reports, and complete `tabulus run` orchestration remain planned for the rebuilt library.
+The current pipeline does not yet end in DOI-enriched final CSVs. It currently supports PDF profiling, canonical table-crop export, table reconstruction, and reference-table classification. The planned bibliography branch starts from the original PDF in parallel with table processing; reference matching, DOI resolution, resolved CSV export, run reports, and complete `tabulus run` orchestration remain planned for the rebuilt library.
 
 ## Current Runnable Pipeline
 
@@ -43,42 +43,43 @@ reference_table_classification.json
 ```text
 Scientific PDF
       |
-      v
-MinerU / PDF Profiling
+      +--> MinerU / PDF Profiling
+      |         |
+      |         +--> MinerU table_body -------------------+
+      |         |                                         |
+      |         +--> canonical table crops                 |
+      |                   |                               |
+      |                   +--> crop-consuming adapters     |
+      |                   |    (OCR, document VLM,         |
+      |                   |     table-structure, or hybrid routes)
+      |                   v                               |
+      |         adapter-native reconstruction evidence     |
+      |                   |                               |
+      |                   v                               |
+      |         shared structural parsing / normalization  |
+      |                   |                               |
+      |                   +-------------------------------+
+      |                                   |
+      |                                   v
+      |                         reconstruction candidates
+      |                                   |
+      |                                   v
+      |                           prediction CSVs
+      |                                   |
+      |                  +----------------+----------------+
+      |                  |                                 |
+      |                  v                                 v
+      |          reconstruction evaluation      reference-table classification
       |
-      +--> MinerU table_body -----------------------------+
-      |                                                   |
-      +--> canonical table crop                           |
-                |                                         |
-                +--> crop-consuming adapters              |
-                |    (OCR, document VLM,                  |
-                |     table-structure, or hybrid routes)  |
-                |                                         |
-                v                                         |
-      adapter-native reconstruction evidence              |
-                |                                         |
-                v                                         |
-      shared structural parsing / normalization           |
-                |                                         |
-                +-----------------------------------------+
-                                  |
-                                  v
-                        reconstruction candidates
-                                  |
-                                  v
-                          prediction CSVs
-                                  |
-                 +----------------+----------------+
-                 |                                 |
-                 v                                 v
-         reconstruction evaluation      reference-table classification
-                                                   |
-                                                   v
-                                      bibliography / matching /
-                                      DOI resolution (planned)
-                                                   |
-                                                   v
-                                           resolved CSV (planned)
+      +--> GROBID bibliography extraction (planned)
+                |
+                v
+          references/bibliography.json
+
+reference-table classification + bibliography.json
+      |
+      v
+reference matching -> DOI resolution -> resolved CSV (planned)
 ```
 
 MinerU is the current PDF profiler. It performs document/layout processing, table localization, and native table extraction. Tabulus reads MinerU output, exports the canonical table-crop handoff, and retains MinerU `table_body` as a native reconstruction candidate.
@@ -91,6 +92,8 @@ from the source PDF for the reconstruction comparison.
 During reconstruction, adapter-native output is preserved under `native/`, then parsed through the shared Tabulus table parser into `parsed/`. A prediction CSV is written under `predictions/` only when exactly one usable parsed table is available for the physical crop.
 
 Reference-table classification consumes reconstruction artifacts and writes `reference_table_classification.json` beside them. It does not overwrite raw reconstruction predictions.
+
+Bibliography extraction is a separate PDF-level branch. It should read the original scientific PDF and write normalized entries to `references/bibliography.json`; it should not consume canonical table crops or reconstruction prediction CSVs. The table and bibliography branches converge later at reference matching.
 
 ## Current Versus Planned
 

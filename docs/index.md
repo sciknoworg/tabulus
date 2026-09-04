@@ -12,7 +12,9 @@ filesystem contracts. The current runnable workflow covers PDF profiling,
 canonical table-crop export, table reconstruction, and reference-table
 classification. Later bibliography extraction, reference matching, DOI
 resolution, resolved CSV export, run reports, and complete `tabulus run`
-orchestration remain planned.
+orchestration remain planned. Bibliography extraction is planned as a
+parallel PDF-level branch that produces `references/bibliography.json`, not as
+a consumer of MinerU table crops or reconstruction prediction CSVs.
 
 Start with the commands, then use the linked pages for setup and adapter
 details. For one PDF:
