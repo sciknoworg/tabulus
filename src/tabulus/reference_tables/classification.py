@@ -8,6 +8,7 @@ from typing import Any, Sequence
 
 
 REFERENCE_TABLE_CLASSIFICATION_NAME = "reference_table_classification.json"
+SELECTED_REFERENCE_TABLES_NAME = "selected_reference_tables.json"
 
 TAG_PATTERN = re.compile(
     r"\b("
@@ -212,6 +213,63 @@ class ReferenceTableClassificationResult:
                 for classification in self.classifications
             ],
         }
+
+
+def write_selected_reference_tables(
+    result: ReferenceTableClassificationResult,
+    *,
+    output_path: Path | None = None,
+) -> Path:
+    """
+    Write a non-destructive view of positively classified reference tables.
+
+    The selection manifest contains pointers to existing parsed/prediction
+    artifacts. It never copies, moves, rewrites, or deletes reconstruction
+    outputs, so negative and unavailable tables remain available for audit,
+    evaluation, and debugging.
+    """
+
+    selected_tables = [
+        {
+            "table_id": item.table_id,
+            "source_status": item.source_status,
+            "source_parsed": item.source_parsed,
+            "source_prediction": item.source_prediction,
+            "parsed_tables": item.parsed_tables,
+            "independent_is_reference_table": (
+                item.independent_is_reference_table
+            ),
+            "classification_source": item.classification_source,
+            "continued_from_table_id": item.continued_from_table_id,
+            "continuation_caption": item.continuation_caption,
+            "reason": item.decision.reason,
+        }
+        for item in result.classifications
+        if item.decision.is_reference_table
+    ]
+
+    final_output_path = (
+        Path(output_path)
+        if output_path is not None
+        else result.reconstruction_dir / SELECTED_REFERENCE_TABLES_NAME
+    )
+    payload = {
+        "schema_version": 1,
+        "adapter_name": result.adapter_name,
+        "reconstruction_dir": str(result.reconstruction_dir),
+        "classification_manifest": str(result.output_path),
+        "selection_rule": "is_reference_table == true",
+        "tables_considered": result.tables_considered,
+        "reference_tables_selected": len(selected_tables),
+        "tables": selected_tables,
+    }
+
+    final_output_path.parent.mkdir(parents=True, exist_ok=True)
+    final_output_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    return final_output_path
 
 
 def normalize_text(value: Any) -> str:
@@ -794,5 +852,6 @@ def classify_reconstruction_tables(
         json.dumps(result.to_dict(), ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
+    write_selected_reference_tables(result)
 
     return result

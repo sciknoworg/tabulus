@@ -5,6 +5,7 @@ from pathlib import Path
 
 from tabulus.reference_tables import (
     REFERENCE_TABLE_CLASSIFICATION_NAME,
+    SELECTED_REFERENCE_TABLES_NAME,
     classify_reconstruction_tables,
     classify_reference_like_table,
 )
@@ -183,6 +184,25 @@ def test_batch_classification_writes_manifest_without_changing_predictions(
         "predictions/page_006_table_001.csv"
     )
     assert payload["tables"][1]["is_reference_table"] is False
+
+
+    selected_path = reconstruction_dir / SELECTED_REFERENCE_TABLES_NAME
+    selected = json.loads(selected_path.read_text(encoding="utf-8"))
+
+    assert selected["schema_version"] == 1
+    assert selected["adapter_name"] == "paddleocr-vl"
+    assert selected["tables_considered"] == 2
+    assert selected["reference_tables_selected"] == 1
+    assert [table["table_id"] for table in selected["tables"]] == [1]
+    assert selected["tables"][0]["source_prediction"] == (
+        "predictions/page_006_table_001.csv"
+    )
+
+    # Selection is a logical view only: non-reference reconstructions remain.
+    assert (
+        reconstruction_dir
+        / "predictions/page_007_table_002.csv"
+    ).is_file()
 
 
 def test_missing_structured_table_gets_explicit_negative_decision(

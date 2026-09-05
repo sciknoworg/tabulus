@@ -2,6 +2,7 @@ from tabulus.reference_tables.classification import (
     CITATION_PATTERN,
     PLAIN_NUMERIC_REFERENCE_PATTERN,
     REFERENCE_TABLE_CLASSIFICATION_NAME,
+    SELECTED_REFERENCE_TABLES_NAME,
     TAG_PATTERN,
     ReferenceTableClassification,
     ReferenceTableClassificationResult,
@@ -10,12 +11,14 @@ from tabulus.reference_tables.classification import (
     classify_reference_like_table,
     get_first_non_empty_cells_by_column,
     normalize_text,
+    write_selected_reference_tables,
 )
 
 __all__ = [
     "CITATION_PATTERN",
     "PLAIN_NUMERIC_REFERENCE_PATTERN",
     "REFERENCE_TABLE_CLASSIFICATION_NAME",
+    "SELECTED_REFERENCE_TABLES_NAME",
     "TAG_PATTERN",
     "ReferenceTableClassification",
     "ReferenceTableClassificationResult",
@@ -24,4 +27,5 @@ __all__ = [
     "classify_reference_like_table",
     "get_first_non_empty_cells_by_column",
     "normalize_text",
+    "write_selected_reference_tables",
 ]
