@@ -30,6 +30,11 @@ tabulus reconstruct-tables \
 
 tabulus classify-reference-tables \
   --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/<adapter>
+
+tabulus extract-bibliography \
+  --pdf /path/to/paper.pdf \
+  --out /path/to/artifact-root \
+  --grobid-url http://localhost:8070
 ```
 
 For several PDFs in one folder:

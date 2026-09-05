@@ -243,21 +243,11 @@ tabulus reconstruct-tables \
 
 tabulus classify-reference-tables \
   --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/<adapter>
-```
 
-Bibliography extraction currently uses the Python API and a running GROBID
-service:
-
-```python
-from pathlib import Path
-
-from tabulus.bibliography.pipeline import extract_bibliography_artifact
-
-extract_bibliography_artifact(
-    Path("INPUT.pdf"),
-    Path("OUTPUT_DIRECTORY"),
-    grobid_url="http://localhost:8070",
-)
+tabulus extract-bibliography \
+  --pdf /path/to/paper.pdf \
+  --out /path/to/artifact-root \
+  --grobid-url http://localhost:8070
 ```
 
 For several PDFs in one folder:

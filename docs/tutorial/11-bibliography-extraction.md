@@ -53,9 +53,50 @@ The normalized bibliography artifact is:
 
 See {doc}`../data-contracts/bibliography-json`.
 
+## Command Line
+
+The normal Stage 4 command is:
+
+```bash
+tabulus extract-bibliography \
+  --pdf /path/to/paper.pdf \
+  --out /path/to/artifact-root \
+  --grobid-url http://localhost:8070
+```
+
+This consumes the original scientific PDF and writes:
+
+```text
+<artifact-root>/
+  references/
+    bibliography.json
+```
+
+Arguments:
+
+- `--pdf`: original scientific PDF
+- `--out`: artifact root; Tabulus creates `references/bibliography.json`
+  beneath it
+- `--grobid-url`: GROBID service root
+- `--timeout-seconds`: optional GROBID HTTP timeout
+
+For a longer HTTP timeout:
+
+```bash
+tabulus extract-bibliography \
+  --pdf /path/to/paper.pdf \
+  --out /path/to/artifact-root \
+  --grobid-url http://localhost:8070 \
+  --timeout-seconds 300
+```
+
+The CLI processes one PDF per invocation. Collection-level orchestration is
+outside Stage 4.
+
 ## Python API
 
-The implemented public interface processes one PDF at a time:
+The CLI is a thin wrapper around the public Python API, which also processes
+one PDF at a time:
 
 ```python
 from pathlib import Path
@@ -75,27 +116,6 @@ This writes:
 OUTPUT_DIRECTORY/
   references/
     bibliography.json
-```
-
-There is not yet a `tabulus` CLI subcommand or collection-level helper for
-bibliography extraction. For a directory of PDFs, call the same API once per
-PDF and choose a separate artifact root for each document:
-
-```python
-from pathlib import Path
-
-from tabulus.bibliography.pipeline import extract_bibliography_artifact
-
-input_dir = Path("INPUT_DIRECTORY")
-output_dir = Path("OUTPUT_DIRECTORY")
-grobid_url = "http://localhost:8070"
-
-for pdf_path in sorted(input_dir.glob("*.pdf")):
-    extract_bibliography_artifact(
-        pdf_path,
-        output_dir / pdf_path.stem,
-        grobid_url=grobid_url,
-    )
 ```
 
 ## GROBID Service

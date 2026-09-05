@@ -3,10 +3,9 @@
 An end-to-end runner should only orchestrate stable standalone components.
 
 The rebuilt library now provides standalone CLI commands for profiling,
-table-crop export, and batch table reconstruction, plus a Python API for
-GROBID-backed bibliography extraction. It does not yet provide a complete
-end-to-end `tabulus run` command. This page describes the target workflow
-shape.
+table-crop export, batch table reconstruction, bibliography extraction, and
+reference matching. It does not yet provide a complete end-to-end `tabulus run`
+command. This page describes the target workflow shape.
 
 ## Rule
 
@@ -25,23 +24,21 @@ tabulus reconstruct-tables \
   --crops /data/papers/tabulus-output/table-crops/INPUT \
   --adapter paddleocr-vl \
   --device gpu:0
+
+tabulus classify-reference-tables \
+  --reconstruction /data/papers/tabulus-output/table-crops/INPUT/reconstructions/paddleocr-vl
+
+tabulus extract-bibliography \
+  --pdf /data/papers/INPUT.pdf \
+  --out /data/runs/INPUT \
+  --grobid-url http://localhost:8070
+
+tabulus match-references \
+  --selected /data/papers/tabulus-output/table-crops/INPUT/reconstructions/paddleocr-vl/selected_reference_tables.json \
+  --bibliography /data/runs/INPUT/references/bibliography.json
 ```
 
 `tabulus profile` already exports the canonical table-crop handoff by default, so `export-table-crops` is mainly for regenerating the handoff from an existing MinerU run.
-
-Bibliography extraction currently uses the Python API:
-
-```python
-from pathlib import Path
-
-from tabulus.bibliography.pipeline import extract_bibliography_artifact
-
-extract_bibliography_artifact(
-    Path("/data/papers/INPUT.pdf"),
-    Path("/data/runs/INPUT"),
-    grobid_url="http://localhost:8070",
-)
-```
 
 ## Future Target Command
 

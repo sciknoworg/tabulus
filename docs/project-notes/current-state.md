@@ -6,7 +6,7 @@ installation page for your machine.
 
 ## Runnable Stages
 
-The rebuilt library currently exposes three main command-line stages:
+The rebuilt library currently exposes standalone command-line stages:
 
 ```bash
 tabulus profile --pdf /path/to/paper.pdf --backend pipeline
@@ -18,13 +18,22 @@ tabulus reconstruct-tables \
 
 tabulus classify-reference-tables \
   --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/paddleocr-vl
+
+tabulus extract-bibliography \
+  --pdf /path/to/paper.pdf \
+  --out /path/to/artifact-root \
+  --grobid-url http://localhost:8070
+
+tabulus match-references \
+  --selected /path/to/selected_reference_tables.json \
+  --bibliography /path/to/artifact-root/references/bibliography.json
 ```
 
 Bibliography extraction is implemented as a Python library API under
 `src/tabulus/bibliography/`. The current implementation does not yet provide
 DOI resolution, resolved CSV export, run-report/QA bundle generation,
 continued-table merging, standalone scientific table normalization, a
-bibliography-extraction CLI command, or complete `tabulus run` orchestration.
+complete `tabulus run` orchestration.
 
 ## Implemented
 
@@ -56,9 +65,10 @@ bibliography-extraction CLI command, or complete `tabulus run` orchestration.
   separate from continuation-inherited decisions.
 
 `tabulus.bibliography`
-: GROBID-backed bibliography extraction for one original scientific PDF. It
-  posts the PDF to GROBID `processReferences`, preserves raw reference text,
-  extracts DOI strings only when already present, and writes
+: GROBID-backed bibliography extraction for one original scientific PDF. It is
+  available through `tabulus extract-bibliography` and the Python API. It posts
+  the PDF to GROBID `processReferences`, preserves raw reference text, extracts
+  DOI strings only when already present, and writes
   `references/bibliography.json`.
 
 Stage 5 reference matching
@@ -162,8 +172,7 @@ future implementation changes this page:
 - full `tabulus run` orchestration
 - continued-table merging
 - standalone scientific table normalization command
-- bibliography-extraction CLI command
-- documented GROBID deployment workflow and corpus-scale validation
+- corpus-scale bibliography validation
 - Kreuzberg fallback or Crossref integration in the rebuilt installable
   library
 

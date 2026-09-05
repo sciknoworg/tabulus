@@ -52,19 +52,13 @@ tabulus profile --pdf C:\papers\INPUT.pdf --backend pipeline
 tabulus reconstruct-tables --crops C:\papers\tabulus-output\table-crops\INPUT --adapter paddleocr-vl --device cpu
 ```
 
-Bibliography extraction is implemented through the Python API and requires a
-running GROBID HTTP service:
+Bibliography extraction requires a running GROBID HTTP service:
 
-```python
-from pathlib import Path
-
-from tabulus.bibliography.pipeline import extract_bibliography_artifact
-
-extract_bibliography_artifact(
-    Path("INPUT.pdf"),
-    Path("OUTPUT_DIRECTORY"),
-    grobid_url="http://localhost:8070",
-)
+```powershell
+tabulus extract-bibliography `
+  --pdf C:\papers\INPUT.pdf `
+  --out C:\runs\INPUT `
+  --grobid-url http://localhost:8070
 ```
 
 The future complete command should remain under the same installed `tabulus` entry point:
@@ -75,7 +69,7 @@ tabulus run --pdf C:\papers\INPUT.pdf --runs-root C:\runs
 
 `tabulus run` is not implemented yet. The new library has registered
 table-reconstruction adapters, the `tabulus reconstruct-tables` batch CLI, and
-the GROBID-backed bibliography extraction library API. Stage 5 reference
+the GROBID-backed `tabulus extract-bibliography` CLI. Stage 5 reference
 matching writes `references/reference_matches.json` without modifying
 prediction CSVs. DOI resolution, final resolved CSV export, and full run
 reporting are not yet implemented.

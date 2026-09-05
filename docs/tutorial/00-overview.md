@@ -11,10 +11,8 @@ The current command-line stages are:
 1. **PDF Profiling:** `tabulus profile`
 2. **Table Reconstruction:** `tabulus reconstruct-tables`
 3. **Reference-Table Classification:** `tabulus classify-reference-tables`
-
-Stage 4 bibliography extraction is implemented as a Python library API under
-`src/tabulus/bibliography/`; a `tabulus` CLI subcommand for this stage is not
-yet exposed.
+4. **Bibliography Extraction:** `tabulus extract-bibliography`
+5. **Reference Matching:** `tabulus match-references`
 
 The stage boundaries are persisted as files:
 
@@ -119,7 +117,7 @@ Implemented in the rebuilt library:
   {doc}`08-table-ocr`
 - shared HTML/Markdown structural parsing and deterministic OTSL-to-HTML normalization during reconstruction
 - reference-table classification through `tabulus classify-reference-tables`
-- GROBID-backed bibliography extraction through `src/tabulus/bibliography/`
+- GROBID-backed bibliography extraction through `tabulus extract-bibliography`
 - deterministic reference matching from selected reference-like tables and
   `references/bibliography.json`
 
