@@ -23,6 +23,7 @@ from tabulus.reference_tables import (
     REFERENCE_TABLE_CLASSIFICATION_NAME,
     classify_reconstruction_tables,
 )
+from tabulus.reference_matching import match_selected_reference_tables
 from tabulus.table_crops import export_mineru_table_crops
 from tabulus.table_ocr import (
     create_table_ocr_adapter,
@@ -460,6 +461,36 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
 
+    match_references = subparsers.add_parser(
+        "match-references",
+        help="Match selected reference tables to bibliography entries.",
+    )
+
+    match_references.add_argument(
+        "--selected",
+        required=True,
+        type=Path,
+        help="Stage 3 selected_reference_tables.json manifest.",
+    )
+
+    match_references.add_argument(
+        "--bibliography",
+        required=True,
+        type=Path,
+        help="Stage 4 references/bibliography.json artifact.",
+    )
+
+    match_references.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help=(
+            "Optional reference_matches.json output path. If omitted, "
+            "Tabulus writes references/reference_matches.json inside the "
+            "reconstruction directory."
+        ),
+    )
+
     return parser
 
 
@@ -793,6 +824,37 @@ def main() -> None:
             "  Non-reference tables: "
             f"{total_tables - total_reference_tables}"
         )
+        return
+
+    if args.command == "match-references":
+        print()
+        print("Reference matching configuration:")
+        print(f"  Selected tables: {args.selected}")
+        print(f"  Bibliography: {args.bibliography}")
+        if args.out is not None:
+            print(f"  Output: {args.out}")
+
+        result = match_selected_reference_tables(
+            args.selected,
+            args.bibliography,
+            output_path=args.out,
+        )
+
+        print()
+        print("Reference matching completed:")
+        print(
+            "  Reference tables selected: "
+            f"{result.reference_tables_selected}"
+        )
+        print(
+            "  Reference tables checked: "
+            f"{result.reference_tables_checked}"
+        )
+        print(
+            "  Reference tables skipped: "
+            f"{result.reference_tables_skipped}"
+        )
+        print(f"  Output: {result.output_path}")
         return
 
     parser.print_help()

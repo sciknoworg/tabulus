@@ -376,3 +376,79 @@ def test_reconstruct_tables_main_dispatches_to_batch_layer(monkeypatch):
         "work/table-crops/paper/reconstructions/paddleocr-vl"
     )
     assert calls["adapter"] is fake_adapter
+
+
+def test_match_references_parser_accepts_stage_artifacts():
+    parser = cli.build_parser()
+
+    args = parser.parse_args(
+        [
+            "match-references",
+            "--selected",
+            "reconstruction/selected_reference_tables.json",
+            "--bibliography",
+            "references/bibliography.json",
+        ]
+    )
+
+    assert args.command == "match-references"
+    assert args.selected == Path(
+        "reconstruction/selected_reference_tables.json"
+    )
+    assert args.bibliography == Path(
+        "references/bibliography.json"
+    )
+    assert args.out is None
+
+
+def test_match_references_main_calls_pipeline(monkeypatch):
+    calls = {}
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "tabulus",
+            "match-references",
+            "--selected",
+            "reconstruction/selected_reference_tables.json",
+            "--bibliography",
+            "references/bibliography.json",
+            "--out",
+            "reference_matches.json",
+        ],
+    )
+
+    class FakeResult:
+        reference_tables_selected = 3
+        reference_tables_checked = 2
+        reference_tables_skipped = 1
+        output_path = Path("reference_matches.json")
+
+    def fake_match_selected_reference_tables(
+        selected,
+        bibliography,
+        *,
+        output_path=None,
+    ):
+        calls["selected"] = selected
+        calls["bibliography"] = bibliography
+        calls["output_path"] = output_path
+        return FakeResult()
+
+    monkeypatch.setattr(
+        cli,
+        "match_selected_reference_tables",
+        fake_match_selected_reference_tables,
+    )
+
+    cli.main()
+
+    assert calls["selected"] == Path(
+        "reconstruction/selected_reference_tables.json"
+    )
+    assert calls["bibliography"] == Path(
+        "references/bibliography.json"
+    )
+    assert calls["output_path"] == Path(
+        "reference_matches.json"
+    )
