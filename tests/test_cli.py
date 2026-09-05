@@ -452,3 +452,71 @@ def test_match_references_main_calls_pipeline(monkeypatch):
     assert calls["output_path"] == Path(
         "reference_matches.json"
     )
+
+
+def test_extract_bibliography_parser_accepts_stage_inputs():
+    parser = cli.build_parser()
+
+    args = parser.parse_args(
+        [
+            "extract-bibliography",
+            "--pdf",
+            "paper.pdf",
+            "--out",
+            "artifacts/paper",
+            "--grobid-url",
+            "http://localhost:8070",
+        ]
+    )
+
+    assert args.command == "extract-bibliography"
+    assert args.pdf == Path("paper.pdf")
+    assert args.out == Path("artifacts/paper")
+    assert args.grobid_url == "http://localhost:8070"
+    assert args.timeout_seconds == cli.DEFAULT_GROBID_TIMEOUT_SECONDS
+
+
+def test_extract_bibliography_main_calls_pipeline(monkeypatch):
+    calls = {}
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "tabulus",
+            "extract-bibliography",
+            "--pdf",
+            "paper.pdf",
+            "--out",
+            "artifacts/paper",
+            "--grobid-url",
+            "http://localhost:8070",
+            "--timeout-seconds",
+            "45",
+        ],
+    )
+
+    def fake_extract_bibliography_artifact(
+        pdf_path,
+        artifact_root,
+        *,
+        grobid_url,
+        timeout_seconds,
+    ):
+        calls["pdf_path"] = pdf_path
+        calls["artifact_root"] = artifact_root
+        calls["grobid_url"] = grobid_url
+        calls["timeout_seconds"] = timeout_seconds
+        return Path("artifacts/paper/references/bibliography.json")
+
+    monkeypatch.setattr(
+        cli,
+        "extract_bibliography_artifact",
+        fake_extract_bibliography_artifact,
+    )
+
+    cli.main()
+
+    assert calls["pdf_path"] == Path("paper.pdf")
+    assert calls["artifact_root"] == Path("artifacts/paper")
+    assert calls["grobid_url"] == "http://localhost:8070"
+    assert calls["timeout_seconds"] == 45.0

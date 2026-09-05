@@ -4,6 +4,8 @@ import argparse
 from pathlib import Path
 
 from tabulus import __version__
+from tabulus.bibliography import DEFAULT_GROBID_TIMEOUT_SECONDS
+from tabulus.bibliography.pipeline import extract_bibliography_artifact
 from tabulus.evaluation import (
     DEFAULT_NUMBER_THRESHOLD,
     DEFAULT_TEXT_THRESHOLD,
@@ -398,6 +400,44 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
 
+    extract_bibliography = subparsers.add_parser(
+        "extract-bibliography",
+        help="Extract a normalized bibliography from an original PDF using GROBID.",
+    )
+
+    extract_bibliography.add_argument(
+        "--pdf",
+        required=True,
+        type=Path,
+        help="Original scientific PDF.",
+    )
+
+    extract_bibliography.add_argument(
+        "--out",
+        required=True,
+        type=Path,
+        help=(
+            "Artifact root. Tabulus writes "
+            "<out>/references/bibliography.json."
+        ),
+    )
+
+    extract_bibliography.add_argument(
+        "--grobid-url",
+        required=True,
+        help="GROBID service root, for example http://localhost:8070.",
+    )
+
+    extract_bibliography.add_argument(
+        "--timeout-seconds",
+        type=float,
+        default=DEFAULT_GROBID_TIMEOUT_SECONDS,
+        help=(
+            "GROBID HTTP timeout in seconds. "
+            f"Default: {DEFAULT_GROBID_TIMEOUT_SECONDS}."
+        ),
+    )
+
     classify_reference_tables = subparsers.add_parser(
         "classify-reference-tables",
         help="Classify reconstructed tables for reference-like content.",
@@ -742,6 +782,26 @@ def main() -> None:
         if output_path is not None:
             print(f"  Evaluation JSON: {output_path}")
 
+        return
+
+    if args.command == "extract-bibliography":
+        print()
+        print("Bibliography extraction configuration:")
+        print(f"  PDF: {args.pdf}")
+        print(f"  Artifact root: {args.out}")
+        print(f"  GROBID URL: {args.grobid_url}")
+        print(f"  Timeout seconds: {args.timeout_seconds}")
+
+        output_path = extract_bibliography_artifact(
+            args.pdf,
+            args.out,
+            grobid_url=args.grobid_url,
+            timeout_seconds=args.timeout_seconds,
+        )
+
+        print()
+        print("Bibliography extraction completed:")
+        print(f"  Output: {output_path}")
         return
 
     if args.command == "classify-reference-tables":
