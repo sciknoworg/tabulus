@@ -22,10 +22,9 @@ tabulus classify-reference-tables \
 
 Bibliography extraction is implemented as a Python library API under
 `src/tabulus/bibliography/`. The current implementation does not yet provide
-reference matching, DOI resolution, resolved CSV export, run-report/QA bundle
-generation, continued-table merging, standalone scientific table
-normalization, a bibliography-extraction CLI command, or complete `tabulus
-run` orchestration.
+DOI resolution, resolved CSV export, run-report/QA bundle generation,
+continued-table merging, standalone scientific table normalization, a
+bibliography-extraction CLI command, or complete `tabulus run` orchestration.
 
 ## Implemented
 
@@ -61,6 +60,13 @@ run` orchestration.
   posts the PDF to GROBID `processReferences`, preserves raw reference text,
   extracts DOI strings only when already present, and writes
   `references/bibliography.json`.
+
+Stage 5 reference matching
+: Deterministic linking of selected reference-like table cells to entries in
+  `references/bibliography.json`. Matching preserves row-level provenance,
+  unmatched tokens, and ambiguous candidates in
+  `references/reference_matches.json` without modifying reconstruction
+  prediction CSVs.
 
 ## Stage 2 Adapter Set
 
@@ -132,6 +138,17 @@ Current bibliography extraction writes:
 This artifact is produced from the original PDF, not from MinerU crops or
 prediction CSV files.
 
+Current reference matching writes:
+
+```text
+<artifact-root>/
+  references/
+    reference_matches.json
+```
+
+This artifact is produced from selected reference-like tables and
+`references/bibliography.json`.
+
 For the full filesystem contract, see {doc}`../data-contracts/run-directory`.
 
 ## Not Yet Rebuilt
@@ -139,7 +156,6 @@ For the full filesystem contract, see {doc}`../data-contracts/run-directory`.
 The following remain planned or historical in the rebuilt library unless a
 future implementation changes this page:
 
-- reference matching
 - DOI resolution
 - final resolved CSV generation
 - run report / QA bundle generation

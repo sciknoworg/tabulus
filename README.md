@@ -18,10 +18,10 @@ Tabulus is a modular multi-stage pipeline for extracting structured table data
 from scientific PDF documents.
 
 The current rebuilt library supports PDF profiling, canonical table-crop
-export, table reconstruction, reference-table classification, and
-GROBID-backed bibliography extraction. Later reference matching, DOI
-enrichment, resolved CSV export, and full run orchestration remain planned for
-the rebuilt workflow.
+export, table reconstruction, reference-table classification,
+GROBID-backed bibliography extraction, and deterministic reference matching.
+Later DOI enrichment, resolved CSV export, and full run orchestration remain
+planned for the rebuilt workflow.
 
 The project was developed as part of a Master's thesis investigating scientific table extraction, OCR benchmarking, bibliography-aware processing, and structured scholarly knowledge extraction.
 
@@ -40,7 +40,8 @@ The project was developed as part of a Master's thesis investigating scientific 
 * Reference-table classification for reconstructed tables
 * Preserved separation between reconstruction predictions and reference routing
 * GROBID bibliography extraction from full publications
-* Planned reference matching and DOI enrichment
+* Deterministic reference matching
+* Planned DOI enrichment
 
 ### 📊 Research & Evaluation
 * OCR benchmarking framework
@@ -85,8 +86,10 @@ Scientific PDF
 reference-table classification + bibliography.json
       |
       v
-planned reference matching, DOI enrichment,
-resolved CSV export, and run reporting
+references/reference_matches.json
+      |
+      v
+planned DOI enrichment, resolved CSV export, and run reporting
 ```
 
 ---

@@ -61,8 +61,10 @@ After successful profiling, Tabulus automatically exports canonical MinerU table
 The current rebuilt library implements reference-table classification after
 reconstruction with `tabulus classify-reference-tables`. It also implements
 GROBID-backed bibliography extraction as a Python library API that reads the
-original PDF and writes `references/bibliography.json`. Reference matching,
-DOI resolution, and resolved CSV export remain planned downstream stages.
+original PDF and writes `references/bibliography.json`. Stage 5 reference
+matching links selected reference-like table cells to bibliography entries and
+writes `references/reference_matches.json`; DOI resolution and resolved CSV
+export remain planned downstream stages.
 
 ## Profiling MinerU Runs
 

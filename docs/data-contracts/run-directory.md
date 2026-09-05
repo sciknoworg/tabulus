@@ -31,6 +31,7 @@ the source PDFs by default:
 <artifact-root>/
   references/
     bibliography.json
+    reference_matches.json
 ```
 
 `mineru/`
@@ -68,6 +69,10 @@ the source PDFs by default:
 : Normalized bibliography entries extracted from the original scientific PDF
   by the PDF-level bibliography branch.
 
+`references/reference_matches.json`
+: Row-level reference-linkage artifact produced by matching selected
+  reference-like tables against `references/bibliography.json`.
+
 ## Stage Dependencies
 
 The current rebuilt pipeline is staged around persisted filesystem handoffs:
@@ -97,7 +102,10 @@ PDF
 reference_table_classification.json + bibliography.json
   |
   v
-later reference-processing stages
+references/reference_matches.json
+  |
+  v
+later DOI-resolution and export stages
 ```
 
 Later stages may consume selected or reference-containing tables, but
@@ -381,8 +389,10 @@ does not proceed down the reference-resolution branch; it does not mean the
 reconstruction is invalid.
 
 The current rebuilt library implements bibliography extraction as a separate
-PDF-level branch that writes `references/bibliography.json`. It does not yet
-implement reference matching, DOI resolution, final resolved CSV generation,
-continued-table merging, or a single complete `tabulus run` orchestrator.
+PDF-level branch that writes `references/bibliography.json`, and Stage 5
+reference matching as the deterministic convergence of selected
+reference-like tables with that bibliography artifact. It does not yet
+implement DOI resolution, final resolved CSV generation, continued-table
+merging, or a single complete `tabulus run` orchestrator.
 
 For the future final DOI-enriched CSV contract, see {doc}`resolved-csv`.

@@ -75,6 +75,7 @@ tabulus run --pdf C:\papers\INPUT.pdf --runs-root C:\runs
 
 `tabulus run` is not implemented yet. The new library has registered
 table-reconstruction adapters, the `tabulus reconstruct-tables` batch CLI, and
-the GROBID-backed bibliography extraction library API. Reference matching, DOI
-resolution, final resolved CSV export, and full run reporting are not yet
-implemented.
+the GROBID-backed bibliography extraction library API. Stage 5 reference
+matching writes `references/reference_matches.json` without modifying
+prediction CSVs. DOI resolution, final resolved CSV export, and full run
+reporting are not yet implemented.

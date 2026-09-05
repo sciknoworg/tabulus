@@ -45,4 +45,6 @@ semantic cell-content correction, column-count guessing, or heuristic repair.
 
 Future scientific table normalization should remain separate from raw reconstruction output. It may add stable row/cell identifiers, semantic cleanup, formula handling, section-row interpretation, candidate selection, or other domain-specific logic after reconstruction evidence has already been preserved.
 
-The prediction CSV remains the reconstruction-quality artifact. Later reference matching and DOI enrichment should produce separate resolved CSV files without overwriting it.
+The prediction CSV remains the reconstruction-quality artifact. Stage 5
+reference matching writes a separate linkage artifact, and later DOI enrichment
+or resolved exports should not overwrite raw reconstruction predictions.

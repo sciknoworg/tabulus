@@ -250,10 +250,11 @@ table-reconstruction adapters for MinerU crops, the
 `tabulus reconstruct-tables` batch CLI, and
 `tabulus classify-reference-tables`, plus GROBID-backed bibliography
 extraction through `src/tabulus/bibliography/`. See
-{doc}`../tutorial/08-table-ocr` for the current adapter list. These stages are
-not yet implemented in the new library:
+{doc}`../tutorial/08-table-ocr` for the current adapter list. It also includes
+deterministic Stage 5 reference matching from selected reference-like tables
+and `references/bibliography.json`. These stages are not yet implemented in
+the new library:
 
-- reference matching
 - Crossref DOI resolution
 - resolved CSV export
 - run report / QA bundle
@@ -261,5 +262,7 @@ not yet implemented in the new library:
 
 The bibliography extraction branch starts from the original PDF. It does not
 consume MinerU table crops or reconstruction prediction CSVs. Reference
-matching, DOI resolution, resolved CSV export, and full run orchestration
-remain planned downstream stages.
+matching is the deterministic convergence point between selected
+reference-like tables and `references/bibliography.json`; DOI resolution,
+resolved CSV export, and full run orchestration remain planned downstream
+stages.

@@ -338,4 +338,7 @@ The command writes adapter outputs under:
   batch_summary.json
 ```
 
-Reference matching, DOI resolution, continued-table merging, final resolved CSV export, and full end-to-end processing are not yet implemented in the new library.
+Stage 5 reference matching writes `references/reference_matches.json` without
+modifying reconstruction prediction CSVs. DOI resolution, continued-table
+merging, final resolved CSV export, and full end-to-end processing are not yet
+implemented in the new library.

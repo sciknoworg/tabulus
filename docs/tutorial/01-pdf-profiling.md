@@ -282,8 +282,9 @@ converting every crop to PNG.
 ## Boundary
 
 PDF profiling does not perform crop-consuming table reconstruction,
-reference-table classification, bibliography extraction, reference matching,
-DOI resolution, final resolved CSV generation, or continued-table merging.
+reference-table classification, bibliography extraction, deterministic
+reference matching, DOI resolution, final resolved CSV generation, or
+continued-table merging.
 
 ## Common Failure Modes
 
