@@ -71,5 +71,7 @@ tabulus run --pdf C:\papers\INPUT.pdf --runs-root C:\runs
 table-reconstruction adapters, the `tabulus reconstruct-tables` batch CLI, and
 the GROBID-backed `tabulus extract-bibliography` CLI. Stage 5 reference
 matching writes `references/reference_matches.json` without modifying
-prediction CSVs. DOI resolution, final resolved CSV export, and full run
-reporting are not yet implemented.
+prediction CSVs. Stage 6 scholarly resolution writes one paper-level registry;
+see {doc}`../tutorial/13-doi-resolution` and
+{doc}`../project-notes/current-state` for the GPU-cluster implementation.
+Stage 7 resolved export and full run reporting remain unimplemented.

@@ -95,13 +95,14 @@ Keep the complete MinerU output directory for traceability and debugging. The fi
 
 The current stable downstream interface should remain `content_list.json` plus the referenced table images. `content_list_v2.json` is a candidate future interface once the current workflow is stable.
 
-## Not Yet Implemented
+## Outside This Module
 
-The new library does not yet implement:
+PDF profiling is Stage 1 only. Later stages are implemented by separate
+modules and commands:
 
 - bibliography extraction
 - reference matching
-- DOI resolution
+- paper-level scholarly reference resolution
 - resolved CSV export
 - a full `tabulus run` process command
 

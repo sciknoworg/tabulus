@@ -1,8 +1,9 @@
 # Run Directory
 
 This page is the authoritative filesystem contract for the current Tabulus
-profiling, table-reconstruction, reference-table classification, and
-bibliography-extraction stages. Directories appear as their corresponding
+profiling, table-reconstruction, reference-table classification, bibliography
+extraction, reference matching, and paper-level scholarly resolution stages.
+Directories appear as their corresponding
 stages are run; a fresh paper directory will not contain every layer
 immediately.
 
@@ -28,10 +29,15 @@ the source PDFs by default:
             parsed/
             predictions/
             batch_summary.json
+            reference_table_classification.json
+            selected_reference_tables.json
+            references/
+              reference_matches.json
 <artifact-root>/
   references/
     bibliography.json
-    reference_matches.json
+    reference_resolution.checkpoint.json  (while incomplete)
+    reference_resolution.json             (after all targets complete)
 ```
 
 `mineru/`
@@ -66,12 +72,31 @@ the source PDFs by default:
 : The reconstruction batch manifest for one paper and one adapter.
 
 `references/bibliography.json`
-: Normalized bibliography entries extracted from the original scientific PDF
-  by the PDF-level bibliography branch.
+: Ordered, immutable bibliography evidence extracted from the original
+  scientific PDF by GROBID. Entry indices follow 1-based GROBID TEI order;
+  missing metadata remains missing.
 
 `references/reference_matches.json`
 : Row-level reference-linkage artifact produced by matching selected
-  reference-like tables against `references/bibliography.json`.
+  reference-like tables against `references/bibliography.json` offline. By
+  default this is stored inside each reconstruction directory, as above;
+  `match-references --out` can select an explicit file path.
+
+`references/reference_resolution.json`
+: One paper-level Stage 6 registry over the union of matched bibliography
+  indices across all reconstruction methods, deduplicated by bibliography
+  index. Final outcomes are `validated_with_doi`, `validated_without_doi`, and
+  `rejected`. It is written only after every target completes successfully.
+
+`references/reference_resolution.checkpoint.json`
+: Incrementally completed Stage 6 references. Restarts skip completed targets;
+  operational failures preserve the checkpoint rather than becoming rejected
+  identities. The checkpoint is removed after final output is written. Its
+  fingerprint covers bibliography and Stage 5 artifact contents, optional
+  document context, Stage 6 source, and resolver configuration such as model
+  and base URL, excluding API keys and email addresses. Source changes
+  intentionally invalidate old checkpoints. See
+  {doc}`../tutorial/13-doi-resolution`.
 
 ## Stage Dependencies
 
@@ -96,20 +121,27 @@ PDF
   |           |
   |           v
   |   reference_table_classification.json
+  |   selected_reference_tables.json
   |
   +--> references/bibliography.json
 
-reference_table_classification.json + bibliography.json
+selected_reference_tables.json + bibliography.json
   |
   v
 references/reference_matches.json
   |
   v
-later DOI-resolution and export stages
+union + dedupe of matched bibliography indices
+  |
+  v
+references/reference_resolution.json (Stage 6; one registry per paper)
+  |
+  v
+Stage 7: join validated identities to all relevant cells / export (planned)
 ```
 
 Later stages may consume selected or reference-containing tables, but
-reconstruction artifacts remain preserved for each physical table processed by
+reconstruction artifacts remain preserved for each reconstructed-table instance processed by
 the reconstruction stage.
 
 This separation also decouples ML environments. MinerU and individual
@@ -314,7 +346,7 @@ does not arbitrarily write a single prediction CSV.
 ### batch_summary.json
 
 `batch_summary.json` is the reconstruction-stage manifest for one paper and
-one adapter. It records the physical tables processed and links their
+one adapter. It records the reconstructed-table instances processed and links their
 reconstruction artifacts and provenance, including table identity,
 reconstruction status, native artifact, parsed artifact, prediction CSV when
 written, adapter information, timings, and error text.
@@ -391,8 +423,16 @@ reconstruction is invalid.
 The current rebuilt library implements bibliography extraction as a separate
 PDF-level branch that writes `references/bibliography.json`, and Stage 5
 reference matching as the deterministic convergence of selected
-reference-like tables with that bibliography artifact. It does not yet
-implement DOI resolution, final resolved CSV generation, continued-table
-merging, or a single complete `tabulus run` orchestrator.
+reference-like tables with that bibliography artifact.
+
+The Stage 6 boundary is paper-level: it collects the union of bibliography
+indices matched across all reconstruction methods, deduplicates by bibliography
+index, and resolves each `(paper, bibliography_index)` once into
+`references/reference_resolution.json`. Stage 7 should then join that registry
+back onto table-cell links when writing resolved exports.
+
+The rebuilt pipeline does not yet implement Stage 7 final resolved CSV
+generation, continued-table merging, or a single complete `tabulus run`
+orchestrator.
 
 For the future final DOI-enriched CSV contract, see {doc}`resolved-csv`.

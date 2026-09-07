@@ -1,12 +1,22 @@
 # Resolved CSV
 
-Resolved CSV files are final user-facing table exports after reference matching and DOI resolution.
+Resolved CSV files are planned Stage 7 user-facing exports after reference
+matching and paper-level scholarly resolution. Stage 7 is not implemented yet.
 
-A prediction CSV is the reconstructed table before enrichment and is the artifact compared with ground truth during table-reconstruction evaluation. A resolved CSV is created later only for a relevant/reference-containing table after bibliography extraction, reference matching, and DOI resolution.
+A prediction CSV is the reconstructed table before enrichment and is the artifact compared with ground truth during table-reconstruction evaluation. A resolved CSV is created later only for a relevant/reference-containing table after bibliography extraction, reference matching, and paper-level DOI/scholarly resolution.
 
-The detected reference column should be renamed to `DOI`. When DOI values are found, the original reference cell is replaced with DOI values. When no DOI is found, the original value should remain traceable in the output. Non-reference tables may have prediction CSV artifacts without a resolved CSV.
+The planned Stage 7 exporter should join the paper-level Stage 6
+`references/reference_resolution.json` registry back onto Stage 5 table-cell
+links. The same bibliography index should therefore receive the same validated
+identity wherever it appears.
 
-Example:
+The deterministic join should propagate validated identities to every relevant
+table cell/reference occurrence, preserving original reference values and
+provenance. `validated_without_doi` remains a legitimate identity; a missing DOI
+alone must not discard it. Exact columns and rejected-link handling are not yet
+implemented. Prediction CSVs remain unchanged.
+
+Illustrative DOI-bearing export, not a finalized schema:
 
 ```text
 DOI,Value

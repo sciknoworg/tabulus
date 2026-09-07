@@ -4,7 +4,7 @@ Evaluation is operationally separate from the production pipeline.
 
 The `evaluation/` folder contains scripts, plots, and metrics used to compare OCR models, table extraction quality, bibliography extraction quality, and reference matching behavior.
 
-Production components should preserve stable intermediate artifacts so evaluation can be reproduced, but evaluation scripts should never mutate production artifacts. For table reconstruction, the scored artifact is the prediction CSV, not the later DOI-enriched resolved CSV.
+Production components should preserve stable intermediate artifacts so evaluation can be reproduced, but evaluation scripts should never mutate production artifacts. For table reconstruction, the scored artifact is the prediction CSV, not the later Stage 7 resolved CSV.
 
 ```text
 ground-truth CSV

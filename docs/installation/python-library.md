@@ -78,6 +78,9 @@ tabulus --version
 tabulus profile --help
 tabulus export-table-crops --help
 tabulus reconstruct-tables --help
+tabulus classify-reference-tables --help
+tabulus extract-bibliography --help
+tabulus match-references --help
 ```
 
 `tabulus profile` can launch MinerU when MinerU is installed in the active environment. The default `pipeline` backend is CPU-compatible; `hybrid-engine` is selected only when requested and a suitable CUDA GPU is visible.
@@ -137,4 +140,7 @@ If `--out` is omitted, the command writes to:
   batch_summary.json
 ```
 
-This command writes prediction CSV files before reference resolution. It does not run bibliography matching, DOI enrichment, final resolved CSV export, or the complete end-to-end pipeline.
+This command writes prediction CSV files before reference matching or scholarly
+resolution. It does not run reference-table classification, bibliography
+extraction, reference matching, Stage 6 resolution, final resolved CSV export,
+or the complete end-to-end pipeline.

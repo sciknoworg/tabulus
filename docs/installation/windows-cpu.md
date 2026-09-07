@@ -339,6 +339,8 @@ The command writes adapter outputs under:
 ```
 
 Stage 5 reference matching writes `references/reference_matches.json` without
-modifying reconstruction prediction CSVs. DOI resolution, continued-table
-merging, final resolved CSV export, and full end-to-end processing are not yet
-implemented in the new library.
+modifying reconstruction prediction CSVs. Stage 6 scholarly resolution writes one paper-level registry;
+see {doc}`../tutorial/13-doi-resolution` and
+{doc}`../project-notes/current-state` for the GPU-cluster implementation.
+Continued-table merging, Stage 7 resolved export, and full end-to-end
+orchestration remain unimplemented.

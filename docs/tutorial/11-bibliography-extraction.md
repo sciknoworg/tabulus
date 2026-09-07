@@ -2,7 +2,10 @@
 
 ## Goal
 
-Extract normalized bibliography entries from the original scientific PDF.
+Extract an ordered bibliography from the original scientific PDF using GROBID.
+Stage 4 is extraction only; it performs no Crossref, CORE, or scholarly-identity
+resolution. Downstream stages treat `bibliography.json` as immutable extraction
+evidence.
 
 Bibliography extraction is a PDF-level branch. It runs in parallel with the
 table-processing branch and does not consume MinerU table crops, reconstructed
@@ -27,10 +30,10 @@ original PDF
                 v
           references/bibliography.json
 
-classified reference-like table + bibliography.json
+selected_reference_tables.json + bibliography.json
       |
       v
-reference matching -> DOI resolution -> resolved table export
+Stage 5 matching -> union + dedupe -> Stage 6 resolution -> Stage 7 export (planned)
 ```
 
 ## Input
@@ -163,6 +166,23 @@ Raw reference text is preserved. DOI extraction at this stage is deterministic
 only when a DOI is already present in the bibliography representation. Stage 4
 must not query Crossref or other metadata services; missing DOI enrichment
 belongs to the later DOI-resolution stage.
+
+The enriched extraction preserves raw reference text, DOI when present, title,
+authors, year, venue, volume, issue, and pages. Missing metadata stays missing;
+it is not invented. Bibliography indices retain the 1-based GROBID TEI order
+used by Stage 5's `numeric_position` matching.
+
+Year recovery is conservative: a structured GROBID year wins. Otherwise,
+exactly one plausible year in the raw citation may be recovered; zero or
+multiple plausible years remain unresolved. A repair handles cases where
+GROBID places the year in the pages field. Compound/multi-work references
+remain ambiguous rather than being forcibly normalized.
+
+The enriched Stage 4 bibliography was rerun for all 10 JVSTA demonstration
+papers. Entry counts, index ordering, and raw citation strings were unchanged
+from the previous artifacts. This verified Stage 5 positional compatibility
+without rerunning Stages 3 or 5. Corpus observations and the Stage 6 canary
+status are recorded in {doc}`../project-notes/current-state`.
 
 ## Boundary
 

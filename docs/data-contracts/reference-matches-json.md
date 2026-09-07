@@ -219,3 +219,15 @@ accuracy requires comparison with human gold-standard data.
 
 Raw reconstruction prediction CSVs remain pre-reference-resolution artifacts
 and must not be overwritten by reference matching.
+
+## Downstream Use
+
+Stage 5 is table-cell level. Stage 6 scholarly resolution aggregates
+`matched_reference_indices` across the selected tables and reconstruction
+outputs for a paper, then resolves the deduplicated bibliography-index set once
+per `(paper, bibliography_index)`.
+
+Stage 6 writes one `references/reference_resolution.json` registry per paper.
+It does not resolve every cell independently or target bibliography entries
+outside the union of matched indices. Stage 7 remains planned: it will join
+validated identities back to every relevant table cell/reference occurrence.

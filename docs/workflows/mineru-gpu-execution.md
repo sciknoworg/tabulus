@@ -232,16 +232,22 @@ PDF ----------------> GROBID bibliography extraction
  |
  +--> table branch continues through reference-table classification
 
-reference-table classification + bibliography.json
+selected_reference_tables.json + bibliography.json
                            |
                            v
                     reference matching
                            |
                            v
-                  DOI resolution / resolved CSV
+           union + dedupe by bibliography index
                            |
                            v
-              run report / complete tabulus run
+        Stage 6: reference_resolution.json (one per paper)
+                           |
+                           v
+              Stage 7: join / resolved export (planned)
+                           |
+                           v
+         run report / complete tabulus run (planned)
 ```
 
 The new library currently provides MinerU process launching, typed access to
@@ -252,10 +258,11 @@ table-reconstruction adapters for MinerU crops, the
 extraction through `src/tabulus/bibliography/`. See
 {doc}`../tutorial/08-table-ocr` for the current adapter list. It also includes
 deterministic Stage 5 reference matching from selected reference-like tables
-and `references/bibliography.json`. These stages are not yet implemented in
-the new library:
+and `references/bibliography.json`. Stage 6 now resolves unique referenced
+bibliography indices into one paper-level registry; see
+{doc}`../tutorial/13-doi-resolution` and {doc}`../project-notes/current-state`
+for the GPU-cluster implementation. These stages remain unimplemented:
 
-- Crossref DOI resolution
 - resolved CSV export
 - run report / QA bundle
 - full `tabulus run` orchestration
@@ -263,6 +270,7 @@ the new library:
 The bibliography extraction branch starts from the original PDF. It does not
 consume MinerU table crops or reconstruction prediction CSVs. Reference
 matching is the deterministic convergence point between selected
-reference-like tables and `references/bibliography.json`; DOI resolution,
-resolved CSV export, and full run orchestration remain planned downstream
-stages.
+reference-like tables and `references/bibliography.json`. Crossref, CORE,
+and bounded LLM calls occur only in Stage 6. Stage 7 will join validated
+identities back to all relevant table cells and produce downstream exports;
+Stage 7 and full run orchestration remain planned.

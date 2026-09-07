@@ -3,7 +3,8 @@
 ## Goal
 
 Stage 5 links reference cells in Stage 3-selected reconstructed tables to
-entries in the Stage 4 bibliography artifact.
+positions in the Stage 4 bibliography artifact. This is deterministic
+table-cell-to-bibliography-position matching.
 
 This is where the table-processing branch and bibliography branch converge:
 
@@ -104,6 +105,24 @@ Author-based matching uses conservative normalized author/year,
 author-only, and text-containment fallbacks. Ambiguous textual matches may keep
 multiple candidate bibliography entries rather than silently choosing one.
 
+## Aggregation Boundary
+
+Stage 5 output is table-cell level. Multiple cells, selected tables, and
+reconstruction adapters may refer to the same bibliography index.
+
+Stage 6 collects matched bibliography indices across all reconstruction
+methods for a paper, takes their union, and deduplicates by bibliography index. The conceptual resolution key is:
+
+```text
+(paper, bibliography_index)
+```
+
+Resolving each unique bibliography entry once is useful because scholarly
+identity is a property of the paper-level bibliography entry, not of a
+particular reconstructed table cell. It also avoids repeated Crossref, CORE,
+or LLM calls and keeps different reconstruction adapters from receiving
+different downstream DOI decisions for the same bibliography entry.
+
 ## Skipped Tables
 
 Stage 5 skips a selected table instead of guessing when the referenced parsed
@@ -121,4 +140,7 @@ as errors.
 Stage 5 links table references to bibliography entries. External DOI lookup and
 identifier enrichment belong to Stage 6.
 
-Stage 5 does not mutate raw reconstruction prediction CSVs.
+Stage 5 does not mutate raw reconstruction prediction CSVs or the Stage 4
+bibliography evidence. The frozen JVSTA demonstration counts are documented in
+{doc}`../evaluation/reference-matching-quality`; they measure coverage, not
+accuracy.

@@ -2,7 +2,8 @@
 
 ## Goal
 
-Decide which reconstructed physical tables contain reference-like scientific citation content and should later enter the reference-resolution branch.
+Decide which reconstructed-table instances contain reference-like scientific
+citation content and should enter the reference-processing branch.
 
 This stage is implemented in the rebuilt library as:
 
@@ -34,16 +35,22 @@ By default, the command writes:
   reconstructions/
     <adapter>/
       reference_table_classification.json
+      selected_reference_tables.json
 ```
 
-The manifest records a routing/classification decision for each physical table considered. It does not overwrite:
+`reference_table_classification.json` records a routing/classification decision
+for each reconstructed-table instance considered. `selected_reference_tables.json` is a
+non-destructive pointer manifest containing only the tables selected for Stage
+5. Neither artifact overwrites:
 
 - `native/`
 - `parsed/`
 - `predictions/`
 - `batch_summary.json`
 
-A non-reference classification means only that the table should not proceed down the future reference-resolution branch. It does not mean the reconstruction is invalid.
+A non-reference classification means only that the table should not proceed
+down the reference-processing branch. It does not mean the reconstruction is
+invalid.
 
 ## CLI
 
@@ -73,7 +80,9 @@ For multi-paper classification, the default manifest is written inside each sele
 
 ## Classification Model
 
-Every physical table is classified independently first. The classifier uses the common parsed rows produced during reconstruction, preserves the legacy reference-bearing table heuristics, and records matched evidence.
+One deterministic regex/rule classifier is applied independently to the outputs
+of each table-reconstruction method. Every reconstructed-table instance is
+classified independently first. The classifier uses the common parsed rows produced during reconstruction, preserves the legacy reference-bearing table heuristics, and records matched evidence.
 
 The manifest includes fields such as:
 
@@ -93,7 +102,7 @@ Current heuristics include reference-like headers, citation-like cell content, D
 Continued-table handling is a separate layer on top of independent classification:
 
 ```text
-physical table
+reconstructed-table instance
   -> independent reference classification
   -> continuation relationship resolution
   -> final reference-table decision
@@ -101,7 +110,8 @@ physical table
 
 An explicitly identified continuation may inherit a positive reference-table classification from its preceding logical table. The manifest preserves whether the final decision came from independent table evidence or continuation inheritance.
 
-This does not merge files. Continued tables remain separate physical entities through MinerU detection, canonical crops, reconstruction, parsed artifacts, prediction CSVs, and classification.
+This does not merge files. Continued-table fragments retain separate crops and reconstruction artifacts
+through parsing, prediction CSV export, and classification.
 
 ## Boundary
 
@@ -112,5 +122,8 @@ This stage performs reference-table routing only. It does not extract bibliograp
 The next rebuilt branch is bibliography extraction, which produces
 `references/bibliography.json` from the original PDF. It runs in parallel with
 table processing and converges with classified reference-like tables at Stage 5
-reference matching. DOI resolution and resolved CSV export remain downstream
-planned stages.
+reference matching. Stage 6 resolves the union of referenced bibliography
+indices once per paper; Stage 7 export remains planned.
+
+Without human gold-standard labels, evaluate Stage 3 coverage, consistency,
+and agreement across reconstruction outputs rather than accuracy.

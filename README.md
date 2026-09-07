@@ -19,9 +19,11 @@ from scientific PDF documents.
 
 The current rebuilt library supports PDF profiling, canonical table-crop
 export, table reconstruction, reference-table classification,
-GROBID-backed bibliography extraction, and deterministic reference matching.
-Later DOI enrichment, resolved CSV export, and full run orchestration remain
-planned for the rebuilt workflow.
+GROBID-backed bibliography extraction, deterministic reference matching, and
+Stage 6 paper-level scholarly reference resolution. Stage 7 resolved export
+and full run orchestration remain planned. The implemented Stage 6 version
+currently resides on the GPU cluster; see
+[Current State](docs/project-notes/current-state.md) for the checkout boundary.
 
 The project was developed as part of a Master's thesis investigating scientific table extraction, OCR benchmarking, bibliography-aware processing, and structured scholarly knowledge extraction.
 
@@ -37,11 +39,11 @@ The project was developed as part of a Master's thesis investigating scientific 
 * Raw prediction CSV generation before reference resolution
 
 ### 🔗 Bibliography-Aware Processing
-* Reference-table classification for reconstructed tables
+* One deterministic regex/rule classifier applied to each reconstruction method's outputs
 * Preserved separation between reconstruction predictions and reference routing
 * GROBID bibliography extraction from full publications
-* Deterministic reference matching
-* Planned DOI enrichment
+* Offline table-cell-to-bibliography-position matching
+* Paper-level scholarly resolution through Crossref, CORE, and bounded LLM adjudication
 
 ### 📊 Research & Evaluation
 * OCR benchmarking framework
@@ -76,20 +78,26 @@ Scientific PDF
       |             prediction CSVs
       |                   |
       |                   v
-      |             reference-table classification
+      |             Stage 3 reference-table classification
       |
-      +--> GROBID bibliography extraction
+      +--> Stage 4 GROBID bibliography extraction
                 |
                 v
           references/bibliography.json
 
-reference-table classification + bibliography.json
+selected_reference_tables.json + bibliography.json
       |
       v
-references/reference_matches.json
+references/reference_matches.json (Stage 5)
       |
       v
-planned DOI enrichment, resolved CSV export, and run reporting
+union + dedupe by bibliography index
+      |
+      v
+references/reference_resolution.json (Stage 6; one registry per paper)
+      |
+      v
+Stage 7: join validated identities to all relevant cells / export (planned)
 ```
 
 ---
@@ -204,8 +212,8 @@ A comprehensive evaluation framework is included for analyzing:
 * table extraction quality,
 * OCR robustness,
 * bibliography extraction performance,
-* reference matching accuracy,
-* DOI enrichment quality,
+* reference matching coverage, consistency, and agreement,
+* scholarly identity resolution coverage and evidence quality,
 * runtime efficiency.
 
 Generated benchmark plots and visualizations are available in:
@@ -231,7 +239,7 @@ Install the current library from the repository checkout:
 python -m pip install -e ".[dev]"
 ```
 
-The currently implemented stages are exposed as CLI commands. For one PDF:
+The commands below are verified in this checkout. For one PDF:
 
 ```bash
 tabulus profile --pdf /path/to/paper.pdf --backend pipeline

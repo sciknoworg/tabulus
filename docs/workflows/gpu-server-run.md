@@ -64,8 +64,10 @@ GROBID-backed bibliography extraction through `tabulus extract-bibliography`;
 the command reads the original PDF and writes
 `references/bibliography.json`. Stage 5 reference matching links selected
 reference-like table cells to bibliography entries and writes
-`references/reference_matches.json`; DOI resolution and resolved CSV export
-remain planned downstream stages.
+`references/reference_matches.json`. Stage 6 paper-level scholarly reference
+resolution is implemented on the GPU-cluster code path and writes one
+`references/reference_resolution.json` registry per paper. Stage 7 resolved
+CSV export remains planned.
 
 ## Profiling MinerU Runs
 
