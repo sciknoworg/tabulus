@@ -3,9 +3,8 @@
 ## Goal
 
 Extract an ordered bibliography from the original scientific PDF using GROBID.
-Stage 4 is extraction only; it performs no Crossref, CORE, or scholarly-identity
-resolution. Downstream stages treat `bibliography.json` as immutable extraction
-evidence.
+Stage 4 is extraction only; it performs no Crossref, CORE, LLM, or
+scholarly-identity resolution.
 
 Bibliography extraction is a PDF-level branch. It runs in parallel with the
 table-processing branch and does not consume MinerU table crops, reconstructed
@@ -33,7 +32,7 @@ original PDF
 selected_reference_tables.json + bibliography.json
       |
       v
-Stage 5 matching -> union + dedupe -> Stage 6 resolution -> Stage 7 export (planned)
+Stage 5 reference matching
 ```
 
 ## Input
@@ -56,6 +55,17 @@ The normalized bibliography artifact is:
 
 See {doc}`../data-contracts/bibliography-json`.
 
+The current artifact records:
+
+- one-based GROBID bibliography position
+- preserved raw reference text
+- DOI when one is already present in the extracted bibliography text
+- extractor source
+
+Missing scholarly metadata is not invented. Title, author, venue, year,
+volume, issue, page-span normalization, Crossref enrichment, and scholarly
+identity resolution are outside the current Stage 4 implementation.
+
 ## Command Line
 
 The normal Stage 4 command is:
@@ -65,14 +75,6 @@ tabulus extract-bibliography \
   --pdf /path/to/paper.pdf \
   --out /path/to/artifact-root \
   --grobid-url http://localhost:8070
-```
-
-This consumes the original scientific PDF and writes:
-
-```text
-<artifact-root>/
-  references/
-    bibliography.json
 ```
 
 Arguments:
@@ -157,32 +159,15 @@ OCI image:
 The implemented bibliography package is `src/tabulus/bibliography/`:
 
 - `models.py`: normalized bibliography and entry models
-- `grobid.py`: GROBID TEI parsing and deterministic DOI extraction
+- `grobid.py`: GROBID TEI parsing and deterministic DOI extraction from raw
+  bibliography text
 - `grobid_client.py`: HTTP client for GROBID `processReferences`
 - `output.py`: `references/bibliography.json` writer
 - `pipeline.py`: one-PDF extraction pipeline
 
 Raw reference text is preserved. DOI extraction at this stage is deterministic
-only when a DOI is already present in the bibliography representation. Stage 4
-must not query Crossref or other metadata services; missing DOI enrichment
-belongs to the later DOI-resolution stage.
-
-The enriched extraction preserves raw reference text, DOI when present, title,
-authors, year, venue, volume, issue, and pages. Missing metadata stays missing;
-it is not invented. Bibliography indices retain the 1-based GROBID TEI order
-used by Stage 5's `numeric_position` matching.
-
-Year recovery is conservative: a structured GROBID year wins. Otherwise,
-exactly one plausible year in the raw citation may be recovered; zero or
-multiple plausible years remain unresolved. A repair handles cases where
-GROBID places the year in the pages field. Compound/multi-work references
-remain ambiguous rather than being forcibly normalized.
-
-The enriched Stage 4 bibliography was rerun for all 10 JVSTA demonstration
-papers. Entry counts, index ordering, and raw citation strings were unchanged
-from the previous artifacts. This verified Stage 5 positional compatibility
-without rerunning Stages 3 or 5. Corpus observations and the Stage 6 canary
-status are recorded in {doc}`../project-notes/current-state`.
+only when a DOI already appears in the extracted bibliography text. Stage 4
+must not query Crossref or other metadata services.
 
 ## Boundary
 
@@ -190,12 +175,13 @@ Bibliography extraction is separate from:
 
 - reference-table classification, which routes reconstructed structured tables
   as reference-like or non-reference-like
-- reference matching, which combines classified reference-like table rows with
+- reference matching, which combines selected reference-like table rows with
   `references/bibliography.json`
-- DOI resolution, which enriches matched references later
-- resolved export, which writes separate downstream outputs
+- planned scholarly reference resolution, which would validate paper-level
+  identities later
+- planned resolved export, which would write separate downstream outputs
 
-Raw reconstruction prediction CSVs must remain untouched.
+Raw reconstruction prediction CSVs remain untouched.
 
 The implementation is unit-tested and has been exercised against a live GROBID
 service. Reconstruction or bibliography accuracy must be evaluated separately

@@ -110,8 +110,9 @@ multiple candidate bibliography entries rather than silently choosing one.
 Stage 5 output is table-cell level. Multiple cells, selected tables, and
 reconstruction adapters may refer to the same bibliography index.
 
-Stage 6 collects matched bibliography indices across all reconstruction
-methods for a paper, takes their union, and deduplicates by bibliography index. The conceptual resolution key is:
+A future Stage 6 resolver should collect matched bibliography indices across
+all reconstruction methods for a paper, take their union, and deduplicate by
+bibliography index. The conceptual resolution key is:
 
 ```text
 (paper, bibliography_index)
@@ -119,9 +120,9 @@ methods for a paper, takes their union, and deduplicates by bibliography index. 
 
 Resolving each unique bibliography entry once is useful because scholarly
 identity is a property of the paper-level bibliography entry, not of a
-particular reconstructed table cell. It also avoids repeated Crossref, CORE,
-or LLM calls and keeps different reconstruction adapters from receiving
-different downstream DOI decisions for the same bibliography entry.
+particular reconstructed table cell. It also keeps different reconstruction
+adapters from receiving different downstream identity decisions for the same
+bibliography entry after Stage 6 exists.
 
 ## Skipped Tables
 
@@ -138,9 +139,10 @@ as errors.
 ## Boundary To Stage 6
 
 Stage 5 links table references to bibliography entries. External DOI lookup and
-identifier enrichment belong to Stage 6.
+scholarly-identity resolution are not implemented in the current rebuilt
+pipeline; they belong to the planned Stage 6 boundary.
 
 Stage 5 does not mutate raw reconstruction prediction CSVs or the Stage 4
-bibliography evidence. The frozen JVSTA demonstration counts are documented in
-{doc}`../evaluation/reference-matching-quality`; they measure coverage, not
-accuracy.
+bibliography evidence. Coverage and agreement measures are documented in
+{doc}`../evaluation/reference-matching-quality`; they should not be described
+as accuracy without human gold-standard labels.

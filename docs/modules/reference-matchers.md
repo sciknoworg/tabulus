@@ -22,14 +22,15 @@ Reference matching is deterministic Tabulus logic. It consumes selected
 reference-like tables and `references/bibliography.json`; it does not call
 GROBID, Crossref, LLMs, embedding models, search engines, or external metadata
 services. DOI values can only be matched when they are already present in the
-Stage 4 bibliography artifact. Missing DOI enrichment belongs to the later
-DOI-resolution stage.
+Stage 4 bibliography artifact. Missing DOI enrichment belongs to the planned
+DOI-resolution boundary.
 
 Numeric references use one-based bibliography positions in normalized GROBID
 TEI order. A positional match is a linkage result, not an accuracy metric by
 itself.
 
-The matcher writes table-cell links. Stage 6 scholarly resolution
-aggregates matched bibliography indices across all reconstruction methods at
-paper scope, deduplicates them, and resolves each `(paper, bibliography_index)` once rather than resolving every
-cell occurrence independently.
+The matcher writes table-cell links. A future Stage 6 resolver should aggregate
+matched bibliography indices across reconstruction methods at paper scope,
+deduplicate them, and resolve each `(paper, bibliography_index)` once rather
+than resolving every cell occurrence independently. That resolver is not
+implemented in the current `src/tabulus` package.

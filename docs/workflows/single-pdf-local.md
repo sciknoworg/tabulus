@@ -14,9 +14,11 @@ When `--out` is omitted, Tabulus writes to:
 C:\papers\tabulus-output\mineru\pipeline\
 ```
 
-Use `--out` only when an explicit output directory is needed. MinerU keeps its native output hierarchy below the profiling directory.
+Use `--out` only when an explicit output directory is needed. MinerU keeps its
+native output hierarchy below the profiling directory.
 
-After successful profiling, Tabulus automatically exports canonical MinerU table crops to:
+After successful profiling, Tabulus automatically exports canonical MinerU
+table crops to:
 
 ```text
 C:\papers\tabulus-output\table-crops\INPUT\
@@ -24,9 +26,11 @@ C:\papers\tabulus-output\table-crops\INPUT\
   images\
 ```
 
-Use `tabulus export-table-crops` only when regenerating the normalized handoff from an existing MinerU output without rerunning MinerU.
+Use `tabulus export-table-crops` only when regenerating the normalized handoff
+from an existing MinerU output without rerunning MinerU.
 
-The current implemented local table-reconstruction command runs one selected registered adapter. For example:
+The current implemented local table-reconstruction command runs one selected
+registered adapter. For example:
 
 ```powershell
 tabulus reconstruct-tables `
@@ -61,17 +65,28 @@ tabulus extract-bibliography `
   --grobid-url http://localhost:8070
 ```
 
-The future complete command should remain under the same installed `tabulus` entry point:
+Reference-table classification and reference matching are also standalone
+commands:
+
+```powershell
+tabulus classify-reference-tables `
+  --reconstruction C:\papers\tabulus-output\table-crops\INPUT\reconstructions\paddleocr-vl
+
+tabulus match-references `
+  --selected C:\papers\tabulus-output\table-crops\INPUT\reconstructions\paddleocr-vl\selected_reference_tables.json `
+  --bibliography C:\runs\INPUT\references\bibliography.json
+```
+
+The future complete command should remain under the same installed `tabulus`
+entry point:
 
 ```powershell
 tabulus run --pdf C:\papers\INPUT.pdf --runs-root C:\runs
 ```
 
 `tabulus run` is not implemented yet. The new library has registered
-table-reconstruction adapters, the `tabulus reconstruct-tables` batch CLI, and
-the GROBID-backed `tabulus extract-bibliography` CLI. Stage 5 reference
-matching writes `references/reference_matches.json` without modifying
-prediction CSVs. Stage 6 scholarly resolution writes one paper-level registry;
-see {doc}`../tutorial/13-doi-resolution` and
-{doc}`../project-notes/current-state` for the GPU-cluster implementation.
-Stage 7 resolved export and full run reporting remain unimplemented.
+table-reconstruction adapters, the `tabulus reconstruct-tables` batch CLI,
+reference-table classification, the GROBID-backed
+`tabulus extract-bibliography` CLI, and deterministic Stage 5 reference
+matching. Stage 6 scholarly reference resolution, Stage 7 resolved export, and
+full run reporting remain unimplemented in this repository.

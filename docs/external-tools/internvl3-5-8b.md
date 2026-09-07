@@ -5,6 +5,14 @@ Tabulus for Stage 2 table reconstruction from canonical MinerU table crops.
 Unlike the dedicated OCR/document/table-parsing models in the candidate set,
 this adapter evaluates a broader VLM on the same fixed reconstruction input.
 
+## Technical Profile
+
+InternVL3.5 is an open-source multimodal model family focused on vision-language
+reasoning and efficient inference. The 8B HF checkpoint used by Tabulus is an
+image-text-to-text model with an InternVL vision stack and Qwen-family text
+model components. Tabulus constrains it to table reconstruction by prompting
+for HTML from one canonical table crop.
+
 ## Official Resources
 
 - [InternVL project repository](https://github.com/OpenGVLab/InternVL)
@@ -30,37 +38,10 @@ loaded model and processor classes:
 - image processor: `GotOcr2ImageProcessorFast`
 - tokenizer: `Qwen2TokenizerFast`
 
-InternVL3.5-8B receives the same canonical MinerU crop used by the other
-crop-consuming reconstruction adapters. It does not process the original PDF,
-run external layout redetection, run external table redetection, perform
-bbox-based recropping, semantically repair table contents, resolve references,
-or merge continued tables.
-
-The adapter uses native Hugging Face Transformers loading with
-`local_files_only=True`. The pinned model snapshot must already be present in
-the local Hugging Face cache; the adapter does not perform runtime model
-downloads.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-official InternVL image preprocessing / model-native tiling
-        |
-        v
-InternVL generation
-        |
-        v
-native HTML
-        |
-        v
-shared Tabulus HTML parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+InternVL3.5-8B consumes canonical MinerU table crops through the shared Stage 2
+adapter contract. The adapter uses native Hugging Face Transformers loading
+with `local_files_only=True`, so the pinned model snapshot must already be
+present in the local Hugging Face cache.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -173,7 +154,7 @@ and reproducibility details, not reconstruction-accuracy claims.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It
+This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, run an
 external layout detector, use bounding boxes for recropping, semantically
 correct cell contents, merge continued tables, classify reference tables,

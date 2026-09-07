@@ -2,17 +2,13 @@
 
 `references/bibliography.json` records normalized bibliography entries from the
 PDF-level bibliography branch. Stage 4 runs GROBID on the original PDF and
-produces ordered, immutable extraction evidence for Stages 5 and 6.
+writes ordered extraction evidence for Stage 5 reference matching.
 
 The bibliography branch reads the original scientific PDF. It does not consume
 MinerU table crops, reconstruction prediction CSVs, or reference-table
-classification output. Raw bibliography strings should remain traceable, and
-DOI values may be recorded when they are already present in the extracted
-bibliography text. Crossref or other external DOI resolution belongs to a later
-stage.
-
-The core positional fields are illustrated below; this minimal example omits
-the enriched metadata described afterward:
+classification output. Raw bibliography strings remain traceable, and DOI
+values are recorded only when they already appear in the extracted bibliography
+text.
 
 ```json
 {
@@ -21,7 +17,7 @@ the enriched metadata described afterward:
   "entries": [
     {
       "index": 1,
-      "raw": "Smith J. Example paper. 2020.",
+      "raw": "Smith J. Example paper. 2020. doi:10.1234/example",
       "doi": "10.1234/example",
       "source": "grobid"
     }
@@ -37,33 +33,29 @@ the enriched metadata described afterward:
   `grobid`.
 
 `entries[].index`
-: One-based bibliography position in the parsed GROBID TEI order.
-  Stage 5's `numeric_position` method uses this order; it is not a scholarly
-  identifier or a position inferred from external metadata.
+: One-based bibliography position in parsed GROBID TEI order. Stage 5's
+  `numeric_position` method uses this order; it is not a scholarly identifier
+  or a position inferred from external metadata.
 
 `entries[].raw`
 : Preserved raw reference text, preferring GROBID's raw-reference note when
-  available.
+  available and otherwise using normalized text from the TEI bibliography
+  element.
 
 `entries[].doi`
-: DOI found deterministically in the bibliography text, or an empty string.
-  This is not Crossref enrichment.
+: First DOI found deterministically in the extracted bibliography text, or an
+  empty string. This is local text extraction, not Crossref enrichment.
 
 `entries[].source`
-: Source extractor for the entry.
+: Source extractor for the entry. The implemented GROBID path writes `grobid`.
 
-## Enriched Extraction Metadata
+## Boundary
 
-The enriched Stage 4 artifact also carries title, authors, year, venue, volume,
-issue, and pages when extracted. Missing values remain missing. These fields
-are citation evidence, not metadata validated by Crossref or CORE.
+Stage 4 is extraction only. It does not call Crossref, CORE, LLM providers,
+embedding services, search engines, or any scholarly-identity resolver.
 
-A structured GROBID year takes precedence. Without one, exactly one plausible
-year in the raw citation may be recovered; zero or multiple plausible years
-remain unresolved. Extraction also repairs GROBID's year-in-pages cases.
-Compound/multi-work references retain their ambiguity.
-
-Downstream consumers must preserve entry counts, index ordering, and raw
-citation strings. The enriched rerun for all 10 JVSTA demonstration papers
-preserved these exactly, verifying compatibility with existing Stage 5
-positional links without rerunning Stages 3 or 5.
+Downstream stages should treat entry order and raw reference strings as
+extraction evidence. Stage 5 links table-cell references to these bibliography
+positions without mutating the bibliography artifact. Paper-level scholarly
+identity resolution is planned for a later stage and is not implemented in the
+current `src/tabulus` package.

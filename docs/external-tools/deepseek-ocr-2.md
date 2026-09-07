@@ -5,6 +5,15 @@ Tabulus for Stage 2 reconstruction from canonical MinerU table crops. The
 Tabulus adapter sends the crop directly to the pinned DeepSeek-OCR-2 model
 revision and passes the returned model output unchanged to the shared parser.
 
+## Technical Profile
+
+DeepSeek-OCR-2 is a DeepSeek document OCR VLM for image-to-text and
+image-to-markdown tasks. Its model card describes multilingual OCR, visual
+grounding, dynamic-resolution image handling, and custom Hugging Face model
+code through `model.infer(...)`. In Tabulus, it is used for table-crop
+recognition with a table-specific prompt; generated grounding and structured
+content are preserved as native evidence before parsing.
+
 ## Official Resources
 
 - [DeepSeek-OCR-2 model](https://huggingface.co/deepseek-ai/DeepSeek-OCR-2)
@@ -21,29 +30,7 @@ The exact model repository is `deepseek-ai/DeepSeek-OCR-2` at revision
 `aaa02f3811945a91062062994c5c4a3f4c0af2b0`. The resolved model class in the
 validated configuration is `DeepseekOCR2ForCausalLM`.
 
-DeepSeek-OCR-2 receives the same canonical MinerU crop used by the other
-crop-consuming reconstruction adapters. It does not redetect the table from
-the original PDF, run another layout detector over the PDF, choose a different
-physical table region, externally recrop the canonical crop, expand the crop
-using neighboring PDF content, or merge continued tables across pages.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-DeepSeek-OCR-2 model.infer(...)
-        |
-        v
-model output with grounding/structured table content
-        |
-        v
-shared HTML/Markdown parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+DeepSeek-OCR-2 consumes canonical MinerU table crops through the shared Stage 2 adapter contract. It does not re-crop source PDFs or merge continued tables.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -209,7 +196,7 @@ DeepSeek-OCR-2 is better or worse than another reconstruction backend.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It
+This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, run an
 external layout detector over the source PDF, semantically correct cell
 contents, merge continued tables, classify reference tables, extract

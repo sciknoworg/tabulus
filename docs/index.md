@@ -11,11 +11,9 @@ The rebuilt library is organized around standalone commands and explicit
 filesystem contracts. The current rebuilt library covers PDF profiling,
 canonical table-crop export, table reconstruction, reference-table
 classification, GROBID-backed bibliography extraction, deterministic
-reference matching, and Stage 6 paper-level scholarly reference resolution.
-Stage 7 resolved export, run reports, and complete `tabulus run` orchestration
-remain planned. See {doc}`project-notes/current-state` for the GPU-cluster
-implementation and local checkout boundary. Bibliography
-extraction is a parallel PDF-level branch that produces
+reference matching. Paper-level scholarly reference resolution, resolved
+export, run reports, and complete `tabulus run` orchestration remain planned
+in this checkout. Bibliography extraction is a parallel PDF-level branch that produces
 `references/bibliography.json`, not a consumer of MinerU table crops or
 reconstruction prediction CSVs.
 

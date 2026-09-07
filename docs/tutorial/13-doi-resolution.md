@@ -1,171 +1,89 @@
-# Stage 6: Paper-Level Scholarly Reference Resolution
+# Planned Stage 6: Scholarly Reference Resolution
 
-## Goal
+## Current Status
 
-Validate and enrich the unique bibliography entries that selected tables
-actually referenced.
+The rebuilt `src/tabulus` package in this checkout does not currently implement
+Stage 6 scholarly reference resolution. There is no Stage 6 CLI command,
+resolver package, provider client, status model, checkpoint writer, or
+`references/reference_resolution.json` writer in the current implementation.
 
-## Input
+The implemented reference-processing pipeline currently ends at Stage 5
+`references/reference_matches.json`.
 
-Stage 5 `references/reference_matches.json` artifacts and the paper-level
-`references/bibliography.json` artifact.
+## Planned Goal
 
-Stage 4 extracts the complete bibliography. Stage 5 determines which
-bibliography entries are actually referenced by selected tables. Stage 6 takes
-the union of matched bibliography indices across all reconstruction methods
-for a paper and deduplicates by bibliography index. It resolves each target
-once per paper, not once per table fragment, method, or cell occurrence.
+Stage 6 is the planned paper-level stage after deterministic reference
+matching. Its purpose is to resolve matched bibliography entries to scholarly
+identities without changing the Stage 4 bibliography artifact or Stage 5 match
+artifact.
 
-The bibliography remains immutable extraction evidence. Optional document
-context can also be supplied to resolution.
-
-The resolution key is:
+The planned resolution key is paper-level:
 
 ```text
 (paper, bibliography_index)
 ```
 
-## Output
+That boundary matters because multiple selected table cells, tables, and
+reconstruction adapters may point to the same bibliography entry. Resolution
+should operate once per unique bibliography entry for a paper, rather than once
+per table occurrence.
 
-One paper-level scholarly-resolution registry:
+## Planned Input
 
-```text
-references/
-  reference_resolution.json
-```
+The planned inputs are:
 
-Each targeted bibliography index has one final scholarly-resolution outcome
-for that paper:
+- Stage 4 `references/bibliography.json`
+- one or more Stage 5 `references/reference_matches.json` artifacts for the
+  paper
 
-- `validated_with_doi`: a validated scholarly identity with an established DOI
-- `validated_without_doi`: a legitimate validated scholarly identity for which
-  no DOI is established
-- `rejected`: insufficient evidence to assign a safe scholarly identity
+Stage 4 bibliography entries are extraction evidence. Stage 5 match artifacts
+are linkage evidence. A future resolver should keep those roles separate from
+scholarly metadata retrieved during resolution.
 
-Operational failures are not converted into rejected references. They abort
-the run while preserving completed work in a checkpoint.
+## Planned Output
 
-## Default Implementation
-
-Stage 6 is implemented in the GPU-cluster version described in
-{doc}`../project-notes/current-state`. The local documentation checkout does
-not yet contain that implementation; no unverified Stage 6 CLI command is
-specified here.
+The planned canonical output is:
 
 ```text
-existing DOI -> Crossref DOI validation
-    | if unresolved
-    v
-Crossref bibliographic candidates
-    | strong unique match -> accept
-    | otherwise
-    v
-CORE fallback
-    | strong unique match -> accept
-    | otherwise
-    v
-bounded LLM adjudication / query reformulation
-    |
-    v
-final deterministic admissibility gate
-    |
-    v
-validated candidate or rejection
+references/reference_resolution.json
 ```
 
-All accepted candidates must satisfy the deterministic evidence policy.
-Crossref, CORE, and LLM calls belong to Stage 6. Stage 4 only extracts
-bibliography evidence; Stage 5 only matches table-cell citations to
-bibliography positions offline. Reconstruction prediction CSVs remain intact.
+Because Stage 6 is not implemented in this checkout, this documentation does
+not define final status names, serialized provider provenance, checkpoint
+schema, or retry semantics as current behavior. Those details should be
+documented from the implementation when the resolver is added to `src/tabulus`.
 
-## Evidence Policy
+## Boundary
 
-Resolution is deliberately conservative: false negatives and unresolved
-references are preferable to false-positive DOI contamination. Missing
-bibliographic fields do not count as disagreement; explicit contradictions
-do. An exact DOI, when successfully validated, is decisive. Strong title
-similarity alone is insufficient without independent bibliographic support.
+Stage 6 is separate from:
 
-The LLM may select only supplied candidates, reject all candidates, or propose
-one better search query. There is at most one LLM-generated scholarly-search
-retry. It may not invent a DOI, title, publication, or scholarly entity, and
-cannot lower Tabulus's deterministic minimum-evidence requirement.
+- Stage 4 bibliography extraction, which sends the original PDF to GROBID and
+  writes immutable extraction evidence
+- Stage 5 reference matching, which deterministically links table-cell
+  references to bibliography positions offline
+- Stage 7 export, which is planned to join resolved identities back to table
+  content
 
-## Scientific Safeguards
+The current rebuilt pipeline does not call Crossref, CORE, LLM providers,
+embedding services, or scholarly search APIs in Stage 4 or Stage 5.
 
-### Chapter And Containing-Book Titles
+## Planned Implementation Requirements
 
-GROBID can extract a container/book title as the title of a chapter citation.
-For raw references with the structure `author, in <container>, edited by ...,
-pp. ...`, that container title is excluded from title-comparison evidence.
-Independent agreement such as author, year, and page span can still support a
-chapter identity.
+When Stage 6 is implemented, documentation should be updated from the source
+code to describe:
 
-For example, `N. J. Mason, in Atomic Layer Epitaxy ... pp. 63-109.` resolves
-through Crossref to the chapter "Comparison of ALE with other techniques",
-DOI `10.1007/978-94-009-0389-0_3`, using author/year/pages. The whole-book DOI
-is not accepted merely because its title matches the extracted container.
+- paper-level union and deduplication of linked bibliography indices
+- deterministic evidence used before any model adjudication
+- any external scholarly metadata providers used by the resolver
+- whether and how bounded LLM adjudication is used
+- the final deterministic admissibility gate
+- scientific rejection semantics versus operational failure semantics
+- provider failover and retry behavior
+- provider/model provenance recorded in serialized outputs
+- checkpointing, resumability, and all-or-nothing final artifact creation
+- configuration and credential handling without exposing secret values
+- reproducibility-relevant configuration fingerprinting
 
-### Original-Language And Translated-Journal Pairs
-
-An original-language journal citation followed by a bracketed English
-translation can describe one scholarly work. The structural exception requires
-exactly two complete citation tails, a bracketed second tail, agreeing volumes,
-and equal or adjacent years. Four-digit page values are not treated as
-publication years.
-
-Genuine multiple-work concatenations remain non-atomic and are rejected under
-the current single-work resolution model.
-
-### Edition And Year Conflicts
-
-A numbered-edition citation identifies a specific bibliographic manifestation.
-If the source explicitly specifies a numbered edition and both source and
-candidate supply different years, the candidate cannot satisfy minimum
-evidence. For example, `H. S. Fogler, Elements of Chemical Reaction Engineering,
-2nd ed. ..., 1992.` must not accept a same-title/same-author candidate from
-2020 as the cited manifestation. The LLM cannot explain away this contradiction.
-
-## Operational Robustness
-
-Transient raw `TimeoutError` failures are retried with bounded exponential
-backoff. Syntactically malformed or truncated JSON in `message.content` is
-retried within the same bounded policy. Semantic contract violations remain
-hard failures; they are not retried until a desired answer appears. These
-operational retries are distinct from the single allowed scholarly-search retry.
-
-## Resumability
-
-Completed references are checkpointed incrementally in:
-
-```text
-references/reference_resolution.checkpoint.json
-```
-
-On restart, completed references are skipped. The final
-`references/reference_resolution.json` is written only after all targets
-complete successfully, including targets with a final `rejected` status. The
-checkpoint is then removed.
-
-The checkpoint fingerprint covers bibliography contents, Stage 5 reference-match
-artifact contents, optional document-context input, the Stage 6 source
-implementation, and resolver configuration such as model and base URL. API keys
-and email addresses are excluded. Source changes intentionally invalidate old
-checkpoints.
-
-## Verification
-
-The step completes when every target has a single recorded outcome and
-rejections remain traceable. A validated identity meets the implemented
-evidence policy; successful resolution is not proof of correctness. Report
-resolution coverage, consistency, and agreement. Accuracy requires a human
-gold standard.
-
-Earlier JVSTA Stage 6 runs are provisional diagnostics. The clean final rerun
-with enriched Stage 4 artifacts is underway; no final Stage 6 coverage or result
-percentages are available. See {doc}`../project-notes/current-state` for the
-canary and checkpoint-resume status.
-
-Stage 7 is not implemented. Its next task is to deterministically join this
-paper-level registry back to every relevant table cell/reference occurrence
-and produce downstream export artifacts.
+Stage 7 remains unimplemented. Its planned responsibility is to join resolved
+paper-level identities back to every relevant table cell or reference
+occurrence and produce downstream export artifacts.

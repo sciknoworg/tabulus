@@ -4,6 +4,15 @@ Granite Vision 4.1 4B is a vision-language model used by Tabulus for table
 reconstruction from canonical MinerU table crops. It is not a conventional OCR
 engine: the model generates table structure and cell text together as OTSL.
 
+## Technical Profile
+
+Granite Vision 4.1 4B is an IBM Granite image-text-to-text VLM exposed through
+Hugging Face Transformers. In the Tabulus table adapter, the model is prompted
+with the Granite table-OTSL task and generates both table structure and cell
+text. Tabulus then uses Docling's Granite OTSL parsing utilities to convert
+that sequence into structured cells before writing the standard reconstruction
+artifacts.
+
 ## Official Resources
 
 - [Granite Vision 4.1 4B model](https://huggingface.co/ibm-granite/granite-vision-4.1-4b)
@@ -17,31 +26,10 @@ The registered Tabulus adapter is:
 granite-vision-table
 ```
 
-It receives the same canonical MinerU crop used by the other crop-consuming
-reconstruction adapters. The image is sent directly to Granite Vision; Tabulus
-does not run Docling PDF conversion, page-layout detection, table detection,
-redetection, or candidate-specific recropping.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-Granite Vision 4.1 4B
-        |
-        v
-<tables_otsl> generation
-        |
-        v
-Docling Granite OTSL parsing
-        |
-        v
-structured cells
-        |
-        v
-shared Tabulus parser/output contract
-```
+The adapter consumes canonical MinerU table crops through the shared Stage 2
+adapter contract. The image is sent directly to Granite Vision with the OTSL
+prompt, and Tabulus preserves the generated sequence before conversion and
+shared parsing.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -76,7 +64,7 @@ The validated integration uses:
 The model generates OTSL containing table structure and cell text. Tabulus uses
 Docling's Granite OTSL parsing implementation to convert that output into
 structured cells, then renders those cells into the shared table parser/output
-contract. The adapter loads the model lazily and keeps each physical MinerU
+contract. The adapter loads the model lazily and keeps each MinerU
 crop independent.
 
 ## Native Output

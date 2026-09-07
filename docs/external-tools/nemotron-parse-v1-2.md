@@ -5,6 +5,15 @@ Tabulus for Stage 2 table reconstruction from canonical MinerU table crops.
 The Tabulus adapter uses the model directly through Hugging Face Transformers
 and does not run a separate OCR engine or a page-layout pipeline.
 
+## Technical Profile
+
+NVIDIA Nemotron Parse v1.2 is a document parsing VLM for extracting text,
+tables, semantic classes, and spatial grounding from document images. The
+model card describes reading-flow ordering plus bounding boxes for document
+objects such as titles, tables, figures, footnotes, and bibliography regions.
+Tabulus uses the Table-class output and NVIDIA postprocessing helpers to derive
+HTML for the shared parser.
+
 ## Official Resources
 
 - [NVIDIA Nemotron Parse v1.2 model](https://huggingface.co/nvidia/NVIDIA-Nemotron-Parse-v1.2)
@@ -25,35 +34,9 @@ The exact model checkpoint used by Tabulus is
 loaded C-RADIO code resolves to revision
 `0d8f4c18c877166eda07ddae1386bcad256b7a6a`.
 
-NVIDIA Nemotron Parse v1.2 receives the same canonical MinerU crop used by the
-other crop-consuming reconstruction adapters. It does not run external layout
-redetection, external table redetection, external recropping, semantic repair,
-reference resolution, or continued-table merging. Generated bounding boxes are
-preserved as provenance only and are not used to recrop the image.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-NVIDIA Nemotron Parse v1.2
-        |
-        v
-grounded semantic objects
-        |
-        v
-Table-class LaTeX/tabular content
-        |
-        v
-pinned NVIDIA table postprocessing to HTML
-        |
-        v
-shared Tabulus HTML parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+NVIDIA Nemotron Parse v1.2 consumes canonical MinerU table crops through the
+shared Stage 2 adapter contract. Generated bounding boxes are preserved as
+provenance only and are not used to recrop the image.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -166,7 +149,7 @@ and reproducibility details, not reconstruction-accuracy claims.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It
+This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, run a
 separate OCR engine, run page-level layout detection, semantically correct cell
 contents, merge continued tables, classify reference tables, extract

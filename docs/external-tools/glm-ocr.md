@@ -4,6 +4,15 @@ GLM-OCR is a vision-language model used by Tabulus for table reconstruction
 from canonical MinerU table crops. The Tabulus adapter sends the crop directly
 to the model and expects native HTML table output.
 
+## Technical Profile
+
+GLM-OCR is a multimodal OCR model for complex document understanding from
+Z.ai. The official materials describe an architecture with a CogViT visual
+encoder, a lightweight cross-modal connector, and a GLM-0.5B language decoder,
+with support for text, formula, table, and information-extraction tasks. The
+upstream SDK can run a full layout-and-recognition pipeline, but Tabulus uses a
+direct table-recognition prompt against a single canonical crop.
+
 ## Official Resources
 
 - [GLM-OCR model](https://huggingface.co/zai-org/GLM-OCR)
@@ -16,28 +25,7 @@ The registered Tabulus adapter is:
 glm-ocr
 ```
 
-It receives the same canonical MinerU crop used by the other crop-consuming
-reconstruction adapters. Tabulus does not invoke the GLM-OCR SDK document
-pipeline, PP-DocLayout-V3, layout/table redetection, or candidate-specific
-recropping from the original PDF.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-GLM-OCR
-        |
-        v
-native HTML table output
-        |
-        v
-shared span-aware HTML parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+The adapter consumes canonical MinerU table crops through the shared Stage 2 adapter contract and emits native HTML table output for shared parsing. Tabulus does not invoke the GLM-OCR SDK document pipeline.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -109,7 +97,7 @@ and parsed evidence is retained for empty or ambiguous results.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It does
+This adapter reconstructs one canonical MinerU crop at a time. It does
 not independently locate or crop tables from the source PDF, run PP-DocLayout,
 semantically correct cell contents, merge continued tables, classify reference
 tables, extract bibliographies, match references, resolve DOI values, or write

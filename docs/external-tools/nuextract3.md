@@ -2,6 +2,15 @@
 
 NuExtract3 is an external document vision-language model used by Tabulus for table reconstruction from canonical MinerU table crops.
 
+## Technical Profile
+
+NuExtract3 is a unified document-understanding vision-language model from
+NuMind. The upstream project describes it as a 4B model for structured
+information extraction and document-to-Markdown conversion from text, images,
+or mixed inputs. Tabulus uses its Markdown mode with thinking disabled, so the
+model produces Markdown containing HTML table markup from a single canonical
+table crop.
+
 ## Official Resources
 
 - NuExtract project repository: [numindai/nuextract](https://github.com/numindai/nuextract)
@@ -17,28 +26,10 @@ NuExtract3 is registered as:
 --adapter nuextract3
 ```
 
-The adapter is implemented in `src/tabulus/table_ocr/nuextract3.py`. It consumes one canonical MinerU crop at a time and does not redetect tables or recrop the original PDF.
-
-The implemented path is:
-
-```text
-canonical MinerU crop
-      |
-      v
-NuExtract3
-      |
-      v
-native Markdown with HTML table markup
-      |
-      v
-Tabulus common HTML/Markdown parser
-      |
-      v
-parsed rectangular representation
-      |
-      v
-prediction CSV
-```
+The adapter is implemented in `src/tabulus/table_ocr/nuextract3.py`. It
+consumes one canonical MinerU crop at a time, preserves generated Markdown as
+native evidence, and passes embedded HTML table markup through the shared
+Tabulus parser. It does not redetect tables or recrop the original PDF.
 
 ## Invocation
 

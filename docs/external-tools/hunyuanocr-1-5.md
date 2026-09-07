@@ -5,6 +5,14 @@ table reconstruction from canonical MinerU table crops. The Tabulus adapter
 uses the model's dedicated table task through direct Hugging Face Transformers
 inference.
 
+## Technical Profile
+
+HunyuanOCR-1.5 is Tencent Hunyuan's lightweight OCR-specialized VLM. The model
+card describes an end-to-end OCR model that unifies document parsing, text
+spotting, information extraction, and text-image translation tasks. Tabulus
+uses the table-specific prompt against a single canonical crop and preserves
+the generated HTML before shared parsing.
+
 ## Official Resources
 
 - [HunyuanOCR project repository](https://github.com/Tencent-Hunyuan/HunyuanOCR)
@@ -23,36 +31,9 @@ The exact model checkpoint used by Tabulus is `tencent/HunyuanOCR` at revision
 loaded model class is `HunYuanVLForConditionalGeneration` and that the model
 type is `hunyuan_vl`.
 
-HunyuanOCR-1.5 receives the same canonical MinerU crop used by the other
-crop-consuming reconstruction adapters. It does not process the original PDF,
-run external layout redetection, run external table redetection, externally
-recrop the image, semantically repair table contents, resolve references, or
-merge continued tables.
-
-The implemented Tabulus adapter uses direct Transformers inference. It does
-not require vLLM, DFlash, Docker, or another model-serving process for this
-adapter path.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-HunyuanOCR-1.5 official table task
-        |
-        v
-native generated HTML
-        |
-        v
-official HunyuanOCR repetition safeguards
-        |
-        v
-shared Tabulus HTML parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+HunyuanOCR-1.5 consumes canonical MinerU table crops through the shared Stage 2
+adapter contract. The implemented Tabulus adapter uses direct Transformers
+inference and preserves generated table HTML before shared parsing.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -167,7 +148,7 @@ reconstruction-accuracy claims.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It
+This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, run
 page-level layout detection, semantically correct cell contents, merge
 continued tables, classify reference tables, extract bibliographies, match

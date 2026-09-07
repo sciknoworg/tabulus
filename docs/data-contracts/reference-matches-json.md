@@ -222,12 +222,13 @@ and must not be overwritten by reference matching.
 
 ## Downstream Use
 
-Stage 5 is table-cell level. Stage 6 scholarly resolution aggregates
-`matched_reference_indices` across the selected tables and reconstruction
-outputs for a paper, then resolves the deduplicated bibliography-index set once
-per `(paper, bibliography_index)`.
+Stage 5 is table-cell level. Multiple cells, selected tables, and
+reconstruction outputs may link to the same bibliography index. A future
+paper-level resolver should aggregate `matched_reference_indices` for a paper,
+deduplicate by bibliography index, and resolve each `(paper, bibliography_index)`
+once.
 
-Stage 6 writes one `references/reference_resolution.json` registry per paper.
-It does not resolve every cell independently or target bibliography entries
-outside the union of matched indices. Stage 7 remains planned: it will join
-validated identities back to every relevant table cell/reference occurrence.
+The current `src/tabulus` package does not write a Stage 6
+`references/reference_resolution.json` registry. Stage 7 remains planned: it
+will join resolved identities back to every relevant table cell/reference
+occurrence after paper-level resolution exists.

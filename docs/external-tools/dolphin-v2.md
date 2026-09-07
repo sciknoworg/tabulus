@@ -5,6 +5,15 @@ reconstruction from canonical MinerU table crops. The Tabulus adapter sends
 the crop directly to the ByteDance Dolphin-v2 checkpoint and expects native
 HTML table output.
 
+## Technical Profile
+
+Dolphin-v2 is a universal document-parsing VLM from ByteDance. Its model card
+describes a document-type-aware two-stage design: layout analysis first, then
+content parsing with type-specific prompts, including an HTML table prompt.
+The model is built on a Qwen2.5-VL backbone and supports document elements such
+as text, formulas, code, figures, references, and tables. Tabulus uses only the
+table parsing behavior on canonical table crops.
+
 ## Official Resources
 
 - [Dolphin-v2 model](https://huggingface.co/ByteDance/Dolphin-v2)
@@ -23,28 +32,7 @@ architecture is Qwen2.5-VL, implemented through the Transformers class
 `Qwen2_5_VLForConditionalGeneration`. Tabulus is not substituting a generic
 Qwen checkpoint for Dolphin-v2.
 
-Dolphin-v2 receives the same canonical MinerU crop used by the other
-crop-consuming reconstruction adapters. It does not redetect tables, run
-page-level layout detection, choose a different crop from the source PDF,
-recrop based on model output, or perform margin cropping.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-Dolphin-v2
-        |
-        v
-native HTML table output
-        |
-        v
-shared span-aware HTML parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+Dolphin-v2 consumes canonical MinerU table crops through the shared Stage 2 adapter contract. It produces native HTML table output that Tabulus preserves before shared parsing.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -165,7 +153,7 @@ measurements or model-ranking evidence.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It
+This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, run
 page-level layout detection, semantically correct cell contents, merge
 continued tables, classify reference tables, extract bibliographies, match

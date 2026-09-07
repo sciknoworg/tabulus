@@ -10,6 +10,15 @@ Docling functionality is also used by the separate Granite Vision adapter to
 parse Granite-generated OTSL. See {doc}`granite-vision` for that integration;
 it is distinct from `rapidocr-tableformer`.
 
+## Technical Profile
+
+Docling is a document parser for converting PDFs and other document formats
+into structured representations such as Markdown, HTML, and JSON. Its broader
+pipeline includes layout analysis, reading order, OCR support, table
+structure, formulas, and a unified `DoclingDocument` representation. Tabulus
+uses only Docling TableFormer for table structure recognition on already
+cropped table images, paired with RapidOCR word boxes.
+
 ## Official Resources
 
 - [Docling project repository](https://github.com/docling-project/docling)
@@ -29,20 +38,6 @@ Runtime performs OCR and extracts word bounding boxes on the supplied crop.
 Docling TableFormer V1 performs table-structure recognition on that same
 complete crop. The adapter does not redetect or recrop tables from the source
 PDF.
-
-This keeps the comparison boundary shared with the other reconstruction
-adapters:
-
-```text
-canonical MinerU crop
-        |
-        +--> RapidOCR OCR and word boxes (CPU)
-        |
-        +--> Docling TableFormer V1 (requested CPU/GPU device)
-                    |
-                    v
-        shared Tabulus parsing and output contract
-```
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -101,7 +96,7 @@ ambiguous results.
 ## Limitations
 
 This adapter operates on canonical MinerU crops and does not independently
-locate tables in the original PDF. Continued physical table crops remain
+locate tables in the original PDF. Continued canonical crops remain
 separate, and the adapter does not perform semantic cell correction,
 bibliography extraction, reference matching, DOI resolution, or final resolved
 CSV generation.

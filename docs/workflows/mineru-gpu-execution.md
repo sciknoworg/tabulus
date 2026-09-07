@@ -238,13 +238,13 @@ selected_reference_tables.json + bibliography.json
                     reference matching
                            |
                            v
-           union + dedupe by bibliography index
+              reference_matches.json
                            |
                            v
-        Stage 6: reference_resolution.json (one per paper)
+     Stage 6 paper-level resolution (planned)
                            |
                            v
-              Stage 7: join / resolved export (planned)
+              Stage 7 join / resolved export (planned)
                            |
                            v
          run report / complete tabulus run (planned)
@@ -253,16 +253,15 @@ selected_reference_tables.json + bibliography.json
 The new library currently provides MinerU process launching, typed access to
 existing MinerU outputs, automatic table-crop export, registered Stage 2
 table-reconstruction adapters for MinerU crops, the
-`tabulus reconstruct-tables` batch CLI, and
-`tabulus classify-reference-tables`, plus GROBID-backed bibliography
-extraction through `src/tabulus/bibliography/`. See
-{doc}`../tutorial/08-table-ocr` for the current adapter list. It also includes
+`tabulus reconstruct-tables` batch CLI, `tabulus classify-reference-tables`,
+GROBID-backed bibliography extraction through `src/tabulus/bibliography/`, and
 deterministic Stage 5 reference matching from selected reference-like tables
-and `references/bibliography.json`. Stage 6 now resolves unique referenced
-bibliography indices into one paper-level registry; see
-{doc}`../tutorial/13-doi-resolution` and {doc}`../project-notes/current-state`
-for the GPU-cluster implementation. These stages remain unimplemented:
+and `references/bibliography.json`. See {doc}`../tutorial/08-table-ocr` for
+the current adapter list.
 
+These stages remain unimplemented in the current `src/tabulus` package:
+
+- paper-level scholarly reference resolution
 - resolved CSV export
 - run report / QA bundle
 - full `tabulus run` orchestration
@@ -270,7 +269,6 @@ for the GPU-cluster implementation. These stages remain unimplemented:
 The bibliography extraction branch starts from the original PDF. It does not
 consume MinerU table crops or reconstruction prediction CSVs. Reference
 matching is the deterministic convergence point between selected
-reference-like tables and `references/bibliography.json`. Crossref, CORE,
-and bounded LLM calls occur only in Stage 6. Stage 7 will join validated
-identities back to all relevant table cells and produce downstream exports;
-Stage 7 and full run orchestration remain planned.
+reference-like tables and `references/bibliography.json`. Crossref, CORE, LLM
+providers, and external scholarly metadata services are not called by the
+current rebuilt pipeline.

@@ -2,6 +2,14 @@
 
 Chandra OCR 2 is an external OCR model used by Tabulus for table reconstruction from canonical MinerU table crops.
 
+## Technical Profile
+
+Chandra OCR 2 is a Datalab OCR model for converting PDFs and images into
+structured HTML, Markdown, or JSON while retaining layout information. The
+project positions it for complex document content such as tables, forms,
+handwriting, math, and multilingual OCR. In Tabulus, Chandra is used as a local
+Hugging Face model path that emits table HTML for the shared parser.
+
 ## Official Resources
 
 - Chandra OCR project repository: [datalab-to/chandra](https://github.com/datalab-to/chandra)
@@ -17,28 +25,10 @@ Chandra is registered as:
 --adapter chandra
 ```
 
-The adapter is implemented in `src/tabulus/table_ocr/chandra.py`. It consumes one canonical MinerU crop at a time and does not redetect tables or recrop the original PDF.
-
-The implemented path is:
-
-```text
-canonical MinerU crop
-      |
-      v
-Chandra OCR 2
-      |
-      v
-raw structured HTML
-      |
-      v
-Tabulus common span-aware HTML parser
-      |
-      v
-parsed rectangular representation
-      |
-      v
-prediction CSV
-```
+The adapter is implemented in `src/tabulus/table_ocr/chandra.py`. It consumes
+one canonical MinerU crop at a time, preserves Chandra's generated HTML and
+metadata as native evidence, and sends the HTML through the shared span-aware
+parser. It does not redetect tables or recrop the original PDF.
 
 ## Invocation
 

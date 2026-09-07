@@ -5,6 +5,14 @@ by Tabulus for Stage 2 reconstruction from canonical MinerU table crops. The
 Tabulus adapter uses MonkeyOCRv2's direct table-recognition task rather than
 the full document-layout pipeline.
 
+## Technical Profile
+
+MonkeyOCRv2 is a document-native visual-text model family with separate
+vision-encoder, document-parsing, and document-understanding releases.
+`MonkeyOCRv2-B-Parsing` is the parsing model variant used by Tabulus. It emits
+OTSL for the table task, so Tabulus stores the raw sequence and then converts
+it deterministically to HTML for the shared table parser.
+
 ## Official Resources
 
 - [MonkeyOCRv2-B-Parsing model](https://huggingface.co/zenosai/MonkeyOCRv2-B-Parsing)
@@ -21,31 +29,7 @@ The exact model checkpoint used by Tabulus is
 `zenosai/MonkeyOCRv2-B-Parsing` at revision
 `2419139b7bcd3fda2689b2a83167172afba91c8b`.
 
-MonkeyOCRv2-B-Parsing receives the same canonical MinerU crop used by the
-other crop-consuming reconstruction adapters. It does not run external layout
-redetection, external table redetection, external recropping, semantic repair,
-or continued-table merging. Each physical crop remains independent.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-MonkeyOCRv2-B-Parsing direct table recognition
-        |
-        v
-native OTSL
-        |
-        v
-Tabulus OTSL-to-HTML normalization
-        |
-        v
-shared span-aware HTML parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+MonkeyOCRv2-B-Parsing consumes canonical MinerU table crops through the shared Stage 2 adapter contract. Tabulus preserves its OTSL sequence before deterministic conversion and shared parsing.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -158,7 +142,7 @@ and parsed evidence is retained for empty or ambiguous results.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It
+This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, run
 MonkeyOCRv2's full document-layout pipeline, semantically correct cell
 contents, merge continued tables, classify reference tables, extract

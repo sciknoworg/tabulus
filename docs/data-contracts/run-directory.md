@@ -2,10 +2,9 @@
 
 This page is the authoritative filesystem contract for the current Tabulus
 profiling, table-reconstruction, reference-table classification, bibliography
-extraction, reference matching, and paper-level scholarly resolution stages.
-Directories appear as their corresponding
-stages are run; a fresh paper directory will not contain every layer
-immediately.
+extraction, and reference matching stages. Directories appear as their
+corresponding stages are run; a fresh paper directory will not contain every
+layer immediately.
 
 ## Current Output Hierarchy
 
@@ -36,8 +35,6 @@ the source PDFs by default:
 <artifact-root>/
   references/
     bibliography.json
-    reference_resolution.checkpoint.json  (while incomplete)
-    reference_resolution.json             (after all targets complete)
 ```
 
 `mineru/`
@@ -72,9 +69,10 @@ the source PDFs by default:
 : The reconstruction batch manifest for one paper and one adapter.
 
 `references/bibliography.json`
-: Ordered, immutable bibliography evidence extracted from the original
-  scientific PDF by GROBID. Entry indices follow 1-based GROBID TEI order;
-  missing metadata remains missing.
+: Ordered bibliography evidence extracted from the original scientific PDF by
+  GROBID. Entry indices follow 1-based GROBID TEI order. The current schema
+  records preserved raw reference text, DOI values found in that extracted
+  text, and extractor source.
 
 `references/reference_matches.json`
 : Row-level reference-linkage artifact produced by matching selected
@@ -82,21 +80,8 @@ the source PDFs by default:
   default this is stored inside each reconstruction directory, as above;
   `match-references --out` can select an explicit file path.
 
-`references/reference_resolution.json`
-: One paper-level Stage 6 registry over the union of matched bibliography
-  indices across all reconstruction methods, deduplicated by bibliography
-  index. Final outcomes are `validated_with_doi`, `validated_without_doi`, and
-  `rejected`. It is written only after every target completes successfully.
-
-`references/reference_resolution.checkpoint.json`
-: Incrementally completed Stage 6 references. Restarts skip completed targets;
-  operational failures preserve the checkpoint rather than becoming rejected
-  identities. The checkpoint is removed after final output is written. Its
-  fingerprint covers bibliography and Stage 5 artifact contents, optional
-  document context, Stage 6 source, and resolver configuration such as model
-  and base URL, excluding API keys and email addresses. Source changes
-  intentionally invalidate old checkpoints. See
-  {doc}`../tutorial/13-doi-resolution`.
+Paper-level scholarly reference resolution artifacts are planned for Stage 6.
+They are not written by the current `src/tabulus` package.
 
 ## Stage Dependencies
 
@@ -131,10 +116,7 @@ selected_reference_tables.json + bibliography.json
 references/reference_matches.json
   |
   v
-union + dedupe of matched bibliography indices
-  |
-  v
-references/reference_resolution.json (Stage 6; one registry per paper)
+Stage 6: paper-level scholarly reference resolution (planned)
   |
   v
 Stage 7: join validated identities to all relevant cells / export (planned)
@@ -425,14 +407,14 @@ PDF-level branch that writes `references/bibliography.json`, and Stage 5
 reference matching as the deterministic convergence of selected
 reference-like tables with that bibliography artifact.
 
-The Stage 6 boundary is paper-level: it collects the union of bibliography
-indices matched across all reconstruction methods, deduplicates by bibliography
-index, and resolves each `(paper, bibliography_index)` once into
-`references/reference_resolution.json`. Stage 7 should then join that registry
-back onto table-cell links when writing resolved exports.
+The planned Stage 6 boundary is paper-level: it should collect the union of
+bibliography indices matched across reconstruction methods, deduplicate by
+bibliography index, and resolve each `(paper, bibliography_index)` once. The
+current repository does not implement that resolver or write
+`references/reference_resolution.json`.
 
-The rebuilt pipeline does not yet implement Stage 7 final resolved CSV
-generation, continued-table merging, or a single complete `tabulus run`
-orchestrator.
+The rebuilt pipeline does not yet implement paper-level scholarly reference
+resolution, Stage 7 final resolved CSV generation, continued-table merging, or
+a single complete `tabulus run` orchestrator.
 
 For the future final DOI-enriched CSV contract, see {doc}`resolved-csv`.

@@ -2,6 +2,16 @@
 
 PaddleOCR-VL is an external document vision-language model used by Tabulus for table reconstruction from canonical MinerU table crops.
 
+## Technical Profile
+
+PaddleOCR-VL is PaddleOCR's document-parsing vision-language model, aimed at
+turning document images or PDFs into structured Markdown or JSON. The upstream
+project describes PaddleOCR-VL-1.6 as a compact document VLM with a dynamic
+resolution visual encoder and a lightweight ERNIE language model, covering
+tables alongside text, formulas, and charts. In Tabulus, the adapter uses the
+PaddleOCR-VL table prompt on already-cropped table images rather than the full
+document parsing workflow.
+
 ## Official Resources
 
 - PaddleOCR project repository: [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
@@ -17,28 +27,10 @@ PaddleOCR-VL is registered as:
 --adapter paddleocr-vl
 ```
 
-The adapter is implemented in `src/tabulus/table_ocr/paddleocr_vl.py`. It consumes one canonical MinerU crop at a time and does not redetect tables or recrop the original PDF.
-
-The workflow is:
-
-```text
-canonical MinerU crop
-      |
-      v
-PaddleOCR-VL
-      |
-      v
-native PaddleOCR result views
-      |
-      v
-Tabulus common HTML/Markdown parser
-      |
-      v
-parsed rectangular representation
-      |
-      v
-prediction CSV
-```
+The adapter is implemented in `src/tabulus/table_ocr/paddleocr_vl.py`. It
+consumes one canonical MinerU crop at a time, preserves PaddleOCR result views
+as native evidence, and passes the extracted table markup through the shared
+Tabulus parser. It does not redetect tables or recrop the original PDF.
 
 ## Invocation
 
@@ -95,7 +87,7 @@ pipeline.predict(
 )
 ```
 
-`use_layout_detection=False` is intentional because MinerU has already localized and cropped the physical table. `prompt_label="table"` tells PaddleOCR-VL that the input image is already a table crop.
+`use_layout_detection=False` is intentional because MinerU has already localized and cropped the table region. `prompt_label="table"` tells PaddleOCR-VL that the input image is already a table crop.
 
 ## Native Output
 

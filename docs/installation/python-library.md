@@ -140,7 +140,7 @@ If `--out` is omitted, the command writes to:
   batch_summary.json
 ```
 
-This command writes prediction CSV files before reference matching or scholarly
-resolution. It does not run reference-table classification, bibliography
-extraction, reference matching, Stage 6 resolution, final resolved CSV export,
-or the complete end-to-end pipeline.
+This command writes prediction CSV files before reference matching or planned
+scholarly resolution. It does not run reference-table classification,
+bibliography extraction, reference matching, Stage 6 resolution, final resolved
+CSV export, or the complete end-to-end pipeline.

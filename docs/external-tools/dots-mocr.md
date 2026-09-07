@@ -5,6 +5,15 @@ table reconstruction from canonical MinerU table crops. The Tabulus adapter
 uses the active dots.mocr layout prompt through direct Hugging Face
 Transformers inference.
 
+## Technical Profile
+
+dots.mocr is a multilingual document-parsing VLM for OCR, layout grounding,
+table/formula parsing, and structured graphics understanding. Its model card
+also describes image-to-SVG capability through the related dots.mocr-svg
+variant. Tabulus uses the layout prompt on one canonical table crop, then
+selects model-emitted `Table` objects and preserves their HTML for shared
+parsing.
+
 ## Official Resources
 
 - [dots.mocr project repository](https://github.com/studio-dots-ai/dots.mocr)
@@ -29,38 +38,10 @@ pinned remote-code configuration and model classes:
 - image processor: `Qwen2VLImageProcessorFast`
 - tokenizer: `Qwen2TokenizerFast`
 
-dots.mocr receives the same canonical MinerU crop used by the other
-crop-consuming reconstruction adapters. It does not process the original PDF,
-run external layout redetection, run external table redetection, externally
-recrop the image, perform semantic repair, repair JSON, resolve references, or
-merge continued tables.
-
-The adapter uses direct Transformers inference. It does not use a vLLM server,
-DFlash, or Docker for this Tabulus adapter path.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-dots.mocr active layout prompt (prompt_layout_all_en)
-        |
-        v
-model-native JSON layout output
-        |
-        v
-select model-emitted objects whose category == "Table"
-        |
-        v
-preserve their model-emitted HTML
-        |
-        v
-shared Tabulus HTML parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+dots.mocr consumes canonical MinerU table crops through the shared Stage 2
+adapter contract. The adapter uses direct Transformers inference and preserves
+its native layout-aware response before extracting table content through the
+common parser.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -221,7 +202,7 @@ reconstruction-accuracy claims.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It
+This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, run an
 external crop-generation stage, semantically correct cell contents, repair
 malformed JSON, merge continued tables, classify reference tables, extract

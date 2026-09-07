@@ -3,6 +3,15 @@
 Tesseract + Table Transformer is an external-tool combination used by Tabulus
 for table reconstruction from canonical MinerU table crops.
 
+## Technical Profile
+
+Tesseract is a traditional OCR engine that extracts text tokens from images.
+Microsoft Table Transformer is a deep-learning table-structure model for
+detecting table rows, columns, headers, and cells in document images. The
+Tabulus adapter combines Tesseract word tokens and bounding boxes with Table
+Transformer structure predictions, then deterministically fuses them into HTML
+for the shared parser.
+
 ## Official Resources
 
 - Tesseract OCR project repository: [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract)
@@ -30,34 +39,8 @@ Tesseract + Table Transformer
 The adapter is implemented in `src/tabulus/table_ocr/tesseract_tatr.py`, with
 deterministic structure postprocessing in
 `src/tabulus/table_ocr/tatr_postprocess.py`. It consumes one canonical MinerU
-crop at a time and does not redetect tables or recrop the original PDF.
-
-The implemented path is:
-
-```text
-canonical MinerU crop
-      |
-      v
-Tesseract OCR word tokens and bounding boxes
-      |
-      v
-Microsoft Table Transformer structure recognition
-      |
-      v
-deterministic token/structure fusion
-      |
-      v
-HTML table
-      |
-      v
-Tabulus common HTML/Markdown parser
-      |
-      v
-parsed rectangular representation
-      |
-      v
-prediction CSV
-```
+crop at a time, preserves both OCR and structure evidence, and does not
+redetect tables or recrop the original PDF.
 
 This adapter replaces the old Kreuzberg/Xberg reconstruction candidate with
 explicitly named underlying components. Kreuzberg/Xberg is not an active

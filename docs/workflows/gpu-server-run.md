@@ -6,7 +6,9 @@ For MinerU profiling, request the `hybrid-engine` backend. For table
 reconstruction, run one registered adapter over the canonical MinerU crop
 handoff in that adapter's environment.
 
-Before running this workflow, complete the GPU server setup in `installation/gpu-server`. For the exact tested MinerU command sequence, see `workflows/mineru-gpu-execution`.
+Before running this workflow, complete the GPU server setup in
+`installation/gpu-server`. For the exact tested MinerU command sequence, see
+`workflows/mineru-gpu-execution`.
 
 ## Assumptions
 
@@ -31,7 +33,8 @@ Future full-pipeline manifest shape:
 tabulus run --manifest /data/papers.csv --runs-root /data/runs
 ```
 
-This full-manifest command is not yet implemented in the new library. The currently validated single-document commands are:
+This full-manifest command is not yet implemented in the new library. The
+currently validated single-document commands are:
 
 ```bash
 tabulus profile --pdf /data/papers/INPUT.pdf --backend hybrid-engine
@@ -42,17 +45,21 @@ tabulus reconstruct-tables \
   --device gpu:0
 ```
 
-If `--out` is omitted, Tabulus uses the same default convention as the CPU workflow:
+If `--out` is omitted, Tabulus uses the same default convention as the CPU
+workflow:
 
 ```text
 <PDF directory>/tabulus-output/mineru/<resolved-backend>/
 ```
 
-Do not pass `--out` unless a GPU server should intentionally write the profiling root to a particular shared work or runs directory.
+Do not pass `--out` unless a GPU server should intentionally write the
+profiling root to a particular shared work or runs directory.
 
-When `hybrid-engine` is requested but unavailable, the resolved backend is `pipeline`, and the automatic directory uses `pipeline`.
+When `hybrid-engine` is requested but unavailable, the resolved backend is
+`pipeline`, and the automatic directory uses `pipeline`.
 
-After successful profiling, Tabulus automatically exports canonical MinerU table crops to:
+After successful profiling, Tabulus automatically exports canonical MinerU
+table crops to:
 
 ```text
 <PDF directory>/tabulus-output/table-crops/<PDF stem>/
@@ -61,17 +68,18 @@ After successful profiling, Tabulus automatically exports canonical MinerU table
 The current rebuilt library implements reference-table classification after
 reconstruction with `tabulus classify-reference-tables`. It also implements
 GROBID-backed bibliography extraction through `tabulus extract-bibliography`;
-the command reads the original PDF and writes
-`references/bibliography.json`. Stage 5 reference matching links selected
-reference-like table cells to bibliography entries and writes
-`references/reference_matches.json`. Stage 6 paper-level scholarly reference
-resolution is implemented on the GPU-cluster code path and writes one
-`references/reference_resolution.json` registry per paper. Stage 7 resolved
-CSV export remains planned.
+the command reads the original PDF and writes `references/bibliography.json`.
+Stage 5 reference matching links selected reference-like table cells to
+bibliography entries and writes `references/reference_matches.json`. Stage 6
+paper-level scholarly reference resolution and Stage 7 resolved CSV export
+remain planned in this repository.
 
 ## Profiling MinerU Runs
 
-Separate first-run setup cost from document-processing cost. The first invocation may download the MinerU VLM checkpoint, initialize vLLM, compile Torch graphs, capture CUDA graphs, and download OCR/layout models. Those costs are cacheable and should not be mixed into steady-state per-document timing.
+Separate first-run setup cost from document-processing cost. The first
+invocation may download the MinerU VLM checkpoint, initialize vLLM, compile
+Torch graphs, capture CUDA graphs, and download OCR/layout models. Those costs
+are cacheable and should not be mixed into steady-state per-document timing.
 
 For each profiling run, record:
 
@@ -87,11 +95,13 @@ For each profiling run, record:
 - peak GPU memory if available
 - number of detected tables
 
-For a controlled benchmark, run the same document once to warm the environment and then run it again to estimate steady-state processing time.
+For a controlled benchmark, run the same document once to warm the environment
+and then run it again to estimate steady-state processing time.
 
 ## Table-Crop Handoff
 
-The GPU workflow should materialize a clean intermediate table-crop collection before invoking a table reconstruction adapter:
+The GPU workflow should materialize a clean intermediate table-crop collection
+before invoking a table reconstruction adapter:
 
 ```text
 MinerU content_list.json
@@ -108,7 +118,10 @@ tabulus-output/table-crops/<PDF stem>/
   images/
 ```
 
-This directory should preserve `page_idx`, `bbox`, captions, footnotes, `mineru_img_path`, and MinerU `table_body` when available. A crop-consuming table-reconstruction adapter should receive the copied MinerU table image, not a full PDF page.
+This directory should preserve `page_idx`, `bbox`, captions, footnotes,
+`mineru_img_path`, and MinerU `table_body` when available. A crop-consuming
+table-reconstruction adapter should receive the copied MinerU table image, not
+a full PDF page.
 
 For batch reconstruction, the command writes one adapter-specific tree:
 

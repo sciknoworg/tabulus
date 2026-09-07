@@ -19,11 +19,9 @@ from scientific PDF documents.
 
 The current rebuilt library supports PDF profiling, canonical table-crop
 export, table reconstruction, reference-table classification,
-GROBID-backed bibliography extraction, deterministic reference matching, and
-Stage 6 paper-level scholarly reference resolution. Stage 7 resolved export
-and full run orchestration remain planned. The implemented Stage 6 version
-currently resides on the GPU cluster; see
-[Current State](docs/project-notes/current-state.md) for the checkout boundary.
+GROBID-backed bibliography extraction, and deterministic reference matching.
+Paper-level scholarly reference resolution, resolved export, and full run
+orchestration remain planned in this checkout.
 
 The project was developed as part of a Master's thesis investigating scientific table extraction, OCR benchmarking, bibliography-aware processing, and structured scholarly knowledge extraction.
 
@@ -43,7 +41,7 @@ The project was developed as part of a Master's thesis investigating scientific 
 * Preserved separation between reconstruction predictions and reference routing
 * GROBID bibliography extraction from full publications
 * Offline table-cell-to-bibliography-position matching
-* Paper-level scholarly resolution through Crossref, CORE, and bounded LLM adjudication
+* Clear planned boundary for paper-level scholarly reference resolution
 
 ### 📊 Research & Evaluation
 * OCR benchmarking framework
@@ -91,13 +89,10 @@ selected_reference_tables.json + bibliography.json
 references/reference_matches.json (Stage 5)
       |
       v
-union + dedupe by bibliography index
+Stage 6: paper-level scholarly reference resolution (planned)
       |
       v
-references/reference_resolution.json (Stage 6; one registry per paper)
-      |
-      v
-Stage 7: join validated identities to all relevant cells / export (planned)
+Stage 7: join resolved identities to all relevant cells / export (planned)
 ```
 
 ---
@@ -213,7 +208,7 @@ A comprehensive evaluation framework is included for analyzing:
 * OCR robustness,
 * bibliography extraction performance,
 * reference matching coverage, consistency, and agreement,
-* scholarly identity resolution coverage and evidence quality,
+* reference-resolution coverage and evidence quality after that stage is implemented,
 * runtime efficiency.
 
 Generated benchmark plots and visualizations are available in:

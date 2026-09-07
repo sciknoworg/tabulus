@@ -5,6 +5,14 @@ Tabulus for Stage 2 reconstruction from canonical MinerU table crops. The
 Tabulus adapter sends the crop directly to the pinned Nanonets-OCR-s model
 checkpoint and expects native structured HTML table output.
 
+## Technical Profile
+
+Nanonets-OCR-s is an image-to-Markdown OCR VLM built for structured document
+conversion. The model card describes support for HTML/Markdown tables, LaTeX
+equations, image descriptions, signatures, watermarks, and checkbox handling.
+It is based on Qwen2.5-VL, while Tabulus treats `nanonets/Nanonets-OCR-s` as
+the adapter identity and uses its HTML table output directly.
+
 ## Official Resources
 
 - [Nanonets-OCR-s model](https://huggingface.co/nanonets/Nanonets-OCR-s)
@@ -23,28 +31,9 @@ architecture is Qwen2.5-VL, implemented through the runtime Transformers class
 `Qwen2_5_VLForConditionalGeneration`. Tabulus is not substituting a generic
 Qwen checkpoint for Nanonets-OCR-s.
 
-Nanonets-OCR-s receives the same canonical MinerU crop used by the other
-crop-consuming reconstruction adapters. It does not run external layout
-redetection, table redetection, external recropping, semantic repair, or
-continued-table merging. Each physical crop remains independent.
-
-The reconstruction path is:
-
-```text
-canonical MinerU crop
-        |
-        v
-Nanonets-OCR-s
-        |
-        v
-native structured HTML
-        |
-        v
-shared span-aware HTML parser
-        |
-        v
-prediction CSV when exactly one table parses
-```
+Nanonets-OCR-s consumes canonical MinerU table crops through the shared Stage 2
+adapter contract. It preserves the model-produced Markdown/HTML-style response
+before shared parsing.
 
 For the generic adapter interface and artifact contract, see
 {doc}`../modules/table-ocr-adapters`.
@@ -209,7 +198,7 @@ adapter.
 
 ## Limitations
 
-This adapter reconstructs one physical canonical MinerU crop at a time. It
+This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, semantically
 correct cell contents, merge continued tables, classify reference tables,
 extract bibliographies, match references, resolve DOI values, or write final
