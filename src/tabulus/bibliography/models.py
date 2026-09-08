@@ -6,12 +6,25 @@ from typing import Any
 
 @dataclass(frozen=True)
 class BibliographyEntry:
-    """One bibliography entry extracted from a scientific PDF."""
+    """One bibliography entry extracted from a scientific PDF.
+
+    ``raw`` preserves the source citation text. The remaining bibliographic
+    fields are structured metadata parsed by GROBID when available. They are
+    optional because historical and poorly formatted references may contain
+    only partial metadata.
+    """
 
     index: int
     raw: str
     doi: str
     source: str
+    title: str = ""
+    authors: tuple[str, ...] = ()
+    year: int | None = None
+    venue: str = ""
+    volume: str = ""
+    issue: str = ""
+    pages: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -19,6 +32,13 @@ class BibliographyEntry:
             "raw": self.raw,
             "doi": self.doi,
             "source": self.source,
+            "title": self.title,
+            "authors": list(self.authors),
+            "year": self.year,
+            "venue": self.venue,
+            "volume": self.volume,
+            "issue": self.issue,
+            "pages": self.pages,
         }
 
 
@@ -37,5 +57,8 @@ class Bibliography:
         return {
             "bibliography_count": self.bibliography_count,
             "bibliography_source": self.source,
-            "entries": [entry.to_dict() for entry in self.entries],
+            "entries": [
+                entry.to_dict()
+                for entry in self.entries
+            ],
         }

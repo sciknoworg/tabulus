@@ -520,3 +520,410 @@ def test_extract_bibliography_main_calls_pipeline(monkeypatch):
     assert calls["artifact_root"] == Path("artifacts/paper")
     assert calls["grobid_url"] == "http://localhost:8070"
     assert calls["timeout_seconds"] == 45.0
+
+
+
+def test_resolve_references_parser_accepts_multiple_match_artifacts():
+    parser = cli.build_parser()
+
+    args = parser.parse_args(
+        [
+            "resolve-references",
+            "--bibliography",
+            "references/bibliography.json",
+            "--reference-matches",
+            "adapter-a/reference_matches.json",
+            "--reference-matches",
+            "adapter-b/reference_matches.json",
+            "--out",
+            "artifacts/paper",
+        ]
+    )
+
+    assert args.command == "resolve-references"
+    assert args.bibliography == Path(
+        "references/bibliography.json"
+    )
+    assert args.reference_matches == [
+        Path("adapter-a/reference_matches.json"),
+        Path("adapter-b/reference_matches.json"),
+    ]
+    assert args.out == Path("artifacts/paper")
+    assert args.crossref_mailto is None
+    assert args.core_api_key_env == "CORE_API_KEY"
+    assert args.llm_api_key_env == "TABULUS_LLM_API_KEY"
+
+
+def test_resolve_references_main_reads_secrets_from_environment(
+    monkeypatch,
+    capsys,
+):
+    calls = {}
+
+    # Keep this existing regression explicitly primary-only.
+    # Tests must not depend on fallback variables inherited from
+    # the developer's shell.
+    monkeypatch.delenv(
+        "TABULUS_FALLBACK_LLM_BASE_URL",
+        raising=False,
+    )
+    monkeypatch.delenv(
+        "TABULUS_FALLBACK_LLM_MODEL",
+        raising=False,
+    )
+    monkeypatch.delenv(
+        "TABULUS_FALLBACK_LLM_API_KEY",
+        raising=False,
+    )
+
+    monkeypatch.setenv(
+        "TABULUS_CROSSREF_MAILTO",
+        "researcher@example.org",
+    )
+    monkeypatch.setenv(
+        "CORE_API_KEY",
+        "core-secret-value",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_BASE_URL",
+        "https://chat-ai.academiccloud.de/v1",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_API_KEY",
+        "llm-secret-value",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_MODEL",
+        "qwen3.6-35b-a3b",
+    )
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "tabulus",
+            "resolve-references",
+            "--bibliography",
+            "references/bibliography.json",
+            "--reference-matches",
+            "adapter-a/reference_matches.json",
+            "--reference-matches",
+            "adapter-b/reference_matches.json",
+            "--out",
+            "artifacts/paper",
+        ],
+    )
+
+    class FakeResult:
+        output_path = Path(
+            "artifacts/paper/references/"
+            "reference_resolution.json"
+        )
+        target_count = 12
+        validated_with_doi = 8
+        validated_without_doi = 1
+        rejected = 3
+        llm_adjudicated_count = 4
+        retry_count = 1
+
+    def fake_resolve_reference_artifact(
+        bibliography_path,
+        reference_matches_paths,
+        artifact_root,
+        *,
+        crossref_mailto,
+        core_api_key,
+        llm_base_url,
+        llm_api_key,
+        llm_model,
+    ):
+        calls["bibliography_path"] = bibliography_path
+        calls["reference_matches_paths"] = (
+            reference_matches_paths
+        )
+        calls["artifact_root"] = artifact_root
+        calls["crossref_mailto"] = crossref_mailto
+        calls["core_api_key"] = core_api_key
+        calls["llm_base_url"] = llm_base_url
+        calls["llm_api_key"] = llm_api_key
+        calls["llm_model"] = llm_model
+        return FakeResult()
+
+    monkeypatch.setattr(
+        cli,
+        "resolve_reference_artifact",
+        fake_resolve_reference_artifact,
+    )
+
+    cli.main()
+
+    assert calls["bibliography_path"] == Path(
+        "references/bibliography.json"
+    )
+    assert calls["reference_matches_paths"] == (
+        Path("adapter-a/reference_matches.json"),
+        Path("adapter-b/reference_matches.json"),
+    )
+    assert calls["artifact_root"] == Path(
+        "artifacts/paper"
+    )
+    assert calls["crossref_mailto"] == (
+        "researcher@example.org"
+    )
+    assert calls["core_api_key"] == (
+        "core-secret-value"
+    )
+    assert calls["llm_base_url"] == (
+        "https://chat-ai.academiccloud.de/v1"
+    )
+    assert calls["llm_api_key"] == (
+        "llm-secret-value"
+    )
+    assert calls["llm_model"] == (
+        "qwen3.6-35b-a3b"
+    )
+
+    output = capsys.readouterr().out
+
+    assert "core-secret-value" not in output
+    assert "llm-secret-value" not in output
+    assert "Validated with DOI: 8" in output
+    assert "Rejected: 3" in output
+
+
+
+def test_resolve_references_parser_accepts_reference_context():
+    parser = cli.build_parser()
+
+    args = parser.parse_args(
+        [
+            "resolve-references",
+            "--bibliography",
+            "references/bibliography.json",
+            "--reference-matches",
+            "references/reference_matches.json",
+            "--reference-context",
+            "references/reference_context.json",
+            "--out",
+            "artifacts/paper",
+        ]
+    )
+
+    assert args.reference_context == Path(
+        "references/reference_context.json"
+    )
+
+
+def test_resolve_references_main_forwards_reference_context(
+    monkeypatch,
+):
+    calls = {}
+
+    monkeypatch.setenv(
+        "TABULUS_CROSSREF_MAILTO",
+        "researcher@example.org",
+    )
+    monkeypatch.setenv(
+        "CORE_API_KEY",
+        "core-secret",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_BASE_URL",
+        "https://llm.example/v1",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_API_KEY",
+        "llm-secret",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_MODEL",
+        "qwen3.6-35b-a3b",
+    )
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "tabulus",
+            "resolve-references",
+            "--bibliography",
+            "references/bibliography.json",
+            "--reference-matches",
+            "references/reference_matches.json",
+            "--reference-context",
+            "references/reference_context.json",
+            "--out",
+            "artifacts/paper",
+        ],
+    )
+
+    class FakeResult:
+        output_path = Path(
+            "artifacts/paper/references/"
+            "reference_resolution.json"
+        )
+        target_count = 1
+        validated_with_doi = 0
+        validated_without_doi = 0
+        rejected = 1
+        llm_adjudicated_count = 1
+        retry_count = 0
+
+    def fake_resolve(
+        bibliography_path,
+        reference_matches_paths,
+        artifact_root,
+        **kwargs,
+    ):
+        calls.update(
+            kwargs
+        )
+
+        return FakeResult()
+
+    monkeypatch.setattr(
+        cli,
+        "resolve_reference_artifact",
+        fake_resolve,
+    )
+
+    cli.main()
+
+    assert calls[
+        "reference_context_path"
+    ] == Path(
+        "references/reference_context.json"
+    )
+
+
+def test_resolve_references_main_passes_fallback_llm_configuration(
+    monkeypatch,
+    capsys,
+):
+    calls = {}
+
+    monkeypatch.setenv(
+        "TABULUS_CROSSREF_MAILTO",
+        "researcher@example.org",
+    )
+    monkeypatch.setenv(
+        "CORE_API_KEY",
+        "core-secret",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_BASE_URL",
+        "https://kisski.example/v1",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_API_KEY",
+        "primary-secret",
+    )
+    monkeypatch.setenv(
+        "TABULUS_LLM_MODEL",
+        "qwen3.6-35b-a3b",
+    )
+    monkeypatch.setenv(
+        "TABULUS_FALLBACK_LLM_BASE_URL",
+        "https://openrouter.ai/api/v1",
+    )
+    monkeypatch.setenv(
+        "TABULUS_FALLBACK_LLM_API_KEY",
+        "fallback-secret",
+    )
+    monkeypatch.setenv(
+        "TABULUS_FALLBACK_LLM_MODEL",
+        "qwen/qwen3.6-35b-a3b",
+    )
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "tabulus",
+            "resolve-references",
+            "--bibliography",
+            "references/bibliography.json",
+            "--reference-matches",
+            "adapter/reference_matches.json",
+            "--out",
+            "artifacts/paper",
+        ],
+    )
+
+    class FakeResult:
+        output_path = Path(
+            "artifacts/paper/references/"
+            "reference_resolution.json"
+        )
+        target_count = 1
+        validated_with_doi = 1
+        validated_without_doi = 0
+        rejected = 0
+        llm_adjudicated_count = 1
+        retry_count = 0
+
+    def fake_resolve_reference_artifact(
+        bibliography_path,
+        reference_matches_paths,
+        artifact_root,
+        *,
+        crossref_mailto,
+        core_api_key,
+        llm_base_url,
+        llm_api_key,
+        llm_model,
+        fallback_llm_base_url,
+        fallback_llm_api_key,
+        fallback_llm_model,
+    ):
+        calls.update(
+            {
+                "crossref_mailto": crossref_mailto,
+                "core_api_key": core_api_key,
+                "llm_base_url": llm_base_url,
+                "llm_api_key": llm_api_key,
+                "llm_model": llm_model,
+                "fallback_llm_base_url": (
+                    fallback_llm_base_url
+                ),
+                "fallback_llm_api_key": (
+                    fallback_llm_api_key
+                ),
+                "fallback_llm_model": (
+                    fallback_llm_model
+                ),
+            }
+        )
+        return FakeResult()
+
+    monkeypatch.setattr(
+        cli,
+        "resolve_reference_artifact",
+        fake_resolve_reference_artifact,
+    )
+
+    cli.main()
+
+    assert calls == {
+        "crossref_mailto": "researcher@example.org",
+        "core_api_key": "core-secret",
+        "llm_base_url": "https://kisski.example/v1",
+        "llm_api_key": "primary-secret",
+        "llm_model": "qwen3.6-35b-a3b",
+        "fallback_llm_base_url": (
+            "https://openrouter.ai/api/v1"
+        ),
+        "fallback_llm_api_key": "fallback-secret",
+        "fallback_llm_model": (
+            "qwen/qwen3.6-35b-a3b"
+        ),
+    }
+
+    output = capsys.readouterr().out
+
+    assert "Fallback LLM: enabled" in output
+    assert (
+        "qwen/qwen3.6-35b-a3b"
+        in output
+    )
+
+    # Secret values themselves must never be printed.
+    assert "primary-secret" not in output
+    assert "fallback-secret" not in output

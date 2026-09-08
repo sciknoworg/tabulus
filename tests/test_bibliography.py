@@ -65,11 +65,17 @@ def test_parse_grobid_tei_prefers_raw_reference_and_preserves_order() -> None:
         "https://doi.org/10.1234/Example.1."
     )
     assert first.doi == "10.1234/Example.1"
+    assert first.title == "Structured title"
+    assert first.authors == ("Smith",)
+    assert first.year == 2020
 
     assert second.index == 2
     assert "Müller" in second.raw
     assert "Second paper" in second.raw
     assert second.doi == ""
+    assert second.title == "Second paper"
+    assert second.authors == ("Müller",)
+    assert second.year == 2021
 
 
 def test_parse_grobid_tei_keeps_empty_bibliography_positions() -> None:
@@ -112,4 +118,101 @@ def test_write_bibliography_json_matches_data_contract(tmp_path: Path) -> None:
         ),
         "doi": "10.1234/Example.1",
         "source": "grobid",
+        "title": "Structured title",
+        "authors": ["Smith"],
+        "year": 2020,
+        "venue": "",
+        "volume": "",
+        "issue": "",
+        "pages": "",
     }
+
+
+
+def test_parse_grobid_recovers_raw_year_and_misassigned_page() -> None:
+    tei = """\
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <text><back><listBibl>
+    <biblStruct xml:id="b0">
+      <analytic>
+        <author><persName>
+          <forename>M</forename><surname>Ozeki</surname>
+        </persName></author>
+      </analytic>
+      <monogr>
+        <title level="j">Mater. Sci. Rep</title>
+        <imprint>
+          <biblScope unit="volume">8</biblScope>
+          <biblScope unit="page">1992</biblScope>
+        </imprint>
+      </monogr>
+      <note type="raw_reference">
+        M. Ozeki, Mater. Sci. Rep. 8, 97 (1992).
+      </note>
+    </biblStruct>
+  </listBibl></back></text>
+</TEI>
+"""
+
+    entry = parse_grobid_tei(
+        tei
+    ).entries[0]
+
+    assert entry.year == 1992
+    assert entry.pages == "97"
+
+
+def test_parse_grobid_does_not_recover_year_from_multiple_occurrences() -> None:
+    tei = """\
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <text><back><listBibl>
+    <biblStruct xml:id="b0">
+      <monogr>
+        <imprint>
+          <biblScope unit="page" from="2261" to="1991" />
+        </imprint>
+      </monogr>
+      <note type="raw_reference">
+        B. Y. Maa and P. D. Dapkus, Appl. Phys. Lett. 58,
+        1762 (1991). B. Y. Maa and P. D. Dapkus,
+        Appl. Phys. Lett. 58, 2261 (1991).
+      </note>
+    </biblStruct>
+  </listBibl></back></text>
+</TEI>
+"""
+
+    entry = parse_grobid_tei(
+        tei
+    ).entries[0]
+
+    assert entry.year is None
+    assert entry.pages == "2261-1991"
+
+
+def test_parse_grobid_preserves_structured_year_with_multiple_raw_years() -> None:
+    tei = """\
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <text><back><listBibl>
+    <biblStruct xml:id="b0">
+      <monogr>
+        <imprint>
+          <date when="1965">1965</date>
+          <biblScope unit="page" from="149" to="155" />
+        </imprint>
+      </monogr>
+      <note type="raw_reference">
+        Proceedings held in 1965 and published in 1967,
+        pp. 149-155.
+      </note>
+    </biblStruct>
+  </listBibl></back></text>
+</TEI>
+"""
+
+    entry = parse_grobid_tei(
+        tei
+    ).entries[0]
+
+    assert entry.year == 1965
+    assert entry.pages == "149-155"

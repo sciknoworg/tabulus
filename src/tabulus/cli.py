@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import logging
+
 import argparse
+import os
 from pathlib import Path
 
 from tabulus import __version__
@@ -26,6 +29,8 @@ from tabulus.reference_tables import (
     classify_reconstruction_tables,
 )
 from tabulus.reference_matching import match_selected_reference_tables
+from tabulus.reference_resolution import resolve_reference_artifact
+from tabulus.reference_resolution.pipeline import discover_reference_match_artifacts
 from tabulus.table_crops import export_mineru_table_crops
 from tabulus.table_ocr import (
     create_table_ocr_adapter,
@@ -146,6 +151,95 @@ def default_reference_table_classification_output(
         Path(reconstruction_dir)
         / REFERENCE_TABLE_CLASSIFICATION_NAME
     )
+
+
+def _resolve_reference_match_paths(
+    *,
+    explicit_paths: list[Path] | None,
+    search_root: Path | None,
+    paper_name: str | None,
+) -> tuple[Path, ...]:
+    """Resolve Stage 5 inputs for one Stage 6 paper-level run.
+
+    Callers must choose exactly one input mode:
+
+    * one or more explicit ``reference_matches.json`` paths; or
+    * paper-level discovery using a search root plus paper name.
+    """
+
+    explicit = tuple(
+        Path(path).expanduser()
+        for path in (
+            explicit_paths
+            or []
+        )
+    )
+
+    has_discovery_root = (
+        search_root is not None
+    )
+    has_paper_name = bool(
+        str(
+            paper_name
+            or ""
+        ).strip()
+    )
+
+    if explicit:
+        if (
+            has_discovery_root
+            or has_paper_name
+        ):
+            raise ValueError(
+                "Use either explicit --reference-matches "
+                "arguments OR paper-level discovery with "
+                "--reference-matches-root and --paper, "
+                "not both."
+            )
+
+        return explicit
+
+    if (
+        has_discovery_root
+        != has_paper_name
+    ):
+        raise ValueError(
+            "Paper-level Stage 5 discovery requires both "
+            "--reference-matches-root and --paper."
+        )
+
+    if (
+        has_discovery_root
+        and has_paper_name
+    ):
+        return discover_reference_match_artifacts(
+            Path(search_root),
+            str(paper_name).strip(),
+        )
+
+    raise ValueError(
+        "Stage 6 requires either at least one "
+        "--reference-matches artifact or paper-level "
+        "discovery using --reference-matches-root "
+        "together with --paper."
+    )
+
+
+def _required_environment_value(
+    variable_name: str,
+) -> str:
+    value = os.environ.get(
+        variable_name,
+        "",
+    ).strip()
+
+    if not value:
+        raise ValueError(
+            f"Required environment variable "
+            f"{variable_name!r} is not set."
+        )
+
+    return value
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -531,6 +625,149 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
 
+    resolve_references = subparsers.add_parser(
+        "resolve-references",
+        help=(
+            "Validate and resolve Stage 5-linked bibliography "
+            "references using Crossref, CORE, and bounded LLM adjudication."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--bibliography",
+        required=True,
+        type=Path,
+        help="Stage 4 references/bibliography.json artifact.",
+    )
+
+    resolve_references.add_argument(
+        "--reference-matches",
+        required=False,
+        action="append",
+        type=Path,
+        help=(
+            "Stage 5 reference_matches.json artifact. "
+            "Repeat this option for multiple reconstruction adapters. "
+            "Do not combine with --reference-matches-root/--paper."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--reference-matches-root",
+        default=None,
+        type=Path,
+        help=(
+            "Experiment root under which Tabulus discovers one "
+            "Stage 5 reference_matches.json artifact per reconstruction "
+            "adapter for the paper named by --paper. "
+            "Do not combine with explicit --reference-matches."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--paper",
+        default=None,
+        help=(
+            "Exact paper directory/name used for paper-level Stage 5 "
+            "artifact discovery. Requires --reference-matches-root."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--reference-context",
+        default=None,
+        type=Path,
+        help=(
+            "Optional reference_context.json artifact containing "
+            "body-text citation contexts extracted from MinerU. "
+            "When omitted, document context is disabled."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--out",
+        required=True,
+        type=Path,
+        help=(
+            "Artifact root. Tabulus writes "
+            "<out>/references/reference_resolution.json."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--crossref-mailto",
+        default=None,
+        help=(
+            "Contact email sent to Crossref. If omitted, "
+            "TABULUS_CROSSREF_MAILTO is used."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--llm-base-url",
+        default=None,
+        help=(
+            "OpenAI-compatible LLM base URL. If omitted, "
+            "TABULUS_LLM_BASE_URL is used."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--llm-model",
+        default=None,
+        help=(
+            "LLM model identifier. If omitted, "
+            "TABULUS_LLM_MODEL is used."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--core-api-key-env",
+        default="CORE_API_KEY",
+        help=(
+            "Environment variable containing the CORE API key. "
+            "Default: CORE_API_KEY."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--llm-api-key-env",
+        default="TABULUS_LLM_API_KEY",
+        help=(
+            "Environment variable containing the primary LLM API key. "
+            "Default: TABULUS_LLM_API_KEY."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--fallback-llm-base-url",
+        default=None,
+        help=(
+            "Optional fallback OpenAI-compatible LLM base URL. "
+            "If omitted, TABULUS_FALLBACK_LLM_BASE_URL is used "
+            "when configured."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--fallback-llm-model",
+        default=None,
+        help=(
+            "Optional fallback LLM model identifier. "
+            "If omitted, TABULUS_FALLBACK_LLM_MODEL is used "
+            "when configured."
+        ),
+    )
+
+    resolve_references.add_argument(
+        "--fallback-llm-api-key-env",
+        default="TABULUS_FALLBACK_LLM_API_KEY",
+        help=(
+            "Environment variable containing the fallback LLM API key. "
+            "Default: TABULUS_FALLBACK_LLM_API_KEY."
+        ),
+    )
+
     return parser
 
 
@@ -913,6 +1150,214 @@ def main() -> None:
         print(
             "  Reference tables skipped: "
             f"{result.reference_tables_skipped}"
+        )
+        print(f"  Output: {result.output_path}")
+        return
+
+    if args.command == "resolve-references":
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(message)s",
+        )
+
+        reference_match_paths = (
+            _resolve_reference_match_paths(
+                explicit_paths=args.reference_matches,
+                search_root=args.reference_matches_root,
+                paper_name=args.paper,
+            )
+        )
+
+        crossref_mailto = (
+            args.crossref_mailto.strip()
+            if args.crossref_mailto is not None
+            else _required_environment_value(
+                "TABULUS_CROSSREF_MAILTO"
+            )
+        )
+
+        llm_base_url = (
+            args.llm_base_url.strip()
+            if args.llm_base_url is not None
+            else _required_environment_value(
+                "TABULUS_LLM_BASE_URL"
+            )
+        )
+
+        llm_model = (
+            args.llm_model.strip()
+            if args.llm_model is not None
+            else _required_environment_value(
+                "TABULUS_LLM_MODEL"
+            )
+        )
+
+        core_api_key = _required_environment_value(
+            args.core_api_key_env
+        )
+
+        llm_api_key = _required_environment_value(
+            args.llm_api_key_env
+        )
+
+        fallback_llm_base_url = (
+            args.fallback_llm_base_url.strip()
+            if args.fallback_llm_base_url is not None
+            else os.environ.get(
+                "TABULUS_FALLBACK_LLM_BASE_URL",
+                "",
+            ).strip()
+        )
+
+        fallback_llm_model = (
+            args.fallback_llm_model.strip()
+            if args.fallback_llm_model is not None
+            else os.environ.get(
+                "TABULUS_FALLBACK_LLM_MODEL",
+                "",
+            ).strip()
+        )
+
+        fallback_llm_api_key = os.environ.get(
+            args.fallback_llm_api_key_env,
+            "",
+        ).strip()
+
+        fallback_values = (
+            fallback_llm_base_url,
+            fallback_llm_model,
+            fallback_llm_api_key,
+        )
+
+        fallback_requested = any(
+            fallback_values
+        )
+
+        if (
+            fallback_requested
+            and not all(fallback_values)
+        ):
+            raise ValueError(
+                "Fallback LLM configuration is incomplete. "
+                "Set fallback base URL, model, and API key together."
+            )
+
+        print()
+        print("Reference resolution configuration:")
+        print(f"  Bibliography: {args.bibliography}")
+        print(
+            "  Reference match artifacts: "
+            f"{len(reference_match_paths)}"
+        )
+
+        if args.reference_matches_root is not None:
+            print(
+                "  Reference match discovery root: "
+                f"{args.reference_matches_root}"
+            )
+            print(
+                "  Paper: "
+                f"{args.paper}"
+            )
+
+        for path in reference_match_paths:
+            print(f"    - {path}")
+
+        if args.reference_context is None:
+            print("  Document context: disabled")
+        else:
+            print(
+                f"  Document context: {args.reference_context}"
+            )
+
+        print(f"  Artifact root: {args.out}")
+        print("  Crossref mailto configured: yes")
+        print(f"  CORE API key env: {args.core_api_key_env}")
+        print(f"  Primary LLM base URL: {llm_base_url}")
+        print(f"  Primary LLM model: {llm_model}")
+        print(f"  Primary LLM API key env: {args.llm_api_key_env}")
+        print("  LLM thinking: disabled")
+
+        if fallback_requested:
+            print("  Fallback LLM: enabled")
+            print(
+                "  Fallback LLM base URL: "
+                f"{fallback_llm_base_url}"
+            )
+            print(
+                "  Fallback LLM model: "
+                f"{fallback_llm_model}"
+            )
+            print(
+                "  Fallback LLM API key env: "
+                f"{args.fallback_llm_api_key_env}"
+            )
+            print(
+                "  LLM failover policy: "
+                "primary first on every adjudication"
+            )
+        else:
+            print("  Fallback LLM: disabled")
+
+        print("  Maximum scholarly-search retries: 1")
+
+        resolve_kwargs = {
+            "crossref_mailto": crossref_mailto,
+            "core_api_key": core_api_key,
+            "llm_base_url": llm_base_url,
+            "llm_api_key": llm_api_key,
+            "llm_model": llm_model,
+        }
+
+        if fallback_requested:
+            resolve_kwargs.update(
+                {
+                    "fallback_llm_base_url": (
+                        fallback_llm_base_url
+                    ),
+                    "fallback_llm_api_key": (
+                        fallback_llm_api_key
+                    ),
+                    "fallback_llm_model": (
+                        fallback_llm_model
+                    ),
+                }
+            )
+
+        if args.reference_context is not None:
+            resolve_kwargs[
+                "reference_context_path"
+            ] = args.reference_context
+
+        result = resolve_reference_artifact(
+            args.bibliography,
+            reference_match_paths,
+            args.out,
+            **resolve_kwargs,
+        )
+
+        print()
+        print("Reference resolution completed:")
+        print(
+            f"  Unique bibliography entries: "
+            f"{result.target_count}"
+        )
+        print(
+            "  Validated with DOI: "
+            f"{result.validated_with_doi}"
+        )
+        print(
+            "  Validated without DOI: "
+            f"{result.validated_without_doi}"
+        )
+        print(f"  Rejected: {result.rejected}")
+        print(
+            "  LLM-adjudicated entries: "
+            f"{result.llm_adjudicated_count}"
+        )
+        print(
+            f"  Retry searches used: "
+            f"{result.retry_count}"
         )
         print(f"  Output: {result.output_path}")
         return
