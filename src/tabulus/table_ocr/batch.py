@@ -191,6 +191,9 @@ def run_table_ocr_batch(
     output_dir.mkdir(parents=True, exist_ok=True)
 
     items: list[TableOCRBatchItem] = []
+    seen_native_paths: set[Path] = set()
+    seen_parsed_paths: set[Path] = set()
+    seen_prediction_paths: set[Path] = set()
     batch_start = time.perf_counter()
 
     for table in tables:
@@ -211,6 +214,49 @@ def run_table_ocr_batch(
             output_dir,
             parsed_tables=parsed_tables,
         )
+
+        artifact_checks = (
+            (
+                "native",
+                artifacts.native_result,
+                seen_native_paths,
+            ),
+            (
+                "parsed",
+                artifacts.parsed_result,
+                seen_parsed_paths,
+            ),
+        )
+
+        for artifact_kind, artifact_path, seen_paths in artifact_checks:
+            if artifact_path in seen_paths:
+                raise RuntimeError(
+                    "Table reconstruction artifact path collision for "
+                    f"{artifact_kind}: {artifact_path}"
+                )
+
+            if not artifact_path.is_file():
+                raise RuntimeError(
+                    "Table reconstruction artifact was not persisted for "
+                    f"table {result.table_id}: {artifact_path}"
+                )
+
+            seen_paths.add(artifact_path)
+
+        if artifacts.prediction_csv is not None:
+            if artifacts.prediction_csv in seen_prediction_paths:
+                raise RuntimeError(
+                    "Table reconstruction artifact path collision for "
+                    f"prediction: {artifacts.prediction_csv}"
+                )
+
+            if not artifacts.prediction_csv.is_file():
+                raise RuntimeError(
+                    "Table reconstruction prediction was not persisted for "
+                    f"table {result.table_id}: {artifacts.prediction_csv}"
+                )
+
+            seen_prediction_paths.add(artifacts.prediction_csv)
 
         items.append(
             TableOCRBatchItem(
@@ -239,6 +285,30 @@ def run_table_ocr_batch(
                 ),
                 error=result.error,
             )
+        )
+
+    if len(seen_native_paths) != len(items):
+        raise RuntimeError(
+            "Table reconstruction native artifact count does not match "
+            f"completed batch items: {len(seen_native_paths)} != {len(items)}"
+        )
+
+    if len(seen_parsed_paths) != len(items):
+        raise RuntimeError(
+            "Table reconstruction parsed artifact count does not match "
+            f"completed batch items: {len(seen_parsed_paths)} != {len(items)}"
+        )
+
+    expected_predictions = sum(
+        item.prediction_csv is not None
+        for item in items
+    )
+
+    if len(seen_prediction_paths) != expected_predictions:
+        raise RuntimeError(
+            "Table reconstruction prediction artifact count does not match "
+            f"batch items: {len(seen_prediction_paths)} != "
+            f"{expected_predictions}"
         )
 
     elapsed_seconds = time.perf_counter() - batch_start

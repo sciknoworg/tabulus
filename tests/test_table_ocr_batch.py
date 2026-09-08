@@ -142,7 +142,7 @@ def test_batch_reuses_one_adapter_and_writes_all_artifact_layers(
     assert result.adapter_name == "fake"
 
     for table_id in (1, 2, 3):
-        stem = f"page_001_table_{table_id:03d}"
+        stem = f"table_{table_id:03d}"
         native = output_dir / "native" / f"{stem}.json"
         parsed = output_dir / "parsed" / f"{stem}.json"
         prediction = output_dir / "predictions" / f"{stem}.csv"
@@ -152,7 +152,7 @@ def test_batch_reuses_one_adapter_and_writes_all_artifact_layers(
         assert prediction.is_file()
 
     with (
-        output_dir / "predictions/page_001_table_002.csv"
+        output_dir / "predictions/table_002.csv"
     ).open(newline="", encoding="utf-8") as handle:
         assert list(csv.reader(handle)) == [
             ["Material", "Refs."],
@@ -166,7 +166,7 @@ def test_batch_reuses_one_adapter_and_writes_all_artifact_layers(
     assert summary["prediction_csvs"] == 3
     assert [item["table_id"] for item in summary["items"]] == [1, 2, 3]
     assert summary["items"][0]["prediction_csv"] == (
-        "predictions/page_001_table_001.csv"
+        "predictions/table_001.csv"
     )
 
 
@@ -190,13 +190,13 @@ def test_batch_continues_after_explicit_table_error(
     assert result.prediction_csvs == 2
 
     assert (
-        output_dir / "native/page_001_table_002.json"
+        output_dir / "native/table_002.json"
     ).is_file()
     assert (
-        output_dir / "parsed/page_001_table_002.json"
+        output_dir / "parsed/table_002.json"
     ).is_file()
     assert not (
-        output_dir / "predictions/page_001_table_002.csv"
+        output_dir / "predictions/table_002.csv"
     ).exists()
 
     error_item = result.items[1]
@@ -262,7 +262,7 @@ def test_batch_rerun_clears_only_owned_artifacts(
         )
 
     stale_prediction = (
-        output_dir / "predictions/page_001_table_001.csv"
+        output_dir / "predictions/table_001.csv"
     )
     stale_prediction.write_text(
         "stale prediction",
@@ -361,3 +361,121 @@ def test_invalid_crop_index_does_not_clear_previous_output(
         previous_result.read_text(encoding="utf-8")
         == "previous"
     )
+
+
+def test_batch_preserves_distinct_artifacts_for_same_named_crop_images(
+    tmp_path: Path,
+) -> None:
+    """Different canonical tables may all use the filename crop.png."""
+
+    crop_root = tmp_path / "reference_tables"
+    tables = []
+
+    for table_id in (1, 2, 3):
+        table_dir = (
+            crop_root
+            / "tables"
+            / f"page_{table_id + 3:03d}_table_{table_id:03d}"
+        )
+        table_dir.mkdir(parents=True, exist_ok=True)
+
+        image = table_dir / "crop.png"
+        image.write_bytes(b"not-a-real-image")
+
+        tables.append(
+            {
+                "table_id": table_id,
+                "page_nr": table_id + 3,
+                "image": str(image.relative_to(crop_root)),
+                "image_name": "crop.png",
+                "bbox": [1, 2, 3, 4],
+                "source": "human_annotation",
+            }
+        )
+
+    (crop_root / "tables_index.json").write_text(
+        json.dumps(
+            {
+                "tables_found": 3,
+                "crops_saved": 3,
+                "tables": tables,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    output_dir = tmp_path / "reconstruction"
+
+    result = run_table_ocr_batch(
+        crop_root=crop_root,
+        output_dir=output_dir,
+        adapter=FakeBatchAdapter(),
+    )
+
+    assert result.tables_requested == 3
+    assert result.tables_ok == 3
+    assert result.prediction_csvs == 3
+
+    expected_native = {
+        "native/table_001.json",
+        "native/table_002.json",
+        "native/table_003.json",
+    }
+    expected_parsed = {
+        "parsed/table_001.json",
+        "parsed/table_002.json",
+        "parsed/table_003.json",
+    }
+    expected_predictions = {
+        "predictions/table_001.csv",
+        "predictions/table_002.csv",
+        "predictions/table_003.csv",
+    }
+
+    assert {item.native_result for item in result.items} == expected_native
+    assert {item.parsed_result for item in result.items} == expected_parsed
+    assert {
+        item.prediction_csv
+        for item in result.items
+    } == expected_predictions
+
+    for table_id in (1, 2, 3):
+        assert (
+            output_dir / f"native/table_{table_id:03d}.json"
+        ).is_file()
+        assert (
+            output_dir / f"parsed/table_{table_id:03d}.json"
+        ).is_file()
+        assert (
+            output_dir / f"predictions/table_{table_id:03d}.csv"
+        ).is_file()
+
+        native = json.loads(
+            (
+                output_dir / f"native/table_{table_id:03d}.json"
+            ).read_text(encoding="utf-8")
+        )
+        parsed = json.loads(
+            (
+                output_dir / f"parsed/table_{table_id:03d}.json"
+            ).read_text(encoding="utf-8")
+        )
+
+        assert native["table_id"] == table_id
+        assert parsed["table_id"] == table_id
+
+    summary = json.loads(
+        (output_dir / "batch_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    assert len(
+        {item["native_result"] for item in summary["items"]}
+    ) == 3
+    assert len(
+        {item["parsed_result"] for item in summary["items"]}
+    ) == 3
+    assert len(
+        {item["prediction_csv"] for item in summary["items"]}
+    ) == 3

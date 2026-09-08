@@ -54,13 +54,13 @@ def test_write_artifacts_keeps_native_parsed_and_prediction_layers(
     paths = write_table_ocr_artifacts(result, tmp_path / "paddleocr-vl")
 
     assert paths.native_result == (
-        tmp_path / "paddleocr-vl/native/page_006_table_001.json"
+        tmp_path / "paddleocr-vl/native/table_001.json"
     )
     assert paths.parsed_result == (
-        tmp_path / "paddleocr-vl/parsed/page_006_table_001.json"
+        tmp_path / "paddleocr-vl/parsed/table_001.json"
     )
     assert paths.prediction_csv == (
-        tmp_path / "paddleocr-vl/predictions/page_006_table_001.csv"
+        tmp_path / "paddleocr-vl/predictions/table_001.csv"
     )
 
     native = json.loads(paths.native_result.read_text(encoding="utf-8"))
@@ -78,7 +78,7 @@ def test_write_artifacts_keeps_native_parsed_and_prediction_layers(
         ["Al2O3", "83, 90, and 91"],
     ]
     assert parsed["prediction_csv"] == (
-        "predictions/page_006_table_001.csv"
+        "predictions/table_001.csv"
     )
     assert parsed["warnings"] == []
 
@@ -171,7 +171,7 @@ def test_multiple_parsed_tables_are_preserved_without_arbitrary_csv_choice(
     assert "ambiguous" in parsed["warnings"][0]
     assert paths.prediction_csv is None
     assert not (
-        tmp_path / "paddleocr-vl/predictions/page_006_table_001.csv"
+        tmp_path / "paddleocr-vl/predictions/table_001.csv"
     ).exists()
 
 

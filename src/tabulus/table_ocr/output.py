@@ -86,11 +86,11 @@ def write_table_ocr_artifacts(
     """
 
     output_dir = Path(output_dir)
-    source_stem = Path(result.source_image).stem
+    artifact_stem = f"table_{result.table_id:03d}"
 
-    native_path = output_dir / "native" / f"{source_stem}.json"
-    parsed_path = output_dir / "parsed" / f"{source_stem}.json"
-    prediction_path = output_dir / "predictions" / f"{source_stem}.csv"
+    native_path = output_dir / "native" / f"{artifact_stem}.json"
+    parsed_path = output_dir / "parsed" / f"{artifact_stem}.json"
+    prediction_path = output_dir / "predictions" / f"{artifact_stem}.csv"
 
     _write_json(native_path, result.to_dict())
 
