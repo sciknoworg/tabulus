@@ -19,6 +19,46 @@ package:
 Stage 7 resolved export is not implemented in the rebuilt package in this
 checkout.
 
+## Canonical TabulusBench Example
+
+When a concrete worked example is needed, the tutorial uses TabulusBench paper
+`P4`:
+
+```text
+Biomedicine_And_Health/clinical_research/P4/
+  P4.pdf
+  reference_tables/
+  bibliography/gold.json
+```
+
+Set a portable benchmark root before running examples:
+
+```bash
+export TABULUSBENCH_ROOT="/path/to/tabulusbench"
+export TABULUS_WORK="/path/to/tabulus-work"
+P4_PDF="$TABULUSBENCH_ROOT/Biomedicine_And_Health/clinical_research/P4/P4.pdf"
+```
+
+In this documentation, a one-paper run means processing the complete relevant
+input for one paper. For `P4`, PDF-level stages operate on `P4.pdf`; table-level
+benchmark examples should use all six annotated reference-containing table
+inputs when benchmark crops are the appropriate input; paper-level stages
+operate on complete paper-level artifacts derived from `P4`.
+
+The benchmark's `P4/reference_tables/` directory is human gold material. It
+contains six annotated reference-containing tables with adjacent `gold.csv`
+files. Those tables are not necessarily every table that Stage 1 profiling
+will detect in the original PDF. Tabulus runs should write their own profiling
+and crop artifacts outside the benchmark gold directories.
+
+A full TabulusBench run means processing the complete applicable benchmark
+input across all papers. Because TabulusBench papers are nested under
+domain/subdomain directories, use an explicit `--pdf-list` for PDF-level stages
+rather than `--folder` on the benchmark root. Running a stage over TabulusBench
+is separate from evaluating it against gold annotations: for example,
+bibliography extraction can be run for every benchmark PDF even though curated
+bibliography gold exists only for a subset.
+
 The stage boundaries are persisted as files:
 
 ```text

@@ -10,6 +10,46 @@ behind the same Tabulus handoff. The current implemented profiler is MinerU.
 That means `tabulus profile` is the Tabulus command, while `--backend`,
 `--method`, and `--effort` select MinerU-specific behavior.
 
+## Worked Example Convention
+
+The canonical TabulusBench worked example is paper `P4`:
+
+```text
+Biomedicine_And_Health/clinical_research/P4/P4.pdf
+```
+
+Use portable roots in commands:
+
+```bash
+export TABULUSBENCH_ROOT="/path/to/tabulusbench"
+export TABULUS_WORK="/path/to/tabulus-work"
+P4_PDF="$TABULUSBENCH_ROOT/Biomedicine_And_Health/clinical_research/P4/P4.pdf"
+```
+
+`P4` has six annotated reference-containing tables under
+`P4/reference_tables/`, and it has paper-level bibliography gold under
+`P4/bibliography/gold.json`. Those are benchmark gold materials. Stage 1 starts
+from the original `P4.pdf` and writes fresh profiling/crop outputs to a work
+directory; it should not overwrite or regenerate the benchmark
+`reference_tables/` directory.
+
+Stage 1 table detection may find a different set of tables than the six
+annotated reference-containing benchmark tables. The benchmark tables are gold
+annotation inputs for later controlled examples and evaluation, not the
+definition of all tables detected in the PDF.
+
+CPU and GPU examples below are backend choices for the same stage and the same
+input:
+
+```text
+same Tabulus stage
+same input
+        |
+        +-- CPU-compatible MinerU pipeline backend
+        |
+        +-- GPU-accelerated MinerU hybrid-engine backend
+```
+
 ## What This Stage Creates
 
 By default, one profiled paper produces two output areas beside the source PDF:
@@ -106,33 +146,101 @@ They are not currently Tabulus CLI arguments.
 
 ## CLI
 
-Profile one PDF on a CPU-compatible backend:
+### P4 — CPU-Compatible Run
+
+Profile the canonical `P4` PDF with the CPU-compatible MinerU `pipeline`
+backend:
 
 ```bash
 tabulus profile \
-  --pdf "/path/to/paper.pdf" \
+  --pdf "$P4_PDF" \
   --backend pipeline \
-  --method auto
+  --method auto \
+  --out "$TABULUS_WORK/P4/profiling/mineru/pipeline" \
+  --table-crops-out "$TABULUS_WORK/P4/table-crops"
 ```
 
-Profile all PDFs directly inside a folder on the GPU backend:
+This writes MinerU-native profiling output below the requested profiling root
+and writes the Tabulus canonical crop handoff below
+`$TABULUS_WORK/P4/table-crops`.
+
+### P4 — GPU-Accelerated Run
+
+Profile the same `P4` PDF with the GPU-accelerated MinerU `hybrid-engine`
+backend:
 
 ```bash
 tabulus profile \
-  --folder "/path/to/papers" \
+  --pdf "$P4_PDF" \
   --backend hybrid-engine \
   --method auto \
-  --effort high
+  --effort high \
+  --out "$TABULUS_WORK/P4/profiling/mineru/hybrid-engine" \
+  --table-crops-out "$TABULUS_WORK/P4/table-crops-hybrid-engine"
 ```
 
-Profile PDFs from an explicit list:
+If `hybrid-engine` is requested but the current environment does not expose a
+suitable CUDA GPU, Tabulus reports the reason and falls back to `pipeline`.
+`--effort` is passed to MinerU only when the resolved backend is
+`hybrid-engine`.
+
+### Full TabulusBench — PDF List
+
+TabulusBench stores PDFs below domain and subdomain directories, so do not use
+`--folder "$TABULUSBENCH_ROOT"` for a full benchmark run. `--folder` is
+non-recursive and processes only PDFs directly inside one folder.
+
+Create an explicit PDF list in the work directory from the benchmark metadata:
+
+```bash
+mkdir -p "$TABULUS_WORK/manifests"
+
+python - <<'PY'
+import csv
+import os
+from pathlib import Path
+
+root = Path(os.environ["TABULUSBENCH_ROOT"])
+out = Path(os.environ["TABULUS_WORK"]) / "manifests" / "tabulusbench-pdfs.txt"
+
+with (root / "metadata" / "papers.csv").open(newline="", encoding="utf-8") as handle:
+    rows = csv.DictReader(handle)
+    pdfs = [root / row["pdf_path"] for row in rows if row.get("pdf_path")]
+
+out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text("\n".join(str(path) for path in pdfs) + "\n", encoding="utf-8")
+print(out)
+PY
+```
+
+The generated list is a normal `tabulus profile --pdf-list` input: one PDF path
+per line. It is not an experiment manifest and does not modify benchmark gold.
+
+### Full TabulusBench — CPU-Compatible Run
+
+Run Stage 1 over the complete PDF list with the CPU-compatible backend:
 
 ```bash
 tabulus profile \
-  --pdf-list "/path/to/pdfs.txt" \
+  --pdf-list "$TABULUS_WORK/manifests/tabulusbench-pdfs.txt" \
+  --backend pipeline \
+  --method auto \
+  --out "$TABULUS_WORK/full-tabulusbench/profiling/mineru/pipeline" \
+  --table-crops-out "$TABULUS_WORK/full-tabulusbench/table-crops"
+```
+
+### Full TabulusBench — GPU-Accelerated Run
+
+Run the same complete PDF list with the GPU-accelerated backend:
+
+```bash
+tabulus profile \
+  --pdf-list "$TABULUS_WORK/manifests/tabulusbench-pdfs.txt" \
   --backend hybrid-engine \
   --method auto \
-  --effort high
+  --effort high \
+  --out "$TABULUS_WORK/full-tabulusbench/profiling/mineru/hybrid-engine" \
+  --table-crops-out "$TABULUS_WORK/full-tabulusbench/table-crops-hybrid-engine"
 ```
 
 If you omit `--backend`, Tabulus prompts interactively:
