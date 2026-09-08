@@ -1,11 +1,15 @@
 # Dolphin-v2
 
+## Official Resources
+
+- [Dolphin-v2 model](https://huggingface.co/ByteDance/Dolphin-v2)
+
+## Role In Tabulus
+
 Dolphin-v2 is a vision-language model used by Tabulus for table
 reconstruction from canonical MinerU table crops. The Tabulus adapter sends
 the crop directly to the ByteDance Dolphin-v2 checkpoint and expects native
 HTML table output.
-
-## Technical Profile
 
 Dolphin-v2 is a universal document-parsing VLM from ByteDance. Its model card
 describes a document-type-aware two-stage design: layout analysis first, then
@@ -13,12 +17,6 @@ content parsing with type-specific prompts, including an HTML table prompt.
 The model is built on a Qwen2.5-VL backbone and supports document elements such
 as text, formulas, code, figures, references, and tables. Tabulus uses only the
 table parsing behavior on canonical table crops.
-
-## Official Resources
-
-- [Dolphin-v2 model](https://huggingface.co/ByteDance/Dolphin-v2)
-
-## Role In Tabulus
 
 The registered Tabulus adapter is:
 
@@ -33,9 +31,6 @@ architecture is Qwen2.5-VL, implemented through the Transformers class
 Qwen checkpoint for Dolphin-v2.
 
 Dolphin-v2 consumes canonical MinerU table crops through the shared Stage 2 adapter contract. It produces native HTML table output that Tabulus preserves before shared parsing.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 

@@ -1,11 +1,16 @@
 # NVIDIA Nemotron Parse v1.2
 
+## Official Resources
+
+- [NVIDIA Nemotron Parse v1.2 model](https://huggingface.co/nvidia/NVIDIA-Nemotron-Parse-v1.2)
+- [C-RADIOv2-H model dependency](https://huggingface.co/nvidia/C-RADIOv2-H)
+
+## Role In Tabulus
+
 NVIDIA Nemotron Parse v1.2 is a document vision-language model used by
 Tabulus for Stage 2 table reconstruction from canonical MinerU table crops.
 The Tabulus adapter uses the model directly through Hugging Face Transformers
 and does not run a separate OCR engine or a page-layout pipeline.
-
-## Technical Profile
 
 NVIDIA Nemotron Parse v1.2 is a document parsing VLM for extracting text,
 tables, semantic classes, and spatial grounding from document images. The
@@ -13,13 +18,6 @@ model card describes reading-flow ordering plus bounding boxes for document
 objects such as titles, tables, figures, footnotes, and bibliography regions.
 Tabulus uses the Table-class output and NVIDIA postprocessing helpers to derive
 HTML for the shared parser.
-
-## Official Resources
-
-- [NVIDIA Nemotron Parse v1.2 model](https://huggingface.co/nvidia/NVIDIA-Nemotron-Parse-v1.2)
-- [C-RADIOv2-H model dependency](https://huggingface.co/nvidia/C-RADIOv2-H)
-
-## Role In Tabulus
 
 The registered Tabulus adapter is:
 
@@ -37,9 +35,6 @@ loaded C-RADIO code resolves to revision
 NVIDIA Nemotron Parse v1.2 consumes canonical MinerU table crops through the
 shared Stage 2 adapter contract. Generated bounding boxes are preserved as
 provenance only and are not used to recrop the image.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 

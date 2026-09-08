@@ -1,11 +1,15 @@
 # DeepSeek-OCR-2
 
+## Official Resources
+
+- [DeepSeek-OCR-2 model](https://huggingface.co/deepseek-ai/DeepSeek-OCR-2)
+
+## Role In Tabulus
+
 DeepSeek-OCR-2 is a vision-language table reconstruction candidate used by
 Tabulus for Stage 2 reconstruction from canonical MinerU table crops. The
 Tabulus adapter sends the crop directly to the pinned DeepSeek-OCR-2 model
 revision and passes the returned model output unchanged to the shared parser.
-
-## Technical Profile
 
 DeepSeek-OCR-2 is a DeepSeek document OCR VLM for image-to-text and
 image-to-markdown tasks. Its model card describes multilingual OCR, visual
@@ -13,12 +17,6 @@ grounding, dynamic-resolution image handling, and custom Hugging Face model
 code through `model.infer(...)`. In Tabulus, it is used for table-crop
 recognition with a table-specific prompt; generated grounding and structured
 content are preserved as native evidence before parsing.
-
-## Official Resources
-
-- [DeepSeek-OCR-2 model](https://huggingface.co/deepseek-ai/DeepSeek-OCR-2)
-
-## Role In Tabulus
 
 The registered Tabulus adapter is:
 
@@ -31,9 +29,6 @@ The exact model repository is `deepseek-ai/DeepSeek-OCR-2` at revision
 validated configuration is `DeepseekOCR2ForCausalLM`.
 
 DeepSeek-OCR-2 consumes canonical MinerU table crops through the shared Stage 2 adapter contract. It does not re-crop source PDFs or merge continued tables.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 

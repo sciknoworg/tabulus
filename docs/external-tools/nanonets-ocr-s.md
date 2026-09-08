@@ -1,23 +1,21 @@
 # Nanonets-OCR-s
 
+## Official Resources
+
+- [Nanonets-OCR-s model](https://huggingface.co/nanonets/Nanonets-OCR-s)
+
+## Role In Tabulus
+
 Nanonets-OCR-s is a vision-language table reconstruction candidate used by
 Tabulus for Stage 2 reconstruction from canonical MinerU table crops. The
 Tabulus adapter sends the crop directly to the pinned Nanonets-OCR-s model
 checkpoint and expects native structured HTML table output.
-
-## Technical Profile
 
 Nanonets-OCR-s is an image-to-Markdown OCR VLM built for structured document
 conversion. The model card describes support for HTML/Markdown tables, LaTeX
 equations, image descriptions, signatures, watermarks, and checkbox handling.
 It is based on Qwen2.5-VL, while Tabulus treats `nanonets/Nanonets-OCR-s` as
 the adapter identity and uses its HTML table output directly.
-
-## Official Resources
-
-- [Nanonets-OCR-s model](https://huggingface.co/nanonets/Nanonets-OCR-s)
-
-## Role In Tabulus
 
 The registered Tabulus adapter is:
 
@@ -34,9 +32,6 @@ Qwen checkpoint for Nanonets-OCR-s.
 Nanonets-OCR-s consumes canonical MinerU table crops through the shared Stage 2
 adapter contract. It preserves the model-produced Markdown/HTML-style response
 before shared parsing.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 

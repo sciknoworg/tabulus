@@ -1,24 +1,22 @@
 # TRivia-3B
 
-TRivia-3B is a vision-language model used by Tabulus for table reconstruction
-from canonical MinerU table crops. It is not a conventional OCR engine and does
-not use a separate table-detection step: the model receives the table crop and
-generates native OTSL.
-
-## Technical Profile
-
-TRivia is a self-supervised fine-tuning framework for table-recognition VLMs.
-The released TRivia-3B model is trained from Qwen2.5-VL-3B and is specialized
-for table images rather than general document parsing. Its native output is
-OTSL table structure, which Tabulus converts deterministically to HTML before
-using the shared table parser.
-
 ## Official Resources
 
 - [TRivia project repository](https://github.com/opendatalab/TRivia)
 - [TRivia-3B model](https://huggingface.co/opendatalab/TRivia-3B)
 
 ## Role In Tabulus
+
+TRivia-3B is a vision-language model used by Tabulus for table reconstruction
+from canonical MinerU table crops. It is not a conventional OCR engine and does
+not use a separate table-detection step: the model receives the table crop and
+generates native OTSL.
+
+TRivia is a self-supervised fine-tuning framework for table-recognition VLMs.
+The released TRivia-3B model is trained from Qwen2.5-VL-3B and is specialized
+for table images rather than general document parsing. Its native output is
+OTSL table structure, which Tabulus converts deterministically to HTML before
+using the shared table parser.
 
 The registered Tabulus adapter is:
 
@@ -29,9 +27,6 @@ trivia
 The adapter consumes canonical MinerU table crops through the shared Stage 2
 adapter contract. Tabulus preserves native OTSL, converts it to HTML, and then
 uses the shared parser.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 

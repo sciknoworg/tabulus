@@ -1,10 +1,15 @@
 # Granite Vision 4.1 4B
 
+## Official Resources
+
+- [Granite Vision 4.1 4B model](https://huggingface.co/ibm-granite/granite-vision-4.1-4b)
+- [Docling project repository](https://github.com/docling-project/docling)
+
+## Role In Tabulus
+
 Granite Vision 4.1 4B is a vision-language model used by Tabulus for table
 reconstruction from canonical MinerU table crops. It is not a conventional OCR
 engine: the model generates table structure and cell text together as OTSL.
-
-## Technical Profile
 
 Granite Vision 4.1 4B is an IBM Granite image-text-to-text VLM exposed through
 Hugging Face Transformers. In the Tabulus table adapter, the model is prompted
@@ -12,13 +17,6 @@ with the Granite table-OTSL task and generates both table structure and cell
 text. Tabulus then uses Docling's Granite OTSL parsing utilities to convert
 that sequence into structured cells before writing the standard reconstruction
 artifacts.
-
-## Official Resources
-
-- [Granite Vision 4.1 4B model](https://huggingface.co/ibm-granite/granite-vision-4.1-4b)
-- [Docling project repository](https://github.com/docling-project/docling)
-
-## Role In Tabulus
 
 The registered Tabulus adapter is:
 
@@ -30,9 +28,6 @@ The adapter consumes canonical MinerU table crops through the shared Stage 2
 adapter contract. The image is sent directly to Granite Vision with the OTSL
 prompt, and Tabulus preserves the generated sequence before conversion and
 shared parsing.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 

@@ -1,17 +1,5 @@
 # Tesseract + Table Transformer
 
-Tesseract + Table Transformer is an external-tool combination used by Tabulus
-for table reconstruction from canonical MinerU table crops.
-
-## Technical Profile
-
-Tesseract is a traditional OCR engine that extracts text tokens from images.
-Microsoft Table Transformer is a deep-learning table-structure model for
-detecting table rows, columns, headers, and cells in document images. The
-Tabulus adapter combines Tesseract word tokens and bounding boxes with Table
-Transformer structure predictions, then deterministically fuses them into HTML
-for the shared parser.
-
 ## Official Resources
 
 - Tesseract OCR project repository: [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract)
@@ -20,9 +8,15 @@ for the shared parser.
 
 ## Role In Tabulus
 
-Tabulus exposes this integration through the current table-reconstruction
-adapter contract only. For the generic adapter architecture and output
-contract, see {doc}`../modules/table-ocr-adapters`.
+Tesseract + Table Transformer is an external-tool combination used by Tabulus
+for table reconstruction from canonical MinerU table crops.
+
+Tesseract is a traditional OCR engine that extracts text tokens from images.
+Microsoft Table Transformer is a deep-learning table-structure model for
+detecting table rows, columns, headers, and cells in document images. The
+Tabulus adapter combines Tesseract word tokens and bounding boxes with Table
+Transformer structure predictions, then deterministically fuses them into HTML
+for the shared parser.
 
 The adapter is registered as:
 

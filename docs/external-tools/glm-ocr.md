@@ -1,10 +1,14 @@
 # GLM-OCR
 
+## Official Resources
+
+- [GLM-OCR model](https://huggingface.co/zai-org/GLM-OCR)
+
+## Role In Tabulus
+
 GLM-OCR is a vision-language model used by Tabulus for table reconstruction
 from canonical MinerU table crops. The Tabulus adapter sends the crop directly
 to the model and expects native HTML table output.
-
-## Technical Profile
 
 GLM-OCR is a multimodal OCR model for complex document understanding from
 Z.ai. The official materials describe an architecture with a CogViT visual
@@ -13,12 +17,6 @@ with support for text, formula, table, and information-extraction tasks. The
 upstream SDK can run a full layout-and-recognition pipeline, but Tabulus uses a
 direct table-recognition prompt against a single canonical crop.
 
-## Official Resources
-
-- [GLM-OCR model](https://huggingface.co/zai-org/GLM-OCR)
-
-## Role In Tabulus
-
 The registered Tabulus adapter is:
 
 ```text
@@ -26,9 +24,6 @@ glm-ocr
 ```
 
 The adapter consumes canonical MinerU table crops through the shared Stage 2 adapter contract and emits native HTML table output for shared parsing. Tabulus does not invoke the GLM-OCR SDK document pipeline.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 

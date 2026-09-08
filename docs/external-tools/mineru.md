@@ -1,27 +1,23 @@
 # MinerU
 
-MinerU is the external PDF profiling tool used by the current Tabulus Step 1
-workflow. Tabulus invokes MinerU, discovers its structured output, and exports
-the canonical table-crop handoff used by Stage 2 reconstruction.
-
-For the guided profiling workflow and CLI examples, see
-{doc}`../tutorial/01-pdf-profiling`.
-
-## Technical Profile
-
-MinerU is a document parsing toolkit for transforming PDFs and other complex
-documents into structured Markdown and JSON. In Tabulus, MinerU is the current
-PDF profiler: it performs document/layout processing, table localization, and
-native table extraction before Tabulus normalizes the table crops. The Tabulus
-CLI exposes only the MinerU options needed for the current profiling contract,
-with CPU-compatible `pipeline` and GPU-backed `hybrid-engine` backends.
-
 ## Official Resources
 
 - [MinerU documentation](https://opendatalab.github.io/MinerU/)
 - [MinerU project repository](https://github.com/opendatalab/MinerU)
 
 ## Role In Tabulus
+
+MinerU is the external PDF profiling tool used by the current Tabulus Step 1
+workflow. It is a document parsing toolkit for transforming PDFs and other
+complex documents into structured Markdown and JSON. In Tabulus, MinerU
+performs document/layout processing, table localization, and native table
+extraction before Tabulus normalizes the canonical table-crop handoff used by
+Stage 2 reconstruction. The Tabulus CLI exposes only the MinerU options needed
+for the current profiling contract, with CPU-compatible `pipeline` and
+GPU-backed `hybrid-engine` backends.
+
+For the guided profiling workflow and CLI examples, see
+{doc}`../tutorial/01-pdf-profiling`.
 
 Tabulus currently supports MinerU as the only PDF profiler:
 

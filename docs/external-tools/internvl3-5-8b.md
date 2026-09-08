@@ -1,24 +1,22 @@
 # InternVL3.5-8B
 
-InternVL3.5-8B is a general-purpose multimodal vision-language model used by
-Tabulus for Stage 2 table reconstruction from canonical MinerU table crops.
-Unlike the dedicated OCR/document/table-parsing models in the candidate set,
-this adapter evaluates a broader VLM on the same fixed reconstruction input.
-
-## Technical Profile
-
-InternVL3.5 is an open-source multimodal model family focused on vision-language
-reasoning and efficient inference. The 8B HF checkpoint used by Tabulus is an
-image-text-to-text model with an InternVL vision stack and Qwen-family text
-model components. Tabulus constrains it to table reconstruction by prompting
-for HTML from one canonical table crop.
-
 ## Official Resources
 
 - [InternVL project repository](https://github.com/OpenGVLab/InternVL)
 - [InternVL3.5-8B-HF model used by Tabulus](https://huggingface.co/OpenGVLab/InternVL3_5-8B-HF)
 
 ## Role In Tabulus
+
+InternVL3.5-8B is a general-purpose multimodal vision-language model used by
+Tabulus for Stage 2 table reconstruction from canonical MinerU table crops.
+Unlike the dedicated OCR/document/table-parsing models in the candidate set,
+this adapter evaluates a broader VLM on the same fixed reconstruction input.
+
+InternVL3.5 is an open-source multimodal model family focused on vision-language
+reasoning and efficient inference. The 8B HF checkpoint used by Tabulus is an
+image-text-to-text model with an InternVL vision stack and Qwen-family text
+model components. Tabulus constrains it to table reconstruction by prompting
+for HTML from one canonical table crop.
 
 The registered Tabulus adapter is:
 
@@ -42,9 +40,6 @@ InternVL3.5-8B consumes canonical MinerU table crops through the shared Stage 2
 adapter contract. The adapter uses native Hugging Face Transformers loading
 with `local_files_only=True`, so the pinned model snapshot must already be
 present in the local Hugging Face cache.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 

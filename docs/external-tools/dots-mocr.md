@@ -1,11 +1,16 @@
 # dots.mocr
 
+## Official Resources
+
+- [dots.mocr project repository](https://github.com/studio-dots-ai/dots.mocr)
+- [dots.mocr model used by Tabulus](https://huggingface.co/dots-studio/dots.mocr)
+
+## Role In Tabulus
+
 dots.mocr is a document vision-language model used by Tabulus for Stage 2
 table reconstruction from canonical MinerU table crops. The Tabulus adapter
 uses the active dots.mocr layout prompt through direct Hugging Face
 Transformers inference.
-
-## Technical Profile
 
 dots.mocr is a multilingual document-parsing VLM for OCR, layout grounding,
 table/formula parsing, and structured graphics understanding. Its model card
@@ -13,13 +18,6 @@ also describes image-to-SVG capability through the related dots.mocr-svg
 variant. Tabulus uses the layout prompt on one canonical table crop, then
 selects model-emitted `Table` objects and preserves their HTML for shared
 parsing.
-
-## Official Resources
-
-- [dots.mocr project repository](https://github.com/studio-dots-ai/dots.mocr)
-- [dots.mocr model used by Tabulus](https://huggingface.co/dots-studio/dots.mocr)
-
-## Role In Tabulus
 
 The registered Tabulus adapter is:
 
@@ -42,9 +40,6 @@ dots.mocr consumes canonical MinerU table crops through the shared Stage 2
 adapter contract. The adapter uses direct Transformers inference and preserves
 its native layout-aware response before extracting table content through the
 common parser.
-
-For the generic adapter interface and artifact contract, see
-{doc}`../modules/table-ocr-adapters`.
 
 ## Invocation
 
