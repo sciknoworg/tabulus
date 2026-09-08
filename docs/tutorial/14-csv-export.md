@@ -8,7 +8,7 @@ final resolved CSV files for reference-like tables.
 ## Input
 
 The planned input is prediction CSV or parsed table rows, Stage 5 reference
-matches, and a future Stage 6 paper-level resolution registry.
+matches, and the Stage 6 paper-level resolution registry.
 
 ## Output
 
@@ -35,7 +35,7 @@ The target exporter must keep two CSV concepts separate:
 
 Stage 7 is planned as a deterministic join and export step. Every relevant
 table cell/reference occurrence of the same bibliography index should receive
-the same resolved paper-level identity once Stage 6 exists. Exact export
+the same resolved paper-level identity. Exact export
 columns, status semantics, and rejected-link handling remain part of the future
 export contract.
 

@@ -110,9 +110,9 @@ multiple candidate bibliography entries rather than silently choosing one.
 Stage 5 output is table-cell level. Multiple cells, selected tables, and
 reconstruction adapters may refer to the same bibliography index.
 
-A future Stage 6 resolver should collect matched bibliography indices across
-all reconstruction methods for a paper, take their union, and deduplicate by
-bibliography index. The conceptual resolution key is:
+Stage 6 collects matched bibliography indices across supplied reconstruction
+methods for a paper, takes their union, and deduplicates by bibliography index.
+The resolution key is:
 
 ```text
 (paper, bibliography_index)
@@ -122,7 +122,7 @@ Resolving each unique bibliography entry once is useful because scholarly
 identity is a property of the paper-level bibliography entry, not of a
 particular reconstructed table cell. It also keeps different reconstruction
 adapters from receiving different downstream identity decisions for the same
-bibliography entry after Stage 6 exists.
+bibliography entry.
 
 ## Skipped Tables
 
@@ -139,8 +139,8 @@ as errors.
 ## Boundary To Stage 6
 
 Stage 5 links table references to bibliography entries. External DOI lookup and
-scholarly-identity resolution are not implemented in the current rebuilt
-pipeline; they belong to the planned Stage 6 boundary.
+scholarly-identity resolution are outside Stage 5; they belong to Stage 6
+paper-level reference resolution.
 
 Stage 5 does not mutate raw reconstruction prediction CSVs or the Stage 4
 bibliography evidence. Coverage and agreement measures are documented in

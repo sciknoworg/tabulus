@@ -53,7 +53,7 @@ The normalized bibliography artifact is:
     bibliography.json
 ```
 
-See {doc}`../data-contracts/bibliography-json`.
+See {doc}`../data-contracts/bibliography-json` and {doc}`../external-tools/grobid`.
 
 The current artifact records:
 
@@ -61,10 +61,14 @@ The current artifact records:
 - preserved raw reference text
 - DOI when one is already present in the extracted bibliography text
 - extractor source
+- title, authors, year, venue, volume, issue, and pages when GROBID supplies
+  usable structured metadata
 
-Missing scholarly metadata is not invented. Title, author, venue, year,
-volume, issue, page-span normalization, Crossref enrichment, and scholarly
-identity resolution are outside the current Stage 4 implementation.
+Missing scholarly metadata is not invented. Structured GROBID years take
+precedence; if no structured year exists, Tabulus recovers a year only when
+exactly one plausible year appears in the raw citation. Crossref enrichment,
+CORE lookup, LLM adjudication, and scholarly identity resolution are outside
+Stage 4.
 
 ## Command Line
 
@@ -177,9 +181,9 @@ Bibliography extraction is separate from:
   as reference-like or non-reference-like
 - reference matching, which combines selected reference-like table rows with
   `references/bibliography.json`
-- planned scholarly reference resolution, which would validate paper-level
-  identities later
-- planned resolved export, which would write separate downstream outputs
+- Stage 6 scholarly reference resolution, which validates paper-level
+  identities in a separate artifact
+- planned Stage 7 resolved export, which would write separate downstream outputs
 
 Raw reconstruction prediction CSVs remain untouched.
 

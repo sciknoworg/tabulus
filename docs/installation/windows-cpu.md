@@ -338,4 +338,4 @@ The command writes adapter outputs under:
   batch_summary.json
 ```
 
-Stage 5 reference matching writes `references/reference_matches.json` without modifying reconstruction prediction CSVs. Stage 6 scholarly reference resolution, continued-table merging, Stage 7 resolved export, and full end-to-end orchestration remain unimplemented in this repository.
+Stage 5 reference matching writes `references/reference_matches.json` without modifying reconstruction prediction CSVs. Stage 6 scholarly reference resolution writes a paper-level `references/reference_resolution.json` registry from the union of linked bibliography indices. Continued-table merging, Stage 7 resolved export, and full end-to-end orchestration remain unimplemented in this repository.

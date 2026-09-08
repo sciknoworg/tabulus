@@ -21,13 +21,12 @@ suitable curated labels; successful links alone do not establish correctness.
 
 Reference matching evaluation should not mutate prediction CSV files. Resolved
 CSV files are planned downstream outputs produced after paper-level scholarly
-reference resolution exists.
+reference resolution.
 
 ## Stage 6 Evaluation Boundary
 
-Stage 6 is not implemented in the current `src/tabulus` package. When it is
-implemented, its evaluation should use a paper-level denominator: the union of
-referenced bibliography indices across reconstruction methods, deduplicated by
+Stage 6 evaluation should use a paper-level denominator: the union of referenced
+bibliography indices across reconstruction methods, deduplicated by
 bibliography index. That denominator is distinct from Stage 5 cells, rows, or
 citation tokens.
 

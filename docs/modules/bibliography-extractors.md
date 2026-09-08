@@ -11,13 +11,14 @@ reference-table classification output.
 - Preserve raw reference strings.
 - Extract DOI values deterministically when they are already present in the
   bibliography text.
-- Record source adapter and fallback status.
+- Preserve structured bibliographic fields supplied by the extractor.
+- Record the extractor source.
 - Write `references/bibliography.json`.
 - Leave reconstruction prediction CSVs untouched.
 
 ## Implemented Adapter
 
-GROBID TEI extraction is implemented in `src/tabulus/bibliography/`.
+GROBID TEI extraction is implemented in `src/tabulus/bibliography/`. See {doc}`../external-tools/grobid` for the Tabulus integration boundary.
 
 The current implementation:
 
@@ -26,6 +27,8 @@ The current implementation:
 - requests raw citations
 - disables GROBID citation consolidation
 - parses the returned TEI into normalized bibliography entries
+- preserves DOI, title, authors, year, venue, volume, issue, and pages when
+  available
 - writes `references/bibliography.json`
 
 The implemented modules are:
@@ -37,7 +40,7 @@ The implemented modules are:
 - `pipeline.py`
 
 Bibliography extraction must not call Crossref or perform external DOI
-resolution. External DOI lookup belongs to the later DOI-resolution stage after
+resolution. External scholarly-identity lookup belongs to Stage 6 after
 reference matching.
 
 ## Planned Fallback

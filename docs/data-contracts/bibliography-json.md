@@ -2,7 +2,8 @@
 
 `references/bibliography.json` records normalized bibliography entries from the
 PDF-level bibliography branch. Stage 4 runs GROBID on the original PDF and
-writes ordered extraction evidence for Stage 5 reference matching.
+writes ordered extraction evidence for Stage 5 reference matching and Stage 6
+paper-level scholarly reference resolution.
 
 The bibliography branch reads the original scientific PDF. It does not consume
 MinerU table crops, reconstruction prediction CSVs, or reference-table
@@ -17,9 +18,16 @@ text.
   "entries": [
     {
       "index": 1,
-      "raw": "Smith J. Example paper. 2020. doi:10.1234/example",
+      "raw": "Smith J. Example paper. Example Journal 12, 100-110 (2020). doi:10.1234/example",
       "doi": "10.1234/example",
-      "source": "grobid"
+      "source": "grobid",
+      "title": "Example paper",
+      "authors": ["Jane Smith"],
+      "year": 2020,
+      "venue": "Example Journal",
+      "volume": "12",
+      "issue": "",
+      "pages": "100-110"
     }
   ]
 }
@@ -49,13 +57,44 @@ text.
 `entries[].source`
 : Source extractor for the entry. The implemented GROBID path writes `grobid`.
 
+`entries[].title`
+: Structured title parsed from GROBID TEI when available. Missing title
+  evidence is preserved as an empty string.
+
+`entries[].authors`
+: Structured author names parsed from GROBID TEI when available. Missing
+  author evidence is preserved as an empty list.
+
+`entries[].year`
+: Structured GROBID publication year when available. If GROBID supplies no
+  structured year, Tabulus recovers a year only when exactly one plausible year
+  appears in the raw citation. Zero or multiple plausible raw years are
+  preserved as `null`.
+
+`entries[].venue`
+: Structured journal or series title parsed from GROBID TEI when available.
+
+`entries[].volume`
+: Structured volume locator parsed from GROBID TEI when available.
+
+`entries[].issue`
+: Structured issue or number locator parsed from GROBID TEI when available.
+
+`entries[].pages`
+: Structured page locator parsed from GROBID TEI when available. A narrow
+  repair removes a page value when GROBID appears to have placed the only
+  recovered publication year in the page field, and accepts a replacement page
+  locator only when one simple page or page range occurs immediately before the
+  raw publication year.
+
 ## Boundary
 
 Stage 4 is extraction only. It does not call Crossref, CORE, LLM providers,
 embedding services, search engines, or any scholarly-identity resolver.
 
-Downstream stages should treat entry order and raw reference strings as
-extraction evidence. Stage 5 links table-cell references to these bibliography
-positions without mutating the bibliography artifact. Paper-level scholarly
-identity resolution is planned for a later stage and is not implemented in the
-current `src/tabulus` package.
+Downstream stages should treat entry order, raw reference strings, and
+structured GROBID fields as immutable extraction evidence. Stage 5 links
+table-cell references to these bibliography positions without mutating the
+bibliography artifact. Stage 6 uses the linked bibliography entries as source
+evidence while retrieving and validating scholarly candidates in a separate
+paper-level artifact.

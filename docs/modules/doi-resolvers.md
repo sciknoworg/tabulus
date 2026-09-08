@@ -1,32 +1,66 @@
 # DOI Resolvers
 
-DOI and scholarly-identity resolution are planned Stage 6 responsibilities.
-They are not implemented in the current `src/tabulus` package.
+DOI and scholarly-identity resolution are implemented as Stage 6 paper-level
+reference resolution.
 
-## Planned Responsibility
+## Responsibility
 
-The intended Stage 6 boundary is paper-level:
+Stage 6 consumes the union of bibliography indices linked by Stage 5 for one
+paper, deduplicates them by bibliography index, and resolves each unique
+`(paper, bibliography_index)` once. It keeps Stage 4 bibliography extraction
+separate from scholarly metadata retrieval and does not modify Stage 4 or Stage
+5 artifacts.
 
-- consume the union of unique bibliography indices referenced by selected
-  tables for one paper
-- resolve each `(paper, bibliography_index)` once
-- keep Stage 4 bibliography extraction separate from scholarly metadata
-  retrieval
-- apply conservative bibliographic evidence rules before writing any validated
-  identity
-- distinguish scientific rejection from operational failure
-- preserve enough provenance for reproducibility
+The implementation lives in `src/tabulus/reference_resolution/` and is exposed
+through:
 
-The current repository does not expose a resolver CLI command, resolver
-package, Crossref or CORE provider client, LLM adjudication module, status
-model, checkpoint writer, or `references/reference_resolution.json` writer.
+```bash
+tabulus resolve-references --help
+```
 
-## Current Boundary
+The resolver:
 
-Crossref, CORE, LLM providers, embedding services, and external scholarly
-search are not used by the implemented rebuilt pipeline. Stage 4 extracts
-bibliography text from GROBID, and Stage 5 deterministically links table-cell
-references to bibliography positions offline.
+- loads Stage 4 `references/bibliography.json` as immutable extraction evidence
+- loads one or more Stage 5 `references/reference_matches.json` artifacts as
+  table-cell linkage evidence
+- retrieves Crossref and CORE scholarly-work candidates
+- applies deterministic bibliographic scoring before accepting candidates
+- uses bounded LLM adjudication only for unresolved candidate sets
+- applies a final deterministic admissibility gate to LLM-selected candidates
+- writes one paper-level `references/reference_resolution.json` artifact only
+  after all targets complete
+- checkpoints completed references in
+  `references/reference_resolution.checkpoint.json` for safe resumption
 
-See {doc}`../tutorial/13-doi-resolution` for the planned Stage 6 boundary and
-{doc}`reference-matchers` for the implemented Stage 5 matcher.
+## Provider Boundary
+
+Crossref and CORE are used only in Stage 6. They are not part of Stage 4
+bibliography extraction or Stage 5 reference matching. CORE is a fallback
+discovery source, not an automatically trusted authority; its candidates must
+pass the same deterministic evidence policy before acceptance.
+
+The LLM boundary is provider-neutral at the request interface. The standard
+Tabulus client uses OpenAI-compatible chat-completions endpoints, disables
+thinking, uses deterministic sampling settings, records provider/model
+provenance in serialized responses, and reads API keys from environment
+variables.
+
+If fallback LLM configuration is present, each adjudication starts with the
+primary provider and falls back only after operational failure. Failover does
+not bypass deterministic validation.
+
+## Status Boundary
+
+Final artifact statuses are:
+
+- `validated_with_doi`
+- `validated_without_doi`
+- `rejected`
+
+`rejected` is a scientific decision that means the available evidence was
+insufficient for safe assignment under the current resolver. Operational
+failures abort the run and leave a resumable checkpoint when possible; they are
+not converted into rejected references.
+
+See {doc}`../tutorial/13-doi-resolution` for runnable Stage 6 commands and
+{doc}`../data-contracts/reference-resolution-json` for the artifact contract.

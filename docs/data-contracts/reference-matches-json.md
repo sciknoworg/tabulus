@@ -223,12 +223,10 @@ and must not be overwritten by reference matching.
 ## Downstream Use
 
 Stage 5 is table-cell level. Multiple cells, selected tables, and
-reconstruction outputs may link to the same bibliography index. A future
-paper-level resolver should aggregate `matched_reference_indices` for a paper,
-deduplicate by bibliography index, and resolve each `(paper, bibliography_index)`
-once.
+reconstruction outputs may link to the same bibliography index. Stage 6
+aggregates `matched_reference_indices` for a paper, deduplicates by
+bibliography index, and resolves each `(paper, bibliography_index)` once.
 
-The current `src/tabulus` package does not write a Stage 6
-`references/reference_resolution.json` registry. Stage 7 remains planned: it
-will join resolved identities back to every relevant table cell/reference
-occurrence after paper-level resolution exists.
+The Stage 6 paper-level registry is
+`references/reference_resolution.json`. Stage 7 remains planned: it will join
+resolved identities back to every relevant table cell/reference occurrence.

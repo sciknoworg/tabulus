@@ -75,6 +75,12 @@ tabulus classify-reference-tables `
 tabulus match-references `
   --selected C:\papers\tabulus-output\table-crops\INPUT\reconstructions\paddleocr-vl\selected_reference_tables.json `
   --bibliography C:\runs\INPUT\references\bibliography.json
+
+# Requires Crossref, CORE, and LLM configuration in the environment.
+tabulus resolve-references `
+  --bibliography C:\runs\INPUT\references\bibliography.json `
+  --reference-matches C:\papers\tabulus-output\table-crops\INPUT\reconstructions\paddleocr-vl\references\reference_matches.json `
+  --out C:\runs\INPUT
 ```
 
 The future complete command should remain under the same installed `tabulus`
@@ -87,6 +93,6 @@ tabulus run --pdf C:\papers\INPUT.pdf --runs-root C:\runs
 `tabulus run` is not implemented yet. The new library has registered
 table-reconstruction adapters, the `tabulus reconstruct-tables` batch CLI,
 reference-table classification, the GROBID-backed
-`tabulus extract-bibliography` CLI, and deterministic Stage 5 reference
-matching. Stage 6 scholarly reference resolution, Stage 7 resolved export, and
-full run reporting remain unimplemented in this repository.
+`tabulus extract-bibliography` CLI, deterministic Stage 5 reference matching,
+and Stage 6 paper-level scholarly reference resolution. Stage 7 resolved
+export and full run reporting remain unimplemented in this repository.

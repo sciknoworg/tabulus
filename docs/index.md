@@ -11,11 +11,11 @@ The rebuilt library is organized around standalone commands and explicit
 filesystem contracts. The current rebuilt library covers PDF profiling,
 canonical table-crop export, table reconstruction, reference-table
 classification, GROBID-backed bibliography extraction, deterministic
-reference matching. Paper-level scholarly reference resolution, resolved
-export, run reports, and complete `tabulus run` orchestration remain planned
-in this checkout. Bibliography extraction is a parallel PDF-level branch that produces
-`references/bibliography.json`, not a consumer of MinerU table crops or
-reconstruction prediction CSVs.
+reference matching, and Stage 6 paper-level scholarly reference resolution.
+Resolved export, run reports, and complete `tabulus run` orchestration remain
+planned in this checkout. Bibliography extraction is a parallel PDF-level
+branch that produces `references/bibliography.json`, not a consumer of MinerU
+table crops or reconstruction prediction CSVs.
 
 Start with the locally verified commands, then use the linked pages for setup and adapter
 details. For one PDF:
@@ -35,6 +35,15 @@ tabulus extract-bibliography \
   --pdf /path/to/paper.pdf \
   --out /path/to/artifact-root \
   --grobid-url http://localhost:8070
+
+tabulus match-references \
+  --selected /path/to/selected_reference_tables.json \
+  --bibliography /path/to/artifact-root/references/bibliography.json
+
+tabulus resolve-references \
+  --bibliography /path/to/artifact-root/references/bibliography.json \
+  --reference-matches /path/to/reconstruction/references/reference_matches.json \
+  --out /path/to/artifact-root
 ```
 
 For several PDFs in one folder:
@@ -183,6 +192,7 @@ workflows/debugging-failed-step
 :caption: External Tools
 
 external-tools/mineru
+external-tools/grobid
 external-tools/paddleocr-vl
 external-tools/chandra
 external-tools/nuextract3
@@ -214,6 +224,7 @@ data-contracts/ocr-tables-json
 data-contracts/table-prediction-csv
 data-contracts/bibliography-json
 data-contracts/reference-matches-json
+data-contracts/reference-resolution-json
 data-contracts/resolved-csv
 ```
 

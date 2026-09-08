@@ -2,11 +2,11 @@
 
 Tabulus extracts structured table data from scientific PDFs while keeping each processing stage inspectable on disk. The rebuilt library is organized around standalone commands and file contracts rather than one monolithic runner.
 
-The current pipeline does not yet end in DOI-enriched final CSVs. It currently supports PDF profiling, canonical table-crop export, table reconstruction, reference-table classification, GROBID-backed bibliography extraction, and deterministic reference matching. The bibliography branch starts from the original PDF in parallel with table processing; paper-level scholarly reference resolution, Stage 7 resolved export, run reports, and complete `tabulus run` orchestration remain planned for the rebuilt library.
+The current pipeline does not yet end in DOI-enriched final CSVs. It currently supports PDF profiling, canonical table-crop export, table reconstruction, reference-table classification, GROBID-backed bibliography extraction, deterministic reference matching, and paper-level scholarly reference resolution. The bibliography branch starts from the original PDF in parallel with table processing; Stage 7 resolved export, run reports, and complete `tabulus run` orchestration remain planned for the rebuilt library.
 
 ## Current Runnable Pipeline
 
-The implemented pipeline runs through Stage 5 in the rebuilt `src/tabulus`
+The implemented pipeline runs through Stage 6 in the rebuilt `src/tabulus`
 package:
 
 1. **PDF Profiling:** `tabulus profile`
@@ -14,8 +14,10 @@ package:
 3. **Reference-Table Classification:** `tabulus classify-reference-tables`
 4. **Bibliography Extraction:** `tabulus extract-bibliography`
 5. **Reference Matching:** `tabulus match-references`
-Stage 6 scholarly reference resolution and Stage 7 resolved export are not
-implemented in the rebuilt package in this checkout.
+6. **Scholarly Reference Resolution:** `tabulus resolve-references`
+
+Stage 7 resolved export is not implemented in the rebuilt package in this
+checkout.
 
 The stage boundaries are persisted as files:
 
@@ -52,7 +54,7 @@ selected_reference_tables.json + bibliography.json
 references/reference_matches.json (Stage 5; table-cell links)
   |
   v
-Stage 6: paper-level scholarly reference resolution (planned)
+Stage 6: references/reference_resolution.json
   |
   v
 Stage 7: join resolved identities to all relevant cells / export (planned)
@@ -104,7 +106,7 @@ selected_reference_tables.json + bibliography.json
 references/reference_matches.json
       |
       v
-Stage 6: paper-level scholarly reference resolution (planned)
+Stage 6: references/reference_resolution.json
       |
       v
 Stage 7: join resolved identities to all relevant cells / export (planned)
@@ -126,9 +128,11 @@ reconstructed-table instances and writes `reference_table_classification.json` b
 Bibliography extraction is a separate PDF-level branch. It reads the original scientific PDF and writes normalized entries to `references/bibliography.json`; it does not consume canonical table crops or reconstruction prediction CSVs. The table and bibliography branches converge at deterministic reference matching.
 
 Stage 5 links table-cell citation tokens to bibliography positions offline.
-The planned Stage 6 boundary is paper-level: it should consume the union of
-matched bibliography indices for a paper and avoid resolving the same
-bibliography entry separately for every cell, table, or reconstruction adapter.
+Stage 6 consumes the union of matched bibliography indices for a paper and
+avoids resolving the same bibliography entry separately for every cell, table,
+or reconstruction adapter. It writes a paper-level
+`references/reference_resolution.json` registry after every target reaches a
+final scientific status.
 
 ## Current Versus Planned
 
@@ -146,10 +150,10 @@ Implemented in the rebuilt library:
 - deterministic reference matching from selected reference-like tables and
   `references/bibliography.json`
 - reference matching through `tabulus match-references`
+- paper-level scholarly reference resolution through `tabulus resolve-references`
 
 Planned for the rebuilt library:
 
-- paper-level scholarly reference resolution after Stage 5 matching
 - resolved CSV export by joining resolved identities back onto Stage 5 table
   links
 - run report / QA bundle
