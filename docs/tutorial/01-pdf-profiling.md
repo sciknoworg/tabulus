@@ -1,24 +1,200 @@
 # Step 1: PDF Profiling
 
-PDF profiling is the first runnable Tabulus stage. It takes one or more PDF
-files, runs a PDF profiler, discovers physical table regions inside each PDF,
-and exports those detected tables as canonical crop images for Stage 2
-reconstruction.
+PDF profiling is the first runnable Tabulus stage. It takes scientific PDF
+files, runs a PDF profiler, discovers table regions, and exports those detected
+tables as canonical crop images for Stage 2 table reconstruction.
 
-The profiling interface is designed so different profiling tools can be used
-behind the same Tabulus handoff. The current implemented profiler is MinerU.
-That means `tabulus profile` is the Tabulus command, while `--backend`,
-`--method`, and `--effort` select MinerU-specific behavior.
+The current implemented profiler is MinerU. `tabulus profile` is the Tabulus
+interface; `--backend`, `--method`, and `--effort` select MinerU execution
+behavior behind that interface.
 
-## Worked Example Convention
+## What This Stage Creates
 
-The canonical TabulusBench worked example is paper `P4`:
+Stage 1 creates two conceptual output areas for each profiled paper:
 
 ```text
-Biomedicine_And_Health/clinical_research/P4/P4.pdf
+PDF
+  |
+  +-- MinerU-native profiling artifacts
+  |
+  `-- Tabulus canonical table-crop handoff
+        |-- tables_index.json
+        `-- images/
 ```
 
-Use portable roots in commands:
+The MinerU-native area keeps the profiler's document output and diagnostics.
+The canonical crop handoff is the stable Tabulus interface for the next stage:
+later table reconstruction should consume the crop handoff, not the full
+MinerU-native output tree.
+
+Stage 1 performs PDF profiling, table detection, and canonical crop export. It
+does not perform crop-consuming table reconstruction, reference-table
+classification, bibliography extraction, reference matching, scholarly
+reference resolution, or resolved CSV export.
+
+## CLI
+
+The profile command has one required PDF input source plus optional MinerU and
+output controls:
+
+```bash
+tabulus profile <one input mode> [MinerU options] [output options]
+```
+
+If `--backend` is omitted, Tabulus prompts interactively:
+
+```text
+1. pipeline       CPU-compatible [default]
+2. hybrid-engine  GPU-accelerated
+```
+
+### Input Modes
+
+Choose exactly one input mode.
+
+| Mode | Behavior |
+| --- | --- |
+| `--pdf <file>` | Profiles one explicitly named PDF. |
+| `--folder <folder>` | Profiles PDF files directly inside one folder, sorted by filename. Discovery is non-recursive. |
+| `--pdf-list <text-file>` | Profiles PDF paths listed one per line in a UTF-8 text file. Blank lines and lines beginning with `#` are ignored. Relative paths are resolved relative to the list file. Duplicate inputs are rejected. |
+
+Use `--pdf-list` when the desired papers are nested across directories or when
+you need a reproducible ordered input set.
+
+### MinerU Options
+
+| Option | Values | Meaning |
+| --- | --- | --- |
+| `--profiler` | `mineru` | PDF profiling tool. MinerU is currently the only implemented profiler. |
+| `--backend` | `pipeline`, `hybrid-engine` | MinerU execution backend. |
+| `--method` | `auto`, `txt`, `ocr` | MinerU parsing method. The default is `auto`. |
+| `--effort` | `medium`, `high` | MinerU hybrid-engine effort. The default is `high`. |
+
+`pipeline` is the CPU-compatible MinerU backend and is appropriate for Windows
+or CPU-only environments. `hybrid-engine` is the GPU-accelerated MinerU backend.
+If `hybrid-engine` is requested but the current Python environment does not
+expose a suitable CUDA GPU, Tabulus reports the reason and falls back to
+`pipeline`.
+
+Tabulus passes `--effort` to MinerU only when the resolved backend is
+`hybrid-engine`. The current profiling workflow always asks MinerU to extract
+tables and disables formula extraction and image analysis internally; those are
+not currently Tabulus CLI options.
+
+### Output Options
+
+When output flags are omitted, Tabulus writes profiling outputs beside each
+source PDF:
+
+```text
+<PDF directory>/tabulus-output/
+  mineru/<resolved-backend>/...
+  table-crops/<PDF stem>/...
+```
+
+`--out <path>`
+: Sets the MinerU profiling output root. For multiple PDFs, the same profiling
+  root is used and MinerU writes each document under its own PDF-stem
+  subdirectory.
+
+`--table-crops-out <path>`
+: Sets the canonical crop handoff location. For one PDF, this is the exact crop
+  root. For multiple PDFs, this is a parent directory and Tabulus writes one
+  crop root per PDF stem below it.
+
+`--no-export-table-crops`
+: Skips the automatic canonical crop handoff and keeps only the MinerU-native
+  profiling output.
+
+### Reusing Existing MinerU Output
+
+If MinerU has already run, use `export-table-crops` to regenerate the canonical
+crop handoff without profiling the PDF again:
+
+```bash
+tabulus export-table-crops \
+  --mineru-root "/path/to/tabulus-output/mineru/<backend>/<paper>/<run-dir>" \
+  --out "/path/to/tabulus-output/table-crops/<paper>"
+```
+
+The exporter preserves the original MinerU image extension instead of
+converting every crop to PNG.
+
+## Output Structure and Stage Handoff
+
+Tabulus owns the profiling root passed through `--out` or, by default, the
+per-PDF `tabulus-output/mineru/<resolved-backend>/` directory. MinerU owns the
+document hierarchy below that root and chooses the native run directory name.
+
+A typical public Stage 1 output has this shape:
+
+```text
+<work-or-pdf-parent>/
+  tabulus-output/
+    mineru/
+      <resolved-backend>/
+        <paper>/
+          <MinerU-native run directory>/
+            <paper>_content_list.json
+            <paper>_middle.json
+            <paper>_model.json
+            <paper>_layout.pdf
+            <paper>_origin.pdf
+            <paper>.md
+            images/
+            mineru_stdout.log
+            mineru_stderr.log
+            tabulus_run.txt
+    table-crops/
+      <paper>/
+        tables_index.json
+        images/
+          page_<page>_table_<table-id>.<ext>
+```
+
+After MinerU succeeds, Tabulus locates the actual native run directory from the
+generated `*_content_list.json` file rather than assuming a fixed MinerU folder
+name. Diagnostic logs are written beside the native output when possible; if
+MinerU fails before a native run directory can be identified, diagnostics may
+be written at the document level instead.
+
+The canonical crop handoff is the Stage 2 input. `tables_index.json` records
+the detected crop inventory and provenance, including physical `table_id`, page
+number, crop image name, bounding box when available, caption, footnote, MinerU
+source image/path provenance, MinerU `table_body`, reference-section position
+information, and source identifier where available.
+
+`table_id` identifies a physical table detected by the profiler within the
+document. It is not necessarily the table number printed in the paper. MinerU
+`table_body` is MinerU's native table reconstruction candidate; the canonical
+crop image is the shared visual input for crop-consuming reconstruction
+adapters.
+
+## Common Failure Modes
+
+| Failure | Likely cause | Fix |
+| --- | --- | --- |
+| File not found | Wrong PDF, list, or output path | Validate the selected input mode and paths. |
+| No PDFs found | `--folder` was pointed at a directory without direct PDF children | Use a folder that directly contains PDFs, or create a `--pdf-list`. |
+| Duplicate PDF input | The same resolved PDF appears more than once in a list | Remove duplicate entries from the list. |
+| MinerU output missing | MinerU failed or did not write `*_content_list.json` | Inspect `mineru_stderr.log` and `tabulus_run.txt` where available. |
+| No table regions | MinerU found no table entries or image provenance cannot be resolved | Inspect MinerU `*_content_list.json` and source image paths. |
+| Incorrect table crop | MinerU detected the wrong region or reading order | Inspect MinerU layout/debug output beside the native run. |
+
+## Examples
+
+### TabulusBench
+
+[TabulusBench](https://zenodo.org/records/20230340) is the benchmark dataset
+used for concrete tutorial examples. Throughout the tutorial, `P4` is used when
+a concrete TabulusBench one-paper example is needed:
+
+- paper ID: `P4`
+- domain: `Biomedicine_And_Health`
+- subdomain: `clinical_research`
+- PDF: `Biomedicine_And_Health/clinical_research/P4/P4.pdf`
+
+Set portable roots before running the examples:
 
 ```bash
 export TABULUSBENCH_ROOT="/path/to/tabulusbench"
@@ -26,130 +202,53 @@ export TABULUS_WORK="/path/to/tabulus-work"
 P4_PDF="$TABULUSBENCH_ROOT/Biomedicine_And_Health/clinical_research/P4/P4.pdf"
 ```
 
-`P4` has six annotated reference-containing tables under
-`P4/reference_tables/`, and it has paper-level bibliography gold under
-`P4/bibliography/gold.json`. Those are benchmark gold materials. Stage 1 starts
-from the original `P4.pdf` and writes fresh profiling/crop outputs to a work
-directory; it should not overwrite or regenerate the benchmark
-`reference_tables/` directory.
+A one-paper run means processing the complete relevant input for one paper. For
+Stage 1, that means the original `P4.pdf`. A full TabulusBench run means every
+original paper PDF in the benchmark. Later stages may use different
+stage-specific inputs.
 
-Stage 1 table detection may find a different set of tables than the six
-annotated reference-containing benchmark tables. The benchmark tables are gold
-annotation inputs for later controlled examples and evaluation, not the
-definition of all tables detected in the PDF.
-
-CPU and GPU examples below are backend choices for the same stage and the same
-input:
+`P4` also contains benchmark gold material:
 
 ```text
-same Tabulus stage
-same input
-        |
-        +-- CPU-compatible MinerU pipeline backend
-        |
-        +-- GPU-accelerated MinerU hybrid-engine backend
+P4/
+  reference_tables/
+    tables_index.json
+    tables/
+      page_004_table_001/gold.csv
+      page_005_table_002/gold.csv
+      page_006_table_003/gold.csv
+      page_007_table_004/gold.csv
+      page_008_table_005/gold.csv
+      page_009_table_006/gold.csv
 ```
 
-## What This Stage Creates
-
-By default, one profiled paper produces two output areas beside the source PDF:
+Those six benchmark table instances are annotated reference-containing tables
+and are immutable benchmark gold. Stage 1 profiles the original PDF and writes
+Tabulus-generated detected crops to a separate work area. It should not write
+into, replace, or regenerate `P4/reference_tables/`. Stage 1 may detect a
+different set of tables from the six reference-containing tables selected for
+benchmark annotation.
 
 ```text
-<PDF parent>/
-  tabulus-output/
-    mineru/
-      <resolved-backend>/
-        <paper>/
-          <MinerU-native run directory>/
-            ...
-    table-crops/
-      <paper>/
-        tables_index.json
-        images/
+Tabulus-generated Stage 1 detected crops
+        !=
+TabulusBench gold reference-table annotations
 ```
 
-`tabulus-output/mineru/<resolved-backend>/`
-: The profiling output root that Tabulus gives to MinerU.
+#### One paper: P4
 
-`<paper>/<MinerU-native run directory>/`
-: MinerU's own native document/run hierarchy. MinerU chooses the final run
-  directory name.
-
-`tabulus-output/table-crops/<paper>/`
-: The stable Tabulus handoff for Stage 2. This contains `tables_index.json`
-  and copied canonical table crop images extracted from the table regions
-  discovered by the profiler.
-
-Later table reconstruction should use `table-crops/<paper>/`, not the full
-MinerU-native directory.
-
-## Input Modes
-
-Choose exactly one PDF input mode:
-
-| Mode | Use when |
-| --- | --- |
-| `--pdf <file>` | You want to profile one PDF. |
-| `--folder <folder>` | You want every PDF directly inside one folder. |
-| `--pdf-list <text-file>` | You want to control the PDF list explicitly. |
-
-For `--folder`, discovery is non-recursive. Only PDFs directly inside the
-folder are processed, inputs are sorted by filename, and papers run
-sequentially.
-
-For `--pdf-list`, use one PDF path per line. Blank lines and lines beginning
-with `#` are ignored, relative paths are resolved relative to the list file,
-and duplicate inputs are rejected.
-
-## MinerU Options
-
-`tabulus profile` currently exposes these MinerU-specific options:
-
-| Option | Values | Meaning |
-| --- | --- | --- |
-| `--profiler` | `mineru` | PDF profiling tool. MinerU is currently the only profiler. |
-| `--backend` | `pipeline`, `hybrid-engine` | MinerU execution backend. |
-| `--method` | `auto`, `txt`, `ocr` | MinerU parsing mode. |
-| `--effort` | `medium`, `high` | MinerU `hybrid-engine` processing effort. |
-
-`--backend pipeline`
-: CPU-compatible MinerU backend. Use this for Windows or CPU-only runs.
-
-`--backend hybrid-engine`
-: GPU-backed MinerU backend. If requested but GPU requirements are not met,
-  Tabulus reports the reason and falls back to `pipeline`. Output paths use the
-  resolved backend name.
-
-`--method auto`
-: Let MinerU choose text extraction or OCR handling.
-
-`--method txt`
-: Ask MinerU to use native PDF text extraction.
-
-`--method ocr`
-: Ask MinerU to use OCR.
-
-`--effort high`
-: Default effort for `hybrid-engine`. Tabulus passes `--effort` only when the
-  resolved backend is `hybrid-engine`.
-
-Tabulus also fixes these MinerU settings internally for the current profiling
-workflow:
+The input is the original P4 PDF:
 
 ```text
-table=True
-formula=False
-image_analysis=False
+P4.pdf
+  |
+  v
+MinerU profiling output
+  +
+Tabulus canonical detected table crops
 ```
 
-They are not currently Tabulus CLI arguments.
-
-## CLI
-
-### P4 — CPU-Compatible Run
-
-Profile the canonical `P4` PDF with the CPU-compatible MinerU `pipeline`
-backend:
+CPU-compatible run:
 
 ```bash
 tabulus profile \
@@ -160,14 +259,7 @@ tabulus profile \
   --table-crops-out "$TABULUS_WORK/P4/table-crops"
 ```
 
-This writes MinerU-native profiling output below the requested profiling root
-and writes the Tabulus canonical crop handoff below
-`$TABULUS_WORK/P4/table-crops`.
-
-### P4 — GPU-Accelerated Run
-
-Profile the same `P4` PDF with the GPU-accelerated MinerU `hybrid-engine`
-backend:
+GPU-accelerated run:
 
 ```bash
 tabulus profile \
@@ -179,18 +271,35 @@ tabulus profile \
   --table-crops-out "$TABULUS_WORK/P4/table-crops-hybrid-engine"
 ```
 
-If `hybrid-engine` is requested but the current environment does not expose a
-suitable CUDA GPU, Tabulus reports the reason and falls back to `pipeline`.
-`--effort` is passed to MinerU only when the resolved backend is
-`hybrid-engine`.
+The CPU-compatible example writes outputs conceptually like this:
 
-### Full TabulusBench — PDF List
+```text
+$TABULUS_WORK/P4/
+  profiling/mineru/pipeline/
+    P4/
+      <MinerU-native run directory>/
+        P4_content_list.json
+        images/
+        mineru_stdout.log
+        mineru_stderr.log
+        tabulus_run.txt
+  table-crops/
+    tables_index.json
+    images/
+      page_<page>_table_<table-id>.<ext>
+```
 
-TabulusBench stores PDFs below domain and subdomain directories, so do not use
-`--folder "$TABULUSBENCH_ROOT"` for a full benchmark run. `--folder` is
-non-recursive and processes only PDFs directly inside one folder.
+The GPU-accelerated example uses the same input and stage, but requests the
+`hybrid-engine` backend. If the GPU backend is not available, Tabulus falls
+back to `pipeline` and records the resolved backend in diagnostics.
 
-Create an explicit PDF list in the work directory from the benchmark metadata:
+#### Full TabulusBench
+
+The benchmark hierarchy is nested by domain, subdomain, and paper. Do not use a
+non-recursive `--folder` call on the benchmark root for a full benchmark run.
+Use an explicit PDF list instead.
+
+Create the list from the benchmark metadata:
 
 ```bash
 mkdir -p "$TABULUS_WORK/manifests"
@@ -213,12 +322,10 @@ print(out)
 PY
 ```
 
-The generated list is a normal `tabulus profile --pdf-list` input: one PDF path
-per line. It is not an experiment manifest and does not modify benchmark gold.
+The generated file is a normal `tabulus profile --pdf-list` input. It is not an
+experiment manifest and does not modify benchmark gold.
 
-### Full TabulusBench — CPU-Compatible Run
-
-Run Stage 1 over the complete PDF list with the CPU-compatible backend:
+CPU-compatible full-benchmark run:
 
 ```bash
 tabulus profile \
@@ -229,9 +336,7 @@ tabulus profile \
   --table-crops-out "$TABULUS_WORK/full-tabulusbench/table-crops"
 ```
 
-### Full TabulusBench — GPU-Accelerated Run
-
-Run the same complete PDF list with the GPU-accelerated backend:
+GPU-accelerated full-benchmark run:
 
 ```bash
 tabulus profile \
@@ -243,168 +348,6 @@ tabulus profile \
   --table-crops-out "$TABULUS_WORK/full-tabulusbench/table-crops-hybrid-engine"
 ```
 
-If you omit `--backend`, Tabulus prompts interactively:
-
-```text
-1. pipeline       CPU-compatible [default]
-2. hybrid-engine  GPU-accelerated
-```
-
-## Output Controls
-
-Most users can omit output flags and use the default per-paper layout.
-
-Use `--out` only when you want to choose the MinerU profiling output root:
-
-```bash
-tabulus profile \
-  --pdf "/path/to/paper.pdf" \
-  --backend pipeline \
-  --out "/path/to/profile-root"
-```
-
-MinerU still creates its native document/run hierarchy below that root.
-
-Use `--table-crops-out` when you want to choose where the canonical crop
-handoff is written:
-
-```bash
-tabulus profile \
-  --folder "/path/to/papers" \
-  --backend hybrid-engine \
-  --table-crops-out "/path/to/table-crops"
-```
-
-For one PDF, `--table-crops-out` is the exact crop-root directory. For multiple
-PDFs, it is treated as a parent directory and each paper receives its own
-subdirectory:
-
-```text
-/path/to/table-crops/
-  <paper-a>/
-    tables_index.json
-    images/
-  <paper-b>/
-    tables_index.json
-    images/
-```
-
-Use `--no-export-table-crops` only when you want to keep the MinerU-native
-profiling output but skip the Stage 2 handoff:
-
-```bash
-tabulus profile \
-  --pdf "/path/to/paper.pdf" \
-  --backend pipeline \
-  --no-export-table-crops
-```
-
-## MinerU Native Run Directory
-
-Tabulus owns only the profiling root:
-
-```text
-<PDF parent>/tabulus-output/mineru/<resolved-backend>/
-```
-
-MinerU owns the hierarchy below it:
-
-```text
-tabulus-output/
-  mineru/
-    <resolved-backend>/
-      <paper>/
-        <MinerU-native run directory>/
-          images/
-          <paper>_content_list.json
-          <paper>_content_list_v2.json
-          <paper>_layout.pdf
-          <paper>_middle.json
-          <paper>_model.json
-          <paper>_origin.pdf
-          <paper>.md
-          mineru_stdout.log
-          mineru_stderr.log
-          tabulus_run.txt
-```
-
-After a successful MinerU run, Tabulus discovers the actual
-`<MinerU-native run directory>` from the generated `*_content_list.json`
-rather than predicting it from `--method`.
-
-Validated MinerU 3.4.5 examples:
-
-```text
-pipeline/<paper>/auto/
-hybrid-engine/<paper>/hybrid_auto/
-```
-
-These names are MinerU-owned behavior from tested configurations. They are not
-Tabulus directory rules.
-
-`mineru_stdout.log`, `mineru_stderr.log`, and `tabulus_run.txt` are Tabulus
-diagnostic files written beside successful MinerU output. If MinerU fails
-before a native run directory can be identified, diagnostics may be written at
-the document level instead.
-
-## Canonical Crop Handoff
-
-The crop handoff is the stable interface for Stage 2:
-
-```text
-tabulus-output/
-  table-crops/
-    <paper>/
-      tables_index.json
-      images/
-        page_<page>_table_<table-id>.<ext>
-```
-
-`tables_index.json` records the crop inventory and provenance needed by later
-stages. It preserves physical `table_id`, page number, crop image name,
-bounding box when available, caption, footnote, MinerU source image/path
-provenance, MinerU `table_body`, reference-section position information, and
-source identifier where available.
-
-`table_id` identifies a physical detected table within the document. It is not
-necessarily the printed table number in the paper.
-
-MinerU `table_body` is MinerU's native table reconstruction candidate. The
-canonical crop image is the shared visual input for Stage 2 reconstruction
-adapters.
-
-## Reuse Existing MinerU Output
-
-If MinerU has already run, regenerate the canonical crop handoff without
-profiling the PDF again:
-
-```bash
-tabulus export-table-crops \
-  --mineru-root "/path/to/tabulus-output/mineru/<backend>/<paper>/<run-dir>" \
-  --out "/path/to/tabulus-output/table-crops/<paper>"
-```
-
-The exporter preserves the original MinerU image extension instead of
-converting every crop to PNG.
-
-## Boundary
-
-PDF profiling does not perform crop-consuming table reconstruction,
-reference-table classification, bibliography extraction, deterministic
-reference matching, DOI resolution, final resolved CSV generation, or
-continued-table merging.
-
-## Common Failure Modes
-
-| Failure | Likely cause | Fix |
-| --- | --- | --- |
-| File not found | Wrong PDF, list, or output path | Validate paths before processing. |
-| MinerU output missing | MinerU failed or did not write `*_content_list.json` | Inspect `mineru_stderr.log` and `tabulus_run.txt` where available. |
-| No table regions | MinerU found no table entries or image provenance cannot be resolved | Inspect MinerU `*_content_list.json` and `img_path` values. |
-| Incorrect table crop | MinerU detected the wrong region or reading order | Inspect MinerU layout/debug output beside the native run. |
-| Weak structured table | MinerU `table_body` is incomplete or malformed | Compare it against Stage 2 reconstruction adapters before choosing an output for evaluation. |
-
-## Next Step
-
-After PDF profiling and canonical crop export, run
-{doc}`08-table-ocr` on the canonical MinerU table crops.
+For multiple PDFs, `--out` is the shared MinerU profiling root and
+`--table-crops-out` is a parent crop directory. Each processed paper keeps its
+own PDF-stem subdirectory below those roots.
