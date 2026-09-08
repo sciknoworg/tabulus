@@ -24,8 +24,7 @@ PDF
 
 The MinerU-native area keeps the profiler's document output and diagnostics.
 The canonical crop handoff is the stable Tabulus interface for the next stage:
-later table reconstruction should consume the crop handoff, not the full
-MinerU-native output tree.
+Stage 2 table reconstruction consumes this handoff.
 
 Stage 1 performs PDF profiling, table detection, and canonical crop export. It
 does not perform crop-consuming table reconstruction, reference-table
@@ -106,6 +105,10 @@ source PDF:
 : Skips the automatic canonical crop handoff and keeps only the MinerU-native
   profiling output.
 
+Custom output directory names are user-defined and do not indicate which
+MinerU backend ultimately executed; Tabulus reports the resolved backend in
+its diagnostics.
+
 ### Reusing Existing MinerU Output
 
 If MinerU has already run, use `export-table-crops` to regenerate the canonical
@@ -129,19 +132,13 @@ document hierarchy below that root and chooses the native run directory name.
 A typical public Stage 1 output has this shape:
 
 ```text
-<work-or-pdf-parent>/
+<PDF directory>/
   tabulus-output/
     mineru/
       <resolved-backend>/
         <paper>/
           <MinerU-native run directory>/
-            <paper>_content_list.json
-            <paper>_middle.json
-            <paper>_model.json
-            <paper>_layout.pdf
-            <paper>_origin.pdf
-            <paper>.md
-            images/
+            ...
             mineru_stdout.log
             mineru_stderr.log
             tabulus_run.txt
@@ -151,6 +148,10 @@ A typical public Stage 1 output has this shape:
         images/
           page_<page>_table_<table-id>.<ext>
 ```
+
+With custom `--out` or `--table-crops-out` values, the top-level roots are the
+paths supplied on the command line, but the same division remains: MinerU owns
+the native profiling hierarchy, and Tabulus owns the canonical crop handoff.
 
 After MinerU succeeds, Tabulus locates the actual native run directory from the
 generated `*_content_list.json` file rather than assuming a fixed MinerU folder
@@ -207,33 +208,24 @@ Stage 1, that means the original `P4.pdf`. A full TabulusBench run means every
 original paper PDF in the benchmark. Later stages may use different
 stage-specific inputs.
 
-`P4` also contains benchmark gold material:
+Benchmark note: `P4/reference_tables/` is immutable TabulusBench gold, with six
+annotated reference-containing tables and adjacent `gold.csv` files:
 
 ```text
 P4/
   reference_tables/
     tables_index.json
     tables/
-      page_004_table_001/gold.csv
-      page_005_table_002/gold.csv
-      page_006_table_003/gold.csv
-      page_007_table_004/gold.csv
-      page_008_table_005/gold.csv
-      page_009_table_006/gold.csv
+      page_004_table_001/
+      ...
+      page_009_table_006/
 ```
 
-Those six benchmark table instances are annotated reference-containing tables
-and are immutable benchmark gold. Stage 1 profiles the original PDF and writes
-Tabulus-generated detected crops to a separate work area. It should not write
-into, replace, or regenerate `P4/reference_tables/`. Stage 1 may detect a
-different set of tables from the six reference-containing tables selected for
-benchmark annotation.
-
-```text
-Tabulus-generated Stage 1 detected crops
-        !=
-TabulusBench gold reference-table annotations
-```
+Stage 1 starts from `P4.pdf` and writes newly generated detected table crops to
+the selected Tabulus output area. It must not write into, replace, or
+regenerate `P4/reference_tables/`, and the Stage 1 detected table set may
+differ from the six gold reference-containing tables selected for benchmark
+annotation.
 
 #### One paper: P4
 
@@ -255,8 +247,8 @@ tabulus profile \
   --pdf "$P4_PDF" \
   --backend pipeline \
   --method auto \
-  --out "$TABULUS_WORK/P4/profiling/mineru/pipeline" \
-  --table-crops-out "$TABULUS_WORK/P4/table-crops"
+  --out "$TABULUS_WORK/P4/profiling/cpu" \
+  --table-crops-out "$TABULUS_WORK/P4/table-crops-cpu"
 ```
 
 GPU-accelerated run:
@@ -267,15 +259,15 @@ tabulus profile \
   --backend hybrid-engine \
   --method auto \
   --effort high \
-  --out "$TABULUS_WORK/P4/profiling/mineru/hybrid-engine" \
-  --table-crops-out "$TABULUS_WORK/P4/table-crops-hybrid-engine"
+  --out "$TABULUS_WORK/P4/profiling/gpu" \
+  --table-crops-out "$TABULUS_WORK/P4/table-crops-gpu"
 ```
 
 The CPU-compatible example writes outputs conceptually like this:
 
 ```text
 $TABULUS_WORK/P4/
-  profiling/mineru/pipeline/
+  profiling/cpu/
     P4/
       <MinerU-native run directory>/
         P4_content_list.json
@@ -283,7 +275,7 @@ $TABULUS_WORK/P4/
         mineru_stdout.log
         mineru_stderr.log
         tabulus_run.txt
-  table-crops/
+  table-crops-cpu/
     tables_index.json
     images/
       page_<page>_table_<table-id>.<ext>
@@ -332,8 +324,8 @@ tabulus profile \
   --pdf-list "$TABULUS_WORK/manifests/tabulusbench-pdfs.txt" \
   --backend pipeline \
   --method auto \
-  --out "$TABULUS_WORK/full-tabulusbench/profiling/mineru/pipeline" \
-  --table-crops-out "$TABULUS_WORK/full-tabulusbench/table-crops"
+  --out "$TABULUS_WORK/full-tabulusbench/profiling/cpu" \
+  --table-crops-out "$TABULUS_WORK/full-tabulusbench/table-crops-cpu"
 ```
 
 GPU-accelerated full-benchmark run:
@@ -344,8 +336,8 @@ tabulus profile \
   --backend hybrid-engine \
   --method auto \
   --effort high \
-  --out "$TABULUS_WORK/full-tabulusbench/profiling/mineru/hybrid-engine" \
-  --table-crops-out "$TABULUS_WORK/full-tabulusbench/table-crops-hybrid-engine"
+  --out "$TABULUS_WORK/full-tabulusbench/profiling/gpu" \
+  --table-crops-out "$TABULUS_WORK/full-tabulusbench/table-crops-gpu"
 ```
 
 For multiple PDFs, `--out` is the shared MinerU profiling root and
