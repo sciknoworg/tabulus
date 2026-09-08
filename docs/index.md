@@ -234,6 +234,7 @@ data-contracts/resolved-csv
 :caption: Evaluation
 
 evaluation/overview
+evaluation/reference-table-classification-quality
 evaluation/table-extraction-quality
 evaluation/bibliography-quality
 evaluation/reference-matching-quality

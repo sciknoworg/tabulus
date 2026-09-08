@@ -122,7 +122,7 @@ This stage performs reference-table routing only. It does not extract bibliograp
 The next rebuilt branch is bibliography extraction, which produces
 `references/bibliography.json` from the original PDF. It runs in parallel with
 table processing and converges with classified reference-like tables at Stage 5
-reference matching. Planned Stage 6 should resolve the union of referenced
+reference matching. Stage 6 resolves the union of referenced
 bibliography indices once per paper; Stage 7 export remains planned.
 
 Without human gold-standard labels, evaluate Stage 3 coverage, consistency,

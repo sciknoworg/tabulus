@@ -1,34 +1,61 @@
 # Reference Matching Quality
 
-Reference matching evaluation inspects table-cell-to-bibliography-position
-links. Stage 5 is deterministic and offline; DOI values carried from Stage 4
-are extraction evidence, not independently resolved scholarly identities.
+Reference matching quality concerns Stage 5 table-cell-to-bibliography-position
+links. Stage 5 is deterministic and offline: it links citations found in
+selected reference-table cells to ordered Stage 4 bibliography entries. DOI
+values present in `references/bibliography.json` are extraction evidence, not
+independently resolved scholarly identities.
 
-This should be measured after bibliography extraction and table reconstruction
-contracts are stable.
+The production Stage 5 command is:
 
-The scored artifact is `references/reference_matches.json`, optionally
-compared with curated row-level match labels. Metrics should distinguish:
+```bash
+tabulus match-references \
+  --selected /path/to/selected_reference_tables.json \
+  --bibliography /path/to/artifact-root/references/bibliography.json
+```
 
-- extracting the reference-like cell from the table
-- matching that cell to the intended bibliography entry
-- carrying through DOI values when available in Stage 4 extraction evidence
-- leaving unresolved rows traceable
+The output is `references/reference_matches.json` beside the reconstruction
+adapter directory unless `--out` is provided.
+
+## Current Implementation Status
+
+Tabulus does not currently expose a library-native evaluator or `tabulus`
+evaluation command for Stage 5 reference matching quality. The production
+artifact includes coverage and traceability counts, but those counts are not a
+human-validated matching score by themselves.
+
+## Scored Artifact
+
+A Stage 5 evaluator would score `references/reference_matches.json` against
+curated labels for table-cell or token links. The labels must specify which
+table occurrences should link to which bibliography positions.
+
+Metrics should distinguish:
+
+- detecting the reference-like cell or token in the reconstructed table;
+- linking that occurrence to the intended Stage 4 bibliography entry;
+- preserving unmatched tokens and skipped tables for audit;
+- carrying through Stage 4 DOI fields when present as extraction evidence.
 
 Without human gold-standard labels, report coverage, consistency, agreement,
-and unmatched-token/row counts. Precision, recall, F1, and accuracy require
-suitable curated labels; successful links alone do not establish correctness.
+and unmatched-token or unmatched-row counts. Precision, recall, F1, and
+accuracy require suitable curated labels; successful links alone do not
+establish correctness.
 
-Reference matching evaluation should not mutate prediction CSV files. Resolved
-CSV files are planned downstream outputs produced after paper-level scholarly
-reference resolution.
+## Stage 6 Diagnostic Boundary
 
-## Stage 6 Evaluation Boundary
+Stage 6 scholarly reference resolution uses a paper-level denominator: the
+union of bibliography indices linked by applicable Stage 5 artifacts,
+deduplicated by bibliography index. Each unique bibliography entry is resolved
+once per paper, not once per table cell, table fragment, or reconstruction
+adapter.
 
-Stage 6 evaluation should use a paper-level denominator: the union of referenced
-bibliography indices across reconstruction methods, deduplicated by
-bibliography index. That denominator is distinct from Stage 5 cells, rows, or
-citation tokens.
+Resolution status counts and resolution coverage are diagnostics over that
+paper-level denominator. They should not be presented as accuracy without a
+human gold standard. Operational failures during resolution are distinct from
+scientific rejections and should not be counted as rejected scholarly
+references.
 
-Resolution coverage, consistency, and agreement should not be presented as
-accuracy without a human gold standard.
+Planned Stage 7 export will join Stage 6 paper-level identities back to every
+relevant table occurrence. Stage 7 is not currently implemented and should not
+be used as a table reconstruction, matching, or scholarly-resolution evaluator.

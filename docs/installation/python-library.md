@@ -78,6 +78,7 @@ tabulus --version
 tabulus profile --help
 tabulus export-table-crops --help
 tabulus reconstruct-tables --help
+tabulus evaluate-table-reconstruction --help
 tabulus classify-reference-tables --help
 tabulus extract-bibliography --help
 tabulus match-references --help

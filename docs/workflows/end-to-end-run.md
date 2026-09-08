@@ -69,4 +69,4 @@ runs/<paper>/
   report/                            run summary and QA bundle
 ```
 
-Production components should preserve stable intermediate artifacts so evaluation can be reproduced. Evaluation reads prediction CSV files and other production artifacts, writes metrics under `evaluation/`, and never mutates the production artifacts it scores.
+Production components should preserve stable intermediate artifacts so evaluation can be reproduced. Evaluation reads explicit scored artifacts such as prediction CSV files or reference manifests, writes separate metrics, and never mutates the production artifacts it scores.

@@ -1,10 +1,12 @@
-# Table Extraction Quality
+# Table Reconstruction Quality
 
-Table extraction quality evaluates whether reconstructed tables match ground truth tables.
+Table reconstruction quality evaluates whether a reconstructed table prediction
+CSV matches a manually curated ground-truth table CSV. It scores raw table
+structure and content before reference matching, scholarly resolution, or any
+planned Stage 7 export.
 
-Current evaluation scripts compare a reconstruction prediction CSV against a
-ground-truth CSV. Metrics include RMS-based DePlot-style table similarity,
-normal accuracy, F1 score, and runtime depending on the script.
+The current library-native evaluator supports one metric: Relative Mapping
+Similarity (RMS), adapted from the DePlot table-datapoint metric.
 
 ```text
 normalized reconstruction
@@ -13,102 +15,88 @@ normalized reconstruction
 prediction CSV
         |
         v
-RMS / DePlot evaluation
+Relative Mapping Similarity (RMS)
         |
         v
 ground-truth CSV
 ```
 
-The DOI-enriched resolved CSV is not used for OCR/table reconstruction quality because enrichment intentionally changes reference-cell values.
+A DOI-enriched or otherwise resolved CSV is not used for table reconstruction
+quality because enrichment intentionally changes reference-cell values.
 
-Reference-table classification is a separate downstream task. Its quality
-should be evaluated against classification labels when such labels are
-available; do not mix classification accuracy with reconstruction quality.
+## Current Implementation Status
 
-## First Comparison
+The public API is `tabulus.evaluation.evaluate_table_reconstruction()`. The
+public CLI is:
 
-The first table extraction comparison should test:
-
-```text
-MinerU table_body
-
-versus
-
-MinerU crop -> PaddleOCR-VL reconstruction
+```bash
+tabulus evaluate-table-reconstruction \
+  --gold /path/to/gold.csv \
+  --prediction /path/to/prediction.csv \
+  --metric rms \
+  --text-threshold 0.5 \
+  --number-threshold 0.1 \
+  --out /path/to/evaluation.json
 ```
 
-This comparison determines whether PaddleOCR-VL improves table reconstruction enough to justify the additional model step for a given table class.
+`--out` is optional. When it is omitted, the command prints the result and does
+not write an evaluation artifact.
 
-## Extended Adapter Comparison
+RMS uses the optional evaluation dependencies, including SciPy for optimal
+assignment. Install them with:
 
-Benchmarking can evaluate implemented and future candidate table reconstructions against the same ground-truth table:
-
-- MinerU `table_body`
-- MinerU crop -> PaddleOCR-VL
-- MinerU crop -> Chandra
-- MinerU crop -> NuExtract3
-- MinerU crop -> Tesseract + Table Transformer
-- MinerU crop -> RapidOCR + Docling TableFormer
-- MinerU crop -> Granite Vision 4.1 4B
-- MinerU crop -> TRivia-3B
-- MinerU crop -> GLM-OCR
-- MinerU crop -> Dolphin-v2
-- MinerU crop -> DeepSeek-OCR-2
-- MinerU crop -> Nanonets-OCR-s
-- MinerU crop -> MonkeyOCRv2-B-Parsing
-- MinerU crop -> NVIDIA Nemotron Parse v1.2
-- MinerU crop -> HunyuanOCR-1.5
-- MinerU crop -> dots.mocr
-- MinerU crop -> InternVL3.5-8B
-
-MinerU `table_body` is produced during PDF profiling. The current
-crop-consuming Tabulus reconstruction adapters are listed in
-{doc}`../tutorial/08-table-ocr`. They all use the same MinerU-generated table
-crop through the normalized table-crop handoff. They should not independently
-process the original PDF to detect tables, set bounding boxes, or create
-competing crops for this comparison.
-
-```text
-same detected table
-        |
-        +-- MinerU table_body
-        |
-        +-- MinerU crop
-              +-- PaddleOCR-VL
-              +-- Chandra
-              +-- NuExtract3
-              +-- Tesseract + Table Transformer
-              +-- RapidOCR + Docling TableFormer
-              +-- Granite Vision 4.1 4B
-              +-- TRivia-3B
-              +-- GLM-OCR
-              +-- Dolphin-v2
-              +-- DeepSeek-OCR-2
-              +-- Nanonets-OCR-s
-              +-- MonkeyOCRv2-B-Parsing
-              +-- NVIDIA Nemotron Parse v1.2
-              +-- HunyuanOCR-1.5
-              +-- dots.mocr
-              +-- InternVL3.5-8B
+```bash
+python -m pip install -e ".[evaluation]"
 ```
 
-Because the adapter-native output formats may differ, Tabulus should normalize every candidate into a common table representation and export a prediction CSV before scoring against the ground-truth CSV.
+## Metric Behavior
 
-This comparison should not assume a winner. It should measure whether an external adapter improves over MinerU's own `table_body`, and which adapter offers the best quality/runtime tradeoff for different table classes. Using the same MinerU crop controls the table-detection and cropping variable, so the evaluation is primarily about table reconstruction quality.
+Tabulus converts each CSV into the flattened table text expected by RMS. The
+first row is treated as headers, the first column as row labels, and each cell
+is converted into a datapoint keyed by row label plus column header. A leading
+`title | ...` row is treated as a title datapoint. CSV cells are normalized for
+whitespace, byte-order marks, and ragged rows before comparison.
 
-## Runtime Context
+The implementation compares table datapoints using:
 
-When reporting extraction quality, record runtime context alongside accuracy metrics. MinerU first-run timings can include model download, vLLM startup, Torch compilation, CUDA graph capture, and cache warm-up. Those costs should be separated from steady-state document processing time.
+- Average Normalized Levenshtein Similarity for textual keys and values;
+- relative numeric comparison for numeric values;
+- optimal assignment over datapoint-key similarity;
+- precision, recall, and F1 computed from the assigned datapoint scores.
 
-For reproducible comparisons, record:
+The prediction is evaluated in its original orientation and in transposed
+orientation. The orientation with the highest RMS F1 is retained.
 
-- document page count
-- number of detected tables
-- MinerU version, backend, and effort setting
-- reconstruction adapter name and model/runtime versions
-- GPU model and number of visible GPUs
-- first-run or warmed-cache status
-- total wall-clock time per stage
-- peak GPU memory if available
+## Scores And Thresholds
 
-Structural subclass evaluation should group results by table category or difficulty class when curated labels are available. That makes it possible to see whether an adapter helps only on specific table structures rather than only reporting one aggregate score.
+The low-level RMS function returns precision, recall, and F1 on `[0,1]`. The
+public table-reconstruction API and CLI report the same values on `[0,100]` and
+serialize:
+
+- `metric`: `rms`
+- `metric_name`: `Relative Mapping Similarity`
+- `metric_short_name`: `RMS`
+- `implementation`: `DePlot`
+- `score_scale`: `[0,100]`
+- `precision`
+- `recall`
+- `f1`
+
+When a single summary value is needed, use RMS F1, because the implementation
+selects transposed versus non-transposed orientation by highest F1 and reports
+RMS precision, recall, and F1 together.
+
+`--text-threshold` controls the text-similarity cutoff and defaults to `0.5`.
+`--number-threshold` controls the numeric relative-error cutoff and defaults to
+`0.1`. Both thresholds must be values between `0` and `1`.
+
+## Boundary
+
+Table reconstruction evaluation does not measure reference-table
+classification, bibliography extraction, table-cell-to-bibliography matching,
+Stage 6 scholarly reference resolution, or downstream resolved exports.
+
+Adapter comparisons should export every candidate through the same prediction
+CSV contract before scoring. Runtime, hardware, and model-environment context
+can be recorded beside the metric, but those measurements are separate from
+RMS and should not be called reconstruction accuracy.
