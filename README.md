@@ -2,314 +2,276 @@
   <img src="./assets/logo.png" alt="Tabulus logo" width="170"/>
 </p>
 
-# 📚 Tabulus: Scientific PDF Table Extraction Pipeline
+# Tabulus
 
 <p align="center">
   <a href="https://tabulus.readthedocs.io/en/latest/">
     <img src="https://img.shields.io/readthedocs/tabulus/latest?label=Read%20the%20Docs&logo=readthedocs" alt="Read the Docs"/>
   </a>
   <a href="https://doi.org/10.5281/zenodo.20741284">
-    <img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20741284-blue.svg" alt="Tabulus Bench DOI"/>
+    <img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20741284-blue.svg" alt="Tabulus DOI"/>
   </a>
+  <img src="https://img.shields.io/badge/python-%3E%3D3.10-blue" alt="Python >= 3.10"/>
 </p>
 
-## 🔍 Overview
-Tabulus is a modular multi-stage pipeline for extracting structured table data
-from scientific PDF documents.
+Tabulus is a staged, inspectable pipeline for extracting structured,
+reference-aware table data from scientific PDFs. It keeps each major processing
+boundary on disk, so table crops, reconstruction outputs, bibliography entries,
+reference matches, and paper-level reference-resolution decisions can be
+inspected independently.
 
-The current rebuilt library supports PDF profiling, canonical table-crop
-export, table reconstruction, reference-table classification,
-GROBID-backed bibliography extraction, and deterministic reference matching.
-Paper-level scholarly reference resolution, resolved export, and full run
-orchestration remain planned in this checkout.
+The rebuilt library currently implements the pipeline through Stage 6:
 
-The project was developed as part of a Master's thesis investigating scientific table extraction, OCR benchmarking, bibliography-aware processing, and structured scholarly knowledge extraction.
+1. PDF profiling and table detection
+2. table reconstruction from canonical crops
+3. reference-table classification
+4. GROBID-backed bibliography extraction
+5. deterministic table-cell-to-bibliography matching
+6. paper-level scholarly reference resolution
 
----
+Stage 7 resolved CSV export, run-report generation, and a single end-to-end
+`tabulus run` orchestrator are planned for the rebuilt library.
 
-## ✨ Features
+## Features
 
-### 📄 Scientific Table Extraction
+- **Staged command-line workflow:** run each pipeline stage independently and
+  inspect its artifacts before continuing.
+- **Stable filesystem contracts:** exchange `tables_index.json`, prediction
+  CSVs, `bibliography.json`, `reference_matches.json`, and
+  `reference_resolution.json` between modules.
+- **Canonical table-crop handoff:** profile PDFs once, then compare multiple
+  table-reconstruction adapters on the same crop inputs.
+- **Adapter-based reconstruction:** use OCR, table-structure, and document
+  vision-language-model adapters behind one Stage 2 interface.
+- **Bibliography-aware processing:** extract bibliography entries from the
+  original PDF, link table citation tokens to bibliography positions, and
+  resolve scholarly identities once per paper-level bibliography index.
+- **Conservative reference resolution:** separate extraction, matching, and
+  scholarly identity resolution; keep operational failures distinct from
+  scientific rejections.
+- **Evaluation support:** evaluate raw reconstruction prediction CSVs against
+  gold CSVs with Relative Mapping Similarity (RMS).
 
-* Automated table detection from scientific PDFs
-* Table cropping and preprocessing
-* Adapter-based table reconstruction from fixed canonical crops
-* Raw prediction CSV generation before reference resolution
+## Pipeline At A Glance
 
-### 🔗 Bibliography-Aware Processing
-* One deterministic regex/rule classifier applied to each reconstruction method's outputs
-* Preserved separation between reconstruction predictions and reference routing
-* GROBID bibliography extraction from full publications
-* Offline table-cell-to-bibliography-position matching
-* Clear planned boundary for paper-level scholarly reference resolution
-
-### 📊 Research & Evaluation
-* OCR benchmarking framework
-* RMS-based table similarity evaluation
-* Precision, Recall, and F1-score analysis
-* Runtime benchmarking
-* Reproducible evaluation workflows
-
-### 🏗️ System Design
-* Modular CLI and library architecture
-* Explicit filesystem contracts between stages
-* Separate ML environments for heavyweight adapters
-* CPU and GPU reconstruction-adapter support
-* Legacy service implementation retained separately from the rebuilt library
-
----
-
-## ⚙️ Pipeline Workflow
 ```text
-Scientific PDF
-      |
-      +--> tabulus profile / MinerU
-      |         |
-      |         +--> MinerU table_body
-      |         |
-      |         +--> canonical MinerU table crops
-      |                   |
-      |                   v
-      |             reconstruction adapters
-      |                   |
-      |                   v
-      |             prediction CSVs
-      |                   |
-      |                   v
-      |             Stage 3 reference-table classification
-      |
-      +--> Stage 4 GROBID bibliography extraction
-                |
-                v
-          references/bibliography.json
-
+PDF
+ |
+ +--> Stage 1: profile PDF / export canonical table crops
+ |        |
+ |        v
+ |      Stage 2: reconstruct tables with one adapter
+ |        |
+ |        v
+ |      Stage 3: classify reference-containing tables
+ |
+ +--> Stage 4: extract bibliography from the original PDF
+          |
+          v
 selected_reference_tables.json + bibliography.json
-      |
-      v
-references/reference_matches.json (Stage 5)
-      |
-      v
-Stage 6: paper-level scholarly reference resolution (planned)
-      |
-      v
-Stage 7: join resolved identities to all relevant cells / export (planned)
+          |
+          v
+Stage 5: reference_matches.json
+          |
+          v
+Stage 6: references/reference_resolution.json
+          |
+          v
+Stage 7: resolved CSV export (planned)
 ```
 
----
+Stage 4 is a parallel PDF-level branch. It does not consume table crops or
+reconstruction CSVs. Stage 6 resolves the union of Stage 5-linked bibliography
+indices once per paper, rather than resolving each table occurrence separately.
 
-## 📁 Repository Structure
-```text
-tabulus/
-│
-├── assets/
-│   ├── img/
-│   └── logo.png
-│
-├── dataset/
-│   └── README.md
-│
-├── evaluation/
-│   ├── deplot/
-│   ├── new_results/
-│   ├── plots/
-│   │   ├── reference_extraction/
-│   │   ├── scripts/
-│   │   └── table_extraction/
-│   ├── scripts/
-│   └── README.md
-│
-├── docs/
-│   └── ...
-│
-├── src/
-│   ├── tabulus/
-│   │   ├── mineru/
-│   │   ├── reference_tables/
-│   │   ├── table_ocr/
-│   │   └── cli.py
-│   │
-│   ├── legacy_tabulus/
-│   │   └── ...
-│   │
-│   ├── ocr_models/
-│   │   └── ...
-│   │
-│   └── README.md
-│
-├── tests/
-│   └── ...
-│
-├── .gitignore
-├── LICENSE
-├── README.md
-├── pyproject.toml
-└── requirements.txt
-```
+## Installation
 
----
-
-## 🧩 Main Components
-| Component        | Purpose                                                    |
-| ---------------- | ---------------------------------------------------------- |
-| `src/tabulus`    | Current installable Tabulus library and CLI                |
-| `src/legacy_tabulus` | Retained legacy thesis implementation                  |
-| `legacy/ocr_models` | Historical OCR services, runners, and benchmarking components |
-| `docs`           | ReadTheDocs documentation                                  |
-| `tests`          | Current library test suite                                 |
-| `evaluation`     | Evaluation scripts, metrics, and visualizations            |
-| `dataset`        | Benchmark dataset documentation and ground-truth structure |
-| `assets`         | Images and visual resources used in the documentation      |
-
-Detailed documentation for each component is available in the corresponding README files.
-
----
-
-## 🤖 External Tools And Models
-The rebuilt Tabulus library currently uses MinerU for PDF profiling and a
-registry of Stage 2 reconstruction adapters for canonical MinerU crops. The
-complete supported-adapter table is maintained in the ReadTheDocs page:
-
-```text
-docs/tutorial/08-table-ocr.md
-```
-
-GROBID is used by the rebuilt bibliography-extraction branch. Kreuzberg
-remains relevant only in retained historical or fallback-planning material;
-neither GROBID nor Kreuzberg is a Stage 2 reconstruction adapter.
-
----
-
-## 🗄️ Dataset
-The project uses a manually curated evaluation dataset containing:
-
-* scientific publications,
-* annotated tables,
-* bibliography references,
-* OCR outputs,
-* DOI matching results,
-* evaluation metrics.
-
-The complete dataset exceeds 700 MB and is distributed separately.
-
-See:
-
-```text
-dataset/README.md
-```
-
-for details.
-
----
-
-## 📈 Evaluation
-A comprehensive evaluation framework is included for analyzing:
-
-* table extraction quality,
-* OCR robustness,
-* bibliography extraction performance,
-* reference matching coverage, consistency, and agreement,
-* reference-resolution coverage and evidence quality after that stage is implemented,
-* runtime efficiency.
-
-Generated benchmark plots and visualizations are available in:
-
-```text
-evaluation/plots/
-```
-
-See:
-
-```text
-evaluation/README.md
-```
-
-for detailed documentation.
-
----
-
-## 🚀 Running the Current Rebuilt Workflow
-Install the current library from the repository checkout:
+Clone the repository and install the current library from the checkout:
 
 ```bash
+git clone https://github.com/sciknoworg/tabulus.git
+cd tabulus
 python -m pip install -e ".[dev]"
 ```
 
-The commands below are verified in this checkout. For one PDF:
+Then check the CLI:
 
 ```bash
-tabulus profile --pdf /path/to/paper.pdf --backend pipeline
-
-tabulus reconstruct-tables \
-  --crops /path/to/tabulus-output/table-crops/<paper> \
-  --adapter <adapter> \
-  --device gpu:0
-
-tabulus classify-reference-tables \
-  --reconstruction /path/to/tabulus-output/table-crops/<paper>/reconstructions/<adapter>
-
-tabulus extract-bibliography \
-  --pdf /path/to/paper.pdf \
-  --out /path/to/artifact-root \
-  --grobid-url http://localhost:8070
+tabulus --help
 ```
 
-For several PDFs in one folder:
+For machine-specific setup, use the documentation:
+
+- [Windows / CPU setup](https://tabulus.readthedocs.io/en/latest/installation/windows-cpu.html)
+- [GPU server setup](https://tabulus.readthedocs.io/en/latest/installation/gpu-server.html)
+- [Python library setup](https://tabulus.readthedocs.io/en/latest/installation/python-library.html)
+
+## Quick Start
+
+The commands below show the implemented one-paper workflow. Replace paths and
+adapter names with values for your local run.
+
+```bash
+PDF="/path/to/paper.pdf"
+CROP_ROOT="/path/to/tabulus-output/table-crops/<paper>"
+RECONSTRUCTION="$CROP_ROOT/reconstructions/tesseract-tatr"
+ARTIFACT_ROOT="/path/to/tabulus-artifacts/<paper>"
+```
+
+Profile the PDF and export canonical table crops:
 
 ```bash
 tabulus profile \
-  --folder /path/to/papers \
-  --backend hybrid-engine \
-  --method auto \
-  --effort high
-
-tabulus reconstruct-tables \
-  --crops-folder /path/to/papers/tabulus-output/table-crops \
-  --adapter <adapter> \
-  --device gpu:0
-
-tabulus classify-reference-tables \
-  --crops-folder /path/to/papers/tabulus-output/table-crops \
-  --adapter <adapter>
+  --pdf "$PDF" \
+  --backend pipeline \
+  --method auto
 ```
 
-See the ReadTheDocs installation pages for Windows CPU setup, GPU-server setup,
-and adapter-specific environments. The legacy Docker/service workflow is not
-the current rebuilt-library entry point.
+Reconstruct the detected table crops with a CPU-capable adapter:
 
----
+```bash
+tabulus reconstruct-tables \
+  --crops "$CROP_ROOT" \
+  --adapter tesseract-tatr \
+  --device cpu
+```
 
-## 📖 Documentation
-Additional documentation is available in:
+Classify reconstructed tables for reference-containing content:
+
+```bash
+tabulus classify-reference-tables \
+  --reconstruction "$RECONSTRUCTION"
+```
+
+Extract the bibliography from the original PDF using a running GROBID service:
+
+```bash
+tabulus extract-bibliography \
+  --pdf "$PDF" \
+  --out "$ARTIFACT_ROOT" \
+  --grobid-url http://localhost:8070
+```
+
+Match selected table references to bibliography positions:
+
+```bash
+tabulus match-references \
+  --selected "$RECONSTRUCTION/selected_reference_tables.json" \
+  --bibliography "$ARTIFACT_ROOT/references/bibliography.json"
+```
+
+Resolve linked bibliography entries at paper level:
+
+```bash
+tabulus resolve-references \
+  --bibliography "$ARTIFACT_ROOT/references/bibliography.json" \
+  --reference-matches "$RECONSTRUCTION/references/reference_matches.json" \
+  --out "$ARTIFACT_ROOT"
+```
+
+Stage 6 also requires Crossref, CORE, and OpenAI-compatible LLM configuration
+through command-line options or environment variables. See the Stage 6 tutorial
+for the full configuration contract.
+
+## Main Artifacts
+
+| Stage | Command | Main output |
+| --- | --- | --- |
+| Stage 1 | `tabulus profile` | `tabulus-output/table-crops/<paper>/tables_index.json` and crop images |
+| Stage 2 | `tabulus reconstruct-tables` | `native/`, `parsed/`, `predictions/`, `batch_summary.json` |
+| Stage 3 | `tabulus classify-reference-tables` | `reference_table_classification.json`, `selected_reference_tables.json` |
+| Stage 4 | `tabulus extract-bibliography` | `references/bibliography.json` |
+| Stage 5 | `tabulus match-references` | `references/reference_matches.json` |
+| Stage 6 | `tabulus resolve-references` | `references/reference_resolution.json` |
+| Stage 7 | planned | resolved table export |
+
+The detailed file contracts live in the
+[Data Contracts documentation](https://tabulus.readthedocs.io/en/latest/data-contracts/run-directory.html).
+
+## Table Reconstruction Adapters
+
+Stage 2 adapters consume canonical table crops and write the same normalized
+artifact layers. The current registry includes lightweight OCR/table-structure
+routes, document vision-language models, and model-specific parsers.
+
+See the
+[Stage 2 tutorial](https://tabulus.readthedocs.io/en/latest/tutorial/08-table-ocr.html)
+for the current adapter list, device support, output layout, and TabulusBench
+examples.
+
+## TabulusBench
+
+TabulusBench is the benchmark dataset used in the tutorial examples and
+evaluation documentation. It is distributed separately on Zenodo:
+
+- [TabulusBench on Zenodo](https://zenodo.org/records/20230340)
+
+The tutorial uses paper `P4` as the canonical one-paper worked example. A
+one-paper example means processing the complete relevant input for that paper,
+not cherry-picking one table. Benchmark gold material is read-only and should
+not be overwritten by Tabulus runs.
+
+## Evaluation
+
+The rebuilt library currently provides native table-reconstruction evaluation:
+
+```bash
+tabulus evaluate-table-reconstruction \
+  --gold /path/to/gold.csv \
+  --prediction /path/to/prediction.csv \
+  --metric rms
+```
+
+This evaluates raw table reconstruction with Relative Mapping Similarity (RMS).
+It is separate from reference matching quality, bibliography extraction quality,
+and scholarly reference-resolution diagnostics.
+
+## Repository Layout
 
 ```text
-https://tabulus.readthedocs.io/
-docs/
-evaluation/
-dataset/
+assets/          Logo and documentation imagery
+dataset/         Dataset notes and links to external benchmark material
+docs/            ReadTheDocs documentation
+evaluation/      Retained research/evaluation utilities and outputs
+legacy/          Historical code and experiment material
+src/tabulus/     Current installable library and CLI
+src/legacy_tabulus/ Retained legacy application code
+tests/           Current library test suite
 ```
 
-Each README contains detailed setup instructions, implementation details, API documentation, evaluation procedures, and usage examples.
+The supported public library surface is under `src/tabulus`. Retained legacy
+and research directories are preserved for provenance, but should not be read
+as the current public API unless the docs say so explicitly.
 
----
+## Development
 
-## 🎓 Research Context
-This repository accompanies a Master's thesis focused on:
+Install development dependencies and run the test suite:
 
-* scientific table extraction,
-* OCR benchmarking,
-* bibliography-aware table processing,
-* DOI enrichment,
-* structured scientific knowledge extraction,
-* reproducible research workflows.
+```bash
+python -m pip install -e ".[dev]"
+pytest
+```
 
----
+Useful checks before committing documentation or code changes:
 
-## 📑 Citation
-If you use this repository in your research, please cite the associated Master's thesis.
+```bash
+git diff --check
+```
 
-Citation information will be added after publication.
+## Documentation
 
----
+- [ReadTheDocs](https://tabulus.readthedocs.io/)
+- [Core pipeline overview](https://tabulus.readthedocs.io/en/latest/tutorial/00-overview.html)
+- [Data contracts](https://tabulus.readthedocs.io/en/latest/data-contracts/run-directory.html)
+- [External tools](https://tabulus.readthedocs.io/en/latest/external-tools/mineru.html)
+- [Evaluation overview](https://tabulus.readthedocs.io/en/latest/evaluation/overview.html)
 
-## 📜 License
-This project is provided for research and educational purposes.
+## Citation
+
+Citation information will be added after the associated thesis or software
+release is published.
+
+## License
+
+See [LICENSE](LICENSE) for the current repository license. The package metadata
+currently reads the license from that file.
