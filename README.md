@@ -2,7 +2,7 @@
   <img src="./assets/logo.png" alt="Tabulus logo" width="170"/>
 </p>
 
-# 📚 Tabulus: Scientific PDF Table Extraction Pipeline
+# End-to-End Scientific Review Table Digitization Pipeline
 
 <p align="center">
   <a href="https://tabulus.readthedocs.io/en/latest/">
@@ -15,10 +15,10 @@
   <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"/>
 </p>
 
-Tabulus is a modular framework for extracting structured, reference-aware table
-data from scientific PDFs. It is built as a sequence of inspectable CLI stages:
-each stage writes explicit filesystem artifacts that can be reviewed, evaluated,
-or reused by later stages.
+Tabulus is a modular framework for digitizing scientific review tables into
+structured, citation-aware data. It starts from scientific PDFs, reconstructs
+reference-containing tables, extracts the paper bibliography, and resolves table
+citations through inspectable CLI stages and filesystem artifacts.
 
 The rebuilt library currently runs through **Stage 6 paper-level scholarly
 reference resolution**. Stage 7 resolved CSV export and a single end-to-end
