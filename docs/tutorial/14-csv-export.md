@@ -19,7 +19,7 @@ resolved_reference_tables/
 
 ## Module Contract
 
-See `data-contracts/resolved-csv.md`.
+See {doc}`../data-contracts/resolved-csv`.
 
 ## Default Implementation
 

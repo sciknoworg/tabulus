@@ -48,9 +48,9 @@ position matching. Stage 6 is scholarly-identity resolution.
 
 Required inputs:
 
-- Stage 4 `references/bibliography.json`
-- at least one Stage 5 `references/reference_matches.json` artifact for the
-  same paper
+- Stage 4 {doc}`../data-contracts/bibliography-json`
+- at least one Stage 5 {doc}`../data-contracts/reference-matches-json` artifact
+  for the same paper
 - an artifact root passed through `--out`
 
 Optional input:

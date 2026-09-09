@@ -4,7 +4,9 @@
 
 The first adapter is MinerU, which emits table images and structured metadata from a scientific PDF.
 
-The source MinerU files are documented in `data-contracts/mineru-output-files.md`. The Tabulus profile contract below is the normalized module output that downstream steps should consume, regardless of which profiling adapter produced it.
+The source MinerU files are documented in {doc}`mineru-output-files`. The
+Tabulus profile contract below is the normalized module output that downstream
+steps should consume, regardless of which profiling adapter produced it.
 
 Current implementation status: the new `tabulus.mineru` library discovers typed table regions from existing MinerU output, but it does not yet write this JSON file.
 

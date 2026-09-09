@@ -217,15 +217,9 @@ external-tools/internvl3-5-8b
 :caption: Data Contracts
 
 data-contracts/run-directory
-data-contracts/mineru-output-files
-data-contracts/pdf-profile-json
-data-contracts/tables-index-json
-data-contracts/ocr-tables-json
-data-contracts/table-prediction-csv
-data-contracts/bibliography-json
-data-contracts/reference-matches-json
-data-contracts/reference-resolution-json
-data-contracts/resolved-csv
+data-contracts/pdf-profiling-stage-1
+data-contracts/table-reconstruction-stage-2
+data-contracts/bibliography-reference-processing
 ```
 
 ```{toctree}

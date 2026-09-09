@@ -154,8 +154,9 @@ and for later reference-processing stages. Table reconstruction can be evaluated
 against gold CSV files using Relative Mapping Similarity (RMS); see
 {doc}`../evaluation/table-extraction-quality` for the full evaluation contract.
 
-For the filesystem data contracts, see {doc}`../data-contracts/tables-index-json`
-and {doc}`../data-contracts/table-prediction-csv`.
+For the filesystem data contracts, see {doc}`../data-contracts/tables-index-json`,
+{doc}`../data-contracts/ocr-tables-json`, and
+{doc}`../data-contracts/table-prediction-csv`.
 
 ## Common Failure Modes
 

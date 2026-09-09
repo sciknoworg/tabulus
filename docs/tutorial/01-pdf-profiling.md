@@ -165,6 +165,10 @@ number, crop image name, bounding box when available, caption, footnote, MinerU
 source image/path provenance, MinerU `table_body`, reference-section position
 information, and source identifier where available.
 
+For file-level details, see {doc}`../data-contracts/mineru-output-files` for
+MinerU-native artifacts and {doc}`../data-contracts/tables-index-json` for the
+Tabulus crop manifest.
+
 `table_id` identifies a physical table detected by the profiler within the
 document. It is not necessarily the table number printed in the paper. MinerU
 `table_body` is MinerU's native table reconstruction candidate; the canonical
