@@ -20,6 +20,10 @@ structured, citation-aware data. It starts from scientific PDFs, reconstructs
 reference-containing tables, extracts the paper bibliography, and resolves table
 citations through inspectable CLI stages and filesystem artifacts.
 
+<p align="center">
+  <img src="./assets/img/pipeline%20-%20nice%20view.png" alt="Tabulus workflow overview"/>
+</p>
+
 The rebuilt library currently runs through **Stage 6 paper-level scholarly
 reference resolution**. Stage 7 resolved CSV export and a single end-to-end
 `tabulus run` command are planned.
@@ -119,15 +123,15 @@ full option list and credential handling are documented in the
 
 ## 📦 Main Artifacts
 
-| Stage | Main artifact |
+| Step | Main artifact |
 | --- | --- |
-| Stage 1 | `tables_index.json` and canonical crop images |
-| Stage 2 | `native/`, `parsed/`, `predictions/`, `batch_summary.json` |
-| Stage 3 | `reference_table_classification.json`, `selected_reference_tables.json` |
-| Stage 4 | `references/bibliography.json` |
-| Stage 5 | `references/reference_matches.json` |
-| Stage 6 | `references/reference_resolution.json` |
-| Stage 7 | resolved CSV export, planned |
+| Step 1 | `tables_index.json` and canonical crop images |
+| Step 2 | `native/`, `parsed/`, `predictions/`, `batch_summary.json` |
+| Step 3 | `reference_table_classification.json`, `selected_reference_tables.json` |
+| Step 4 | `references/bibliography.json` |
+| Step 5 | `references/reference_matches.json` |
+| Step 6 | `references/reference_resolution.json` |
+| Step 7 | resolved CSV export, planned |
 
 See the
 [Data Contracts](https://tabulus.readthedocs.io/en/latest/data-contracts/run-directory.html)
@@ -157,14 +161,6 @@ git diff --check
 The supported public library lives in `src/tabulus`. Retained legacy and
 research directories are preserved for provenance, but they are not the current
 public API unless the documentation says so explicitly.
-
-## 📖 Documentation
-
-- [ReadTheDocs](https://tabulus.readthedocs.io/)
-- [Core pipeline overview](https://tabulus.readthedocs.io/en/latest/tutorial/00-overview.html)
-- [Stage 2 table reconstruction](https://tabulus.readthedocs.io/en/latest/tutorial/08-table-ocr.html)
-- [External tools](https://tabulus.readthedocs.io/en/latest/external-tools/mineru.html)
-- [Evaluation overview](https://tabulus.readthedocs.io/en/latest/evaluation/overview.html)
 
 ## 📑 Citation
 
