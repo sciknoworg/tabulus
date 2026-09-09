@@ -107,6 +107,29 @@ def caption_text(value: Any) -> str:
     return ""
 
 
+def _table_caption_evidence(value: Any) -> str:
+    """
+    Return the caption fragment that carries the physical table label.
+
+    MinerU can attach multiple caption fragments to one detected table. Keep
+    label matching anchored at the beginning of an individual fragment so a
+    preceding figure caption does not hide the table label and descriptive
+    mentions of other tables are not mistaken for the table's own label.
+    """
+
+    if isinstance(value, (list, tuple)):
+        for item in value:
+            candidate = caption_text(item)
+
+            if (
+                TABLE_LABEL_PATTERN.match(candidate)
+                or CONTINUATION_ONLY_PATTERN.fullmatch(candidate)
+            ):
+                return candidate
+
+    return caption_text(value)
+
+
 def canonicalize_table_label(label: str) -> str:
     """
     Normalize printed identifiers without collapsing numeric hierarchy.
@@ -204,7 +227,9 @@ def continuation_metadata_for_records(
 
         seen_table_ids.add(table_id)
 
-        caption = caption_text(record.get("table_caption"))
+        caption = _table_caption_evidence(
+            record.get("table_caption")
+        )
         label = table_label(caption)
         explicit = is_explicit_continuation_caption(caption)
 

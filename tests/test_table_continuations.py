@@ -98,6 +98,37 @@ def test_continuation_chain_records_parent_and_root() -> None:
     assert standalone["continuation_root_table_id"] == 11
 
 
+def test_table_caption_list_prefers_table_segment_over_figure_caption() -> None:
+    records = [
+        {
+            "table_id": 1,
+            "table_caption": [
+                "FIG. 5. Overview of the reactant classes.",
+                "TABLE I. Overview of ALD processes.",
+            ],
+        },
+        {
+            "table_id": 2,
+            "table_caption": ["TABLE I. (Continued.)"],
+        },
+    ]
+
+    annotated = annotate_continuations(records)
+
+    root = annotated[0]["continuation"]
+    continuation = annotated[1]["continuation"]
+
+    assert root["printed_table_label"] == "I"
+    assert root["is_continuation"] is False
+    assert root["continuation_root_table_id"] == 1
+
+    assert continuation["printed_table_label"] == "I"
+    assert continuation["is_continuation"] is True
+    assert continuation["continued_from_table_id"] == 1
+    assert continuation["continuation_root_table_id"] == 1
+    assert continuation["link_status"] == "linked"
+
+
 def test_structured_metadata_is_preferred_over_caption_reparsing() -> None:
     records = [
         {
