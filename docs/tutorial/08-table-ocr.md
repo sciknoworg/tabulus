@@ -1,250 +1,360 @@
 # Step 2: Table Reconstruction
 
-Table reconstruction turns the canonical MinerU crops from Step 1 into
-structured table artifacts.
+Table reconstruction is the second runnable Tabulus stage. It takes canonical
+table crops and reconstructs each crop into structured table artifacts through
+one table-reconstruction adapter.
 
-This stage is model-independent. An adapter may use OCR, a document
-vision-language model, table-structure recognition, or another reconstruction
-method, but every crop-consuming adapter receives the same canonical MinerU
-crop.
+Stage 1 produces canonical table crops from PDF profiling and table detection.
+Stage 2 consumes those crops. It does not detect table regions in the original
+PDF and does not perform reference-table classification, bibliography
+extraction, reference matching, scholarly reference resolution, or resolved CSV
+export.
 
-## Input
+## What This Stage Creates
 
-Run this stage on one canonical table-crop root or on a collection of crop
-roots:
-
-```text
-<crop-root>/
-  tables_index.json
-  images/
-```
-
-`tables_index.json` records the physical MinerU-detected tables, crop image
-paths, page numbers, bounding boxes, captions, footnotes, MinerU provenance,
-and MinerU `table_body` values where available.
-
-The comparison boundary is:
+Stage 2 creates one reconstruction output area for each crop root and selected
+adapter:
 
 ```text
-canonical MinerU crop
-      |
-      +--> reconstruction adapter A
-      +--> reconstruction adapter B
-      +--> reconstruction adapter C
-      |
-      v
-structured reconstruction output
+canonical table crops
+  |
+  +-- native adapter result
+  +-- parsed Tabulus table representation
+  `-- prediction CSV, when exactly one structured table is available
 ```
 
-It is not a comparison of separate PDF table detectors. Adapters must not go
-back to the original PDF to choose their own table regions or crops.
+The native result preserves adapter evidence and provenance. The parsed result
+is the common Tabulus representation. The prediction CSV is the raw
+pre-reference-resolution table used by later stages and by table reconstruction
+evaluation when gold CSV files are available.
 
-Each physical crop is reconstructed independently. Continued-table merging,
-bibliography extraction, reference matching, and DOI resolution are outside
-this stage.
-
-## Supported Adapters
-
-MinerU `table_body` is retained as a native reconstruction candidate produced
-during PDF profiling. It is not a crop-consuming `tabulus.table_ocr` adapter.
-
-Use one of these values for `--adapter`:
-
-```text
-paddleocr-vl             chandra                  tesseract-tatr
-rapidocr-tableformer     nuextract3               granite-vision-table
-trivia                   glm-ocr                  dolphin-v2
-deepseek-ocr-2           nanonets-ocr-s           monkeyocrv2-b-parsing
-nemotron-parse-v1-2      hunyuanocr-1-5           dots-mocr
-internvl3-5-8b
-```
-
-`paddleocr-vl`, `chandra`, `tesseract-tatr`, and `rapidocr-tableformer`
-support CPU and GPU devices in the registry. The other current adapters are
-registered as GPU-only in the validated Tabulus configuration.
-
-Adapter-specific model revisions, prompts, runtime versions, and limitations
-belong in the External Tools pages. The software interface and batch contract
-are described in {doc}`../modules/table-ocr-adapters`.
+An explicit empty reconstruction is a valid adapter outcome: it means the
+adapter processed the crop but did not produce a usable structured table. It is
+separate from an adapter or process error.
 
 ## CLI
 
-### Create Crop Roots
-
-For one PDF, Step 1 creates one crop root:
-
-```bash
-tabulus profile \
-  --pdf "/path/to/paper.pdf" \
-  --backend pipeline
-```
-
-For several PDFs in one folder:
+The reconstruction command has one required crop input source, one selected
+adapter, and an execution device:
 
 ```bash
-tabulus profile \
-  --folder "/path/to/papers" \
-  --backend hybrid-engine \
-  --method auto \
-  --effort high
+tabulus reconstruct-tables <one input mode> --adapter <adapter> --device <device> [--out <directory>]
 ```
 
-For an explicit UTF-8 list of PDFs:
+If `--adapter` is omitted, Tabulus uses `paddleocr-vl`. If `--device` is
+omitted, Tabulus passes `cpu` to the adapter.
 
-```bash
-tabulus profile \
-  --pdf-list "/path/to/pdfs.txt" \
-  --backend hybrid-engine \
-  --method auto \
-  --effort high
-```
+### Input Modes
 
-By default, profiling writes per-paper crop roots under:
+Choose exactly one input mode.
+
+| Mode | Behavior |
+| --- | --- |
+| `--crops <crop-root>` | Reconstructs every crop listed by one `tables_index.json`. |
+| `--crops-folder <folder>` | Reconstructs every immediate child directory containing `tables_index.json`, sorted by directory name. Discovery is non-recursive. |
+| `--crops-list <text-file>` | Reconstructs crop roots listed one per line in a UTF-8 text file. Blank lines and lines beginning with `#` are ignored. Relative paths are resolved relative to the list file. Duplicate crop roots are rejected. |
+
+Use `--crops` for one paper, `--crops-folder` when crop roots are direct
+children of one directory, and `--crops-list` when crop roots are nested across
+domains, subdomains, or other project structure.
+
+### Adapter and Device Options
+
+Each `--adapter` value names a registered table-reconstruction method. The
+current registry exposes:
+
+| Adapter | Device support |
+| --- | --- |
+| `chandra` | CPU or GPU |
+| `deepseek-ocr-2` | GPU |
+| `dolphin-v2` | GPU |
+| `dots-mocr` | GPU |
+| `glm-ocr` | GPU |
+| `granite-vision-table` | GPU |
+| `hunyuanocr-1-5` | GPU |
+| `internvl3-5-8b` | GPU |
+| `monkeyocrv2-b-parsing` | GPU |
+| `nanonets-ocr-s` | GPU |
+| `nemotron-parse-v1-2` | GPU |
+| `nuextract3` | GPU |
+| `paddleocr-vl` | CPU or GPU |
+| `rapidocr-tableformer` | CPU or GPU |
+| `tesseract-tatr` | CPU or GPU |
+| `trivia` | GPU |
+
+Device support here is the implementation capability registered by Tabulus.
+Specific benchmark protocols may choose particular hardware, but that hardware
+choice is not part of the Stage 2 CLI contract. A device string beginning with
+`cpu` selects CPU execution where supported; a string beginning with `gpu`, such
+as `gpu:0`, selects GPU execution where supported.
+
+For adapter-specific model revisions, prompts, runtime dependencies, and usage
+notes, see the External Tools pages and {doc}`../modules/table-ocr-adapters`.
+
+### Output Options
+
+If `--out` is omitted, reconstruction output is written below the crop root:
 
 ```text
-<PDF directory>/tabulus-output/table-crops/<paper>/
+<crop-root>/reconstructions/<adapter>/
 ```
 
-### Reconstruct One Paper
-
-Use `--crops` for one canonical crop root:
-
-```bash
-tabulus reconstruct-tables \
-  --crops "/path/to/tabulus-output/table-crops/<paper>" \
-  --adapter <adapter> \
-  --device gpu:0
-```
-
-### Reconstruct Several Papers
-
-Use `--crops-folder` when each immediate child directory is one paper crop
-root:
-
-```bash
-tabulus reconstruct-tables \
-  --crops-folder "/path/to/tabulus-output/table-crops" \
-  --adapter <adapter> \
-  --device gpu:0
-```
-
-Use `--crops-list` when crop roots are listed explicitly:
-
-```bash
-tabulus reconstruct-tables \
-  --crops-list "/path/to/crop-roots.txt" \
-  --adapter <adapter> \
-  --device gpu:0
-```
-
-The crop input modes are mutually exclusive:
-
-- `--crops <crop-root>`: process one canonical table-crop directory.
-- `--crops-folder <folder>`: process immediate child directories containing
-  `tables_index.json`.
-- `--crops-list <text-file>`: process crop roots listed in a UTF-8 text file.
-
-For `--crops-folder`, discovery is non-recursive and sorted by directory name.
-For `--crops-list`, blank lines and lines starting with `#` are ignored,
-relative paths are resolved relative to the list file, and duplicate crop roots
-are rejected.
-
-## Output
-
-If `--out` is omitted, each paper's reconstruction is written below its crop
-root:
+For one `--crops` input, `--out <directory>` is the exact reconstruction output
+directory. For multiple crop roots, `--out <parent>` is treated as a parent and
+Tabulus writes each result below:
 
 ```text
-<crop-root>/
-  reconstructions/
-    <adapter>/
-      native/
-      parsed/
-      predictions/
-      batch_summary.json
+<parent>/<crop-root-name>/<adapter>/
+```
+
+This built-in multi-root layout is useful when crop-root directory names are
+unique. When many crop roots have the same leaf directory name, use repeated
+single-root invocations with explicit per-paper `--out` paths so outputs do not
+collide.
+
+## Output Structure and Stage Handoff
+
+A typical Stage 2 output has this shape:
+
+```text
+<reconstruction-output>/
+  native/
+    page_<page>_table_<table-id>.json
+  parsed/
+    page_<page>_table_<table-id>.json
+  predictions/
+    page_<page>_table_<table-id>.csv
+  batch_summary.json
 ```
 
 `native/`
-: Adapter-native evidence and provenance.
+: Stores the adapter-neutral `TableOCRResult`, including preserved
+  adapter-native JSON or Markdown, adapter/model versions when available,
+  device, source image, status, error text, and provenance.
 
 `parsed/`
-: The common Tabulus structured representation derived from adapter-native
-  output.
+: Stores the common Tabulus parsed table payload. It records the result status,
+  parsed table count, parsed rows, optional `prediction_csv` pointer, and any
+  warnings.
 
 `predictions/`
-: Raw reconstruction CSVs used for reconstruction evaluation and later
-  Tabulus processing. These are pre-reference-resolution artifacts.
+: Stores raw prediction CSV files. A prediction CSV is written only when the
+  adapter status is `ok` and exactly one structured table was parsed from that
+  canonical crop. If no table or multiple tables are parsed, Tabulus preserves
+  the evidence in `native/` and `parsed/` without choosing an arbitrary CSV.
 
 `batch_summary.json`
-: The reconstruction batch manifest for one paper and one adapter.
+: Stores the one-paper, one-adapter batch summary: adapter name, display name,
+  crop root, output directory, requested table count, `ok`, `empty`, and
+  `error` counts, prediction CSV count, elapsed time, per-table artifact paths,
+  and per-table errors when present.
 
-For a single `--crops` input, `--out <directory>` is the exact reconstruction
-output directory. For multiple crop roots, `--out <parent>` is a parent
-directory and Tabulus writes each result beneath:
+The prediction CSV is the handoff for raw table reconstruction quality checks
+and for later reference-processing stages. Table reconstruction can be evaluated
+against gold CSV files using Relative Mapping Similarity (RMS); see
+{doc}`../evaluation/table-extraction-quality` for the full evaluation contract.
 
-```text
-<parent>/
-  <crop-root-name>/
-    <adapter>/
-      native/
-      parsed/
-      predictions/
-      batch_summary.json
-```
+For the filesystem data contracts, see {doc}`../data-contracts/tables-index-json`
+and {doc}`../data-contracts/table-prediction-csv`.
 
-For the full filesystem contract, see {doc}`../data-contracts/run-directory`.
+## Common Failure Modes
 
-## Prediction CSV Rule
+| Failure | Likely cause | Fix |
+| --- | --- | --- |
+| `tables_index.json` missing | The input is not a canonical table-crop root | Point `--crops` at the directory that directly contains `tables_index.json`, or use the correct list/folder mode. |
+| No crop roots found | `--crops-folder` was pointed at a directory without direct crop-root children | Use a folder whose immediate children contain `tables_index.json`, or provide a `--crops-list`. |
+| Duplicate crop root | The same resolved crop root appears more than once in a list | Remove duplicate entries from the list. |
+| Adapter does not support device | The selected adapter is not registered for the requested CPU/GPU mode | Choose a supported adapter/device pair from the registry table. |
+| No prediction CSV for a crop | The adapter returned `empty`, returned `error`, or produced zero or multiple parsed tables | Inspect the matching `parsed/*.json`, `native/*.json`, and `batch_summary.json` item. |
+| Output collision risk | Multiple crop roots share the same leaf name and are run with one shared multi-root `--out` parent | Use repeated `--crops` invocations with explicit per-paper output directories. |
 
-A prediction CSV is written only when:
+## Examples
 
-1. the adapter result status is `ok`; and
-2. exactly one structured table was parsed from that canonical crop.
+### TabulusBench
 
-If zero structured tables are available, Tabulus preserves the native and
-parsed evidence but does not write a prediction CSV.
+[TabulusBench](https://zenodo.org/records/20230340) is the benchmark dataset
+used for concrete tutorial examples. Throughout the tutorial, `P4` is used when
+a concrete TabulusBench one-paper example is needed:
 
-If multiple structured tables are parsed from one canonical crop, Tabulus
-preserves the native and parsed evidence, does not choose one arbitrarily, does
-not merge them automatically, and does not write a prediction CSV.
+- paper ID: `P4`
+- domain: `Biomedicine_And_Health`
+- subdomain: `clinical_research`
+- Stage 2 crop root: `Biomedicine_And_Health/clinical_research/P4/reference_tables`
 
-This is an intentional ambiguity-preservation rule. Prediction yield is not a
-reconstruction-accuracy measure.
-
-## Batch Behavior
-
-For multiple crop roots, Tabulus:
-
-- creates the selected adapter once
-- reuses that adapter instance across the complete command
-- processes papers sequentially
-- keeps each paper's reconstruction outputs isolated
-- reports per-paper statistics and aggregate totals
-
-Different adapters write to independent reconstruction directories and must
-not overwrite each other's artifacts.
-
-## Runtime Guidance
-
-Runtime varies with crop count, crop dimensions, model initialization, cache
-state, hardware, and adapter/backend configuration. Treat runtime observations
-as engineering guidance, not model-quality evidence.
-
-Adapter-specific runtime and environment notes live on the External Tools and
-GPU installation pages. Scientific reconstruction quality must be measured
-against gold-standard table annotations.
-
-## Next Stage
-
-After reconstruction, run the implemented reference-table classifier:
+Set portable roots before running the examples:
 
 ```bash
-tabulus classify-reference-tables \
-  --reconstruction "/path/to/tabulus-output/table-crops/<paper>/reconstructions/<adapter>"
+export TABULUSBENCH="/path/to/tabulusbench"
+export TABULUS_WORK="/path/to/tabulus-work"
+P4_CROPS="$TABULUSBENCH/Biomedicine_And_Health/clinical_research/P4/reference_tables"
 ```
 
-This stage writes `reference_table_classification.json` beside the
-reconstruction artifacts. It does not overwrite `native/`, `parsed/`,
-`predictions/`, or `batch_summary.json`.
+For Stage 2, a one-paper run means reconstructing all canonical crop inputs
+belonging to one paper. For `P4`, the benchmark crop root contains six
+annotated reference-containing table crops under `reference_tables/tables/`,
+each with immutable benchmark `gold.csv` material. Stage 2 reads the crop
+images and `tables_index.json`; it must not overwrite or regenerate the
+TabulusBench gold CSV files.
 
-Continue with {doc}`10-reference-table-classification`.
+For a lightweight starting point, `tesseract-tatr` is a useful first adapter to
+try. More model-heavy adapters may require GPU resources and additional runtime
+dependencies, as described in their External Tools pages.
+
+#### 1. Run one paper with one adapter
+
+The input is the complete P4 benchmark crop root:
+
+```text
+P4/reference_tables/
+  tables_index.json
+  tables/
+    page_004_table_001/crop.png
+    ...
+    page_009_table_006/crop.png
+```
+
+Run P4 with the `tesseract-tatr` table-reconstruction adapter on CPU:
+
+```bash
+tabulus reconstruct-tables \
+  --crops "$P4_CROPS" \
+  --adapter tesseract-tatr \
+  --device cpu \
+  --out "$TABULUS_WORK/P4/reconstructions/tesseract-tatr"
+```
+
+The output is one reconstruction directory for the selected paper and adapter:
+
+```text
+$TABULUS_WORK/P4/reconstructions/tesseract-tatr/
+  native/
+  parsed/
+  predictions/
+  batch_summary.json
+```
+
+The native JSON keeps adapter evidence and provenance. The parsed JSON keeps
+the normalized Tabulus row/column representation and warnings. The prediction
+CSV is written only for crops with one unambiguous structured table. The batch
+summary records the per-crop statuses and artifact paths.
+
+#### 2. Run one paper with multiple adapters
+
+To compare reconstruction methods, keep the P4 input fixed and change only the
+adapter and device/output selection. Keep each adapter's output in a separate
+directory:
+
+```bash
+tabulus reconstruct-tables \
+  --crops "$P4_CROPS" \
+  --adapter tesseract-tatr \
+  --device cpu \
+  --out "$TABULUS_WORK/P4/reconstructions/tesseract-tatr"
+
+tabulus reconstruct-tables \
+  --crops "$P4_CROPS" \
+  --adapter rapidocr-tableformer \
+  --device cpu \
+  --out "$TABULUS_WORK/P4/reconstructions/rapidocr-tableformer"
+
+tabulus reconstruct-tables \
+  --crops "$P4_CROPS" \
+  --adapter paddleocr-vl \
+  --device gpu:0 \
+  --out "$TABULUS_WORK/P4/reconstructions/paddleocr-vl"
+
+tabulus reconstruct-tables \
+  --crops "$P4_CROPS" \
+  --adapter granite-vision-table \
+  --device gpu:0 \
+  --out "$TABULUS_WORK/P4/reconstructions/granite-vision-table"
+```
+
+`tesseract-tatr`, `rapidocr-tableformer`, and `paddleocr-vl` are registered for
+CPU or GPU execution. `granite-vision-table` is registered as GPU-only.
+
+#### 3. Run one adapter on the full TabulusBench dataset
+
+TabulusBench contains 250 papers and 540 benchmark-annotated
+reference-containing table crops used as Stage 2 reconstruction inputs. These
+are reconstruction inputs, not historical Stage 1 table-detection counts.
+
+The dataset root includes `reconstruction_inputs.txt`, a list of the 250
+paper-level `reference_tables` crop roots. Because those crop roots are nested
+below domain, subdomain, and paper directories, and because they all share the
+leaf name `reference_tables`, use repeated single-paper commands with explicit
+per-paper output paths:
+
+```bash
+while IFS= read -r crop_root; do
+  case "$crop_root" in ""|\#*) continue ;; esac
+  paper_rel="${crop_root%/reference_tables}"
+
+  tabulus reconstruct-tables \
+    --crops "$TABULUSBENCH/$crop_root" \
+    --adapter tesseract-tatr \
+    --device cpu \
+    --out "$TABULUS_WORK/stage2/tesseract-tatr/$paper_rel"
+done < "$TABULUSBENCH/reconstruction_inputs.txt"
+```
+
+Each paper keeps an independent reconstruction output below its domain,
+subdomain, and paper path, for example:
+
+```text
+$TABULUS_WORK/stage2/tesseract-tatr/Biomedicine_And_Health/clinical_research/P4/
+  native/
+  parsed/
+  predictions/
+  batch_summary.json
+```
+
+#### 4. Run all adapters on the full TabulusBench dataset
+
+On a GPU-equipped system, every registered Stage 2 adapter is registered for
+GPU execution. This loop reconstructs the same 540 benchmark crop inputs with
+every registered table-reconstruction method and keeps outputs separated by
+adapter and paper:
+
+```bash
+ADAPTERS=(
+  chandra
+  deepseek-ocr-2
+  dolphin-v2
+  dots-mocr
+  glm-ocr
+  granite-vision-table
+  hunyuanocr-1-5
+  internvl3-5-8b
+  monkeyocrv2-b-parsing
+  nanonets-ocr-s
+  nemotron-parse-v1-2
+  nuextract3
+  paddleocr-vl
+  rapidocr-tableformer
+  tesseract-tatr
+  trivia
+)
+
+for adapter in "${ADAPTERS[@]}"; do
+  while IFS= read -r crop_root; do
+    case "$crop_root" in ""|\#*) continue ;; esac
+    paper_rel="${crop_root%/reference_tables}"
+
+    tabulus reconstruct-tables \
+      --crops "$TABULUSBENCH/$crop_root" \
+      --adapter "$adapter" \
+      --device gpu:0 \
+      --out "$TABULUS_WORK/stage2/all-adapters/$adapter/$paper_rel"
+  done < "$TABULUSBENCH/reconstruction_inputs.txt"
+done
+```
+
+For CPU-only environments, use the CPU-capable subset from the registry table:
+`chandra`, `paddleocr-vl`, `rapidocr-tableformer`, and `tesseract-tatr`, and
+pass `--device cpu`.
+
+This full comparative setup is useful for benchmarking because every method
+receives the same canonical table crops. The benchmark gold tables remain
+read-only inputs for later evaluation; reconstruction outputs are written under
+`$TABULUS_WORK`.
