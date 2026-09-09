@@ -20,6 +20,10 @@ structured, citation-aware data. It starts from scientific PDFs, reconstructs
 reference-containing tables, extracts the paper bibliography, and resolves table
 citations through inspectable CLI stages and filesystem artifacts.
 
+<p align="center">
+  <img src="./assets/img/pipeline%20-%20nice%20view.png" alt="Tabulus workflow overview"/>
+</p>
+
 The rebuilt library currently runs through **Stage 6 paper-level scholarly
 reference resolution**. Stage 7 resolved CSV export and a single end-to-end
 `tabulus run` command are planned.
