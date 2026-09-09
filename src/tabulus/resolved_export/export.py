@@ -6,6 +6,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from tabulus.resolved_export.merge import (
+    MERGED_ORIGIN_COLUMN,
+    materialize_continuation_merges,
+    plan_continuation_merges,
+    resolve_tables_index_path,
+)
+
 
 RESOLVED_TABLES_DIR_NAME = "resolved_reference_tables"
 RESOLVED_TABLES_MANIFEST_NAME = "resolved_tables.json"
@@ -42,6 +49,11 @@ class ResolvedCSVExportResult:
     manifest_path: Path
     tables_exported: int
     tables: tuple[dict[str, Any], ...]
+    merge_continuations: bool = False
+    continuation_groups: tuple[
+        dict[str, Any],
+        ...
+    ] = ()
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -61,7 +73,16 @@ class ResolvedCSVExportResult:
             "enrichment_columns": list(
                 ENRICHMENT_COLUMNS
             ),
+            "merged_origin_column": (
+                MERGED_ORIGIN_COLUMN
+            ),
+            "merge_continuations": (
+                self.merge_continuations
+            ),
             "tables": list(self.tables),
+            "continuation_groups": list(
+                self.continuation_groups
+            ),
         }
 
 
@@ -621,6 +642,8 @@ def export_resolved_csvs(
     reference_resolution_path: Path,
     *,
     output_dir: Path | None = None,
+    merge_continuations: bool = False,
+    tables_index_path: Path | None = None,
 ) -> ResolvedCSVExportResult:
     """
     Deterministically export Step 7 resolved physical-table CSVs.
@@ -686,9 +709,37 @@ def export_resolved_csvs(
             "detected across physical tables."
         )
 
+    merge_plans: list[dict[str, Any]] = []
+
+    if merge_continuations:
+        resolved_tables_index_path = (
+            resolve_tables_index_path(
+                reconstruction_dir,
+                tables_index_path,
+            )
+        )
+
+        merge_plans = (
+            plan_continuation_merges(
+                resolved_tables_index_path,
+                plans,
+            )
+        )
+
     table_results = tuple(
         _write_planned_table(plan)
         for plan in plans
+    )
+
+    continuation_groups = (
+        materialize_continuation_merges(
+            merge_plans,
+            plans,
+            table_results,
+            final_output_dir,
+        )
+        if merge_continuations
+        else ()
     )
 
     manifest_path = (
@@ -705,6 +756,12 @@ def export_resolved_csvs(
             table_results
         ),
         tables=table_results,
+        merge_continuations=(
+            merge_continuations
+        ),
+        continuation_groups=(
+            continuation_groups
+        ),
     )
 
     manifest_path.parent.mkdir(
