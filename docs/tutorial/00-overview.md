@@ -1,25 +1,34 @@
 # Core Pipeline Overview
 
-Tabulus extracts structured table data from scientific PDFs while keeping each processing stage inspectable on disk. The rebuilt library is organized around standalone commands and file contracts rather than one monolithic runner.
+Tabulus is organized as a seven-step, artifact-oriented pipeline for
+transforming scientific PDFs into structured, citation-aware table data. Each
+step has a well-defined responsibility and persists its outputs on disk, so
+reconstruction, reference linking, scholarly resolution, and final export
+remain independently inspectable and reproducible.
 
 ![Tabulus core pipeline overview](../_static/pipeline-cs-friendly.png)
 
-The current pipeline does not yet end in DOI-enriched final CSVs. It currently supports PDF profiling, canonical table-crop export, table reconstruction, reference-table classification, GROBID-backed bibliography extraction, deterministic reference matching, and paper-level scholarly reference resolution. The bibliography branch starts from the original PDF in parallel with table processing; Stage 7 resolved export, run reports, and complete `tabulus run` orchestration remain planned for the rebuilt library.
+Steps 1–3 form the table-processing branch: physical tables are localized,
+reconstructed independently, and classified for reference-containing content.
+Step 4 forms a parallel bibliography branch from the original PDF. The two
+branches converge in Step 5, where table citations are linked to bibliography
+positions. Step 6 resolves the corresponding scholarly identities once per
+paper, and Step 7 propagates those identities back to the physical tables for
+resolved CSV export. Explicit table continuations remain separate physical
+entities throughout the core pipeline and may be merged only as an optional
+Step 7 export operation after structural compatibility checks.
 
-## Current Runnable Pipeline
+## Seven-Step Pipeline
 
-The implemented pipeline runs through Stage 6 in the rebuilt `src/tabulus`
-package:
+The rebuilt `src/tabulus` package implements all seven persisted steps:
 
-1. **PDF Profiling:** `tabulus profile`
-2. **Table Reconstruction:** `tabulus reconstruct-tables`
+1. **PDF Profiling and Physical Table Localization:** `tabulus profile`
+2. **Physical Table Reconstruction:** `tabulus reconstruct-tables`
 3. **Reference-Table Classification:** `tabulus classify-reference-tables`
 4. **Bibliography Extraction:** `tabulus extract-bibliography`
 5. **Reference Matching:** `tabulus match-references`
 6. **Scholarly Reference Resolution:** `tabulus resolve-references`
-
-Stage 7 resolved export is not implemented in the rebuilt package in this
-checkout.
+7. **Resolved CSV Export:** `tabulus export-resolved-csv`
 
 ## Canonical TabulusBench Example
 
@@ -49,19 +58,19 @@ operate on complete paper-level artifacts derived from `P4`.
 
 The benchmark's `P4/reference_tables/` directory is human gold material. It
 contains six annotated reference-containing tables with adjacent `gold.csv`
-files. Those tables are not necessarily every table that Stage 1 profiling
+files. Those tables are not necessarily every table that Step 1 profiling
 will detect in the original PDF. Tabulus runs should write their own profiling
 and crop artifacts outside the benchmark gold directories.
 
 A full TabulusBench run means processing the complete applicable benchmark
 input across all papers. Because TabulusBench papers are nested under
 domain/subdomain directories, use an explicit `--pdf-list` for PDF-level stages
-rather than `--folder` on the benchmark root. Running a stage over TabulusBench
+rather than `--folder` on the benchmark root. Running a step over TabulusBench
 is separate from evaluating it against gold annotations: for example,
 bibliography extraction can be run for every benchmark PDF even though curated
 bibliography gold exists only for a subset.
 
-The stage boundaries are persisted as files:
+The step boundaries are persisted as files:
 
 ```text
 PDF
@@ -83,26 +92,30 @@ reconstructions/<adapter>/
         |
         v
 reference_table_classification.json
-selected_reference_tables.json (Stage 3)
+selected_reference_tables.json (Step 3)
 
 PDF
   |
   v
-<artifact-root>/references/bibliography.json (Stage 4)
+<artifact-root>/references/bibliography.json (Step 4)
 
 selected_reference_tables.json + bibliography.json
   |
   v
-references/reference_matches.json (Stage 5; table-cell links)
+references/reference_matches.json (Step 5; table-cell links)
   |
   v
-Stage 6: references/reference_resolution.json
+Step 6: references/reference_resolution.json
   |
   v
-Stage 7: join resolved identities to all relevant cells / export (planned)
+Step 7: resolved_reference_tables/
+  |-- <prediction-stem>_resolved.csv
+  |-- resolved_tables.json
+  `-- merged/                         # optional continuation merge
 ```
 
-`predictions/*.csv` files are reconstruction outputs before reference resolution. They are not bibliography-enriched or DOI-resolved final CSVs.
+`predictions/*.csv` files remain Step 2 reconstruction outputs before reference
+resolution. Step 7 never rewrites them.
 
 ## Artifact Flow
 
@@ -148,10 +161,12 @@ selected_reference_tables.json + bibliography.json
 references/reference_matches.json
       |
       v
-Stage 6: references/reference_resolution.json
+Step 6: references/reference_resolution.json
       |
       v
-Stage 7: join resolved identities to all relevant cells / export (planned)
+Step 7: resolved physical CSV export
+      |
+      `--> optional safe continuation merging
 ```
 
 MinerU is the current PDF profiler. It performs document/layout processing, table localization, and native table extraction. Tabulus reads MinerU output, exports the canonical table-crop handoff, and retains MinerU `table_body` as a native reconstruction candidate.
@@ -169,12 +184,17 @@ reconstructed-table instances and writes `reference_table_classification.json` b
 
 Bibliography extraction is a separate PDF-level branch. It reads the original scientific PDF and writes normalized entries to `references/bibliography.json`; it does not consume canonical table crops or reconstruction prediction CSVs. The table and bibliography branches converge at deterministic reference matching.
 
-Stage 5 links table-cell citation tokens to bibliography positions offline.
-Stage 6 consumes the union of matched bibliography indices for a paper and
+Step 5 links table-cell citation tokens to bibliography positions offline.
+Step 6 consumes the union of matched bibliography indices for a paper and
 avoids resolving the same bibliography entry separately for every cell, table,
 or reconstruction adapter. It writes a paper-level
 `references/reference_resolution.json` registry after every target reaches a
 final scientific status.
+
+Step 7 joins that registry back onto the Step 5 physical-row links. Physical
+resolved CSVs are the default output. Optional continuation merging uses the
+Step 1 symbolic topology and revalidates structural compatibility at export
+time; unsafe or incomplete groups remain separate.
 
 ## Current Versus Planned
 
@@ -193,13 +213,13 @@ Implemented in the rebuilt library:
   `references/bibliography.json`
 - reference matching through `tabulus match-references`
 - paper-level scholarly reference resolution through `tabulus resolve-references`
+- deterministic resolved CSV export through `tabulus export-resolved-csv`
+- optional safe continuation merging with physical-table provenance
 
-Planned for the rebuilt library:
+Future convenience work:
 
-- resolved CSV export by joining resolved identities back onto Stage 5 table
-  links
 - run report / QA bundle
-- complete `tabulus run` orchestration
+- optional monolithic `tabulus run` orchestration
 
 ## Detailed Pages
 
@@ -212,5 +232,6 @@ Planned for the rebuilt library:
 - {doc}`14-csv-export`
 - {doc}`../modules/table-ocr-adapters`
 - {doc}`../data-contracts/run-directory`
+- {doc}`../data-contracts/resolved-csv`
 - {doc}`../external-tools/mineru`
 - External Tools pages for adapter-specific model and runtime details

@@ -1,14 +1,14 @@
 # Run Directory
 
 This page is the authoritative filesystem contract for the current Tabulus
-profiling, table-reconstruction, reference-table classification, bibliography
-extraction, reference matching, and Stage 6 reference-resolution stages.
-Directories appear as their corresponding stages are run; a fresh paper
-directory will not contain every layer immediately.
+profiling, table reconstruction, reference-table classification, bibliography
+extraction, reference matching, scholarly reference resolution, and Step 7
+resolved CSV export. Directories appear as their corresponding steps are run;
+a fresh paper directory will not contain every layer immediately.
 
 ## Current Output Hierarchy
 
-The current implemented table-processing commands write stage outputs next to
+The current implemented table-processing commands write step outputs next to
 the source PDFs by default:
 
 ```text
@@ -32,6 +32,11 @@ the source PDFs by default:
             selected_reference_tables.json
             references/
               reference_matches.json
+            resolved_reference_tables/
+              <prediction-stem>_resolved.csv
+              resolved_tables.json
+              merged/
+                <root-table>_merged_resolved.csv
 <artifact-root>/
   references/
     bibliography.json
@@ -83,15 +88,22 @@ the source PDFs by default:
   `match-references --out` can select an explicit file path.
 
 `references/reference_resolution.json`
-: Paper-level Stage 6 registry of validated scholarly identities or
-  conservative rejections for the union of Stage 5-linked bibliography
+: Paper-level Step 6 registry of validated scholarly identities or
+  conservative rejections for the union of Step 5-linked bibliography
   indices. It is written only after every target for that paper reaches a final
-  scientific status. During incomplete runs, Stage 6 may also write
+  scientific status. During incomplete runs, Step 6 may also write
   `references/reference_resolution.checkpoint.json` for resumability.
 
-## Stage Dependencies
+`resolved_reference_tables/`
+: Step 7 user-facing physical resolved CSVs and `resolved_tables.json`.
+  Prediction CSVs remain unchanged. When continuation merging is requested and
+  passes deterministic compatibility checks, additional logical tables are
+  written beneath `resolved_reference_tables/merged/`; physical resolved CSVs
+  remain present.
 
-The current rebuilt pipeline is staged around persisted filesystem handoffs:
+## Step Dependencies
+
+The current rebuilt pipeline is organized around persisted filesystem handoffs:
 
 ```text
 PDF
@@ -122,19 +134,22 @@ selected_reference_tables.json + bibliography.json
 references/reference_matches.json
   |
   v
-Stage 6: references/reference_resolution.json
+Step 6: references/reference_resolution.json
   |
   v
-Stage 7: join validated identities to all relevant cells / export (planned)
+Step 7: resolved_reference_tables/
+  |-- <prediction-stem>_resolved.csv
+  |-- resolved_tables.json
+  `-- merged/                         # optional continuation merge
 ```
 
-Later stages may consume selected or reference-containing tables, but
+Later steps may consume selected or reference-containing tables, but
 reconstruction artifacts remain preserved for each reconstructed-table instance processed by
-the reconstruction stage.
+the reconstruction step.
 
 This separation also decouples ML environments. MinerU and individual
 reconstruction adapters can run in separate Python or Conda environments. The
-stable contracts between stages are persisted files such as
+stable contracts between steps are persisted files such as
 `tables_index.json`, canonical crop images, reconstruction manifests, and
 reconstruction artifacts.
 
@@ -185,7 +200,7 @@ The exact files and subdirectories below `<MinerU-native run directory>` are
 owned by MinerU and should not be treated as a stable Tabulus public schema.
 Tabulus discovers the relevant MinerU result and derives the canonical
 table-crop handoff from it. The stable interface for subsequent
-table-processing stages is not the complete MinerU native directory; it is:
+table-processing steps is not the complete MinerU native directory; it is:
 
 ```text
 tabulus-output/
@@ -217,11 +232,13 @@ source image extension is preserved where applicable. Table IDs identify
 physical detected tables within the document; they are not necessarily the
 printed table numbers in the paper.
 
-Continued tables remain separate physical table crops. Tabulus does not merge
-continued tables at this stage.
+Continued tables remain separate physical table crops. Step 1 records explicit
+continuation topology symbolically but does not merge the crops. Optional
+logical merging is deferred to Step 7 after reconstruction and scholarly
+resolution.
 
 `tables_index.json` records the crop inventory and provenance needed by
-downstream stages. Records include the physical `table_id`, page number,
+downstream steps. Records include the physical `table_id`, page number,
 canonical image path/name, bounding box when available, caption, footnote,
 MinerU source image/path provenance, MinerU `table_body`, reference-section
 positional information, and source identifier.
@@ -333,7 +350,7 @@ does not arbitrarily write a single prediction CSV.
 
 ### batch_summary.json
 
-`batch_summary.json` is the reconstruction-stage manifest for one paper and
+`batch_summary.json` is the reconstruction-step manifest for one paper and
 one adapter. It records the reconstructed-table instances processed and links their
 reconstruction artifacts and provenance, including table identity,
 reconstruction status, native artifact, parsed artifact, prediction CSV when
@@ -344,18 +361,21 @@ Each paper retains its own reconstruction directory and batch manifest.
 
 ## Continued-Table Semantics
 
-Continued tables remain separate physical entities throughout the currently
-implemented stages:
+Continued tables remain separate physical entities through Steps 1–6:
 
 - MinerU detection
 - canonical crops
 - reconstruction
 - parsed artifacts
 - prediction CSVs
+- reference matching and scholarly-resolution provenance
 
 A logical table spanning several pages can therefore correspond to several
-physical table IDs and several reconstruction files. Automatic continued-table
-merging is not implemented in the rebuilt pipeline.
+physical table IDs and several reconstruction files. Step 7 exports these
+physical resolved tables by default. With `--merge-continuations`, Step 7 may
+additionally materialize a logical merged CSV only when the explicit Step 1
+continuation topology is complete and deterministic column-compatibility checks
+succeed. Physical resolved CSVs are retained in all cases.
 
 ## Reconstruction Reruns
 
@@ -409,18 +429,19 @@ does not proceed down the reference-resolution branch; it does not mean the
 reconstruction is invalid.
 
 The current rebuilt library implements bibliography extraction as a separate
-PDF-level branch that writes `references/bibliography.json`, and Stage 5
+PDF-level branch that writes `references/bibliography.json`, and Step 5
 reference matching as the deterministic convergence of selected
 reference-like tables with that bibliography artifact.
 
-The Stage 6 boundary is paper-level: it collects the union of bibliography
+The Step 6 boundary is paper-level: it collects the union of bibliography
 indices matched across reconstruction methods, deduplicates by bibliography
 index, and resolves each `(paper, bibliography_index)` once. It writes
 `references/reference_resolution.json` only after the paper-level run
 completes successfully.
 
-The rebuilt pipeline does not yet implement Stage 7 final resolved CSV
-generation, continued-table merging, or a single complete `tabulus run`
-orchestrator.
+Step 7 deterministically joins those final Step 6 identities back onto Step 5
+physical-row links and writes resolved CSVs. Optional continuation merging is
+an additional export operation and never replaces the physical resolved files.
+A single complete `tabulus run` orchestrator remains future convenience work.
 
-For the future final DOI-enriched CSV contract, see {doc}`resolved-csv`.
+For the final resolved CSV contract, see {doc}`resolved-csv`.

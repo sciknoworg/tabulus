@@ -18,15 +18,15 @@
 Tabulus is a modular framework for digitizing scientific review tables into
 structured, citation-aware data. It starts from scientific PDFs, reconstructs
 reference-containing tables, extracts the paper bibliography, and resolves table
-citations through inspectable CLI stages and filesystem artifacts.
+citations through inspectable CLI steps and filesystem artifacts.
 
 <p align="center">
   <img src="./assets/img/pipeline%20-%20nice%20view.png" alt="Tabulus workflow overview"/>
 </p>
 
-The rebuilt library currently runs through **Stage 6 paper-level scholarly
-reference resolution**. Stage 7 resolved CSV export and a single end-to-end
-`tabulus run` command are planned.
+The rebuilt library implements a complete seven-step persisted workflow,
+ending in deterministic resolved CSV export. A single monolithic `tabulus run`
+orchestration command remains future convenience work.
 
 ## ✨ Highlights
 
@@ -37,8 +37,10 @@ reference resolution**. Stage 7 resolved CSV export and a single end-to-end
 - Deterministic reference-table classification and table-cell-to-bibliography
   matching.
 - GROBID-backed bibliography extraction from the original PDF.
-- Conservative Stage 6 scholarly reference resolution using deterministic
+- Conservative Step 6 scholarly reference resolution using deterministic
   evidence, Crossref/CORE metadata, and bounded LLM adjudication.
+- Deterministic Step 7 resolved CSV export with optional safe continuation
+  merging and physical-table provenance.
 - Native table-reconstruction evaluation with Relative Mapping Similarity
   (RMS).
 
@@ -46,20 +48,22 @@ reference resolution**. Stage 7 resolved CSV export and a single end-to-end
 
 ```text
 PDF
- ├─ Stage 1: profile PDF and export canonical table crops
- │    └─ Stage 2: reconstruct tables
- │         └─ Stage 3: classify reference-containing tables
- └─ Stage 4: extract bibliography from the original PDF
+ ├─ Step 1: profile PDF and export canonical table crops
+ │    └─ Step 2: reconstruct physical tables
+ │         └─ Step 3: classify reference-containing tables
+ └─ Step 4: extract bibliography from the original PDF
 
-Stage 3 selected tables + Stage 4 bibliography
- └─ Stage 5: match table citations to bibliography positions
-      └─ Stage 6: resolve paper-level scholarly identities
-           └─ Stage 7: resolved CSV export (planned)
+Step 3 selected tables + Step 4 bibliography
+ └─ Step 5: match table citations to bibliography positions
+      └─ Step 6: resolve paper-level scholarly identities
+           └─ Step 7: export resolved physical CSVs
+                └─ optional safe continuation merging
 ```
 
-Stage 4 is a parallel PDF-level branch. Stage 6 resolves each linked
-bibliography entry once per paper, not once per table cell or reconstruction
-adapter.
+Step 4 is a parallel PDF-level branch. Step 6 resolves each linked bibliography
+entry once per paper, not once per table cell or reconstruction adapter. Step 7
+joins those paper-level decisions back onto physical table rows without
+modifying Step 2 prediction CSVs.
 
 ## 🚀 Install
 
@@ -86,40 +90,48 @@ RECONSTRUCTION="$CROP_ROOT/reconstructions/tesseract-tatr"
 ```
 
 ```bash
-# Stage 1: PDF profiling and canonical crop export
+# Step 1: PDF profiling and canonical crop export
 tabulus profile --pdf "$PDF" --backend pipeline --method auto
 
-# Stage 2: table reconstruction
+# Step 2: table reconstruction
 tabulus reconstruct-tables \
   --crops "$CROP_ROOT" \
   --adapter tesseract-tatr \
   --device cpu
 
-# Stage 3: reference-table classification
+# Step 3: reference-table classification
 tabulus classify-reference-tables \
   --reconstruction "$RECONSTRUCTION"
 
-# Stage 4: bibliography extraction
+# Step 4: bibliography extraction
 tabulus extract-bibliography \
   --pdf "$PDF" \
   --out "$ARTIFACT_ROOT" \
   --grobid-url http://localhost:8070
 
-# Stage 5: table-cell to bibliography-position matching
+# Step 5: table-cell to bibliography-position matching
 tabulus match-references \
   --selected "$RECONSTRUCTION/selected_reference_tables.json" \
   --bibliography "$ARTIFACT_ROOT/references/bibliography.json"
 
-# Stage 6: paper-level scholarly reference resolution
+# Step 6: paper-level scholarly reference resolution
 tabulus resolve-references \
   --bibliography "$ARTIFACT_ROOT/references/bibliography.json" \
   --reference-matches "$RECONSTRUCTION/references/reference_matches.json" \
   --out "$ARTIFACT_ROOT"
+
+# Step 7: deterministic resolved CSV export
+tabulus export-resolved-csv \
+  --reference-matches "$RECONSTRUCTION/references/reference_matches.json" \
+  --reference-resolution "$ARTIFACT_ROOT/references/reference_resolution.json"
 ```
 
-Stage 6 requires Crossref, CORE, and OpenAI-compatible LLM configuration. The
+Step 6 requires Crossref, CORE, and OpenAI-compatible LLM configuration. The
 full option list and credential handling are documented in the
-[Stage 6 tutorial](https://tabulus.readthedocs.io/en/latest/tutorial/13-doi-resolution.html).
+[Step 6 tutorial](https://tabulus.readthedocs.io/en/latest/tutorial/13-doi-resolution.html).
+
+Step 7 is offline and deterministic. Add `--merge-continuations` to request
+safe logical merging while retaining physical resolved CSVs.
 
 ## 📦 Main Artifacts
 
@@ -131,7 +143,7 @@ full option list and credential handling are documented in the
 | Step 4 | `references/bibliography.json` |
 | Step 5 | `references/reference_matches.json` |
 | Step 6 | `references/reference_resolution.json` |
-| Step 7 | resolved CSV export, planned |
+| Step 7 | `resolved_reference_tables/*.csv`, `resolved_tables.json` |
 
 See the
 [Data Contracts](https://tabulus.readthedocs.io/en/latest/data-contracts/run-directory.html)
