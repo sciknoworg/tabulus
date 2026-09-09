@@ -160,3 +160,61 @@ def test_export_mineru_table_crops_records_unmaterializable_tables(tmp_path):
         }
     ]
     assert [table["table_id"] for table in data["tables"]] == [1, 3]
+
+
+def test_export_table_crops_writes_continuation_metadata(tmp_path):
+    source_paths = []
+
+    for table_id in (1, 2, 3):
+        path = tmp_path / f"source-{table_id}.png"
+        path.write_bytes(f"table-{table_id}".encode("utf-8"))
+        source_paths.append(path)
+
+    tables = [
+        TableRegion(
+            table_id=1,
+            page_nr=4,
+            image_path=source_paths[0],
+            source_image_path=source_paths[0],
+            mineru_img_path="images/source-1.png",
+            caption=["Table 4. Comparison"],
+        ),
+        TableRegion(
+            table_id=2,
+            page_nr=5,
+            image_path=source_paths[1],
+            source_image_path=source_paths[1],
+            mineru_img_path="images/source-2.png",
+            caption=["Table 4 (continued)"],
+        ),
+        TableRegion(
+            table_id=3,
+            page_nr=6,
+            image_path=source_paths[2],
+            source_image_path=source_paths[2],
+            mineru_img_path="images/source-3.png",
+            caption=["Table 4 continued"],
+        ),
+    ]
+
+    result = export_table_crops(
+        tables=tables,
+        output_dir=tmp_path / "table_crops",
+    )
+
+    data = json.loads(
+        result.index_path.read_text(encoding="utf-8")
+    )
+    first, second, third = data["tables"]
+
+    assert first["continuation"]["is_continuation"] is False
+    assert first["continuation"]["continuation_root_table_id"] == 1
+
+    assert second["continuation"]["is_continuation"] is True
+    assert second["continuation"]["continued_from_table_id"] == 1
+    assert second["continuation"]["continuation_root_table_id"] == 1
+    assert second["continuation"]["link_status"] == "linked"
+
+    assert third["continuation"]["is_continuation"] is True
+    assert third["continuation"]["continued_from_table_id"] == 2
+    assert third["continuation"]["continuation_root_table_id"] == 1

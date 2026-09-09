@@ -12,6 +12,7 @@ from tabulus.mineru.tables import (
     load_content_items,
 )
 from tabulus.models import TableRegion
+from tabulus.table_continuations import annotate_continuations
 
 
 TABLES_INDEX_NAME = "tables_index.json"
@@ -102,6 +103,8 @@ def export_table_crops(
                 output_dir=output_dir,
             )
         )
+
+    records = annotate_continuations(records)
 
     result = TableCropExportResult(
         tables_found=len(tables),

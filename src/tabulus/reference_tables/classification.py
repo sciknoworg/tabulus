@@ -6,6 +6,14 @@ from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any, Sequence
 
+from tabulus.table_continuations import (
+    ContinuationLink as _ContinuationLink,
+    caption_text as _caption_text,
+    continuation_links_from_records,
+    is_explicit_continuation_caption as _is_explicit_continuation_caption,
+    table_label as _table_label,
+)
+
 
 REFERENCE_TABLE_CLASSIFICATION_NAME = "reference_table_classification.json"
 SELECTED_REFERENCE_TABLES_NAME = "selected_reference_tables.json"
@@ -71,70 +79,6 @@ PLAIN_NUMERIC_REFERENCE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-
-CONTROL_CHAR_PATTERN = re.compile(r"[\x00-\x1f\x7f-\x9f]+")
-
-# Continuation handling is intentionally separate from the legacy reference
-# classification heuristics above. These patterns only identify an explicit
-# continued-table caption and its printed table identifier.
-TABLE_LABEL_PATTERN = re.compile(
-    r"""
-    ^\s*
-    (?:(?:supplementary|supplemental|appendix)\s+)?
-    (?:table|tbl\.?|tab\.?)\s*
-    (?P<label>
-        # Labels containing digits: 1, 1A, 1-A, 2.1, S1, S-1, A.1, etc.
-        (?:[A-Za-z]+\s*[-._]?\s*)?
-        \d+
-        (?:\s*[._-]\s*\d+)*
-        (?:\s*[-._]?\s*[A-Za-z])?
-        |
-        # Roman numerals: I, II, IV, XII, ...
-        [IVXLCDM]+
-        |
-        # Alphabetic appendix-style labels: A, B, C, ...
-        [A-Za-z]
-    )
-    (?=$|[\s.,:;()\[\]\-–—])
-    """,
-    re.IGNORECASE | re.VERBOSE,
-)
-
-CONTINUATION_AFTER_LABEL_PATTERN = re.compile(
-    r"""
-    ^[\s.,:;()\[\]\-–—]*
-    (?:
-        continued
-        | continuation
-        | contd
-        | cont['’]d
-        | cont
-    )
-    (?=$|[\s.,:;()\[\]\-–—])
-    """,
-    re.IGNORECASE | re.VERBOSE,
-)
-
-CONTINUATION_ONLY_PATTERN = re.compile(
-    r"""
-    ^[\s.,:;()\[\]\-–—]*
-    (?:
-        continued
-        | continuation
-        | contd
-        | cont['’]d
-        | cont
-    )
-    [\s.,:;()\[\]\-–—]*$
-    """,
-    re.IGNORECASE | re.VERBOSE,
-)
-
-
-@dataclass(frozen=True)
-class _ContinuationLink:
-    parent_table_id: int
-    caption: str
 
 
 @dataclass(frozen=True)
@@ -440,76 +384,6 @@ def _unavailable_decision(reason: str) -> ReferenceTableDecision:
     )
 
 
-def _caption_text(value: Any) -> str:
-    """Normalize MinerU caption structures into one compact text string."""
-
-    if isinstance(value, str):
-        cleaned = CONTROL_CHAR_PATTERN.sub(" ", value)
-        return normalize_text(cleaned)
-
-    if isinstance(value, (list, tuple)):
-        parts = [_caption_text(item) for item in value]
-        return normalize_text(" ".join(part for part in parts if part))
-
-    if isinstance(value, dict):
-        for key in ("text", "content", "caption"):
-            if key in value:
-                text = _caption_text(value[key])
-
-                if text:
-                    return text
-
-        parts = [_caption_text(item) for item in value.values()]
-        return normalize_text(" ".join(part for part in parts if part))
-
-    return ""
-
-
-def _canonicalize_table_label(label: str) -> str:
-    """
-    Normalize printed table identifiers without collapsing numeric hierarchy.
-
-    Examples:
-    ``a`` -> ``A``, ``S 1`` -> ``S1``, ``A-1`` -> ``A1``,
-    while ``2.1`` remains ``2.1`` rather than becoming ``21``.
-    """
-
-    value = re.sub(r"\s+", "", label).upper()
-    value = re.sub(r"(?<=[A-Z])[._-](?=\d)", "", value)
-    value = re.sub(r"(?<=\d)[._-](?=[A-Z])", "", value)
-    return value
-
-
-def _table_label(caption: str) -> str | None:
-    match = TABLE_LABEL_PATTERN.match(caption)
-
-    if match is None:
-        return None
-
-    return _canonicalize_table_label(match.group("label"))
-
-
-def _is_explicit_continuation_caption(caption: str) -> bool:
-    """
-    Return whether a caption explicitly marks this physical table as continued.
-
-    For labeled captions, the continuation token must occur immediately after
-    the printed table identifier (apart from punctuation/whitespace). This
-    avoids treating captions that merely mention another table or use the word
-    "continued" later in descriptive prose as continuation evidence.
-    """
-
-    if not caption:
-        return False
-
-    label_match = TABLE_LABEL_PATTERN.match(caption)
-
-    if label_match is not None:
-        remainder = caption[label_match.end():]
-        return bool(CONTINUATION_AFTER_LABEL_PATTERN.match(remainder))
-
-    return bool(CONTINUATION_ONLY_PATTERN.fullmatch(caption))
-
 
 def _resolve_crop_index_path(
     reconstruction_dir: Path,
@@ -540,17 +414,17 @@ def _load_continuation_links(
     summary: dict[str, Any],
 ) -> dict[int, _ContinuationLink]:
     """
-    Resolve explicit continued-table relationships from tables_index.json.
+    Load Step 1 continuation relationships from tables_index.json.
 
-    A continuation is inferred only from an explicit continuation marker in the
-    current caption. Printed identifiers are normalized across common forms
-    such as Table 1, Table A, Table I, Table S1, and hierarchical identifiers.
-    When a label is present, the nearest earlier physical table with the same
-    normalized label is used as its parent. An unlabeled "Continued" caption
-    inherits only from the immediately preceding physical table.
+    New indexes provide normalized structured continuation metadata. Legacy
+    indexes that contain only MinerU captions remain supported through the
+    generic deterministic continuation parser.
     """
 
-    index_path = _resolve_crop_index_path(reconstruction_dir, summary)
+    index_path = _resolve_crop_index_path(
+        reconstruction_dir,
+        summary,
+    )
 
     if index_path is None:
         return {}
@@ -567,58 +441,8 @@ def _load_continuation_links(
             f"{index_path}"
         )
 
-    previous_records: list[tuple[int, str]] = []
-    links: dict[int, _ContinuationLink] = {}
-    seen_table_ids: set[int] = set()
+    return continuation_links_from_records(records)
 
-    for position, record in enumerate(records, start=1):
-        if not isinstance(record, dict):
-            raise ValueError(
-                "Canonical table-crop index contains a non-object table at "
-                f"position {position}."
-            )
-
-        table_id = record.get("table_id")
-
-        if not isinstance(table_id, int):
-            raise ValueError(
-                "Canonical table-crop index contains an invalid table_id at "
-                f"position {position}."
-            )
-
-        if table_id in seen_table_ids:
-            raise ValueError(
-                f"Duplicate table_id in canonical table-crop index: {table_id}"
-            )
-
-        seen_table_ids.add(table_id)
-        caption = _caption_text(record.get("table_caption"))
-
-        if _is_explicit_continuation_caption(caption) and previous_records:
-            label = _table_label(caption)
-            parent_table_id: int | None = None
-
-            if label is not None:
-                for earlier_table_id, earlier_caption in reversed(
-                    previous_records
-                ):
-                    if _table_label(earlier_caption) == label:
-                        parent_table_id = earlier_table_id
-                        break
-            else:
-                # An explicitly unlabeled "Continued" caption can only inherit
-                # from the immediately preceding physical table.
-                parent_table_id = previous_records[-1][0]
-
-            if parent_table_id is not None:
-                links[table_id] = _ContinuationLink(
-                    parent_table_id=parent_table_id,
-                    caption=caption,
-                )
-
-        previous_records.append((table_id, caption))
-
-    return links
 
 
 def _apply_continuation_inheritance(

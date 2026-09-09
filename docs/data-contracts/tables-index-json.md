@@ -29,6 +29,14 @@ The stable file name is `tables_index.json`. Earlier scratch runs sometimes used
       "mineru_img_path": "images/example_table.png",
       "mineru_source_image": "work/mineru/paper/images/example_table.png",
       "mineru_table_body": "<table>...</table>",
+      "continuation": {
+        "is_continuation": false,
+        "continued_from_table_id": null,
+        "continuation_root_table_id": 1,
+        "printed_table_label": "1",
+        "evidence": null,
+        "link_status": "not_continuation"
+      },
       "source": "mineru"
     }
   ]
@@ -46,6 +54,7 @@ Each table record should provide:
 - caption and footnote context when available
 - adapter source information
 - MinerU's own `table_body` when available, so it can be compared with table-reconstruction adapter output
+- normalized symbolic continuation metadata derived from the MinerU caption
 
 Downstream reconstruction commands should treat `tables_index.json` as the authoritative crop order and identity source. They should preserve the existing `table_id` values rather than renumbering physical crops. These IDs identify physical detected tables in the document; they are not necessarily the printed table numbers in the paper.
 
@@ -75,7 +84,11 @@ Tabulus does not need to crop the PDF again from `bbox`. The `bbox` should be pr
 table. It is separate from the canonical crop image consumed by crop-consuming
 reconstruction adapters, and it should not be described as adapter OCR output.
 
-Each record represents one physical MinerU table crop. Current Tabulus does not merge multi-page or continued table segments; logical table continuity remains a future concern.
+Each record represents one physical MinerU table crop. Step 1 does not merge multi-page or continued table segments. Instead, it records explicit continuation relationships symbolically in the `continuation` object. Physical crops remain separate so Step 2 reconstruction and table-reconstruction evaluation retain a one-to-one physical-table boundary.
+
+For a continued-table chain, `continued_from_table_id` identifies the immediate physical parent and `continuation_root_table_id` identifies the first physical table in the logical chain. `printed_table_label` is the normalized table identifier parsed from the MinerU caption. `evidence` is currently `explicit_caption` when the source caption explicitly marks a continuation. `link_status` is `linked`, `unresolved`, or `not_continuation`.
+
+Older `tables_index.json` files without the structured `continuation` object remain readable. Downstream code can reconstruct the same conservative symbolic relationship from the preserved MinerU captions. Physical table merging is deferred to the optional final export logic rather than Step 1 or Step 2.
 
 The default handoff directory for `tabulus profile --pdf paper.pdf` is:
 
