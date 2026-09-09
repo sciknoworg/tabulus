@@ -2,8 +2,6 @@
 
 Tabulus extracts structured table data from scientific PDFs while keeping each processing stage inspectable on disk. The rebuilt library is organized around standalone commands and file contracts rather than one monolithic runner.
 
-![Tabulus workflow overview](../_static/pipeline-nice-view.png)
-
 The current pipeline does not yet end in DOI-enriched final CSVs. It currently supports PDF profiling, canonical table-crop export, table reconstruction, reference-table classification, GROBID-backed bibliography extraction, deterministic reference matching, and paper-level scholarly reference resolution. The bibliography branch starts from the original PDF in parallel with table processing; Stage 7 resolved export, run reports, and complete `tabulus run` orchestration remain planned for the rebuilt library.
 
 ## Current Runnable Pipeline

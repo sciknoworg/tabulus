@@ -7,6 +7,8 @@
 Tabulus is a modular pipeline for digitizing scientific PDF papers into
 structured, reference-aware table data.
 
+![Tabulus workflow overview](_static/pipeline-nice-view.png)
+
 The rebuilt library is organized around standalone commands and explicit
 filesystem contracts. The current rebuilt library covers PDF profiling,
 canonical table-crop export, table reconstruction, reference-table
