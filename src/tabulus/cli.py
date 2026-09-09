@@ -31,6 +31,7 @@ from tabulus.reference_tables import (
 from tabulus.reference_matching import match_selected_reference_tables
 from tabulus.reference_resolution import resolve_reference_artifact
 from tabulus.reference_resolution.pipeline import discover_reference_match_artifacts
+from tabulus.resolved_export import export_resolved_csvs
 from tabulus.table_crops import export_mineru_table_crops
 from tabulus.table_ocr import (
     create_table_ocr_adapter,
@@ -768,6 +769,59 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
 
+    export_resolved_csv = subparsers.add_parser(
+        "export-resolved-csv",
+        help=(
+            "Export Step 7 bibliography-resolved CSVs from "
+            "Step 5 matches and the Step 6 resolution registry."
+        ),
+    )
+
+    export_resolved_csv.add_argument(
+        "--reference-matches",
+        required=True,
+        type=Path,
+        help="Step 5 references/reference_matches.json artifact.",
+    )
+
+    export_resolved_csv.add_argument(
+        "--reference-resolution",
+        required=True,
+        type=Path,
+        help="Step 6 references/reference_resolution.json artifact.",
+    )
+
+    export_resolved_csv.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help=(
+            "Resolved CSV output directory. If omitted, Tabulus writes "
+            "resolved_reference_tables/ inside the reconstruction directory."
+        ),
+    )
+
+    export_resolved_csv.add_argument(
+        "--merge-continuations",
+        action="store_true",
+        help=(
+            "Also create logical merged CSVs for explicit Step 1 "
+            "continuation groups when deterministic column compatibility "
+            "checks succeed. Physical resolved CSVs are always retained."
+        ),
+    )
+
+    export_resolved_csv.add_argument(
+        "--tables-index",
+        type=Path,
+        default=None,
+        help=(
+            "Optional explicit Step 1 tables_index.json path for "
+            "continuation merging. Normally inferred from the canonical "
+            "crop root. Requires --merge-continuations."
+        ),
+    )
+
     return parser
 
 
@@ -1360,6 +1414,87 @@ def main() -> None:
             f"{result.retry_count}"
         )
         print(f"  Output: {result.output_path}")
+        return
+
+    if args.command == "export-resolved-csv":
+        if (
+            args.tables_index is not None
+            and not args.merge_continuations
+        ):
+            raise ValueError(
+                "--tables-index requires --merge-continuations."
+            )
+
+        print()
+        print("Resolved CSV export configuration:")
+        print(
+            f"  Reference matches: {args.reference_matches}"
+        )
+        print(
+            "  Reference resolution: "
+            f"{args.reference_resolution}"
+        )
+        print(
+            "  Merge continuations: "
+            f"{'yes' if args.merge_continuations else 'no'}"
+        )
+
+        if args.tables_index is not None:
+            print(
+                f"  Tables index: {args.tables_index}"
+            )
+
+        if args.out is not None:
+            print(f"  Output directory: {args.out}")
+
+        result = export_resolved_csvs(
+            args.reference_matches,
+            args.reference_resolution,
+            output_dir=args.out,
+            merge_continuations=args.merge_continuations,
+            tables_index_path=args.tables_index,
+        )
+
+        print()
+        print("Resolved CSV export completed:")
+        print(
+            "  Physical tables exported: "
+            f"{result.tables_exported}"
+        )
+        print(f"  Output directory: {result.output_dir}")
+        print(f"  Manifest: {result.manifest_path}")
+
+        if result.merge_continuations:
+            merged = sum(
+                1
+                for group in result.continuation_groups
+                if group.get("merge_status") == "merged"
+            )
+            incompatible = sum(
+                1
+                for group in result.continuation_groups
+                if group.get("merge_status") == "incompatible"
+            )
+            incomplete = sum(
+                1
+                for group in result.continuation_groups
+                if group.get("merge_status") == "incomplete"
+            )
+
+            print(
+                "  Continuation groups considered: "
+                f"{len(result.continuation_groups)}"
+            )
+            print(f"  Continuation groups merged: {merged}")
+            print(
+                "  Continuation groups incompatible: "
+                f"{incompatible}"
+            )
+            print(
+                "  Continuation groups incomplete: "
+                f"{incomplete}"
+            )
+
         return
 
     parser.print_help()

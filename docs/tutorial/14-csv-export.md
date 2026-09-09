@@ -1,50 +1,86 @@
-# Planned Stage 7: Resolved CSV Export
+# Step 7: Resolved CSV Export
 
 ## Goal
 
-Join resolved scholarly identities back onto relevant table cells and write
-final resolved CSV files for reference-like tables.
+Join Step 6 paper-level scholarly identities back onto the physical table
+rows linked in Step 5 and export final user-facing CSV files.
 
-## Input
+Step 7 is deterministic. It performs no new scholarly search or model
+inference.
 
-The planned input is prediction CSV or parsed table rows, Stage 5 reference
-matches, and the Stage 6 paper-level resolution registry.
-
-## Output
+## Inputs
 
 ```text
-resolved_reference_tables/
-  page_003_table_001_resolved.csv
+<reconstruction>/references/reference_matches.json
+<artifact-root>/references/reference_resolution.json
 ```
 
-## Module Contract
+## Physical resolved CSV export
 
-See {doc}`../data-contracts/resolved-csv`.
+```bash
+tabulus export-resolved-csv \
+  --reference-matches \
+  "$RECONSTRUCTION/references/reference_matches.json" \
+  --reference-resolution \
+  "$ARTIFACT_ROOT/references/reference_resolution.json"
+```
 
-## Default Implementation
+By default:
 
-This stage is retained in the legacy thesis workflow but is not yet
-implemented in the rebuilt `src/tabulus` library.
+```text
+<reconstruction>/
+  resolved_reference_tables/
+    <prediction-stem>_resolved.csv
+    resolved_tables.json
+```
 
-The target exporter must keep two CSV concepts separate:
+Prediction CSVs remain unchanged. Step 7 preserves physical rows and appends
+resolution metadata using JSON-array cells, so multi-reference citation
+cells remain losslessly aligned.
 
-- prediction CSV: reconstructed table before reference resolution or DOI
-  enrichment; used for table-quality evaluation
-- resolved CSV: final user-facing table after bibliography matching and
-  paper-level scholarly resolution
+## Continued tables
 
-Stage 7 is planned as a deterministic join and export step. Every relevant
-table cell/reference occurrence of the same bibliography index should receive
-the same resolved paper-level identity. Exact export
-columns, status semantics, and rejected-link handling remain part of the future
-export contract.
+Continued physical tables are not merged by default.
 
-Resolved CSV files are intended per relevant/reference-containing table.
-Original reference values and provenance should remain traceable in downstream
-export artifacts.
+```bash
+tabulus export-resolved-csv \
+  --reference-matches /path/to/reference_matches.json \
+  --reference-resolution /path/to/reference_resolution.json \
+  --merge-continuations
+```
+
+In the canonical layout, Tabulus infers `tables_index.json`. For a
+non-standard layout, add:
+
+```text
+--tables-index /path/to/tables_index.json
+```
+
+The merge uses explicit Step 1 continuation relationships and rechecks
+reconstructed-table compatibility. Incompatible or incomplete groups remain
+as separate physical resolved CSVs, with the reason recorded in
+`resolved_tables.json`.
+
+Successful logical merges are additional files beneath:
+
+```text
+resolved_reference_tables/merged/
+```
+
+Each merged row retains `tabulus_physical_table_id`.
 
 ## Verification
 
-The future step should be verified by checking that validated paper-level
-identities are joined consistently to all relevant occurrences and exported
-without changing reconstruction prediction CSVs.
+Verify that:
+
+1. physical resolved CSV row counts match their Step 2 predictions
+2. Step 2 prediction CSVs are unchanged
+3. every Step 5 linked bibliography index has a final Step 6 identity
+4. rejected resolutions remain represented
+5. multi-reference cells preserve positional JSON-array alignment
+6. continuation merging never removes physical resolved files
+7. merged rows retain their physical table provenance
+
+## Output contract
+
+See {doc}`../data-contracts/resolved-csv`.
