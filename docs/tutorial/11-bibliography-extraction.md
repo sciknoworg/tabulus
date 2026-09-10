@@ -3,7 +3,7 @@
 ## Goal
 
 Extract an ordered bibliography from the original scientific PDF using GROBID.
-Stage 4 is extraction only; it performs no Crossref, CORE, LLM, or
+Step 4 is extraction only; it performs no Crossref, CORE, LLM, or
 scholarly-identity resolution.
 
 Bibliography extraction is a PDF-level branch. It runs in parallel with the
@@ -32,7 +32,7 @@ original PDF
 selected_reference_tables.json + bibliography.json
       |
       v
-Stage 5 reference matching
+Step 5 reference matching
 ```
 
 ## Input
@@ -68,11 +68,11 @@ Missing scholarly metadata is not invented. Structured GROBID years take
 precedence; if no structured year exists, Tabulus recovers a year only when
 exactly one plausible year appears in the raw citation. Crossref enrichment,
 CORE lookup, LLM adjudication, and scholarly identity resolution are outside
-Stage 4.
+Step 4.
 
 ## Command Line
 
-The normal Stage 4 command is:
+The normal Step 4 command is:
 
 ```bash
 tabulus extract-bibliography \
@@ -100,7 +100,7 @@ tabulus extract-bibliography \
 ```
 
 The CLI processes one PDF per invocation. Collection-level orchestration is
-outside Stage 4.
+outside Step 4.
 
 ## Python API
 
@@ -140,7 +140,7 @@ http://localhost:8070
 
 The client appends `/api/processReferences` and sends the original PDF as a
 multipart request. It requests raw citations and disables GROBID citation
-consolidation so external metadata lookup remains outside Stage 4.
+consolidation so external metadata lookup remains outside Step 4.
 
 Check that GROBID is reachable before running extraction:
 
@@ -169,8 +169,8 @@ The implemented bibliography package is `src/tabulus/bibliography/`:
 - `output.py`: `references/bibliography.json` writer
 - `pipeline.py`: one-PDF extraction pipeline
 
-Raw reference text is preserved. DOI extraction at this stage is deterministic
-only when a DOI already appears in the extracted bibliography text. Stage 4
+Raw reference text is preserved. DOI extraction at this step is deterministic
+only when a DOI already appears in the extracted bibliography text. Step 4
 must not query Crossref or other metadata services.
 
 ## Boundary
@@ -181,9 +181,10 @@ Bibliography extraction is separate from:
   as reference-like or non-reference-like
 - reference matching, which combines selected reference-like table rows with
   `references/bibliography.json`
-- Stage 6 scholarly reference resolution, which validates paper-level
+- Step 6 scholarly reference resolution, which validates paper-level
   identities in a separate artifact
-- planned Stage 7 resolved export, which would write separate downstream outputs
+- Step 7 resolved export, which writes separate downstream CSV outputs without
+  mutating bibliography extraction evidence
 
 Raw reconstruction prediction CSVs remain untouched.
 

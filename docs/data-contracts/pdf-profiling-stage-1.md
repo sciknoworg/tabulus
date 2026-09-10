@@ -1,10 +1,10 @@
-# PDF Profiling / Stage 1
+# PDF Profiling / Step 1
 
-Stage 1 owns the boundary between the original PDF, MinerU-native profiling
+Step 1 owns the boundary between the original PDF, MinerU-native profiling
 artifacts, and the normalized Tabulus table-crop handoff.
 
 MinerU output files are upstream profiler artifacts. Tabulus-owned normalized
-contracts preserve the stable information that later stages consume.
+contracts preserve the stable information that later steps consume.
 
 ```{toctree}
 :maxdepth: 1

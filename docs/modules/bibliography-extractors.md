@@ -40,7 +40,7 @@ The implemented modules are:
 - `pipeline.py`
 
 Bibliography extraction must not call Crossref or perform external DOI
-resolution. External scholarly-identity lookup belongs to Stage 6 after
+resolution. External scholarly-identity lookup belongs to Step 6 after
 reference matching.
 
 ## Planned Fallback

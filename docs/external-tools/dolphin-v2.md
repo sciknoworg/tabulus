@@ -30,7 +30,7 @@ architecture is Qwen2.5-VL, implemented through the Transformers class
 `Qwen2_5_VLForConditionalGeneration`. Tabulus is not substituting a generic
 Qwen checkpoint for Dolphin-v2.
 
-Dolphin-v2 consumes canonical MinerU table crops through the shared Stage 2 adapter contract. It produces native HTML table output that Tabulus preserves before shared parsing.
+Dolphin-v2 consumes canonical MinerU table crops through the shared Step 2 adapter contract. It produces native HTML table output that Tabulus preserves before shared parsing.
 
 ## Invocation
 

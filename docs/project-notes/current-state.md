@@ -5,14 +5,13 @@ library in this repository. For normal usage, start with
 {doc}`../tutorial/00-overview` and the installation page for your machine.
 
 The current `src/tabulus` package implements the persisted reference-processing
-pipeline through Stage 6 paper-level scholarly reference resolution. Stage 7
-resolved export, run-report/QA bundle generation, continued-table merging,
+pipeline through Step 7 resolved CSV export. Run-report/QA bundle generation,
 standalone scientific table normalization, and complete `tabulus run`
 orchestration are not implemented in this checkout.
 
-## Runnable Stages
+## Runnable Steps
 
-The rebuilt library currently exposes standalone command-line stages:
+The rebuilt library currently exposes standalone command-line steps:
 
 ```bash
 tabulus profile --pdf /path/to/paper.pdf --backend pipeline
@@ -38,11 +37,15 @@ tabulus resolve-references \
   --bibliography /path/to/artifact-root/references/bibliography.json \
   --reference-matches /path/to/reconstruction/references/reference_matches.json \
   --out /path/to/artifact-root
+
+tabulus export-resolved-csv \
+  --reference-matches /path/to/reconstruction/references/reference_matches.json \
+  --reference-resolution /path/to/artifact-root/references/reference_resolution.json
 ```
 
-Each command writes a persisted artifact that the next stage can inspect or
-consume. The current CLI does not expose a Stage 7 export command or complete
-`tabulus run` orchestrator.
+Each command writes a persisted artifact that the next step can inspect or
+consume. The current CLI does not expose a complete `tabulus run`
+orchestrator.
 
 ## Implemented
 
@@ -56,7 +59,7 @@ consume. The current CLI does not expose a Stage 7 export command or complete
   directory without rerunning MinerU.
 
 `tabulus.table_ocr`
-: Stage 2 table reconstruction over canonical MinerU crops. The package
+: Step 2 table reconstruction over canonical MinerU crops. The package
   provides the adapter protocol, lazy registry, batch runner, shared
   HTML/Markdown parser, deterministic OTSL-to-HTML normalization, native and
   parsed artifact writing, prediction CSV export, and batch summary manifests.
@@ -83,23 +86,30 @@ consume. The current CLI does not expose a Stage 7 export command or complete
   strings only when already present in that extracted text, preserves optional
   structured fields, and writes `references/bibliography.json`.
 
-Stage 5 reference matching
+Step 5 reference matching
 : Deterministic linking of selected reference-like table cells to entries in
   `references/bibliography.json`. Matching preserves row-level provenance,
   unmatched tokens, ambiguous candidates, and skipped-table diagnostics in
   `references/reference_matches.json` without modifying reconstruction
   prediction CSVs.
 
-Stage 6 reference resolution
+Step 6 reference resolution
 : Paper-level scholarly reference resolution through
-  `tabulus resolve-references`. Stage 6 consumes the union of Stage 5-linked
+  `tabulus resolve-references`. Step 6 consumes the union of Step 5-linked
   bibliography indices, deduplicates by bibliography index, retrieves Crossref
   and CORE candidates, uses bounded LLM adjudication when deterministic
   evidence is insufficient, applies a final deterministic admissibility gate,
   checkpoints completed references, and writes
   `references/reference_resolution.json` only after all targets complete.
 
-## Stage 2 Adapter Set
+Step 7 resolved CSV export
+: Deterministic joining of Step 5 physical-row matches with the Step 6
+  paper-level registry through `tabulus export-resolved-csv`. Step 7 performs
+  no network lookup or scholarly re-resolution. It writes physical resolved
+  CSVs by default and can optionally materialize safe continuation-aware merged
+  CSVs from Step 1 continuation topology while retaining the physical outputs.
+
+## Step 2 Adapter Set
 
 The current registered crop-consuming adapters are maintained in
 {doc}`../tutorial/08-table-ocr`. Adapter-specific model revisions, prompts,
@@ -132,10 +142,12 @@ GPU model execution. It covers:
 - reference-table classification heuristics and manifest writing
 - GROBID TEI bibliography parsing, HTTP request construction, and bibliography
   artifact writing
-- deterministic Stage 5 matching behavior and artifact writing
-- Stage 6 target collection, Crossref/CORE candidate normalization,
+- deterministic Step 5 matching behavior and artifact writing
+- Step 6 target collection, Crossref/CORE candidate normalization,
   deterministic scoring, bounded LLM contract validation, failover,
   checkpointing, and final artifact writing
+- Step 7 deterministic CSV enrichment, resolved table manifests, and optional
+  conservative continuation merging
 
 Real-model GPU validations are operational engineering checks. They confirm
 that adapters can load, run through the Tabulus CLI, and produce the expected
@@ -186,7 +198,7 @@ Current reference matching writes by default:
 This artifact is produced from selected reference-like tables and
 `references/bibliography.json`.
 
-Current Stage 6 reference resolution writes:
+Current Step 6 reference resolution writes:
 
 ```text
 <artifact-root>/
@@ -197,13 +209,26 @@ Current Stage 6 reference resolution writes:
 A resumable in-progress run may also write
 `references/reference_resolution.checkpoint.json` under the same artifact root.
 
+Current Step 7 resolved export writes by default:
+
+```text
+<reconstruction-directory>/
+  resolved_reference_tables/
+    <prediction-stem>_resolved.csv
+    resolved_tables.json
+```
+
+With `--merge-continuations`, successful logical continuation merges are
+additional files under `resolved_reference_tables/merged/`; physical resolved
+CSVs are always retained.
+
 For the full filesystem contract, see {doc}`../data-contracts/run-directory`.
 
 ## Reference-Processing Architecture
 
-Stage 3 table selection and Stage 4 bibliography extraction are parallel
-branches from the paper. Stage 5 matches table-cell references to bibliography
-positions. Stage 6 resolves the union of matched bibliography indices once at
+Step 3 table selection and Step 4 bibliography extraction are parallel
+branches from the paper. Step 5 matches table-cell references to bibliography
+positions. Step 6 resolves the union of matched bibliography indices once at
 paper scope:
 
 ```text
@@ -212,41 +237,39 @@ PAPER
   +--> table branch
   |      |
   |      v
-  |    Stage 3 selected reference tables
+  |    Step 3 selected reference tables
   |      |
   |      v
-  |    Stage 5 reference_matches.json
+  |    Step 5 reference_matches.json
   |
   +--> bibliography branch
          |
          v
-       Stage 4 bibliography.json
+       Step 4 bibliography.json
 
 union of matched bibliography indices
   |
   v
-Stage 6 reference_resolution.json
+Step 6 reference_resolution.json
   |
   v
-Stage 7 join / resolved export (planned)
+Step 7 resolved_reference_tables/
 ```
 
-Crossref, CORE, and LLM providers are used only in Stage 6. Stage 4 remains
-GROBID extraction, and Stage 5 remains deterministic offline matching.
+Crossref, CORE, and LLM providers are used only in Step 6. Step 4 remains
+GROBID extraction, and Step 5 remains deterministic offline matching.
 
-Stage 7 remains planned: it should deterministically join validated
-paper-level identities back to relevant table cells/reference occurrences and
-produce downstream exports.
+Step 7 is deterministic export. It joins validated, rejected, and unmatched
+reference evidence back to physical resolved CSV rows and can optionally
+materialize compatible continuation groups without deleting physical outputs.
 
 ## Not Yet Rebuilt
 
 The following remain planned or historical in the rebuilt library unless a
 future implementation changes this page:
 
-- final resolved CSV generation
 - run report / QA bundle generation
 - full `tabulus run` orchestration
-- continued-table merging
 - standalone scientific table normalization command
 - corpus-scale bibliography validation
 - Kreuzberg fallback

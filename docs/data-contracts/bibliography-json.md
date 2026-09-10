@@ -1,8 +1,8 @@
 # bibliography.json
 
 `references/bibliography.json` records normalized bibliography entries from the
-PDF-level bibliography branch. Stage 4 runs GROBID on the original PDF and
-writes ordered extraction evidence for Stage 5 reference matching and Stage 6
+PDF-level bibliography branch. Step 4 runs GROBID on the original PDF and
+writes ordered extraction evidence for Step 5 reference matching and Step 6
 paper-level scholarly reference resolution.
 
 The bibliography branch reads the original scientific PDF. It does not consume
@@ -41,7 +41,7 @@ text.
   `grobid`.
 
 `entries[].index`
-: One-based bibliography position in parsed GROBID TEI order. Stage 5's
+: One-based bibliography position in parsed GROBID TEI order. Step 5's
   `numeric_position` method uses this order; it is not a scholarly identifier
   or a position inferred from external metadata.
 
@@ -89,12 +89,12 @@ text.
 
 ## Boundary
 
-Stage 4 is extraction only. It does not call Crossref, CORE, LLM providers,
+Step 4 is extraction only. It does not call Crossref, CORE, LLM providers,
 embedding services, search engines, or any scholarly-identity resolver.
 
-Downstream stages should treat entry order, raw reference strings, and
-structured GROBID fields as immutable extraction evidence. Stage 5 links
+Downstream steps should treat entry order, raw reference strings, and
+structured GROBID fields as immutable extraction evidence. Step 5 links
 table-cell references to these bibliography positions without mutating the
-bibliography artifact. Stage 6 uses the linked bibliography entries as source
+bibliography artifact. Step 6 uses the linked bibliography entries as source
 evidence while retrieving and validating scholarly candidates in a separate
 paper-level artifact.

@@ -24,7 +24,7 @@ The registered Tabulus adapter is:
 granite-vision-table
 ```
 
-The adapter consumes canonical MinerU table crops through the shared Stage 2
+The adapter consumes canonical MinerU table crops through the shared Step 2
 adapter contract. The image is sent directly to Granite Vision with the OTSL
 prompt, and Tabulus preserves the generated sequence before conversion and
 shared parsing.

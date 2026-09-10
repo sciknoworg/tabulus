@@ -23,7 +23,7 @@ The registered Tabulus adapter is:
 glm-ocr
 ```
 
-The adapter consumes canonical MinerU table crops through the shared Stage 2 adapter contract and emits native HTML table output for shared parsing. Tabulus does not invoke the GLM-OCR SDK document pipeline.
+The adapter consumes canonical MinerU table crops through the shared Step 2 adapter contract and emits native HTML table output for shared parsing. Tabulus does not invoke the GLM-OCR SDK document pipeline.
 
 ## Invocation
 

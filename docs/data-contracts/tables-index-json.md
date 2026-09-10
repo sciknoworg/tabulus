@@ -60,7 +60,7 @@ Downstream reconstruction commands should treat `tables_index.json` as the autho
 
 ## MinerU Handoff
 
-The current clean MinerU handoff uses MinerU as the canonical table-localization and crop-generation stage:
+The current clean MinerU handoff uses MinerU as the canonical table-localization and crop-generation step:
 
 ```text
 <document-name>_content_list.json

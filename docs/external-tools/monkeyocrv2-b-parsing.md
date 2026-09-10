@@ -7,7 +7,7 @@
 ## Role In Tabulus
 
 MonkeyOCRv2-B-Parsing is a vision-language table reconstruction candidate used
-by Tabulus for Stage 2 reconstruction from canonical MinerU table crops. The
+by Tabulus for Step 2 reconstruction from canonical MinerU table crops. The
 Tabulus adapter uses MonkeyOCRv2's direct table-recognition task rather than
 the full document-layout pipeline.
 
@@ -27,7 +27,7 @@ The exact model checkpoint used by Tabulus is
 `zenosai/MonkeyOCRv2-B-Parsing` at revision
 `2419139b7bcd3fda2689b2a83167172afba91c8b`.
 
-MonkeyOCRv2-B-Parsing consumes canonical MinerU table crops through the shared Stage 2 adapter contract. Tabulus preserves its OTSL sequence before deterministic conversion and shared parsing.
+MonkeyOCRv2-B-Parsing consumes canonical MinerU table crops through the shared Step 2 adapter contract. Tabulus preserves its OTSL sequence before deterministic conversion and shared parsing.
 
 ## Invocation
 
@@ -114,7 +114,7 @@ and then sends the resulting HTML to the existing shared table parser:
 tabulus.table_ocr.parsing:parse_table_text
 ```
 
-There is no MonkeyOCRv2-specific semantic repair stage. Tabulus does not
+There is no MonkeyOCRv2-specific semantic repair pass. Tabulus does not
 correct cell contents, infer missing structure from domain knowledge, merge
 continued tables, or perform reference-resolution heuristics during
 reconstruction.

@@ -7,7 +7,7 @@
 
 ## Role In Tabulus
 
-HunyuanOCR-1.5 is a document vision-language model used by Tabulus for Stage 2
+HunyuanOCR-1.5 is a document vision-language model used by Tabulus for Step 2
 table reconstruction from canonical MinerU table crops. The Tabulus adapter
 uses the model's dedicated table task through direct Hugging Face Transformers
 inference.
@@ -29,7 +29,7 @@ The exact model checkpoint used by Tabulus is `tencent/HunyuanOCR` at revision
 loaded model class is `HunYuanVLForConditionalGeneration` and that the model
 type is `hunyuan_vl`.
 
-HunyuanOCR-1.5 consumes canonical MinerU table crops through the shared Stage 2
+HunyuanOCR-1.5 consumes canonical MinerU table crops through the shared Step 2
 adapter contract. The implemented Tabulus adapter uses direct Transformers
 inference and preserves generated table HTML before shared parsing.
 
@@ -113,7 +113,7 @@ clean HTML is passed to the existing shared parser:
 tabulus.table_ocr.parsing:parse_table_text
 ```
 
-There is no HunyuanOCR-specific structural or semantic normalization stage.
+There is no HunyuanOCR-specific structural or semantic normalization pass.
 If multiple HTML tables or structured tables are produced, Tabulus preserves
 them independently and does not arbitrarily select, collapse, concatenate, or
 merge them.

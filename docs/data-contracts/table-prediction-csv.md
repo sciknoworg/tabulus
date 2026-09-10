@@ -2,7 +2,7 @@
 
 A table prediction CSV is the reconstructed table before reference resolution or DOI enrichment.
 
-It is the artifact compared against a manually curated ground-truth CSV during table-reconstruction evaluation. It must not be overwritten by later enrichment stages.
+It is the artifact compared against a manually curated ground-truth CSV during table-reconstruction evaluation. It must not be overwritten by later enrichment steps.
 
 ```text
 normalized reconstruction
@@ -37,8 +37,8 @@ Filename stems preserve the physical crop identity. For example:
 page_006_table_001.csv
 ```
 
-means page 6 and Tabulus physical `table_id` 1. The `table_id` is derived from the MinerU discovery sequence and is not necessarily the table number printed in the scientific article. Each physical MinerU crop remains independent through reconstruction; continued-table merging is not currently performed at this stage.
+means page 6 and Tabulus physical `table_id` 1. The `table_id` is derived from the MinerU discovery sequence and is not necessarily the table number printed in the scientific article. Each physical MinerU crop remains independent through reconstruction; continued-table merging is not performed in Step 2.
 
 Do not confuse prediction CSV files with {doc}`resolved-csv`. A resolved CSV
-is a planned Stage 7 user-facing artifact for a reference-containing table
-after bibliography matching and paper-level scholarly reference resolution.
+is a Step 7 user-facing derivative for a reference-containing table after
+bibliography matching and paper-level scholarly reference resolution.

@@ -1,17 +1,17 @@
-# Stage 6: Scholarly Reference Resolution
+# Step 6: Scholarly Reference Resolution
 
 ## Goal
 
-Resolve bibliography entries linked by Stage 5 to conservative scholarly
-identities at paper scope. Stage 6 consumes Stage 4 extraction evidence and
-Stage 5 table-cell links, retrieves scholarly metadata from external services,
+Resolve bibliography entries linked by Step 5 to conservative scholarly
+identities at paper scope. Step 6 consumes Step 4 extraction evidence and
+Step 5 table-cell links, retrieves scholarly metadata from external services,
 and writes one paper-level registry at:
 
 ```text
 <artifact-root>/references/reference_resolution.json
 ```
 
-Stage 6 does not modify `references/bibliography.json` or
+Step 6 does not modify `references/bibliography.json` or
 `references/reference_matches.json`. It resolves each unique bibliography
 index once for a paper, even when several cells, selected tables, or
 reconstruction adapters point to the same index.
@@ -22,34 +22,34 @@ PAPER
   +--> table branch
   |      |
   |      v
-  |    Stage 3 selected_reference_tables.json
+  |    Step 3 selected_reference_tables.json
   |      |
   |      v
-  |    Stage 5 reference_matches.json
+  |    Step 5 reference_matches.json
   |
   +--> bibliography branch
          |
          v
-       Stage 4 bibliography.json
+       Step 4 bibliography.json
 
-union of Stage 5 matched bibliography indices
+union of Step 5 matched bibliography indices
   |
   v
-Stage 6 reference_resolution.json
+Step 6 reference_resolution.json
   |
   v
-Stage 7 join / resolved export (planned)
+Step 7 resolved CSV export
 ```
 
-Stage 4 is extraction. Stage 5 is deterministic table-cell to bibliography
-position matching. Stage 6 is scholarly-identity resolution.
+Step 4 is extraction. Step 5 is deterministic table-cell to bibliography
+position matching. Step 6 is scholarly-identity resolution.
 
 ## Inputs
 
 Required inputs:
 
-- Stage 4 {doc}`../data-contracts/bibliography-json`
-- at least one Stage 5 {doc}`../data-contracts/reference-matches-json` artifact
+- Step 4 {doc}`../data-contracts/bibliography-json`
+- at least one Step 5 {doc}`../data-contracts/reference-matches-json` artifact
   for the same paper
 - an artifact root passed through `--out`
 
@@ -59,17 +59,17 @@ Optional input:
   body-text citation contexts extracted from MinerU content. When omitted,
   document context is disabled.
 
-Stage 6 collects `matched_reference_indices` from all supplied Stage 5
+Step 6 collects `matched_reference_indices` from all supplied Step 5
 artifacts, validates that every index exists in `bibliography.json`, unions and
 deduplicates the set, and resolves targets in bibliography-index order.
 
 ## Resolution Workflow
 
-For each unique linked bibliography entry, Stage 6 runs this conservative
+For each unique linked bibliography entry, Step 6 runs this conservative
 workflow:
 
 ```text
-Stage 4 bibliography evidence
+Step 4 bibliography evidence
   |
   v
 existing DOI Crossref lookup, if a DOI was extracted
@@ -127,7 +127,7 @@ It may only return one of these decisions:
 For `select_candidate`, the model must choose a `candidate_id` supplied by
 Tabulus. It may not invent a DOI, title, author, venue, publication, or
 scholarly entity. For `retry_search`, it may propose one improved search query.
-If that retry does not lead to deterministic validation, Stage 6 allows one
+If that retry does not lead to deterministic validation, Step 6 allows one
 final LLM adjudication over the combined initial and retry candidates. A second
 retry request is rejected because the retry budget is exhausted.
 
@@ -141,15 +141,15 @@ operational failures.
 The final artifact contains only final scientific statuses:
 
 `validated_with_doi`
-: Stage 6 assigned a validated scholarly identity and established a canonical
+: Step 6 assigned a validated scholarly identity and established a canonical
   DOI.
 
 `validated_without_doi`
-: Stage 6 assigned a validated scholarly identity for which no DOI was
+: Step 6 assigned a validated scholarly identity for which no DOI was
   established.
 
 `rejected`
-: Stage 6 had insufficient evidence to assign a safe scholarly identity under
+: Step 6 had insufficient evidence to assign a safe scholarly identity under
   the current single-work resolution model.
 
 Operational failures are different from `rejected`. Provider outages, invalid
@@ -160,7 +160,7 @@ scientific rejection decisions.
 
 ## Configuration
 
-Stage 6 uses Crossref, CORE, and an OpenAI-compatible LLM endpoint. The CLI
+Step 6 uses Crossref, CORE, and an OpenAI-compatible LLM endpoint. The CLI
 reads secrets from environment variables and prints only environment-variable
 names for API keys. It does not print API-key values.
 
@@ -184,7 +184,7 @@ Optional fallback LLM configuration:
 
 Fallback configuration is all-or-nothing. If any fallback base URL, model, or
 API-key value is supplied, all three must be present. When fallback
-configuration is absent, Stage 6 uses only the primary LLM provider. When it is
+configuration is absent, Step 6 uses only the primary LLM provider. When it is
 present, every adjudication starts with the primary provider and falls back for
 that adjudication only after the primary provider fails its bounded attempts.
 The next adjudication starts with the primary provider again.
@@ -195,7 +195,7 @@ the primary client and `openrouter` for the fallback client.
 
 ## Single-Paper Execution
 
-Run Stage 6 with explicit Stage 5 artifacts when you already know which
+Run Step 6 with explicit Step 5 artifacts when you already know which
 reconstruction outputs belong to the paper:
 
 ```bash
@@ -216,7 +216,7 @@ tabulus resolve-references \
   --out /path/to/artifact-root
 ```
 
-Use paper-level discovery when the Stage 5 artifacts follow the supported
+Use paper-level discovery when the Step 5 artifacts follow the supported
 experiment layout:
 
 ```text
@@ -245,7 +245,7 @@ entries, retry-search count, and final output path.
 
 The CLI does not provide a native multi-paper `resolve-references` batch mode.
 Process multiple papers by orchestrating independent single-paper invocations.
-Each paper keeps its own Stage 4 bibliography, Stage 5 match artifacts, Stage 6
+Each paper keeps its own Step 4 bibliography, Step 5 match artifacts, Step 6
 checkpoint, and final paper-level registry.
 
 A generic shell pattern is:
@@ -272,7 +272,7 @@ configuration. Other completed papers do not need to be rerun.
 
 ## Checkpointing And Reproducibility
 
-During a run, Stage 6 writes:
+During a run, Step 6 writes:
 
 ```text
 <artifact-root>/references/reference_resolution.checkpoint.json
@@ -286,9 +286,9 @@ After successful final writing, the checkpoint is removed.
 
 The checkpoint fingerprint covers:
 
-- Stage 6 source files in `src/tabulus/reference_resolution/`
-- the Stage 4 bibliography artifact contents
-- the set of Stage 5 reference-match artifact contents, independent of the
+- Step 6 source files in `src/tabulus/reference_resolution/`
+- the Step 4 bibliography artifact contents
+- the set of Step 5 reference-match artifact contents, independent of the
   order in which they were supplied
 - the optional reference-context artifact contents, or the disabled-context
   marker
@@ -309,6 +309,6 @@ including:
 - first and optional second LLM response provenance
 - retry-search state and retry Crossref/CORE assessments when used
 
-Stage 7 remains unimplemented. Its planned responsibility is to join the
-validated paper-level identities back to every relevant table cell or reference
-occurrence and produce downstream export artifacts.
+Step 7 consumes this paper-level registry together with Step 5 matches and
+exports resolved CSV files without rerunning scholarly lookup. See
+{doc}`14-csv-export` and {doc}`../data-contracts/resolved-csv`.

@@ -1,6 +1,6 @@
 # Reference-Table Classification Quality
 
-Reference-table classification quality concerns Stage 3: routing reconstructed
+Reference-table classification quality concerns Step 3: routing reconstructed
 tables into or out of the reference-processing branch. It is separate from the
 production classifier itself.
 
@@ -41,7 +41,7 @@ classification scoring API.
 
 ## Scored Artifact
 
-A classifier evaluator would score Stage 3 table-level decisions, especially
+A classifier evaluator would score Step 3 table-level decisions, especially
 `is_reference_table`, against curated labels. The scored artifact is the
 classification manifest or selected-table manifest, not the prediction CSV
 content itself and not later reference-matching or scholarly-resolution output.

@@ -7,7 +7,7 @@
 
 ## Role In Tabulus
 
-dots.mocr is a document vision-language model used by Tabulus for Stage 2
+dots.mocr is a document vision-language model used by Tabulus for Step 2
 table reconstruction from canonical MinerU table crops. The Tabulus adapter
 uses the active dots.mocr layout prompt through direct Hugging Face
 Transformers inference.
@@ -36,7 +36,7 @@ pinned remote-code configuration and model classes:
 - image processor: `Qwen2VLImageProcessorFast`
 - tokenizer: `Qwen2TokenizerFast`
 
-dots.mocr consumes canonical MinerU table crops through the shared Stage 2
+dots.mocr consumes canonical MinerU table crops through the shared Step 2
 adapter contract. The adapter uses direct Transformers inference and preserves
 its native layout-aware response before extracting table content through the
 common parser.
@@ -124,7 +124,7 @@ dots.mocr performs model-native layout detection inside the supplied canonical
 crop and can emit bounding boxes for detected layout elements. Tabulus retains
 those bounding boxes for provenance only.
 
-They are not a second crop-generation stage, and Tabulus does not use them to
+They are not a second crop-generation step, and Tabulus does not use them to
 recrop the canonical image. The native artifact records:
 
 - `bbox_policy="provenance_only"`
@@ -199,7 +199,7 @@ reconstruction-accuracy claims.
 
 This adapter reconstructs one canonical MinerU crop at a time. It
 does not independently locate or crop tables from the source PDF, run an
-external crop-generation stage, semantically correct cell contents, repair
+external crop-generation step, semantically correct cell contents, repair
 malformed JSON, merge continued tables, classify reference tables, extract
 bibliographies, match references, resolve DOI values, or write final resolved
 CSV files. Model-native multimodal image processing is allowed, but it is

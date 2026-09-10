@@ -1,10 +1,10 @@
 # reference_matches.json
 
 `references/reference_matches.json` records deterministic row-level linkages
-between Stage 3-selected reference-like table cells and entries in
+between Step 3-selected reference-like table cells and entries in
 `references/bibliography.json`.
 
-Stage 5 consumes `selected_reference_tables.json` and
+Step 5 consumes `selected_reference_tables.json` and
 `references/bibliography.json`. It reads parsed table artifacts through
 `source_parsed`; prediction CSV paths may be retained as provenance, but raw
 prediction CSV files are not modified.
@@ -81,7 +81,7 @@ prediction CSV files are not modified.
   the current implementation.
 
 `reference_tables_selected`
-: Number of Stage 3 selected reference-like tables.
+: Number of Step 3 selected reference-like tables.
 
 `reference_tables_checked`
 : Number of selected tables that were safe to match.
@@ -109,7 +109,7 @@ prediction CSV files are not modified.
 : Resolved parsed-table artifact path used for matching.
 
 `source_prediction`
-: Prediction CSV path retained from Stage 3 provenance.
+: Prediction CSV path retained from Step 3 provenance.
 
 `reference_column_index`
 : Zero-based index of the detected reference column, or `null` when no
@@ -138,13 +138,13 @@ prediction CSV files are not modified.
 : Whether at least one candidate bibliography entry was linked.
 
 `matched_reference_indices`
-: Bibliography entry indices linked by Stage 5.
+: Bibliography entry indices linked by Step 5.
 
 `matched_references`
 : Raw bibliography strings from `references/bibliography.json`.
 
 `doi`
-: DOI values already present in matched bibliography entries. Stage 5 performs
+: DOI values already present in matched bibliography entries. Step 5 performs
   no external DOI lookup.
 
 `match_provenance`
@@ -184,7 +184,7 @@ For example:
 : Physical table identifier from the selected manifest.
 
 `source_status`
-: Reconstruction status retained from Stage 3 provenance.
+: Reconstruction status retained from Step 3 provenance.
 
 `source_parsed`
 : Parsed artifact path from the selected manifest.
@@ -222,11 +222,12 @@ and must not be overwritten by reference matching.
 
 ## Downstream Use
 
-Stage 5 is table-cell level. Multiple cells, selected tables, and
-reconstruction outputs may link to the same bibliography index. Stage 6
+Step 5 is table-cell level. Multiple cells, selected tables, and
+reconstruction outputs may link to the same bibliography index. Step 6
 aggregates `matched_reference_indices` for a paper, deduplicates by
 bibliography index, and resolves each `(paper, bibliography_index)` once.
 
-The Stage 6 paper-level registry is
-`references/reference_resolution.json`. Stage 7 remains planned: it will join
-resolved identities back to every relevant table cell/reference occurrence.
+The Step 6 paper-level registry is
+`references/reference_resolution.json`. Step 7 consumes that registry together
+with this Step 5 artifact and joins resolved identities back to the matched
+physical table rows without rerunning reference resolution.

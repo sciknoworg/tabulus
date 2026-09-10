@@ -2,12 +2,12 @@
 
 Bibliography/reference extraction quality evaluates whether extracted
 bibliography entries match curated bibliography entries. It is separate from
-table reconstruction, Stage 5 table-cell-to-bibliography matching, DOI
-validation, and Stage 6 scholarly-identity resolution.
+table reconstruction, Step 5 table-cell-to-bibliography matching, DOI
+validation, and Step 6 scholarly-identity resolution.
 
-In the production pipeline, Stage 4 runs GROBID on the original PDF and writes
+In the production pipeline, Step 4 runs GROBID on the original PDF and writes
 `references/bibliography.json`. That artifact is immutable extraction evidence
-for downstream stages. It is not a scholarly-resolution artifact.
+for downstream steps. It is not a scholarly-resolution artifact.
 
 ## Current Implementation Status
 
@@ -65,7 +65,7 @@ entries. It does not score:
 - whether a reconstructed table was selected for reference processing;
 - whether a table cell was linked to the intended bibliography index;
 - whether a DOI was validated;
-- whether Stage 6 accepted a scholarly identity;
+- whether Step 6 accepted a scholarly identity;
 - resolution coverage across paper-level referenced bibliography entries.
 
 Evaluation should read extraction artifacts and write separate metrics. It

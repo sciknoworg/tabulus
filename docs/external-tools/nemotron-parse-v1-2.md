@@ -8,7 +8,7 @@
 ## Role In Tabulus
 
 NVIDIA Nemotron Parse v1.2 is a document vision-language model used by
-Tabulus for Stage 2 table reconstruction from canonical MinerU table crops.
+Tabulus for Step 2 table reconstruction from canonical MinerU table crops.
 The Tabulus adapter uses the model directly through Hugging Face Transformers
 and does not run a separate OCR engine or a page-layout pipeline.
 
@@ -33,7 +33,7 @@ loaded C-RADIO code resolves to revision
 `0d8f4c18c877166eda07ddae1386bcad256b7a6a`.
 
 NVIDIA Nemotron Parse v1.2 consumes canonical MinerU table crops through the
-shared Stage 2 adapter contract. Generated bounding boxes are preserved as
+shared Step 2 adapter contract. Generated bounding boxes are preserved as
 provenance only and are not used to recrop the image.
 
 ## Invocation
@@ -111,7 +111,7 @@ existing shared parser:
 tabulus.table_ocr.parsing:parse_table_text
 ```
 
-There is no Nemotron-specific semantic repair stage. Tabulus does not correct
+There is no Nemotron-specific semantic repair pass. Tabulus does not correct
 cell contents, interpret bounding boxes as a new crop, infer missing structure
 from domain knowledge, merge continued tables, or perform reference-resolution
 heuristics during reconstruction.

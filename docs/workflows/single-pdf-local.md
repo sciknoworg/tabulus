@@ -93,6 +93,7 @@ tabulus run --pdf C:\papers\INPUT.pdf --runs-root C:\runs
 `tabulus run` is not implemented yet. The new library has registered
 table-reconstruction adapters, the `tabulus reconstruct-tables` batch CLI,
 reference-table classification, the GROBID-backed
-`tabulus extract-bibliography` CLI, deterministic Stage 5 reference matching,
-and Stage 6 paper-level scholarly reference resolution. Stage 7 resolved
-export and full run reporting remain unimplemented in this repository.
+`tabulus extract-bibliography` CLI, deterministic Step 5 reference matching,
+Step 6 paper-level scholarly reference resolution, and deterministic Step 7
+resolved CSV export. Full run reporting remains unimplemented in this
+repository.

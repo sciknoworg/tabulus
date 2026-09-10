@@ -4,9 +4,9 @@ An end-to-end runner should only orchestrate stable standalone components.
 
 The rebuilt library now provides standalone CLI commands for profiling,
 table-crop export, batch table reconstruction, bibliography extraction,
-reference matching, and Stage 6 paper-level scholarly reference resolution. It
-does not yet provide a complete end-to-end `tabulus run` command. This page
-describes the target workflow shape.
+reference matching, Step 6 paper-level scholarly reference resolution, and
+Step 7 resolved CSV export. It does not yet provide a complete end-to-end
+`tabulus run` command. This page describes the target workflow shape.
 
 ## Rule
 
@@ -42,6 +42,10 @@ tabulus resolve-references \
   --bibliography /data/runs/INPUT/references/bibliography.json \
   --reference-matches /data/papers/tabulus-output/table-crops/INPUT/reconstructions/paddleocr-vl/references/reference_matches.json \
   --out /data/runs/INPUT
+
+tabulus export-resolved-csv \
+  --reference-matches /data/papers/tabulus-output/table-crops/INPUT/reconstructions/paddleocr-vl/references/reference_matches.json \
+  --reference-resolution /data/runs/INPUT/references/reference_resolution.json
 ```
 
 `tabulus profile` already exports the canonical table-crop handoff by default, so `export-table-crops` is mainly for regenerating the handoff from an existing MinerU run.
@@ -64,7 +68,7 @@ runs/<paper>/
   tables/crops/                      canonical table-crop handoff
   tables/reconstructions/<adapter>/  native, parsed, and prediction artifacts
   references/                        bibliography, reference matches, and reference resolution
-  resolved_reference_tables/         planned DOI-enriched CSV files
+  resolved_reference_tables/         Step 7 resolved physical CSV files
   evaluation/                        metrics and comparison reports
   report/                            run summary and QA bundle
 ```

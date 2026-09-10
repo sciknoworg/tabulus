@@ -2,20 +2,20 @@
 
 ## Goal
 
-Stage 5 links reference cells in Stage 3-selected reconstructed tables to
-positions in the Stage 4 bibliography artifact. This is deterministic
+Step 5 links reference cells in Step 3-selected reconstructed tables to
+positions in the Step 4 bibliography artifact. This is deterministic
 table-cell-to-bibliography-position matching.
 
 This is where the table-processing branch and bibliography branch converge:
 
 ```text
-Stage 3: selected_reference_tables.json
+Step 3: selected_reference_tables.json
           \
            \
-            -> Stage 5 reference matching
+            -> Step 5 reference matching
            /
           /
-Stage 4: references/bibliography.json
+Step 4: references/bibliography.json
 
             |
             v
@@ -25,16 +25,16 @@ references/reference_matches.json
 
 ## Input
 
-Stage 5 requires two files:
+Step 5 requires two files:
 
 1. `selected_reference_tables.json`
-   : The Stage 3 selection manifest. It identifies tables classified as
+   : The Step 3 selection manifest. It identifies tables classified as
      reference-like and points to their existing reconstruction artifacts.
 
 2. `references/bibliography.json`
-   : The Stage 4 bibliography artifact extracted from the original PDF.
+   : The Step 4 bibliography artifact extracted from the original PDF.
 
-Stage 5 does not consume the original PDF, rerun table reconstruction, or call
+Step 5 does not consume the original PDF, rerun table reconstruction, or call
 GROBID. It reads the selected-table manifest and the already-created
 bibliography JSON.
 
@@ -80,7 +80,7 @@ schema.
 
 ## Matching Behavior
 
-Stage 5 is deterministic and offline. It does not query Crossref, GROBID, an
+Step 5 is deterministic and offline. It does not query Crossref, GROBID, an
 LLM, embeddings, external search, or any metadata service.
 
 The matcher records these method labels:
@@ -107,10 +107,10 @@ multiple candidate bibliography entries rather than silently choosing one.
 
 ## Aggregation Boundary
 
-Stage 5 output is table-cell level. Multiple cells, selected tables, and
+Step 5 output is table-cell level. Multiple cells, selected tables, and
 reconstruction adapters may refer to the same bibliography index.
 
-Stage 6 collects matched bibliography indices across supplied reconstruction
+Step 6 collects matched bibliography indices across supplied reconstruction
 methods for a paper, takes their union, and deduplicates by bibliography index.
 The resolution key is:
 
@@ -126,7 +126,7 @@ bibliography entry.
 
 ## Skipped Tables
 
-Stage 5 skips a selected table instead of guessing when the referenced parsed
+Step 5 skips a selected table instead of guessing when the referenced parsed
 artifact contains:
 
 - `no_parsed_table`
@@ -136,13 +136,13 @@ The skipped table is recorded in `skipped_tables`, and the rest of the matching
 run can continue. Malformed input contracts or identity mismatches are treated
 as errors.
 
-## Boundary To Stage 6
+## Boundary To Step 6
 
-Stage 5 links table references to bibliography entries. External DOI lookup and
-scholarly-identity resolution are outside Stage 5; they belong to Stage 6
+Step 5 links table references to bibliography entries. External DOI lookup and
+scholarly-identity resolution are outside Step 5; they belong to Step 6
 paper-level reference resolution.
 
-Stage 5 does not mutate raw reconstruction prediction CSVs or the Stage 4
+Step 5 does not mutate raw reconstruction prediction CSVs or the Step 4
 bibliography evidence. Coverage and agreement measures are documented in
 {doc}`../evaluation/reference-matching-quality`; they should not be described
 as accuracy without human gold-standard labels.

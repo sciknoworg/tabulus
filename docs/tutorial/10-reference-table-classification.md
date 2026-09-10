@@ -5,7 +5,7 @@
 Decide which reconstructed-table instances contain reference-like scientific
 citation content and should enter the reference-processing branch.
 
-This stage is implemented in the rebuilt library as:
+This step is implemented in the rebuilt library as:
 
 ```bash
 tabulus classify-reference-tables
@@ -40,7 +40,7 @@ By default, the command writes:
 
 `reference_table_classification.json` records a routing/classification decision
 for each reconstructed-table instance considered. `selected_reference_tables.json` is a
-non-destructive pointer manifest containing only the tables selected for Stage
+non-destructive pointer manifest containing only the tables selected for Step
 5. Neither artifact overwrites:
 
 - `native/`
@@ -115,15 +115,15 @@ through parsing, prediction CSV export, and classification.
 
 ## Boundary
 
-This stage performs reference-table routing only. It does not extract bibliographies, match references, resolve DOI values, write resolved CSVs, merge continued tables, or run the complete end-to-end pipeline.
+This step performs reference-table routing only. It does not extract bibliographies, match references, resolve DOI values, write resolved CSVs, merge continued tables, or run the complete end-to-end pipeline.
 
 ## Next Step
 
 The next rebuilt branch is bibliography extraction, which produces
 `references/bibliography.json` from the original PDF. It runs in parallel with
-table processing and converges with classified reference-like tables at Stage 5
-reference matching. Stage 6 resolves the union of referenced
-bibliography indices once per paper; Stage 7 export remains planned.
+table processing and converges with classified reference-like tables at Step 5
+reference matching. Step 6 resolves the union of referenced
+bibliography indices once per paper; Step 7 export remains planned.
 
-Without human gold-standard labels, evaluate Stage 3 coverage, consistency,
+Without human gold-standard labels, evaluate Step 3 coverage, consistency,
 and agreement across reconstruction outputs rather than accuracy.

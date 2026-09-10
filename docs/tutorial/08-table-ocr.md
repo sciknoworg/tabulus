@@ -1,18 +1,18 @@
 # Step 2: Table Reconstruction
 
-Table reconstruction is the second runnable Tabulus stage. It takes canonical
+Table reconstruction is the second runnable Tabulus step. It takes canonical
 table crops and reconstructs each crop into structured table artifacts through
 one table-reconstruction adapter.
 
-Stage 1 produces canonical table crops from PDF profiling and table detection.
-Stage 2 consumes those crops. It does not detect table regions in the original
+Step 1 produces canonical table crops from PDF profiling and table detection.
+Step 2 consumes those crops. It does not detect table regions in the original
 PDF and does not perform reference-table classification, bibliography
 extraction, reference matching, scholarly reference resolution, or resolved CSV
 export.
 
-## What This Stage Creates
+## What This Step Creates
 
-Stage 2 creates one reconstruction output area for each crop root and selected
+Step 2 creates one reconstruction output area for each crop root and selected
 adapter:
 
 ```text
@@ -25,7 +25,7 @@ canonical table crops
 
 The native result preserves adapter evidence and provenance. The parsed result
 is the common Tabulus representation. The prediction CSV is the raw
-pre-reference-resolution table used by later stages and by table reconstruction
+pre-reference-resolution table used by later steps and by table reconstruction
 evaluation when gold CSV files are available.
 
 An explicit empty reconstruction is a valid adapter outcome: it means the
@@ -84,7 +84,7 @@ current registry exposes:
 
 Device support here is the implementation capability registered by Tabulus.
 Specific benchmark protocols may choose particular hardware, but that hardware
-choice is not part of the Stage 2 CLI contract. A device string beginning with
+choice is not part of the Step 2 CLI contract. A device string beginning with
 `cpu` selects CPU execution where supported; a string beginning with `gpu`, such
 as `gpu:0`, selects GPU execution where supported.
 
@@ -112,9 +112,9 @@ unique. When many crop roots have the same leaf directory name, use repeated
 single-root invocations with explicit per-paper `--out` paths so outputs do not
 collide.
 
-## Output Structure and Stage Handoff
+## Output Structure and Step Handoff
 
-A typical Stage 2 output has this shape:
+A typical Step 2 output has this shape:
 
 ```text
 <reconstruction-output>/
@@ -150,7 +150,7 @@ A typical Stage 2 output has this shape:
   and per-table errors when present.
 
 The prediction CSV is the handoff for raw table reconstruction quality checks
-and for later reference-processing stages. Table reconstruction can be evaluated
+and for later reference-processing steps. Table reconstruction can be evaluated
 against gold CSV files using Relative Mapping Similarity (RMS); see
 {doc}`../evaluation/table-extraction-quality` for the full evaluation contract.
 
@@ -180,7 +180,7 @@ a concrete TabulusBench one-paper example is needed:
 - paper ID: `P4`
 - domain: `Biomedicine_And_Health`
 - subdomain: `clinical_research`
-- Stage 2 crop root: `Biomedicine_And_Health/clinical_research/P4/reference_tables`
+- Step 2 crop root: `Biomedicine_And_Health/clinical_research/P4/reference_tables`
 
 Set portable roots before running the examples:
 
@@ -190,10 +190,10 @@ export TABULUS_WORK="/path/to/tabulus-work"
 P4_CROPS="$TABULUSBENCH/Biomedicine_And_Health/clinical_research/P4/reference_tables"
 ```
 
-For Stage 2, a one-paper run means reconstructing all canonical crop inputs
+For Step 2, a one-paper run means reconstructing all canonical crop inputs
 belonging to one paper. For `P4`, the benchmark crop root contains six
 annotated reference-containing table crops under `reference_tables/tables/`,
-each with immutable benchmark `gold.csv` material. Stage 2 reads the crop
+each with immutable benchmark `gold.csv` material. Step 2 reads the crop
 images and `tables_index.json`; it must not overwrite or regenerate the
 TabulusBench gold CSV files.
 
@@ -277,8 +277,8 @@ CPU or GPU execution. `granite-vision-table` is registered as GPU-only.
 #### 3. Run one adapter on the full TabulusBench dataset
 
 TabulusBench contains 250 papers and 540 benchmark-annotated
-reference-containing table crops used as Stage 2 reconstruction inputs. These
-are reconstruction inputs, not historical Stage 1 table-detection counts.
+reference-containing table crops used as Step 2 reconstruction inputs. These
+are reconstruction inputs, not historical Step 1 table-detection counts.
 
 The dataset root includes `reconstruction_inputs.txt`, a list of the 250
 paper-level `reference_tables` crop roots. Because those crop roots are nested
@@ -312,7 +312,7 @@ $TABULUS_WORK/stage2/tesseract-tatr/Biomedicine_And_Health/clinical_research/P4/
 
 #### 4. Run all adapters on the full TabulusBench dataset
 
-On a GPU-equipped system, every registered Stage 2 adapter is registered for
+On a GPU-equipped system, every registered Step 2 adapter is registered for
 GPU execution. This loop reconstructs the same 540 benchmark crop inputs with
 every registered table-reconstruction method and keeps outputs separated by
 adapter and paper:

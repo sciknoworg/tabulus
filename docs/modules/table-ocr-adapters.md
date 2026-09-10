@@ -4,7 +4,7 @@ Table reconstruction adapters convert normalized table crop images into structur
 
 The package path is still `tabulus.table_ocr` because that is the current code API, but the adapter layer is broader than conventional OCR. An adapter may use OCR, a document vision-language model, or another reconstruction architecture as long as it accepts the same canonical MinerU crop input and returns the common result contract.
 
-In the rebuilt Tabulus workflow, MinerU is the canonical table-localization and crop-generation stage. The reconstruction adapter contract starts from the MinerU-generated crop rather than the original PDF.
+In the rebuilt Tabulus workflow, MinerU is the canonical table-localization and crop-generation step. The reconstruction adapter contract starts from the MinerU-generated crop rather than the original PDF.
 
 ## Responsibility
 
@@ -162,4 +162,4 @@ ML dependencies are optional and lazily loaded. Importing core Tabulus or listin
 
 Other reconstruction candidates can be added behind the same reconstruction contract.
 
-These candidates are alternatives, not sequential stages that run after another reconstruction adapter.
+These candidates are alternatives, not sequential steps that run after another reconstruction adapter.

@@ -51,9 +51,9 @@ P4_PDF="$TABULUSBENCH_ROOT/Biomedicine_And_Health/clinical_research/P4/P4.pdf"
 ```
 
 In this documentation, a one-paper run means processing the complete relevant
-input for one paper. For `P4`, PDF-level stages operate on `P4.pdf`; table-level
+input for one paper. For `P4`, PDF-level steps operate on `P4.pdf`; table-level
 benchmark examples should use all six annotated reference-containing table
-inputs when benchmark crops are the appropriate input; paper-level stages
+inputs when benchmark crops are the appropriate input; paper-level steps
 operate on complete paper-level artifacts derived from `P4`.
 
 The benchmark's `P4/reference_tables/` directory is human gold material. It
@@ -64,7 +64,7 @@ and crop artifacts outside the benchmark gold directories.
 
 A full TabulusBench run means processing the complete applicable benchmark
 input across all papers. Because TabulusBench papers are nested under
-domain/subdomain directories, use an explicit `--pdf-list` for PDF-level stages
+domain/subdomain directories, use an explicit `--pdf-list` for PDF-level steps
 rather than `--folder` on the benchmark root. Running a step over TabulusBench
 is separate from evaluating it against gold annotations: for example,
 bibliography extraction can be run for every benchmark PDF even though curated

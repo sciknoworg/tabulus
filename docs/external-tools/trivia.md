@@ -24,7 +24,7 @@ The registered Tabulus adapter is:
 trivia
 ```
 
-The adapter consumes canonical MinerU table crops through the shared Stage 2
+The adapter consumes canonical MinerU table crops through the shared Step 2
 adapter contract. Tabulus preserves native OTSL, converts it to HTML, and then
 uses the shared parser.
 

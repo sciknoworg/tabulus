@@ -2,8 +2,8 @@
 
 Table reconstruction quality evaluates whether a reconstructed table prediction
 CSV matches a manually curated ground-truth table CSV. It scores raw table
-structure and content before reference matching, scholarly resolution, or any
-planned Stage 7 export.
+structure and content before reference matching, scholarly resolution, or
+Step 7 resolved export.
 
 The current library-native evaluator supports one metric: Relative Mapping
 Similarity (RMS), adapted from the DePlot table-datapoint metric.
@@ -94,7 +94,7 @@ RMS precision, recall, and F1 together.
 
 Table reconstruction evaluation does not measure reference-table
 classification, bibliography extraction, table-cell-to-bibliography matching,
-Stage 6 scholarly reference resolution, or downstream resolved exports.
+Step 6 scholarly reference resolution, or downstream resolved exports.
 
 Adapter comparisons should export every candidate through the same prediction
 CSV contract before scoring. Runtime, hardware, and model-environment context

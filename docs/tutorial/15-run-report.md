@@ -1,4 +1,4 @@
-# Planned Stage: Run Report And QA Bundle
+# Planned Step: Run Report And QA Bundle
 
 ## Goal
 
@@ -32,7 +32,7 @@ All previous step outputs.
 
 ## Default Implementation
 
-This stage is planned for the rebuilt `src/tabulus` library. There is not yet a complete `tabulus run` command or run-report / QA-bundle writer.
+This step is planned for the rebuilt `src/tabulus` library. There is not yet a complete `tabulus run` command or run-report / QA-bundle writer.
 
 ## Verification
 

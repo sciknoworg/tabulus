@@ -8,7 +8,7 @@
 ## Role In Tabulus
 
 InternVL3.5-8B is a general-purpose multimodal vision-language model used by
-Tabulus for Stage 2 table reconstruction from canonical MinerU table crops.
+Tabulus for Step 2 table reconstruction from canonical MinerU table crops.
 Unlike the dedicated OCR/document/table-parsing models in the candidate set,
 this adapter evaluates a broader VLM on the same fixed reconstruction input.
 
@@ -36,7 +36,7 @@ loaded model and processor classes:
 - image processor: `GotOcr2ImageProcessorFast`
 - tokenizer: `Qwen2TokenizerFast`
 
-InternVL3.5-8B consumes canonical MinerU table crops through the shared Stage 2
+InternVL3.5-8B consumes canonical MinerU table crops through the shared Step 2
 adapter contract. The adapter uses native Hugging Face Transformers loading
 with `local_files_only=True`, so the pinned model snapshot must already be
 present in the local Hugging Face cache.
@@ -116,7 +116,7 @@ the existing shared parser:
 tabulus.table_ocr.parsing:parse_table_text
 ```
 
-There is no InternVL-specific structural or semantic normalization stage.
+There is no InternVL-specific structural or semantic normalization pass.
 Tabulus does not correct cell contents, infer missing structure from domain
 knowledge, merge continued tables, perform reference-resolution heuristics, or
 clean up malformed HTML beyond the shared parser behavior.

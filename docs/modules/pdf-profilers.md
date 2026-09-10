@@ -2,7 +2,7 @@
 
 PDF profilers analyze scientific PDFs or existing document-analysis outputs and expose table regions plus provenance.
 
-In the clean Tabulus workflow, PDF profiling is the first major digitization module. It is not a separate upload step and not only a metadata check. At the current library stage, the implemented profiling code can launch MinerU and can also consume MinerU outputs that were produced by a separate MinerU CLI run.
+In the clean Tabulus workflow, PDF profiling is the first major digitization module. It is not a separate upload step and not only a metadata check. In the current library, the implemented profiling code can launch MinerU and can also consume MinerU outputs that were produced by a separate MinerU CLI run.
 
 ## Target Responsibility
 
@@ -97,7 +97,7 @@ The current stable downstream interface should remain `content_list.json` plus t
 
 ## Outside This Module
 
-PDF profiling is Stage 1 only. Later stages are implemented by separate
+PDF profiling is Step 1 only. Later steps are implemented by separate
 modules and commands:
 
 - bibliography extraction

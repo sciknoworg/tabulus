@@ -69,11 +69,12 @@ The current rebuilt library implements reference-table classification after
 reconstruction with `tabulus classify-reference-tables`. It also implements
 GROBID-backed bibliography extraction through `tabulus extract-bibliography`;
 the command reads the original PDF and writes `references/bibliography.json`.
-Stage 5 reference matching links selected reference-like table cells to
-bibliography entries and writes `references/reference_matches.json`. Stage 6
+Step 5 reference matching links selected reference-like table cells to
+bibliography entries and writes `references/reference_matches.json`. Step 6
 paper-level scholarly reference resolution writes
 `references/reference_resolution.json` from the union of linked bibliography
-indices. Stage 7 resolved CSV export remains planned in this repository.
+indices. Step 7 resolved CSV export joins those identities back to matched
+physical table rows without rerunning scholarly lookup.
 
 ## Profiling MinerU Runs
 

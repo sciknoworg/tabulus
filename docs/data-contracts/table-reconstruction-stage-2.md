@@ -1,6 +1,6 @@
-# Table Reconstruction / Stage 2
+# Table Reconstruction / Step 2
 
-Stage 2 consumes canonical table crops and writes adapter-specific
+Step 2 consumes canonical table crops and writes adapter-specific
 reconstruction artifacts. These contracts describe the normalized
 reconstruction boundary and the raw prediction CSV files used by downstream
 processing and reconstruction evaluation.

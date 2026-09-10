@@ -12,7 +12,7 @@ workflow. It is a document parsing toolkit for transforming PDFs and other
 complex documents into structured Markdown and JSON. In Tabulus, MinerU
 performs document/layout processing, table localization, and native table
 extraction before Tabulus normalizes the canonical table-crop handoff used by
-Stage 2 reconstruction. The Tabulus CLI exposes only the MinerU options needed
+Step 2 reconstruction. The Tabulus CLI exposes only the MinerU options needed
 for the current profiling contract, with CPU-compatible `pipeline` and
 GPU-backed `hybrid-engine` backends.
 
@@ -34,7 +34,7 @@ table extraction. Tabulus then:
 - retains MinerU `table_body` as a native reconstruction candidate
 - exports canonical table crops and `tables_index.json`
 
-The stable handoff for later Tabulus stages is:
+The stable handoff for later Tabulus steps is:
 
 ```text
 tabulus-output/
@@ -44,7 +44,7 @@ tabulus-output/
       images/
 ```
 
-Stage 2 reconstruction adapters should consume this handoff rather than the
+Step 2 reconstruction adapters should consume this handoff rather than the
 complete MinerU-native directory.
 
 ## MinerU Options Exposed By Tabulus
@@ -160,7 +160,7 @@ may be written at the document level instead.
 
 ## Boundary
 
-MinerU is the profiling and canonical crop-generation stage in the current
-workflow. It is separate from crop-consuming Stage 2 reconstruction adapters,
+MinerU is the profiling and canonical crop-generation step in the current
+workflow. It is separate from crop-consuming Step 2 reconstruction adapters,
 reference-table classification, bibliography extraction, reference matching,
 DOI resolution, and final resolved CSV export.

@@ -7,7 +7,7 @@
 ## Role In Tabulus
 
 Nanonets-OCR-s is a vision-language table reconstruction candidate used by
-Tabulus for Stage 2 reconstruction from canonical MinerU table crops. The
+Tabulus for Step 2 reconstruction from canonical MinerU table crops. The
 Tabulus adapter sends the crop directly to the pinned Nanonets-OCR-s model
 checkpoint and expects native structured HTML table output.
 
@@ -29,7 +29,7 @@ architecture is Qwen2.5-VL, implemented through the runtime Transformers class
 `Qwen2_5_VLForConditionalGeneration`. Tabulus is not substituting a generic
 Qwen checkpoint for Nanonets-OCR-s.
 
-Nanonets-OCR-s consumes canonical MinerU table crops through the shared Stage 2
+Nanonets-OCR-s consumes canonical MinerU table crops through the shared Step 2
 adapter contract. It preserves the model-produced Markdown/HTML-style response
 before shared parsing.
 
@@ -57,7 +57,7 @@ python -m tabulus.cli reconstruct-tables \
 
 Nanonets-OCR-s operates on the canonical table-crop handoff produced earlier
 in the Tabulus pipeline. It does not perform the initial PDF profiling or
-table-cropping stage.
+table-cropping step.
 
 ## Settings Used By Tabulus
 
@@ -133,7 +133,7 @@ tabulus.table_ocr.parsing:parse_table_text
 ```
 
 There is no Nanonets-specific parser and no Nanonets-specific semantic or
-structural normalization stage. Existing deterministic HTML parsing rules
+structural normalization pass. Existing deterministic HTML parsing rules
 apply unchanged.
 
 The validated Nanonets output included rich HTML table constructs such as:

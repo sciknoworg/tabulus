@@ -13,11 +13,11 @@ The rebuilt library is organized around standalone commands and explicit
 filesystem contracts. The current rebuilt library covers PDF profiling,
 canonical table-crop export, table reconstruction, reference-table
 classification, GROBID-backed bibliography extraction, deterministic
-reference matching, and Stage 6 paper-level scholarly reference resolution.
-Resolved export, run reports, and complete `tabulus run` orchestration remain
-planned in this checkout. Bibliography extraction is a parallel PDF-level
-branch that produces `references/bibliography.json`, not a consumer of MinerU
-table crops or reconstruction prediction CSVs.
+reference matching, Step 6 paper-level scholarly reference resolution, and
+Step 7 resolved CSV export. Run reports and complete `tabulus run`
+orchestration remain planned in this checkout. Bibliography extraction is a
+parallel PDF-level branch that produces `references/bibliography.json`, not a
+consumer of MinerU table crops or reconstruction prediction CSVs.
 
 Start with the locally verified commands, then use the linked pages for setup and adapter
 details. For one PDF:
@@ -46,6 +46,10 @@ tabulus resolve-references \
   --bibliography /path/to/artifact-root/references/bibliography.json \
   --reference-matches /path/to/reconstruction/references/reference_matches.json \
   --out /path/to/artifact-root
+
+tabulus export-resolved-csv \
+  --reference-matches /path/to/reconstruction/references/reference_matches.json \
+  --reference-resolution /path/to/artifact-root/references/reference_resolution.json
 ```
 
 For several PDFs in one folder:
@@ -94,8 +98,8 @@ Use Python 3.12, a standard venv, CPU-only PyTorch, and MinerU `pipeline`.
 :link: installation/gpu-server
 :link-type: doc
 
-Request GPU resources, install stage-specific environments, and run MinerU or
-Stage 2 reconstruction adapters.
+Request GPU resources, install step-specific environments, and run MinerU or
+Step 2 reconstruction adapters.
 :::
 
 :::{grid-item-card} Install The Python Library
@@ -116,7 +120,7 @@ Use the tested MinerU 3.4.5 command sequence and validate the output with `disco
 :link: tutorial/00-overview
 :link-type: doc
 
-Read the current runnable stages and artifact flow.
+Read the current runnable steps and artifact flow.
 :::
 
 ::::

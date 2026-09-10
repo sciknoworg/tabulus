@@ -241,28 +241,29 @@ selected_reference_tables.json + bibliography.json
               reference_matches.json
                            |
                            v
-     Stage 6 paper-level resolution
+     Step 6 paper-level resolution
                            |
                            v
-              Stage 7 join / resolved export (planned)
+              Step 7 resolved CSV export
                            |
                            v
          run report / complete tabulus run (planned)
 ```
 
 The new library currently provides MinerU process launching, typed access to
-existing MinerU outputs, automatic table-crop export, registered Stage 2
+existing MinerU outputs, automatic table-crop export, registered Step 2
 table-reconstruction adapters for MinerU crops, the
 `tabulus reconstruct-tables` batch CLI, `tabulus classify-reference-tables`,
 GROBID-backed bibliography extraction through `src/tabulus/bibliography/`,
-deterministic Stage 5 reference matching from selected reference-like tables
-and `references/bibliography.json`, and Stage 6 paper-level scholarly reference
-resolution through `tabulus resolve-references`. See {doc}`../tutorial/08-table-ocr`
-for the current adapter list.
+deterministic Step 5 reference matching from selected reference-like tables
+and `references/bibliography.json`, Step 6 paper-level scholarly reference
+resolution through `tabulus resolve-references`, and deterministic Step 7
+resolved CSV export through `tabulus export-resolved-csv`. See
+{doc}`../tutorial/08-table-ocr` for the current adapter list.
 
-These stages remain unimplemented in the current `src/tabulus` package:
+These workflow conveniences remain unimplemented in the current `src/tabulus`
+package:
 
-- resolved CSV export
 - run report / QA bundle
 - full `tabulus run` orchestration
 
@@ -270,5 +271,5 @@ The bibliography extraction branch starts from the original PDF. It does not
 consume MinerU table crops or reconstruction prediction CSVs. Reference
 matching is the deterministic convergence point between selected
 reference-like tables and `references/bibliography.json`. Crossref, CORE, LLM
-providers, and external scholarly metadata services are called only by Stage 6
+providers, and external scholarly metadata services are called only by Step 6
 paper-level reference resolution.

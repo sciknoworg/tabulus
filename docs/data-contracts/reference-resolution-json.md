@@ -1,10 +1,10 @@
 # reference_resolution.json
 
-`references/reference_resolution.json` is the canonical Stage 6 paper-level
+`references/reference_resolution.json` is the canonical Step 6 paper-level
 scholarly reference-resolution artifact. It contains one final decision for
-each unique bibliography index linked by Stage 5 for a paper.
+each unique bibliography index linked by Step 5 for a paper.
 
-Stage 6 writes this artifact only after every target bibliography entry reaches
+Step 6 writes this artifact only after every target bibliography entry reaches
 a final scientific status. Partial work is stored in
 `references/reference_resolution.checkpoint.json` and promoted only when the
 paper-level run completes.
@@ -12,7 +12,7 @@ paper-level run completes.
 ## Top-Level Fields
 
 `schema_version`
-: Contract version for the Stage 6 artifact. The current value is `1`.
+: Contract version for the Step 6 artifact. The current value is `1`.
 
 `resolution_count`
 : Number of paper-level bibliography entries resolved in this artifact.
@@ -37,7 +37,7 @@ Each `entries[]` item records the final decision and the evidence path that led
 to it.
 
 `resolution`
-: The final Stage 6 decision for one bibliography index.
+: The final Step 6 decision for one bibliography index.
 
 `initial_scholarly_resolution`
 : The deterministic Crossref and CORE assessment state before any LLM retry
@@ -70,11 +70,11 @@ to it.
 ## Final Resolution Object
 
 `resolution.reference_index`
-: One-based Stage 4 bibliography index. This is the paper-level key used to
-  join Stage 6 output back to Stage 5 table-cell links in a later stage.
+: One-based Step 4 bibliography index. This is the paper-level key used by
+  Step 7 to join Step 6 output back to Step 5 table-cell links.
 
 `resolution.raw_reference`
-: Raw reference text copied from Stage 4 bibliography evidence.
+: Raw reference text copied from Step 4 bibliography evidence.
 
 `resolution.status`
 : One of the final statuses below.
@@ -105,20 +105,20 @@ to it.
   implementation.
 
 `resolution.reason`
-: Human-readable reason for the final Stage 6 decision.
+: Human-readable reason for the final Step 6 decision.
 
 ## Final Statuses
 
 `validated_with_doi`
-: Stage 6 assigned a validated scholarly identity and established a canonical
+: Step 6 assigned a validated scholarly identity and established a canonical
   DOI.
 
 `validated_without_doi`
-: Stage 6 assigned a validated scholarly identity for which no DOI was
+: Step 6 assigned a validated scholarly identity for which no DOI was
   established.
 
 `rejected`
-: Stage 6 had insufficient evidence to assign a safe scholarly identity.
+: Step 6 had insufficient evidence to assign a safe scholarly identity.
 
 The final artifact cannot contain the internal intermediate status
 `unresolved`. Operational failures do not appear as `rejected`; they abort the
@@ -174,7 +174,7 @@ API keys and authorization headers are not serialized.
 
 ## Checkpoint Contract
 
-During incomplete runs, Stage 6 writes:
+During incomplete runs, Step 6 writes:
 
 ```text
 <artifact-root>/references/reference_resolution.checkpoint.json
@@ -194,23 +194,23 @@ set match the current run. Compatible completed entries are skipped. The
 checkpoint is removed after the final `reference_resolution.json` artifact is
 written successfully.
 
-The run fingerprint covers Stage 6 source files, bibliography contents, the set
-of Stage 5 match artifact contents, optional document-context contents, and
+The run fingerprint covers Step 6 source files, bibliography contents, the set
+of Step 5 match artifact contents, optional document-context contents, and
 public resolver configuration relevant to reproducibility. Credentials and
 Crossref contact email are excluded.
 
 ## Relationship To Other Artifacts
 
 `bibliography.json`
-: Immutable Stage 4 extraction evidence from GROBID.
+: Immutable Step 4 extraction evidence from GROBID.
 
 `reference_matches.json`
-: Stage 5 table-cell links to bibliography positions.
+: Step 5 table-cell links to bibliography positions.
 
 `reference_resolution.json`
-: Stage 6 paper-level validated identities or conservative rejections for the
+: Step 6 paper-level validated identities or conservative rejections for the
   union of linked bibliography indices.
 
-Stage 7 remains planned. It should join these paper-level identities back to
-every relevant table cell or reference occurrence without re-resolving the same
-bibliography index.
+Step 7 joins these paper-level identities back to Step 5 physical-row matches
+without re-resolving the same bibliography index. See {doc}`resolved-csv` for
+the resolved CSV export contract.

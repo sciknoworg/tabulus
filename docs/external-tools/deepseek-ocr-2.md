@@ -7,7 +7,7 @@
 ## Role In Tabulus
 
 DeepSeek-OCR-2 is a vision-language table reconstruction candidate used by
-Tabulus for Stage 2 reconstruction from canonical MinerU table crops. The
+Tabulus for Step 2 reconstruction from canonical MinerU table crops. The
 Tabulus adapter sends the crop directly to the pinned DeepSeek-OCR-2 model
 revision and passes the returned model output unchanged to the shared parser.
 
@@ -28,7 +28,7 @@ The exact model repository is `deepseek-ai/DeepSeek-OCR-2` at revision
 `aaa02f3811945a91062062994c5c4a3f4c0af2b0`. The resolved model class in the
 validated configuration is `DeepseekOCR2ForCausalLM`.
 
-DeepSeek-OCR-2 consumes canonical MinerU table crops through the shared Stage 2 adapter contract. It does not re-crop source PDFs or merge continued tables.
+DeepSeek-OCR-2 consumes canonical MinerU table crops through the shared Step 2 adapter contract. It does not re-crop source PDFs or merge continued tables.
 
 ## Invocation
 
@@ -52,7 +52,7 @@ tabulus reconstruct-tables \
   --device gpu:0
 ```
 
-Reference-table classification remains a downstream stage:
+Reference-table classification remains a downstream step:
 
 ```bash
 tabulus classify-reference-tables \
@@ -130,7 +130,7 @@ markup. A representative response can begin like:
 
 Tabulus preserves the returned model output unchanged. The adapter records
 `normalization: none` and `parser_input: model_infer_output_unchanged`.
-There is no DeepSeek-specific semantic cleanup stage.
+There is no DeepSeek-specific semantic cleanup pass.
 
 Do not assume DeepSeek-OCR-2 always emits HTML. Depending on the model
 response, the shared parser can also accept structured Markdown table output.

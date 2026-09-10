@@ -1,7 +1,7 @@
 # Evaluation Overview
 
 Evaluation is operationally separate from the production pipeline.
-Production stages write stable artifacts; evaluation reads those artifacts and,
+Production steps write stable artifacts; evaluation reads those artifacts and,
 when requested, writes separate metrics. Evaluation should not mutate
 production artifacts such as prediction CSV files, `references/bibliography.json`,
 `references/reference_matches.json`, or `references/reference_resolution.json`.
@@ -40,7 +40,7 @@ through the `tabulus evaluate-table-reconstruction` command and the
 `evaluate_table_reconstruction()` API.
 
 Reference-table classification and bibliography/reference extraction have
-production pipeline stages, but they do not currently have library-native
+production pipeline steps, but they do not currently have library-native
 public evaluators or `tabulus` evaluation commands.
 
 ## Retained Research Evaluation Utilities
@@ -59,19 +59,20 @@ outputs before running them on any benchmark tree.
 
 Use the metric that matches the artifact being scored:
 
-- {doc}`reference-table-classification-quality` scores whether Stage 3 routed
+- {doc}`reference-table-classification-quality` scores whether Step 3 routed
   reconstructed tables into the reference-table branch.
 - {doc}`table-extraction-quality` scores raw table reconstruction prediction
   CSVs against manually curated table CSVs.
 - {doc}`bibliography-quality` scores bibliography/reference extraction against
   curated bibliography entries.
-- {doc}`reference-matching-quality` describes Stage 5 link diagnostics and the
-  Stage 6 resolution denominator, but neither Stage 5 matching nor Stage 6
+- {doc}`reference-matching-quality` describes Step 5 link diagnostics and the
+  Step 6 resolution denominator, but neither Step 5 matching nor Step 6
   scholarly resolution currently has a native public evaluator.
 
 Do not aggregate these levels into one pipeline accuracy number. Coverage,
 consistency, agreement, recovery rate, precision, recall, F1, and resolution
 coverage answer different questions and have different denominators.
 
-Resolved CSV files are planned downstream outputs after Stage 7. They are not
-the artifact used to measure raw table reconstruction quality.
+Resolved CSV files are downstream Step 7 outputs. They are not the artifact
+used to measure raw table reconstruction quality, because they append
+reference-resolution fields to Step 2 prediction rows.

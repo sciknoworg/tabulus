@@ -7,19 +7,19 @@
 
 ## Role In Tabulus
 
-GROBID is the external scholarly-document parser used by Tabulus for Stage 4
+GROBID is the external scholarly-document parser used by Tabulus for Step 4
 bibliography extraction. It is machine-learning software for extracting,
 parsing, and restructuring scholarly PDFs into TEI/XML. GROBID's own system
 can support many scholarly-document tasks, including header parsing, reference
 parsing, citation contexts, full-text structuring, and optional consolidation;
 Tabulus uses only the bibliography-reference extraction boundary for the
-implemented Stage 4 path.
+implemented Step 4 path.
 
 Tabulus sends the original publication PDF to a running GROBID HTTP service and
 normalizes the returned TEI bibliography into `references/bibliography.json`.
 This branch is independent of MinerU table crops and reconstruction outputs.
-Stage 4 does not resolve scholarly identities; Crossref, CORE, and LLM-backed
-adjudication belong to Stage 6.
+Step 4 does not resolve scholarly identities; Crossref, CORE, and LLM-backed
+adjudication belong to Step 6.
 
 GROBID is used by the current CLI command:
 
@@ -47,9 +47,9 @@ the bibliography writer creates `references/bibliography.json` beneath it.
 
 Tabulus posts the PDF as multipart form data with `includeRawCitations=1` and
 `consolidateCitations=0`. Raw citation strings are requested because downstream
-Stage 5 matching treats them as extraction evidence. GROBID citation
+Step 5 matching treats them as extraction evidence. GROBID citation
 consolidation is disabled because external scholarly metadata lookup and
-identity resolution are separate from Stage 4 extraction.
+identity resolution are separate from Step 4 extraction.
 
 The normalized bibliography entry preserves:
 
@@ -63,7 +63,7 @@ The normalized bibliography entry preserves:
   GROBID supplies usable structured metadata or the parser can recover a
   single unambiguous missing year from the raw citation
 
-Missing metadata remains missing. Stage 4 does not invent titles, authors,
+Missing metadata remains missing. Step 4 does not invent titles, authors,
 years, venues, locators, DOIs, or scholarly identities. Structured GROBID years
 win over raw-text recovery; if the raw citation has zero or multiple plausible
 years, the year remains unresolved. A narrow parser repair handles the observed

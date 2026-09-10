@@ -2,7 +2,7 @@
 
 This page documents the supported GPU installation and validation workflow for
 Tabulus. MinerU profiling uses the `tabulus-mineru` Conda environment and
-MinerU's `hybrid-engine` backend. Stage 2 reconstruction adapters are installed
+MinerU's `hybrid-engine` backend. Step 2 reconstruction adapters are installed
 in separate adapter-specific environments so heavyweight model stacks do not
 destabilize each other.
 
@@ -61,7 +61,7 @@ The verified setup uses:
 - Python 3.12
 - Tabulus installed from the repository checkout
 - MinerU 3.4.5
-- separate Conda environments for MinerU and the selected Stage 2
+- separate Conda environments for MinerU and the selected Step 2
   reconstruction adapter
 
 ## 2. Request GPU Compute Resources
@@ -444,7 +444,7 @@ tabulus-<adapter>
 ```
 
 These environments can install Tabulus from the same repository checkout in
-editable mode. They are pipeline-stage environments, not separate versions of
+editable mode. They are pipeline-step environments, not separate versions of
 the Tabulus source code. Use the adapter-specific subsections below only for
 the adapter you plan to run.
 

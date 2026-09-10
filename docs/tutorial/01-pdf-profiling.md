@@ -1,16 +1,16 @@
 # Step 1: PDF Profiling
 
-PDF profiling is the first runnable Tabulus stage. It takes scientific PDF
+PDF profiling is the first runnable Tabulus step. It takes scientific PDF
 files, runs a PDF profiler, discovers table regions, and exports those detected
-tables as canonical crop images for Stage 2 table reconstruction.
+tables as canonical crop images for Step 2 table reconstruction.
 
 The current implemented profiler is MinerU. `tabulus profile` is the Tabulus
 interface; `--backend`, `--method`, and `--effort` select MinerU execution
 behavior behind that interface.
 
-## What This Stage Creates
+## What This Step Creates
 
-Stage 1 creates two conceptual output areas for each profiled paper:
+Step 1 creates two conceptual output areas for each profiled paper:
 
 ```text
 PDF
@@ -23,10 +23,10 @@ PDF
 ```
 
 The MinerU-native area keeps the profiler's document output and diagnostics.
-The canonical crop handoff is the stable Tabulus interface for the next stage:
-Stage 2 table reconstruction consumes this handoff.
+The canonical crop handoff is the stable Tabulus interface for the next step:
+Step 2 table reconstruction consumes this handoff.
 
-Stage 1 performs PDF profiling, table detection, and canonical crop export. It
+Step 1 performs PDF profiling, table detection, and canonical crop export. It
 does not perform crop-consuming table reconstruction, reference-table
 classification, bibliography extraction, reference matching, scholarly
 reference resolution, or resolved CSV export.
@@ -123,13 +123,13 @@ tabulus export-table-crops \
 The exporter preserves the original MinerU image extension instead of
 converting every crop to PNG.
 
-## Output Structure and Stage Handoff
+## Output Structure and Step Handoff
 
 Tabulus owns the profiling root passed through `--out` or, by default, the
 per-PDF `tabulus-output/mineru/<resolved-backend>/` directory. MinerU owns the
 document hierarchy below that root and chooses the native run directory name.
 
-A typical public Stage 1 output has this shape:
+A typical public Step 1 output has this shape:
 
 ```text
 <PDF directory>/
@@ -159,7 +159,7 @@ name. Diagnostic logs are written beside the native output when possible; if
 MinerU fails before a native run directory can be identified, diagnostics may
 be written at the document level instead.
 
-The canonical crop handoff is the Stage 2 input. `tables_index.json` records
+The canonical crop handoff is the Step 2 input. `tables_index.json` records
 the detected crop inventory and provenance, including physical `table_id`, page
 number, crop image name, bounding box when available, caption, footnote, MinerU
 source image/path provenance, MinerU `table_body`, reference-section position
@@ -208,9 +208,9 @@ P4_PDF="$TABULUSBENCH_ROOT/Biomedicine_And_Health/clinical_research/P4/P4.pdf"
 ```
 
 A one-paper run means processing the complete relevant input for one paper. For
-Stage 1, that means the original `P4.pdf`. A full TabulusBench run means every
-original paper PDF in the benchmark. Later stages may use different
-stage-specific inputs.
+Step 1, that means the original `P4.pdf`. A full TabulusBench run means every
+original paper PDF in the benchmark. Later steps may use different
+step-specific inputs.
 
 Benchmark note: `P4/reference_tables/` is immutable TabulusBench gold, with six
 annotated reference-containing tables and adjacent `gold.csv` files:
@@ -225,9 +225,9 @@ P4/
       page_009_table_006/
 ```
 
-Stage 1 starts from `P4.pdf` and writes newly generated detected table crops to
+Step 1 starts from `P4.pdf` and writes newly generated detected table crops to
 the selected Tabulus output area. It must not write into, replace, or
-regenerate `P4/reference_tables/`, and the Stage 1 detected table set may
+regenerate `P4/reference_tables/`, and the Step 1 detected table set may
 differ from the six gold reference-containing tables selected for benchmark
 annotation.
 
@@ -285,7 +285,7 @@ $TABULUS_WORK/P4/
       page_<page>_table_<table-id>.<ext>
 ```
 
-The GPU-accelerated example uses the same input and stage, but requests the
+The GPU-accelerated example uses the same input and step, but requests the
 `hybrid-engine` backend. If the GPU backend is not available, Tabulus falls
 back to `pipeline` and records the resolved backend in diagnostics.
 

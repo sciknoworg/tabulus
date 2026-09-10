@@ -144,5 +144,5 @@ If `--out` is omitted, the command writes to:
 
 This command writes prediction CSV files before reference matching or
 scholarly resolution. It does not run reference-table classification,
-bibliography extraction, reference matching, Stage 6 resolution, final resolved
+bibliography extraction, reference matching, Step 6 resolution, final resolved
 CSV export, or the complete end-to-end pipeline.
