@@ -163,6 +163,7 @@ def _add_child(
     matches_path: Path,
     rows: list[list[str]],
     *,
+    table_id: int = 2,
     reference_column: int,
     header_row: int | None,
 ) -> Path:
@@ -173,7 +174,7 @@ def _add_child(
     prediction = (
         reconstruction
         / "predictions"
-        / "table_002.csv"
+        / f"table_{table_id:03d}.csv"
     )
 
     _write_csv(
@@ -219,14 +220,15 @@ def _add_child(
 
     payload["matched_tables"].append(
         {
-            "table_id": 2,
+            "table_id": table_id,
             "source_parsed": str(
                 reconstruction
                 / "parsed"
-                / "table_002.json"
+                / f"table_{table_id:03d}.json"
             ),
             "source_prediction": (
-                "predictions/table_002.csv"
+                "predictions/"
+                f"table_{table_id:03d}.csv"
             ),
             "reference_column_index": (
                 reference_column
@@ -562,3 +564,139 @@ def test_incomplete_group_is_not_partially_merged(
     )
 
     assert group["merged_csv"] is None
+
+def test_header_comparison_normalizes_presentation_only_latex(
+    tmp_path: Path,
+) -> None:
+    (
+        matches,
+        resolution,
+        root_prediction,
+    ) = _fixture(tmp_path)
+
+    _write_csv(
+        root_prediction,
+        [
+            [
+                r"Reactant $ A^{a} $",
+                "Refs.",
+            ],
+            ["Al2O3", "1"],
+            ["HfO2", "2"],
+        ],
+    )
+
+    _add_child(
+        matches,
+        [
+            [
+                r"$ \text{Reactant} \ \mathrm{A}^{a} $",
+                "Refs.",
+            ],
+            ["ZnO", "1"],
+        ],
+        reference_column=1,
+        header_row=0,
+    )
+
+    _write_index(tmp_path)
+
+    result = export_resolved_csvs(
+        matches,
+        resolution,
+        merge_continuations=True,
+    )
+
+    group = result.continuation_groups[0]
+
+    assert group["merge_status"] == "merged"
+    assert group["merged_table_ids"] == [1, 2]
+    assert group["rejected_tail_table_ids"] == []
+    assert group["alignment"]["2"] == (
+        "normalized_repeated_header"
+    )
+    assert group[
+        "dropped_repeated_header_table_ids"
+    ] == [2]
+
+    with Path(
+        group["merged_csv"]
+    ).open(
+        "r",
+        newline="",
+        encoding="utf-8",
+    ) as handle:
+        rows = list(csv.reader(handle))
+
+    # The root header is preserved verbatim; normalization is only
+    # used for comparison.
+    assert rows[0][:2] == [
+        r"Reactant $ A^{a} $",
+        "Refs.",
+    ]
+
+
+def test_incompatible_tail_materializes_only_safe_prefix(
+    tmp_path: Path,
+) -> None:
+    matches, resolution, _ = _fixture(
+        tmp_path
+    )
+
+    _add_child(
+        matches,
+        [
+            ["Material", "Refs."],
+            ["ZnO", "1"],
+        ],
+        table_id=2,
+        reference_column=1,
+        header_row=0,
+    )
+
+    _add_child(
+        matches,
+        [
+            ["Refs.", "Material"],
+            ["1", "Tail row"],
+        ],
+        table_id=3,
+        reference_column=0,
+        header_row=0,
+    )
+
+    _write_index(
+        tmp_path,
+        third_fragment=True,
+    )
+
+    result = export_resolved_csvs(
+        matches,
+        resolution,
+        merge_continuations=True,
+    )
+
+    group = result.continuation_groups[0]
+
+    assert group["physical_table_ids"] == [1, 2, 3]
+    assert group["merged_table_ids"] == [1, 2]
+    assert group["rejected_tail_table_ids"] == [3]
+    assert group["merge_status"] == "partial"
+    assert "reference-column index 0" in group["reason"]
+    assert group["merged_csv"] is not None
+
+    with Path(
+        group["merged_csv"]
+    ).open(
+        "r",
+        newline="",
+        encoding="utf-8",
+    ) as handle:
+        rows = list(csv.reader(handle))
+
+    assert len(rows) == 4
+    assert rows[-1][:2] == ["ZnO", "1"]
+    assert all(
+        "Tail row" not in row
+        for row in rows
+    )

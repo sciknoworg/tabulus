@@ -1470,6 +1470,11 @@ def main() -> None:
                 for group in result.continuation_groups
                 if group.get("merge_status") == "merged"
             )
+            partial = sum(
+                1
+                for group in result.continuation_groups
+                if group.get("merge_status") == "partial"
+            )
             incompatible = sum(
                 1
                 for group in result.continuation_groups
@@ -1486,6 +1491,10 @@ def main() -> None:
                 f"{len(result.continuation_groups)}"
             )
             print(f"  Continuation groups merged: {merged}")
+            print(
+                "  Continuation groups partially merged: "
+                f"{partial}"
+            )
             print(
                 "  Continuation groups incompatible: "
                 f"{incompatible}"

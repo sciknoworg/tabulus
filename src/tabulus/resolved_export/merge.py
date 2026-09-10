@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +13,16 @@ from tabulus.table_continuations import (
 
 MERGED_TABLES_DIR_NAME = "merged"
 MERGED_ORIGIN_COLUMN = "tabulus_physical_table_id"
+
+_HEADER_LATEX_STYLE_RE = re.compile(
+    r"\\(?:mathrm|text)\{([^{}]+)\}"
+)
+_HEADER_SIMPLE_GROUP_RE = re.compile(
+    r"\{([A-Za-z0-9]+)\}"
+)
+_HEADER_LATEX_SPACING_RE = re.compile(
+    r"\\(?:[,;:!]| )"
+)
 
 
 def _load_json_object(
@@ -98,10 +109,36 @@ def resolve_tables_index_path(
 def _normalize_header_row(
     row: list[str],
 ) -> tuple[str, ...]:
-    return tuple(
-        " ".join(str(cell).split()).casefold()
-        for cell in row
-    )
+    # Normalize presentation-only differences for comparison. The
+    # emitted/root header is never rewritten.
+    normalized: list[str] = []
+
+    for cell in row:
+        value = str(cell)
+        previous = None
+
+        while value != previous:
+            previous = value
+            value = _HEADER_LATEX_STYLE_RE.sub(
+                r"\1",
+                value,
+            )
+            value = _HEADER_SIMPLE_GROUP_RE.sub(
+                r"\1",
+                value,
+            )
+
+        value = _HEADER_LATEX_SPACING_RE.sub(
+            " ",
+            value,
+        )
+        value = value.replace("$", " ")
+
+        normalized.append(
+            " ".join(value.split()).casefold()
+        )
+
+    return tuple(normalized)
 
 
 def _rectangular_width(
@@ -325,6 +362,8 @@ def _plan_one_group(
             missing_ids
         ),
         "merged_csv": None,
+        "merged_table_ids": [],
+        "rejected_tail_table_ids": [],
         "dropped_repeated_header_table_ids": [],
         "alignment": {},
     }
@@ -339,7 +378,9 @@ def _plan_one_group(
             ),
         }
 
-    # Do not merge only some fragments of a known logical chain.
+    # Missing physical output is different from an incompatible
+    # reconstruction. Do not materialize a prefix when a known fragment
+    # is absent from the Step 7 physical exports.
     if missing_ids:
         return {
             **base,
@@ -352,46 +393,42 @@ def _plan_one_group(
             ),
         }
 
-    widths: dict[int, int] = {}
+    root_plan = plan_by_table_id[
+        root_table_id
+    ]
 
-    for table_id in physical_table_ids:
-        plan = plan_by_table_id[table_id]
+    root_width, root_error = _rectangular_width(
+        root_plan["rows"],
+        root_table_id,
+    )
 
-        width, error = _rectangular_width(
-            plan["rows"],
-            table_id,
-        )
+    if root_error is not None:
+        return {
+            **base,
+            "merge_status": "incompatible",
+            "reason": root_error,
+        }
 
-        if error is not None:
-            return {
-                **base,
-                "merge_status": "incompatible",
-                "reason": error,
-            }
+    assert root_width is not None
 
-        assert width is not None
-        widths[table_id] = width
+    root_reference_column = root_plan[
+        "reference_column_index"
+    ]
 
-    if len(set(widths.values())) != 1:
-        description = ", ".join(
-            f"{table_id}:{widths[table_id]}"
-            for table_id
-            in physical_table_ids
-        )
-
+    if (
+        not isinstance(root_reference_column, int)
+        or root_reference_column < 0
+        or root_reference_column >= root_width
+    ):
         return {
             **base,
             "merge_status": "incompatible",
             "reason": (
-                "Continuation fragments have "
-                "different scientific-column counts "
-                f"({description})."
+                "Root table has an invalid Step 5 "
+                "reference-column index: "
+                f"{root_reference_column!r}."
             ),
         }
-
-    root_plan = plan_by_table_id[
-        root_table_id
-    ]
 
     root_header_index = root_plan[
         "header_row_index"
@@ -424,9 +461,103 @@ def _plan_one_group(
     alignment: dict[str, str] = {
         str(root_table_id): "root"
     }
+    merged_table_ids = [root_table_id]
+
+    def reject_tail(
+        table_id: int,
+        reason: str,
+    ) -> dict[str, Any]:
+        rejected_index = physical_table_ids.index(
+            table_id
+        )
+        rejected_tail = list(
+            physical_table_ids[rejected_index:]
+        )
+
+        common = {
+            **base,
+            "reason": (
+                "Continuation tail rejected from "
+                f"physical table {table_id}: {reason}"
+            ),
+            "rejected_tail_table_ids": (
+                rejected_tail
+            ),
+            "dropped_repeated_header_table_ids": (
+                list(drop_headers)
+            ),
+            "alignment": dict(alignment),
+        }
+
+        # A one-fragment "merge" has no logical value.
+        if len(merged_table_ids) < 2:
+            return {
+                **common,
+                "merge_status": "incompatible",
+                "merged_table_ids": [],
+            }
+
+        return {
+            **common,
+            "merge_status": "ready_partial",
+            "merged_table_ids": list(
+                merged_table_ids
+            ),
+        }
 
     for table_id in physical_table_ids[1:]:
         plan = plan_by_table_id[table_id]
+
+        width, error = _rectangular_width(
+            plan["rows"],
+            table_id,
+        )
+
+        if error is not None:
+            return reject_tail(
+                table_id,
+                error,
+            )
+
+        assert width is not None
+
+        if width != root_width:
+            return reject_tail(
+                table_id,
+                (
+                    f"scientific-column count {width} "
+                    "does not match root-table count "
+                    f"{root_width}."
+                ),
+            )
+
+        reference_column = plan[
+            "reference_column_index"
+        ]
+
+        if (
+            not isinstance(reference_column, int)
+            or reference_column < 0
+            or reference_column >= width
+        ):
+            return reject_tail(
+                table_id,
+                (
+                    "invalid Step 5 reference-column "
+                    f"index {reference_column!r}."
+                ),
+            )
+
+        if reference_column != root_reference_column:
+            return reject_tail(
+                table_id,
+                (
+                    "Step 5 reference-column index "
+                    f"{reference_column} does not match "
+                    "root-table reference-column index "
+                    f"{root_reference_column}."
+                ),
+            )
 
         header_index = plan[
             "header_row_index"
@@ -436,16 +567,15 @@ def _plan_one_group(
             header_index is not None
             and header_index != 0
         ):
-            return {
-                **base,
-                "merge_status": "incompatible",
-                "reason": (
+            return reject_tail(
+                table_id,
+                (
                     "Continuation table "
                     f"{table_id} has a recognized "
                     "header that is not its first "
                     "physical row."
                 ),
-            }
+            )
 
         first_row = (
             _normalize_header_row(
@@ -457,56 +587,75 @@ def _plan_one_group(
 
         if header_index == 0:
             if root_header is None:
-                return {
-                    **base,
-                    "merge_status": "incompatible",
-                    "reason": (
+                return reject_tail(
+                    table_id,
+                    (
                         "Continuation table "
                         f"{table_id} has a recognized "
                         "header but the root table "
                         "does not."
                     ),
-                }
+                )
 
             if first_row != root_header:
-                return {
-                    **base,
-                    "merge_status": "incompatible",
-                    "reason": (
+                return reject_tail(
+                    table_id,
+                    (
                         "Recognized repeated header "
                         "in continuation table "
                         f"{table_id} conflicts with "
                         "the root-table header."
                     ),
-                }
+                )
 
             drop_headers.append(table_id)
 
-            alignment[str(table_id)] = (
-                "exact_repeated_header"
-            )
+            if (
+                tuple(plan["rows"][0])
+                == tuple(root_plan["rows"][0])
+            ):
+                alignment[str(table_id)] = (
+                    "exact_repeated_header"
+                )
+            else:
+                alignment[str(table_id)] = (
+                    "normalized_repeated_header"
+                )
 
+            merged_table_ids.append(table_id)
             continue
 
-        # Exact scientific-row equality is also sufficient
-        # evidence for a repeated physical header.
+        # A first row that normalizes to the root header is sufficient
+        # evidence for a repeated physical header even when Step 5 did
+        # not label it as one.
         if (
             root_header is not None
             and first_row == root_header
         ):
             drop_headers.append(table_id)
 
-            alignment[str(table_id)] = (
-                "exact_repeated_header"
-            )
+            if (
+                tuple(plan["rows"][0])
+                == tuple(root_plan["rows"][0])
+            ):
+                alignment[str(table_id)] = (
+                    "exact_repeated_header"
+                )
+            else:
+                alignment[str(table_id)] = (
+                    "normalized_repeated_header"
+                )
 
+            merged_table_ids.append(table_id)
             continue
 
-        # Explicit continuation + equal rectangular width
-        # defines a unique positional column mapping.
+        # Step 1 already establishes continuation membership. Equal
+        # rectangular width plus a stable Step 5 reference-column
+        # position defines the conservative positional mapping.
         alignment[str(table_id)] = (
             "positional_same_width"
         )
+        merged_table_ids.append(table_id)
 
     return {
         **base,
@@ -516,12 +665,13 @@ def _plan_one_group(
             "and deterministic same-width column "
             "alignment."
         ),
+        "merged_table_ids": merged_table_ids,
+        "rejected_tail_table_ids": [],
         "dropped_repeated_header_table_ids": (
             drop_headers
         ),
         "alignment": alignment,
     }
-
 
 def plan_continuation_merges(
     tables_index_path: Path,
@@ -593,7 +743,7 @@ def materialize_continuation_merges(
     for merge_plan in merge_plans:
         if (
             merge_plan["merge_status"]
-            != "ready"
+            not in {"ready", "ready_partial"}
         ):
             final_groups.append(
                 dict(merge_plan)
@@ -604,9 +754,9 @@ def materialize_continuation_merges(
             "root_table_id"
         ]
 
-        physical_table_ids = tuple(
+        merged_table_ids = tuple(
             merge_plan[
-                "physical_table_ids"
+                "merged_table_ids"
             ]
         )
 
@@ -649,7 +799,7 @@ def materialize_continuation_merges(
             writer = csv.writer(handle)
 
             for table_id in (
-                physical_table_ids
+                merged_table_ids
             ):
                 physical_result = (
                     result_by_table_id[
@@ -730,14 +880,33 @@ def materialize_continuation_merges(
                     str(table_id)
                 ] = table_rows_written
 
+        partial = (
+            merge_plan["merge_status"]
+            == "ready_partial"
+        )
+
         final_groups.append(
             {
                 **merge_plan,
-                "merge_status": "merged",
+                "merge_status": (
+                    "partial"
+                    if partial
+                    else "merged"
+                ),
                 "reason": (
-                    "Merged after deterministic "
-                    "Step 1 continuation and "
-                    "column-compatibility validation."
+                    (
+                        "Merged the structurally "
+                        "compatible Step 1 continuation "
+                        "prefix; the remaining tail was "
+                        "rejected. "
+                        + merge_plan["reason"]
+                    )
+                    if partial
+                    else (
+                        "Merged after deterministic "
+                        "Step 1 continuation and "
+                        "column-compatibility validation."
+                    )
                 ),
                 "merged_csv": str(
                     merged_path
