@@ -25,7 +25,7 @@ html_theme_options = {
     "use_repository_button": False,
     "use_issues_button": False,
     "use_edit_page_button": False,
-    "show_navbar_depth": 2,
+    "show_navbar_depth": 3,
     "show_toc_level": 2,
 }
 

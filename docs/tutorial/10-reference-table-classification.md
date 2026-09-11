@@ -123,7 +123,8 @@ The next rebuilt branch is bibliography extraction, which produces
 `references/bibliography.json` from the original PDF. It runs in parallel with
 table processing and converges with classified reference-like tables at Step 5
 reference matching. Step 6 resolves the union of referenced
-bibliography indices once per paper; Step 7 export remains planned.
+bibliography indices once per paper; Step 7 exports resolved CSVs from Step 5
+matches and the Step 6 paper-level registry.
 
 Without human gold-standard labels, evaluate Step 3 coverage, consistency,
 and agreement across reconstruction outputs rather than accuracy.

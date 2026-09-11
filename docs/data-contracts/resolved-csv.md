@@ -90,23 +90,13 @@ tabulus export-resolved-csv \
   --merge-continuations
 ```
 
-Step 7 uses the explicit Step 1 continuation topology as the source of
-logical-table membership and walks each continuation chain in physical order.
-A fragment is accepted while it remains rectangular, preserves the root
-scientific-column count, and keeps the same Step 5 reference-column position.
-Repeated headers may differ only by presentation-level LaTeX forms used for
-comparison; the original root header and all physical CSV values remain
-unchanged.
+Step 7 uses the explicit Step 1 continuation topology and revalidates
+reconstructed-table compatibility at merge time. Safe mappings are exact
+repeated headers with equal column count, or same-width positional
+continuation when no repeated header is present.
 
-If a later fragment becomes structurally incompatible, Step 7 may materialize
-the compatible prefix when at least two physical fragments were accepted. The
-first incompatible fragment and every subsequent fragment in that Step 1 chain
-are recorded as a rejected tail; Step 7 does not skip across the discrepancy or
-repair the physical reconstruction. Such a result has `merge_status: "partial"`
-with `merged_table_ids` and `rejected_tail_table_ids` recorded in the manifest.
-
-A group with a missing physical export remains `incomplete` and is not partially
-materialized. Physical resolved CSVs are always retained.
+Incompatible or incomplete groups remain separate. Physical resolved CSVs
+are always retained.
 
 Successful merged tables are additional artifacts under:
 

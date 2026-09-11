@@ -139,113 +139,14 @@ The sidebar contains the full documentation. The main sections are:
 
 ```{toctree}
 :hidden:
-:maxdepth: 2
-:caption: Installation And Setup
+:maxdepth: 3
 
-installation/windows-cpu
-installation/gpu-server
-installation/python-library
-```
-
-```{toctree}
-:hidden:
-:maxdepth: 2
-:caption: Tutorial
-
-tutorial/00-overview
-tutorial/01-pdf-profiling
-tutorial/08-table-ocr
-tutorial/10-reference-table-classification
-tutorial/11-bibliography-extraction
-tutorial/12-reference-matching
-tutorial/13-doi-resolution
-tutorial/14-csv-export
-tutorial/15-run-report
-```
-
-```{toctree}
-:hidden:
-:maxdepth: 2
-:caption: Components
-
-modules/overview
-modules/pdf-profilers
-modules/pdf-readers
-modules/page-renderers
-modules/layout-detectors
-modules/table-detectors
-modules/table-ocr-adapters
-modules/bibliography-extractors
-modules/reference-matchers
-modules/doi-resolvers
-```
-
-```{toctree}
-:hidden:
-:maxdepth: 2
-:caption: Workflows
-
-workflows/single-pdf-local
-workflows/gpu-server-run
-workflows/mineru-gpu-execution
-workflows/end-to-end-run
-workflows/debugging-failed-step
-```
-
-```{toctree}
-:hidden:
-:maxdepth: 2
-:caption: External Tools
-
-external-tools/mineru
-external-tools/grobid
-external-tools/paddleocr-vl
-external-tools/chandra
-external-tools/nuextract3
-external-tools/tesseract-tatr
-external-tools/docling
-external-tools/granite-vision
-external-tools/trivia
-external-tools/glm-ocr
-external-tools/dolphin-v2
-external-tools/deepseek-ocr-2
-external-tools/nanonets-ocr-s
-external-tools/monkeyocrv2-b-parsing
-external-tools/nemotron-parse-v1-2
-external-tools/hunyuanocr-1-5
-external-tools/dots-mocr
-external-tools/internvl3-5-8b
-```
-
-```{toctree}
-:hidden:
-:maxdepth: 2
-:caption: Data Contracts
-
-data-contracts/run-directory
-data-contracts/pdf-profiling-stage-1
-data-contracts/table-reconstruction-stage-2
-data-contracts/bibliography-reference-processing
-```
-
-```{toctree}
-:hidden:
-:maxdepth: 2
-:caption: Evaluation
-
-evaluation/overview
-evaluation/reference-table-classification-quality
-evaluation/table-extraction-quality
-evaluation/bibliography-quality
-evaluation/reference-matching-quality
-```
-
-```{toctree}
-:hidden:
-:maxdepth: 1
-:caption: Project Notes
-
-project-notes/current-state
-project-notes/branding
-project-notes/containerization-later
+installation/index
+tutorial/index
+modules/index
+workflows/index
+external-tools/index
+data-contracts/index
+evaluation/index
+project-notes/index
 ```
