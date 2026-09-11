@@ -1,0 +1,17 @@
+/* Keep first-level sidebar landing pages visually distinct after making them clickable. */
+.bd-sidebar-primary nav.bd-links > ul > li > a,
+.bd-sidebar-primary .bd-sidenav > li > a {
+  font-weight: 700;
+}
+
+/* Child links should keep normal weight so the section hierarchy remains clear. */
+.bd-sidebar-primary nav.bd-links > ul > li li > a,
+.bd-sidebar-primary .bd-sidenav > li li > a {
+  font-weight: 400;
+}
+
+/* Preserve the theme's active-page emphasis for nested items. */
+.bd-sidebar-primary nav.bd-links a.current,
+.bd-sidebar-primary .bd-sidenav a.current {
+  font-weight: 700;
+}

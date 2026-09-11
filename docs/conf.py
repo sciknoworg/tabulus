@@ -19,6 +19,7 @@ html_title = "Tabulus"
 html_logo = "_static/tabulus-logo.png"
 html_favicon = "_static/blank-favicon.svg"
 html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 
 html_theme_options = {
     "repository_url": "https://github.com/sciknoworg/tabulus",
