@@ -215,7 +215,13 @@ positions can shift.
 
 `matches_found / matches_total` is a coverage statistic, not an accuracy
 metric. Token counts are diagnostic coverage information. Scientific matching
-accuracy requires comparison with human gold-standard data.
+accuracy requires comparison with suitable gold labels.
+
+TabulusBench Step 5 gold labels for P251 and P252 are documented in
+{doc}`../evaluation/reference-matching-quality`. Those benchmark gold files are
+separate from this production output contract: `reference_matches.json` records
+matcher output, while `reference_matching/gold.json` records controlled
+evaluation labels.
 
 Raw reconstruction prediction CSVs remain pre-reference-resolution artifacts
 and must not be overwritten by reference matching.

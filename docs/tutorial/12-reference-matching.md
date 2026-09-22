@@ -2,11 +2,13 @@
 
 ## Goal
 
-Step 5 links reference cells in Step 3-selected reconstructed tables to
-positions in the Step 4 bibliography artifact. This is deterministic
-table-cell-to-bibliography-position matching.
+Step 5 links citation-bearing cells in Step 3-selected reconstructed tables to
+entries in the ordered Step 4 bibliography. Step 3 answers which reconstructed
+tables are reference-containing, Step 4 supplies the paper bibliography, and
+Step 5 determines which bibliography positions are cited by each relevant table
+cell.
 
-This is where the table-processing branch and bibliography branch converge:
+The two branches meet here:
 
 ```text
 Step 3: selected_reference_tables.json
@@ -23,65 +25,102 @@ Step 4: references/bibliography.json
 references/reference_matches.json
 ```
 
-## Input
+Step 5 is deterministic and offline. It links table citation occurrences to
+bibliography positions; DOI validation and scholarly-identity resolution belong
+to Step 6.
 
-Step 5 requires two files:
+## Inputs
+
+Step 5 consumes two production inputs:
 
 1. `selected_reference_tables.json`
    : The Step 3 selection manifest. It identifies tables classified as
-     reference-like and points to their existing reconstruction artifacts.
+     reference-containing and points to their parsed Step 2 reconstruction
+     artifacts.
 
 2. `references/bibliography.json`
    : The Step 4 bibliography artifact extracted from the original PDF.
 
-Step 5 does not consume the original PDF, rerun table reconstruction, or call
-GROBID. It reads the selected-table manifest and the already-created
-bibliography JSON.
+Step 5 does not read the original PDF, rerun table reconstruction, rerun
+GROBID, or modify prediction CSVs.
 
-## Command Line
+## Single-Paper Usage
 
-Run reference matching with:
+Run reference matching for one paper and one reconstruction adapter with:
 
 ```bash
 tabulus match-references \
-  --selected /path/to/selected_reference_tables.json \
-  --bibliography /path/to/references/bibliography.json
+  --selected /path/to/paper/reconstructions/<adapter>/selected_reference_tables.json \
+  --bibliography /path/to/paper/references/bibliography.json
+```
+
+If `--out` is omitted, Tabulus writes the production artifact inside the
+reconstruction directory:
+
+```text
+/path/to/paper/reconstructions/<adapter>/references/reference_matches.json
 ```
 
 To choose the output file explicitly:
 
 ```bash
 tabulus match-references \
-  --selected /path/to/selected_reference_tables.json \
-  --bibliography /path/to/references/bibliography.json \
-  --out /path/to/reference_matches.json
+  --selected /path/to/paper/reconstructions/<adapter>/selected_reference_tables.json \
+  --bibliography /path/to/paper/references/bibliography.json \
+  --out /path/to/paper/reconstructions/<adapter>/references/reference_matches.json
 ```
 
-If `--out` is omitted, Tabulus writes:
+The selected-table manifest and bibliography artifact must belong to the same
+paper. Step 5 does not verify scholarly identity; it only links table-cell
+reference expressions to bibliography positions.
+
+## Worked Example
+
+Given a reference cell:
 
 ```text
-<reconstruction-directory>/references/reference_matches.json
+[12, 15-17]
 ```
 
-## Output
+Step 5 expands the numeric list and range to the one-based bibliography
+positions:
 
-`reference_matches.json` records:
+```text
+12, 15, 16, 17
+```
 
-- selected, checked, and skipped reference-table counts
-- detected reference column for each checked table
-- row-level reference-cell matches
-- matched bibliography indices
-- match method provenance
-- unmatched tokens where applicable
-- skipped-table diagnostics when a parsed-table artifact cannot be used safely
+A corresponding `reference_matches.json` row-level excerpt is:
 
-See {doc}`../data-contracts/reference-matches-json` for the full artifact
-schema.
+```json
+{
+  "row_index": 4,
+  "value": "[12, 15-17]",
+  "found": true,
+  "matched_reference_indices": [12, 15, 16, 17],
+  "matched_references": [
+    "Raw bibliography entry 12.",
+    "Raw bibliography entry 15.",
+    "Raw bibliography entry 16.",
+    "Raw bibliography entry 17."
+  ],
+  "doi": ["", "10.1234/example", "", ""],
+  "match_provenance": [
+    {"reference_index": 12, "method": "numeric_position", "token": "12"},
+    {"reference_index": 15, "method": "numeric_position", "token": "15"},
+    {"reference_index": 16, "method": "numeric_position", "token": "16"},
+    {"reference_index": 17, "method": "numeric_position", "token": "17"}
+  ],
+  "tokens_total": 4,
+  "tokens_matched": 4,
+  "unmatched_tokens": [],
+  "is_header": false
+}
+```
+
+`matched_references` and `doi` are copied from the Step 4 bibliography artifact.
+Step 5 does not look up missing DOI values.
 
 ## Matching Behavior
-
-Step 5 is deterministic and offline. It does not query Crossref, GROBID, an
-LLM, embeddings, external search, or any metadata service.
 
 The matcher records these method labels:
 
@@ -92,7 +131,7 @@ The matcher records these method labels:
 - `text_containment`
 
 `numeric_position` interprets numeric table references as one-based positions
-in the normalized GROBID TEI bibliography order stored in
+in the normalized Step 4 bibliography order stored in
 `references/bibliography.json`. For example, `[12]` links to bibliography entry
 12. This is positional linkage, not DOI enrichment.
 
@@ -101,28 +140,95 @@ Numeric normalization handles common lists and ranges, such as `[12, 14]`,
 OCR-spacing cases inside numeric-only cells. Textual author-year forms such as
 `Smith (2020)` are not treated as numeric references.
 
-Author-based matching uses conservative normalized author/year,
-author-only, and text-containment fallbacks. Ambiguous textual matches may keep
-multiple candidate bibliography entries rather than silently choosing one.
+DOI matching is exact against DOI values already present in Step 4 extraction
+evidence. Author-based matching uses conservative author-year, author-only, and
+text-containment fallbacks. Ambiguous textual matches may retain multiple
+candidate bibliography entries rather than silently choosing one.
 
-## Aggregation Boundary
+Step 5 first detects the reference column in the parsed table. Numeric markers
+in non-reference content are not automatically bibliography citations. For
+example, `mark[1]` in a measurement or footnote column is table-local content,
+not a bibliography reference merely because it contains `[1]`.
 
-Step 5 output is table-cell level. Multiple cells, selected tables, and
-reconstruction adapters may refer to the same bibliography index.
+## Running Across Many Papers / TabulusBench
 
-Step 6 collects matched bibliography indices across supplied reconstruction
-methods for a paper, takes their union, and deduplicates by bibliography index.
-The resolution key is:
+There is no dedicated collection-level `tabulus match-references` command. For
+corpus-scale production use, invoke the same paper-level command once for each
+paper and adapter where both inputs exist:
+
+- Step 3 `selected_reference_tables.json`
+- Step 4 `references/bibliography.json`
+
+A portable orchestration pattern is to prepare a UTF-8 manifest with one row per
+paper/adapter pair:
+
+```text
+selected_path,bibliography_path,out_path
+/path/to/P4/reconstructions/tesseract-tatr/selected_reference_tables.json,/path/to/P4/references/bibliography.json,/path/to/P4/reconstructions/tesseract-tatr/references/reference_matches.json
+```
+
+Then invoke the existing CLI for each row:
+
+```bash
+python - <<'PY'
+from pathlib import Path
+import csv
+import subprocess
+
+manifest = Path("/path/to/step5-manifest.csv")
+
+with manifest.open(newline="", encoding="utf-8") as handle:
+    reader = csv.DictReader(handle)
+    for index, row in enumerate(reader, start=1):
+        selected = row["selected_path"]
+        bibliography = row["bibliography_path"]
+        out = row.get("out_path") or ""
+
+        command = [
+            "tabulus",
+            "match-references",
+            "--selected",
+            selected,
+            "--bibliography",
+            bibliography,
+        ]
+        if out:
+            Path(out).parent.mkdir(parents=True, exist_ok=True)
+            command.extend(["--out", out])
+
+        print(f"[{index}] {selected}")
+        result = subprocess.run(command, text=True)
+        if result.returncode != 0:
+            print(f"  failed with return code {result.returncode}")
+PY
+```
+
+For TabulusBench, production Step 5 matching can be run wherever Step 3 and
+Step 4 artifacts exist. Accuracy evaluation is narrower: the current controlled
+Step 5 gold-standard evaluation covers only P251 and P252, not the full
+252-paper benchmark. For other papers, coverage, unmatched-token, and
+consistency statistics must not be called precision, recall, F1, or accuracy
+unless suitable gold labels exist.
+
+## Output And Downstream Boundary
+
+`reference_matches.json` remains a table-cell-level artifact. It records the
+reference column, row-level matches, matched bibliography indices, match
+provenance, unmatched tokens, and skipped-table diagnostics. See
+{doc}`../data-contracts/reference-matches-json` for the full production output
+contract.
+
+Step 6 consumes one or more Step 5 artifacts, takes the union of matched
+bibliography indices across supplied reconstruction methods for a paper, and
+deduplicates by:
 
 ```text
 (paper, bibliography_index)
 ```
 
-Resolving each unique bibliography entry once is useful because scholarly
-identity is a property of the paper-level bibliography entry, not of a
-particular reconstructed table cell. It also keeps different reconstruction
-adapters from receiving different downstream identity decisions for the same
-bibliography entry.
+Step 5 does not resolve scholarly identity, query Crossref or CORE, call an
+LLM, mutate Step 2 reconstruction files, or change the Step 4 bibliography
+evidence.
 
 ## Skipped Tables
 
@@ -135,14 +241,3 @@ artifact contains:
 The skipped table is recorded in `skipped_tables`, and the rest of the matching
 run can continue. Malformed input contracts or identity mismatches are treated
 as errors.
-
-## Boundary To Step 6
-
-Step 5 links table references to bibliography entries. External DOI lookup and
-scholarly-identity resolution are outside Step 5; they belong to Step 6
-paper-level reference resolution.
-
-Step 5 does not mutate raw reconstruction prediction CSVs or the Step 4
-bibliography evidence. Coverage and agreement measures are documented in
-{doc}`../evaluation/reference-matching-quality`; they should not be described
-as accuracy without human gold-standard labels.
