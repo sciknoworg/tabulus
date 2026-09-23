@@ -390,12 +390,22 @@ def resolve_reference_artifact(
     llm_base_url: str,
     llm_api_key: str,
     llm_model: str,
+    llm_provider: str = "openai-compatible",
     fallback_llm_base_url: str | None = None,
     fallback_llm_api_key: str | None = None,
     fallback_llm_model: str | None = None,
     reference_context_path: Path | None = None,
 ) -> ReferenceResolutionRunResult:
     """Run Stage 6 with the standard Tabulus clients."""
+
+    primary_provider = str(
+        llm_provider
+    ).strip()
+
+    if not primary_provider:
+        raise ValueError(
+            "Primary LLM provider label must not be empty."
+        )
 
     crossref_client = CrossrefClient(
         mailto=crossref_mailto,
@@ -432,7 +442,7 @@ def resolve_reference_artifact(
         api_key=llm_api_key,
         model=llm_model,
         enable_thinking=False,
-        provider_name="kisski",
+        provider_name=primary_provider,
         include_chat_template_kwargs=True,
     )
 
@@ -456,7 +466,7 @@ def resolve_reference_artifact(
         llm_client = FailoverLLMClient(
             primary_client=primary_llm_client,
             fallback_client=fallback_client,
-            primary_provider="kisski",
+            primary_provider=primary_provider,
             fallback_provider="openrouter",
         )
     else:
@@ -467,10 +477,11 @@ def resolve_reference_artifact(
     # the checkpoint fingerprint.
     resolver_configuration = (
         "llm_policy=primary-first-per-adjudication;"
-        "primary_provider=kisski;"
+        "llm_processing=enabled;"
+        f"primary_provider={primary_provider};"
         f"primary_base_url={str(llm_base_url).rstrip('/')};"
         f"primary_model={str(llm_model).strip()};"
-        "thinking=false"
+        "reasoning_mode=disabled"
     )
 
     if fallback_configured:

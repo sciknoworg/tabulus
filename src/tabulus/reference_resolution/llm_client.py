@@ -318,10 +318,11 @@ class OpenAICompatibleLLMClient:
     the OpenAI-compatible ``chat/completions`` contract may be used by
     supplying its base URL, API key, and model name.
 
-    Thinking is disabled by default because Stage 6 is a bounded candidate
-    adjudication task. Sampling is also minimized by default so repeated
-    resolution runs are suitable for controlled ablation experiments.
-    Strict validation remains in Tabulus regardless of what the model returns.
+    Provider-specific reasoning mode is disabled by default because Step 6
+    is a bounded candidate-adjudication task. Sampling is also minimized by
+    default so repeated resolution runs are suitable for controlled ablation
+    experiments. Strict validation remains in Tabulus regardless of what the
+    model returns.
     """
 
     base_url: str

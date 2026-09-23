@@ -297,7 +297,7 @@ def test_resolve_reference_artifact_constructs_standard_clients(
         "api_key": "llm-secret",
         "model": "qwen3.6-35b-a3b",
         "enable_thinking": False,
-        "provider_name": "kisski",
+        "provider_name": "openai-compatible",
         "include_chat_template_kwargs": True,
     }
 
@@ -1240,6 +1240,7 @@ def test_standard_orchestrator_builds_primary_fallback_llm(
         llm_base_url="https://kisski.example/v1",
         llm_api_key="kisski-secret",
         llm_model="qwen3.6-35b-a3b",
+        llm_provider="saia",
         fallback_llm_base_url=(
             "https://openrouter.ai/api/v1"
         ),
@@ -1255,7 +1256,7 @@ def test_standard_orchestrator_builds_primary_fallback_llm(
             "api_key": "kisski-secret",
             "model": "qwen3.6-35b-a3b",
             "enable_thinking": False,
-            "provider_name": "kisski",
+            "provider_name": "saia",
             "include_chat_template_kwargs": True,
         },
         {
@@ -1272,7 +1273,7 @@ def test_standard_orchestrator_builds_primary_fallback_llm(
     assert calls["failover"] is not None
     assert (
         calls["failover"]["primary_provider"]
-        == "kisski"
+        == "saia"
     )
     assert (
         calls["failover"]["fallback_provider"]

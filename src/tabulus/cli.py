@@ -723,6 +723,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     resolve_references.add_argument(
+        "--llm-provider",
+        default=None,
+        help=(
+            "Provider label recorded for the primary "
+            "OpenAI-compatible LLM. If omitted, "
+            "TABULUS_LLM_PROVIDER is used; if unset, "
+            "'openai-compatible' is recorded."
+        ),
+    )
+
+    resolve_references.add_argument(
         "--core-api-key-env",
         default="CORE_API_KEY",
         help=(
@@ -1246,6 +1257,18 @@ def main() -> None:
             )
         )
 
+        llm_provider = (
+            args.llm_provider.strip()
+            if args.llm_provider is not None
+            else os.environ.get(
+                "TABULUS_LLM_PROVIDER",
+                "",
+            ).strip()
+        )
+
+        if not llm_provider:
+            llm_provider = "openai-compatible"
+
         core_api_key = _required_environment_value(
             args.core_api_key_env
         )
@@ -1327,10 +1350,11 @@ def main() -> None:
         print(f"  Artifact root: {args.out}")
         print("  Crossref mailto configured: yes")
         print(f"  CORE API key env: {args.core_api_key_env}")
+        print(f"  Primary LLM provider: {llm_provider}")
         print(f"  Primary LLM base URL: {llm_base_url}")
         print(f"  Primary LLM model: {llm_model}")
         print(f"  Primary LLM API key env: {args.llm_api_key_env}")
-        print("  LLM thinking: disabled")
+        print("  LLM processing: enabled")
 
         if fallback_requested:
             print("  Fallback LLM: enabled")
@@ -1361,6 +1385,7 @@ def main() -> None:
             "llm_base_url": llm_base_url,
             "llm_api_key": llm_api_key,
             "llm_model": llm_model,
+            "llm_provider": llm_provider,
         }
 
         if fallback_requested:

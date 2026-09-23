@@ -552,6 +552,7 @@ def test_resolve_references_parser_accepts_multiple_match_artifacts():
     assert args.crossref_mailto is None
     assert args.core_api_key_env == "CORE_API_KEY"
     assert args.llm_api_key_env == "TABULUS_LLM_API_KEY"
+    assert args.llm_provider is None
 
 
 def test_resolve_references_main_reads_secrets_from_environment(
@@ -596,6 +597,10 @@ def test_resolve_references_main_reads_secrets_from_environment(
         "TABULUS_LLM_MODEL",
         "qwen3.6-35b-a3b",
     )
+    monkeypatch.setenv(
+        "TABULUS_LLM_PROVIDER",
+        "saia",
+    )
 
     monkeypatch.setattr(
         "sys.argv",
@@ -635,6 +640,7 @@ def test_resolve_references_main_reads_secrets_from_environment(
         llm_base_url,
         llm_api_key,
         llm_model,
+        llm_provider,
     ):
         calls["bibliography_path"] = bibliography_path
         calls["reference_matches_paths"] = (
@@ -646,6 +652,7 @@ def test_resolve_references_main_reads_secrets_from_environment(
         calls["llm_base_url"] = llm_base_url
         calls["llm_api_key"] = llm_api_key
         calls["llm_model"] = llm_model
+        calls["llm_provider"] = llm_provider
         return FakeResult()
 
     monkeypatch.setattr(
@@ -681,11 +688,14 @@ def test_resolve_references_main_reads_secrets_from_environment(
     assert calls["llm_model"] == (
         "qwen3.6-35b-a3b"
     )
+    assert calls["llm_provider"] == "saia"
 
     output = capsys.readouterr().out
 
     assert "core-secret-value" not in output
     assert "llm-secret-value" not in output
+    assert "Primary LLM provider: saia" in output
+    assert "LLM processing: enabled" in output
     assert "Validated with DOI: 8" in output
     assert "Rejected: 3" in output
 
@@ -821,6 +831,10 @@ def test_resolve_references_main_passes_fallback_llm_configuration(
         "qwen3.6-35b-a3b",
     )
     monkeypatch.setenv(
+        "TABULUS_LLM_PROVIDER",
+        "saia",
+    )
+    monkeypatch.setenv(
         "TABULUS_FALLBACK_LLM_BASE_URL",
         "https://openrouter.ai/api/v1",
     )
@@ -869,6 +883,7 @@ def test_resolve_references_main_passes_fallback_llm_configuration(
         llm_base_url,
         llm_api_key,
         llm_model,
+        llm_provider,
         fallback_llm_base_url,
         fallback_llm_api_key,
         fallback_llm_model,
@@ -880,6 +895,7 @@ def test_resolve_references_main_passes_fallback_llm_configuration(
                 "llm_base_url": llm_base_url,
                 "llm_api_key": llm_api_key,
                 "llm_model": llm_model,
+                "llm_provider": llm_provider,
                 "fallback_llm_base_url": (
                     fallback_llm_base_url
                 ),
@@ -907,6 +923,7 @@ def test_resolve_references_main_passes_fallback_llm_configuration(
         "llm_base_url": "https://kisski.example/v1",
         "llm_api_key": "primary-secret",
         "llm_model": "qwen3.6-35b-a3b",
+        "llm_provider": "saia",
         "fallback_llm_base_url": (
             "https://openrouter.ai/api/v1"
         ),
@@ -918,6 +935,8 @@ def test_resolve_references_main_passes_fallback_llm_configuration(
 
     output = capsys.readouterr().out
 
+    assert "Primary LLM provider: saia" in output
+    assert "LLM processing: enabled" in output
     assert "Fallback LLM: enabled" in output
     assert (
         "qwen/qwen3.6-35b-a3b"
