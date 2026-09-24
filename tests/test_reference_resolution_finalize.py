@@ -508,9 +508,12 @@ def test_second_llm_can_select_candidate_after_retry() -> None:
     )
     assert result.second_llm_response is not None
     assert len(llm.calls) == 2
+    assert llm.calls[0].allow_retry_search is True
+    assert llm.calls[1].allow_retry_search is False
 
 
-def test_second_retry_request_is_rejected_after_budget_exhausted() -> None:
+def test_second_retry_request_is_contract_error_after_budget_exhausted() -> None:
+    import pytest
     first_query = "Smith 2020 Example Journal"
 
     llm = _FakeLLM(
@@ -524,20 +527,21 @@ def test_second_retry_request_is_rejected_after_budget_exhausted() -> None:
         ),
     )
 
-    result = finalize_reference_resolution(
-        _evidence(),
-        _needs_llm(),
-        crossref_client=_FakeCrossref(),
-        core_client=_FakeCore(),
-        llm_client=llm,
-    )
+    with pytest.raises(
+        ValueError,
+        match="single scholarly-search retry",
+    ):
+        finalize_reference_resolution(
+            _evidence(),
+            _needs_llm(),
+            crossref_client=_FakeCrossref(),
+            core_client=_FakeCore(),
+            llm_client=llm,
+        )
 
-    assert result.resolution.status == (
-        ResolutionStatus.REJECTED
-    )
-    assert result.retry_used is True
     assert len(llm.calls) == 2
-    assert "retry" in result.resolution.reason.casefold()
+    assert llm.calls[0].allow_retry_search is True
+    assert llm.calls[1].allow_retry_search is False
 
 
 

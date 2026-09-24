@@ -136,6 +136,60 @@ def test_build_llm_case_exposes_only_retrieved_candidates() -> None:
     ]
 
 
+def test_default_llm_case_allows_single_retry_search() -> None:
+    case = build_llm_adjudication_case(
+        _evidence(),
+        _resolution(),
+    )
+
+    payload = case.to_dict()
+
+    assert payload["allowed_decisions"] == [
+        "select_candidate",
+        "retry_search",
+        "reject_all",
+    ]
+
+    assert any(
+        "retry_search" in rule
+        for rule in payload["rules"]
+    )
+
+
+def test_final_llm_case_disallows_retry_search() -> None:
+    case = build_llm_adjudication_case(
+        _evidence(),
+        _resolution(),
+        allow_retry_search=False,
+    )
+
+    payload = case.to_dict()
+
+    assert payload["allowed_decisions"] == [
+        "select_candidate",
+        "reject_all",
+    ]
+
+    assert all(
+        "retry_search" not in rule
+        for rule in payload["rules"]
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="not permitted",
+    ):
+        parse_llm_decision(
+            {
+                "decision": "retry_search",
+                "search_query": (
+                    "Smith 2020 Example Journal"
+                ),
+            },
+            case,
+        )
+
+
 def test_llm_case_rejects_already_validated_reference() -> None:
     resolution = _resolution()
 

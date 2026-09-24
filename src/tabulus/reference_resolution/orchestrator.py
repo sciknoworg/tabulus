@@ -481,6 +481,7 @@ def resolve_reference_artifact(
         f"primary_provider={primary_provider};"
         f"primary_base_url={str(llm_base_url).rstrip('/')};"
         f"primary_model={str(llm_model).strip()};"
+        "retry_policy=single-bounded-final-no-retry-v2;"
         "reasoning_mode=disabled"
     )
 

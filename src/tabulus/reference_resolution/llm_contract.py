@@ -55,6 +55,7 @@ class LLMAdjudicationCase:
     raw_reference: str
     evidence: ReferenceEvidence
     candidates: tuple[LLMCandidate, ...]
+    allow_retry_search: bool = True
     document_contexts: tuple[ReferenceContext, ...] = ()
 
     def candidate_by_id(
@@ -67,6 +68,19 @@ class LLMAdjudicationCase:
         return None
 
     def to_dict(self) -> dict[str, Any]:
+        allowed_decisions = [
+            LLMDecisionType.SELECT_CANDIDATE,
+        ]
+
+        if self.allow_retry_search:
+            allowed_decisions.append(
+                LLMDecisionType.RETRY_SEARCH
+            )
+
+        allowed_decisions.append(
+            LLMDecisionType.REJECT_ALL
+        )
+
         rules = [
             (
                 "Select only a candidate_id supplied in "
@@ -77,17 +91,24 @@ class LLMAdjudicationCase:
                 "or publication that is not represented by "
                 "the supplied candidates."
             ),
-            (
-                "Use retry_search only when the citation can "
-                "plausibly be reformulated into a better "
-                "bibliographic search query."
-            ),
+        ]
+
+        if self.allow_retry_search:
+            rules.append(
+                (
+                    "Use retry_search only when the citation can "
+                    "plausibly be reformulated into a better "
+                    "bibliographic search query."
+                )
+            )
+
+        rules.append(
             (
                 "Use reject_all when the supplied evidence "
                 "does not support any candidate and a better "
                 "search query cannot be justified."
-            ),
-        ]
+            )
+        )
 
         payload: dict[str, Any] = {
             "schema_version": 1,
@@ -100,7 +121,7 @@ class LLMAdjudicationCase:
             ],
             "allowed_decisions": [
                 decision.value
-                for decision in LLMDecisionType
+                for decision in allowed_decisions
             ],
             "rules": rules,
         }
@@ -181,6 +202,7 @@ def build_llm_adjudication_case(
     *,
     candidates_per_source: int = DEFAULT_LLM_CANDIDATES_PER_SOURCE,
     document_contexts: tuple[ReferenceContext, ...] = (),
+    allow_retry_search: bool = True,
 ) -> LLMAdjudicationCase:
     """Build the bounded evidence package shown to an LLM.
 
@@ -256,6 +278,7 @@ def build_llm_adjudication_case(
         raw_reference=evidence.raw_reference,
         evidence=evidence,
         candidates=tuple(collected),
+        allow_retry_search=allow_retry_search,
         document_contexts=tuple(
             document_contexts
         ),
@@ -351,6 +374,14 @@ def parse_llm_decision(
         raise ValueError(
             "LLM decision has an unsupported decision value."
         ) from error
+
+    if (
+        decision == LLMDecisionType.RETRY_SEARCH
+        and not case.allow_retry_search
+    ):
+        raise ValueError(
+            "retry_search is not permitted for this adjudication."
+        )
 
     candidate_id = str(
         payload.get("candidate_id") or ""

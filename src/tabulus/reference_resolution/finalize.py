@@ -353,8 +353,8 @@ def finalize_reference_resolution(
     A retry searches Crossref first and CORE only if Crossref remains
     insufficient. If deterministic validation still fails, one final LLM
     adjudication is allowed over the combined initial and retry candidate
-    evidence. A second request to retry is rejected because the retry budget
-    has been exhausted.
+    evidence. Because the single retry has already been consumed, the final
+    adjudication permits only candidate selection or rejection.
 
     Network/provider exceptions are intentionally not converted into
     ``rejected`` decisions. They propagate to the caller so operational failure
@@ -611,6 +611,7 @@ def finalize_reference_resolution(
         evidence,
         combined,
         document_contexts=document_contexts,
+        allow_retry_search=False,
     )
 
     try:
@@ -681,23 +682,20 @@ def finalize_reference_resolution(
 
     if (
         second_decision.decision
-        == LLMDecisionType.REJECT_ALL
+        != LLMDecisionType.REJECT_ALL
     ):
-        reason = (
-            "No candidate could be validated after Crossref, CORE, "
-            "one bounded search retry, and final LLM adjudication."
-        )
-    else:
-        reason = (
-            "No candidate could be validated after the single permitted "
-            "search retry; the LLM requested another retry after the "
-            "retry budget had been exhausted."
+        raise ValueError(
+            "Final LLM adjudication returned retry_search even though "
+            "the single scholarly-search retry has already been consumed."
         )
 
     return ReferenceResolutionTrace(
         resolution=_rejected_resolution(
             evidence,
-            reason=reason,
+            reason=(
+                "No candidate could be validated after Crossref, CORE, "
+                "one bounded search retry, and final LLM adjudication."
+            ),
         ),
         initial_scholarly_resolution=scholarly_resolution,
         first_llm_response=first_response,
