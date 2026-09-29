@@ -25,8 +25,8 @@ paper-level run completes.
 : Number of entries for which a first or second LLM response is serialized.
 
 `retry_count`
-: Number of entries for which the single allowed LLM-generated search retry
-  was used.
+: Number of entries for which the single allowed LLM-generated scholarly-search
+  retry was used.
 
 `entries`
 : Final trace entries sorted by `resolution.reference_index`.
@@ -65,7 +65,9 @@ to it.
 
 `second_llm_response`
 : The final LLM response after one retry when deterministic retry evidence
-  remained insufficient, or `null` otherwise.
+  remained insufficient, or `null` otherwise. In the finalized contract, this
+  response may contain only `select_candidate` or `reject_all`; `retry_search`
+  is invalid after the retry has already been consumed.
 
 ## Final Resolution Object
 
@@ -146,7 +148,11 @@ comparable field weight, per-field scores, comparable fields,
 `sufficient_evidence`, and `strong_match`.
 
 Missing fields are not evidence of disagreement. Explicit contradictions are
-recorded through the score and can block acceptance.
+recorded through the score and can block acceptance. The final admissibility
+gate accepts only candidates with deterministic support such as DOI consistency
+where available, title similarity plus independent structured bibliographic
+evidence, or sufficiently strong title-less evidence from authors, year, and
+publication metadata.
 
 ## LLM Response Provenance
 
@@ -165,12 +171,41 @@ Serialized LLM responses include:
 - `retry_search`
 - `reject_all`
 
+The first LLM-assisted adjudication may use any of the three actions. If
+`retry_search` is used, Step 6 performs one bounded scholarly-search retry.
+After that retry is consumed, the final LLM-assisted adjudication may return
+only `select_candidate` or `reject_all`. A final `retry_search` violates the
+adjudication contract and is treated as an invariant/error condition, not as a
+scientific rejection.
+
 The LLM response does not add scholarly identity fields directly. A selected
 candidate must be one of the candidates supplied by Tabulus and must pass the
 final deterministic admissibility gate before the final `resolution` can be
-validated.
+validated. Explicit DOI contradiction prevents acceptance, and sufficient
+bibliographic evidence remains a deterministic requirement even for
+LLM-selected candidates.
 
 API keys and authorization headers are not serialized.
+
+
+## Non-Atomic Reference Guard
+
+Step 6 resolves one scholarly work per bibliography entry. If a raw
+bibliography entry appears to contain multiple complete citation-like
+publication records or document-layout contamination, the final resolution is a
+conservative `rejected` decision because single-work scholarly resolution would
+be unsafe. Known bracketed original-language/translated-journal pairs are
+permitted when they satisfy the implemented compatibility conditions. These are
+scientific safety decisions, not operational failures.
+
+## Controlled Evaluation Boundary
+
+`reference_resolution.json` reports final Step 6 statuses and provenance. A
+`validated_with_doi` status is a resolver output status, not an accuracy label.
+Validation yield must not be reported as precision, recall, DOI accuracy, or
+scholarly-identity accuracy without an independent identity gold standard. See
+{doc}`../tutorial/13-doi-resolution` for the controlled P251/P252 component
+setup and run protocol.
 
 ## Checkpoint Contract
 

@@ -69,7 +69,10 @@ For each unique linked bibliography entry, Step 6 runs this conservative
 workflow:
 
 ```text
-Step 4 bibliography evidence
+Step 4 bibliography evidence + Step 5 linked bibliography indices
+  |
+  v
+collect unique paper-level Step 6 targets
   |
   v
 existing DOI Crossref lookup, if a DOI was extracted
@@ -88,48 +91,67 @@ CORE search and deterministic assessment
   +--> validated candidate, when evidence is strong and unambiguous
   |
   v
-bounded LLM adjudication over supplied candidates
+bounded LLM-assisted adjudication over supplied candidates
   |
-  +--> select a supplied candidate
+  +--> select_candidate
   |      |
   |      v
   |    final deterministic admissibility gate
   |
-  +--> reject all candidates
+  +--> reject_all
   |
-  `--> propose one improved scholarly-search query
+  `--> retry_search
          |
          v
-       one Crossref/CORE retry, then deterministic assessment or one final
-       LLM adjudication over the combined candidate evidence
+       one Crossref/CORE scholarly-search retry
+         |
+         v
+       deterministic assessment or final LLM-assisted adjudication
+       over combined initial and retry evidence
+       (select_candidate or reject_all only)
 ```
+
+The first LLM-assisted adjudication may return exactly one of
+`select_candidate`, `retry_search`, or `reject_all`. Only one bounded scholarly
+search retry is permitted. If the retry is consumed and deterministic retry
+evidence remains insufficient, the final LLM-assisted adjudication may return
+only `select_candidate` or `reject_all`; `retry_search` is no longer a valid
+final decision. A custom or adversarial client that returns `retry_search` after
+the retry has already been consumed violates the adjudication contract and is
+treated as an invariant/error condition rather than as a scientific `rejected`
+outcome.
 
 An exact DOI returned by Crossref for an extracted DOI is decisive. Otherwise,
 Crossref and CORE candidates must pass deterministic scoring rules that compare
 only fields present on both sides. Missing bibliographic fields do not count as
 disagreement. Explicit contradictions, such as conflicting DOIs or incompatible
-numbered-edition years, block automatic acceptance.
+numbered-edition years, block acceptance.
 
-Strong title similarity alone is not enough for final acceptance. A candidate
-must also satisfy Tabulus's minimum bibliographic-evidence requirement. The LLM
-cannot lower that requirement.
+The final acceptance boundary is deterministic. The LLM proposes or adjudicates
+among supplied candidates, but a selected candidate is accepted only when it
+passes the final admissibility gate. Deterministic evidence rules include DOI
+consistency where available, title similarity together with independent
+structured bibliographic evidence, or sufficiently strong title-less evidence
+from authors, year, and publication metadata. Strong title similarity alone is
+not enough, and the LLM cannot lower Tabulus's minimum bibliographic-evidence
+requirement.
 
-## LLM Boundary
+Step 6 also guards against bibliography entries that appear to contain multiple
+complete citation-like publication records or document-layout contamination.
+Such non-atomic entries are rejected when single-work scholarly resolution would
+be unsafe. The implementation deliberately permits known bracketed
+translation-pair patterns when they satisfy the compatibility conditions in the
+resolver. These safety rejections are scientific safeguards, not resolver
+crashes or operational failures.
 
-The LLM step is evidence-bounded. The model receives structured source
+## LLM Processing Boundary
+
+LLM processing is evidence-bounded. The model receives structured source
 evidence, ranked Crossref and CORE candidates, and optional document contexts.
-It may only return one of these decisions:
-
-- `select_candidate`
-- `retry_search`
-- `reject_all`
-
-For `select_candidate`, the model must choose a `candidate_id` supplied by
-Tabulus. It may not invent a DOI, title, author, venue, publication, or
-scholarly entity. For `retry_search`, it may propose one improved search query.
-If that retry does not lead to deterministic validation, Step 6 allows one
-final LLM adjudication over the combined initial and retry candidates. A second
-retry request is rejected because the retry budget is exhausted.
+For `select_candidate`, it must choose a `candidate_id` supplied by Tabulus. It
+may not invent a DOI, title, author, venue, publication, or scholarly entity.
+For `retry_search`, it may propose one improved search query, subject to the
+single bounded retry described above.
 
 LLM response content is strictly parsed. Unknown identity-bearing fields are
 rejected. Syntactically invalid or truncated JSON message content is retried
@@ -170,6 +192,8 @@ Required configuration:
   `TABULUS_CROSSREF_MAILTO`
 - CORE API key through the environment variable named by `--core-api-key-env`
   (default: `CORE_API_KEY`)
+- primary LLM provider label through `--llm-provider` or
+  `TABULUS_LLM_PROVIDER`; if unset, `openai-compatible` is recorded
 - primary LLM base URL through `--llm-base-url` or `TABULUS_LLM_BASE_URL`
 - primary LLM model through `--llm-model` or `TABULUS_LLM_MODEL`
 - primary LLM API key through the environment variable named by
@@ -189,9 +213,16 @@ present, every adjudication starts with the primary provider and falls back for
 that adjudication only after the primary provider fails its bounded attempts.
 The next adjudication starts with the primary provider again.
 
-The standard client records provider names in serialized LLM responses so a
-run can be audited. Current standard-client provider labels are `kisski` for
-the primary client and `openrouter` for the fallback client.
+The provider-neutral implementation uses an OpenAI-compatible chat-completions
+interface and records provider/model provenance in serialized LLM responses.
+The current controlled evaluation uses provider `saia`, model `qwen3.8-27b`,
+and base URL `https://chat-ai.academiccloud.de/v1`. Do not place API keys,
+tokens, or secret values in commands, manifests, logs, or documentation.
+
+Model-specific reasoning mode is an implementation option and is disabled in
+the current controlled evaluation. The standard client disables that capability
+for the primary configuration used by Step 6 and records `reasoning_mode=disabled`
+in the resolver fingerprint.
 
 ## Single-Paper Execution
 
@@ -293,10 +324,156 @@ The checkpoint fingerprint covers:
 - the optional reference-context artifact contents, or the disabled-context
   marker
 - reproducibility-relevant resolver configuration such as LLM provider labels,
-  base URLs, model identifiers, and thinking/fallback policy
+  base URLs, model identifiers, LLM processing policy, retry policy, and
+  fallback policy
 
 Credentials and Crossref contact email are not included in the fingerprint.
 Source changes intentionally invalidate old checkpoints.
+
+
+## Controlled Step 6 Evaluation
+
+The controlled Step 6 evaluation is component-focused. It is distinct from a
+true full-production run over all 252 papers. In production, Step 6 runs after
+Step 1 production detections, Step 2 production reconstructions, Step 3
+classification, one Step 4 bibliography per paper, Step 5 per adapter, and the
+paper-level union/deduplication of linked bibliography entries.
+
+For the controlled P251/P252 evaluation, the original controlled Step 5 gold
+bibliography artifacts contain bibliography indices and raw references but do
+not provide enough structured bibliographic metadata for a fair component-level
+resolver evaluation. The final Step 4 component-aware alignment artifact is
+therefore used as a bridge between the controlled Step 5 bibliography indices
+and the corresponding Step 4/GROBID bibliography entries. Only clean one-to-one
+Step 4 to controlled-gold bibliography alignments are used as resolver inputs.
+
+Canonical gold artifacts remain immutable. Derived controlled Step 6 inputs are
+stored under:
+
+```text
+runs/stage6/controlled-p251-p252-final/<paper>/input_one_to_one/
+```
+
+Each controlled input directory contains:
+
+- `bibliography.json`
+- `reference_matches.json`
+- `manifest.json`
+
+The manifest records provenance and excluded alignment cases.
+
+Current controlled populations are:
+
+| Paper | Original linked bibliography targets | One-to-one controlled Step 6 targets | Excluded upstream alignment cases |
+| --- | ---: | ---: | --- |
+| P251 | 2,288 | 2,280 | 8 total: 4 split, 4 merge |
+| P252 | 1,053 | 996 | 57 total: 53 merge, 3 split, 1 unmatched |
+
+The excluded split, merge, and unmatched cases are not silently discarded from
+the broader methodological accounting. They are upstream
+bibliography-segmentation/alignment cases and are kept separate from the clean
+Step 6 component evaluation. The one-to-one subset must not be described as the
+full end-to-end pipeline population.
+
+### Independent identity gold
+
+Step 6 scholarly-identity accuracy requires an independent scholarly identity
+gold standard. Step 5 gold links establish which bibliography entry was cited;
+they do not by themselves establish the canonical scholarly-work identity.
+Therefore resolver validation status is not equivalent to correctness,
+`validated_with_doi` is an output status rather than an accuracy label, and
+validation yield must not be reported as precision, recall, or DOI accuracy.
+Independent identity gold is required before those accuracy metrics can be
+computed.
+
+### Controlled run protocol
+
+Step 6 is a hybrid workflow rather than a fully deterministic computation.
+Deterministic components include target collection, deduplication,
+bibliographic scoring, final admissibility, retry bounds, and final status
+logic. Complete executions can vary because they depend on live Crossref
+results, live CORE results, external provider/network behavior, and
+LLM-assisted adjudication.
+
+For controlled Step 6 evaluation, perform two fresh complete runs per paper:
+
+```text
+P251/run_01
+P251/run_02
+P252/run_01
+P252/run_02
+```
+
+Each run starts independently from the same controlled inputs. A second run
+must not reuse the first run's checkpoint. Run-to-run consistency should be
+assessed at the individual bibliography-reference level, including final
+resolution-status agreement, exact DOI agreement, agreement on validated
+scholarly identity, retry-use agreement, LLM-decision agreement where
+applicable, and the number/type of references whose final outcome changes. For
+references validated in both runs, exact DOI agreement is particularly
+important.
+
+Observed Step 6 runtime is part of the computer-science evaluation. Report it
+as observed end-to-end wall-clock runtime because Step 6 includes remote
+service latency from Crossref, CORE, and the LLM provider. Where instrumented,
+record wall-clock runtime, processed references, seconds/reference, number of
+LLM-processed entries, number of bounded retries, and optionally CPU time and
+maximum resident memory. Do not describe observed Step 6 wall-clock runtime as
+pure computation time.
+
+### Current controlled P252 run
+
+The current canonical first valid P252 controlled run is:
+
+```text
+runs/stage6/controlled-p251-p252-final/P252/run_01/
+```
+
+This is the first scientifically valid controlled execution after repairing the
+controlled Step 6 inputs and fixing the final-adjudication retry contract. Its
+final output contains:
+
+| Quantity | Count |
+| --- | ---: |
+| unique targets | 996 |
+| validated with DOI | 761 |
+| validated without DOI | 0 |
+| rejected | 235 |
+| LLM-adjudicated entries | 794 |
+| scholarly-search retries used | 139 |
+| old retry-budget-exhausted scientific rejection | 0 |
+
+The 235 rejected entries comprise:
+
+- 117 where no candidate could be validated after Crossref, CORE, one bounded
+  retry, and final LLM adjudication
+- 100 where the first LLM-selected candidate failed the deterministic
+  admissibility gate
+- 11 where the final LLM-selected candidate failed the deterministic
+  admissibility gate
+- 7 non-atomic bibliography entries
+
+First LLM decisions:
+
+- 655 `select_candidate`
+- 139 `retry_search`
+
+Final LLM decisions after retry:
+
+- 117 `reject_all`
+- 21 `select_candidate`
+- 0 `retry_search`
+
+This confirms that the corrected final-adjudication contract is being enforced.
+The 761/996 result is a resolution/validation yield, or the proportion of
+targets emitted as `validated_with_doi`; it is not accuracy.
+
+Do not add P251 outcome numbers yet. P251 `run_01` is currently in progress and
+its final outcome has not been established. In the canonical controlled naming,
+`run_01` is the first valid controlled execution and `run_02` is the second
+fresh controlled execution for consistency evaluation. Earlier debugging
+attempts are not part of the canonical controlled-results tree and should not
+be documented as experimental replicates.
 
 ## Output
 
