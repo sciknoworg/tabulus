@@ -24,6 +24,7 @@ from tabulus.mineru.runner import run_mineru
 from tabulus.crop_inputs import resolve_crop_inputs
 from tabulus.pdf_inputs import resolve_pdf_inputs
 from tabulus.reconstruction_inputs import resolve_reconstruction_inputs
+from tabulus.run_layout import step3_output_dir_for_reconstruction
 from tabulus.reference_tables import (
     REFERENCE_TABLE_CLASSIFICATION_NAME,
     classify_reconstruction_tables,
@@ -146,13 +147,28 @@ def default_table_reconstruction_output_root(
 def default_reference_table_classification_output(
     reconstruction_dir: Path,
 ) -> Path:
-    """Return the default reference-table classification manifest path."""
+    """Return the canonical Step 3 classification manifest path.
 
-    return (
-        Path(reconstruction_dir)
-        / REFERENCE_TABLE_CLASSIFICATION_NAME
+    TabulusBench reconstruction paths map to the separate Step 3 controlled
+    or production tree. Other layouts retain the historical colocated default.
+    """
+
+    reconstruction_dir = Path(reconstruction_dir)
+
+    step3_dir = step3_output_dir_for_reconstruction(
+        reconstruction_dir
     )
 
+    if step3_dir is None:
+        return (
+            reconstruction_dir
+            / REFERENCE_TABLE_CLASSIFICATION_NAME
+        )
+
+    return (
+        step3_dir
+        / REFERENCE_TABLE_CLASSIFICATION_NAME
+    )
 
 def _resolve_reference_match_paths(
     *,
@@ -590,9 +606,10 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=None,
         help=(
-            "Classification manifest path. If omitted, Tabulus writes "
-            "reference_table_classification.json inside the reconstruction "
-            "directory."
+            "Classification manifest path. If omitted, TabulusBench "
+            "reconstruction paths are mapped to the canonical "
+            "tabulus_runs/step3/{controlled|production}/... location. "
+            "Other layouts retain the reconstruction-directory default."
         ),
     )
 
@@ -1117,8 +1134,8 @@ def main() -> None:
         if args.out is not None and len(reconstruction_dirs) != 1:
             raise ValueError(
                 "--out can only be used when exactly one reconstruction "
-                "directory is selected. Multi-paper classification writes "
-                "the default manifest inside each reconstruction directory."
+                "directory is selected. Multi-paper classification uses "
+                "the canonical Step 3 output path for each reconstruction."
             )
 
         print()

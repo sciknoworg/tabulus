@@ -7,6 +7,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
+from tabulus.run_layout import step3_output_dir_for_reconstruction
 from tabulus.table_crops import TABLES_INDEX_NAME
 from tabulus.table_ocr.base import (
     TableOCRAdapter,
@@ -21,30 +22,61 @@ from tabulus.table_ocr.output import (
 
 BATCH_SUMMARY_NAME = "batch_summary.json"
 
-_OWNED_ARTIFACT_NAMES = (
+_RECONSTRUCTION_ARTIFACT_NAMES = (
     "native",
     "parsed",
     "predictions",
     BATCH_SUMMARY_NAME,
+)
+
+# Older runs stored Step 3 outputs directly inside the reconstruction
+# directory. Remove these stale downstream artifacts when Step 2 is rerun.
+_LEGACY_COLOCATED_STEP3_ARTIFACT_NAMES = (
     "reference_table_classification.json",
+    "selected_reference_tables.json",
+)
+
+# In the canonical layout these same downstream artifacts live under
+# tabulus_runs/step3/{controlled|production}/...
+_STEP3_ARTIFACT_NAMES = (
+    "reference_table_classification.json",
+    "selected_reference_tables.json",
 )
 
 
+def _remove_artifact(path: Path) -> None:
+    """Remove one file, symlink, or directory if it exists."""
+
+    if path.is_symlink() or path.is_file():
+        path.unlink()
+    elif path.is_dir():
+        shutil.rmtree(path)
+
+
 def _clear_owned_reconstruction_artifacts(output_dir: Path) -> None:
-    """Remove only Tabulus-owned artifacts from a previous batch run."""
+    """Clear stale reconstruction outputs and dependent Step 3 manifests."""
 
     if output_dir.exists() and not output_dir.is_dir():
         raise NotADirectoryError(
             f"Table reconstruction output is not a directory: {output_dir}"
         )
 
-    for name in _OWNED_ARTIFACT_NAMES:
-        path = output_dir / name
+    # Step 2's own artifacts.
+    for name in _RECONSTRUCTION_ARTIFACT_NAMES:
+        _remove_artifact(output_dir / name)
 
-        if path.is_symlink() or path.is_file():
-            path.unlink()
-        elif path.is_dir():
-            shutil.rmtree(path)
+    # Historical colocated Step 3 artifacts, retained only for backward
+    # compatibility and migration safety.
+    for name in _LEGACY_COLOCATED_STEP3_ARTIFACT_NAMES:
+        _remove_artifact(output_dir / name)
+
+    # Canonical Step 3 artifacts derived from this reconstruction are stale
+    # whenever the reconstruction is regenerated.
+    step3_dir = step3_output_dir_for_reconstruction(output_dir)
+
+    if step3_dir is not None:
+        for name in _STEP3_ARTIFACT_NAMES:
+            _remove_artifact(step3_dir / name)
 
 
 @dataclass(frozen=True)

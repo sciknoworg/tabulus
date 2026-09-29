@@ -676,6 +676,12 @@ def classify_reconstruction_tables(
         json.dumps(result.to_dict(), ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    write_selected_reference_tables(result)
+    write_selected_reference_tables(
+        result,
+        output_path=(
+            final_output_path.parent
+            / SELECTED_REFERENCE_TABLES_NAME
+        ),
+    )
 
     return result
