@@ -155,8 +155,7 @@ reconstruction artifacts.
 
 ## Current Profiling Output Convention
 
-The current implemented `tabulus profile` command processes one PDF. When
-`--out` is omitted, Tabulus chooses this profiling output root:
+The current implemented `tabulus profile` command can process one PDF, the PDFs directly inside one non-recursive folder, or an explicit PDF list. When `--out` is omitted for a PDF, Tabulus chooses this profiling output root:
 
 ```text
 <PDF directory>/

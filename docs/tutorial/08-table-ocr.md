@@ -276,11 +276,12 @@ CPU or GPU execution. `granite-vision-table` is registered as GPU-only.
 
 #### 3. Run one adapter on the full TabulusBench dataset
 
-TabulusBench contains 250 papers and 540 benchmark-annotated
-reference-containing table crops used as Step 2 reconstruction inputs. These
-are reconstruction inputs, not historical Step 1 table-detection counts.
+TabulusBench contains 252 papers and 605 benchmark-annotated
+reference-containing physical table fragments used as Step 2 reconstruction
+inputs. These are reconstruction inputs, not historical Step 1 table-detection
+counts.
 
-The dataset root includes `reconstruction_inputs.txt`, a list of the 250
+The dataset root includes `reconstruction_inputs.txt`, a list of the 252
 paper-level `reference_tables` crop roots. Because those crop roots are nested
 below domain, subdomain, and paper directories, and because they all share the
 leaf name `reference_tables`, use repeated single-paper commands with explicit
@@ -313,7 +314,7 @@ $TABULUS_WORK/stage2/tesseract-tatr/Biomedicine_And_Health/clinical_research/P4/
 #### 4. Run all adapters on the full TabulusBench dataset
 
 On a GPU-equipped system, every registered Step 2 adapter is registered for
-GPU execution. This loop reconstructs the same 540 benchmark crop inputs with
+GPU execution. This loop reconstructs the same 605 benchmark crop inputs with
 every registered table-reconstruction method and keeps outputs separated by
 adapter and paper:
 

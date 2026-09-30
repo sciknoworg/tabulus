@@ -81,6 +81,10 @@ tabulus resolve-references `
   --bibliography C:\runs\INPUT\references\bibliography.json `
   --reference-matches C:\papers\tabulus-output\table-crops\INPUT\reconstructions\paddleocr-vl\references\reference_matches.json `
   --out C:\runs\INPUT
+
+tabulus export-resolved-csv `
+  --reference-matches C:\papers\tabulus-output\table-crops\INPUT\reconstructions\paddleocr-vl\references\reference_matches.json `
+  --reference-resolution C:\runs\INPUT\references\reference_resolution.json
 ```
 
 The future complete command should remain under the same installed `tabulus`
