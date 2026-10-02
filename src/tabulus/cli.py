@@ -13,6 +13,7 @@ from tabulus.evaluation import (
     DEFAULT_NUMBER_THRESHOLD,
     DEFAULT_TEXT_THRESHOLD,
     SUPPORTED_TABLE_RECONSTRUCTION_METRICS,
+    evaluate_bibliography,
     evaluate_table_reconstruction,
 )
 from tabulus.mineru.backends import (
@@ -508,6 +509,38 @@ def build_parser() -> argparse.ArgumentParser:
         help=(
             "Optional evaluation JSON output path. If omitted, no "
             "evaluation artifact is written."
+        ),
+    )
+
+    evaluate_bibliography_parser = subparsers.add_parser(
+        "evaluate-bibliography",
+        help=(
+            "Evaluate one extracted Step 4 bibliography against a "
+            "curated gold bibliography."
+        ),
+    )
+
+    evaluate_bibliography_parser.add_argument(
+        "--gold",
+        required=True,
+        type=Path,
+        help="Curated bibliography gold.json.",
+    )
+
+    evaluate_bibliography_parser.add_argument(
+        "--prediction",
+        required=True,
+        type=Path,
+        help="Step 4 references/bibliography.json artifact.",
+    )
+
+    evaluate_bibliography_parser.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help=(
+            "Optional pair-level evaluation JSON output path. "
+            "If omitted, no evaluation artifact is written."
         ),
     )
 
@@ -1100,6 +1133,99 @@ def main() -> None:
         print(f"  RMS F1: {result.f1:.6f}")
         if output_path is not None:
             print(f"  Evaluation JSON: {output_path}")
+
+        return
+
+    if args.command == "evaluate-bibliography":
+        result = evaluate_bibliography(
+            args.gold,
+            args.prediction,
+        )
+
+        output_path = None
+
+        if args.out is not None:
+            output_path = result.write_json(
+                args.out
+            )
+
+        print()
+        print("Bibliography evaluation completed:")
+        print(f"  Gold: {result.gold_path}")
+        print(
+            f"  Prediction: "
+            f"{result.prediction_path}"
+        )
+        print(
+            f"  Gold entries: "
+            f"{result.gold_entries}"
+        )
+        print(
+            f"  Predicted entries: "
+            f"{result.predicted_entries}"
+        )
+        print(
+            f"  Content precision: "
+            f"{100.0 * result.content_precision:.4f}%"
+        )
+        print(
+            f"  Content recall: "
+            f"{100.0 * result.content_recall:.4f}%"
+        )
+        print(
+            f"  Content F1: "
+            f"{100.0 * result.content_f1:.4f}%"
+        )
+        print(
+            f"  Strict entry TP: "
+            f"{result.strict_entry_true_positives}"
+        )
+        print(
+            f"  Strict entry FP: "
+            f"{result.strict_entry_false_positives}"
+        )
+        print(
+            f"  Strict entry FN: "
+            f"{result.strict_entry_false_negatives}"
+        )
+        print(
+            f"  Strict entry precision: "
+            f"{100.0 * result.strict_entry_precision:.4f}%"
+        )
+        print(
+            f"  Strict entry recall: "
+            f"{100.0 * result.strict_entry_recall:.4f}%"
+        )
+        print(
+            f"  Strict entry F1: "
+            f"{100.0 * result.strict_entry_f1:.4f}%"
+        )
+        print(
+            f"  One-to-one: "
+            f"{result.one_to_one_gold}"
+        )
+        print(
+            f"  Split groups: "
+            f"{result.split_gold_groups}"
+        )
+        print(
+            f"  Merge groups: "
+            f"{result.merge_groups}"
+        )
+        print(
+            f"  Unmatched gold: "
+            f"{result.unmatched_gold}"
+        )
+        print(
+            f"  Unmatched predictions: "
+            f"{result.unmatched_pred}"
+        )
+
+        if output_path is not None:
+            print(
+                f"  Evaluation JSON: "
+                f"{output_path}"
+            )
 
         return
 
