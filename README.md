@@ -187,7 +187,7 @@ If you use Tabulus, please cite the software repository first:
 }
 ```
 
-Please also cite the associated master's thesis:
+This work was first developed in the following master's thesis study:
 
 ```bibtex
 @mastersthesis{rumleanschi2026tabulus,
