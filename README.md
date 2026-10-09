@@ -176,7 +176,7 @@ public API unless the documentation says so explicitly.
 
 ## 📑 Citation
 
-If you use Tabulus, please cite the software repository first:
+If you use Tabulus, please cite the software repository:
 
 ```bibtex
 @software{tabulus,
