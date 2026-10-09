@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use Tabulus, please cite the software repository and the associated master's thesis."
+title: "Tabulus: End-to-End Scientific Review Table Digitization Pipeline"
+type: software
+authors:
+  - family-names: "D'Souza"
+    given-names: "Jennifer"
+  - family-names: "Rumleanschi"
+    given-names: "Vladimir"
+repository-code: "https://github.com/sciknoworg/tabulus"
+license: MIT
+references:
+  - type: thesis
+    authors:
+      - family-names: "Rumleanschi"
+        given-names: "Vladimir"
+    title: "Tabulus: AI-Assisted Tabular Knowledge Extraction and Semantic Integration Framework for Scientific Literature"
+    year: 2026
+    doi: "10.15488/21618"
+    url: "https://doi.org/10.15488/21618"

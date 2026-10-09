@@ -176,8 +176,28 @@ public API unless the documentation says so explicitly.
 
 ## 📑 Citation
 
-Citation information will be added after the associated thesis or software
-release is published.
+If you use Tabulus, please cite the software repository first:
+
+```bibtex
+@software{tabulus,
+  author = {D'Souza, Jennifer and Rumleanschi, Vladimir},
+  title = {Tabulus: End-to-End Scientific Review Table Digitization Pipeline},
+  url = {https://github.com/sciknoworg/tabulus},
+  year = {2026}
+}
+```
+
+Please also cite the associated master's thesis:
+
+```bibtex
+@mastersthesis{rumleanschi2026tabulus,
+  author = {Rumleanschi, Vladimir},
+  title = {Tabulus: AI-Assisted Tabular Knowledge Extraction and Semantic Integration Framework for Scientific Literature},
+  year = {2026},
+  doi = {10.15488/21618},
+  url = {https://doi.org/10.15488/21618}
+}
+```
 
 ## 📜 License
 
