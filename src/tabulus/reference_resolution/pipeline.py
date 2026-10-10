@@ -148,6 +148,39 @@ def is_non_atomic_reference(
     return True
 
 
+_PUBLISHER_BOILERPLATE_PREFIX = re.compile(
+    r"^\s*disclaimer\s*/\s*publisher(?:['’]s)?\s+note\s*:",
+    flags=re.IGNORECASE,
+)
+
+
+def is_publisher_boilerplate_reference(
+    raw_reference: str,
+) -> bool:
+    """Return whether a bibliography entry is standardized publisher boilerplate.
+
+    This deliberately recognizes only the recurring MDPI disclaimer observed
+    in source bibliographies. It must not be generalized to ordinary notes,
+    editorials, corrections, or other potentially citable works.
+    """
+
+    raw = " ".join(
+        str(raw_reference or "").split()
+    )
+
+    if not _PUBLISHER_BOILERPLATE_PREFIX.search(raw):
+        return False
+
+    normalized = raw.casefold()
+
+    return (
+        "statements, opinions and data contained in all publications"
+        in normalized
+        and "mdpi" in normalized
+        and "disclaim responsibility" in normalized
+    )
+
+
 class CrossrefRetriever(Protocol):
     """Minimal Crossref interface required by the Stage 6 pipeline."""
 
@@ -560,6 +593,30 @@ def retrieve_crossref_evidence(
             continue
 
         seen_indices.add(target.reference_index)
+
+        if is_publisher_boilerplate_reference(
+            target.raw_reference
+        ):
+            LOGGER.info(
+                "[Crossref] %d/%d ref=%d -> "
+                "skipped publisher boilerplate",
+                position,
+                len(target_list),
+                target.reference_index,
+            )
+
+            results.append(
+                CrossrefRetrieval(
+                    reference_index=target.reference_index,
+                    raw_reference=target.raw_reference,
+                    existing_doi=target.doi.strip(),
+                    existing_doi_checked=False,
+                    existing_doi_candidate=None,
+                    bibliographic_search_performed=False,
+                    bibliographic_candidates=(),
+                )
+            )
+            continue
 
         existing_doi = target.doi.strip()
         existing_candidate: ResolutionCandidate | None = None

@@ -112,6 +112,7 @@ def test_resolve_reference_artifact_with_clients_runs_full_pipeline(
         targets,
         retrievals,
         client,
+        **kwargs,
     ):
         calls["scholarly_targets"] = targets
         calls["retrievals"] = retrievals
@@ -404,7 +405,7 @@ def test_resolve_with_clients_passes_optional_document_contexts(
     monkeypatch.setattr(
         orchestrator_module,
         "resolve_crossref_then_core",
-        lambda targets, retrievals, client: (
+        lambda targets, retrievals, client, **kwargs: (
             _scholarly(
                 7
             ),
@@ -665,7 +666,7 @@ def test_orchestrator_resumes_and_skips_completed_reference(
     monkeypatch.setattr(
         orchestrator_module,
         "resolve_crossref_then_core",
-        lambda supplied_targets, retrievals, client: (
+        lambda supplied_targets, retrievals, client, **kwargs: (
             SimpleNamespace(
                 reference_index=tuple(
                     supplied_targets
@@ -841,7 +842,7 @@ def test_orchestrator_flushes_checkpoint_before_operational_failure(
     monkeypatch.setattr(
         orchestrator_module,
         "resolve_crossref_then_core",
-        lambda supplied_targets, retrievals, client: (
+        lambda supplied_targets, retrievals, client, **kwargs: (
             SimpleNamespace(
                 reference_index=tuple(
                     supplied_targets
@@ -1031,7 +1032,7 @@ def test_orchestrator_real_checkpoint_interrupt_and_resume(
     monkeypatch.setattr(
         orchestrator_module,
         "resolve_crossref_then_core",
-        lambda supplied_targets, retrievals, client: (
+        lambda supplied_targets, retrievals, client, **kwargs: (
             SimpleNamespace(
                 reference_index=tuple(
                     supplied_targets

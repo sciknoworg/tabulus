@@ -936,3 +936,50 @@ def test_llm_selection_cannot_override_explicit_doi_conflict() -> None:
         "explicitly conflicts with the source DOI"
         in trace.resolution.reason
     )
+
+
+
+def test_publisher_boilerplate_is_rejected_without_external_calls() -> None:
+    evidence = ReferenceEvidence(
+        reference_index=7,
+        raw_reference=(
+            "Disclaimer/Publisher's Note: The statements, opinions "
+            "and data contained in all publications are solely those "
+            "of the individual author(s) and contributor(s) and not "
+            "of MDPI and/or the editor(s). MDPI and/or the editor(s) "
+            "disclaim responsibility for any injury to people or "
+            "property resulting from any ideas, methods, instructions "
+            "or products referred to in the content."
+        ),
+    )
+
+    scholarly = _needs_llm()
+
+    class MustNotBeCalled:
+        def __getattr__(
+            self,
+            name,
+        ):
+            raise AssertionError(
+                f"External client unexpectedly called: {name}"
+            )
+
+    bomb = MustNotBeCalled()
+
+    trace = finalize_reference_resolution(
+        evidence,
+        scholarly,
+        crossref_client=bomb,
+        core_client=bomb,
+        llm_client=bomb,
+    )
+
+    assert (
+        trace.resolution.status
+        == ResolutionStatus.REJECTED
+    )
+
+    assert (
+        "publisher disclaimer"
+        in trace.resolution.reason.casefold()
+    )

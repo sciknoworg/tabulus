@@ -38,6 +38,7 @@ from tabulus.reference_resolution.models import (
 from tabulus.reference_resolution.pipeline import (
     CrossrefRetrieval,
     is_non_atomic_reference,
+    is_publisher_boilerplate_reference,
 )
 from tabulus.reference_resolution.reference_context import (
     ReferenceContext,
@@ -370,6 +371,22 @@ def finalize_reference_resolution(
             "must describe the same bibliography index."
         )
 
+    if is_publisher_boilerplate_reference(
+        evidence.raw_reference
+    ):
+        return ReferenceResolutionTrace(
+            resolution=_rejected_resolution(
+                evidence,
+                reason=(
+                    "Standardized publisher disclaimer is document "
+                    "boilerplate rather than a scholarly-work reference."
+                ),
+            ),
+            initial_scholarly_resolution=(
+                scholarly_resolution
+            ),
+        )
+
     # Stage 6 resolves exactly one scholarly work per bibliography entry.
     # A raw entry containing multiple complete citation-like publication
     # tails is therefore unsafe even if one retrieved candidate happens to
@@ -433,6 +450,10 @@ def finalize_reference_resolution(
         evidence,
         scholarly_resolution,
         document_contexts=document_contexts,
+        allow_retry_search=(
+            scholarly_resolution.core_assessment
+            is not None
+        ),
     )
 
     try:

@@ -313,3 +313,102 @@ def test_core_failure_reports_bibliography_index() -> None:
             ],
             FailingCore(),
         )
+
+
+
+def test_core_failure_uses_structured_crossref_recovery() -> None:
+    from tabulus.reference_resolution.core import CoreError
+
+    evidence = _evidence()
+
+    class FailingCore:
+        def search_works(
+            self,
+            reference_text,
+        ):
+            raise CoreError(
+                "CORE request returned HTTP 500 "
+                "after 4 attempts."
+            )
+
+    class RecoveryCrossref:
+        def __init__(self):
+            self.calls = []
+
+        def search_bibliographic(
+            self,
+            reference_text,
+        ):
+            self.calls.append(
+                reference_text
+            )
+            return (
+                _candidate(
+                    source="crossref",
+                ),
+            )
+
+    crossref = RecoveryCrossref()
+
+    results = resolve_crossref_then_core(
+        (evidence,),
+        (
+            _crossref_retrieval(
+                candidates=(),
+            ),
+        ),
+        FailingCore(),
+        crossref_client=crossref,
+    )
+
+    assert crossref.calls == [
+        (
+            evidence.title
+            + " "
+            + evidence.authors[0]
+            + " "
+            + str(evidence.year)
+        )
+    ]
+
+    assert results[0].status == (
+        ScholarlyResolutionStatus
+        .VALIDATED_CROSSREF
+    )
+
+
+def test_publisher_boilerplate_skips_core() -> None:
+    evidence = ReferenceEvidence(
+        reference_index=108,
+        raw_reference=(
+            "Disclaimer/Publisher's Note: The statements, opinions "
+            "and data contained in all publications are solely those "
+            "of the individual author(s) and contributor(s) and not "
+            "of MDPI and/or the editor(s). MDPI and/or the editor(s) "
+            "disclaim responsibility for any injury to people or "
+            "property resulting from any ideas, methods, instructions "
+            "or products referred to in the content."
+        ),
+        title=(
+            "The statements, opinions and data contained in all "
+            "publications"
+        ),
+    )
+
+    core = _FakeCoreClient()
+
+    results = resolve_crossref_then_core(
+        (evidence,),
+        (
+            _crossref_retrieval(
+                index=108,
+                candidates=(),
+            ),
+        ),
+        core,
+    )
+
+    assert core.calls == []
+    assert results[0].status == (
+        ScholarlyResolutionStatus.NEEDS_LLM
+    )

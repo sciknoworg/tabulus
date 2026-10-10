@@ -11,6 +11,7 @@ from tabulus.reference_resolution.assessment import (
     CrossrefAssessment,
     CrossrefAssessmentStatus,
     RankedCandidate,
+    assess_crossref,
     assess_crossref_retrievals,
     rank_candidates,
 )
@@ -25,6 +26,7 @@ from tabulus.reference_resolution.models import (
 )
 from tabulus.reference_resolution.pipeline import (
     CrossrefRetrieval,
+    is_publisher_boilerplate_reference,
 )
 
 
@@ -35,6 +37,17 @@ class CoreRetriever(Protocol):
         self,
         reference_text: str,
     ) -> CoreSearchResponse:
+        ...
+
+
+
+class CrossrefSearchRetriever(Protocol):
+    """Crossref search interface used only for operational CORE recovery."""
+
+    def search_bibliographic(
+        self,
+        reference_text: str,
+    ) -> tuple[ResolutionCandidate, ...]:
         ...
 
 
@@ -232,11 +245,136 @@ def assess_core(
 LOGGER = logging.getLogger(__name__)
 
 
+def _recover_after_core_failure(
+    evidence: ReferenceEvidence,
+    initial_crossref: CrossrefAssessment,
+    crossref_client: CrossrefSearchRetriever,
+    *,
+    candidate_margin: float,
+) -> ScholarlyResolution | None:
+    """Try one structured Crossref search after persistent CORE failure.
+
+    The recovery query is derived only from structured source evidence.
+    Candidates remain subject to the unchanged deterministic scorer and,
+    when necessary, the existing evidence-bounded LLM admissibility gate.
+    """
+
+    title = str(evidence.title or "").strip()
+
+    if not title:
+        return None
+
+    parts = [title]
+
+    if evidence.authors:
+        parts.append(
+            str(evidence.authors[0]).strip()
+        )
+
+    if evidence.year is not None:
+        parts.append(
+            str(evidence.year)
+        )
+
+    # A title alone is deliberately insufficient to trigger an additional
+    # provider search after an operational failure.
+    if len(parts) < 2:
+        return None
+
+    query = " ".join(
+        part for part in parts if part
+    )
+
+    candidates = crossref_client.search_bibliographic(
+        query
+    )
+
+    retrieval = CrossrefRetrieval(
+        reference_index=evidence.reference_index,
+        raw_reference=query,
+        existing_doi="",
+        existing_doi_checked=False,
+        existing_doi_candidate=None,
+        bibliographic_search_performed=True,
+        bibliographic_candidates=tuple(
+            candidates
+        ),
+    )
+
+    recovery = assess_crossref(
+        evidence,
+        retrieval,
+        candidate_margin=candidate_margin,
+    )
+
+    if not recovery.needs_core:
+        return ScholarlyResolution(
+            reference_index=evidence.reference_index,
+            raw_reference=evidence.raw_reference,
+            status=(
+                ScholarlyResolutionStatus
+                .VALIDATED_CROSSREF
+            ),
+            selected_candidate=(
+                recovery.selected_candidate
+            ),
+            selected_score=(
+                recovery.selected_score
+            ),
+            crossref_assessment=recovery,
+            core_assessment=None,
+            reason=(
+                "CORE failed operationally, and a bounded structured "
+                "Crossref recovery search provided sufficient "
+                "deterministic validation."
+            ),
+        )
+
+    merged_candidates = [
+        item.candidate
+        for item in recovery.ranked_candidates
+    ] + [
+        item.candidate
+        for item in initial_crossref.ranked_candidates
+    ]
+
+    combined = CrossrefAssessment(
+        reference_index=evidence.reference_index,
+        status=CrossrefAssessmentStatus.NEEDS_CORE,
+        selected_candidate=None,
+        selected_score=None,
+        ranked_candidates=rank_candidates(
+            evidence,
+            merged_candidates,
+        ),
+        reason=(
+            "CORE failed operationally. A bounded structured "
+            "Crossref recovery search produced candidate evidence "
+            "but did not satisfy deterministic strong-match criteria."
+        ),
+    )
+
+    return ScholarlyResolution(
+        reference_index=evidence.reference_index,
+        raw_reference=evidence.raw_reference,
+        status=ScholarlyResolutionStatus.NEEDS_LLM,
+        selected_candidate=None,
+        selected_score=None,
+        crossref_assessment=combined,
+        core_assessment=None,
+        reason=(
+            "CORE was unavailable for this query; the unresolved "
+            "Crossref evidence is routed to bounded LLM adjudication."
+        ),
+    )
+
+
 def resolve_crossref_then_core(
     targets: Iterable[ReferenceEvidence],
     crossref_retrievals: Iterable[CrossrefRetrieval],
     core_client: CoreRetriever,
     *,
+    crossref_client: CrossrefSearchRetriever | None = None,
     candidate_margin: float = DEFAULT_CANDIDATE_MARGIN,
 ) -> tuple[ScholarlyResolution, ...]:
     """Resolve references through Crossref first and CORE only when needed.
@@ -327,11 +465,73 @@ def resolve_crossref_then_core(
             evidence.reference_index,
         )
 
+        if is_publisher_boilerplate_reference(
+            evidence.raw_reference
+        ):
+            core = CoreAssessment(
+                reference_index=evidence.reference_index,
+                status=CoreAssessmentStatus.NEEDS_LLM,
+                selected_candidate=None,
+                selected_score=None,
+                ranked_candidates=(),
+                reason=(
+                    "Standardized publisher disclaimer is not "
+                    "a scholarly-work reference; CORE lookup skipped."
+                ),
+            )
+
+            results.append(
+                ScholarlyResolution(
+                    reference_index=index,
+                    raw_reference=evidence.raw_reference,
+                    status=ScholarlyResolutionStatus.NEEDS_LLM,
+                    selected_candidate=None,
+                    selected_score=None,
+                    crossref_assessment=crossref,
+                    core_assessment=core,
+                    reason=(
+                        "Publisher boilerplate requires deterministic "
+                        "non-scholarly rejection."
+                    ),
+                )
+            )
+
+            LOGGER.info(
+                "[CORE] %d/%d ref=%d -> skipped publisher boilerplate",
+                core_position,
+                core_total,
+                evidence.reference_index,
+            )
+
+            continue
+
         try:
             core_response = core_client.search_works(
                 evidence.raw_reference
             )
         except CoreError as error:
+            recovered = None
+
+            if crossref_client is not None:
+                recovered = _recover_after_core_failure(
+                    evidence,
+                    crossref,
+                    crossref_client,
+                    candidate_margin=candidate_margin,
+                )
+
+            if recovered is not None:
+                LOGGER.warning(
+                    "[CORE] ref=%d failed operationally; "
+                    "using bounded structured Crossref recovery",
+                    evidence.reference_index,
+                )
+
+                results.append(
+                    recovered
+                )
+                continue
+
             raise CoreError(
                 "CORE lookup failed for bibliography "
                 f"index {evidence.reference_index}: {error}"

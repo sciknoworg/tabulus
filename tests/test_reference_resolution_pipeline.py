@@ -626,3 +626,43 @@ def test_translation_pair_year_detection_ignores_four_digit_page_number() -> Non
     assert is_non_atomic_reference(
         translated
     ) is False
+
+
+
+def test_publisher_boilerplate_skips_crossref_calls() -> None:
+    from tabulus.reference_resolution import (
+        ReferenceEvidence,
+    )
+
+    target = ReferenceEvidence(
+        reference_index=108,
+        raw_reference=(
+            "Disclaimer/Publisher's Note: The statements, opinions "
+            "and data contained in all publications are solely those "
+            "of the individual author(s) and contributor(s) and not "
+            "of MDPI and/or the editor(s). MDPI and/or the editor(s) "
+            "disclaim responsibility for any injury to people or "
+            "property resulting from any ideas, methods, instructions "
+            "or products referred to in the content."
+        ),
+        title=(
+            "The statements, opinions and data contained in all "
+            "publications"
+        ),
+    )
+
+    client = _FakeCrossrefClient()
+
+    result = retrieve_crossref_evidence(
+        (target,),
+        client,
+    )
+
+    assert client.doi_calls == []
+    assert client.search_calls == []
+
+    assert len(result) == 1
+    assert result[0].reference_index == 108
+    assert result[0].existing_doi_checked is False
+    assert result[0].bibliographic_search_performed is False
+    assert result[0].bibliographic_candidates == ()

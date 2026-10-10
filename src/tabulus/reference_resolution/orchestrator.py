@@ -193,6 +193,7 @@ def resolve_reference_artifact_with_clients(
                 (target,),
                 crossref_retrievals,
                 core_client,
+                crossref_client=crossref_client,
             )
 
             if len(scholarly_resolutions) != 1:
@@ -482,6 +483,8 @@ def resolve_reference_artifact(
         f"primary_base_url={str(llm_base_url).rstrip('/')};"
         f"primary_model={str(llm_model).strip()};"
         "retry_policy=single-bounded-final-no-retry-v2;"
+        "core_failure_policy=structured-crossref-recovery-v1;"
+        "publisher_boilerplate_policy=reject-mdpi-disclaimer-v1;"
         "reasoning_mode=disabled"
     )
 
