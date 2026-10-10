@@ -14,6 +14,10 @@ from tabulus.evaluation import (
     DEFAULT_TEXT_THRESHOLD,
     SUPPORTED_TABLE_RECONSTRUCTION_METRICS,
     evaluate_bibliography,
+    evaluate_reference_matching,
+    evaluate_reference_resolution,
+    evaluate_reference_table_classification,
+    evaluate_table_localization,
     evaluate_table_reconstruction,
 )
 from tabulus.mineru.backends import (
@@ -462,6 +466,74 @@ def build_parser() -> argparse.ArgumentParser:
             "<out>/<crop-root-name>/<adapter>/. If omitted, each paper uses "
             "<crops>/reconstructions/<adapter>/."
         ),
+    )
+
+    evaluate_table_localization_parser = subparsers.add_parser(
+        "evaluate-table-localization",
+        help="Evaluate Step 1 physical-table localization against gold.",
+    )
+    evaluate_table_localization_parser.add_argument(
+        "--gold", required=True, type=Path,
+        help="Step 1 table-localization gold.json.",
+    )
+    evaluate_table_localization_parser.add_argument(
+        "--prediction", required=True, type=Path,
+        help="Step 1 production tables_index.json.",
+    )
+    evaluate_table_localization_parser.add_argument(
+        "--out", type=Path, default=None,
+        help="Optional evaluation JSON output path.",
+    )
+
+    evaluate_reference_table_classification_parser = subparsers.add_parser(
+        "evaluate-reference-table-classification",
+        help="Evaluate Step 3 reference-table classification against gold.",
+    )
+    evaluate_reference_table_classification_parser.add_argument(
+        "--gold", required=True, type=Path,
+        help="Step 3 reference-table-classification gold.json.",
+    )
+    evaluate_reference_table_classification_parser.add_argument(
+        "--prediction", required=True, type=Path,
+        help="Step 3 reference_table_classification.json artifact.",
+    )
+    evaluate_reference_table_classification_parser.add_argument(
+        "--out", type=Path, default=None,
+        help="Optional evaluation JSON output path.",
+    )
+
+    evaluate_reference_matching_parser = subparsers.add_parser(
+        "evaluate-reference-matching",
+        help="Evaluate Step 5 citation-to-bibliography matching against gold.",
+    )
+    evaluate_reference_matching_parser.add_argument(
+        "--gold", required=True, type=Path,
+        help="Step 5 reference-matching gold.json.",
+    )
+    evaluate_reference_matching_parser.add_argument(
+        "--prediction", required=True, type=Path,
+        help="Step 5 reference_matches.json artifact.",
+    )
+    evaluate_reference_matching_parser.add_argument(
+        "--out", type=Path, default=None,
+        help="Optional evaluation JSON output path.",
+    )
+
+    evaluate_reference_resolution_parser = subparsers.add_parser(
+        "evaluate-reference-resolution",
+        help="Evaluate Step 6 scholarly identity resolution against gold.",
+    )
+    evaluate_reference_resolution_parser.add_argument(
+        "--gold", required=True, type=Path,
+        help="Step 6 reference-resolution gold.json.",
+    )
+    evaluate_reference_resolution_parser.add_argument(
+        "--prediction", required=True, type=Path,
+        help="Step 6 reference_resolution.json artifact.",
+    )
+    evaluate_reference_resolution_parser.add_argument(
+        "--out", type=Path, default=None,
+        help="Optional evaluation JSON output path.",
     )
 
     evaluate_table_reconstruction_parser = subparsers.add_parser(
@@ -1104,6 +1176,112 @@ def main() -> None:
         print(f"  Tables empty: {totals['tables_empty']}")
         print(f"  Tables error: {totals['tables_error']}")
         print(f"  Prediction CSVs: {totals['prediction_csvs']}")
+        return
+
+    if args.command == "evaluate-table-localization":
+        result = evaluate_table_localization(args.gold, args.prediction)
+        output_path = result.write_json(args.out) if args.out is not None else None
+
+        print()
+        print("Table localization evaluation completed:")
+        print(f"  Gold fragments: {result.gold_fragments}")
+        print(f"  Predicted fragments: {result.predicted_fragments}")
+        print(f"  Matched fragments: {result.matched_fragments}")
+        print(f"  False positives: {result.false_positives}")
+        print(f"  False negatives: {result.false_negatives}")
+        print(f"  Precision: {100.0 * result.precision:.4f}%")
+        print(f"  Recall: {100.0 * result.recall:.4f}%")
+        print(f"  F1: {100.0 * result.f1:.4f}%")
+        if output_path is not None:
+            print(f"  Evaluation JSON: {output_path}")
+        return
+
+    if args.command == "evaluate-reference-table-classification":
+        result = evaluate_reference_table_classification(
+            args.gold,
+            args.prediction,
+        )
+        output_path = result.write_json(args.out) if args.out is not None else None
+
+        print()
+        print("Reference-table classification evaluation completed:")
+        print(
+            "  Confusion matrix: "
+            f"TP={result.true_positives} "
+            f"FP={result.false_positives} "
+            f"TN={result.true_negatives} "
+            f"FN={result.false_negatives}"
+        )
+        print(f"  Precision: {100.0 * result.precision:.4f}%")
+        print(f"  Recall: {100.0 * result.recall:.4f}%")
+        print(f"  F1: {100.0 * result.f1:.4f}%")
+        if result.specificity is None:
+            print("  Specificity: undefined (no negative gold examples)")
+        else:
+            print(f"  Specificity: {100.0 * result.specificity:.4f}%")
+        print(f"  Accuracy: {100.0 * result.accuracy:.4f}%")
+        if result.balanced_accuracy is None:
+            print("  Balanced accuracy: undefined (single-class gold)")
+        else:
+            print(
+                "  Balanced accuracy: "
+                f"{100.0 * result.balanced_accuracy:.4f}%"
+            )
+        if output_path is not None:
+            print(f"  Evaluation JSON: {output_path}")
+        return
+
+    if args.command == "evaluate-reference-matching":
+        result = evaluate_reference_matching(args.gold, args.prediction)
+        output_path = result.write_json(args.out) if args.out is not None else None
+
+        print()
+        print("Reference matching evaluation completed:")
+        print(
+            f"  Tables aligned: "
+            f"{result.aligned_tables}/{result.gold_tables}"
+        )
+        print(
+            f"  Reference-column accuracy: "
+            f"{100.0 * result.reference_column_accuracy:.4f}%"
+        )
+        print(
+            f"  Exact citation-cell accuracy: "
+            f"{100.0 * result.exact_cell_accuracy:.4f}%"
+        )
+        print(f"  Link TP: {result.link_true_positives}")
+        print(f"  Link FP: {result.link_false_positives}")
+        print(f"  Link FN: {result.link_false_negatives}")
+        print(f"  Link precision: {100.0 * result.link_precision:.4f}%")
+        print(f"  Link recall: {100.0 * result.link_recall:.4f}%")
+        print(f"  Link F1: {100.0 * result.link_f1:.4f}%")
+        if output_path is not None:
+            print(f"  Evaluation JSON: {output_path}")
+        return
+
+    if args.command == "evaluate-reference-resolution":
+        result = evaluate_reference_resolution(args.gold, args.prediction)
+        output_path = result.write_json(args.out) if args.out is not None else None
+
+        print()
+        print("Reference resolution evaluation completed:")
+        print(f"  Gold targets: {result.gold_targets}")
+        print(f"  Matched predictions: {result.matched_predictions}")
+        print(f"  Resolved targets: {result.resolved_targets}")
+        print(f"  Rejected targets: {result.rejected_targets}")
+        print(f"  Resolution yield: {100.0 * result.resolution_yield:.4f}%")
+        print(
+            "  DOI P/R/F1: "
+            f"{100.0 * result.doi_precision:.4f}% / "
+            f"{100.0 * result.doi_recall:.4f}% / "
+            f"{100.0 * result.doi_f1:.4f}%"
+        )
+        print(f"  Title accuracy: {100.0 * result.title_accuracy:.4f}%")
+        print(f"  Authors accuracy: {100.0 * result.authors_accuracy:.4f}%")
+        print(f"  Year accuracy: {100.0 * result.year_accuracy:.4f}%")
+        print(f"  Venue accuracy: {100.0 * result.venue_accuracy:.4f}%")
+        if output_path is not None:
+            print(f"  Evaluation JSON: {output_path}")
         return
 
     if args.command == "evaluate-table-reconstruction":
