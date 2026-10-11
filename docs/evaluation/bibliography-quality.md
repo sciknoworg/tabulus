@@ -1,73 +1,106 @@
-# Bibliography / Reference Extraction Quality
+# Step 4 Bibliography Extraction Quality
 
-Bibliography/reference extraction quality evaluates whether extracted
-bibliography entries match curated bibliography entries. It is separate from
-table reconstruction, Step 5 table-cell-to-bibliography matching, DOI
-validation, and Step 6 scholarly-identity resolution.
+Step 4 evaluation scores bibliography extraction from the original PDF. In the
+production pipeline, Step 4 runs independently of the table-processing branch
+and writes {doc}`../data-contracts/bibliography-json` at
+`references/bibliography.json`.
 
-In the production pipeline, Step 4 runs GROBID on the original PDF and writes
-`references/bibliography.json`. That artifact is immutable extraction evidence
-for downstream steps. It is not a scholarly-resolution artifact.
+Step 4 evaluation is distinct from Step 5 citation matching and Step 6 scholarly
+identity resolution. GROBID extraction evidence is not Crossref/CORE/LLM
+resolution.
 
-## Current Implementation Status
+## Public Interface
 
-Tabulus currently implements bibliography extraction as production pipeline
-code and exposes it through:
+The library API is `tabulus.evaluation.evaluate_bibliography()`. The CLI is:
 
 ```bash
-tabulus extract-bibliography \
-  --pdf /path/to/paper.pdf \
-  --out /path/to/artifact-root \
-  --grobid-url http://localhost:8070
+tabulus evaluate-bibliography \
+  --gold /path/to/paper/step4_bibliography/gold.json \
+  --prediction /path/to/artifact-root/references/bibliography.json \
+  --out /path/to/evaluation/step4-bibliography.json
 ```
 
-The public `src/tabulus.evaluation` package does not currently include a
-library-native bibliography/reference extraction evaluator, and the CLI does
-not expose a `tabulus` bibliography-evaluation command.
+`--out` is optional. The evaluator compares one curated bibliography gold file
+with one production `references/bibliography.json` artifact.
 
-## Retained Research Utilities
+## Gold And Prediction Inputs
 
-The top-level `evaluation/scripts/` directory retains historical reference
-extraction evaluators. They are not the public library API.
+The canonical gold path is:
 
-Those scripts include procedures for:
+```text
+<paper_root>/step4_bibliography/gold.json
+```
 
-- fuzzy one-to-one comparison of predicted and gold GROBID-style reference
-  strings using normalized text similarity;
-- exact `(nr, ref)` comparison for older Kreuzberg-plus-regex extraction
-  outputs;
-- sliding-window similarity between curated references and raw OCR-extracted
-  bibliography text across configured thresholds.
+The evaluator expects a curated gold list of numbered references with raw
+reference strings. The prediction input is the Step 4 bibliography JSON object
+with an `entries` list. If `bibliography_count` is present in the prediction, it
+must match `len(entries)`.
 
-These retained utilities compute true positives, false positives, false
-negatives, precision, recall, and F1 where their gold and prediction formats
-support those counts. Some historical scripts name a found-reference ratio
-`accuracy`; document that quantity as reference recovery rate unless a suitable
-classification denominator exists.
+Evaluation reads both files and writes a separate metrics artifact only when
+`--out` is supplied.
 
-## Metrics And Gold Requirements
+## Component-Aware Matching
 
-A bibliography extraction evaluator needs a curated gold list of bibliography
-entries and a prediction list from the extractor being scored. Matching may be
-exact or similarity-based, and similarity thresholds must be reported with the
-result.
+The current evaluator implements the pair-level portion of TabulusBench's
+component-aware v5 Step 4 matcher. It aligns gold and predicted bibliography
+entries using raw-block coverage plus bibliographic component evidence.
 
-Entry count agreement and reference recovery rate are useful diagnostics, but
-they are not substitutes for precision, recall, or F1. Conventional accuracy
-requires an explicit universe of positive and negative decisions; ordinary
-bibliography extraction comparisons usually do not provide that denominator.
+The implementation considers:
 
-## Boundary
+- exact/normalized DOI evidence when present;
+- exact-token author surname evidence;
+- year evidence;
+- title and venue containment using normalized character n-grams;
+- volume/page locator evidence;
+- complete raw-block coverage;
+- one-to-one matches;
+- split cases where one gold reference maps to multiple predicted entries;
+- merge cases where multiple gold references map to one predicted entry;
+- unmatched gold and unmatched prediction positions.
 
-Bibliography/reference extraction evaluation scores extracted bibliography
-entries. It does not score:
+Title and DOI are positive corroborating evidence only. Their absence from a
+citation style does not count against otherwise correct bibliography recovery.
 
-- whether a reconstructed table was selected for reference processing;
-- whether a table cell was linked to the intended bibliography index;
-- whether a DOI was validated;
-- whether Step 6 accepted a scholarly identity;
-- resolution coverage across paper-level referenced bibliography entries.
+## Metrics
 
-Evaluation should read extraction artifacts and write separate metrics. It
-should not modify `references/bibliography.json`, prediction CSV files,
-`references/reference_matches.json`, or `references/reference_resolution.json`.
+The serialized result includes content-recovery, strict-entry, position, and
+alignment diagnostics:
+
+- `gold_entries`
+- `predicted_entries`
+- `content_recovered_gold`
+- `content_supported_predictions`
+- `content_precision`, `content_recall`, `content_f1`
+- `strict_entry_true_positives`, `strict_entry_false_positives`,
+  `strict_entry_false_negatives`
+- `strict_entry_precision`, `strict_entry_recall`, `strict_entry_f1`
+- `one_to_one_gold`
+- `split_gold_groups`, `split_pred_entries`
+- `merge_groups`, `merged_gold_entries`
+- `unmatched_gold`, `unmatched_pred`
+- `position_preserved_gold`, `position_preservation_rate`
+- mean/median absolute position error for one-to-one matches
+- `mean_alignment_score`
+- `predicted_component_availability`
+- alignment `operations` and unmatched positions
+
+The evaluator also serializes implementation parameters such as the match
+threshold, block-F1 threshold, maximum split/merge window, lookahead, and
+component weights.
+
+## TabulusBench Scope
+
+TabulusBench provides authoritative Step 4 bibliography gold for 52 of the 252
+papers, containing 6,947 numbered gold references. The remaining papers can be
+processed by Step 4 in a full-corpus run, but they do not contribute to
+bibliography gold-standard metrics unless a Step 4 gold file exists.
+
+Canonical gold path:
+
+```text
+<paper_root>/step4_bibliography/gold.json
+```
+
+Step 4 quality should not be reported as Step 5 citation-link accuracy or Step 6
+identity accuracy. Bibliography split/merge differences can affect downstream
+numeric positions even when the citation content itself is largely recovered.

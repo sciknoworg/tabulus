@@ -1,221 +1,121 @@
-# Reference Matching Quality
+# Step 5 Reference Matching Quality
 
-Reference matching quality concerns Step 5 table-cell-to-bibliography-position
-links. Step 5 is deterministic and offline: it links citations found in
-selected reference-table cells to ordered Step 4 bibliography entries. DOI
-values present in `references/bibliography.json` are extraction evidence, not
-independently resolved scholarly identities.
+Step 5 evaluation scores the link between a citation cell in a selected
+reference table and one or more numbered bibliography positions. The production
+artifact is {doc}`../data-contracts/reference-matches-json`, written as
+`references/reference_matches.json`.
 
-The production Step 5 command is:
+Step 5 is deterministic and offline. It links table citation occurrences to
+bibliography positions; Step 6 performs scholarly identity resolution later.
+
+## Public Interface
+
+The library API is `tabulus.evaluation.evaluate_reference_matching()`. The CLI
+is:
 
 ```bash
-tabulus match-references \
-  --selected /path/to/selected_reference_tables.json \
-  --bibliography /path/to/artifact-root/references/bibliography.json
+tabulus evaluate-reference-matching \
+  --gold /path/to/paper/step5_reference_matching/gold.json \
+  --prediction /path/to/reconstruction/references/reference_matches.json \
+  --out /path/to/evaluation/step5-reference-matching.json
 ```
 
-The output is `references/reference_matches.json` inside the reconstruction
-adapter directory unless `--out` is provided.
+`--out` is optional. The public CLI compares one gold file to one Step 5
+prediction artifact. The library API also accepts an optional
+`bibliography_index_map` for controlled comparisons where prediction indices
+must be mapped to a gold bibliography numbering.
 
-## Production Artifact Boundary
+## Gold Schema
 
-The production artifact records table-cell-level links, unmatched tokens, and
-skipped-table diagnostics. Coverage counts in that artifact are operational
-traceability statistics. They are not accuracy, precision, recall, or F1 unless
-compared with suitable gold labels.
-
-Step 5 links table citation occurrences to bibliography positions. Step 6 is
-the separate paper-level scholarly identity resolution step. Production numeric
-matching uses positions in the normalized Step 4 GROBID bibliography order.
-
-## Controlled Gold-Standard Scope
-
-The current controlled Step 5 evaluation uses two TabulusBench papers:
-
-- P251: Miikkulainen et al. (2013), 44 physical table fragments
-- P252: Puurunen (2005), 21 physical table fragments
-
-Only tables with an explicit reference column contribute citation-link gold:
-
-- P251: 44/44 tables
-- P252: 13/21 tables
-- total evaluated: 57 physical tables
-
-The eight P252 fragments without an explicit reference column are retained as
-non-contributing fragments for Step 5.
-
-The canonical Step 5 gold files are:
+Canonical gold lives at:
 
 ```text
-P251/reference_matching/gold.json
-P252/reference_matching/gold.json
+<paper_root>/step5_reference_matching/gold.json
 ```
 
-in the corresponding TabulusBench paper directories.
+The gold JSON contains a `tables` list. Each table record includes:
 
-The full expanded TabulusBench contains 252 papers and 605 gold physical
-reference-table fragments. Step 5 production matching can be run wherever Step
-3 and Step 4 artifacts exist, but the current Step 5 accuracy gold covers only
-P251 and P252. For other papers, coverage, unmatched-token, and consistency
-statistics must not be called precision, recall, F1, or accuracy unless
-suitable gold labels exist.
+- `table_id`
+- `table_key`
+- `gold_csv`
+- `reference_column_index`
+- `reference_column_header`
+- `citation_cells`
 
-## Gold Construction Semantics
+Each `citation_cells[]` record contains:
 
-The Step 5 gold is derived controlled gold, not separately hand-annotated
-citation-link gold. Links are deterministically derived from:
+- `row_index`
+- `column_index`
+- `value`
+- `bibliography_indices`
 
-- expert-curated `reference_tables/tables/*/gold.csv`
-- complete numbered `bibliography/gold.json`
+This gold schema is separate from the production `reference_matches.json`
+contract. Production Step 5 uses positions in the normalized Step 4
+bibliography order. Controlled evaluation may use gold bibliography numbering
+or an explicit index map to isolate Step 5 from Step 4 segmentation changes.
 
-Only explicit numeric bibliography-reference expressions occurring in explicit
-reference columns are included. Numeric markers embedded in non-reference
-content, such as table-local footnote markers `mark[1]` or `mark[2]`, are
-excluded.
+## Alignment Behavior
 
-Gold size:
+The evaluator aligns gold tables to predicted `matched_tables` using keys from
+`table_id`, `source_file`, `source_prediction`, and `source_parsed`. For each
+aligned table, it compares the predicted reference-column index and the citation
+cell links.
 
-| Paper | Citation cells | Bibliography links |
-| --- | ---: | ---: |
-| P251 | 1,478 | 4,384 |
-| P252 | 538 | 1,579 |
-| Overall | 2,016 | 5,963 |
+Citation cells are aligned by citation surface when predictions include cell
+values. Numeric citation signatures expand ranges such as `20--22` to the tuple
+`20, 21, 22`. Historical controlled artifacts that omit cell surface values are
+aligned by table-local match order.
 
-## Evaluation Setting
-
-The controlled evaluation gives the production Step 5 matcher:
-
-- expert-curated gold table representations
-- complete gold numbered bibliographies
-
-This intentionally isolates Step 5 from upstream Step 2 reconstruction errors
-and Step 4 GROBID bibliography-segmentation errors. Step 4 can recover
-bibliography content nearly perfectly while split/merge differences alter
-numeric positions; therefore controlled Step 5 performance must not be
-presented as end-to-end pipeline performance.
+Header rows marked with `is_header: true` are excluded from link scoring.
 
 ## Metrics
 
-The controlled evaluation reports:
+The serialized result includes:
 
-`reference-column detection`
-: Whether the explicit reference column is detected for each contributing
-  table.
+- `gold_tables`
+- `aligned_tables`
+- `table_coverage`
+- `reference_columns_correct`
+- `reference_column_accuracy`
+- `gold_citation_cells`
+- `surface_matched_cells`
+- `citation_surface_recall`
+- `exact_link_set_cells`
+- `exact_cell_accuracy`
+- `gold_links`
+- `predicted_links`
+- `link_true_positives`
+- `link_false_positives`
+- `link_false_negatives`
+- `link_precision`
+- `link_recall`
+- `link_f1`
 
-`exact citation-cell accuracy`
-: The predicted bibliography-index set for a citation cell must exactly equal
-  the gold set.
+`exact_cell_accuracy` requires the predicted bibliography-index set for an
+aligned citation cell to exactly equal the gold set. Individual-link metrics are
+computed over `(citation cell, bibliography index)` links.
 
-`individual-link precision, recall, and F1`
-: Link metrics over `(citation cell, bibliography index)` pairs.
+## TabulusBench Scope
 
-## Current Controlled Result
+Canonical Step 5 gold currently covers only the P251/P252 deep subset:
 
-| Paper | Tables | Ref. columns | Citation cells | Links | Exact-cell accuracy | Link P | Link R | Link F1 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| P251 | 44 | 44/44 | 1,478 | 4,384 | 100.00% | 100.00% | 100.00% | 100.00% |
-| P252 | 13 | 13/13 | 538 | 1,579 | 100.00% | 100.00% | 100.00% | 100.00% |
-| Overall | 57 | 57/57 | 2,016 | 5,963 | 100.00% | 100.00% | 100.00% | 100.00% |
+- 57 reference-bearing physical fragments
+- 2,016 citation cells
+- 5,963 bibliography-link occurrences
+- gold type: `derived_gold`
 
-Aggregate link counts:
+This is not the full set of 574 reference-bearing fragments in TabulusBench.
+Production Step 5 can be run wherever Step 3 and Step 4 artifacts exist, but
+coverage, unmatched-token counts, and consistency diagnostics must not be called
+precision, recall, F1, or accuracy unless suitable Step 5 gold labels exist.
 
-- TP = 5,963
-- FP = 0
-- FN = 0
-- unmatched tokens = 0
-- mismatched cells = 0
+The old controlled-run result table with 100% scores is not documented as a
+current adapter-level benchmark result. Use the public evaluator against the
+current canonical Step 5 gold and the exact prediction artifact being reported.
 
-These numbers characterize the deterministic Step 5 matcher under controlled
-gold-table and gold-bibliography inputs. They are not end-to-end pipeline
-accuracy and do not include upstream reconstruction or bibliography-segmentation
-errors.
+## Boundary
 
-## Gold JSON Schema
-
-The TabulusBench Step 5 gold files use this structure:
-
-`schema_version`
-: Gold-file schema version.
-
-`task`
-: The benchmark task, corresponding to Step 5 reference matching.
-
-`paper_id`
-: Paper identifier, such as `P251` or `P252`.
-
-`gold_type`
-: Gold label type for controlled reference matching.
-
-`scope`
-: Scope of the gold file, including the contributing physical table fragments.
-
-`semantics`
-: Explanation that bibliography indices are positions in the complete gold
-  numbered bibliography.
-
-`construction`
-: Provenance for deterministic gold construction from curated table CSVs and
-  numbered bibliography gold.
-
-`summary`
-: Counts such as contributing tables, citation cells, bibliography links, and
-  retained non-contributing fragments.
-
-`tables`
-: Per-table citation-link labels.
-
-Each `tables[]` entry contains:
-
-`table_id`
-: Physical table identifier.
-
-`table_key`
-: TabulusBench table directory key.
-
-`gold_csv`
-: Path to the expert-curated table CSV used for gold construction.
-
-`reference_column_index`
-: Zero-based explicit reference-column index.
-
-`reference_column_header`
-: Header text for the reference column.
-
-`citation_cells`
-: Per-cell citation-link labels.
-
-Each `citation_cells[]` entry contains:
-
-`row_index`
-: Row index in the gold table representation.
-
-`column_index`
-: Column index of the reference cell.
-
-`value`
-: Raw cell value used for gold construction.
-
-`bibliography_indices`
-: Gold bibliography positions linked by that cell.
-
-`tables_without_explicit_reference_column`
-: Retained physical fragments that do not contribute citation-link gold because
-  they lack an explicit reference column.
-
-This gold schema is separate from the production
-{doc}`../data-contracts/reference-matches-json` artifact. Production Step 5
-uses the normalized Step 4 bibliography order; controlled evaluation uses gold
-bibliography numbering to isolate the matcher.
-
-## Step 6 Diagnostic Boundary
-
-Step 6 scholarly reference resolution uses a paper-level denominator: the union
-of bibliography indices linked by applicable Step 5 artifacts, deduplicated by
-bibliography index. Each unique bibliography entry is resolved once per paper,
-not once per table cell, table fragment, or reconstruction adapter.
-
-Resolution status counts and resolution coverage are diagnostics over that
-paper-level denominator. They should not be presented as accuracy without a
-human gold standard. Operational failures during resolution are distinct from
-scientific rejections and should not be counted as rejected scholarly
-references.
+Step 5 output remains table-cell level. Step 6 consumes one or more Step 5
+artifacts, takes the paper-level union of linked bibliography indices, and
+resolves each unique bibliography entry once. Step 5 does not resolve DOIs,
+mutate prediction CSVs, or establish scholarly identity correctness.

@@ -1,118 +1,133 @@
 # Evaluation Overview
 
-Evaluation is operationally separate from the production pipeline.
-Production steps write stable artifacts; evaluation reads those artifacts and,
-when requested, writes separate metrics. Evaluation should not mutate
-production artifacts such as prediction CSV files, `references/bibliography.json`,
-`references/reference_matches.json`, or `references/reference_resolution.json`.
+Evaluation is separate from production execution. Production commands write
+pipeline artifacts such as `tables_index.json`, prediction CSVs,
+`references/bibliography.json`, `references/reference_matches.json`, and
+`references/reference_resolution.json`. Evaluation commands read gold and
+prediction artifacts and may write a separate JSON result with `--out`; they do
+not modify the artifacts being scored.
 
-Tabulus documentation separates evaluation into three principal levels:
+## Step Map
 
-```text
-reference-table classification labels
-        ^
-        |
-classification evaluation
-        |
-selected/reference-table decisions
+| Pipeline Step | Evaluator | CLI | Scored prediction |
+| --- | --- | --- | --- |
+| Step 1 -- Table localization | `evaluate_table_localization()` | `tabulus evaluate-table-localization` | `tables_index.json` |
+| Step 2 -- Table reconstruction | `evaluate_table_reconstruction()` | `tabulus evaluate-table-reconstruction` | prediction CSV |
+| Step 3 -- Reference-table classification | `evaluate_reference_table_classification()` | `tabulus evaluate-reference-table-classification` | `reference_table_classification.json` |
+| Step 4 -- Bibliography extraction | `evaluate_bibliography()` | `tabulus evaluate-bibliography` | `references/bibliography.json` |
+| Step 5 -- Reference matching | `evaluate_reference_matching()` | `tabulus evaluate-reference-matching` | `references/reference_matches.json` |
+| Step 6 -- Scholarly identity resolution | `evaluate_reference_resolution()` | `tabulus evaluate-reference-resolution` | `references/reference_resolution.json` |
 
-manual table CSV
-        ^
-        |
-Relative Mapping Similarity (RMS)
-        |
-prediction CSV
+The current public pair-level evaluation endpoint set covers Steps 1--6. Step 7
+is deterministic resolved-table export and has canonical derived gold for the
+P251/P252 deep subset, but there is not currently a public Step 7 evaluation
+CLI endpoint in this six-command interface.
 
-curated bibliography entries
-        ^
-        |
-reference-extraction comparison
-        |
-references/bibliography.json or retained extraction output
-```
+## Gold, Prediction, And Run Categories
 
-## Current Library-Native Evaluation
+Gold and prediction artifacts are different things. Gold is the independent
+truth source for one evaluation question. Prediction artifacts are outputs from
+Tabulus production commands or controlled-run inputs produced for component
+isolation.
 
-The current public `src/tabulus.evaluation` package implements native table
-reconstruction evaluation only. The supported metric is Relative Mapping
-Similarity (RMS), adapted from the DePlot table-datapoint metric. It is exposed
-through the `tabulus evaluate-table-reconstruction` command and the
-`evaluate_table_reconstruction()` API.
+There are two run categories in the documentation:
 
-Reference-table classification and bibliography/reference extraction have
-production pipeline steps, but they do not currently have library-native
-public evaluators or `tabulus` evaluation commands.
+`controlled run`
+: Apply a Step where the requisite gold-standard data for that Step exists,
+  using gold upstream information as needed to isolate that Step from upstream
+  errors.
 
-## Retained Research Evaluation Utilities
+`full-corpus run`
+: Production or end-to-end execution over the broader corpus.
 
-The top-level `evaluation/` directory contains retained research scripts,
-legacy metric harnesses, plots, and generated comparison material. Those files
-are useful for understanding earlier experiments, but they are not the public
-Tabulus library interface unless code under `src/tabulus` imports them or the
-CLI exposes them.
+Gold type and run category are independent. For example, a controlled run may
+use `pseudo_gold`, `derived_gold`, authoritative bibliography gold, or
+source-derived scholarly-identity gold depending on the Step. Gold should remain
+conceptually independent of `tabulus_runs/` directories.
 
-Some retained scripts write result JSON into dataset folders. Treat them as
-read-only with respect to production artifacts and inspect their arguments and
-outputs before running them on any benchmark tree.
+## Canonical TabulusBench Gold Layout
 
-## Boundaries
-
-Use the metric that matches the artifact being scored:
-
-- {doc}`reference-table-classification-quality` scores whether Step 3 routed
-  reconstructed tables into the reference-table branch.
-- {doc}`table-extraction-quality` scores raw table reconstruction prediction
-  CSVs against manually curated table CSVs.
-- {doc}`bibliography-quality` scores bibliography/reference extraction against
-  curated bibliography entries.
-- {doc}`reference-matching-quality` describes Step 5 link diagnostics and the
-  Step 6 resolution denominator, but neither Step 5 matching nor Step 6
-  scholarly resolution currently has a native public evaluator.
-
-Do not aggregate these levels into one pipeline accuracy number. Coverage,
-consistency, agreement, recovery rate, precision, recall, F1, and resolution
-coverage answer different questions and have different denominators.
-
-Resolved CSV files are downstream Step 7 outputs. They are not the artifact
-used to measure raw table reconstruction quality, because they append
-reference-resolution fields to Step 2 prediction rows.
-
-## Step 6 Scholarly Identity Resolution
-
-Step 6 evaluation is separate from Step 5 reference matching. Step 5 establishes
-which bibliography entry was cited; it does not establish the canonical
-scholarly-work identity. Step 6 validation status is therefore not accuracy by
-itself, and `validated_with_doi` is an output status rather than an accuracy
-label.
-
-The controlled Step 6 component workflow uses clean one-to-one alignments
-between controlled Step 5 bibliography indices and Step 4/GROBID bibliography
-entries. Derived inputs live under the literal run tree:
+Canonical TabulusBench gold lives below each paper root using Step-based names:
 
 ```text
-runs/stage6/controlled-p251-p252-final/<paper>/input_one_to_one/
+<paper_root>/
+├── step1_table_localization/
+│   ├── gold.json
+│   └── crops/...
+├── step2_table_reconstruction/
+│   └── tables/<table_id>/gold.csv
+├── step3_reference_table_classification/
+│   └── gold.json
+├── step4_bibliography/
+│   └── gold.json
+├── step5_reference_matching/
+│   └── gold.json
+├── step6_reference_resolution/
+│   └── gold.json
+└── step7_resolved_tables/
+    ├── gold.json
+    └── tables/<table_id>/gold.csv
 ```
 
-Those inputs are used to assess resolver behavior while keeping upstream
-bibliography-segmentation split, merge, and unmatched cases separate from the
-clean Step 6 component population. The one-to-one controlled subset must not be
-presented as a full end-to-end pipeline population.
+Prediction and run artifacts live separately under `tabulus_runs/` or another
+user-selected work directory. Older non-Step-based gold paths describe
+historical material and should not be used for new public examples.
 
-Because Step 6 depends on live Crossref, CORE, network/provider behavior, and
-LLM-assisted adjudication, controlled consistency checks use two fresh complete
-runs per paper (`run_01` and `run_02`) and compare individual-reference
-outcomes. Relevant checks include final-status agreement, exact DOI agreement
-for references validated in both runs, validated-identity agreement, retry-use
-agreement, LLM-decision agreement where applicable, and the number and type of
-references whose final outcome changes.
+Tabulus-Gold and TabulusBench deliberately use different paper names. Tabulus-
+Gold may use human-readable names such as `Miikkulainen_2013` or
+`Puurunen_2005`; TabulusBench uses identifiers such as `P251` and `P252`. The
+pair-level evaluators do not infer evaluation semantics from a paper-directory
+basename.
 
-Observed Step 6 runtime should be reported as end-to-end wall-clock runtime,
-not pure computation time, because it includes remote Crossref, CORE, and LLM
-provider latency. Where instrumented, record processed references,
-seconds/reference, number of LLM-processed entries, bounded retries, and
-optionally CPU time and maximum resident memory.
+## TabulusBench Coverage
 
-Step 6 scholarly-identity accuracy requires independent identity gold. Without
-that gold, validation yield, DOI yield, rejection counts, and run-to-run
-agreement are resolver diagnostics rather than precision, recall, F1, DOI
-accuracy, or scholarly-identity accuracy.
+The benchmark has different gold coverage by Step:
+
+| Step | Gold coverage | Gold type / interpretation |
+| --- | --- | --- |
+| Step 1 | 252 papers; 605 physical table fragments/crops | `pseudo_gold` physical-fragment recovery gold |
+| Step 2 | 252 papers; 605 curated canonical `gold.csv` tables | curated reconstruction gold |
+| Step 3 | 252 papers; 605 binary labels: 574 reference-bearing, 31 non-reference, 0 unresolved | `pseudo_gold` reference-table labels |
+| Step 4 | 52 papers; 6,947 numbered gold bibliography references | authoritative bibliography gold |
+| Step 5 | P251 and P252 only; 57 reference-bearing physical fragments; 2,016 citation cells; 5,963 bibliography-link occurrences | `derived_gold` citation-link gold |
+| Step 6 | P251 and P252 only; 3,276 source-derived scholarly identities | source-derived authoritative identity gold |
+| Step 7 | P251 and P252 only; 57 resolved output fragments | `derived_gold` resolved-table gold |
+
+The Step 3 ratio `574/605 = 94.88%` is prevalence within the deliberately
+curated, reference-focused TabulusBench table set. It is not the prevalence of
+reference-bearing tables among all tables in the 252 source papers or in any
+scientific domain.
+
+The deep P251/P252 subset progresses through different denominators:
+
+```text
+57 reference-bearing fragments
+→ 2,016 citation cells
+→ 5,963 citation-link occurrences
+→ 3,341 unique bibliography entries linked
+→ 3,276 source-derived scholarly identities
+→ 57 resolved output fragments
+```
+
+Do not treat uncovered Step 6 links as errors by default. The Step 6 identity
+population is independently source-derived.
+
+## Why There Is No Single Pipeline Accuracy
+
+Each Step answers a different question:
+
+- Step 1 measures physical-fragment recovery/alignment, not bounding-box IoU.
+- Step 2 measures raw table reconstruction with Relative Mapping Similarity
+  (RMS), before reference enrichment.
+- Step 3 measures binary routing of reconstructed tables into the
+  reference-processing branch.
+- Step 4 measures bibliography-entry extraction and alignment from the original
+  PDF.
+- Step 5 measures citation-cell links to bibliography positions.
+- Step 6 measures source-derived scholarly identity agreement.
+- Step 7 is deterministic export from existing Step 5 and Step 6 artifacts.
+
+Resolved CSV files should not be used as Step 2 reconstruction predictions,
+because Step 7 intentionally appends and filters resolution fields. Coverage,
+precision, recall, F1, resolution yield, strict-entry matching, and RMS F1 have
+different denominators and should be reported with their Step context.

@@ -1,53 +1,30 @@
-# Table Reconstruction Quality
+# Step 2 Table Reconstruction Quality
 
-Table reconstruction quality evaluates whether a reconstructed table prediction
-CSV matches a manually curated ground-truth table CSV. It scores raw table
-structure and content before reference matching, scholarly resolution, or
+Step 2 evaluation scores one reconstructed table prediction CSV against one
+curated table `gold.csv`. It measures raw table reconstruction before
+reference-table classification, reference matching, scholarly resolution, or
 Step 7 resolved export.
 
-The current library-native evaluator supports one metric: Relative Mapping
-Similarity (RMS), adapted from the DePlot table-datapoint metric.
+The supported metric is Relative Mapping Similarity (RMS), adapted from the
+DePlot table-datapoint metric.
 
-```text
-normalized reconstruction
-        |
-        v
-prediction CSV
-        |
-        v
-Relative Mapping Similarity (RMS)
-        |
-        v
-ground-truth CSV
-```
+## Public Interface
 
-A DOI-enriched or otherwise resolved CSV is not used for table reconstruction
-quality because enrichment intentionally changes reference-cell values.
-
-## Current Implementation Status
-
-The public API is `tabulus.evaluation.evaluate_table_reconstruction()`. The
-public CLI is:
+The library API is `tabulus.evaluation.evaluate_table_reconstruction()`. The
+CLI is:
 
 ```bash
 tabulus evaluate-table-reconstruction \
-  --gold /path/to/gold.csv \
-  --prediction /path/to/prediction.csv \
+  --gold /path/to/paper/step2_table_reconstruction/tables/<table_id>/gold.csv \
+  --prediction /path/to/reconstruction/predictions/<table_id>.csv \
   --metric rms \
   --text-threshold 0.5 \
   --number-threshold 0.1 \
-  --out /path/to/evaluation.json
+  --out /path/to/evaluation/step2-table-reconstruction.json
 ```
 
-`--out` is optional. When it is omitted, the command prints the result and does
-not write an evaluation artifact.
-
-RMS uses the optional evaluation dependencies, including SciPy for optimal
-assignment. Install them with:
-
-```bash
-python -m pip install -e ".[evaluation]"
-```
+`--metric` currently supports `rms`. `--out` is optional. If omitted, the command
+prints the score and does not write an evaluation artifact.
 
 ## Metric Behavior
 
@@ -62,7 +39,7 @@ The implementation compares table datapoints using:
 - Average Normalized Levenshtein Similarity for textual keys and values;
 - relative numeric comparison for numeric values;
 - optimal assignment over datapoint-key similarity;
-- precision, recall, and F1 computed from the assigned datapoint scores.
+- precision, recall, and F1 computed from assigned datapoint scores.
 
 The prediction is evaluated in its original orientation and in transposed
 orientation. The orientation with the highest RMS F1 is retained.
@@ -70,8 +47,8 @@ orientation. The orientation with the highest RMS F1 is retained.
 ## Scores And Thresholds
 
 The low-level RMS function returns precision, recall, and F1 on `[0,1]`. The
-public table-reconstruction API and CLI report the same values on `[0,100]` and
-serialize:
+public Step 2 evaluator reports and serializes the same values on `[0,100]` and
+includes:
 
 - `metric`: `rms`
 - `metric_name`: `Relative Mapping Similarity`
@@ -82,21 +59,25 @@ serialize:
 - `recall`
 - `f1`
 
-When a single summary value is needed, use RMS F1, because the implementation
-selects transposed versus non-transposed orientation by highest F1 and reports
-RMS precision, recall, and F1 together.
+When a single summary value is needed, use RMS F1. The implementation selects
+orientation by highest F1 and reports RMS precision, recall, and F1 together.
 
 `--text-threshold` controls the text-similarity cutoff and defaults to `0.5`.
 `--number-threshold` controls the numeric relative-error cutoff and defaults to
-`0.1`. Both thresholds must be values between `0` and `1`.
+`0.1`.
 
-## Boundary
+## TabulusBench Scope
 
-Table reconstruction evaluation does not measure reference-table
-classification, bibliography extraction, table-cell-to-bibliography matching,
-Step 6 scholarly reference resolution, or downstream resolved exports.
+TabulusBench provides Step 2 reconstruction gold for all 252 papers and 605
+curated canonical tables under:
 
-Adapter comparisons should export every candidate through the same prediction
-CSV contract before scoring. Runtime, hardware, and model-environment context
-can be recorded beside the metric, but those measurements are separate from
-RMS and should not be called reconstruction accuracy.
+```text
+<paper_root>/step2_table_reconstruction/tables/<table_id>/gold.csv
+```
+
+The prediction side is a Step 2 table-reconstruction prediction CSV. See the
+{doc}`../data-contracts/table-prediction-csv` contract for the production CSV
+format.
+
+A resolved CSV is not a valid Step 2 prediction input because Step 7 intentionally
+adds reference-resolution columns and may filter or merge outputs.
