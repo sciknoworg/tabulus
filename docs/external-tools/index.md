@@ -9,4 +9,5 @@ boundaries. They are grouped here by the Tabulus step that uses them.
 step-1-pdf-profiling
 step-2-table-reconstruction-adapters
 step-4-bibliography-extraction
+step-6-scholarly-identity-resolution-services
 ```
