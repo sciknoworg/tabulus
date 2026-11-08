@@ -226,24 +226,30 @@ def _reconstruction_dir(
 ) -> Path:
     path = Path(reference_matches_path).expanduser()
 
-    # Canonical Step 5 location:
-    # <reconstruction>/references/reference_matches.json
-    if path.parent.name == "references":
-        return path.parent.parent
+    # Prefer the actual Step 2 reconstruction provenance.
+    roots = set()
 
-    # Support explicitly relocated Step 5 artifacts by
-    # recovering the reconstruction root from the absolute
-    # source_parsed provenance written by Step 5.
     for table in matched_tables:
         value = table.get("source_parsed")
-
         if not isinstance(value, str) or not value:
             continue
 
         candidate = Path(value).expanduser()
-
         if candidate.is_absolute():
-            return candidate.parent.parent
+            roots.add(candidate.parent.parent)
+
+    if len(roots) > 1:
+        raise ValueError(
+            "Step 5 references multiple reconstruction directories: "
+            + ", ".join(str(p) for p in sorted(roots))
+        )
+
+    if len(roots) == 1:
+        return roots.pop()
+
+    # Backward compatibility with the original Tabulus layout.
+    if path.parent.name == "references":
+        return path.parent.parent
 
     raise ValueError(
         "Could not determine reconstruction directory "
