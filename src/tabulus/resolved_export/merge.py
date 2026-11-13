@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 from typing import Any
 
+from tabulus.resolved_export.csv_io import read_csv
 from tabulus.table_continuations import (
     continuation_links_from_records,
 )
@@ -52,18 +53,6 @@ def _load_json_object(
         )
 
     return value
-
-
-def _read_csv(path: Path) -> list[list[str]]:
-    with Path(path).open(
-        "r",
-        newline="",
-        encoding="utf-8",
-    ) as handle:
-        return [
-            list(row)
-            for row in csv.reader(handle)
-        ]
 
 
 def resolve_tables_index_path(
@@ -813,7 +802,7 @@ def materialize_continuation_merges(
                     ]
                 )
 
-                resolved_rows = _read_csv(
+                resolved_rows = read_csv(
                     physical_path
                 )
 

@@ -130,8 +130,9 @@ Step 6 requires Crossref, CORE, and OpenAI-compatible LLM configuration. The
 full option list and credential handling are documented in the
 [Step 6 tutorial](https://tabulus.readthedocs.io/en/latest/tutorial/13-doi-resolution.html).
 
-Step 7 is offline and deterministic. Add `--merge-continuations` to request
-safe logical merging while retaining physical resolved CSVs.
+Physical Step 7 export is offline and deterministic. Add `--merge-continuations`
+to request safe logical merging, or `--orkg` for a separate ORKG projection
+with LLM-assisted structural planning for complex tables.
 
 ## 📦 Main Artifacts
 

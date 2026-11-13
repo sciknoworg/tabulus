@@ -19,6 +19,7 @@ from tabulus.evaluation import (
     evaluate_reference_table_classification,
     evaluate_table_localization,
     evaluate_table_reconstruction,
+    evaluate_step7_physical,
 )
 from tabulus.mineru.backends import (
     HYBRID_BACKEND,
@@ -38,6 +39,7 @@ from tabulus.reference_matching import match_selected_reference_tables
 from tabulus.reference_resolution import resolve_reference_artifact
 from tabulus.reference_resolution.pipeline import discover_reference_match_artifacts
 from tabulus.resolved_export import export_resolved_csvs
+from tabulus.resolved_export.structural_llm import OpenAICompatibleStructurePlanner
 from tabulus.table_crops import export_mineru_table_crops
 from tabulus.table_ocr import (
     create_table_ocr_adapter,
@@ -949,11 +951,50 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=None,
         help=(
-            "Optional explicit Step 1 tables_index.json path for "
-            "continuation merging. Normally inferred from the canonical "
-            "crop root. Requires --merge-continuations."
+            "Optional Step 1 tables_index.json for merging or ORKG structure evidence. "
+            "Normally inferred from the canonical crop root."
         ),
     )
+    export_resolved_csv.add_argument(
+        "--reconstruction-root", type=Path,
+        help="Local Step 2 reconstruction directory for relocated artifacts.",
+    )
+    export_resolved_csv.add_argument(
+        "--orkg", action="store_true",
+        help="Also produce an ORKG-compatible projection with a structural audit manifest.",
+    )
+    export_resolved_csv.add_argument("--step7-llm-base-url", help="Override the shared LLM base URL.")
+    export_resolved_csv.add_argument("--step7-llm-model", help="Override the shared LLM model.")
+    export_resolved_csv.add_argument("--step7-llm-provider", help="Override the shared provider label.")
+    export_resolved_csv.add_argument("--step7-llm-api-key-env", help="Read the Step 7 key from this variable.")
+    export_resolved_csv.add_argument(
+        "--allow-uncovered-identities", action="store_true",
+        help="Retain links without independent identities in controlled gold_index inputs.",
+    )
+
+    physical = subparsers.add_parser(
+        "evaluate-step7-physical",
+        help="Score original physical Step 7 table grids with exact match and RMS.",
+    )
+    physical.add_argument("--prediction", required=True, type=Path, help="Physical resolved_tables.json manifest.")
+    physical_gold = physical.add_mutually_exclusive_group(required=True)
+    physical_gold.add_argument("--gold", type=Path, help="Physical Step 7 gold manifest.")
+    physical_gold.add_argument("--benchmark-paper", type=Path, help="Paper root containing step7_resolved_tables/gold.json.")
+    physical.add_argument("--alignment", type=Path, help="JSON mapping prediction table IDs to gold fragment keys.")
+    physical.add_argument("--metric", choices=("exact", "rms", "both"), default="both")
+    physical.add_argument("--text-threshold", type=float, default=DEFAULT_TEXT_THRESHOLD)
+    physical.add_argument("--number-threshold", type=float, default=DEFAULT_NUMBER_THRESHOLD)
+    physical.add_argument("--out", type=Path, help="Write the complete per-fragment JSON report.")
+
+    evaluate_step7 = subparsers.add_parser(
+        "evaluate-step7", help="Evaluate structural plans, citations and identities separately.",
+    )
+    evaluate_step7.add_argument("--prediction", required=True, type=Path, help="Step 7 ORKG manifest.")
+    gold_source = evaluate_step7.add_mutually_exclusive_group(required=True)
+    gold_source.add_argument("--gold", type=Path, help="Independently annotated Step 7 evaluation JSON.")
+    gold_source.add_argument("--benchmark-paper", type=Path, help="TabulusBench paper root for development checks.")
+    evaluate_step7.add_argument("--alignment", type=Path, help="Optional evaluation-only coordinate and index crosswalk.")
+    evaluate_step7.add_argument("--out", type=Path, help="Write the metrics as JSON.")
 
     return parser
 
@@ -1306,9 +1347,13 @@ def main() -> None:
             f"{result.metric_name} ({result.metric_short_name})"
         )
         print(f"  Score scale: {result.score_scale}")
-        print(f"  RMS precision: {result.precision:.6f}")
-        print(f"  RMS recall: {result.recall:.6f}")
-        print(f"  RMS F1: {result.f1:.6f}")
+        print(f"  {result.metric_short_name} precision: {result.precision:.6f}")
+        print(f"  {result.metric_short_name} recall: {result.recall:.6f}")
+        print(f"  {result.metric_short_name} F1: {result.f1:.6f}")
+        if args.metric == "exact":
+            counts = result.exact_cells
+            assert counts is not None
+            print(f"  Exact grid match: {counts.exact_grid}")
         if output_path is not None:
             print(f"  Evaluation JSON: {output_path}")
 
@@ -1762,13 +1807,65 @@ def main() -> None:
         print(f"  Output: {result.output_path}")
         return
 
+    if args.command == "evaluate-step7-physical":
+        import json
+
+        gold_path = args.gold or args.benchmark_paper / "step7_resolved_tables" / "gold.json"
+        if args.out is not None:
+            output = args.out.resolve()
+            if output.is_relative_to(gold_path.resolve().parent):
+                raise ValueError("The evaluation output must be outside the Step 7 gold directory.")
+        result = evaluate_step7_physical(
+            args.prediction, gold_path, alignment_path=args.alignment, metric=args.metric,
+            text_threshold=args.text_threshold, number_threshold=args.number_threshold,
+        )
+        payload = json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+        if args.out is None:
+            print(payload, end="")
+        else:
+            if args.out.resolve() in {Path(item["path"]) for item in result["inputs"]}:
+                raise ValueError("The evaluation output aliases an input artifact.")
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            args.out.write_text(payload, encoding="utf-8")
+            print(json.dumps({"coverage": result["coverage"], "macro": result["macro"]}, indent=2))
+            print(f"Evaluation JSON: {args.out}")
+        return
+
+    if args.command == "evaluate-step7":
+        import json
+
+        from tabulus.evaluation.step7 import evaluate_step7
+
+        if args.out is not None:
+            output = args.out.resolve()
+            sources = {p.resolve() for p in (args.gold, args.prediction, args.alignment) if p is not None}
+            if output in sources or (
+                args.benchmark_paper is not None
+                and any(
+                    output.is_relative_to(directory.resolve())
+                    for directory in args.benchmark_paper.glob("step[1-7]_*")
+                )
+            ):
+                raise ValueError("The Step 7 evaluation output must be separate from its inputs.")
+        result = evaluate_step7(
+            args.prediction, gold_path=args.gold, benchmark_paper=args.benchmark_paper,
+            alignment_path=args.alignment,
+        )
+        payload = json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+        if args.out is not None:
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            args.out.write_text(payload, encoding="utf-8")
+        else:
+            print(payload, end="")
+        return
+
     if args.command == "export-resolved-csv":
         if (
             args.tables_index is not None
-            and not args.merge_continuations
+            and not (args.merge_continuations or args.orkg)
         ):
             raise ValueError(
-                "--tables-index requires --merge-continuations."
+                "--tables-index requires --merge-continuations or --orkg."
             )
 
         print()
@@ -1799,6 +1896,16 @@ def main() -> None:
             output_dir=args.out,
             merge_continuations=args.merge_continuations,
             tables_index_path=args.tables_index,
+            reconstruction_root=args.reconstruction_root,
+            orkg=args.orkg,
+            allow_uncovered_identities=args.allow_uncovered_identities,
+            structure_planner=(
+                OpenAICompatibleStructurePlanner(
+                    base_url=args.step7_llm_base_url, model=args.step7_llm_model,
+                    provider=args.step7_llm_provider, api_key_env=args.step7_llm_api_key_env,
+                )
+                if args.orkg else None
+            ),
         )
 
         print()
@@ -1809,6 +1916,8 @@ def main() -> None:
         )
         print(f"  Output directory: {result.output_dir}")
         print(f"  Manifest: {result.manifest_path}")
+        if result.orkg_manifest_path is not None:
+            print(f"  ORKG manifest: {result.orkg_manifest_path}")
 
         if result.merge_continuations:
             merged = sum(

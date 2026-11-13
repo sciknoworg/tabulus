@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
+
+import pytest
 
 import tabulus.cli as cli
 
@@ -91,3 +94,35 @@ def test_evaluate_table_reconstruction_main_dispatches(monkeypatch) -> None:
         "number_threshold": 0.05,
         "out": Path("evaluation.json"),
     }
+
+
+def test_exact_metric_scores_placed_cells_and_reports_counts(tmp_path, monkeypatch, capsys) -> None:
+    gold = tmp_path / "gold.csv"
+    prediction = tmp_path / "prediction.csv"
+    output = tmp_path / "exact.json"
+    gold.write_text("Material,Range,\nAl2O3,2.5−11.0,\nÅ,10,\n", encoding="utf-8")
+    prediction.write_text(
+        "\ufeffMaterial, Range ,\nal2o3,2.5-11.0,extra\nA\u030a,,10\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "tabulus", "evaluate-table-reconstruction", "--metric", "exact",
+            "--gold", str(gold), "--prediction", str(prediction), "--out", str(output),
+        ],
+    )
+
+    cli.main()
+
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    assert payload["exact_cells"] == {
+        "matching_cells": 3,
+        "gold_nonempty_cells": 6,
+        "predicted_nonempty_cells": 7,
+        "exact_grid": False,
+    }
+    assert payload["precision"] == pytest.approx(300 / 7)
+    assert payload["recall"] == 50
+    assert payload["f1"] == pytest.approx(600 / 13)
+    assert "Exact F1:" in capsys.readouterr().out

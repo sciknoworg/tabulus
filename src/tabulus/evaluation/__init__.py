@@ -14,9 +14,12 @@ from tabulus.evaluation.rms import (
     relative_mapping_similarity,
 )
 from tabulus.evaluation.table_localization import TableLocalizationEvaluation, evaluate_table_localization
+from tabulus.evaluation.step7_physical import evaluate_step7_physical
 from tabulus.evaluation.table_reconstruction import (
+    ExactCellCounts,
     SUPPORTED_TABLE_RECONSTRUCTION_METRICS,
     TableReconstructionEvaluation,
+    count_exact_cells,
     evaluate_table_reconstruction,
 )
 
@@ -24,6 +27,7 @@ __all__ = [
     "BibliographyEvaluation",
     "DEFAULT_NUMBER_THRESHOLD",
     "DEFAULT_TEXT_THRESHOLD",
+    "ExactCellCounts",
     "RMSScores",
     "ReferenceMatchingEvaluation",
     "ReferenceResolutionEvaluation",
@@ -31,10 +35,12 @@ __all__ = [
     "SUPPORTED_TABLE_RECONSTRUCTION_METRICS",
     "TableLocalizationEvaluation",
     "TableReconstructionEvaluation",
+    "count_exact_cells",
     "evaluate_bibliography",
     "evaluate_reference_matching",
     "evaluate_reference_resolution",
     "evaluate_reference_table_classification",
+    "evaluate_step7_physical",
     "evaluate_table_localization",
     "evaluate_table_reconstruction",
     "relative_mapping_similarity",

@@ -11,4 +11,5 @@ run-directory
 pdf-profiling-stage-1
 table-reconstruction-stage-2
 bibliography-reference-processing
+step7-structure
 ```

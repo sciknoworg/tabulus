@@ -14,6 +14,9 @@ A prediction CSV and a resolved CSV are deliberately different artifacts:
 
 Step 7 never rewrites Step 2 prediction CSV files.
 
+The optional ORKG projection uses a separate structural plan and output
+manifest. See {doc}`step7-structure`.
+
 ## Inputs
 
 Step 7 consumes:
@@ -24,8 +27,9 @@ Step 7 consumes:
 Optional continuation merging additionally consumes the Step 1
 `tables_index.json` continuation topology.
 
-Step 7 performs no Crossref, CORE, LLM, DOI, or bibliographic search. It is
-a deterministic join over previously persisted artifacts.
+The physical export is a deterministic join over previously persisted
+artifacts. The optional ORKG projection can use an LLM for structural
+planning and takes scholarly identities from the same Step 6 registry.
 
 ## Default physical export
 
@@ -113,6 +117,49 @@ tabulus_physical_table_id
 so every merged row remains traceable to its physical source table.
 
 ## Scientific boundary
+
+Evaluate the original physical grids with both Exact Cell Match and RMS.
+The command reads the gold and prediction manifests and removes each
+side's declared trailing metadata columns before scoring.
+
+```powershell
+tabulus evaluate-step7-physical --prediction resolved_tables.json --benchmark-paper C:\Datasets\tabulusbench\path\P251 --alignment alignment.json --out physical-scores.json
+```
+
+Alternatively, supply the physical gold manifest with `--gold`.
+`--metric` accepts `both` (the default), `exact`, or `rms`. RMS requires
+the optional evaluation dependencies installed with
+`python -m pip install "tabulus[evaluation]"`.
+
+The alignment JSON supplies explicit fragment correspondence.
+
+```json
+{
+  "schema_version": 1,
+  "tables": [
+    {"table_id": 20, "table_key": "page_026_table_018"}
+  ]
+}
+```
+
+Here `table_id` identifies a prediction-manifest entry and `table_key`
+identifies a gold-manifest entry. Without `--alignment`, each prediction
+entry must supply its own stable `table_key`. Numeric IDs alone do not
+establish correspondence. Paths inside manifests are resolved relative to
+their manifest directory unless absolute.
+
+The report includes per-fragment precision, recall and F1, macro averages
+over all gold fragments, exact-grid matches, export coverage and input
+hashes. Missing or empty exports contribute zero to all three scores.
+Extra or multiply assigned prediction fragments raise an error.
+The evaluator checks declared metadata headers where a header row is
+available. Exact values use Unicode NFC and collapsed whitespace, preserving
+case and punctuation. RMS uses the Step 2 normalization, default thresholds
+and orientation selection. Both scores include original headers and citation
+text. Citation associations and scholarly identities are evaluated separately.
+
+Place the report outside the gold directory. Evaluation output cannot
+overwrite an input artifact.
 
 Continuation merging is not part of Step 2 reconstruction evaluation.
 

@@ -5,8 +5,9 @@ curated table `gold.csv`. It measures raw table reconstruction before
 reference-table classification, reference matching, scholarly resolution, or
 Step 7 resolved export.
 
-The supported metric is Relative Mapping Similarity (RMS), adapted from the
-DePlot table-datapoint metric.
+The default metric is Relative Mapping Similarity (RMS), adapted from the
+DePlot table-datapoint metric. Exact Cell Match is available as a companion
+measure of strict transcription and placement.
 
 ## Public Interface
 
@@ -23,7 +24,7 @@ tabulus evaluate-table-reconstruction \
   --out /path/to/evaluation/step2-table-reconstruction.json
 ```
 
-`--metric` currently supports `rms`. `--out` is optional. If omitted, the command
+`--metric` supports `rms` and `exact`. `--out` is optional. If omitted, the command
 prints the score and does not write an evaluation artifact.
 
 ## Metric Behavior
@@ -65,6 +66,30 @@ orientation by highest F1 and reports RMS precision, recall, and F1 together.
 `--text-threshold` controls the text-similarity cutoff and defaults to `0.5`.
 `--number-threshold` controls the numeric relative-error cutoff and defaults to
 `0.1`.
+
+## Exact Cell Match
+
+With `--metric exact`, a nonempty cell earns one match when its value equals
+the gold value at the same row and column. The scorer uses Unicode NFC and
+collapses whitespace. It preserves case, punctuation, digits, and units.
+Headers are scored as cells. The scorer uses the supplied orientation and
+positions, so a shifted row or column can reduce the score.
+
+Precision divides matches by nonempty predicted cells. Recall divides matches
+by nonempty gold cells. F1 is their harmonic mean. Scores use the same
+`[0,100]` scale as RMS. An empty denominator gives zero. Empty cells contribute
+no cell matches, but the separate `exact_grid` flag requires the same normalized
+values, row widths, and blank positions. The JSON's `exact_cells` object contains
+the counts and that flag. RMS thresholds apply only to RMS.
+
+For a benchmark comparison, score both metrics on the same table pairs and
+use the same aggregation and missing-prediction policy. To compare Step 2
+with a physical Step 7 export, use the original table grid from each output.
+Remove the appended metadata columns from the Step 7 gold and prediction
+separately, then call `tabulus.evaluation.count_exact_cells()` on those grids.
+The `evaluate-step7-physical` command performs this extraction and reports
+both exact and RMS scores. See the {doc}`../data-contracts/resolved-csv`
+contract for its manifest and alignment inputs.
 
 ## TabulusBench Scope
 

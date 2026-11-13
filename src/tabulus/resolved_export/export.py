@@ -6,11 +6,20 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from tabulus.reference_matching.matching import normalize_text
+from tabulus.resolved_export.csv_io import read_csv
 from tabulus.resolved_export.merge import (
     MERGED_ORIGIN_COLUMN,
+    MERGED_TABLES_DIR_NAME,
     materialize_continuation_merges,
     plan_continuation_merges,
     resolve_tables_index_path,
+)
+from tabulus.resolved_export.orkg import (
+    ORKG_DIR_NAME,
+    ORKG_MANIFEST_NAME,
+    StructurePlanner,
+    write_orkg_projection,
 )
 
 
@@ -54,9 +63,10 @@ class ResolvedCSVExportResult:
         dict[str, Any],
         ...
     ] = ()
+    orkg_manifest_path: Path | None = None
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        payload = {
             "schema_version": 1,
             "reference_matches": str(
                 self.reference_matches_path
@@ -84,6 +94,9 @@ class ResolvedCSVExportResult:
                 self.continuation_groups
             ),
         }
+        if self.orkg_manifest_path is not None:
+            payload["orkg_manifest"] = str(self.orkg_manifest_path)
+        return payload
 
 
 def _load_json_object(
@@ -283,18 +296,6 @@ def _prediction_path(
     return path
 
 
-def _read_csv(path: Path) -> list[list[str]]:
-    with path.open(
-        "r",
-        newline="",
-        encoding="utf-8",
-    ) as handle:
-        return [
-            list(row)
-            for row in csv.reader(handle)
-        ]
-
-
 def _json_cell(value: Any) -> str:
     return json.dumps(
         value,
@@ -306,6 +307,8 @@ def _json_cell(value: Any) -> str:
 def _row_enrichment(
     match: dict[str, Any],
     registry: dict[int, dict[str, Any]],
+    *,
+    allow_uncovered_identities: bool = False,
 ) -> list[str]:
     indices = match.get(
         "matched_reference_indices",
@@ -318,9 +321,16 @@ def _row_enrichment(
             "be a list."
         )
 
+    raw_references = match.get("matched_references")
+    if raw_references is not None and (
+        not isinstance(raw_references, list) or len(raw_references) != len(indices)
+    ):
+        raise ValueError("Step 5 matched_references do not align with the bibliography indices.")
+    if raw_references is None:
+        raw_references = [""] * len(indices)
     resolutions: list[dict[str, Any]] = []
 
-    for index in indices:
+    for index, raw in zip(indices, raw_references):
         if (
             not isinstance(index, int)
             or index <= 0
@@ -333,11 +343,21 @@ def _row_enrichment(
         resolution = registry.get(index)
 
         if resolution is None:
-            raise ValueError(
-                "Step 5 links bibliography index "
-                f"{index}, but Step 6 has no final "
-                "resolution for it."
-            )
+            if not allow_uncovered_identities:
+                raise ValueError(
+                    "Step 5 links bibliography index "
+                    f"{index}, but Step 6 has no final "
+                    "resolution for it."
+                )
+            resolution = {
+                "status": "identity_unavailable",
+                "raw_reference": raw,
+                "reason": "No independently annotated identity for this bibliography index.",
+            }
+        recorded = normalize_text(raw)
+        resolved = normalize_text(resolution.get("raw_reference"))
+        if recorded and resolved and recorded != resolved:
+            raise ValueError(f"Bibliography evidence differs between Steps 5 and 6 for index {index}.")
 
         resolutions.append(resolution)
 
@@ -465,6 +485,8 @@ def _validate_and_plan_table(
     reconstruction_dir: Path,
     registry: dict[int, dict[str, Any]],
     output_dir: Path,
+    *,
+    allow_uncovered_identities: bool = False,
 ) -> dict[str, Any]:
     table_id = table.get("table_id")
 
@@ -478,7 +500,13 @@ def _validate_and_plan_table(
         reconstruction_dir,
         table,
     )
-    rows = _read_csv(prediction_path)
+    rows = read_csv(prediction_path)
+    reference_column = table.get("reference_column_index")
+    if reference_column is not None and (
+        type(reference_column) is not int
+        or not 0 <= reference_column < max(map(len, rows), default=0)
+    ):
+        raise ValueError(f"Invalid reference-column index for table {table_id}: {reference_column!r}.")
 
     matches = table.get("matches")
 
@@ -521,11 +549,20 @@ def _validate_and_plan_table(
                 f"{row_index} for table {table_id}."
             )
 
+        if reference_column is not None:
+            if reference_column >= len(rows[row_index]):
+                raise ValueError(f"Missing reference cell in table {table_id}, row {row_index}.")
+            if "value" in match and normalize_text(match["value"]) != normalize_text(
+                rows[row_index][reference_column]
+            ):
+                raise ValueError(f"Step 5 citation differs from table {table_id}, row {row_index}.")
+
         # Precompute this now so all Step 5 -> Step 6
         # references are validated before any output is written.
         enrichment = _row_enrichment(
             match,
             registry,
+            allow_uncovered_identities=allow_uncovered_identities,
         )
 
         planned_match = dict(match)
@@ -555,9 +592,7 @@ def _validate_and_plan_table(
         "rows": rows,
         "matches_by_row": by_row,
         "header_row_index": header_row_index,
-        "reference_column_index": table.get(
-            "reference_column_index"
-        ),
+        "reference_column_index": reference_column,
         "resolved_path": resolved_path,
     }
 
@@ -650,6 +685,10 @@ def export_resolved_csvs(
     output_dir: Path | None = None,
     merge_continuations: bool = False,
     tables_index_path: Path | None = None,
+    reconstruction_root: Path | None = None,
+    orkg: bool = False,
+    structure_planner: StructurePlanner | None = None,
+    allow_uncovered_identities: bool = False,
 ) -> ResolvedCSVExportResult:
     """
     Deterministically export Step 7 resolved physical-table CSVs.
@@ -670,16 +709,22 @@ def export_resolved_csvs(
         reference_resolution_path
     ).expanduser()
 
-    _, matched_tables = (
+    matches_payload, matched_tables = (
         _load_reference_matches(matches_path)
     )
+    index_namespace = matches_payload.get("index_namespace", "bibliography_position")
+    if not isinstance(index_namespace, str) or not index_namespace.strip():
+        raise ValueError("Step 5 index_namespace must be a nonempty string.")
+    if allow_uncovered_identities and index_namespace != "gold_index":
+        raise ValueError("Uncovered identities are allowed only for controlled gold_index inputs.")
     registry = _resolution_registry(
         resolution_path
     )
 
-    reconstruction_dir = _reconstruction_dir(
-        matches_path,
-        matched_tables,
+    reconstruction_dir = (
+        Path(reconstruction_root).expanduser()
+        if reconstruction_root is not None
+        else _reconstruction_dir(matches_path, matched_tables)
     )
 
     final_output_dir = (
@@ -698,14 +743,14 @@ def export_resolved_csvs(
             reconstruction_dir,
             registry,
             final_output_dir,
+            allow_uncovered_identities=allow_uncovered_identities,
         )
         for table in matched_tables
     ]
 
-    output_names = [
-        plan["resolved_path"].name
-        for plan in plans
-    ]
+    if len({plan["table_id"] for plan in plans}) != len(plans):
+        raise ValueError("Duplicate Step 5 physical table IDs.")
+    output_names = [plan["resolved_path"].name.casefold() for plan in plans]
 
     if len(output_names) != len(
         set(output_names)
@@ -713,6 +758,22 @@ def export_resolved_csvs(
         raise ValueError(
             "Step 7 resolved CSV filename collision "
             "detected across physical tables."
+        )
+
+    manifest_path = final_output_dir / RESOLVED_TABLES_MANIFEST_NAME
+    input_paths = {path.resolve() for path in (matches_path, resolution_path)}
+    input_paths.update(plan["prediction_path"].resolve() for plan in plans)
+    index_path = Path(tables_index_path).expanduser() if tables_index_path is not None else None
+    if index_path is not None:
+        if (orkg or merge_continuations) and not index_path.is_file():
+            raise FileNotFoundError(f"Step 1 tables_index.json not found: {index_path}")
+        input_paths.add(index_path.resolve())
+    output_paths = [manifest_path, *(plan["resolved_path"] for plan in plans)]
+    if orkg:
+        output_paths.append(final_output_dir / ORKG_DIR_NAME / ORKG_MANIFEST_NAME)
+        output_paths.extend(
+            final_output_dir / ORKG_DIR_NAME / f"{plan['prediction_path'].stem}_orkg.csv"
+            for plan in plans
         )
 
     merge_plans: list[dict[str, Any]] = []
@@ -731,6 +792,12 @@ def export_resolved_csvs(
                 plans,
             )
         )
+        output_paths.extend(
+            final_output_dir / MERGED_TABLES_DIR_NAME / f"table_{plan['root_table_id']:03d}_merged_resolved.csv"
+            for plan in merge_plans if plan["merge_status"] in {"ready", "ready_partial"}
+        )
+    if any(path.resolve() in input_paths for path in output_paths):
+        raise ValueError("A Step 7 output path aliases an input artifact.")
 
     table_results = tuple(
         _write_planned_table(plan)
@@ -748,9 +815,17 @@ def export_resolved_csvs(
         else ()
     )
 
-    manifest_path = (
-        final_output_dir
-        / RESOLVED_TABLES_MANIFEST_NAME
+    orkg_manifest_path = (
+        write_orkg_projection(
+            plans=plans, registry=registry, reconstruction_dir=reconstruction_dir,
+            output_dir=final_output_dir, planner=structure_planner,
+            index_namespace=index_namespace,
+            input_paths={"reference_matches": matches_path, "reference_resolution": resolution_path},
+            tables_index_path=(
+                index_path or reconstruction_dir.parent.parent / "tables_index.json"
+            ),
+        )
+        if orkg else None
     )
 
     result = ResolvedCSVExportResult(
@@ -768,6 +843,7 @@ def export_resolved_csvs(
         continuation_groups=(
             continuation_groups
         ),
+        orkg_manifest_path=orkg_manifest_path,
     )
 
     manifest_path.parent.mkdir(

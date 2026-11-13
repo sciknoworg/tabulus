@@ -5,9 +5,10 @@
 Join Step 6 paper-level scholarly identities back onto the physical table rows
 linked in Step 5 and export user-facing resolved CSV files.
 
-Step 7 is deterministic. It consumes existing Step 5 and Step 6 artifacts,
-performs no Crossref, CORE, DOI, or LLM lookup, and does not change Step 2
-prediction CSVs.
+The physical export deterministically joins existing Step 5 and Step 6
+artifacts and preserves Step 2 prediction CSVs. Add `--orkg` for a separate
+projection that invokes structural planning when the table is ambiguous.
+See {doc}`../data-contracts/step7-structure` for the plan and evaluator.
 
 ```text
 Step 5 references/reference_matches.json

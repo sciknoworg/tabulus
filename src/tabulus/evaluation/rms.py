@@ -25,6 +25,7 @@ import csv
 import dataclasses
 import itertools
 import re
+from collections.abc import Iterable, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -108,12 +109,13 @@ def csv_to_rms_text(path: Path) -> str:
     """Convert a CSV file to the flattened table text expected by RMS."""
 
     path = Path(path)
-    rows: list[list[str]] = []
-
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
-        reader = csv.reader(handle)
-        for row in reader:
-            rows.append([normalize_cell(cell).lower() for cell in row])
+        return rows_to_rms_text(csv.reader(handle))
+
+
+def rows_to_rms_text(rows: Iterable[Sequence[str]]) -> str:
+    """Apply the CSV metric's normalization to an in-memory table grid."""
+    rows = [[normalize_cell(cell).lower() for cell in row] for row in rows]
 
     if not rows:
         return ""
