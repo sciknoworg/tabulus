@@ -6,8 +6,9 @@ reference-table classification, reference matching, scholarly resolution, or
 Step 7 resolved export.
 
 The default metric is Relative Mapping Similarity (RMS), adapted from the
-DePlot table-datapoint metric. Exact Cell Match is available as a companion
-measure of strict transcription and placement.
+DePlot table-datapoint metric. Exact Mapping Match measures strict equality
+using the same mapping representation. The earlier Exact Cell Match metric
+also remains available for position-based comparisons.
 
 ## Public Interface
 
@@ -24,7 +25,7 @@ tabulus evaluate-table-reconstruction \
   --out /path/to/evaluation/step2-table-reconstruction.json
 ```
 
-`--metric` supports `rms` and `exact`. `--out` is optional. If omitted, the command
+`--metric` supports `rms`, `exact-mapping`, and `exact`. `--out` is optional. If omitted, the command
 prints the score and does not write an evaluation artifact.
 
 ## Metric Behavior
@@ -67,7 +68,36 @@ orientation by highest F1 and reports RMS precision, recall, and F1 together.
 `--number-threshold` controls the numeric relative-error cutoff and defaults to
 `0.1`.
 
-## Exact Cell Match
+## Exact Mapping Match
+
+Use `--metric exact-mapping` for exact-match precision, recall and F1 with
+the same CSV normalization and row-label/column-header keys as RMS.
+Each equal normalized key/value pair earns one match. Precision divides
+matches by predicted mappings, recall divides matches by gold mappings,
+and F1 is their harmonic mean. Values use string equality, so `300` and
+`300.0` differ. Whitespace is normalized and case is lowered using the
+existing RMS conversion. No numeric tolerance or partial credit applies.
+
+The evaluator scores the original and transposed prediction and keeps the
+orientation with higher F1. Equal F1 retains the same orientation preference
+as RMS. Reordering rows or columns preserves the mapping identities.
+Repeated normalized keys retain their last value, following the RMS
+dictionary representation. Blank values count as mappings, and a leading
+`title | ...` line contributes a title mapping.
+
+Empty-mapping behavior also follows RMS. Two empty mapping sets score
+`P=R=F1=1`. Empty prediction mappings against nonempty gold score
+`P=1, R=0, F1=0`. Empty gold mappings against nonempty prediction score
+`P=0, R=1, F1=0`. The public API scales these values to `[0,100]`.
+
+The low-level API is `tabulus.evaluation.exact_mapping_match()`.
+The normal CSV entry point is
+`evaluate_table_reconstruction(gold, prediction, metric="exact-mapping")`.
+Its JSON identifies the metric as `exact-mapping`, with name
+`Exact Mapping Match` and abbreviation `EM`. Existing RMS artifacts and
+the earlier `exact` metric retain their meaning.
+
+## Position-based Exact Cell Match
 
 With `--metric exact`, a nonempty cell earns one match when its value equals
 the gold value at the same row and column. The scorer uses Unicode NFC and
@@ -93,8 +123,8 @@ contract for its manifest and alignment inputs.
 
 ## TabulusBench Scope
 
-TabulusBench provides Step 2 reconstruction gold for all 252 papers and 605
-curated canonical tables under:
+The expanded TabulusBench set provides 610 controlled gold fragments across
+253 papers, including the original 605-fragment population, under:
 
 ```text
 <paper_root>/step2_table_reconstruction/tables/<table_id>/gold.csv
@@ -106,3 +136,37 @@ format.
 
 A resolved CSV is not a valid Step 2 prediction input because Step 7 intentionally
 adds reference-resolution columns and may filter or merge outputs.
+
+### Scoring saved controlled predictions
+
+Run the benchmark scorer from the software checkout with Tabulus installed.
+
+```bash
+python scripts/evaluation/step2/evaluate_exact_match.py \
+  --root "$HOME/tabulusbench" \
+  --out "$HOME/tabulus-step2-exact-mapping" \
+  --run-id run_01
+```
+
+The scorer reads `metadata/tables.csv`, requires 610 distinct gold fragments,
+and discovers the adapters in the saved controlled results. Use
+`--adapters chandra tesseract-tatr` to select methods explicitly.
+Every method gets per-fragment results and separate macro averages of P,
+R and F1 over all 610 gold fragments. Missing, empty, or unusable predictions
+receive zero for all three metrics in this benchmark aggregation.
+This coverage policy overrides the single-pair empty-input convention.
+Existing archived failure statuses also receive zero.
+
+Outputs include a JSON report for each method, `summary.json`, and
+`summary.csv`. Each fragment records its source paths, hashes, status and
+scores. Use a new output directory. No model inference is performed.
+
+The scorer includes the MinerU-native baseline when saved native results
+are available at
+`results/step1/controlled/evaluation/mineru-native-252-final`, or a directory
+supplied through `--native-results`. It reuses that evaluation's saved
+fragment correspondence and CSVs. For fragments absent from the older native
+manifest, it can parse a saved Step 1 table body only when table identity
+and page give a unique match. Those derived CSVs are saved with the report.
+Native output uses MinerU's own detected crops, so report it as a separate
+baseline alongside the controlled adapters.

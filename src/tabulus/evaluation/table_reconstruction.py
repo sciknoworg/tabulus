@@ -14,11 +14,12 @@ from tabulus.evaluation.rms import (
     DEFAULT_NUMBER_THRESHOLD,
     DEFAULT_TEXT_THRESHOLD,
     csv_to_rms_text,
+    exact_mapping_match,
     relative_mapping_similarity,
 )
 
 
-SUPPORTED_TABLE_RECONSTRUCTION_METRICS = ("rms", "exact")
+SUPPORTED_TABLE_RECONSTRUCTION_METRICS = ("rms", "exact", "exact-mapping")
 
 
 @dataclass(frozen=True)
@@ -80,7 +81,7 @@ class TableReconstructionEvaluation:
         payload["prediction_csv"] = str(self.prediction_csv)
         if self.exact_cells is None:
             del payload["exact_cells"]
-        else:
+        if self.exact_cells is not None or self.metric == "exact-mapping":
             del payload["text_threshold"]
             del payload["number_threshold"]
         return payload
@@ -154,6 +155,23 @@ def evaluate_table_reconstruction(
                 1, counts.gold_nonempty_cells + counts.predicted_nonempty_cells
             ),
             exact_cells=counts,
+        )
+
+    if metric == "exact-mapping":
+        scores = exact_mapping_match(csv_to_rms_text(gold_path), csv_to_rms_text(prediction_path))
+        return TableReconstructionEvaluation(
+            metric="exact-mapping",
+            metric_name="Exact Mapping Match",
+            metric_short_name="EM",
+            implementation="DePlot mapping representation with exact key/value equality",
+            score_scale="[0,100]",
+            gold_csv=gold_path,
+            prediction_csv=prediction_path,
+            text_threshold=None,
+            number_threshold=None,
+            precision=100.0 * scores.precision,
+            recall=100.0 * scores.recall,
+            f1=100.0 * scores.f1,
         )
 
     scores = relative_mapping_similarity(

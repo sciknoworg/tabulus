@@ -323,3 +323,31 @@ def relative_mapping_similarity(
     ]
 
     return max(scores, key=lambda item: item.f1)
+
+
+def exact_mapping_match(target: str, prediction: str) -> RMSScores:
+    """Score exact normalized key/value pairs using RMS's mapping representation.
+
+    Input text uses the same format as relative_mapping_similarity. CSV callers
+    should use csv_to_rms_text first. Numeric values remain strings. Repeated
+    keys retain the last value, matching the existing RMS dictionary semantics.
+    Empty mappings and orientation ties follow RMS's conventions.
+    """
+    expected = _get_table_datapoints(_parse_table(target))
+    scores = []
+    for transposed in (True, False):
+        observed = _get_table_datapoints(_parse_table(prediction, transposed=transposed))
+        if not expected and not observed:
+            scores.append(RMSScores(precision=1.0, recall=1.0, f1=1.0))
+        elif not expected:
+            scores.append(RMSScores(precision=0.0, recall=1.0, f1=0.0))
+        elif not observed:
+            scores.append(RMSScores(precision=1.0, recall=0.0, f1=0.0))
+        else:
+            matches = len(expected.items() & observed.items())
+            scores.append(RMSScores(
+                precision=matches / len(observed),
+                recall=matches / len(expected),
+                f1=2 * matches / (len(observed) + len(expected)),
+            ))
+    return max(scores, key=lambda item: item.f1)

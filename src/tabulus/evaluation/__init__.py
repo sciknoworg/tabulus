@@ -11,6 +11,7 @@ from tabulus.evaluation.rms import (
     DEFAULT_NUMBER_THRESHOLD,
     DEFAULT_TEXT_THRESHOLD,
     RMSScores,
+    exact_mapping_match,
     relative_mapping_similarity,
 )
 from tabulus.evaluation.table_localization import TableLocalizationEvaluation, evaluate_table_localization
@@ -36,6 +37,7 @@ __all__ = [
     "TableLocalizationEvaluation",
     "TableReconstructionEvaluation",
     "count_exact_cells",
+    "exact_mapping_match",
     "evaluate_bibliography",
     "evaluate_reference_matching",
     "evaluate_reference_resolution",
