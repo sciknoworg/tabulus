@@ -10,10 +10,7 @@ beside the Step 2 reconstruction directory. `selected_reference_tables.json` is
 the downstream pointer manifest for Step 5, but the pair-level classifier
 evaluator scores the complete classification manifest.
 
-## Public Interface
-
-The library API is `tabulus.evaluation.evaluate_reference_table_classification()`.
-The CLI is:
+## Run the evaluator
 
 ```bash
 tabulus evaluate-reference-table-classification \
@@ -22,10 +19,11 @@ tabulus evaluate-reference-table-classification \
   --out /path/to/evaluation/step3-reference-table-classification.json
 ```
 
+The library API is `tabulus.evaluation.evaluate_reference_table_classification()`.
 `--out` is optional. Evaluation reads the gold and prediction manifests and does
 not modify Step 2 or Step 3 artifacts.
 
-## Alignment And Labels
+## Alignment and labels
 
 The evaluator expects each input to be a JSON object with a `tables` list.
 Gold tables are aligned to predictions by `table_id` when possible. Prediction
@@ -37,21 +35,11 @@ Each aligned pair must provide boolean `is_reference_table` labels.
 
 ## Metrics
 
-The result includes:
-
-- `gold_tables`
-- `positive_gold`
-- `negative_gold`
-- `true_positives`
-- `false_positives`
-- `true_negatives`
-- `false_negatives`
-- `precision`
-- `recall`
-- `f1`
-- `specificity`
-- `accuracy`
-- `balanced_accuracy`
+The result groups the population (`gold_tables`, `positive_gold`,
+`negative_gold`), the confusion counts (`true_positives`,
+`false_positives`, `true_negatives`, `false_negatives`), and the resulting
+`precision`, `recall`, `f1`, `specificity`, `accuracy`, and
+`balanced_accuracy`.
 
 Specificity is `null` when the evaluated scope contains no negative examples.
 Balanced accuracy is `null` unless both positive and negative classes are
@@ -59,7 +47,7 @@ present. Corpus-level balanced accuracy should be computed from the aggregated
 confusion matrix across a complete labeled population, not by pretending an
 absent class has zero recall.
 
-## TabulusBench Scope
+## TabulusBench scope
 
 TabulusBench provides Step 3 labels for all 253 papers and 610 physical table
 fragments:

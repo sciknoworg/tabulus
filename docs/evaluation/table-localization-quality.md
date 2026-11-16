@@ -1,18 +1,11 @@
 # Step 1 Table Localization Quality
 
-Step 1 evaluation scores physical table-fragment recovery from a PDF profiling
-run. The production artifact is {doc}`../data-contracts/tables-index-json`,
-which records detected table crops and provenance for downstream reconstruction.
+Step 1 evaluation checks whether PDF profiling recovered the annotated
+physical table fragments. It scores the canonical crop inventory in
+{doc}`../data-contracts/tables-index-json`; it does not score table content or
+geometric bounding-box overlap.
 
-Canonical Step 1 gold contains physical-fragment identity and page/crop
-metadata, but it does not contain authoritative bounding-box coordinates for IoU
-scoring. The current evaluator therefore measures fragment recovery/alignment,
-not geometric IoU.
-
-## Public Interface
-
-The library API is `tabulus.evaluation.evaluate_table_localization()`. The CLI
-is:
+## Run the evaluator
 
 ```bash
 tabulus evaluate-table-localization \
@@ -21,59 +14,33 @@ tabulus evaluate-table-localization \
   --out /path/to/evaluation/step1-table-localization.json
 ```
 
-`--out` is optional. When omitted, the command prints the result without writing
-an evaluation JSON file.
+The library API is `tabulus.evaluation.evaluate_table_localization()`.
+`--out` is optional; without it, the CLI prints the result. Evaluation reads
+both inputs without changing them.
 
-## Inputs
+| Input | Contents |
+| --- | --- |
+| `--gold` | One paper's Step 1 `gold.json`, with a `tables` list of physical fragments and page/crop metadata. |
+| `--prediction` | The Step 1 `tables_index.json`, with a `tables` list of detected canonical crops. |
 
-`--gold`
-: Canonical Step 1 `gold.json` for one paper. The evaluator expects a JSON
-  object with a `tables` list.
+## Alignment and scores
 
-`--prediction`
-: A Step 1 production `tables_index.json` artifact. The evaluator expects a
-  JSON object with a `tables` list.
+The evaluator first matches an unused prediction by a unique identity key
+(`table_id`, crop/image name, or annotation key) with compatible page metadata.
+Remaining fragments with page metadata can align by order **within the same
+page**. That fallback supports controlled manifests whose fragment IDs differ.
 
-Evaluation is read-only with respect to both files.
+The JSON report includes `gold_fragments`, `predicted_fragments`,
+`matched_fragments`, false positives/negatives, precision, recall, F1,
+`matched_by_identity`, `matched_by_page_order`, and individual `matches`.
+Precision, recall, and F1 use `[0,1]` in JSON and percentages in CLI output.
+`geometry_metric` is null, with a `geometry_note` explaining the absence of
+authoritative gold boxes.
 
-## Alignment Behavior
+## TabulusBench scope
 
-The evaluator first tries identity alignment. Gold keys are collected from
-fields such as `table_id`, `crop`, and annotation image/table keys. Prediction
-keys are collected from `table_id`, `image`, and `image_name`. A prediction is
-matched by identity only when the key points to exactly one unused prediction
-and the page metadata is compatible.
-
-Unmatched tables with page metadata are then aligned by page order within the
-same page. This fallback is intended for controlled manifests that preserve
-physical-fragment order but do not share exact table identifiers.
-
-The serialized result includes:
-
-- `gold_fragments`
-- `predicted_fragments`
-- `matched_fragments`
-- `false_positives`
-- `false_negatives`
-- `precision`
-- `recall`
-- `f1`
-- `matched_by_identity`
-- `matched_by_page_order`
-- `matches`
-- `geometry_metric: null`
-- `geometry_note`
-
-Precision, recall, and F1 are reported on `[0,1]` in JSON and printed as
-percentages by the CLI.
-
-## TabulusBench Scope
-
-TabulusBench provides Step 1 gold for all 253 papers and 610 physical table
-fragments/crops. The gold type is `pseudo_gold`. Because the gold does not
-provide authoritative bounding boxes, Step 1 quality must be reported as
-fragment recovery/alignment rather than IoU.
-
-Step 1 evaluation is separate from Step 2 table reconstruction. A localized
-crop can be recovered by Step 1 even if a later reconstruction adapter returns
-an empty or erroneous table.
+TabulusBench has `pseudo_gold` for 610 physical fragments across 253 papers.
+Its gold records identify fragments and crops but do not supply authoritative
+bounding boxes for IoU. Report Step 1 as fragment recovery/alignment, not IoU.
+A recovered crop can still yield an empty or incorrect Step 2 reconstruction;
+see {doc}`table-extraction-quality` for the separate content metric.

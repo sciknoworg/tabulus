@@ -8,10 +8,7 @@ artifact is {doc}`../data-contracts/reference-matches-json`, written as
 Step 5 is deterministic and offline. It links table citation occurrences to
 bibliography positions; Step 6 performs scholarly identity resolution later.
 
-## Public Interface
-
-The library API is `tabulus.evaluation.evaluate_reference_matching()`. The CLI
-is:
+## Run the evaluator
 
 ```bash
 tabulus evaluate-reference-matching \
@@ -20,12 +17,13 @@ tabulus evaluate-reference-matching \
   --out /path/to/evaluation/step5-reference-matching.json
 ```
 
+The library API is `tabulus.evaluation.evaluate_reference_matching()`.
 `--out` is optional. The public CLI compares one gold file to one Step 5
 prediction artifact. The library API also accepts an optional
 `bibliography_index_map` for controlled comparisons where prediction indices
 must be mapped to a gold bibliography numbering.
 
-## Gold Schema
+## Gold schema
 
 Canonical gold lives at:
 
@@ -54,7 +52,7 @@ contract. Production Step 5 uses positions in the normalized Step 4
 bibliography order. Controlled evaluation may use gold bibliography numbering
 or an explicit index map to isolate Step 5 from Step 4 segmentation changes.
 
-## Alignment Behavior
+## Alignment behavior
 
 The evaluator aligns gold tables to predicted `matched_tables` using keys from
 `table_id`, `source_file`, `source_prediction`, and `source_parsed`. For each
@@ -70,32 +68,19 @@ Header rows marked with `is_header: true` are excluded from link scoring.
 
 ## Metrics
 
-The serialized result includes:
+The result separates table coverage, cell agreement, and individual links:
 
-- `gold_tables`
-- `aligned_tables`
-- `table_coverage`
-- `reference_columns_correct`
-- `reference_column_accuracy`
-- `gold_citation_cells`
-- `surface_matched_cells`
-- `citation_surface_recall`
-- `exact_link_set_cells`
-- `exact_cell_accuracy`
-- `gold_links`
-- `predicted_links`
-- `link_true_positives`
-- `link_false_positives`
-- `link_false_negatives`
-- `link_precision`
-- `link_recall`
-- `link_f1`
+| Measure | Result fields |
+| --- | --- |
+| Tables and reference columns | `gold_tables`, `aligned_tables`, `table_coverage`, `reference_columns_correct`, `reference_column_accuracy` |
+| Citation surfaces and exact cell sets | `gold_citation_cells`, `surface_matched_cells`, `citation_surface_recall`, `exact_link_set_cells`, `exact_cell_accuracy` |
+| Bibliography links | `gold_links`, `predicted_links`, `link_true_positives`, `link_false_positives`, `link_false_negatives`, `link_precision`, `link_recall`, `link_f1` |
 
 `exact_cell_accuracy` requires the predicted bibliography-index set for an
 aligned citation cell to exactly equal the gold set. Individual-link metrics are
 computed over `(citation cell, bibliography index)` links.
 
-## TabulusBench Scope
+## TabulusBench scope
 
 Canonical Step 5 gold currently covers the P251–P253 deep subset:
 

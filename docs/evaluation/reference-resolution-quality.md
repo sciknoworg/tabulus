@@ -1,17 +1,11 @@
 # Step 6 Scholarly Identity Resolution Quality
 
-Step 6 evaluation scores paper-level scholarly identity resolution against
-independent source-derived identity gold. Step 6 resolves unique cited
-bibliography entries at paper level after Step 5 has linked table citation
-occurrences to bibliography positions.
+Step 6 evaluation compares paper-level scholarly identities with independent,
+source-derived gold. It scores each unique cited bibliography entry once,
+after Step 5 has linked table citations to bibliography positions. The
+production artifact is {doc}`../data-contracts/reference-resolution-json`.
 
-The production artifact is {doc}`../data-contracts/reference-resolution-json`,
-written as `references/reference_resolution.json`.
-
-## Public Interface
-
-The library API is `tabulus.evaluation.evaluate_reference_resolution()`. The CLI
-is:
+## Run the evaluator
 
 ```bash
 tabulus evaluate-reference-resolution \
@@ -20,103 +14,66 @@ tabulus evaluate-reference-resolution \
   --out /path/to/evaluation/step6-reference-resolution.json
 ```
 
-`--out` is optional. Evaluation reads the gold and prediction JSON files and
-does not modify the Step 6 resolution artifact.
+The library API is `tabulus.evaluation.evaluate_reference_resolution()`.
+`--out` is optional. The CLI reads the gold and prediction JSON without
+changing the Step 6 artifact.
 
-## Gold And Prediction Inputs
+## Inputs and index correspondence
 
-Canonical gold lives at:
+| Input | Contents |
+| --- | --- |
+| `--gold` | `step6_reference_resolution/gold.json`, with source-derived scholarly identity `records`. |
+| `--prediction` | `references/reference_resolution.json`, with an `entries` list; each entry has `resolution.reference_index`. |
 
-```text
-<paper_root>/step6_reference_resolution/gold.json
-```
+The evaluator joins `gold_index` to `resolution.reference_index`. It uses the
+historical `step4_index` only when `gold_index` is absent. **This is an index
+join, not a bibliography-alignment check.** Predictions must already be in the
+gold-index namespace, or have a separately validated one-to-one alignment or
+crosswalk. A stored `step4_index` alone does not establish that a production
+Step 4 entry represents the same work.
 
-The gold JSON contains a `records` list. The evaluator joins a record's
-`gold_index` to the prediction `resolution.reference_index`; it falls back to
-the historical `step4_index` field only when `gold_index` is absent. The
-prediction JSON contains an `entries` list. This API performs an **index join**,
-not a bibliography-alignment check. Its comparison is valid only when the
-prediction indices have already been independently verified to refer to the
-same gold bibliography positions. A stored `step4_index` is provenance, not
-evidence that a production Step 4 entry still represents the same work.
+## Scores
 
-Prediction statuses counted by the evaluator are:
+The report separates operational resolution yield from metadata agreement:
 
-- `validated_with_doi`
-- `validated_without_doi`
-- `rejected`
+| Measure | Serialized fields |
+| --- | --- |
+| Coverage and status | `gold_targets`, `matched_predictions`, `missing_predictions`, `resolved_targets`, `rejected_targets`, `resolution_yield`, `status_counts` |
+| DOI agreement | `doi_evaluable`, `doi_predictions`, `doi_exact_matches`, `doi_precision`, `doi_recall`, `doi_f1` |
+| Other metadata | `<field>_evaluable`, `<field>_correct`, `<field>_accuracy` for title, authors, year, and venue |
 
-`validated_with_doi` and `validated_without_doi` count as resolved targets for
-resolution-yield reporting. `rejected` remains a scientific outcome, not an
-operational failure.
+`validated_with_doi` and `validated_without_doi` count as resolved;
+`rejected` is a scientific outcome, not an operational failure. Resolution
+yield is an output rate, **not an accuracy label**. A missing DOI in source
+gold means *unknown*, not that no DOI exists: DOI comparisons use only records
+with an asserted gold DOI, and DOI precision counts predictions within that
+evaluable set.
 
-## Metrics
+Metadata comparisons follow the current evaluator:
 
-The serialized result includes:
+| Field | Match rule |
+| --- | --- |
+| DOI | Exact after DOI URL/prefix and trailing-punctuation normalization. |
+| Title | Normalized alphanumeric tokens; exact or `SequenceMatcher` ratio at least `0.95`. |
+| Authors | Ordered normalized surnames; list values and strings separated by `and` are supported. |
+| Year | Exact trimmed string. |
+| Venue | Normalized tokens with common-prefix compatibility and at least 80% compatibility over the shorter token list. |
 
-- `gold_targets`
-- `matched_predictions`
-- `missing_predictions`
-- `resolved_targets`
-- `rejected_targets`
-- `resolution_yield`
-- `doi_evaluable`
-- `doi_predictions`
-- `doi_exact_matches`
-- `doi_precision`, `doi_recall`, `doi_f1`
-- `title_evaluable`, `title_correct`, `title_accuracy`
-- `authors_evaluable`, `authors_correct`, `authors_accuracy`
-- `year_evaluable`, `year_correct`, `year_accuracy`
-- `venue_evaluable`, `venue_correct`, `venue_accuracy`
-- `status_counts`
+These scores measure scholarly identity agreement. LLM usage, retries,
+provider failures, and remote latency are separate operational diagnostics.
 
-Missing DOI in source metadata is unknown, not a negative DOI label. A prediction
-is not penalized merely because source gold has no DOI field. DOI metrics are
-computed only over gold records with an available DOI, while DOI precision uses
-the count of available DOI predictions.
+## TabulusBench scope
 
-## Comparison Semantics
+Source-derived Step 6 gold currently contains **4,075 records** across the
+deep subset: P251 (2,280), P252 (996), and P253 (799). P251/P252's 3,276
+records form the earlier controlled one-to-one eligible identity subset.
+Source annotation is not automatically the eligible denominator for every
+production run: first verify bibliography correspondence. Split, merged, and
+unmatched Step 4 entries remain in upstream alignment accounting, outside a
+clean one-to-one component comparison. The public pair evaluator neither
+builds nor validates that crosswalk.
 
-DOIs are normalized by removing DOI URL/prefix forms and trailing punctuation
-before exact comparison. Titles are normalized to alphanumeric tokens and accept
-exact equality or a SequenceMatcher ratio of at least `0.95`. Authors are
-compared as ordered normalized surnames; string author lists split on `and` and
-list-valued author fields are also supported. Years compare by exact string
-value after trimming. Venue comparison uses normalized tokens, accepts common
-prefix compatibility, and requires at least 80% token compatibility over the
-shorter token list.
-
-These metrics assess scholarly identity agreement. They are distinct from Step
-6 operational diagnostics such as LLM usage, retry rate, provider failures, or
-remote-service latency.
-
-## TabulusBench Scope
-
-Canonical Step 6 source-derived gold records currently cover P251–P253:
-
-- P251: 2,280 source-derived scholarly identities
-- P252: 996 source-derived scholarly identities
-- P253: 799 source-derived scholarly identities
-- total: 4,075 records
-
-P251/P252's 3,276 records form the earlier controlled one-to-one eligible
-identity subset. The expanded gold also includes P253. Source-annotated
-identities are not automatically the denominator for every production run:
-first establish which prediction bibliography entries correspond one-to-one to
-the gold `gold_index` namespace, or apply a separately validated crosswalk.
-Split, merged, and unmatched Step 4 entries must remain outside that clean
-component comparison and in the upstream alignment accounting. The public
-pair-level evaluator does not construct or validate this crosswalk itself.
-
-The identity population is independently source-derived, not simply all Step 5
-links. Uncovered links are not automatically resolver errors. A controlled
-Step 6 run with verified gold-index inputs can be scored against these records;
-production predictions require the same correspondence check first. Resolution
-yield and `validated_with_doi` are output rates, not identity accuracy labels.
-
-## Boundary
-
-Step 6 evaluation does not evaluate Step 5 citation-cell matching or the
-Step 7 physical-grid export. See {doc}`step7-quality` for final export and
-optional structural evaluation. Step 7 consumes already-resolved identities;
-it does not re-resolve them.
+Gold identities are independently sourced, not simply all Step 5 links;
+uncovered links are not automatically Step 6 errors. Step 6 evaluation does
+not score Step 5 citation-cell matching or the {doc}`step7-quality` physical
+export. Step 7 consumes the resolved registry without re-resolving identities.
