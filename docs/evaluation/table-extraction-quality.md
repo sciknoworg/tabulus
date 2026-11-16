@@ -118,8 +118,8 @@ with a physical Step 7 export, use the original table grid from each output.
 Remove the appended metadata columns from the Step 7 gold and prediction
 separately, then call `tabulus.evaluation.count_exact_cells()` on those grids.
 The `evaluate-step7-physical` command performs this extraction and reports
-both exact and RMS scores. See the {doc}`../data-contracts/resolved-csv`
-contract for its manifest and alignment inputs.
+both exact and RMS scores. See {doc}`step7-quality` for its manifest, alignment,
+and missing-output rules.
 
 ## TabulusBench Scope
 
@@ -134,8 +134,9 @@ The prediction side is a Step 2 table-reconstruction prediction CSV. See the
 {doc}`../data-contracts/table-prediction-csv` contract for the production CSV
 format.
 
-A resolved CSV is not a valid Step 2 prediction input because Step 7 intentionally
-adds reference-resolution columns and may filter or merge outputs.
+A resolved CSV is not a valid Step 2 prediction input because Step 7 appends
+reference-resolution columns. Optional structural projection and continuation
+merging are separate Step 7 outputs.
 
 ### Scoring saved controlled predictions
 

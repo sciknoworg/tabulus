@@ -1,8 +1,9 @@
 # Evaluation
 
 Evaluation pages describe how to score Tabulus artifacts without mutating the
-production pipeline outputs. The current library exposes pair-level evaluation
-APIs and public CLI commands for Steps 1--6.
+production pipeline outputs. The current library exposes evaluation APIs and
+public CLI commands for Steps 1--7. Step 7 has separate physical-grid and
+optional structural/ORKG evaluators.
 
 Each Step has its own artifact, gold source, denominator, and metric. These
 scores should not be collapsed into one pipeline accuracy number.
@@ -17,4 +18,5 @@ reference-table-classification-quality
 bibliography-quality
 reference-matching-quality
 reference-resolution-quality
+step7-quality
 ```

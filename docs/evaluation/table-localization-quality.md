@@ -17,7 +17,7 @@ is:
 ```bash
 tabulus evaluate-table-localization \
   --gold /path/to/paper/step1_table_localization/gold.json \
-  --prediction /path/to/paper/tabulus_runs/step1/tables_index.json \
+  --prediction /path/to/tabulus-output/table-crops/<paper>/tables_index.json \
   --out /path/to/evaluation/step1-table-localization.json
 ```
 
@@ -69,7 +69,7 @@ percentages by the CLI.
 
 ## TabulusBench Scope
 
-TabulusBench provides Step 1 gold for all 252 papers and 605 physical table
+TabulusBench provides Step 1 gold for all 253 papers and 610 physical table
 fragments/crops. The gold type is `pseudo_gold`. Because the gold does not
 provide authoritative bounding boxes, Step 1 quality must be reported as
 fragment recovery/alignment rather than IoU.

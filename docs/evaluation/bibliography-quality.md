@@ -90,8 +90,8 @@ component weights.
 
 ## TabulusBench Scope
 
-TabulusBench provides authoritative Step 4 bibliography gold for 52 of the 252
-papers, containing 6,947 numbered gold references. The remaining papers can be
+TabulusBench provides authoritative Step 4 bibliography gold for 53 of the 253
+papers, containing 8,004 numbered gold references. The remaining papers can be
 processed by Step 4 in a full-corpus run, but they do not contribute to
 bibliography gold-standard metrics unless a Step 4 gold file exists.
 

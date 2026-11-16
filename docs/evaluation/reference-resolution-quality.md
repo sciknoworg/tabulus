@@ -31,10 +31,14 @@ Canonical gold lives at:
 <paper_root>/step6_reference_resolution/gold.json
 ```
 
-The gold JSON contains a `records` list. Controlled predictions are aligned by
-`gold_index` when present, with `step4_index` retained as provenance and used as
-a legacy fallback. The prediction JSON contains an `entries` list; each entry
-must include a `resolution` object with an integer `reference_index`.
+The gold JSON contains a `records` list. The evaluator joins a record's
+`gold_index` to the prediction `resolution.reference_index`; it falls back to
+the historical `step4_index` field only when `gold_index` is absent. The
+prediction JSON contains an `entries` list. This API performs an **index join**,
+not a bibliography-alignment check. Its comparison is valid only when the
+prediction indices have already been independently verified to refer to the
+same gold bibliography positions. A stored `step4_index` is provenance, not
+evidence that a production Step 4 entry still represents the same work.
 
 Prediction statuses counted by the evaluator are:
 
@@ -88,29 +92,31 @@ remote-service latency.
 
 ## TabulusBench Scope
 
-Canonical Step 6 gold currently covers the P251/P252 deep subset:
+Canonical Step 6 source-derived gold records currently cover P251–P253:
 
 - P251: 2,280 source-derived scholarly identities
 - P252: 996 source-derived scholarly identities
-- total: 3,276 source-derived scholarly identities
+- P253: 799 source-derived scholarly identities
+- total: 4,075 records
 
-The Step 6 identity population is independently source-derived. It is not simply
-all linked bibliography positions, and uncovered links should not automatically
-be interpreted as resolver errors.
+P251/P252's 3,276 records form the earlier controlled one-to-one eligible
+identity subset. The expanded gold also includes P253. Source-annotated
+identities are not automatically the denominator for every production run:
+first establish which prediction bibliography entries correspond one-to-one to
+the gold `gold_index` namespace, or apply a separately validated crosswalk.
+Split, merged, and unmatched Step 4 entries must remain outside that clean
+component comparison and in the upstream alignment accounting. The public
+pair-level evaluator does not construct or validate this crosswalk itself.
 
-A controlled run of Step 6 can be evaluated against this gold. Current
-regression-checked controlled-run reference points include:
-
-- P251 resolution yield: 84.21%
-- P252 resolution yield: 76.41%
-- P251 DOI precision/recall/F1: 99.43% / 91.11% / 95.09%
-
-These values identify particular controlled-run results and should not be
-reported as universal end-to-end pipeline accuracy. Step 6 evaluation uses
-source-derived identity gold; validation yield alone is not an accuracy label.
+The identity population is independently source-derived, not simply all Step 5
+links. Uncovered links are not automatically resolver errors. A controlled
+Step 6 run with verified gold-index inputs can be scored against these records;
+production predictions require the same correspondence check first. Resolution
+yield and `validated_with_doi` are output rates, not identity accuracy labels.
 
 ## Boundary
 
-Step 6 evaluation does not evaluate Step 5 citation-cell matching or Step 7
-resolved CSV export. Step 7 deterministically consumes the already-resolved Step
-6 artifact and does not re-resolve scholarly identities.
+Step 6 evaluation does not evaluate Step 5 citation-cell matching or the
+Step 7 physical-grid export. See {doc}`step7-quality` for final export and
+optional structural evaluation. Step 7 consumes already-resolved identities;
+it does not re-resolve them.

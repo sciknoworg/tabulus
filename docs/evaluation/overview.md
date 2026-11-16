@@ -1,133 +1,119 @@
 # Evaluation Overview
 
-Evaluation is separate from production execution. Production commands write
-pipeline artifacts such as `tables_index.json`, prediction CSVs,
-`references/bibliography.json`, `references/reference_matches.json`, and
-`references/reference_resolution.json`. Evaluation commands read gold and
-prediction artifacts and may write a separate JSON result with `--out`; they do
-not modify the artifacts being scored.
+Evaluation reads gold and prediction artifacts without changing production
+outputs. Each public command scores one pair (or, for Step 7, one paper-level
+manifest pair) and optionally writes a separate JSON report with `--out`.
+Corpus aggregation and experimental reports are separate from these library
+interfaces.
 
-## Step Map
+## Public Evaluation Interfaces
 
-| Pipeline Step | Evaluator | CLI | Scored prediction |
+| Step | Library evaluator | CLI | Prediction |
 | --- | --- | --- | --- |
-| Step 1 -- Table localization | `evaluate_table_localization()` | `tabulus evaluate-table-localization` | `tables_index.json` |
-| Step 2 -- Table reconstruction | `evaluate_table_reconstruction()` | `tabulus evaluate-table-reconstruction` | prediction CSV |
-| Step 3 -- Reference-table classification | `evaluate_reference_table_classification()` | `tabulus evaluate-reference-table-classification` | `reference_table_classification.json` |
-| Step 4 -- Bibliography extraction | `evaluate_bibliography()` | `tabulus evaluate-bibliography` | `references/bibliography.json` |
-| Step 5 -- Reference matching | `evaluate_reference_matching()` | `tabulus evaluate-reference-matching` | `references/reference_matches.json` |
-| Step 6 -- Scholarly identity resolution | `evaluate_reference_resolution()` | `tabulus evaluate-reference-resolution` | `references/reference_resolution.json` |
+| [1: Table localization](table-localization-quality.md) | `evaluate_table_localization()` | `tabulus evaluate-table-localization` | `tables_index.json` |
+| [2: Table reconstruction](table-extraction-quality.md) | `evaluate_table_reconstruction()` | `tabulus evaluate-table-reconstruction` | prediction CSV |
+| [3: Reference-table classification](reference-table-classification-quality.md) | `evaluate_reference_table_classification()` | `tabulus evaluate-reference-table-classification` | `reference_table_classification.json` |
+| [4: Bibliography extraction](bibliography-quality.md) | `evaluate_bibliography()` | `tabulus evaluate-bibliography` | `references/bibliography.json` |
+| [5: Reference matching](reference-matching-quality.md) | `evaluate_reference_matching()` | `tabulus evaluate-reference-matching` | `references/reference_matches.json` |
+| [6: Scholarly identity resolution](reference-resolution-quality.md) | `evaluate_reference_resolution()` | `tabulus evaluate-reference-resolution` | `references/reference_resolution.json` |
+| [7: Original physical grids](step7-quality.md) | `evaluate_step7_physical()` | `tabulus evaluate-step7-physical` | `resolved_tables.json` and physical CSVs |
+| [7: Optional structural/ORKG projection](step7-quality.md) | `tabulus.evaluation.step7.evaluate_step7()` | `tabulus evaluate-step7` | `orkg/manifest.json` and projection CSVs |
 
-The current public pair-level evaluation endpoint set covers Steps 1--6. Step 7
-is deterministic resolved-table export and has canonical derived gold for the
-P251/P252 deep subset, but there is not currently a public Step 7 evaluation
-CLI endpoint in this six-command interface.
+The Step 7 interfaces answer different questions. Physical-grid evaluation
+scores original table content after export; it excludes appended metadata.
+Structural/ORKG evaluation scores annotated projection properties, citation
+links, identity fields, and coverage. Neither replaces the Step 2 score of a
+raw reconstruction.
 
-## Gold, Prediction, And Run Categories
+## Gold, Predictions, And Evaluation Questions
 
-Gold and prediction artifacts are different things. Gold is the independent
-truth source for one evaluation question. Prediction artifacts are outputs from
-Tabulus production commands or controlled-run inputs produced for component
-isolation.
+Gold is a Step-specific truth source, kept separately from prediction/run
+directories. A **controlled run** uses available gold upstream inputs as
+needed to isolate a Step. A **full-corpus run** executes the production
+workflow over the broader collection. Gold type and run category are
+independent.
 
-There are two run categories in the documentation:
+These runs support distinct evaluation questions:
 
-`controlled run`
-: Apply a Step where the requisite gold-standard data for that Step exists,
-  using gold upstream information as needed to isolate that Step from upstream
-  errors.
+- **Controlled component quality:** compare one Step with its own gold while
+  limiting upstream error propagation.
+- **Production coverage:** count produced, missing, empty, rejected, or
+  unmatched outputs over the applicable corpus. Coverage and Step 6
+  resolution yield are operational outcomes, not independently verified
+  correctness.
+- **Gold-aligned end-to-end quality:** align production outputs with the
+  appropriate gold and score the resulting content. This requires explicit
+  correspondence and compatible denominators; it is not another run category.
 
-`full-corpus run`
-: Production or end-to-end execution over the broader corpus.
-
-Gold type and run category are independent. For example, a controlled run may
-use `pseudo_gold`, `derived_gold`, authoritative bibliography gold, or
-source-derived scholarly-identity gold depending on the Step. Gold should remain
-conceptually independent of `tabulus_runs/` directories.
+For example, Step 6 source identity gold and a production Step 4 bibliography
+use different index namespaces unless a validated one-to-one alignment or
+crosswalk connects them. A stored `step4_index` alone does not prove that
+correspondence. Missing source DOI is unknown, not proof that a DOI does not
+exist. See {doc}`reference-resolution-quality`.
 
 ## Canonical TabulusBench Gold Layout
 
-Canonical TabulusBench gold lives below each paper root using Step-based names:
+Gold lives below each paper root; prediction artifacts live under
+`tabulus_runs/` or another user-selected work directory:
 
 ```text
 <paper_root>/
-├── step1_table_localization/
-│   ├── gold.json
-│   └── crops/...
-├── step2_table_reconstruction/
-│   └── tables/<table_id>/gold.csv
-├── step3_reference_table_classification/
-│   └── gold.json
-├── step4_bibliography/
-│   └── gold.json
-├── step5_reference_matching/
-│   └── gold.json
-├── step6_reference_resolution/
-│   └── gold.json
+├── step1_table_localization/gold.json
+├── step2_table_reconstruction/tables/<table_id>/gold.csv
+├── step3_reference_table_classification/gold.json
+├── step4_bibliography/gold.json                 # where annotated
+├── step5_reference_matching/gold.json           # deep subset
+├── step6_reference_resolution/gold.json         # deep subset
 └── step7_resolved_tables/
-    ├── gold.json
+    ├── gold.json                                 # deep subset
     └── tables/<table_id>/gold.csv
 ```
 
-Prediction and run artifacts live separately under `tabulus_runs/` or another
-user-selected work directory. Older non-Step-based gold paths describe
-historical material and should not be used for new public examples.
+Step 1 gold also has `crops/`. The optional ORKG development annotations are
+separate under `step7_orkg_gold/`. Tabulus-Gold uses human-readable paper names;
+TabulusBench uses IDs such as `P251`. Evaluators do not infer identity from a
+directory basename.
 
-Tabulus-Gold and TabulusBench deliberately use different paper names. Tabulus-
-Gold may use human-readable names such as `Miikkulainen_2013` or
-`Puurunen_2005`; TabulusBench uses identifiers such as `P251` and `P252`. The
-pair-level evaluators do not infer evaluation semantics from a paper-directory
-basename.
+## Gold Coverage And Denominators
 
-## TabulusBench Coverage
+The current TabulusBench catalog contains **253 papers and 610 controlled
+physical fragments**. Coverage varies by Step:
 
-The benchmark has different gold coverage by Step:
-
-| Step | Gold coverage | Gold type / interpretation |
+| Step | Available gold | Interpretation |
 | --- | --- | --- |
-| Step 1 | 252 papers; 605 physical table fragments/crops | `pseudo_gold` physical-fragment recovery gold |
-| Step 2 | 252 papers; 605 curated canonical `gold.csv` tables | curated reconstruction gold |
-| Step 3 | 252 papers; 605 binary labels: 574 reference-bearing, 31 non-reference, 0 unresolved | `pseudo_gold` reference-table labels |
-| Step 4 | 52 papers; 6,947 numbered gold bibliography references | authoritative bibliography gold |
-| Step 5 | P251 and P252 only; 57 reference-bearing physical fragments; 2,016 citation cells; 5,963 bibliography-link occurrences | `derived_gold` citation-link gold |
-| Step 6 | P251 and P252 only; 3,276 source-derived scholarly identities | source-derived authoritative identity gold |
-| Step 7 | P251 and P252 only; 57 resolved output fragments | `derived_gold` resolved-table gold |
+| 1 | 253 papers; 610 physical fragments | `pseudo_gold` localization |
+| 2 | 253 papers; 610 curated `gold.csv` tables | raw reconstruction |
+| 3 | 253 papers; 610 binary labels (578 positive, 32 negative) | `pseudo_gold` routing |
+| 4 | 53 papers; 8,004 numbered references | authoritative bibliography gold |
+| 5 | P251–P253; 61 reference-bearing fragments, 2,070 citation cells, 6,817 link occurrences | `derived_gold` links |
+| 6 | P251–P253; 4,075 source-derived identity records (2,280 / 996 / 799) | independently sourced scholarly metadata; evaluate only after namespace alignment |
+| 7 | P251–P253; 61 reference-bearing physical output fragments (44 / 13 / 4) | `derived_gold` resolved tables |
 
-The Step 3 ratio `574/605 = 94.88%` is prevalence within the deliberately
-curated, reference-focused TabulusBench table set. It is not the prevalence of
-reference-bearing tables among all tables in the 252 source papers or in any
-scientific domain.
+The 578/610 Step 3 ratio describes the deliberately reference-focused selected
+fragments, not all tables in the source PDFs or a scientific domain. The Step 5
+and Step 7 deep subset is smaller than the full benchmark. Gold citation-cell
+counts do not imply that every cell was aligned to a production output.
 
-The deep P251/P252 subset progresses through different denominators:
-
-```text
-57 reference-bearing fragments
-→ 2,016 citation cells
-→ 5,963 citation-link occurrences
-→ 3,341 unique bibliography entries linked
-→ 3,276 source-derived scholarly identities
-→ 57 resolved output fragments
-```
-
-Do not treat uncovered Step 6 links as errors by default. The Step 6 identity
-population is independently source-derived.
+Older 252-paper/605-fragment results retain their historical population and
+must be labeled as such. The [Step 2 batch scorer](table-extraction-quality.md)
+uses the expanded 610-fragment set. Some retained TabulusBench Step 7 metadata
+reports and scripts still cover only P251/P252 (57 fragments and 2,016 citation
+cells); they are not expanded P251–P253 results.
 
 ## Why There Is No Single Pipeline Accuracy
 
-Each Step answers a different question:
+Step 1 measures fragment recovery, Step 2 reconstructs physical grids, Step 3
+routes tables, Step 4 recovers bibliography entries, Step 5 links citation
+cells, Step 6 checks scholarly identities, and Step 7 scores final physical
+grids or optional structural projections. Each has its own gold, metric, and
+denominator. A resolved CSV is not a Step 2 prediction CSV.
 
-- Step 1 measures physical-fragment recovery/alignment, not bounding-box IoU.
-- Step 2 measures raw table reconstruction with Relative Mapping Similarity
-  (RMS), before reference enrichment.
-- Step 3 measures binary routing of reconstructed tables into the
-  reference-processing branch.
-- Step 4 measures bibliography-entry extraction and alignment from the original
-  PDF.
-- Step 5 measures citation-cell links to bibliography positions.
-- Step 6 measures source-derived scholarly identity agreement.
-- Step 7 is deterministic export from existing Step 5 and Step 6 artifacts.
-
-Resolved CSV files should not be used as Step 2 reconstruction predictions,
-because Step 7 intentionally appends and filters resolution fields. Coverage,
-precision, recall, F1, resolution yield, strict-entry matching, and RMS F1 have
-different denominators and should be reported with their Step context.
+Step 2 Exact Mapping Match compares normalized row-label/column-header
+mappings; its Position-based Exact Cell Match compares the same physical cell
+coordinates. Step 7 physical `exact` scores coordinates after stripping the
+declared appended columns, while its `rms` scores mappings. See the
+{doc}`table-extraction-quality` metric definitions and {doc}`step7-quality`
+for the export-specific policy. Comparing published Step 2 and Step 7 scores
+requires matched fragments, compatible gold grids, the same metric, and the
+same missing-output policy. Different scores alone do not identify where an
+error occurred; paired error analysis remains separate work.

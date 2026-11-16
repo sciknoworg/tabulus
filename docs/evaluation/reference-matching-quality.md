@@ -97,21 +97,21 @@ computed over `(citation cell, bibliography index)` links.
 
 ## TabulusBench Scope
 
-Canonical Step 5 gold currently covers only the P251/P252 deep subset:
+Canonical Step 5 gold currently covers the P251–P253 deep subset:
 
-- 57 reference-bearing physical fragments
-- 2,016 citation cells
-- 5,963 bibliography-link occurrences
+- 61 reference-bearing physical fragments (44 / 13 / 4)
+- 2,070 citation cells
+- 6,817 bibliography-link occurrences
 - gold type: `derived_gold`
 
-This is not the full set of 574 reference-bearing fragments in TabulusBench.
+This is not the full set of 578 reference-bearing fragments in TabulusBench.
 Production Step 5 can be run wherever Step 3 and Step 4 artifacts exist, but
 coverage, unmatched-token counts, and consistency diagnostics must not be called
 precision, recall, F1, or accuracy unless suitable Step 5 gold labels exist.
 
-The old controlled-run result table with 100% scores is not documented as a
-current adapter-level benchmark result. Use the public evaluator against the
-current canonical Step 5 gold and the exact prediction artifact being reported.
+Use the public evaluator against the canonical Step 5 gold and the exact
+prediction artifact being reported; controlled component scores do not stand
+in for full-corpus accuracy.
 
 ## Boundary
 

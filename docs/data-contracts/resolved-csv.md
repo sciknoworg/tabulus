@@ -116,57 +116,14 @@ tabulus_physical_table_id
 
 so every merged row remains traceable to its physical source table.
 
-## Scientific boundary
+## Evaluation boundary
 
-Evaluate the original physical grids with both Exact Cell Match and RMS.
-The command reads the gold and prediction manifests and removes each
-side's declared trailing metadata columns before scoring.
+The {doc}`../evaluation/step7-quality` page documents physical-grid scoring,
+explicit gold-fragment correspondence, missing exports, and the separate
+optional structural evaluator. Physical scoring removes each side's declared
+enrichment columns and evaluates the original grid; it does not evaluate
+the appended identities or citation associations.
 
-```powershell
-tabulus evaluate-step7-physical --prediction resolved_tables.json --benchmark-paper C:\Datasets\tabulusbench\path\P251 --alignment alignment.json --out physical-scores.json
-```
-
-Alternatively, supply the physical gold manifest with `--gold`.
-`--metric` accepts `both` (the default), `exact`, or `rms`. RMS requires
-the optional evaluation dependencies installed with
-`python -m pip install "tabulus[evaluation]"`.
-
-The alignment JSON supplies explicit fragment correspondence.
-
-```json
-{
-  "schema_version": 1,
-  "tables": [
-    {"table_id": 20, "table_key": "page_026_table_018"}
-  ]
-}
-```
-
-Here `table_id` identifies a prediction-manifest entry and `table_key`
-identifies a gold-manifest entry. Without `--alignment`, each prediction
-entry must supply its own stable `table_key`. Numeric IDs alone do not
-establish correspondence. Paths inside manifests are resolved relative to
-their manifest directory unless absolute.
-
-The report includes per-fragment precision, recall and F1, macro averages
-over all gold fragments, exact-grid matches, export coverage and input
-hashes. Missing or empty exports contribute zero to all three scores.
-Extra or multiply assigned prediction fragments raise an error.
-The evaluator checks declared metadata headers where a header row is
-available. Exact values use Unicode NFC and collapsed whitespace, preserving
-case and punctuation. RMS uses the Step 2 normalization, default thresholds
-and orientation selection. Both scores include original headers and citation
-text. Citation associations and scholarly identities are evaluated separately.
-
-Place the report outside the gold directory. Evaluation output cannot
-overwrite an input artifact.
-
-Continuation merging is not part of Step 2 reconstruction evaluation.
-
-```text
-physical prediction CSV
-↔
-physical gold CSV
-```
-
-remains the Step 2 evaluation unit.
+Step 2 reconstruction quality uses the original physical prediction CSV and
+its corresponding gold CSV, never the enriched resolved CSV. Continuation
+merging and ORKG projection are separate Step 7 outputs.

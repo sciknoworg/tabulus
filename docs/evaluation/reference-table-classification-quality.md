@@ -61,17 +61,17 @@ absent class has zero recall.
 
 ## TabulusBench Scope
 
-TabulusBench provides Step 3 labels for all 252 papers and 605 physical table
+TabulusBench provides Step 3 labels for all 253 papers and 610 physical table
 fragments:
 
-- 574 reference-bearing tables
-- 31 non-reference tables
+- 578 reference-bearing tables
+- 32 non-reference tables
 - 0 unresolved labels
 
-The gold type is `pseudo_gold`. The ratio `574/605 = 94.88%` is prevalence
+The gold type is `pseudo_gold`. The ratio `578/610 = 94.75%` is prevalence
 within the deliberately curated, reference-focused TabulusBench table set. It
 must not be interpreted as the prevalence of reference-bearing tables among all
-tables in the 252 papers or within scientific domains.
+tables in the 253 papers or within scientific domains.
 
 The canonical gold path is:
 
