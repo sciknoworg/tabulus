@@ -980,11 +980,31 @@ def build_parser() -> argparse.ArgumentParser:
     physical_gold = physical.add_mutually_exclusive_group(required=True)
     physical_gold.add_argument("--gold", type=Path, help="Physical Step 7 gold manifest.")
     physical_gold.add_argument("--benchmark-paper", type=Path, help="Paper root containing step7_resolved_tables/gold.json.")
+    physical_gold.add_argument("--step2-gold", type=Path, help="Canonical Step 2 directory with tables_index.json and tables/.")
     physical.add_argument("--alignment", type=Path, help="JSON mapping prediction table IDs to gold fragment keys.")
-    physical.add_argument("--metric", choices=("exact", "rms", "both"), default="both")
+    selection = physical.add_mutually_exclusive_group()
+    selection.add_argument("--metric", choices=("exact", "rms", "exact-mapping", "both"), default="both")
+    selection.add_argument("--metrics", nargs="+", choices=SUPPORTED_TABLE_RECONSTRUCTION_METRICS)
+    physical.add_argument("--fragment-keys", nargs="+", help="Explicit gold fragment subset.")
+    physical.add_argument("--workers", type=int, default=1)
+    physical.add_argument("--checkpoint-dir", type=Path)
+    physical.add_argument("--resume", action="store_true")
     physical.add_argument("--text-threshold", type=float, default=DEFAULT_TEXT_THRESHOLD)
     physical.add_argument("--number-threshold", type=float, default=DEFAULT_NUMBER_THRESHOLD)
     physical.add_argument("--out", type=Path, help="Write the complete per-fragment JSON report.")
+
+    batch = subparsers.add_parser("evaluate-table-batch", help="Resume and parallelize explicit physical-grid comparisons.")
+    batch.add_argument("--manifest", type=Path, required=True)
+    batch.add_argument("--out", type=Path, required=True)
+    batch.add_argument("--metrics", nargs="+", choices=SUPPORTED_TABLE_RECONSTRUCTION_METRICS,
+                       default=["rms", "exact-mapping", "exact"])
+    batch.add_argument("--workers", type=int, default=1)
+    batch.add_argument("--resume", action="store_true")
+    batch.add_argument("--text-threshold", type=float, default=DEFAULT_TEXT_THRESHOLD)
+    batch.add_argument("--number-threshold", type=float, default=DEFAULT_NUMBER_THRESHOLD)
+    aggregate = subparsers.add_parser("aggregate-table-evaluations", help="Pool completed independent batch runs.")
+    aggregate.add_argument("--runs", nargs="+", type=Path, required=True)
+    aggregate.add_argument("--out", type=Path, required=True)
 
     evaluate_step7 = subparsers.add_parser(
         "evaluate-step7", help="Evaluate structural plans, citations and identities separately.",
@@ -1810,13 +1830,20 @@ def main() -> None:
     if args.command == "evaluate-step7-physical":
         import json
 
-        gold_path = args.gold or args.benchmark_paper / "step7_resolved_tables" / "gold.json"
+        gold_path = args.gold
+        if args.benchmark_paper is not None:
+            gold_path = args.benchmark_paper / "step7_resolved_tables" / "gold.json"
+        gold_directory = args.step2_gold or gold_path.resolve().parent
+        if args.checkpoint_dir is not None and args.checkpoint_dir.resolve().is_relative_to(gold_directory.resolve()):
+            raise ValueError("The checkpoint directory must be outside the gold directory.")
         if args.out is not None:
             output = args.out.resolve()
-            if output.is_relative_to(gold_path.resolve().parent):
+            if output.is_relative_to(gold_directory.resolve()):
                 raise ValueError("The evaluation output must be outside the Step 7 gold directory.")
         result = evaluate_step7_physical(
             args.prediction, gold_path, alignment_path=args.alignment, metric=args.metric,
+            metrics=args.metrics, canonical_gold_root=args.step2_gold, fragment_keys=args.fragment_keys,
+            workers=args.workers, checkpoint_dir=args.checkpoint_dir, resume=args.resume,
             text_threshold=args.text_threshold, number_threshold=args.number_threshold,
         )
         payload = json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
@@ -1825,10 +1852,26 @@ def main() -> None:
         else:
             if args.out.resolve() in {Path(item["path"]) for item in result["inputs"]}:
                 raise ValueError("The evaluation output aliases an input artifact.")
+            from tabulus.evaluation.batch import atomic_text
             args.out.parent.mkdir(parents=True, exist_ok=True)
-            args.out.write_text(payload, encoding="utf-8")
+            atomic_text(args.out, payload)
             print(json.dumps({"coverage": result["coverage"], "macro": result["macro"]}, indent=2))
             print(f"Evaluation JSON: {args.out}")
+        return
+
+    if args.command in {"evaluate-table-batch", "aggregate-table-evaluations"}:
+        import json
+        from tabulus.evaluation.batch import aggregate_evaluation_runs, evaluate_pairs
+        from tabulus.evaluation.grid_inputs import load_fragment_manifest
+        if args.command == "evaluate-table-batch":
+            result = evaluate_pairs(
+                load_fragment_manifest(args.manifest), metrics=args.metrics, workers=args.workers,
+                output_dir=args.out, resume=args.resume,
+                text_threshold=args.text_threshold, number_threshold=args.number_threshold,
+            )
+        else:
+            result = aggregate_evaluation_runs(args.runs, args.out)
+        print(json.dumps(result["groups"], indent=2))
         return
 
     if args.command == "evaluate-step7":

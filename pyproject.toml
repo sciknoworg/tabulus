@@ -24,9 +24,11 @@ testpaths = ["tests"]
 evaluation = [
     "numpy>=1.24",
     "scipy>=1.10",
+    "rapidfuzz>=3.14,<4",
 ]
 dev = [
     "pytest>=8",
     "numpy>=1.24",
     "scipy>=1.10",
+    "rapidfuzz>=3.14,<4",
 ]

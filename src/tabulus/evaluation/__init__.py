@@ -12,8 +12,17 @@ from tabulus.evaluation.rms import (
     DEFAULT_TEXT_THRESHOLD,
     RMSScores,
     exact_mapping_match,
+    MappingStatistics,
+    evaluate_mapping_statistics,
+    prepare_mappings,
     relative_mapping_similarity,
 )
+from tabulus.evaluation.grid_scoring import (
+    PreparedGrid, prepare_grid, score_table_grids, aggregate_grid_results,
+)
+from tabulus.evaluation.grid_inputs import GridInput, FragmentPair, load_grid, load_fragment_manifest
+from tabulus.evaluation.batch import aggregate_evaluation_runs, evaluate_pairs, summarize_results
+from tabulus.evaluation.step7_physical import prepare_step7_pairs
 from tabulus.evaluation.table_localization import TableLocalizationEvaluation, evaluate_table_localization
 from tabulus.evaluation.step7_physical import evaluate_step7_physical
 from tabulus.evaluation.table_reconstruction import (
@@ -38,6 +47,21 @@ __all__ = [
     "TableReconstructionEvaluation",
     "count_exact_cells",
     "exact_mapping_match",
+    "MappingStatistics",
+    "evaluate_mapping_statistics",
+    "prepare_mappings",
+    "PreparedGrid",
+    "prepare_grid",
+    "score_table_grids",
+    "aggregate_grid_results",
+    "GridInput",
+    "FragmentPair",
+    "load_grid",
+    "load_fragment_manifest",
+    "evaluate_pairs",
+    "summarize_results",
+    "aggregate_evaluation_runs",
+    "prepare_step7_pairs",
     "evaluate_bibliography",
     "evaluate_reference_matching",
     "evaluate_reference_resolution",

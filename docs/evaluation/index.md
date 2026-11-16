@@ -14,6 +14,7 @@ scores should not be collapsed into one pipeline accuracy number.
 overview
 table-localization-quality
 table-extraction-quality
+physical-grid-evaluation
 reference-table-classification-quality
 bibliography-quality
 reference-matching-quality

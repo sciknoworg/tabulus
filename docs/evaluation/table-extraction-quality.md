@@ -4,6 +4,11 @@ Step 2 evaluation compares one reconstructed prediction CSV with one curated
 `gold.csv`. It scores the **raw physical table**, before reference-table
 classification, matching, resolution, or Step 7 enrichment.
 
+Controlled, production and physical Step 7 grid comparisons use the shared
+scorer, counts and batch runner described in
+{doc}`physical-grid-evaluation`. That page covers micro aggregation,
+CPU workers, incremental checkpoints, resume and matched subsets.
+
 ## Run the evaluator
 
 ```bash
@@ -105,17 +110,21 @@ It reads `metadata/tables.csv`, requires 610 distinct gold fragments, and
 discovers available adapters. Use `--adapters chandra tesseract-tatr` to limit
 the methods. Each method gets per-fragment scores and unweighted macro means
 of **P, R, and F1 separately** over all 610 fragments. Missing, empty,
-unusable, or archived-failure predictions receive zero for all three metrics.
+or unusable predictions receive zero for all three metrics.
 This batch coverage rule overrides the single-pair empty-input convention.
 Reports include paths, hashes, status, scores, method JSON, `summary.json`,
 and `summary.csv`; choose a new output directory.
+
+Missing and unusable saved inputs receive zero independently of whether an
+older RMS report contains a historical score for that fragment.
 
 When saved MinerU-native results exist at
 `results/step1/controlled/evaluation/mineru-native-252-final` (or a supplied
 `--native-results` path), the scorer includes them as a **separate baseline**.
 It reuses saved fragment correspondence and CSVs; where an older native
 manifest lacks a fragment, a saved Step 1 table body can be parsed only after
-unique table/page identification. Derived CSVs go into the report. This
+unique stable fragment-key/page identification. Prediction IDs alone do not
+establish correspondence. Derived CSVs go into the report. This
 baseline uses MinerU-detected crops, not the controlled adapter inputs.
 
 ## Step 7 comparison

@@ -21,13 +21,17 @@ tabulus evaluate-step7-physical \
 ```
 
 The library API is `tabulus.evaluation.evaluate_step7_physical()`.
+The {doc}`physical-grid-evaluation` guide describes its shared scoring core,
+canonical Step 2 gold input, all three metrics, macro/micro aggregation,
+parallel workers and resumable checkpoints.
 
 | Option | Meaning |
 | --- | --- |
 | `--prediction` | Physical Step 7 `resolved_tables.json` manifest. |
-| `--benchmark-paper` or `--gold` | Paper root containing `step7_resolved_tables/gold.json`, or that gold manifest directly. Supply exactly one. |
+| `--benchmark-paper`, `--gold`, or `--step2-gold` | Paper root containing `step7_resolved_tables/gold.json`, that gold manifest directly, or the canonical Step 2 directory with `tables_index.json` and `tables/`. Supply exactly one. |
 | `--alignment` | Reviewed mapping from prediction table IDs to stable gold fragment keys. Omit only if every prediction entry already has its gold `table_key`. |
-| `--metric` | `both` (default), `exact`, or `rms`. Optional `--text-threshold` and `--number-threshold` affect RMS only. |
+| `--metric` or `--metrics` | `both` (default) retains positional exact plus RMS. Use `--metrics rms exact-mapping exact` for all three. Optional `--text-threshold` and `--number-threshold` affect RMS only. |
+| `--workers`, `--checkpoint-dir`, `--resume` | CPU parallelism and compatible incremental checkpoint reuse. |
 | `--out` | Optional report path outside the gold directory and distinct from every input; without it, JSON prints to standard output. |
 
 RMS needs the optional evaluation dependencies (`pip install
@@ -64,6 +68,7 @@ location, correct verified CSV paths in a separate working copy before scoring.
 ### Scores and report
 
 The evaluator first removes each side's declared trailing metadata columns.
+Raw canonical Step 2 gold has no metadata removed.
 It checks their names on a declared header row, if present. It does not insert
 a header or assume row 0 is always one. The scored grid retains physical rows,
 headers where present, citation text, and blank cells. Default Step 7 export
@@ -80,11 +85,15 @@ appends metadata arrays to the Step 2 grid; it does not add one row per citation
   The higher-F1 result from original or transposed prediction is retained.
   RMS treats its first input row as headers during mapping conversion,
   independently of `header_row_index` used for metadata validation.
+- **`exact-mapping` — Exact Mapping Match:** the same normalized mapping
+  representation requires equal keys and string values, with its own
+  highest-F1 orientation selection.
 
-Both metrics report precision, recall, and F1 on `[0,100]`. RMS defaults to
+All three metrics report precision, recall, and F1 on `[0,100]`. RMS defaults to
 text threshold `0.5` and number threshold `0.1`. An absent prediction entry or
-CSV is `missing`; a readable CSV with no rows is `empty`; other readable
-exports are `scored`. Missing and empty exports score zero.
+CSV is `missing`; a readable CSV with no non-whitespace cells is `empty`;
+malformed CSV is `unusable`; other readable exports are `scored`.
+Missing, empty and unusable exports score zero for macro aggregation.
 
 The JSON report includes per-fragment paths, status, scores, and `exact_cells`
 counts when `exact` is requested. It also records coverage
@@ -94,6 +103,10 @@ hashes (null for a missing CSV). `macro` averages each fragment's precision,
 recall, **and F1 directly** over all gold fragments. It does not derive macro
 F1 from macro precision and recall. `exact_grid_matches` counts exported
 fragments whose whole grids are equal when `exact` is requested.
+The report also includes per-metric micro scores and pooled counts. Missing
+predictions retain the gold denominator with zero accepted prediction count
+and zero matched credit. See {doc}`physical-grid-evaluation` for the mapping
+and physical-cell denominators and empty-population conventions.
 
 The {doc}`table-extraction-quality` page defines the three Step 2 metrics and
 its saved-prediction batch scorer. Step 2 **Exact Mapping Match**

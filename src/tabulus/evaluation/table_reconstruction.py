@@ -2,10 +2,7 @@
 
 from __future__ import annotations
 
-import csv
 import json
-import unicodedata
-from collections.abc import Iterable, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -13,48 +10,14 @@ from typing import Any
 from tabulus.evaluation.rms import (
     DEFAULT_NUMBER_THRESHOLD,
     DEFAULT_TEXT_THRESHOLD,
-    csv_to_rms_text,
-    exact_mapping_match,
-    relative_mapping_similarity,
+
 )
+
+from tabulus.evaluation.grid_scoring import ExactCellCounts, count_exact_cells, score_table_grids
+from tabulus.resolved_export.csv_io import read_csv
 
 
 SUPPORTED_TABLE_RECONSTRUCTION_METRICS = ("rms", "exact", "exact-mapping")
-
-
-@dataclass(frozen=True)
-class ExactCellCounts:
-    """Nonempty cell counts and whole-grid equality after text normalization."""
-
-    matching_cells: int
-    gold_nonempty_cells: int
-    predicted_nonempty_cells: int
-    exact_grid: bool
-
-
-def count_exact_cells(
-    gold: Iterable[Sequence[str]],
-    prediction: Iterable[Sequence[str]],
-) -> ExactCellCounts:
-    """Count exact nonempty matches at identical row and column positions."""
-    def normalize_grid(rows: Iterable[Sequence[str]]) -> list[list[str]]:
-        return [
-            [" ".join(unicodedata.normalize("NFC", cell).split()) for cell in row]
-            for row in rows
-        ]
-
-    gold_grid = normalize_grid(gold)
-    prediction_grid = normalize_grid(prediction)
-    return ExactCellCounts(
-        matching_cells=sum(
-            bool(expected) and expected == actual
-            for gold_row, prediction_row in zip(gold_grid, prediction_grid)
-            for expected, actual in zip(gold_row, prediction_row)
-        ),
-        gold_nonempty_cells=sum(bool(cell) for row in gold_grid for cell in row),
-        predicted_nonempty_cells=sum(bool(cell) for row in prediction_grid for cell in row),
-        exact_grid=gold_grid == prediction_grid,
-    )
 
 
 @dataclass(frozen=True)
@@ -74,11 +37,14 @@ class TableReconstructionEvaluation:
     recall: float
     f1: float
     exact_cells: ExactCellCounts | None = None
+    statistics: dict[str, Any] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
         payload["gold_csv"] = str(self.gold_csv)
         payload["prediction_csv"] = str(self.prediction_csv)
+        if self.statistics is None:
+            del payload["statistics"]
         if self.exact_cells is None:
             del payload["exact_cells"]
         if self.exact_cells is not None or self.metric == "exact-mapping":
@@ -132,66 +98,23 @@ def evaluate_table_reconstruction(
     gold_path = _require_csv(gold_csv, label="Gold")
     prediction_path = _require_csv(prediction_csv, label="Prediction")
 
-    if metric == "exact":
-        with (
-            gold_path.open(encoding="utf-8-sig", newline="") as gold_file,
-            prediction_path.open(encoding="utf-8-sig", newline="") as prediction_file,
-        ):
-            counts = count_exact_cells(csv.reader(gold_file), csv.reader(prediction_file))
-
-        return TableReconstructionEvaluation(
-            metric="exact",
-            metric_name="Exact Cell Match",
-            metric_short_name="Exact",
-            implementation="Position-based CSV comparison",
-            score_scale="[0,100]",
-            gold_csv=gold_path,
-            prediction_csv=prediction_path,
-            text_threshold=None,
-            number_threshold=None,
-            precision=100.0 * counts.matching_cells / max(1, counts.predicted_nonempty_cells),
-            recall=100.0 * counts.matching_cells / max(1, counts.gold_nonempty_cells),
-            f1=200.0 * counts.matching_cells / max(
-                1, counts.gold_nonempty_cells + counts.predicted_nonempty_cells
-            ),
-            exact_cells=counts,
-        )
-
-    if metric == "exact-mapping":
-        scores = exact_mapping_match(csv_to_rms_text(gold_path), csv_to_rms_text(prediction_path))
-        return TableReconstructionEvaluation(
-            metric="exact-mapping",
-            metric_name="Exact Mapping Match",
-            metric_short_name="EM",
-            implementation="DePlot mapping representation with exact key/value equality",
-            score_scale="[0,100]",
-            gold_csv=gold_path,
-            prediction_csv=prediction_path,
-            text_threshold=None,
-            number_threshold=None,
-            precision=100.0 * scores.precision,
-            recall=100.0 * scores.recall,
-            f1=100.0 * scores.f1,
-        )
-
-    scores = relative_mapping_similarity(
-        csv_to_rms_text(gold_path),
-        csv_to_rms_text(prediction_path),
-        text_threshold=text_threshold,
-        number_threshold=number_threshold,
+    scored = score_table_grids(
+        read_csv(gold_path), read_csv(prediction_path), metrics=(metric,),
+        text_threshold=text_threshold, number_threshold=number_threshold,
     )
-
+    names = {
+        "rms": ("Relative Mapping Similarity", "RMS", "DePlot"),
+        "exact": ("Exact Cell Match", "Exact", "Position-based CSV comparison"),
+        "exact-mapping": ("Exact Mapping Match", "EM", "DePlot mapping representation with exact key/value equality"),
+    }
+    name, short_name, implementation = names[metric]
     return TableReconstructionEvaluation(
-        metric="rms",
-        metric_name="Relative Mapping Similarity",
-        metric_short_name="RMS",
-        implementation="DePlot",
-        score_scale="[0,100]",
-        gold_csv=gold_path,
-        prediction_csv=prediction_path,
-        text_threshold=text_threshold,
-        number_threshold=number_threshold,
-        precision=100.0 * scores.precision,
-        recall=100.0 * scores.recall,
-        f1=100.0 * scores.f1,
+        metric=metric, metric_name=name, metric_short_name=short_name,
+        implementation=implementation, score_scale="[0,100]",
+        gold_csv=gold_path, prediction_csv=prediction_path,
+        text_threshold=text_threshold if metric == "rms" else None,
+        number_threshold=number_threshold if metric == "rms" else None,
+        **scored["metrics"][metric],
+        exact_cells=ExactCellCounts(**scored["exact_cells"]) if metric == "exact" else None,
+        statistics=scored["statistics"][metric],
     )

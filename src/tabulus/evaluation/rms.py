@@ -29,6 +29,11 @@ from collections.abc import Iterable, Sequence
 from pathlib import Path
 from typing import Any
 
+try:
+    from rapidfuzz.distance.Levenshtein import distance as _fast_distance
+except ImportError:
+    _fast_distance = None
+
 
 DEFAULT_TEXT_THRESHOLD = 0.5
 DEFAULT_NUMBER_THRESHOLD = 0.1
@@ -41,6 +46,31 @@ class RMSScores:
     precision: float
     recall: float
     f1: float
+
+
+@dataclasses.dataclass(frozen=True)
+class MappingStatistics:
+    """One selected mapping comparison, with scores on [0, 1]."""
+
+    scores: RMSScores
+    gold_count: int
+    predicted_count: int
+    matched_credit: float
+    orientation: str
+
+
+def mapping_scores(credit: float, gold_count: int, predicted_count: int) -> RMSScores:
+    """Convert pooled mapping credit to PRF using the existing empty conventions."""
+    if not gold_count and not predicted_count:
+        return RMSScores(1.0, 1.0, 1.0)
+    if not gold_count:
+        return RMSScores(0.0, 1.0, 0.0)
+    if not predicted_count:
+        return RMSScores(1.0, 0.0, 0.0)
+    if credit == 0:
+        return RMSScores(0.0, 0.0, 0.0)
+    precision, recall = credit / predicted_count, credit / gold_count
+    return RMSScores(precision, recall, 2 * precision * recall / (precision + recall))
 
 
 def _linear_sum_assignment(cost_matrix: list[list[float]]):
@@ -63,6 +93,8 @@ def levenshtein(a: str, b: str) -> int:
 
     if a == b:
         return 0
+    if _fast_distance is not None:
+        return _fast_distance(a, b)
     if len(a) < len(b):
         a, b = b, a
 
@@ -214,6 +246,11 @@ def _get_table_datapoints(table: Table) -> dict[str, str]:
     return datapoints
 
 
+def prepare_mappings(text: str, *, transposed: bool = False) -> dict[str, str]:
+    """Prepare RMS mappings, retaining the historical duplicate-key behavior."""
+    return _get_table_datapoints(_parse_table(text, transposed=transposed))
+
+
 def _get_datapoint_metric(
     target: tuple[str, str],
     prediction: tuple[str, str],
@@ -254,42 +291,66 @@ def _table_datapoints_precision_recall_f1(
     text_threshold: float,
     number_threshold: float,
 ) -> RMSScores:
-    target_datapoints = list(_get_table_datapoints(target_table).items())
-    prediction_datapoints = list(_get_table_datapoints(prediction_table).items())
+    return _mapping_credit(
+        _get_table_datapoints(target_table), _get_table_datapoints(prediction_table),
+        metric="rms", text_threshold=text_threshold, number_threshold=number_threshold,
+        orientation="original",
+    ).scores
 
-    if not target_datapoints and not prediction_datapoints:
-        return RMSScores(precision=1.0, recall=1.0, f1=1.0)
-    if not target_datapoints:
-        return RMSScores(precision=0.0, recall=1.0, f1=0.0)
-    if not prediction_datapoints:
-        return RMSScores(precision=1.0, recall=0.0, f1=0.0)
 
-    cost_matrix = [
-        [
-            1.0 - anls_metric(target_key, prediction_key, text_threshold)
-            for prediction_key, _ in prediction_datapoints
+def _mapping_credit(
+    gold: dict[str, str], prediction: dict[str, str], *,
+    metric: str, text_threshold: float, number_threshold: float, orientation: str,
+) -> MappingStatistics:
+    credit = 0.0
+    if metric == "exact-mapping":
+        credit = len(gold.items() & prediction.items())
+    elif gold and prediction:
+        expected, observed = list(gold.items()), list(prediction.items())
+        # Cache repeated keys locally without retaining matrices across fragments.
+        from functools import lru_cache
+        key_similarity = lru_cache(maxsize=131072)(anls_metric)
+        costs = [
+            [1.0 - key_similarity(gkey, pkey, text_threshold) for pkey, _ in observed]
+            for gkey, _ in expected
         ]
-        for target_key, _ in target_datapoints
-    ]
-    row_indices, column_indices = _linear_sum_assignment(cost_matrix)
+        row_indices, column_indices = _linear_sum_assignment(costs)
+        for row, column in zip(row_indices, column_indices):
+            credit += _get_datapoint_metric(
+                expected[int(row)], observed[int(column)],
+                text_threshold=text_threshold, number_threshold=number_threshold,
+            )
+    scores = mapping_scores(credit, len(gold), len(prediction))
+    if metric == "exact-mapping" and gold and prediction:
+        # Preserve Exact Mapping Match's original arithmetic and orientation ties.
+        scores = dataclasses.replace(scores, f1=2 * credit / (len(gold) + len(prediction)))
+    return MappingStatistics(
+        scores,
+        len(gold), len(prediction), credit, orientation,
+    )
 
-    score = 0.0
-    for row_index, column_index in zip(row_indices, column_indices):
-        score += _get_datapoint_metric(
-            target_datapoints[int(row_index)],
-            prediction_datapoints[int(column_index)],
-            text_threshold=text_threshold,
-            number_threshold=number_threshold,
+
+def evaluate_mapping_statistics(
+    gold: dict[str, str], prediction_text: str, *, metric: str = "rms",
+    text_threshold: float = DEFAULT_TEXT_THRESHOLD,
+    number_threshold: float = DEFAULT_NUMBER_THRESHOLD,
+) -> MappingStatistics:
+    """Score each orientation once and return its scores and sufficient statistics."""
+    if metric not in {"rms", "exact-mapping"}:
+        raise ValueError(f"Unsupported mapping metric: {metric!r}.")
+    if metric == "rms" and not 0.0 <= text_threshold <= 1.0:
+        raise ValueError("text_threshold must be between 0 and 1.")
+    if metric == "rms" and not 0.0 <= number_threshold <= 1.0:
+        raise ValueError("number_threshold must be between 0 and 1.")
+    results = [
+        _mapping_credit(
+            gold, prepare_mappings(prediction_text, transposed=transposed),
+            metric=metric, text_threshold=text_threshold, number_threshold=number_threshold,
+            orientation="transposed" if transposed else "original",
         )
-
-    if score == 0.0:
-        return RMSScores(precision=0.0, recall=0.0, f1=0.0)
-
-    precision = score / len(prediction_datapoints)
-    recall = score / len(target_datapoints)
-    f1 = 2.0 * precision * recall / (precision + recall)
-
-    return RMSScores(precision=precision, recall=recall, f1=f1)
+        for transposed in (True, False)
+    ]
+    return max(results, key=lambda result: result.scores.f1)
 
 
 def relative_mapping_similarity(
@@ -306,23 +367,10 @@ def relative_mapping_similarity(
     with the highest F1 is retained.
     """
 
-    if not 0.0 <= text_threshold <= 1.0:
-        raise ValueError("text_threshold must be between 0 and 1.")
-    if not 0.0 <= number_threshold <= 1.0:
-        raise ValueError("number_threshold must be between 0 and 1.")
-
-    target_table = _parse_table(target)
-    scores = [
-        _table_datapoints_precision_recall_f1(
-            target_table,
-            _parse_table(prediction, transposed=transposed),
-            text_threshold=text_threshold,
-            number_threshold=number_threshold,
-        )
-        for transposed in (True, False)
-    ]
-
-    return max(scores, key=lambda item: item.f1)
+    return evaluate_mapping_statistics(
+        prepare_mappings(target), prediction, metric="rms",
+        text_threshold=text_threshold, number_threshold=number_threshold,
+    ).scores
 
 
 def exact_mapping_match(target: str, prediction: str) -> RMSScores:
@@ -333,21 +381,6 @@ def exact_mapping_match(target: str, prediction: str) -> RMSScores:
     keys retain the last value, matching the existing RMS dictionary semantics.
     Empty mappings and orientation ties follow RMS's conventions.
     """
-    expected = _get_table_datapoints(_parse_table(target))
-    scores = []
-    for transposed in (True, False):
-        observed = _get_table_datapoints(_parse_table(prediction, transposed=transposed))
-        if not expected and not observed:
-            scores.append(RMSScores(precision=1.0, recall=1.0, f1=1.0))
-        elif not expected:
-            scores.append(RMSScores(precision=0.0, recall=1.0, f1=0.0))
-        elif not observed:
-            scores.append(RMSScores(precision=1.0, recall=0.0, f1=0.0))
-        else:
-            matches = len(expected.items() & observed.items())
-            scores.append(RMSScores(
-                precision=matches / len(observed),
-                recall=matches / len(expected),
-                f1=2 * matches / (len(observed) + len(expected)),
-            ))
-    return max(scores, key=lambda item: item.f1)
+    return evaluate_mapping_statistics(
+        prepare_mappings(target), prediction, metric="exact-mapping",
+    ).scores

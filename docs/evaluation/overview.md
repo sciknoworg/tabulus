@@ -1,10 +1,10 @@
 # Evaluation Overview
 
 Evaluation reads gold and prediction artifacts without changing production
-outputs. Each public command scores one pair (or, for Step 7, one paper-level
-manifest pair) and optionally writes a separate JSON report with `--out`.
-Corpus aggregation and experimental reports are separate from these library
-interfaces.
+outputs. Pair-level commands score one pair (or, for Step 7, one paper-level
+manifest pair) and optionally write a separate JSON report with `--out`.
+The {doc}`physical-grid-evaluation` interface also supports explicit saved-input
+batches, macro/micro aggregation, CPU workers and resumable checkpoints.
 
 ## Public Evaluation Interfaces
 
