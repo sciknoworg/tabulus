@@ -38,8 +38,12 @@ When a concrete worked example is needed, the tutorial uses TabulusBench paper
 ```text
 Biomedicine_And_Health/clinical_research/P4/
   P4.pdf
-  reference_tables/
-  bibliography/gold.json
+  step1_table_localization/gold.json
+  step2_table_reconstruction/
+    tables_index.json
+    tables/<table_key>/crop.png
+    tables/<table_key>/gold.csv
+  step4_bibliography/gold.json
 ```
 
 Set a portable benchmark root before running examples:
@@ -56,11 +60,11 @@ benchmark examples should use all six annotated reference-containing table
 inputs when benchmark crops are the appropriate input; paper-level steps
 operate on complete paper-level artifacts derived from `P4`.
 
-The benchmark's `P4/reference_tables/` directory is human gold material. It
-contains six annotated reference-containing tables with adjacent `gold.csv`
-files. Those tables are not necessarily every table that Step 1 profiling
-will detect in the original PDF. Tabulus runs should write their own profiling
-and crop artifacts outside the benchmark gold directories.
+The benchmark's `P4/step2_table_reconstruction/` directory contains six
+annotated reference-containing physical tables with curated `gold.csv` files.
+Those are not necessarily every table that Step 1 profiling will detect in the
+original PDF. Tabulus runs should write generated artifacts outside benchmark
+gold directories.
 
 A full TabulusBench run means processing the complete applicable benchmark
 input across all papers. Because TabulusBench papers are nested under

@@ -212,22 +212,26 @@ Step 1, that means the original `P4.pdf`. A full TabulusBench run means every
 original paper PDF in the benchmark. Later steps may use different
 step-specific inputs.
 
-Benchmark note: `P4/reference_tables/` is immutable TabulusBench gold, with six
-annotated reference-containing tables and adjacent `gold.csv` files:
+Benchmark note: `P4/step2_table_reconstruction/` contains six annotated
+reference-containing crops with curated `gold.csv` files. It is immutable
+benchmark material, alongside Step 1's `step1_table_localization/gold.json`:
 
 ```text
 P4/
-  reference_tables/
+  step1_table_localization/gold.json
+  step2_table_reconstruction/
     tables_index.json
     tables/
       page_004_table_001/
+        crop.png
+        gold.csv
       ...
       page_009_table_006/
 ```
 
 Step 1 starts from `P4.pdf` and writes newly generated detected table crops to
 the selected Tabulus output area. It must not write into, replace, or
-regenerate `P4/reference_tables/`, and the Step 1 detected table set may
+regenerate `P4/step2_table_reconstruction/`, and the Step 1 detected table set may
 differ from the six gold reference-containing tables selected for benchmark
 annotation.
 
@@ -308,9 +312,12 @@ from pathlib import Path
 root = Path(os.environ["TABULUSBENCH_ROOT"])
 out = Path(os.environ["TABULUS_WORK"]) / "manifests" / "tabulusbench-pdfs.txt"
 
-with (root / "metadata" / "papers.csv").open(newline="", encoding="utf-8") as handle:
+with (root / "metadata" / "papers.csv").open(newline="", encoding="utf-8-sig") as handle:
     rows = csv.DictReader(handle)
     pdfs = [root / row["pdf_path"] for row in rows if row.get("pdf_path")]
+
+if len(pdfs) != 253 or len(set(pdfs)) != 253 or not all(path.is_file() for path in pdfs):
+    raise ValueError("Expected 253 distinct original TabulusBench PDFs")
 
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text("\n".join(str(path) for path in pdfs) + "\n", encoding="utf-8")

@@ -133,7 +133,7 @@ matches and the Step 6 paper-level registry.
 
 ### TabulusBench
 
-[TabulusBench](https://zenodo.org/records/20230340) is the benchmark dataset used for concrete tutorial examples. It currently contains 252 papers across five domains:
+[TabulusBench](https://zenodo.org/records/20230340) is the benchmark dataset used for concrete tutorial examples. It currently contains 253 papers across five domains:
 
 - `Biomedicine_And_Health`
 - `Agriculture_Food_And_Environmental_Systems`
@@ -141,14 +141,18 @@ matches and the Step 6 paper-level registry.
 - `Energy_Materials_Chemical_Sciences`
 - `Engineering_Robotics_And_Built_Infrastructure`
 
-The benchmark includes 605 expert-annotated positive physical reference-table fragments. `P4` is the same one-paper example used in the preceding tutorial steps:
+The current curated set contains 610 physical fragments with Step 3 labels:
+578 reference-bearing and 32 non-reference. See the
+{doc}`../evaluation/reference-table-classification-quality` page for their
+`pseudo_gold` status and interpretation. `P4` is the same one-paper example
+used in the preceding tutorial steps:
 
 - paper ID: `P4`
 - domain: `Biomedicine_And_Health`
 - subdomain: `clinical_research`
-- benchmark crop root: `Biomedicine_And_Health/clinical_research/P4/reference_tables`
+- benchmark crop root: `Biomedicine_And_Health/clinical_research/P4/step2_table_reconstruction`
 
-Step 3 operates on Step 2 reconstruction outputs rather than on the original PDF or canonical crop images directly. The benchmark gold under `reference_tables/` is read-only. Newly generated Step 3 artifacts belong in the reconstruction/output area, never in the benchmark gold directories.
+Step 3 operates on Step 2 reconstruction outputs rather than on the original PDF or canonical crop images directly. The benchmark gold under `step2_table_reconstruction/` and `step3_reference_table_classification/` is read-only. Newly generated Step 3 artifacts belong in the reconstruction/output area, never in the benchmark gold directories.
 
 Use portable roots for the examples:
 
@@ -203,29 +207,29 @@ The Step 2 full-benchmark examples write one adapter's output under:
 $TABULUS_WORK/stage2/tesseract-tatr/<domain>/<subdomain>/<paper>/
 ```
 
-Build a UTF-8 reconstruction list from TabulusBench's `reconstruction_inputs.txt`. Each non-comment input line ends in `/reference_tables`; the corresponding reconstruction directory is the same paper-relative path under `$TABULUS_WORK/stage2/tesseract-tatr/`:
+Build a UTF-8 reconstruction list from the current `metadata/papers.csv`.
+Each paper-relative path maps to the same path under
+`$TABULUS_WORK/stage2/tesseract-tatr/`:
 
 ```bash
 python - <<'PY'
+import csv
 from pathlib import Path
 import os
 
 bench = Path(os.environ["TABULUSBENCH"])
 work = Path(os.environ["TABULUS_WORK"])
-source = bench / "reconstruction_inputs.txt"
 output = work / "manifests" / "tabulusbench-step3-tesseract-tatr.txt"
 output.parent.mkdir(parents=True, exist_ok=True)
 
-reconstruction_dirs = []
-for raw in source.read_text(encoding="utf-8").splitlines():
-    line = raw.strip()
-    if not line or line.startswith("#"):
-        continue
-    crop_rel = Path(line)
-    if crop_rel.name != "reference_tables":
-        raise ValueError(f"Expected a reference_tables input, got: {line}")
-    paper_rel = crop_rel.parent
-    reconstruction_dirs.append(work / "stage2" / "tesseract-tatr" / paper_rel)
+with (bench / "metadata/papers.csv").open(encoding="utf-8-sig", newline="") as handle:
+    papers = list(csv.DictReader(handle))
+reconstruction_dirs = [
+    work / "stage2" / "tesseract-tatr" / paper["paper_path"]
+    for paper in papers
+]
+if len(reconstruction_dirs) != 253 or len(set(reconstruction_dirs)) != 253:
+    raise ValueError("Expected 253 distinct paper reconstruction directories")
 
 output.write_text(
     "\n".join(str(path) for path in reconstruction_dirs) + "\n",
@@ -235,12 +239,12 @@ print(f"Wrote {len(reconstruction_dirs)} reconstruction directories to {output}"
 PY
 ```
 
-The list should contain one reconstruction directory for each of the 252 TabulusBench papers, for example:
+The list should contain one reconstruction directory for each of the 253 TabulusBench papers, for example:
 
 ```text
 /path/to/tabulus-work/stage2/tesseract-tatr/Biomedicine_And_Health/clinical_research/P4
 ...
-/path/to/tabulus-work/stage2/tesseract-tatr/Energy_Materials_Chemical_Sciences/.../P252
+/path/to/tabulus-work/stage2/tesseract-tatr/Energy_Materials_Chemical_Sciences/atomic_layer_deposition/P252
 ```
 
 Run the deterministic classifier over the list:
@@ -251,7 +255,7 @@ tabulus classify-reference-tables \
   "$TABULUS_WORK/manifests/tabulusbench-step3-tesseract-tatr.txt"
 ```
 
-This classifies the existing Step 2 outputs for all 252 paper-level reconstruction directories. Step 3 itself does not require GPU inference. Each paper receives its own `reference_table_classification.json` and `selected_reference_tables.json` inside its reconstruction directory. Do not pass `--out` for a multi-reconstruction invocation; the default per-reconstruction manifest locations are required.
+This classifies the existing Step 2 outputs for all 253 paper-level reconstruction directories. Step 3 itself does not require GPU inference. Each paper receives its own `reference_table_classification.json` and `selected_reference_tables.json` inside its reconstruction directory. Do not pass `--out` for a multi-reconstruction invocation; the default per-reconstruction manifest locations are required.
 
 ### 3. Run Step 3 for another adapter
 
@@ -260,10 +264,11 @@ Step 3 is applied independently to every adapter's Step 2 output. The classifier
 For example, if PaddleOCR-VL reconstructions were written under:
 
 ```text
-$TABULUS_WORK/stage2/paddleocr-vl/<domain>/<subdomain>/<paper>/
+$TABULUS_WORK/stage2/all-adapters/paddleocr-vl/<domain>/<subdomain>/<paper>/
 ```
 
-build the corresponding reconstruction list with `paddleocr-vl` in the output path and run the same command:
+build the corresponding reconstruction list with `all-adapters/paddleocr-vl`
+in the output path and run the same command:
 
 ```bash
 tabulus classify-reference-tables \
@@ -271,4 +276,4 @@ tabulus classify-reference-tables \
   "$TABULUS_WORK/manifests/tabulusbench-step3-paddleocr-vl.txt"
 ```
 
-TabulusBench's positive reference-table annotations can be used to evaluate positive-reference-table recovery for the benchmark fragments. When matching gold labels are unavailable for a comparison, use coverage, consistency, and agreement across reconstruction outputs rather than treating Step 3 routing as a generic accuracy result.
+TabulusBench's current positive and negative Step 3 labels can be used to evaluate classifier decisions for the curated physical fragments. When matching gold labels are unavailable for a comparison, use coverage, consistency, and agreement across reconstruction outputs rather than treating Step 3 routing as a generic accuracy result.

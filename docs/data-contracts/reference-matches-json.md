@@ -217,10 +217,10 @@ positions can shift.
 metric. Token counts are diagnostic coverage information. Scientific matching
 accuracy requires comparison with suitable gold labels.
 
-TabulusBench Step 5 gold labels for P251 and P252 are documented in
+TabulusBench Step 5 gold labels for P251–P253 are documented in
 {doc}`../evaluation/reference-matching-quality`. Those benchmark gold files are
 separate from this production output contract: `reference_matches.json` records
-matcher output, while `reference_matching/gold.json` records controlled
+matcher output, while `step5_reference_matching/gold.json` records controlled
 evaluation labels.
 
 Raw reconstruction prediction CSVs remain pre-reference-resolution artifacts

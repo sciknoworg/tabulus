@@ -205,8 +205,9 @@ PY
 
 For TabulusBench, production Step 5 matching can be run wherever Step 3 and
 Step 4 artifacts exist. Accuracy evaluation is narrower: the current controlled
-Step 5 gold-standard evaluation covers only P251 and P252, not the full
-252-paper benchmark. For other papers, coverage, unmatched-token, and
+Step 5 gold-standard evaluation covers the P251–P253 deep subset (61
+reference-bearing physical fragments), not the full 253-paper benchmark.
+For other papers, coverage, unmatched-token, and
 consistency statistics must not be called precision, recall, F1, or accuracy
 unless suitable gold labels exist.
 

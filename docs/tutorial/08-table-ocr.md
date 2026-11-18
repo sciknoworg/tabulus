@@ -180,19 +180,19 @@ a concrete TabulusBench one-paper example is needed:
 - paper ID: `P4`
 - domain: `Biomedicine_And_Health`
 - subdomain: `clinical_research`
-- Step 2 crop root: `Biomedicine_And_Health/clinical_research/P4/reference_tables`
+- Step 2 crop root: `Biomedicine_And_Health/clinical_research/P4/step2_table_reconstruction`
 
 Set portable roots before running the examples:
 
 ```bash
 export TABULUSBENCH="/path/to/tabulusbench"
 export TABULUS_WORK="/path/to/tabulus-work"
-P4_CROPS="$TABULUSBENCH/Biomedicine_And_Health/clinical_research/P4/reference_tables"
+P4_CROPS="$TABULUSBENCH/Biomedicine_And_Health/clinical_research/P4/step2_table_reconstruction"
 ```
 
 For Step 2, a one-paper run means reconstructing all canonical crop inputs
 belonging to one paper. For `P4`, the benchmark crop root contains six
-annotated reference-containing table crops under `reference_tables/tables/`,
+annotated reference-containing table crops under `step2_table_reconstruction/tables/`,
 each with immutable benchmark `gold.csv` material. Step 2 reads the crop
 images and `tables_index.json`; it must not overwrite or regenerate the
 TabulusBench gold CSV files.
@@ -206,12 +206,16 @@ dependencies, as described in their External Tools pages.
 The input is the complete P4 benchmark crop root:
 
 ```text
-P4/reference_tables/
+P4/step2_table_reconstruction/
   tables_index.json
   tables/
-    page_004_table_001/crop.png
+    page_004_table_001/
+      crop.png
+      gold.csv
     ...
-    page_009_table_006/crop.png
+    page_009_table_006/
+      crop.png
+      gold.csv
 ```
 
 Run P4 with the `tesseract-tatr` table-reconstruction adapter on CPU:
@@ -276,28 +280,58 @@ CPU or GPU execution. `granite-vision-table` is registered as GPU-only.
 
 #### 3. Run one adapter on the full TabulusBench dataset
 
-TabulusBench contains 252 papers and 605 benchmark-annotated
-reference-containing physical table fragments used as Step 2 reconstruction
-inputs. These are reconstruction inputs, not historical Step 1 table-detection
-counts.
+The current TabulusBench metadata lists 253 papers and 610 curated physical
+table fragments for controlled Step 2 reconstruction. These selected crop
+inputs are distinct from all tables detected in the original PDFs.
 
-The dataset root includes `reconstruction_inputs.txt`, a list of the 252
-paper-level `reference_tables` crop roots. Because those crop roots are nested
-below domain, subdomain, and paper directories, and because they all share the
-leaf name `reference_tables`, use repeated single-paper commands with explicit
-per-paper output paths:
+Create an input list from `metadata/papers.csv`. Each listed paper has a
+`step2_table_reconstruction/tables_index.json` crop inventory. The older
+`reconstruction_inputs.txt` does not cover the complete current collection.
+
+```bash
+python - <<'PY'
+import csv
+import json
+import os
+from pathlib import Path
+
+bench = Path(os.environ["TABULUSBENCH"])
+work = Path(os.environ["TABULUS_WORK"])
+with (bench / "metadata/papers.csv").open(encoding="utf-8-sig", newline="") as handle:
+    papers = list(csv.DictReader(handle))
+
+crop_roots = [Path(paper["paper_path"]) / "step2_table_reconstruction" for paper in papers]
+if len(crop_roots) != 253 or len(set(crop_roots)) != 253:
+    raise ValueError("Expected 253 distinct paper crop roots")
+fragment_count = 0
+for rel in crop_roots:
+    index = bench / rel / "tables_index.json"
+    fragment_count += len(json.loads(index.read_text(encoding="utf-8"))["tables"])
+if fragment_count != 610:
+    raise ValueError(f"Expected 610 indexed crops, found {fragment_count}")
+
+output = work / "manifests/tabulusbench-step2-crop-roots.txt"
+output.parent.mkdir(parents=True, exist_ok=True)
+output.write_text("\n".join(root.as_posix() for root in crop_roots) + "\n", encoding="utf-8")
+print(f"Wrote {len(crop_roots)} paper crop roots and {fragment_count} crops to {output}")
+PY
+```
+
+The roots are nested below domain, subdomain, and paper directories and share
+the leaf name `step2_table_reconstruction`. Run one paper-level reconstruction
+per root so each output retains its paper path:
 
 ```bash
 while IFS= read -r crop_root; do
   case "$crop_root" in ""|\#*) continue ;; esac
-  paper_rel="${crop_root%/reference_tables}"
+  paper_rel="${crop_root%/step2_table_reconstruction}"
 
   tabulus reconstruct-tables \
     --crops "$TABULUSBENCH/$crop_root" \
     --adapter tesseract-tatr \
     --device cpu \
     --out "$TABULUS_WORK/stage2/tesseract-tatr/$paper_rel"
-done < "$TABULUSBENCH/reconstruction_inputs.txt"
+done < "$TABULUS_WORK/manifests/tabulusbench-step2-crop-roots.txt"
 ```
 
 Each paper keeps an independent reconstruction output below its domain,
@@ -314,7 +348,7 @@ $TABULUS_WORK/stage2/tesseract-tatr/Biomedicine_And_Health/clinical_research/P4/
 #### 4. Run all adapters on the full TabulusBench dataset
 
 On a GPU-equipped system, every registered Step 2 adapter is registered for
-GPU execution. This loop reconstructs the same 605 benchmark crop inputs with
+GPU execution. This loop reconstructs the same 610 benchmark crop inputs with
 every registered table-reconstruction method and keeps outputs separated by
 adapter and paper:
 
@@ -341,14 +375,14 @@ ADAPTERS=(
 for adapter in "${ADAPTERS[@]}"; do
   while IFS= read -r crop_root; do
     case "$crop_root" in ""|\#*) continue ;; esac
-    paper_rel="${crop_root%/reference_tables}"
+    paper_rel="${crop_root%/step2_table_reconstruction}"
 
     tabulus reconstruct-tables \
       --crops "$TABULUSBENCH/$crop_root" \
       --adapter "$adapter" \
       --device gpu:0 \
       --out "$TABULUS_WORK/stage2/all-adapters/$adapter/$paper_rel"
-  done < "$TABULUSBENCH/reconstruction_inputs.txt"
+  done < "$TABULUS_WORK/manifests/tabulusbench-step2-crop-roots.txt"
 done
 ```
 

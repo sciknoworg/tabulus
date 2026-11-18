@@ -111,6 +111,15 @@ physical fragments**. Coverage varies by Step:
 | 6 | P251–P253; 4,075 source-derived identity records (2,280 / 996 / 799) | independently sourced scholarly metadata; evaluate only after namespace alignment |
 | 7 | P251–P253; 61 reference-bearing physical output fragments (44 / 13 / 4) | `derived_gold` resolved tables |
 
+The current `metadata/papers.csv` identifies the two frequently used deep-subset
+papers as follows. Both are under
+`Energy_Materials_Chemical_Sciences/atomic_layer_deposition/`:
+
+| Paper ID | Source paper | DOI |
+| --- | --- | --- |
+| P251 | *Crystallinity of inorganic films grown by atomic layer deposition: Overview and general trends* | `10.1063/1.4757907` |
+| P252 | *Surface chemistry of atomic layer deposition: A case study for the trimethylaluminum/water process* | `10.1063/1.1940727` |
+
 The 578/610 Step 3 ratio describes the deliberately reference-focused selected
 fragments, not all tables in the source PDFs or a scientific domain. The Step 5
 and Step 7 deep subset is smaller than the full benchmark. Gold citation-cell

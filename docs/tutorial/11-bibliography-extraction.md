@@ -196,7 +196,7 @@ against suitable gold-standard data.
 
 ### TabulusBench
 
-[TabulusBench](https://zenodo.org/records/20230340) is the benchmark dataset used for concrete tutorial examples. It currently contains 252 papers across five domains:
+[TabulusBench](https://zenodo.org/records/20230340) is the benchmark dataset used for concrete tutorial examples. It currently contains 253 papers across five domains:
 
 - `Biomedicine_And_Health`
 - `Agriculture_Food_And_Environmental_Systems`
@@ -204,7 +204,7 @@ against suitable gold-standard data.
 - `Energy_Materials_Chemical_Sciences`
 - `Engineering_Robotics_And_Built_Infrastructure`
 
-Step 4 can run on the full 252-paper benchmark because every paper has an original PDF. A 52-paper subset also contains `bibliography/gold.json`; that subset is used for quantitative Step 4 evaluation and contains 6,947 numbered gold bibliography entries. The gold files are benchmark annotations only: Step 4 does not read them, and generated artifacts must not be written into `bibliography/`.
+Step 4 can run on the full 253-paper benchmark because every paper has an original PDF. A 53-paper subset also contains `step4_bibliography/gold.json`; that subset is used for quantitative Step 4 evaluation and contains 8,004 numbered gold bibliography entries. The gold files are benchmark annotations only: Step 4 does not read them, and generated artifacts must not be written into `step4_bibliography/`.
 
 Use portable roots for the examples:
 
@@ -265,15 +265,20 @@ python -m json.tool \
 
 Each entry records the one-based `index`, preserved `raw` citation, extraction `source`, DOI when already present in the extracted citation, and structured title, authors, year, venue, volume, issue, and pages when GROBID supplies them. Those structured fields are optional extraction evidence, not guaranteed metadata.
 
-### 2. Extract bibliographies for all 252 TabulusBench papers
+### 2. Extract bibliographies for all 253 TabulusBench papers
 
 The Step 4 CLI processes one PDF per invocation. A full TabulusBench run therefore uses external orchestration around the existing command rather than a collection-level Tabulus CLI command.
 
-This portable Python loop recursively discovers benchmark paper PDFs with the layout `<domain>/<subdomain>/<paper>/<paper>.pdf`, preserves that hierarchy under `$TABULUS_WORK/stage4/`, skips completed papers with a valid `references/bibliography.json`, and continues after per-paper failures:
+This portable Python loop reads the current `metadata/papers.csv`, checks each
+original PDF against the layout `<domain>/<subdomain>/<paper>/<paper>.pdf`,
+preserves that hierarchy under `$TABULUS_WORK/stage4/`, skips completed papers
+with a valid `references/bibliography.json`, and continues after per-paper
+failures:
 
 ```bash
 python - <<'PY'
 from pathlib import Path
+import csv
 import json
 import os
 import subprocess
@@ -299,20 +304,26 @@ def valid_existing_artifact(path: Path) -> bool:
         return False
     return isinstance(payload, dict) and isinstance(payload.get("entries"), list)
 
+with (bench / "metadata/papers.csv").open(encoding="utf-8-sig", newline="") as handle:
+    papers = list(csv.DictReader(handle))
+
 paper_pdfs = []
-for pdf in bench.rglob("*.pdf"):
-    rel = pdf.relative_to(bench)
+for record in papers:
+    rel = Path(record["pdf_path"])
     if len(rel.parts) != 4:
-        continue
+        raise ValueError(f"Unexpected paper PDF layout: {rel}")
     domain, subdomain, paper, filename = rel.parts
-    if domain not in DOMAINS:
-        continue
-    if filename != f"{paper}.pdf":
-        continue
+    if domain not in DOMAINS or paper != record["paper_id"] or filename != f"{paper}.pdf":
+        raise ValueError(f"Unexpected paper PDF path: {rel}")
+    pdf = bench / rel
+    if not pdf.is_file():
+        raise FileNotFoundError(pdf)
     paper_pdfs.append((rel, pdf, output_root / domain / subdomain / paper))
 
 paper_pdfs.sort(key=lambda item: item[0].as_posix())
-print(f"Discovered {len(paper_pdfs)} TabulusBench paper PDFs; expected 252.")
+if len(paper_pdfs) != 253 or len({item[0] for item in paper_pdfs}) != 253:
+    raise ValueError(f"Expected 253 distinct paper PDFs, found {len(paper_pdfs)}")
+print(f"Discovered {len(paper_pdfs)} TabulusBench paper PDFs.")
 
 failures = []
 for index, (rel, pdf, out_dir) in enumerate(paper_pdfs, start=1):
@@ -364,94 +375,84 @@ Representative outputs include:
 
 ```text
 $TABULUS_WORK/stage4/Biomedicine_And_Health/clinical_research/P4/references/bibliography.json
-$TABULUS_WORK/stage4/<domain>/<subdomain>/P251/references/bibliography.json
-$TABULUS_WORK/stage4/<domain>/<subdomain>/P252/references/bibliography.json
+$TABULUS_WORK/stage4/Energy_Materials_Chemical_Sciences/atomic_layer_deposition/P251/references/bibliography.json
+$TABULUS_WORK/stage4/Energy_Materials_Chemical_Sciences/atomic_layer_deposition/P252/references/bibliography.json
 ```
 
-After a complete run, the discovered paper-PDF count and generated bibliography-artifact count should both be 252:
+After a complete run, the discovered paper-PDF count and generated bibliography-artifact count should both be 253:
 
 ```bash
 python - <<'PY'
 from pathlib import Path
+import csv
 import os
-
-DOMAINS = {
-    "Biomedicine_And_Health",
-    "Agriculture_Food_And_Environmental_Systems",
-    "Computer_Science_AI_And_Data_Science",
-    "Energy_Materials_Chemical_Sciences",
-    "Engineering_Robotics_And_Built_Infrastructure",
-}
 
 bench = Path(os.environ["TABULUSBENCH"])
 work = Path(os.environ["TABULUS_WORK"])
 
-paper_pdfs = []
-for pdf in bench.rglob("*.pdf"):
-    rel = pdf.relative_to(bench)
-    if len(rel.parts) == 4 and rel.parts[0] in DOMAINS and rel.name == f"{rel.parts[2]}.pdf":
-        paper_pdfs.append(pdf)
-
-artifacts = list((work / "stage4").rglob("references/bibliography.json"))
-print(f"TabulusBench paper PDFs: {len(paper_pdfs)}")
-print(f"Generated Step 4 artifacts: {len(artifacts)}")
+with (bench / "metadata/papers.csv").open(encoding="utf-8-sig", newline="") as handle:
+    papers = list(csv.DictReader(handle))
+paper_pdfs = sum((bench / paper["pdf_path"]).is_file() for paper in papers)
+artifacts = sum(
+    (work / "stage4" / paper["paper_path"] / "references/bibliography.json").is_file()
+    for paper in papers
+)
+print(f"TabulusBench paper PDFs: {paper_pdfs}")
+print(f"Generated Step 4 artifacts: {artifacts}")
 PY
 ```
 
 Expected complete-run counts:
 
 ```text
-TabulusBench paper PDFs: 252
-Generated Step 4 artifacts: 252
+TabulusBench paper PDFs: 253
+Generated Step 4 artifacts: 253
 ```
 
 ### 3. Gold-bibliography subset for evaluation
 
-A subset of 52 TabulusBench papers contains manually curated bibliography gold:
+A subset of 53 TabulusBench papers contains manually curated bibliography gold:
 
 ```text
-bibliography/gold.json
+step4_bibliography/gold.json
 ```
 
-Those 52 papers contain 6,947 numbered gold bibliography entries and are used for quantitative Step 4 evaluation. The remaining 200 papers can still be processed by Step 4, but they cannot contribute to gold-standard bibliography accuracy measurements. Each gold entry records the benchmark reference position `nr` and raw reference string `ref`; the generated extraction artifact remains `references/bibliography.json` under the Step 4 output root.
+Those 53 papers contain 8,004 numbered gold bibliography entries and are used for quantitative Step 4 evaluation. The remaining 200 papers can still be processed by Step 4, but they cannot contribute to gold-standard bibliography accuracy measurements. Each gold entry records the benchmark reference position `nr` and raw reference string `ref`; the generated extraction artifact remains `references/bibliography.json` under the Step 4 output root.
 
-Count the gold bibliography files with:
-
-```bash
-find "$TABULUSBENCH" -path '*/bibliography/gold.json' | wc -l
-```
-
-Expected result:
-
-```text
-52
-```
-
-To sum the gold entries:
+Audit the gold files from the current paper catalog without traversing run
+directories:
 
 ```bash
 python - <<'PY'
 from pathlib import Path
+import csv
 import json
 import os
 
+bench = Path(os.environ["TABULUSBENCH"])
+with (bench / "metadata/papers.csv").open(encoding="utf-8-sig", newline="") as handle:
+    papers = list(csv.DictReader(handle))
+gold_files = [
+    bench / paper["paper_path"] / "step4_bibliography/gold.json"
+    for paper in papers
+    if (bench / paper["paper_path"] / "step4_bibliography/gold.json").is_file()
+]
 total = 0
-for path in Path(os.environ["TABULUSBENCH"]).rglob("bibliography/gold.json"):
+for path in gold_files:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if isinstance(payload, list):
-        total += len(payload)
-    elif isinstance(payload, dict) and isinstance(payload.get("entries"), list):
-        total += len(payload["entries"])
-    else:
+    if not isinstance(payload, list):
         raise ValueError(f"Unsupported gold bibliography format: {path}")
-print(total)
+    total += len(payload)
+print(f"Gold bibliography files: {len(gold_files)}")
+print(f"Numbered gold entries: {total}")
 PY
 ```
 
-Expected result:
+Expected results:
 
 ```text
-6947
+Gold bibliography files: 53
+Numbered gold entries: 8004
 ```
 
 ### 4. Continue to Step 5

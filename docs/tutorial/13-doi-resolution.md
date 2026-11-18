@@ -177,6 +177,12 @@ live under the literal run tree:
 $HOME/tabulusbench/runs/stage6/controlled-p251-p252-final/<paper>/input_one_to_one/
 ```
 
+This derived run tree is separate from canonical benchmark gold and is not
+required in a fresh TabulusBench checkout. Before reusing a prepared input,
+check its provenance against the current P251/P252 paper identities in the
+{doc}`../evaluation/overview`; a run-directory label alone does not identify
+the source paper.
+
 Each controlled input directory contains:
 
 - `bibliography.json`
