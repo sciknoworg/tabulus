@@ -213,27 +213,15 @@ The top-level aggregate counts evaluated pairs across groups. For benchmark
 method comparisons use the individual groups and the unique full/selected
 population statistics supplied by the benchmark adapter.
 
-## Physical Step 7 commands
+## Resolved-export manifest input
 
-The existing selection `--metric both` continues to mean positional exact
-plus RMS. Use `--metrics` to select all three explicitly.
-
-```bash
-tabulus evaluate-step7-physical \
-  --prediction /path/to/resolved_tables.json \
-  --step2-gold /path/to/P251/step2_table_reconstruction \
-  --alignment /path/to/P251-alignment.json \
-  --metrics rms exact-mapping exact --workers 4 \
-  --checkpoint-dir /path/to/new-checkpoints --out /path/to/physical-report.json
-```
-
-`--gold /path/to/step7_resolved_tables/gold.json` and
-`--benchmark-paper /path/to/P251` retain the enriched gold interface.
-`--fragment-keys` selects an explicit canonical fragment subset.
-The alignment file retains the existing `tables` list of
-`{"table_id": 20, "table_key": "page_026_table_018"}` objects.
-Add `--resume` with the same checkpoint directory to continue an interrupted
-evaluation. Reports and checkpoints belong outside the gold directory.
+The generic `evaluate-table-batch` command above scores explicit pairs for
+both Steps. For physical Step 7, a pair's resolved prediction declares its
+appended `metadata_columns`; raw Step 2 gold declares none. The
+{doc}`step7-quality` page documents the existing export-manifest input adapter,
+which builds these pairs from `resolved_tables.json`, gold, and a reviewed
+alignment. Its Step-specific command name identifies the input format, not a
+different scorer or aggregation method.
 
 ## TabulusBench saved-output batches
 

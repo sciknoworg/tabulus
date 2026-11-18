@@ -112,8 +112,19 @@ the methods. Each method gets per-fragment scores and both macro and micro
 summaries for the selected metrics in the same batch report. Missing, empty,
 or unusable predictions receive zero fragment scores.
 This batch coverage rule overrides the single-pair empty-input convention.
-See {doc}`physical-grid-evaluation` for aggregation denominators,
-`evaluate-table-batch`, and the saved-output script's other settings.
+
+**Macro** averages fragment precision, recall, and F1 separately, giving each
+physical table equal weight. **Micro** pools match credit and gold/prediction
+counts across fragments, then computes precision, recall, and F1 from those
+totals. Missing outputs retain their gold counts in micro recall. RMS and
+`exact-mapping` pool normalized mappings; `exact` pools nonempty physical cells.
+The two averages can differ without any change to the underlying table scores.
+See {doc}`physical-grid-evaluation` for the exact denominators and empty-input
+rules.
+
+The shared guide also documents `evaluate-table-batch` and the saved-output
+script's other settings.
+
 Reports include paths, hashes, status, scores, method JSON, `summary.json`,
 and `summary.csv`; choose a new output directory.
 

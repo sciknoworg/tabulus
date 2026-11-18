@@ -28,13 +28,15 @@ neither requires a separate metric implementation or CLI endpoint.
 | [4: Bibliography extraction](bibliography-quality.md) | `evaluate_bibliography()` | `tabulus evaluate-bibliography` | `references/bibliography.json` |
 | [5: Reference matching](reference-matching-quality.md) | `evaluate_reference_matching()` | `tabulus evaluate-reference-matching` | `references/reference_matches.json` |
 | [6: Scholarly identity resolution](reference-resolution-quality.md) | `evaluate_reference_resolution()` | `tabulus evaluate-reference-resolution` | `references/reference_resolution.json` |
-| [7: Original physical grids](step7-quality.md) | `evaluate_step7_physical()` | `tabulus evaluate-step7-physical` | `resolved_tables.json` and physical CSVs |
+| [7: Original physical grids](step7-quality.md) | Shared `evaluate_pairs()` | `tabulus evaluate-table-batch` | Explicitly paired resolved CSVs |
 | [7: Optional structural/ORKG projection](step7-quality.md) | `tabulus.evaluation.step7.evaluate_step7()` | `tabulus evaluate-step7` | `orkg/manifest.json` and projection CSVs |
 
 For explicit physical-grid pairs, `tabulus evaluate-table-batch` writes both
 aggregations; the saved-output benchmark script discovers controlled Step 2,
 production Step 2, or physical Step 7 inputs. See the
 {doc}`physical-grid-evaluation` interface table and batch example.
+The Step 7 export-manifest adapter prepares pairs for this same scorer; it is
+not a separate macro/micro evaluation method.
 
 The Step 7 interfaces answer different questions. Physical-grid evaluation
 scores original table content after export; it excludes appended metadata.

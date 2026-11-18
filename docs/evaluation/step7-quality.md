@@ -1,32 +1,55 @@
 # Step 7 Resolved-Table Quality
 
-Step 7 has two public evaluators. Use **physical-grid evaluation** to check
-whether the original reconstructed table content survived the default resolved
-CSV export. Use **structural/ORKG evaluation** for an optional projection. The
-physical score excludes appended scholarly metadata and citation associations.
+Step 7 outputs support two evaluation questions. **Physical-grid evaluation**
+checks whether the original reconstructed table content survived the default
+resolved CSV export, using the same scorer as Step 2. **Structural/ORKG
+evaluation** checks an optional projection. The physical score excludes
+appended scholarly metadata and citation associations.
 See the {doc}`../data-contracts/resolved-csv` and
 {doc}`../data-contracts/step7-structure` contracts for the two output formats.
 
 ## Evaluate Physical Tables
 
-### Run the evaluator
+### Batch scoring: macro and micro
+
+Use the same batch command as Step 2 when gold and resolved CSVs have explicit
+fragment correspondence:
+
+```bash
+tabulus evaluate-table-batch \
+  --manifest /path/to/physical-pairs.json \
+  --metrics rms exact-mapping exact \
+  --out /path/to/physical-grid-evaluation
+```
+
+The pair manifest points to curated Step 2 `gold.csv` files and resolved CSVs.
+On each resolved prediction, declare the appended `metadata_columns` from
+`resolved_tables.json` so the shared scorer removes them before comparison.
+The command writes per-fragment results and a `summary.json` containing both
+macro and micro scores. See {doc}`physical-grid-evaluation` for the manifest
+format and aggregation rules.
+
+### Evaluate an export manifest directly
+
+The existing `evaluate-step7-physical` command prepares those same fragment
+pairs from a `resolved_tables.json` manifest and reviewed alignment. Its name
+identifies this Step 7 input adapter; it does not implement separate metrics or
+separate macro/micro averaging.
 
 ```bash
 tabulus evaluate-step7-physical \
   --prediction /path/to/resolved_tables.json \
-  --benchmark-paper /path/to/P251 \
+  --step2-gold /path/to/canonical-step2-gold \
   --alignment /path/to/alignment.json \
-  --metric both \
+  --metrics rms exact-mapping exact \
   --out /path/to/scores.json
 ```
 
 The library API is `tabulus.evaluation.evaluate_step7_physical()`.
-The {doc}`physical-grid-evaluation` guide describes its shared scoring core,
-canonical Step 2 gold input, all three metrics, macro/micro aggregation,
-parallel workers and resumable checkpoints.
 Both Step 2 and this physical Step 7 interface support `rms`,
 `exact-mapping`, and `exact`; `--metric both` remains the compatible default
-for RMS plus positional exact.
+for RMS plus positional exact. The export-manifest command also supports
+parallel workers and resumable checkpoints.
 
 | Option | Meaning |
 | --- | --- |
@@ -105,9 +128,14 @@ excluded columns, normalization, thresholds, and input paths with SHA-256
 hashes (null for a missing CSV). `exact_grid_matches` counts exported
 fragments whose whole grids are equal when `exact` is requested.
 The report also includes per-metric macro and micro scores and pooled counts.
-The {doc}`physical-grid-evaluation` guide is the authoritative explanation of
-their mapping and physical-cell denominators, missing-output policy, and
-empty-population conventions.
+
+**Macro** averages each physical fragment's precision, recall, and F1
+separately. **Micro** pools match credit and gold/prediction counts first, then
+calculates precision, recall, and F1 from the pooled totals. Missing exports
+retain gold counts in micro recall. RMS and `exact-mapping` pool normalized
+mappings; `exact` pools nonempty physical cells. The
+{doc}`physical-grid-evaluation` guide gives the full denominator, missing-output,
+and empty-population rules.
 
 The {doc}`table-extraction-quality` page defines the three Step 2 metrics and
 its saved-prediction batch scorer. Step 2 **Exact Mapping Match**
