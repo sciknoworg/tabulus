@@ -96,8 +96,8 @@ The expanded benchmark provides 610 curated physical `gold.csv` tables across
 <paper_root>/step2_table_reconstruction/tables/<table_id>/gold.csv
 ```
 
-The repository's benchmark scorer evaluates **saved controlled predictions**
-without rerunning reconstruction models:
+The repository's benchmark scorer evaluates **saved predictions** without
+rerunning reconstruction models. This command uses its controlled-input default:
 
 ```bash
 python scripts/evaluation/step2/evaluate_exact_match.py \
@@ -123,7 +123,8 @@ See {doc}`physical-grid-evaluation` for the exact denominators and empty-input
 rules.
 
 The shared guide also documents `evaluate-table-batch` and the saved-output
-script's other settings.
+script's `--setting production` and `--setting step7` modes, which require
+reviewed `--alignment` correspondence.
 
 Reports include paths, hashes, status, scores, method JSON, `summary.json`,
 and `summary.csv`; choose a new output directory.

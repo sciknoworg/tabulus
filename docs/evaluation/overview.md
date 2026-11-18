@@ -1,8 +1,11 @@
 # Evaluation Overview
 
 Evaluation reads gold and prediction artifacts without changing production
-outputs. Pair-level commands score one pair (or, for Step 7, one paper-level
-manifest pair) and optionally write a separate JSON report with `--out`.
+outputs. Pair-level commands score individual artifacts; the shared
+physical-grid batch command scores explicit fragment pairs and writes
+per-fragment and aggregate reports. The resolved-export manifest adapter
+prepares physical Step 7 pairs for that same batch scorer.
+
 **Step 2 and physical Step 7 share one scorer.** Their preparation differs,
 but equivalent prepared grids scored with the same metric settings produce the
 same result. The {doc}`physical-grid-evaluation` guide explains their common

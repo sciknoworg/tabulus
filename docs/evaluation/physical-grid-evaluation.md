@@ -5,7 +5,7 @@ implementation. Their input adapters prepare comparable grids against canonical
 Step 2 gold. Citation association, scholarly identity recovery and ORKG
 structural projections have separate evaluation targets.
 
-**Macro and micro are two summaries of the same fragment scores**, returned
+**Macro and micro summarize the same fragment comparisons**, returned
 together by batch evaluation. They are not separate metrics or CLI endpoints.
 Equivalent prepared gold/prediction grids with the same status and metric
 settings receive identical scores, regardless of which Step produced the CSV.
@@ -21,7 +21,7 @@ Keep its original headers, rows, blank positions and citation text.
 - Physical Step 7 supplies an explicitly aligned resolved CSV. Its declared
   appended metadata columns are removed before scoring.
 - The existing enriched Step 7 gold-manifest interface remains supported.
-  Only that gold side's declared metadata columns are removed.
+  Its declared metadata columns are removed as well; raw Step 2 gold has none.
 
 Prediction table IDs never establish correspondence with gold IDs by themselves.
 Use stable paper/fragment keys and explicit correspondence. Neither the shared
@@ -36,6 +36,7 @@ scorer nor its micro aggregator matches content across different table pairs.
 | `score_table_grids()` | Prepared or raw gold and prediction rows | Shared per-fragment scores and sufficient statistics |
 | `aggregate_grid_results()` | Per-fragment results from that scorer | Macro, micro, pooled counts, coverage, and population |
 | `tabulus evaluate-table-batch` | Explicit-correspondence pair manifest | `summary.json` with both aggregations and per-fragment results |
+| `tabulus aggregate-table-evaluations` | Completed, disjoint batch run directories with compatible settings | Recomputed macro/micro summaries and pooled counts |
 | `scripts/evaluation/step2/evaluate_exact_match.py` | Discovers saved controlled, explicitly aligned production, or explicitly aligned physical Step 7 outputs in TabulusBench | Benchmark reports built on the same batch evaluator |
 
 The first two interfaces prepare inputs for the same scoring core. The batch
