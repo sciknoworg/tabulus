@@ -24,6 +24,9 @@ The library API is `tabulus.evaluation.evaluate_step7_physical()`.
 The {doc}`physical-grid-evaluation` guide describes its shared scoring core,
 canonical Step 2 gold input, all three metrics, macro/micro aggregation,
 parallel workers and resumable checkpoints.
+Both Step 2 and this physical Step 7 interface support `rms`,
+`exact-mapping`, and `exact`; `--metric both` remains the compatible default
+for RMS plus positional exact.
 
 | Option | Meaning |
 | --- | --- |
@@ -99,14 +102,12 @@ The JSON report includes per-fragment paths, status, scores, and `exact_cells`
 counts when `exact` is requested. It also records coverage
 (`expected`/`exported`/`missing`/`empty`), `exact_grid_matches` when applicable,
 excluded columns, normalization, thresholds, and input paths with SHA-256
-hashes (null for a missing CSV). `macro` averages each fragment's precision,
-recall, **and F1 directly** over all gold fragments. It does not derive macro
-F1 from macro precision and recall. `exact_grid_matches` counts exported
+hashes (null for a missing CSV). `exact_grid_matches` counts exported
 fragments whose whole grids are equal when `exact` is requested.
-The report also includes per-metric micro scores and pooled counts. Missing
-predictions retain the gold denominator with zero accepted prediction count
-and zero matched credit. See {doc}`physical-grid-evaluation` for the mapping
-and physical-cell denominators and empty-population conventions.
+The report also includes per-metric macro and micro scores and pooled counts.
+The {doc}`physical-grid-evaluation` guide is the authoritative explanation of
+their mapping and physical-cell denominators, missing-output policy, and
+empty-population conventions.
 
 The {doc}`table-extraction-quality` page defines the three Step 2 metrics and
 its saved-prediction batch scorer. Step 2 **Exact Mapping Match**

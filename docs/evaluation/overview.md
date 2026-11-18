@@ -3,8 +3,20 @@
 Evaluation reads gold and prediction artifacts without changing production
 outputs. Pair-level commands score one pair (or, for Step 7, one paper-level
 manifest pair) and optionally write a separate JSON report with `--out`.
-The {doc}`physical-grid-evaluation` interface also supports explicit saved-input
-batches, macro/micro aggregation, CPU workers and resumable checkpoints.
+**Step 2 and physical Step 7 share one scorer.** Their preparation differs,
+but equivalent prepared grids scored with the same metric settings produce the
+same result. The {doc}`physical-grid-evaluation` guide explains their common
+metrics, explicit saved-input batches, macro/micro reporting, CPU workers and
+resumable checkpoints.
+
+| Evaluation input | Preparation before the shared scorer | Result |
+| --- | --- | --- |
+| Controlled Step 2 | Saved canonical-crop reconstruction CSV versus curated Step 2 `gold.csv` | Original physical-grid scores |
+| Production Step 2 | Explicitly aligned production CSV versus the same gold | Original physical-grid scores |
+| Physical Step 7 | Explicitly aligned resolved export, with declared appended metadata columns removed, versus the same gold | Original physical-grid scores |
+
+The batch interface returns macro and micro summaries **in the same report**;
+neither requires a separate metric implementation or CLI endpoint.
 
 ## Public Evaluation Interfaces
 
@@ -18,6 +30,11 @@ batches, macro/micro aggregation, CPU workers and resumable checkpoints.
 | [6: Scholarly identity resolution](reference-resolution-quality.md) | `evaluate_reference_resolution()` | `tabulus evaluate-reference-resolution` | `references/reference_resolution.json` |
 | [7: Original physical grids](step7-quality.md) | `evaluate_step7_physical()` | `tabulus evaluate-step7-physical` | `resolved_tables.json` and physical CSVs |
 | [7: Optional structural/ORKG projection](step7-quality.md) | `tabulus.evaluation.step7.evaluate_step7()` | `tabulus evaluate-step7` | `orkg/manifest.json` and projection CSVs |
+
+For explicit physical-grid pairs, `tabulus evaluate-table-batch` writes both
+aggregations; the saved-output benchmark script discovers controlled Step 2,
+production Step 2, or physical Step 7 inputs. See the
+{doc}`physical-grid-evaluation` interface table and batch example.
 
 The Step 7 interfaces answer different questions. Physical-grid evaluation
 scores original table content after export; it excludes appended metadata.
@@ -108,12 +125,13 @@ cells, Step 6 checks scholarly identities, and Step 7 scores final physical
 grids or optional structural projections. Each has its own gold, metric, and
 denominator. A resolved CSV is not a Step 2 prediction CSV.
 
-Step 2 Exact Mapping Match compares normalized row-label/column-header
-mappings; its Position-based Exact Cell Match compares the same physical cell
-coordinates. Step 7 physical `exact` scores coordinates after stripping the
-declared appended columns, while its `rms` scores mappings. See the
-{doc}`table-extraction-quality` metric definitions and {doc}`step7-quality`
-for the export-specific policy. Comparing published Step 2 and Step 7 scores
+Both Step 2 and physical Step 7 support `rms`, `exact-mapping`, and `exact`.
+The first two compare normalized row-label/column-header mappings; `exact`
+compares physical cell coordinates. Step 7 first strips its declared appended
+columns. See {doc}`physical-grid-evaluation` for the shared scoring and
+aggregation rules, {doc}`table-extraction-quality` for metric definitions, and
+{doc}`step7-quality` for export preparation. Comparing published Step 2 and
+Step 7 scores
 requires matched fragments, compatible gold grids, the same metric, and the
 same missing-output policy. Different scores alone do not identify where an
 error occurred; paired error analysis remains separate work.

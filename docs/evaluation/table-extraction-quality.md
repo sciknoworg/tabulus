@@ -4,10 +4,10 @@ Step 2 evaluation compares one reconstructed prediction CSV with one curated
 `gold.csv`. It scores the **raw physical table**, before reference-table
 classification, matching, resolution, or Step 7 enrichment.
 
-Controlled, production and physical Step 7 grid comparisons use the shared
-scorer, counts and batch runner described in
-{doc}`physical-grid-evaluation`. That page covers micro aggregation,
-CPU workers, incremental checkpoints, resume and matched subsets.
+Controlled Step 2, explicitly aligned production Step 2, and physical Step 7
+use the same scorer for `rms`, `exact-mapping`, and `exact`. See
+{doc}`physical-grid-evaluation` for input preparation, batch macro/micro
+reporting, CPU workers, checkpoints, resume, and matched subsets.
 
 ## Run the evaluator
 
@@ -108,10 +108,12 @@ python scripts/evaluation/step2/evaluate_exact_match.py \
 
 It reads `metadata/tables.csv`, requires 610 distinct gold fragments, and
 discovers available adapters. Use `--adapters chandra tesseract-tatr` to limit
-the methods. Each method gets per-fragment scores and unweighted macro means
-of **P, R, and F1 separately** over all 610 fragments. Missing, empty,
-or unusable predictions receive zero for all three metrics.
+the methods. Each method gets per-fragment scores and both macro and micro
+summaries for the selected metrics in the same batch report. Missing, empty,
+or unusable predictions receive zero fragment scores.
 This batch coverage rule overrides the single-pair empty-input convention.
+See {doc}`physical-grid-evaluation` for aggregation denominators,
+`evaluate-table-batch`, and the saved-output script's other settings.
 Reports include paths, hashes, status, scores, method JSON, `summary.json`,
 and `summary.csv`; choose a new output directory.
 
@@ -131,7 +133,8 @@ baseline uses MinerU-detected crops, not the controlled adapter inputs.
 
 A resolved CSV has appended metadata and is not a Step 2 prediction input.
 The {doc}`step7-quality` physical evaluator removes each side's declared
-metadata columns before scoring the original grid. Step 2 Exact Mapping Match
+metadata columns before scoring the original grid with the same three
+metrics. Step 2 Exact Mapping Match
 compares normalized mapping identities; Position-based Exact Cell Match and
 Step 7 `exact` compare coordinates. Compare Steps 2 and 7 only on matched
 fragments with compatible gold grids, the **same metric**, and the same

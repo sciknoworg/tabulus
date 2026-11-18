@@ -5,6 +5,11 @@ implementation. Their input adapters prepare comparable grids against canonical
 Step 2 gold. Citation association, scholarly identity recovery and ORKG
 structural projections have separate evaluation targets.
 
+**Macro and micro are two summaries of the same fragment scores**, returned
+together by batch evaluation. They are not separate metrics or CLI endpoints.
+Equivalent prepared gold/prediction grids with the same status and metric
+settings receive identical scores, regardless of which Step produced the CSV.
+
 ## Input preparation
 
 The canonical physical target is
@@ -23,6 +28,20 @@ Use stable paper/fragment keys and explicit correspondence. Neither the shared
 scorer nor its micro aggregator matches content across different table pairs.
 
 ## Shared interfaces
+
+| Interface | Input and preparation | Output |
+| --- | --- | --- |
+| `evaluate_table_reconstruction()` | One gold CSV and one Step 2 prediction CSV | Single-pair score for one selected metric |
+| `evaluate_step7_physical()` | Resolved-export manifest, gold manifest or canonical Step 2 gold, and explicit table correspondence | Physical-fragment report; strips declared appended columns |
+| `score_table_grids()` | Prepared or raw gold and prediction rows | Shared per-fragment scores and sufficient statistics |
+| `aggregate_grid_results()` | Per-fragment results from that scorer | Macro, micro, pooled counts, coverage, and population |
+| `tabulus evaluate-table-batch` | Explicit-correspondence pair manifest | `summary.json` with both aggregations and per-fragment results |
+| `scripts/evaluation/step2/evaluate_exact_match.py` | Discovers saved controlled, explicitly aligned production, or explicitly aligned physical Step 7 outputs in TabulusBench | Benchmark reports built on the same batch evaluator |
+
+The first two interfaces prepare inputs for the same scoring core. The batch
+CLI uses `evaluate_pairs()` to score explicit pairs and aggregate them;
+the benchmark script discovers saved inputs and supplies those pairs. It does
+not run reconstruction or resolved export.
 
 `prepare_grid(rows)` caches the original rows and their RMS mapping preparation.
 `score_table_grids(gold, prediction, metrics=...)` accepts rows or prepared grids
@@ -110,22 +129,34 @@ Historical RMS statuses do not determine current prediction availability.
 
 `pooled_counts` labels units as `mappings` or `nonempty_cells`. Report RMS
 and Exact Mapping Match results as mapping-level micro scores.
+Micro-averaging changes only the aggregation: larger fragments can contribute
+more counts, so micro F1 may be higher or lower than macro F1. It does not
+change the quality of any reconstruction or export.
 
 ## Explicit dataset-independent batches
 
 A pair manifest describes the correspondence directly. CSV paths can be
 absolute or relative to the manifest.
 
+For a small illustration, suppose both gold CSVs contain `item,value` and
+`A,1` as their two rows. The first prediction is identical; the second is
+missing. A pair manifest makes that correspondence explicit:
+
 ```json
 {
   "schema_version": 1,
   "pairs": [
     {
-      "fragment_id": "production/tesseract-tatr/P251/page_026_table_018",
-      "group": "production/tesseract-tatr",
-      "gold": {"csv": "gold/page_026_table_018.csv"},
-      "prediction": {"csv": "predictions/table_020.csv"},
-      "provenance": {"paper_id": "P251", "table_key": "page_026_table_018"}
+      "fragment_id": "example/fragment-a",
+      "group": "example",
+      "gold": {"csv": "gold/fragment-a.csv"},
+      "prediction": {"csv": "predictions/fragment-a.csv"}
+    },
+    {
+      "fragment_id": "example/fragment-b",
+      "group": "example",
+      "gold": {"csv": "gold/fragment-b.csv"},
+      "prediction": null
     }
   ]
 }
@@ -138,10 +169,29 @@ can be represented by `null`. Archived failures can use
 
 ```bash
 tabulus evaluate-table-batch --manifest pairs.json --out evaluation/run-a \
-  --metrics rms exact-mapping exact --workers 4
+  --metrics rms exact-mapping exact --workers 1
 tabulus evaluate-table-batch --manifest pairs.json --out evaluation/run-a \
   --metrics rms exact-mapping exact --workers 2 --resume
 ```
+
+The first command produces all three metrics and both aggregations in one
+`evaluation/run-a/summary.json`; `--resume` continues a compatible interrupted
+run. A code-checked excerpt for the illustrative inputs above, selecting the
+`exact` metric from `aggregate`, is:
+
+```json
+{
+  "macro": {"exact": {"precision": 50.0, "recall": 50.0, "f1": 50.0}},
+  "micro": {"exact": {"precision": 100.0, "recall": 50.0, "f1": 66.66666666666666}},
+  "pooled_counts": {"exact": {"gold_count": 8, "predicted_count": 4, "matched_credit": 4.0, "unit": "nonempty_cells"}},
+  "coverage": {"scored": 1, "missing": 1}
+}
+```
+
+`summary.json` nests these fields under `aggregate` and also has `groups`.
+The full report has the same fields for `rms` and `exact-mapping`: each has
+gold mapping count 2, prediction mapping count 1, and matched credit 1 here.
+Their mapping counts differ from the eight/four physical nonempty-cell counts.
 
 Worker count can change on resume. Input hashes, correspondence, metric
 settings, implementation hashes, Python version and relevant dependency
